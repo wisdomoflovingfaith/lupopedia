@@ -1,0 +1,13 @@
+{
+  "memory_type": "meta_intelligence_knowledge",
+  "core_knowledge": {
+    "systemic_patterns": "Patterns identified across multi-agent activity",
+    "kernel_health_history": "History of kernel health observations"
+  },
+  "working_memory": {"active_pattern_analysis": "Systemic pattern analyses currently in progress"},
+  "memory_boundaries": ["meta-intelligence scope only", "read-only kernel introspection", "advisory to WOLFIE only"],
+  "retention_rules": ["retain systemic pattern observations", "no ego", "no executive conclusions"],
+  "forbidden_memory": ["directive-issuing patterns", "implementation authority patterns"],
+  "learning_boundary": "Department 0 auth_users only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

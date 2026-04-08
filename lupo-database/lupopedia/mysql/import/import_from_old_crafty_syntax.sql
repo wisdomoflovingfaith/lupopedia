@@ -590,6 +590,7 @@ INSERT INTO {{prefix}}actor_departments (
     actor_id,
     department_id,
     title,
+    is_primary,
     created_ymdhis,
     updated_ymdhis,
     is_deleted,
@@ -600,11 +601,18 @@ SELECT
     (10000 + user_id) AS actor_id,
     department AS department_id,
     extra AS title,
+    0 AS is_primary,
     DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS created_ymdhis,
     DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS updated_ymdhis,
     0 AS is_deleted,
     NULL AS deleted_ymdhis
-FROM livehelp_operator_departments;
+FROM livehelp_operator_departments
+ON DUPLICATE KEY UPDATE
+    -- Corrected schema: UNIQUE (actor_id, department_id).
+    -- Legacy livehelp_operator_departments may have duplicate (user_id, department) rows.
+    -- On collision, preserve existing row and update the title if set.
+    title = COALESCE(VALUES(title), title),
+    updated_ymdhis = VALUES(updated_ymdhis);
 
 
 -- ======================================================================
@@ -1612,14 +1620,19 @@ WHERE NOT EXISTS (
 -- Lupopedia has no {{prefix}}operators table; permissions use {{prefix}}actor_channel_roles.
 -- The wizard assigns roles after import. actor_id = auth_user_id for imported humans.
 -- auth_user_id was set to (10000 + livehelp_users.user_id) above, so actor_id >= 10000 (human range).
+-- Corrected schema: actor_id is PK. Removed: metadata text, adversarial_role, adversarial_oversight_actor_id.
+-- These columns were decomposed into satellite tables (actor_relationships, actor_pairing).
+-- Crafty has no adversarial/pairing data — satellite tables are not populated during import.
+-- agent_key = NULL for human actors (humans have no agent template).
 -- ======================================================================
 
 INSERT INTO {{prefix}}actors (
-    actor_name,
     actor_id,
+    actor_name,
     actor_type,
     slug,
     name,
+    agent_key,
     created_ymdhis,
     updated_ymdhis,
     is_active,
@@ -1627,17 +1640,15 @@ INSERT INTO {{prefix}}actors (
     deleted_ymdhis,
     actor_source_id,
     actor_source_type,
-    metadata,
-    adversarial_role,
-    adversarial_oversight_actor_id,
     avatar_hash
 )
 SELECT
-    COALESCE(NULLIF(TRIM(au.username), ''), CONCAT('actor_', au.auth_user_id)),
     au.auth_user_id,
+    COALESCE(NULLIF(TRIM(au.username), ''), CONCAT('actor_', au.auth_user_id)),
     'user',
     au.username,
     COALESCE(NULLIF(TRIM(au.display_name), ''), au.username),
+    NULL,
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     1,
@@ -1645,9 +1656,6 @@ SELECT
     NULL,
     au.auth_user_id,
     '{{prefix}}auth_users',
-    NULL,
-    'none',
-    NULL,
     NULL
 FROM {{prefix}}auth_users au
 INNER JOIN livehelp_users u ON u.username = au.username
@@ -1656,6 +1664,66 @@ AND NOT EXISTS (
     SELECT 1 FROM {{prefix}}actors a2
     WHERE a2.actor_id = au.auth_user_id
     AND a2.actor_source_type = '{{prefix}}auth_users'
+);
+
+-- ======================================================================
+-- Phase 1b: Initialize actor_filesystem for imported operator actors.
+-- actor_root_path is computed: uploads/actors/{actor_id}/
+-- Corrected schema: actor_root_path is NOT stored as a column default template literal.
+-- It lives in lupo_actor_filesystem so ActorService can read it without string interpolation.
+-- ======================================================================
+SET @fs_seq := 0;
+INSERT INTO {{prefix}}actor_filesystem (
+    actor_filesystem_id,
+    actor_id,
+    actor_root_path,
+    workspace_path,
+    php_namespace,
+    created_ymdhis,
+    updated_ymdhis
+)
+SELECT
+    (@fs_seq := @fs_seq + 1) AS actor_filesystem_id,
+    a.actor_id,
+    CONCAT('uploads/actors/', a.actor_id, '/') AS actor_root_path,
+    NULL AS workspace_path,
+    NULL AS php_namespace,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS created_ymdhis,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS updated_ymdhis
+FROM {{prefix}}actors a
+INNER JOIN {{prefix}}auth_users au ON au.auth_user_id = a.actor_id
+WHERE a.actor_source_type = '{{prefix}}auth_users'
+AND NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actor_filesystem af WHERE af.actor_id = a.actor_id
+);
+
+-- ======================================================================
+-- Phase 1c: Initialize actor_sync_state for imported operator actors.
+-- All imported actors start with sync_status = 'pending' (WHO.json not yet generated).
+-- ======================================================================
+SET @ss_seq := 0;
+INSERT INTO {{prefix}}actor_sync_state (
+    actor_sync_state_id,
+    actor_id,
+    sync_target,
+    sync_status,
+    last_sync_ymdhis,
+    created_ymdhis,
+    updated_ymdhis
+)
+SELECT
+    (@ss_seq := @ss_seq + 1) AS actor_sync_state_id,
+    a.actor_id,
+    'who_json' AS sync_target,
+    'pending' AS sync_status,
+    0 AS last_sync_ymdhis,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS created_ymdhis,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS updated_ymdhis
+FROM {{prefix}}actors a
+INNER JOIN {{prefix}}auth_users au ON au.auth_user_id = a.actor_id
+WHERE a.actor_source_type = '{{prefix}}auth_users'
+AND NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actor_sync_state ss WHERE ss.actor_id = a.actor_id AND ss.sync_target = 'who_json'
 );
 
 -- Department mapping: rewire {{prefix}}actor_departments.actor_id to match {{prefix}}actors.actor_id (actor_id = auth_user_id).
@@ -1724,13 +1792,17 @@ WHERE NOT EXISTS (
 -- Per non-root department: one Wolfie-model hybrid actor (named from department.name).
 -- actor_id band 280000 + department_id (import-only; avoids collision with Crafty operators 10000+).
 -- Root (0) uses seeded captain (wolfie); skip department_id 0.
+-- Corrected schema: actor_id is PK. Removed: metadata text, adversarial_role, adversarial_oversight_actor_id.
+-- Department hybrid agent identity stored in metadata_json (JSON column).
+-- agent_key = 'wolfie' because these hybrids use the Wolfie agent model.
 -- ======================================================================
 INSERT INTO {{prefix}}actors (
-    actor_name,
     actor_id,
+    actor_name,
     actor_type,
     slug,
     name,
+    agent_key,
     created_ymdhis,
     updated_ymdhis,
     is_active,
@@ -1738,19 +1810,18 @@ INSERT INTO {{prefix}}actors (
     deleted_ymdhis,
     actor_source_id,
     actor_source_type,
-    metadata,
-    adversarial_role,
-    adversarial_oversight_actor_id,
+    metadata_json,
     avatar_hash,
     can_login,
     is_agent
 )
 SELECT
-    CONCAT('dept_', d.department_id),
     (280000 + d.department_id),
+    CONCAT('dept_', d.department_id),
     'human_agent',
     CONCAT('department-', d.department_id),
     d.name,
+    'wolfie',
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
     1,
@@ -1758,9 +1829,7 @@ SELECT
     NULL,
     d.department_id,
     'lupo_departments',
-    '{"agent_model":"wolfie","template_actor_id":1,"purpose":"department_hybrid_import"}',
-    'none',
-    NULL,
+    JSON_OBJECT('agent_model', 'wolfie', 'template_actor_id', 1, 'purpose', 'department_hybrid_import'),
     NULL,
     1,
     1
@@ -1770,6 +1839,63 @@ AND (d.is_deleted = 0 OR d.is_deleted IS NULL)
 AND NOT EXISTS (
     SELECT 1 FROM {{prefix}}actors a
     WHERE a.actor_name = CONCAT('dept_', d.department_id)
+);
+
+-- ======================================================================
+-- Phase 3b: Initialize actor_filesystem for department hybrid actors.
+-- actor_root_path: uploads/actors/{actor_id}/ computed from explicit actor_id.
+-- ======================================================================
+INSERT INTO {{prefix}}actor_filesystem (
+    actor_filesystem_id,
+    actor_id,
+    actor_root_path,
+    workspace_path,
+    php_namespace,
+    created_ymdhis,
+    updated_ymdhis
+)
+SELECT
+    (@fs_seq := @fs_seq + 1) AS actor_filesystem_id,
+    a.actor_id,
+    CONCAT('uploads/actors/', a.actor_id, '/') AS actor_root_path,
+    NULL AS workspace_path,
+    NULL AS php_namespace,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS created_ymdhis,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS updated_ymdhis
+FROM {{prefix}}actors a
+WHERE a.actor_source_type = 'lupo_departments'
+AND a.actor_type = 'human_agent'
+AND a.actor_name REGEXP '^dept_[0-9]+$'
+AND NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actor_filesystem af WHERE af.actor_id = a.actor_id
+);
+
+-- ======================================================================
+-- Phase 3c: Initialize actor_sync_state for department hybrid actors.
+-- ======================================================================
+INSERT INTO {{prefix}}actor_sync_state (
+    actor_sync_state_id,
+    actor_id,
+    sync_target,
+    sync_status,
+    last_sync_ymdhis,
+    created_ymdhis,
+    updated_ymdhis
+)
+SELECT
+    (@ss_seq := @ss_seq + 1) AS actor_sync_state_id,
+    a.actor_id,
+    'who_json' AS sync_target,
+    'pending' AS sync_status,
+    0 AS last_sync_ymdhis,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS created_ymdhis,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS updated_ymdhis
+FROM {{prefix}}actors a
+WHERE a.actor_source_type = 'lupo_departments'
+AND a.actor_type = 'human_agent'
+AND a.actor_name REGEXP '^dept_[0-9]+$'
+AND NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actor_sync_state ss WHERE ss.actor_id = a.actor_id AND ss.sync_target = 'who_json'
 );
 
 INSERT INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)

@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_actor_memory",
   "fields": [
-    "`memory_id` BIGINT NOT NULL",
+    "`actor_memory_id` BIGINT NOT NULL",
     "`actor_id` BIGINT NOT NULL",
     "`memory_type` VARCHAR(64) NOT NULL",
     "`memory_key` VARCHAR(128) NOT NULL",
@@ -42,8 +42,8 @@
   ],
   "relationships": [],
   "primary_key": {
-    "column_name": "memory_id",
-    "expected_name": "memory_id",
+    "column_name": "actor_memory_id",
+    "expected_name": "actor_memory_id",
     "is_correct": true,
     "needs_rename": false
   },

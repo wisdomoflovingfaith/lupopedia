@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260407233043"
   file_path_from_root: "lupo-docs/prd/04_tags_metadata.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/04_tags_metadata.md"
-  last_modified_utc: "20260330163000"
+  last_modified_utc: "20260407233043"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -38,7 +38,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Collections use tags for organization"
 lupopedia.footer:
-  last_verified: "20260330163000"
+  last_verified: "20260407232053"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -185,35 +185,43 @@ lupopedia.footer:
 | idx_contexts_type | context_type, is_active, is_deleted | Type-based queries |
 | idx_contexts_parent | parent_context_id, is_deleted | Hierarchy queries |
 
-### `lupo_edges`
+### `lupo_edges` (`{{prefix}}edges` in install SQL)
 
-**Purpose:** Polymorphic edge storage for any entity relationship in the system.
+**Purpose:** Polymorphic semantic edges between **left** and **right** objects (string `*_object_type` + BIGINT `*_object_id`). Canonical DDL: **`install_new_lupopedia.sql`**. Relationships to `lupo_edge_types` (if used) are **application-managed**, not database FKs.
 
-**Columns:**
+**Columns (summary — see install for full list):**
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| edge_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| edge_type_id | BIGINT | NO |  | Foreign reference to lupo_edge_types |
-| from_type | VARCHAR(32) | NO |  | Source entity type |
-| from_id | BIGINT | NO |  | Source entity ID |
-| to_type | VARCHAR(32) | NO |  | Target entity type |
-| to_id | BIGINT | NO |  | Target entity ID |
-| weight | DECIMAL(5,2) | YES | 1.0 | Edge weight for ranking |
-| properties_json | JSON | YES | NULL | Additional edge properties |
-| created_by_actor_id | BIGINT | NO |  | Actor who created this edge |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| updated_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| is_deleted | TINYINT | NO | 0 | Soft delete flag |
-| deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp when deleted |
+| Column | Type | Nullable | Description |
+|--------|------|----------|-------------|
+| edge_id | BIGINT | NO | Primary key (`IdGenerator`) |
+| left_object_type | VARCHAR(50) | NO | Source entity type (e.g. `actor_memory`) |
+| left_object_id | BIGINT | NO | Source entity id |
+| right_object_type | VARCHAR(50) | NO | Target entity type |
+| right_object_id | BIGINT | NO | Target entity id |
+| edge_type | VARCHAR(100) | NO | Relationship type string |
+| edge_category | VARCHAR(100) | YES | Category |
+| edge_description | TEXT | YES | Free-text description |
+| channel_id, channel_key | BIGINT / VARCHAR | YES | Optional channel scope |
+| domain_id | BIGINT | NO | Default 1 |
+| weight_score | INT | NO | Integer score (prefer integer weights; avoid new DECIMAL in PRD examples) |
+| sort_num | INT | NO | Ordering |
+| actor_id | BIGINT | YES | Provenance actor |
+| is_deleted, deleted_ymdhis | TINYINT / BIGINT | NO | Soft delete |
+| created_ymdhis, updated_ymdhis | BIGINT | NO | Packed UTC |
+| semantic_weight | DECIMAL(5,2) | YES | **Legacy / FLARE-era** decimal column in install; new code should prefer **`weight_score`** or a future **`weight_hundredths`** migration — do not add new DECIMAL columns in PRDs |
+| relationship_type | VARCHAR(64) | YES | e.g. semantic |
+| bidirectional | TINYINT | NO | Legacy direction hint |
+| context_scope | VARCHAR(100) | YES | Scope |
+| properties | JSON | YES | Extra properties |
+| flare_* | various | YES | FLARE protocol extension fields (see install) |
+| edge_context | VARCHAR(64) | YES | **4D memory model (4.0.96+)** — structural classification |
+| edge_status | VARCHAR(32) | YES | **4D model** — default `active`; `review` triggers `review_reason` |
+| direction | VARCHAR(16) | NO | **4D model** — default `unidirectional`; allowed values validated in application (e.g. `uni`, `bi`, `restricted`); portable SQL — do not use MySQL ENUM in new DDL |
+| review_reason | VARCHAR(64) | YES | When `edge_status` implies review (Option C routing) |
 
-**Indexes:**
+**Indexes (install):** `edges_idx_left`, `edges_idx_right`, `edges_idx_edge_type`, `edges_idx_actor`, `edges_idx_created`, `edges_idx_updated`, plus FLARE and composite indexes per install.
 
-| Index Name | Columns | Purpose |
-|------------|---------|---------|
-| idx_edges_from | from_type, from_id, edge_type_id, is_deleted | Outbound edges |
-| idx_edges_to | to_type, to_id, edge_type_id, is_deleted | Inbound edges |
-| idx_edges_weight | weight, is_deleted | Weight-based queries |
+**Doctrine:** No FK constraints; validate `edge_type` and object types in application code. Use **`lupo_memory_edges`** for the dedicated PRD 38 memory graph where appropriate; **`lupo_edges`** remains the general semantic edge store.
 
 ## Cross-Namespace Dependencies
 
@@ -267,4 +275,100 @@ $mapId = $hashtagService->addHashtag($targetType, $targetId, $hashtagText);
 // Add metadata
 $metadataService = new MetadataService();
 $metadataId = $metadataService->set($targetType, $targetId, $key, $value);
+```
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
 ```

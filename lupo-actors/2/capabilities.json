@@ -1,0 +1,15 @@
+{
+  "capabilities": [
+    "adversarial_audit",
+    "doctrine_enforcement",
+    "boundary_scanning",
+    "assumption_stress_testing",
+    "heterodox_reasoning",
+    "schema_drift_detection",
+    "prd_compliance_checking",
+    "agent_to_agent_critique",
+    "conflict_analysis",
+    "ethical_audit",
+    "alternative_perspectives"
+  ]
+}

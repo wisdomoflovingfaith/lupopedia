@@ -3,52 +3,136 @@
 -- No Crafty Syntax logic, no migration, no DROP TABLE.
 SET @now = 20260224000000;
 
+-- ============================================================================
+-- SECTION 1: ACTORS (runtime instances)
+-- Fixes: C1 (PK actor_id), C2 (actor_id NOT NULL), NV1 (decompose), NV2 (remove metadata text),
+--        NV3 (remove department_id), NV4 (remove template default), NV5 (remove paired_actor_id),
+--        NV6 (remove adversarial columns), N4 (timestamp naming)
+-- ============================================================================
+
 CREATE TABLE {{prefix}}actors (
-  actor_name varchar(64) NOT NULL,
-  actor_id bigint DEFAULT NULL,
-  actor_type varchar(64) NOT NULL,
-  slug varchar(255) NOT NULL,
-  name varchar(255) NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_active tinyint NOT NULL DEFAULT 1,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  actor_source_id bigint DEFAULT NULL,
-  actor_source_type varchar(64) DEFAULT NULL,
-  metadata text,
-  actor_config text,
-  adversarial_role varchar(64) DEFAULT 'none',
-  adversarial_oversight_actor_id bigint DEFAULT NULL,
-  avatar_hash varchar(64) DEFAULT NULL,
+  actor_id         bigint        NOT NULL,
+  actor_name       varchar(64)   NOT NULL,
+  slug             varchar(255)  NOT NULL,
+  name             varchar(255)  NOT NULL,
+  actor_type       varchar(64)   NOT NULL,
+  agent_key        varchar(100)  DEFAULT NULL,
+  is_kernel        tinyint       NOT NULL DEFAULT 0,
+  is_required      tinyint       NOT NULL DEFAULT 0,
+  can_login        tinyint       NOT NULL DEFAULT 0,
+  is_agent         tinyint       NOT NULL DEFAULT 0,
+  is_active        tinyint       NOT NULL DEFAULT 1,
+  actor_tier       tinyint       DEFAULT 3,
+  auth_user_id     bigint        DEFAULT NULL,
+  actor_source_id  bigint        DEFAULT NULL,
+  actor_source_type varchar(64)  DEFAULT NULL,
+  avatar_hash      varchar(64)   DEFAULT NULL,
   primary_federation_node_id bigint NOT NULL DEFAULT 1,
-  department_id bigint DEFAULT NULL,
-  is_kernel tinyint NOT NULL DEFAULT 0,
-  can_login tinyint NOT NULL DEFAULT 0,
   web_restrict_act_as_creator_or_root tinyint NOT NULL DEFAULT 0,
-  metadata_json json DEFAULT NULL,
-  identity_provider_config json DEFAULT NULL,
-  paired_actor_id bigint NOT NULL DEFAULT 0,
-  is_agent tinyint NOT NULL DEFAULT 0,
-  auth_user_id bigint DEFAULT NULL,
-  actor_tier tinyint DEFAULT 3,
-  actor_root_path varchar(512) DEFAULT 'actors/{actor_id}',
-  workspace_path varchar(255) NULL DEFAULT NULL,
-  php_namespace varchar(120) NULL DEFAULT NULL,
-  who_json_sync_status varchar(64) DEFAULT 'pending',
-  last_sync_ymdhis bigint DEFAULT 0,
-  PRIMARY KEY (actor_name)
+  identity_provider_config json  DEFAULT NULL,
+  metadata_json    json          DEFAULT NULL,
+  created_ymdhis   bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis   bigint        NOT NULL DEFAULT 0,
+  is_deleted       tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis   bigint        DEFAULT NULL,
+  PRIMARY KEY (actor_id)
 );
 
-CREATE UNIQUE INDEX {{prefix}}actors_unique_actor_id ON {{prefix}}actors (actor_id);
-CREATE UNIQUE INDEX {{prefix}}actors_unique_slug ON {{prefix}}actors (slug);
+-- actor_id is the PK; actor_name and slug are alternate unique lookup keys
+CREATE UNIQUE INDEX {{prefix}}actors_unq_actor_name ON {{prefix}}actors (actor_name);
+CREATE UNIQUE INDEX {{prefix}}actors_unq_slug ON {{prefix}}actors (slug);
 CREATE INDEX {{prefix}}actors_idx_actor_type ON {{prefix}}actors (actor_type);
+CREATE INDEX {{prefix}}actors_idx_agent_key ON {{prefix}}actors (agent_key);
 CREATE INDEX {{prefix}}actors_idx_is_active ON {{prefix}}actors (is_active);
+CREATE INDEX {{prefix}}actors_idx_is_deleted ON {{prefix}}actors (is_deleted);
+CREATE INDEX {{prefix}}actors_idx_is_kernel ON {{prefix}}actors (is_kernel);
 CREATE INDEX {{prefix}}actors_idx_created_ymdhis ON {{prefix}}actors (created_ymdhis);
-CREATE INDEX {{prefix}}actors_idx_workspace_path ON {{prefix}}actors (workspace_path);
-CREATE INDEX {{prefix}}actors_idx_php_namespace ON {{prefix}}actors (php_namespace);
--- RESERVED ID DOCTRINE: actor_id is NOT ; application must supply explicit ID.
--- ACTOR PRIMARY KEY DOCTRINE: actor_name is canonical; use ActorService::getActorByName / resolveActor.
+
+-- ============================================================================
+-- SECTION 2: ACTOR SATELLITE TABLES (decomposed from lupo_actors per NV1-NV6)
+-- ============================================================================
+
+-- Actor filesystem paths (extracted from lupo_actors per NV1)
+-- actor_root_path is computed at runtime by ActorService — no template default
+CREATE TABLE {{prefix}}actor_filesystem (
+  actor_filesystem_id bigint    NOT NULL,
+  actor_id            bigint    NOT NULL,
+  actor_root_path     varchar(512) DEFAULT NULL,
+  workspace_path      varchar(255) DEFAULT NULL,
+  php_namespace       varchar(120) DEFAULT NULL,
+  created_ymdhis      bigint    NOT NULL DEFAULT 0,
+  updated_ymdhis      bigint    NOT NULL DEFAULT 0,
+  PRIMARY KEY (actor_filesystem_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}actor_filesystem_unq_actor ON {{prefix}}actor_filesystem (actor_id);
+CREATE INDEX {{prefix}}actor_filesystem_idx_workspace ON {{prefix}}actor_filesystem (workspace_path);
+CREATE INDEX {{prefix}}actor_filesystem_idx_php_namespace ON {{prefix}}actor_filesystem (php_namespace);
+
+-- Actor WHO.json sync state (extracted from lupo_actors per NV1)
+CREATE TABLE {{prefix}}actor_sync_state (
+  actor_sync_state_id bigint     NOT NULL,
+  actor_id            bigint     NOT NULL,
+  sync_target         varchar(64) NOT NULL DEFAULT 'who_json',
+  sync_status         varchar(64) NOT NULL DEFAULT 'pending',
+  last_sync_ymdhis    bigint     NOT NULL DEFAULT 0,
+  sync_error_message  text       DEFAULT NULL,
+  created_ymdhis      bigint     NOT NULL DEFAULT 0,
+  updated_ymdhis      bigint     NOT NULL DEFAULT 0,
+  PRIMARY KEY (actor_sync_state_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}actor_sync_state_unq_actor_target ON {{prefix}}actor_sync_state (actor_id, sync_target);
+CREATE INDEX {{prefix}}actor_sync_state_idx_status ON {{prefix}}actor_sync_state (sync_status);
+CREATE INDEX {{prefix}}actor_sync_state_idx_last_sync ON {{prefix}}actor_sync_state (last_sync_ymdhis);
+
+-- Actor pairing relationships (extracted from lupo_actors per NV5)
+-- Replaces paired_actor_id column in main actors table
+CREATE TABLE {{prefix}}actor_pairing (
+  actor_pairing_id    bigint     NOT NULL,
+  actor_id            bigint     NOT NULL,
+  paired_actor_id     bigint     NOT NULL,
+  pairing_role        varchar(64) NOT NULL DEFAULT 'peer',
+  pairing_type        varchar(64) NOT NULL DEFAULT 'operational',
+  is_primary          tinyint    NOT NULL DEFAULT 1,
+  notes               text       DEFAULT NULL,
+  created_ymdhis      bigint     NOT NULL DEFAULT 0,
+  updated_ymdhis      bigint     NOT NULL DEFAULT 0,
+  is_deleted          tinyint    NOT NULL DEFAULT 0,
+  deleted_ymdhis      bigint     DEFAULT NULL,
+  PRIMARY KEY (actor_pairing_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}actor_pairing_unq_pair ON {{prefix}}actor_pairing (actor_id, paired_actor_id, pairing_role);
+CREATE INDEX {{prefix}}actor_pairing_idx_actor ON {{prefix}}actor_pairing (actor_id);
+CREATE INDEX {{prefix}}actor_pairing_idx_paired ON {{prefix}}actor_pairing (paired_actor_id);
+CREATE INDEX {{prefix}}actor_pairing_idx_type ON {{prefix}}actor_pairing (pairing_type);
+CREATE INDEX {{prefix}}actor_pairing_idx_deleted ON {{prefix}}actor_pairing (is_deleted);
+
+-- Actor inter-agent relationships: adversarial, coordination, oversight (extracted per NV6)
+-- Replaces adversarial_role + adversarial_oversight_actor_id columns in lupo_actors
+CREATE TABLE {{prefix}}actor_relationships (
+  actor_relationship_id bigint   NOT NULL,
+  actor_a_id            bigint   NOT NULL,
+  actor_b_id            bigint   NOT NULL,
+  relationship_type     varchar(64) NOT NULL,
+  -- relationship_type values: adversarial_oversight, coordination, peer, mentor, delegate
+  authority_direction   varchar(32) NOT NULL DEFAULT 'a_over_b',
+  -- authority_direction: a_over_b | b_over_a | bidirectional | none
+  is_active             tinyint  NOT NULL DEFAULT 1,
+  notes                 text     DEFAULT NULL,
+  created_ymdhis        bigint   NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint   NOT NULL DEFAULT 0,
+  is_deleted            tinyint  NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint   DEFAULT NULL,
+  PRIMARY KEY (actor_relationship_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}actor_relationships_unq ON {{prefix}}actor_relationships (actor_a_id, actor_b_id, relationship_type);
+CREATE INDEX {{prefix}}actor_relationships_idx_a ON {{prefix}}actor_relationships (actor_a_id);
+CREATE INDEX {{prefix}}actor_relationships_idx_b ON {{prefix}}actor_relationships (actor_b_id);
+CREATE INDEX {{prefix}}actor_relationships_idx_type ON {{prefix}}actor_relationships (relationship_type);
+CREATE INDEX {{prefix}}actor_relationships_idx_deleted ON {{prefix}}actor_relationships (is_deleted);
 
 CREATE TABLE {{prefix}}registry (
   registry_id bigint NOT NULL,
@@ -183,31 +267,36 @@ CREATE INDEX {{prefix}}actor_channels_idx_updated ON {{prefix}}actor_channels (u
 CREATE INDEX {{prefix}}actor_channels_idx_deleted ON {{prefix}}actor_channels (is_deleted);
 
 -- Auth user ↔ actor pairing: lupo_actor_auth_users (no exclusive "lease" session table; concurrent web sessions allowed).
+-- ============================================================================
+-- SECTION 15: ACTOR AUTH USERS — fix I3 (over-engineered 7-column indexes)
+-- Retain table; replace 7-column indexes with targeted 2-3 column indexes
+-- ============================================================================
+
 CREATE TABLE {{prefix}}actor_auth_users (
-  actor_auth_user_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  auth_user_id bigint NOT NULL,
-  relationship_role varchar(64) NOT NULL DEFAULT 'supporting_human',
-  -- is_primary must be application-enforced as 0 or 1.
-  is_primary tinyint NOT NULL DEFAULT '0',
-  -- routing_priority must be application-enforced as non-negative (>= 0).
-  routing_priority smallint NOT NULL DEFAULT '100',
-  -- Allowed status values (application-enforced): 'active', 'inactive', 'disabled'.
-  status varchar(32) NOT NULL DEFAULT 'active',
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT 0,
+  actor_auth_user_id    bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  auth_user_id          bigint        NOT NULL,
+  relationship_role     varchar(64)   NOT NULL DEFAULT 'supporting_human',
+  -- relationship_role: primary_owner | supporting_human | delegate | observer
+  is_primary            tinyint       NOT NULL DEFAULT 0,
+  routing_priority      smallint      NOT NULL DEFAULT 100,
+  status                varchar(32)   NOT NULL DEFAULT 'active',
+  -- status: active | inactive | disabled
+  metadata_json         json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
   PRIMARY KEY (actor_auth_user_id)
 );
 
-CREATE UNIQUE INDEX {{prefix}}actor_auth_users_unq_actor_user_role ON {{prefix}}actor_auth_users (actor_id, auth_user_id, relationship_role);
-CREATE INDEX {{prefix}}actor_auth_users_idx_auth_user_status ON {{prefix}}actor_auth_users (auth_user_id, status);
-CREATE INDEX {{prefix}}actor_auth_users_idx_actor_status_primary_priority ON {{prefix}}actor_auth_users (actor_id, status, is_primary, routing_priority);
-CREATE INDEX {{prefix}}actor_auth_users_idx_actor_role_primary_lookup ON {{prefix}}actor_auth_users (actor_id, relationship_role, status, is_deleted, is_primary, routing_priority, auth_user_id);
-CREATE INDEX {{prefix}}actor_auth_users_idx_actor_routing ON {{prefix}}actor_auth_users (actor_id, status, is_deleted, relationship_role, is_primary, routing_priority, auth_user_id);
-CREATE INDEX {{prefix}}actor_auth_users_idx_status ON {{prefix}}actor_auth_users (status);
+-- Targeted indexes replacing the 7-column over-engineered composites
+CREATE UNIQUE INDEX {{prefix}}actor_auth_users_unq ON {{prefix}}actor_auth_users (actor_id, auth_user_id, relationship_role);
+CREATE INDEX {{prefix}}actor_auth_users_idx_actor_status ON {{prefix}}actor_auth_users (actor_id, status);
+CREATE INDEX {{prefix}}actor_auth_users_idx_auth_user ON {{prefix}}actor_auth_users (auth_user_id, status);
+CREATE INDEX {{prefix}}actor_auth_users_idx_primary ON {{prefix}}actor_auth_users (actor_id, is_primary);
+CREATE INDEX {{prefix}}actor_auth_users_idx_routing ON {{prefix}}actor_auth_users (actor_id, routing_priority);
+CREATE INDEX {{prefix}}actor_auth_users_idx_deleted ON {{prefix}}actor_auth_users (is_deleted);
 
 -- Auth-user to department relationship mapping (many-to-many, doctrine-safe, no FKs)
 CREATE TABLE {{prefix}}auth_user_departments (
@@ -334,20 +423,24 @@ CREATE INDEX {{prefix}}actor_conflicts_idx_agent_pair ON {{prefix}}actor_conflic
 CREATE INDEX {{prefix}}actor_conflicts_idx_conflict_type ON {{prefix}}actor_conflicts (conflict_type);
 
 CREATE TABLE {{prefix}}actor_departments (
-  actor_department_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  department_id bigint NOT NULL,
-  role_key varchar(64) DEFAULT NULL,
-  title varchar(64) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
+  actor_department_id   bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  department_id         bigint        NOT NULL,
+  role_key              varchar(64)   DEFAULT NULL,
+  title                 varchar(64)   DEFAULT NULL,
+  is_primary            tinyint       NOT NULL DEFAULT 0,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
   PRIMARY KEY (actor_department_id)
 );
 
+CREATE UNIQUE INDEX {{prefix}}actor_departments_unq ON {{prefix}}actor_departments (actor_id, department_id);
 CREATE INDEX {{prefix}}actor_departments_idx_actor ON {{prefix}}actor_departments (actor_id);
 CREATE INDEX {{prefix}}actor_departments_idx_department ON {{prefix}}actor_departments (department_id);
+CREATE INDEX {{prefix}}actor_departments_idx_primary ON {{prefix}}actor_departments (actor_id, is_primary);
+CREATE INDEX {{prefix}}actor_departments_idx_deleted ON {{prefix}}actor_departments (is_deleted);
 
 -- Actor application folder tracking (doctrine: /uploads/actors/{actor_id}/apps/ with skills, assets, manifest.json)
 CREATE TABLE {{prefix}}actor_apps (
@@ -395,6 +488,11 @@ CREATE TABLE {{prefix}}edges (
   flare_auto_generated tinyint DEFAULT 0 COMMENT 'Generated by automation',
   flare_verified tinyint DEFAULT 0 COMMENT 'Path verified to exist',
   flare_discovered_via varchar(50) DEFAULT NULL COMMENT 'Discovery method',
+  -- 4-dimensional memory model (4.0.96)
+  edge_context  varchar(64)                          DEFAULT NULL COMMENT 'Contextual scope: temporal, spatial, semantic, causal, etc.',
+  edge_status   varchar(32)                          DEFAULT 'active' COMMENT 'active | pending | deprecated | review',
+  direction     enum('uni','bi','restricted')        DEFAULT 'uni' COMMENT 'Edge directionality: uni=A→B only, bi=A↔B, restricted=access-controlled',
+  review_reason varchar(64)                          DEFAULT NULL COMMENT 'Option C review classification; required when edge_status=review',
   PRIMARY KEY (edge_id)
 );
 
@@ -415,28 +513,35 @@ CREATE INDEX {{prefix}}edges_idx_updated ON {{prefix}}edges (updated_ymdhis);
 CREATE INDEX {{prefix}}edges_idx_flare_weight ON {{prefix}}edges (flare_weight, edge_type);
 CREATE INDEX {{prefix}}edges_idx_flare_discovered ON {{prefix}}edges (flare_discovered_via, flare_auto_generated);
 CREATE INDEX {{prefix}}edges_idx_flare_files ON {{prefix}}edges (left_object_type, left_object_id, edge_type, right_object_type, right_object_id);
+-- 4-dimensional memory model indexes (4.0.96)
+CREATE INDEX {{prefix}}edges_idx_edge_context ON {{prefix}}edges (edge_context);
+CREATE INDEX {{prefix}}edges_idx_direction ON {{prefix}}edges (direction);
+CREATE INDEX {{prefix}}edges_idx_status_review ON {{prefix}}edges (edge_status, review_reason);
 
 -- Old actor events table removed in v4.0.86 - consolidated into {{prefix}}unified_log
 
 CREATE TABLE {{prefix}}actor_handshakes (
-  actor_handshake_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  actor_type varchar(32) NOT NULL,
-  `utc_timestamp` bigint NOT NULL,
-  purpose varchar(500) DEFAULT NULL,
-  constraints_json json DEFAULT NULL,
-  forbidden_actions_json json DEFAULT NULL,
-  context text,
-  expires_utc bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
+  actor_handshake_id    bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  actor_type            varchar(32)   NOT NULL,
+  handshake_ymdhis      bigint        NOT NULL,
+  -- Renamed from utc_timestamp (reserved MySQL function name)
+  purpose               varchar(500)  DEFAULT NULL,
+  constraints_json      json          DEFAULT NULL,
+  forbidden_actions_json json         DEFAULT NULL,
+  context               text          DEFAULT NULL,
+  expires_ymdhis        bigint        DEFAULT NULL,
+  -- Renamed from expires_utc
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
   PRIMARY KEY (actor_handshake_id)
 );
 
-CREATE INDEX {{prefix}}actor_handshakes_idx_actor_id ON {{prefix}}actor_handshakes (actor_id);
-CREATE INDEX {{prefix}}actor_handshakes_idx_is_deleted ON {{prefix}}actor_handshakes (is_deleted);
-CREATE INDEX {{prefix}}actor_handshakes_idx_utc_timestamp ON {{prefix}}actor_handshakes (`utc_timestamp`);
+CREATE INDEX {{prefix}}actor_handshakes_idx_actor ON {{prefix}}actor_handshakes (actor_id);
+CREATE INDEX {{prefix}}actor_handshakes_idx_ymdhis ON {{prefix}}actor_handshakes (handshake_ymdhis);
+CREATE INDEX {{prefix}}actor_handshakes_idx_expires ON {{prefix}}actor_handshakes (expires_ymdhis);
+CREATE INDEX {{prefix}}actor_handshakes_idx_deleted ON {{prefix}}actor_handshakes (is_deleted);
 
 -- ============================================================================
 -- DEPRECATED 4.0.87: Bayesian Decision Tracking tables removed.
@@ -487,14 +592,27 @@ CREATE INDEX {{prefix}}metadata_idx_parent_deleted ON {{prefix}}metadata (parent
 CREATE INDEX {{prefix}}metadata_idx_meta_type_deleted ON {{prefix}}metadata (meta_type, is_deleted);
 CREATE INDEX {{prefix}}metadata_idx_class_deleted ON {{prefix}}metadata (class_name, is_deleted);
 
+-- ============================================================================
+-- SECTION 10: ACTOR MOODS — fix I4 (no PK, no is_deleted, bad timestamp name)
+-- ============================================================================
+
 CREATE TABLE {{prefix}}actor_moods (
-  actor_id bigint NOT NULL,
-  mood_r tinyint NOT NULL,
-  mood_g tinyint NOT NULL,
-  mood_b tinyint NOT NULL,
-  mood_framework varchar(32) NOT NULL DEFAULT 'western_analytical',
-  timestamp_utc bigint NOT NULL
+  actor_mood_id         bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  mood_r                tinyint       NOT NULL,
+  mood_g                tinyint       NOT NULL,
+  mood_b                tinyint       NOT NULL,
+  mood_framework        varchar(32)   NOT NULL DEFAULT 'western_analytical',
+  recorded_ymdhis       bigint        NOT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  PRIMARY KEY (actor_mood_id)
 );
+
+CREATE INDEX {{prefix}}actor_moods_idx_actor ON {{prefix}}actor_moods (actor_id);
+CREATE INDEX {{prefix}}actor_moods_idx_recorded ON {{prefix}}actor_moods (recorded_ymdhis);
+CREATE INDEX {{prefix}}actor_moods_idx_deleted ON {{prefix}}actor_moods (is_deleted);
 
 CREATE TABLE {{prefix}}actor_reply_templates (
   actor_reply_template_id bigint NOT NULL,
@@ -538,269 +656,553 @@ CREATE INDEX {{prefix}}actor_availability_status_idx_last_activity ON {{prefix}}
 CREATE INDEX {{prefix}}actor_availability_status_idx_is_deleted ON {{prefix}}actor_availability_status (is_deleted);
 -- Live Help Operator Availability: Tracks real-time status of operators by channel (online, busy, away, offline)
 
-CREATE TABLE {{prefix}}agents (
-  agent_id bigint NOT NULL,
-  agent_key varchar(100) NOT NULL,
-  agent_name varchar(150) NOT NULL,
-  archetype varchar(150) DEFAULT NULL,
-  description text,
-  version varchar(50) DEFAULT '1.0',
-  model_name varchar(100) DEFAULT NULL,
-  is_global_authority tinyint NOT NULL DEFAULT '0',
-  is_internal_only tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  avg_response_time_ms int DEFAULT '0',
-  total_tokens_processed bigint DEFAULT '0',
-  success_rate float DEFAULT '1',
-  cost_per_1k_tokens decimal(10,4) DEFAULT '0.0000',
-  temperature float DEFAULT '0.7',
-  top_p float DEFAULT '1',
-  max_tokens int DEFAULT '2048',
-  presence_penalty float DEFAULT '0',
-  frequency_penalty float DEFAULT '0',
-  system_prompt text,
-  provider varchar(50) DEFAULT 'openai',
-  api_key_id bigint DEFAULT NULL,
-  timeout_ms int DEFAULT '20000',
-  safety_json json DEFAULT NULL,
-  response_format varchar(50) DEFAULT NULL,
-  metadata_json json DEFAULT NULL,
+-- Merged from schema_corrected_core.sql (20260406): agent_definitions stack through agent_boundaries
+
+-- ============================================================================
+-- SECTION 3: AGENT DEFINITIONS (doctrine identity — split from lupo_agents per C3, AS3)
+-- Replaces the LLM-config-contaminated lupo_agents table with proper doctrine identity
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_definitions (
+  agent_id              bigint        NOT NULL,
+  agent_key             varchar(100)  NOT NULL,
+  slug                  varchar(255)  NOT NULL,
+  name                  varchar(255)  NOT NULL,
+  layer                 varchar(64)   NOT NULL DEFAULT 'application',
+  -- layer values: kernel | coordination | application | emotional | reserved
+  role                  varchar(500)  DEFAULT NULL,
+  agent_class           varchar(100)  DEFAULT NULL,
+  archetype             varchar(150)  DEFAULT NULL,
+  description           text          DEFAULT NULL,
+  is_kernel             tinyint       NOT NULL DEFAULT 0,
+  is_required           tinyint       NOT NULL DEFAULT 0,
+  department_id         bigint        DEFAULT NULL,
+  learning_boundary     varchar(255)  DEFAULT NULL,
+  -- learning_boundary: 'Department 0 auth_users only (core system actor)' or 'General ...'
+  lineage_json          json          DEFAULT NULL,
+  capabilities_json     json          DEFAULT NULL,
+  system_prompt_path    varchar(512)  DEFAULT NULL,
+  -- system_prompt_path: filesystem path to lupo-agents/{slug}/system_prompt.txt
+  -- NOT inline text blob (prevents sync drift between file and database)
+  version               varchar(50)   NOT NULL DEFAULT '1.0.0',
+  status                varchar(32)   NOT NULL DEFAULT 'active',
+  -- status values: active | reserved | deprecated | inactive
+  metadata_json         json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
   PRIMARY KEY (agent_id)
 );
 
-CREATE UNIQUE INDEX {{prefix}}agents_unique_agent_key ON {{prefix}}agents (agent_key);
-CREATE INDEX {{prefix}}agents_idx_api_key_id ON {{prefix}}agents (api_key_id);
-CREATE INDEX {{prefix}}agents_idx_is_global_authority ON {{prefix}}agents (is_global_authority);
-CREATE INDEX {{prefix}}agents_idx_created_ymdhis ON {{prefix}}agents (created_ymdhis);
-CREATE INDEX {{prefix}}agents_idx_updated_ymdhis ON {{prefix}}agents (updated_ymdhis);
-CREATE INDEX {{prefix}}agents_idx_is_deleted ON {{prefix}}agents (is_deleted);
+CREATE UNIQUE INDEX {{prefix}}agent_definitions_unq_key ON {{prefix}}agent_definitions (agent_key);
+CREATE UNIQUE INDEX {{prefix}}agent_definitions_unq_slug ON {{prefix}}agent_definitions (slug);
+CREATE INDEX {{prefix}}agent_definitions_idx_layer ON {{prefix}}agent_definitions (layer);
+CREATE INDEX {{prefix}}agent_definitions_idx_is_kernel ON {{prefix}}agent_definitions (is_kernel);
+CREATE INDEX {{prefix}}agent_definitions_idx_is_required ON {{prefix}}agent_definitions (is_required);
+CREATE INDEX {{prefix}}agent_definitions_idx_department ON {{prefix}}agent_definitions (department_id);
+CREATE INDEX {{prefix}}agent_definitions_idx_status ON {{prefix}}agent_definitions (status);
+CREATE INDEX {{prefix}}agent_definitions_idx_deleted ON {{prefix}}agent_definitions (is_deleted);
 
-CREATE TABLE {{prefix}}agent_context_snapshots (
-  agent_context_snapshot_id bigint NOT NULL,
-  session_id varchar(100) NOT NULL,
-  actor_id bigint NOT NULL,
-  parent_snapshot_id bigint DEFAULT NULL,
-  snapshot_type varchar(64) NOT NULL DEFAULT 'full',
-  snapshot_purpose varchar(50) DEFAULT NULL,
-  context_data text NOT NULL,
-  context_summary text,
-  context_metadata json DEFAULT NULL,
-  token_count int DEFAULT NULL,
-  character_count int DEFAULT NULL,
-  compressed_size int DEFAULT NULL,
-  compression_ratio float DEFAULT NULL,
-  compression_method varchar(64) DEFAULT 'gzip',
-  serialization_time_ms int DEFAULT NULL,
-  compression_time_ms int DEFAULT NULL,
-  related_tool_call_id bigint DEFAULT NULL,
-  conversation_turn int DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  expires_ymdhis bigint DEFAULT NULL,
-  is_corrupt tinyint DEFAULT '0',
-  retention_policy varchar(64) DEFAULT 'temporary',
-  PRIMARY KEY (agent_context_snapshot_id)
+-- ============================================================================
+-- SECTION 4: AGENT LLM CONFIGS (runtime provider config — split from lupo_agents per C3)
+-- Only agents that invoke LLMs need this. CHRONOS, LILITH, etc. may have no LLM config.
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_llm_configs (
+  agent_llm_config_id   bigint        NOT NULL,
+  agent_id              bigint        NOT NULL,
+  config_name           varchar(100)  NOT NULL DEFAULT 'default',
+  provider              varchar(50)   NOT NULL DEFAULT 'anthropic',
+  model_name            varchar(100)  DEFAULT NULL,
+  api_key_id            bigint        DEFAULT NULL,
+  temperature           float         DEFAULT 0.7,
+  top_p                 float         DEFAULT 1.0,
+  max_tokens            int           DEFAULT 2048,
+  presence_penalty      float         DEFAULT 0.0,
+  frequency_penalty     float         DEFAULT 0.0,
+  timeout_ms            int           DEFAULT 20000,
+  cost_per_1k_tokens    decimal(10,4) DEFAULT 0.0000,
+  safety_json           json          DEFAULT NULL,
+  response_format       varchar(50)   DEFAULT NULL,
+  is_active             tinyint       NOT NULL DEFAULT 1,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  PRIMARY KEY (agent_llm_config_id)
 );
 
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_session_agent ON {{prefix}}agent_context_snapshots (session_id, actor_id);
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_created ON {{prefix}}agent_context_snapshots (created_ymdhis);
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_type_purpose ON {{prefix}}agent_context_snapshots (snapshot_type, snapshot_purpose);
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_retention ON {{prefix}}agent_context_snapshots (retention_policy, expires_ymdhis);
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_turn ON {{prefix}}agent_context_snapshots (session_id, conversation_turn);
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_related_tool ON {{prefix}}agent_context_snapshots (related_tool_call_id);
-CREATE INDEX {{prefix}}agent_context_snapshots_idx_parent ON {{prefix}}agent_context_snapshots (parent_snapshot_id);
+CREATE UNIQUE INDEX {{prefix}}agent_llm_configs_unq_agent_config ON {{prefix}}agent_llm_configs (agent_id, config_name);
+CREATE INDEX {{prefix}}agent_llm_configs_idx_agent ON {{prefix}}agent_llm_configs (agent_id);
+CREATE INDEX {{prefix}}agent_llm_configs_idx_provider ON {{prefix}}agent_llm_configs (provider);
+CREATE INDEX {{prefix}}agent_llm_configs_idx_api_key ON {{prefix}}agent_llm_configs (api_key_id);
+CREATE INDEX {{prefix}}agent_llm_configs_idx_active ON {{prefix}}agent_llm_configs (is_active);
+CREATE INDEX {{prefix}}agent_llm_configs_idx_deleted ON {{prefix}}agent_llm_configs (is_deleted);
 
-CREATE TABLE {{prefix}}agent_dependencies (
-  agent_dependency_id bigint NOT NULL,
-  agent_id bigint NOT NULL,
-  depends_on_agent_id bigint NOT NULL,
-  depends_on_agent_code varchar(50) NOT NULL,
-  is_required tinyint NOT NULL DEFAULT '1',
-  notes text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (agent_dependency_id)
+-- ============================================================================
+-- SECTION 5: AGENT PERFORMANCE STATS (runtime metrics — split from lupo_agents per C3)
+-- Separated because these are rolling runtime metrics, not identity fields
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_performance_stats (
+  agent_perf_id         bigint        NOT NULL,
+  agent_id              bigint        NOT NULL,
+  stat_window           varchar(32)   NOT NULL DEFAULT 'all_time',
+  -- stat_window: all_time | rolling_24h | rolling_7d | rolling_30d
+  avg_response_time_ms  int           DEFAULT 0,
+  total_tokens_processed bigint       DEFAULT 0,
+  success_rate          float         DEFAULT 1.0,
+  total_calls           bigint        DEFAULT 0,
+  last_called_ymdhis    bigint        DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  PRIMARY KEY (agent_perf_id)
 );
 
-CREATE INDEX {{prefix}}agent_dependencies_idx_agent_id ON {{prefix}}agent_dependencies (agent_id);
-CREATE INDEX {{prefix}}agent_dependencies_idx_depends_on ON {{prefix}}agent_dependencies (depends_on_agent_id);
+CREATE UNIQUE INDEX {{prefix}}agent_perf_unq_agent_window ON {{prefix}}agent_performance_stats (agent_id, stat_window);
+CREATE INDEX {{prefix}}agent_perf_idx_agent ON {{prefix}}agent_performance_stats (agent_id);
+CREATE INDEX {{prefix}}agent_perf_idx_window ON {{prefix}}agent_performance_stats (stat_window);
 
-CREATE TABLE {{prefix}}agent_experiences (
-  link_id char(26) NOT NULL,
-  agent_id bigint NOT NULL,
-  star_id char(26) NOT NULL,
-  intensity decimal(3,2) DEFAULT NULL,
-  context_id bigint DEFAULT NULL,
-  observed_ymdhis bigint DEFAULT NULL,
-  expressed_as_rgb char(6) DEFAULT NULL,
-  PRIMARY KEY (link_id)
+-- ============================================================================
+-- SECTION 6: AGENT CAPABILITIES (template-level — per agent_definition, not per actor)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_capabilities (
+  agent_capability_id   bigint        NOT NULL,
+  agent_id              bigint        NOT NULL,
+  capability_key        varchar(100)  NOT NULL,
+  capability_category   varchar(64)   DEFAULT NULL,
+  capability_description text         DEFAULT NULL,
+  is_out_of_scope       tinyint       NOT NULL DEFAULT 0,
+  -- is_out_of_scope = 1 means this capability is explicitly NOT owned by this agent
+  out_of_scope_owner    varchar(100)  DEFAULT NULL,
+  -- out_of_scope_owner: the agent_key that owns this domain (e.g. 'kairos', 'hermes')
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  PRIMARY KEY (agent_capability_id)
 );
 
-CREATE INDEX {{prefix}}agent_experiences_idx_agent ON {{prefix}}agent_experiences (agent_id);
-CREATE INDEX {{prefix}}agent_experiences_idx_star ON {{prefix}}agent_experiences (star_id);
-CREATE INDEX {{prefix}}agent_experiences_idx_context ON {{prefix}}agent_experiences (context_id);
+CREATE UNIQUE INDEX {{prefix}}agent_capabilities_unq ON {{prefix}}agent_capabilities (agent_id, capability_key);
+CREATE INDEX {{prefix}}agent_capabilities_idx_agent ON {{prefix}}agent_capabilities (agent_id);
+CREATE INDEX {{prefix}}agent_capabilities_idx_key ON {{prefix}}agent_capabilities (capability_key);
+CREATE INDEX {{prefix}}agent_capabilities_idx_category ON {{prefix}}agent_capabilities (capability_category);
+CREATE INDEX {{prefix}}agent_capabilities_idx_scope ON {{prefix}}agent_capabilities (is_out_of_scope);
+CREATE INDEX {{prefix}}agent_capabilities_idx_deleted ON {{prefix}}agent_capabilities (is_deleted);
 
-CREATE TABLE {{prefix}}agent_external_events (
-  external_event_id bigint NOT NULL,
-  agent_name varchar(255) NOT NULL,
-  source_system varchar(255) NOT NULL,
-  event_type varchar(50) NOT NULL,
-  event_payload_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (external_event_id)
+-- ============================================================================
+-- SECTION 7: AGENT TOOLS (template-level — per agent_definition)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_tools (
+  agent_tool_id         bigint        NOT NULL,
+  agent_id              bigint        NOT NULL,
+  tool_id_key           varchar(200)  NOT NULL,
+  -- tool_id_key: namespaced, e.g. 'chronos.analyze_dependency_graph'
+  tool_name             varchar(100)  NOT NULL,
+  tool_category         varchar(64)   DEFAULT NULL,
+  tool_description      text          DEFAULT NULL,
+  input_schema_json     json          DEFAULT NULL,
+  output_schema_json    json          DEFAULT NULL,
+  constraints_json      json          DEFAULT NULL,
+  -- constraints_json: no_system_calls, no_db_writes, advisory_only, etc.
+  is_advisory_only      tinyint       NOT NULL DEFAULT 0,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  PRIMARY KEY (agent_tool_id)
 );
 
+CREATE UNIQUE INDEX {{prefix}}agent_tools_unq ON {{prefix}}agent_tools (agent_id, tool_id_key);
+CREATE INDEX {{prefix}}agent_tools_idx_agent ON {{prefix}}agent_tools (agent_id);
+CREATE INDEX {{prefix}}agent_tools_idx_key ON {{prefix}}agent_tools (tool_id_key);
+CREATE INDEX {{prefix}}agent_tools_idx_category ON {{prefix}}agent_tools (tool_category);
+CREATE INDEX {{prefix}}agent_tools_idx_advisory ON {{prefix}}agent_tools (is_advisory_only);
+CREATE INDEX {{prefix}}agent_tools_idx_deleted ON {{prefix}}agent_tools (is_deleted);
 
-CREATE TABLE {{prefix}}agent_faucets (
-  agent_faucet_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  name varchar(100) NOT NULL,
-  alias_name varchar(100) DEFAULT NULL,
-  slug varchar(100) NOT NULL,
-  faucet_class varchar(32) DEFAULT NULL,
-  description text,
-  style_preset varchar(100) DEFAULT NULL,
-  model_name varchar(100) DEFAULT NULL,
-  provider varchar(50) DEFAULT NULL,
-  temperature float DEFAULT NULL,
-  top_p float DEFAULT NULL,
-  max_tokens int DEFAULT NULL,
-  presence_penalty float DEFAULT NULL,
-  frequency_penalty float DEFAULT NULL,
-  system_prompt text,
-  safety_json json DEFAULT NULL,
-  response_format varchar(50) DEFAULT NULL,
-  capabilities_json text,
-  is_default tinyint NOT NULL DEFAULT '0',
-  domain_id bigint NOT NULL DEFAULT '1',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (agent_faucet_id)
+-- ============================================================================
+-- SECTION 8: AGENT BOUNDARIES (domain boundary definitions per agent)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_boundaries (
+  agent_boundary_id     bigint        NOT NULL,
+  agent_id              bigint        NOT NULL,
+  boundary_type         varchar(64)   NOT NULL,
+  -- boundary_type: owns | cannot_claim | yields_to | encroachment_forbidden
+  domain_key            varchar(100)  NOT NULL,
+  owner_agent_key       varchar(100)  DEFAULT NULL,
+  boundary_description  text          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  PRIMARY KEY (agent_boundary_id)
 );
 
-CREATE INDEX {{prefix}}agent_faucets_idx_agent ON {{prefix}}agent_faucets (actor_id);
-CREATE INDEX {{prefix}}agent_faucets_idx_slug ON {{prefix}}agent_faucets (slug);
-CREATE INDEX {{prefix}}agent_faucets_idx_faucet_class ON {{prefix}}agent_faucets (faucet_class);
-CREATE INDEX {{prefix}}agent_faucets_idx_domain ON {{prefix}}agent_faucets (domain_id);
-CREATE INDEX {{prefix}}agent_faucets_idx_default ON {{prefix}}agent_faucets (is_default);
+CREATE UNIQUE INDEX {{prefix}}agent_boundaries_unq ON {{prefix}}agent_boundaries (agent_id, boundary_type, domain_key);
+CREATE INDEX {{prefix}}agent_boundaries_idx_agent ON {{prefix}}agent_boundaries (agent_id);
+CREATE INDEX {{prefix}}agent_boundaries_idx_type ON {{prefix}}agent_boundaries (boundary_type);
+CREATE INDEX {{prefix}}agent_boundaries_idx_domain ON {{prefix}}agent_boundaries (domain_key);
+CREATE INDEX {{prefix}}agent_boundaries_idx_owner ON {{prefix}}agent_boundaries (owner_agent_key);
 
-CREATE TABLE {{prefix}}agent_faucet_credentials (
-  agent_faucet_credential_id int NOT NULL,
-  faucet_id bigint NOT NULL,
-  provider varchar(64) NOT NULL,
-  api_key varbinary(512) NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (agent_faucet_credential_id)
+-- Merged from schema_corrected_core.sql: actor_faucets, actor_versions, agent_definition_versions, versions (actor_moods remains earlier in install)
+
+-- ============================================================================
+-- SECTION 11: ACTOR FAUCETS — rename from lupo_agent_faucets per N3
+-- Faucet Proxy Pattern (v4.0.90+): all IDE faucets execute as HEPHAESTUS actor_id 102
+-- ============================================================================
+
+-- NOTE: Rename lupo_agent_faucets → lupo_actor_faucets
+-- The existing table structure is retained; only name and actor semantics corrected.
+-- The executing actor is always an actor_id (e.g. HEPHAESTUS = 102), not an agent.
+CREATE TABLE {{prefix}}actor_faucets (
+  actor_faucet_id       bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  -- actor_id: the actor executing via this faucet (HEPHAESTUS = 102 by doctrine)
+  faucet_key            varchar(100)  NOT NULL,
+  faucet_type           varchar(64)   NOT NULL DEFAULT 'ide',
+  -- faucet_type: ide | api | webhook | cli
+  target_actor_id       bigint        DEFAULT NULL,
+  -- target_actor_id: the IDE or source actor being proxied (e.g. cursor=104, junie=106)
+  is_active             tinyint       NOT NULL DEFAULT 1,
+  config_json           json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  PRIMARY KEY (actor_faucet_id)
 );
 
-CREATE INDEX {{prefix}}agent_faucet_credentials_idx_faucet ON {{prefix}}agent_faucet_credentials (faucet_id);
+CREATE UNIQUE INDEX {{prefix}}actor_faucets_unq ON {{prefix}}actor_faucets (actor_id, faucet_key);
+CREATE INDEX {{prefix}}actor_faucets_idx_actor ON {{prefix}}actor_faucets (actor_id);
+CREATE INDEX {{prefix}}actor_faucets_idx_target ON {{prefix}}actor_faucets (target_actor_id);
+CREATE INDEX {{prefix}}actor_faucets_idx_type ON {{prefix}}actor_faucets (faucet_type);
+CREATE INDEX {{prefix}}actor_faucets_idx_active ON {{prefix}}actor_faucets (is_active);
+CREATE INDEX {{prefix}}actor_faucets_idx_deleted ON {{prefix}}actor_faucets (is_deleted);
 
-CREATE TABLE {{prefix}}agent_files (
-  file_id bigint NOT NULL,
-  agent_id bigint NOT NULL,
-  file_type varchar(50) NOT NULL,
-  file_name varchar(255) NOT NULL,
-  file_path varchar(500) NOT NULL,
-  file_hash varchar(64) NOT NULL,
-  file_size bigint NOT NULL,
-  mime_type varchar(100) DEFAULT NULL,
-  upload_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  migrated_from_directory varchar(255) DEFAULT NULL,
-  PRIMARY KEY (file_id)
+-- ============================================================================
+-- SECTION 12: ACTOR VERSIONS
+-- ============================================================================
+
+CREATE TABLE {{prefix}}actor_versions (
+  actor_version_id      bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  version               varchar(50)   NOT NULL,
+  version_notes         text          DEFAULT NULL,
+  changed_by_actor_id   bigint        DEFAULT NULL,
+  snapshot_json         json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  PRIMARY KEY (actor_version_id)
 );
 
-CREATE INDEX {{prefix}}agent_files_idx_agent_id ON {{prefix}}agent_files (agent_id);
-CREATE INDEX {{prefix}}agent_files_idx_file_type ON {{prefix}}agent_files (file_type);
-CREATE INDEX {{prefix}}agent_files_idx_file_hash ON {{prefix}}agent_files (file_hash);
-CREATE INDEX {{prefix}}agent_files_idx_is_deleted ON {{prefix}}agent_files (is_deleted);
-CREATE INDEX {{prefix}}agent_files_idx_upload_ymdhis ON {{prefix}}agent_files (upload_ymdhis);
+CREATE INDEX {{prefix}}actor_versions_idx_actor ON {{prefix}}actor_versions (actor_id);
+CREATE INDEX {{prefix}}actor_versions_idx_version ON {{prefix}}actor_versions (version);
+CREATE INDEX {{prefix}}actor_versions_idx_created ON {{prefix}}actor_versions (created_ymdhis);
 
-CREATE TABLE {{prefix}}agent_heartbeats (
-  heartbeat_id bigint NOT NULL,
-  agent_slug varchar(64) NOT NULL,
-  status varchar(32) NOT NULL DEFAULT 'unknown',
-  last_heartbeat_ymdhis bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (heartbeat_id)
+-- ============================================================================
+-- SECTION 13: AGENT DEFINITION VERSIONS
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_definition_versions (
+  agent_def_version_id  bigint        NOT NULL,
+  agent_id              bigint        NOT NULL,
+  version               varchar(50)   NOT NULL,
+  version_notes         text          DEFAULT NULL,
+  changed_by_actor_id   bigint        DEFAULT NULL,
+  snapshot_json         json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  PRIMARY KEY (agent_def_version_id)
 );
 
-CREATE INDEX {{prefix}}agent_heartbeats_idx_agent_slug ON {{prefix}}agent_heartbeats (agent_slug);
-CREATE INDEX {{prefix}}agent_heartbeats_idx_last_heartbeat_ymdhis ON {{prefix}}agent_heartbeats (last_heartbeat_ymdhis);
-CREATE INDEX {{prefix}}agent_heartbeats_idx_created_ymdhis ON {{prefix}}agent_heartbeats (created_ymdhis);
-CREATE INDEX {{prefix}}agent_heartbeats_idx_is_deleted ON {{prefix}}agent_heartbeats (is_deleted);
+CREATE INDEX {{prefix}}agent_def_versions_idx_agent ON {{prefix}}agent_definition_versions (agent_id);
+CREATE INDEX {{prefix}}agent_def_versions_idx_version ON {{prefix}}agent_definition_versions (version);
+CREATE INDEX {{prefix}}agent_def_versions_idx_created ON {{prefix}}agent_definition_versions (created_ymdhis);
 
+-- ============================================================================
+-- SECTION 14: SYSTEM VERSIONS
+-- ============================================================================
 
-CREATE TABLE {{prefix}}agent_tool_calls (
-  agent_tool_call_id bigint NOT NULL,
-  agent_id bigint NOT NULL,
-  faucet_id bigint DEFAULT NULL,
-  domain_id bigint NOT NULL,
-  tool_name varchar(150) NOT NULL,
-  action_type varchar(100) DEFAULT NULL,
-  input_json text,
-  output_json text,
-  provider varchar(50) DEFAULT NULL,
-  model_name varchar(150) DEFAULT NULL,
-  tokens_prompt int DEFAULT '0',
-  tokens_completion int DEFAULT '0',
-  tokens_total int DEFAULT '0',
-  cost_usd decimal(10,6) DEFAULT '0.000000',
-  latency_ms int DEFAULT '0',
-  status varchar(50) DEFAULT 'success',
-  error_message text,
-  parent_call_id bigint DEFAULT NULL,
-  thread_id bigint DEFAULT NULL,
-  message_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  archived_ymdhis bigint DEFAULT 0,
-  completed_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (agent_tool_call_id)
+CREATE TABLE {{prefix}}versions (
+  version_id            bigint        NOT NULL,
+  version               varchar(50)   NOT NULL,
+  component             varchar(100)  NOT NULL DEFAULT 'schema',
+  -- component: schema | api | agents | actors | doctrine
+  release_notes         text          DEFAULT NULL,
+  is_current            tinyint       NOT NULL DEFAULT 0,
+  released_ymdhis       bigint        NOT NULL DEFAULT 0,
+  deployed_by_actor_id  bigint        DEFAULT NULL,
+  PRIMARY KEY (version_id)
 );
 
-CREATE INDEX {{prefix}}agent_tool_calls_idx_agent_created ON {{prefix}}agent_tool_calls (agent_id, created_ymdhis);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_agent ON {{prefix}}agent_tool_calls (agent_id);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_faucet ON {{prefix}}agent_tool_calls (faucet_id);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_domain ON {{prefix}}agent_tool_calls (domain_id);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_model ON {{prefix}}agent_tool_calls (model_name);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_provider ON {{prefix}}agent_tool_calls (provider);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_parent ON {{prefix}}agent_tool_calls (parent_call_id);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_thread ON {{prefix}}agent_tool_calls (thread_id);
-CREATE INDEX {{prefix}}agent_tool_calls_idx_message ON {{prefix}}agent_tool_calls (message_id);
+CREATE UNIQUE INDEX {{prefix}}versions_unq_component_version ON {{prefix}}versions (component, version);
+CREATE INDEX {{prefix}}versions_idx_component ON {{prefix}}versions (component);
+CREATE INDEX {{prefix}}versions_idx_current ON {{prefix}}versions (is_current);
+CREATE INDEX {{prefix}}versions_idx_released ON {{prefix}}versions (released_ymdhis);
 
-CREATE TABLE {{prefix}}agent_versions (
-  agent_version_id bigint NOT NULL,
-  agent_id bigint NOT NULL,
-  version_label varchar(64) NOT NULL,
-  semver_major int DEFAULT '0',
-  semver_minor int DEFAULT '0',
-  semver_patch int DEFAULT '0',
-  version_notes text,
-  version_hash varchar(128) DEFAULT NULL,
-  previous_version_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted smallint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (agent_version_id)
+-- Merged from schema_corrected_missing.sql (20260406): new doctrine tables
+
+CREATE TABLE {{prefix}}kairos_observations (
+  kairos_observation_id  bigint       NOT NULL,
+  actor_id               bigint       NOT NULL,
+  channel_id             bigint       DEFAULT NULL,
+  session_id             varchar(100) DEFAULT NULL,
+  observation_type       varchar(64)  NOT NULL DEFAULT 'event',
+  -- observation_type: event | assertion | interaction | outcome | correction
+  subject_entity_type    varchar(64)  DEFAULT NULL,
+  subject_entity_id      bigint       DEFAULT NULL,
+  observation_text       text         NOT NULL,
+  confidence_score       decimal(3,2) DEFAULT 1.00,
+  source_actor_id        bigint       DEFAULT NULL,
+  observed_ymdhis        bigint       NOT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  is_consolidated        tinyint      NOT NULL DEFAULT 0,
+  consolidated_ymdhis    bigint       DEFAULT NULL,
+  is_deleted             tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis         bigint       DEFAULT NULL,
+  PRIMARY KEY (kairos_observation_id)
 );
 
-CREATE INDEX {{prefix}}agent_versions_agent_id ON {{prefix}}agent_versions (agent_id);
-CREATE INDEX {{prefix}}agent_versions_version_label ON {{prefix}}agent_versions (version_label);
-CREATE INDEX {{prefix}}agent_versions_semver_major ON {{prefix}}agent_versions (semver_major, semver_minor, semver_patch);
+CREATE INDEX {{prefix}}kairos_observations_idx_actor ON {{prefix}}kairos_observations (actor_id);
+CREATE INDEX {{prefix}}kairos_observations_idx_type ON {{prefix}}kairos_observations (observation_type);
+CREATE INDEX {{prefix}}kairos_observations_idx_subject ON {{prefix}}kairos_observations (subject_entity_type, subject_entity_id);
+CREATE INDEX {{prefix}}kairos_observations_idx_observed ON {{prefix}}kairos_observations (observed_ymdhis);
+CREATE INDEX {{prefix}}kairos_observations_idx_consolidated ON {{prefix}}kairos_observations (is_consolidated);
+CREATE INDEX {{prefix}}kairos_observations_idx_deleted ON {{prefix}}kairos_observations (is_deleted);
+
+-- Consolidated KAIROS memory entries (output of consolidation)
+CREATE TABLE {{prefix}}kairos_memory (
+  kairos_memory_id       bigint       NOT NULL,
+  actor_id               bigint       NOT NULL,
+  memory_type            varchar(64)  NOT NULL DEFAULT 'fact',
+  -- memory_type: fact | preference | correction | pattern | identity | temporal
+  memory_key             varchar(255) DEFAULT NULL,
+  memory_text            text         NOT NULL,
+  confidence_score       decimal(3,2) DEFAULT 1.00,
+  source_observation_ids json         DEFAULT NULL,
+  -- JSON array of kairos_observation_id values that produced this memory
+  valid_from_ymdhis      bigint       NOT NULL DEFAULT 0,
+  valid_until_ymdhis     bigint       DEFAULT NULL,
+  -- NULL = no expiry
+  superseded_by_id       bigint       DEFAULT NULL,
+  -- points to newer kairos_memory_id that replaces this entry
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  updated_ymdhis         bigint       NOT NULL DEFAULT 0,
+  is_deleted             tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis         bigint       DEFAULT NULL,
+  PRIMARY KEY (kairos_memory_id)
+);
+
+CREATE INDEX {{prefix}}kairos_memory_idx_actor ON {{prefix}}kairos_memory (actor_id);
+CREATE INDEX {{prefix}}kairos_memory_idx_type ON {{prefix}}kairos_memory (memory_type);
+CREATE INDEX {{prefix}}kairos_memory_idx_key ON {{prefix}}kairos_memory (memory_key);
+CREATE INDEX {{prefix}}kairos_memory_idx_valid_from ON {{prefix}}kairos_memory (valid_from_ymdhis);
+CREATE INDEX {{prefix}}kairos_memory_idx_valid_until ON {{prefix}}kairos_memory (valid_until_ymdhis);
+CREATE INDEX {{prefix}}kairos_memory_idx_superseded ON {{prefix}}kairos_memory (superseded_by_id);
+CREATE INDEX {{prefix}}kairos_memory_idx_deleted ON {{prefix}}kairos_memory (is_deleted);
+
+-- ============================================================================
+-- SECTION 2: RUNTIME STATE
+-- Current runtime state per actor. Single row per actor, replaced on update.
+-- ============================================================================
+
+CREATE TABLE {{prefix}}actor_runtime_state (
+  actor_runtime_state_id bigint      NOT NULL,
+  actor_id               bigint      NOT NULL,
+  current_session_id     varchar(100) DEFAULT NULL,
+  current_channel_id     bigint      DEFAULT NULL,
+  current_task_id        bigint      DEFAULT NULL,
+  last_tool_call_id      bigint      DEFAULT NULL,
+  state_key              varchar(64) NOT NULL DEFAULT 'active',
+  -- state_key: active | idle | busy | suspended | error | offline
+  state_metadata_json    json        DEFAULT NULL,
+  state_entered_ymdhis   bigint      NOT NULL DEFAULT 0,
+  updated_ymdhis         bigint      NOT NULL DEFAULT 0,
+  PRIMARY KEY (actor_runtime_state_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}actor_runtime_state_unq_actor ON {{prefix}}actor_runtime_state (actor_id);
+CREATE INDEX {{prefix}}actor_runtime_state_idx_state ON {{prefix}}actor_runtime_state (state_key);
+CREATE INDEX {{prefix}}actor_runtime_state_idx_session ON {{prefix}}actor_runtime_state (current_session_id);
+CREATE INDEX {{prefix}}actor_runtime_state_idx_updated ON {{prefix}}actor_runtime_state (updated_ymdhis);
+
+-- Runtime lifecycle events (activate, deactivate, handoff, error, recover)
+CREATE TABLE {{prefix}}actor_runtime_events (
+  actor_runtime_event_id bigint      NOT NULL,
+  actor_id               bigint      NOT NULL,
+  event_type             varchar(64) NOT NULL,
+  -- event_type: activate | deactivate | handoff | error | recover | suspend | resume
+  event_details_json     json        DEFAULT NULL,
+  triggered_by_actor_id  bigint      DEFAULT NULL,
+  session_id             varchar(100) DEFAULT NULL,
+  occurred_ymdhis        bigint      NOT NULL,
+  created_ymdhis         bigint      NOT NULL DEFAULT 0,
+  PRIMARY KEY (actor_runtime_event_id)
+);
+
+CREATE INDEX {{prefix}}actor_runtime_events_idx_actor ON {{prefix}}actor_runtime_events (actor_id);
+CREATE INDEX {{prefix}}actor_runtime_events_idx_type ON {{prefix}}actor_runtime_events (event_type);
+CREATE INDEX {{prefix}}actor_runtime_events_idx_occurred ON {{prefix}}actor_runtime_events (occurred_ymdhis);
+CREATE INDEX {{prefix}}actor_runtime_events_idx_session ON {{prefix}}actor_runtime_events (session_id);
+
+-- ============================================================================
+-- SECTION 3: FAUCET RULES
+-- Rules governing which actor_id a faucet executes as (Faucet Proxy Pattern v4.0.90+)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}faucet_rules (
+  faucet_rule_id         bigint       NOT NULL,
+  rule_key               varchar(100) NOT NULL,
+  faucet_type            varchar(64)  NOT NULL,
+  -- faucet_type: ide | api | webhook | cli
+  source_actor_id        bigint       DEFAULT NULL,
+  -- source_actor_id: the IDE actor triggering this rule (cursor=104, junie=106, etc.)
+  executing_actor_id     bigint       NOT NULL,
+  -- executing_actor_id: the actor that runs all actions (HEPHAESTUS = 102 by doctrine)
+  condition_json         json         DEFAULT NULL,
+  -- condition: when this rule applies
+  priority               int          NOT NULL DEFAULT 100,
+  is_active              tinyint      NOT NULL DEFAULT 1,
+  notes                  text         DEFAULT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  updated_ymdhis         bigint       NOT NULL DEFAULT 0,
+  is_deleted             tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis         bigint       DEFAULT NULL,
+  PRIMARY KEY (faucet_rule_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}faucet_rules_unq_key ON {{prefix}}faucet_rules (rule_key);
+CREATE INDEX {{prefix}}faucet_rules_idx_type ON {{prefix}}faucet_rules (faucet_type);
+CREATE INDEX {{prefix}}faucet_rules_idx_source ON {{prefix}}faucet_rules (source_actor_id);
+CREATE INDEX {{prefix}}faucet_rules_idx_executing ON {{prefix}}faucet_rules (executing_actor_id);
+CREATE INDEX {{prefix}}faucet_rules_idx_active ON {{prefix}}faucet_rules (is_active);
+CREATE INDEX {{prefix}}faucet_rules_idx_deleted ON {{prefix}}faucet_rules (is_deleted);
+
+-- ============================================================================
+-- SECTION 4: PAIRING RULES
+-- Rules governing actor pairing assignment and reassignment
+-- ============================================================================
+
+CREATE TABLE {{prefix}}pairing_rules (
+  pairing_rule_id        bigint       NOT NULL,
+  rule_key               varchar(100) NOT NULL,
+  rule_type              varchar(64)  NOT NULL,
+  -- rule_type: auto_pair | require_approval | prevent_pair | default_pair
+  actor_type_a           varchar(64)  DEFAULT NULL,
+  actor_type_b           varchar(64)  DEFAULT NULL,
+  condition_json         json         DEFAULT NULL,
+  priority               int          NOT NULL DEFAULT 100,
+  is_active              tinyint      NOT NULL DEFAULT 1,
+  notes                  text         DEFAULT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  updated_ymdhis         bigint       NOT NULL DEFAULT 0,
+  is_deleted             tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis         bigint       DEFAULT NULL,
+  PRIMARY KEY (pairing_rule_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}pairing_rules_unq_key ON {{prefix}}pairing_rules (rule_key);
+CREATE INDEX {{prefix}}pairing_rules_idx_type ON {{prefix}}pairing_rules (rule_type);
+CREATE INDEX {{prefix}}pairing_rules_idx_active ON {{prefix}}pairing_rules (is_active);
+CREATE INDEX {{prefix}}pairing_rules_idx_deleted ON {{prefix}}pairing_rules (is_deleted);
+
+-- ============================================================================
+-- SECTION 5: DEPARTMENT CAPABILITIES
+-- Capability grants at the department level (supplements actor-level grants)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}department_capabilities (
+  dept_capability_id     bigint       NOT NULL,
+  department_id          bigint       NOT NULL,
+  capability_key         varchar(100) NOT NULL,
+  capability_description text         DEFAULT NULL,
+  domain_id              bigint       DEFAULT NULL,
+  scope_limitation       varchar(50)  NOT NULL DEFAULT 'unrestricted',
+  granted_by_actor_id    bigint       DEFAULT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  updated_ymdhis         bigint       NOT NULL DEFAULT 0,
+  is_deleted             tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis         bigint       DEFAULT NULL,
+  PRIMARY KEY (dept_capability_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}dept_capabilities_unq ON {{prefix}}department_capabilities (department_id, capability_key);
+CREATE INDEX {{prefix}}dept_capabilities_idx_dept ON {{prefix}}department_capabilities (department_id);
+CREATE INDEX {{prefix}}dept_capabilities_idx_key ON {{prefix}}department_capabilities (capability_key);
+CREATE INDEX {{prefix}}dept_capabilities_idx_deleted ON {{prefix}}department_capabilities (is_deleted);
+
+-- ============================================================================
+-- SECTION 6: IDENTITY LAYERS
+-- Two-layer identity model: template (agent_definition) vs runtime (actor)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}identity_layers (
+  identity_layer_id      bigint       NOT NULL,
+  layer_key              varchar(64)  NOT NULL,
+  layer_name             varchar(255) NOT NULL,
+  layer_type             varchar(32)  NOT NULL,
+  -- layer_type: template | runtime
+  description            text         DEFAULT NULL,
+  is_mutable             tinyint      NOT NULL DEFAULT 1,
+  -- template layer is_mutable = 0; runtime layer is_mutable = 1
+  notes                  text         DEFAULT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  PRIMARY KEY (identity_layer_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}identity_layers_unq_key ON {{prefix}}identity_layers (layer_key);
+
+-- ============================================================================
+-- SECTION 7: IDENTITY CONTEXT
+-- Active identity context per session/channel (which layer is currently operative)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}identity_context (
+  identity_context_id    bigint       NOT NULL,
+  actor_id               bigint       NOT NULL,
+  session_id             varchar(100) DEFAULT NULL,
+  channel_id             bigint       DEFAULT NULL,
+  active_layer_key       varchar(64)  NOT NULL DEFAULT 'runtime',
+  context_snapshot_json  json         DEFAULT NULL,
+  activated_ymdhis       bigint       NOT NULL,
+  expires_ymdhis         bigint       DEFAULT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  is_deleted             tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis         bigint       DEFAULT NULL,
+  PRIMARY KEY (identity_context_id)
+);
+
+CREATE INDEX {{prefix}}identity_context_idx_actor ON {{prefix}}identity_context (actor_id);
+CREATE INDEX {{prefix}}identity_context_idx_session ON {{prefix}}identity_context (session_id);
+CREATE INDEX {{prefix}}identity_context_idx_channel ON {{prefix}}identity_context (channel_id);
+CREATE INDEX {{prefix}}identity_context_idx_layer ON {{prefix}}identity_context (active_layer_key);
+CREATE INDEX {{prefix}}identity_context_idx_activated ON {{prefix}}identity_context (activated_ymdhis);
+CREATE INDEX {{prefix}}identity_context_idx_deleted ON {{prefix}}identity_context (is_deleted);
+
+-- ============================================================================
+-- SECTION 8: AGENT MEMORY CONFIG
+-- Memory configuration per agent (KAIROS rollup settings, retention, consolidation)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_memory_config (
+  agent_memory_config_id bigint       NOT NULL,
+  agent_id               bigint       NOT NULL,
+  memory_enabled         tinyint      NOT NULL DEFAULT 1,
+  rollup_strategy        varchar(64)  NOT NULL DEFAULT 'session',
+  -- rollup_strategy: session | daily | threshold | none
+  rollup_threshold       int          DEFAULT NULL,
+  -- max observations before triggering consolidation (NULL = no threshold)
+  retention_days         int          DEFAULT NULL,
+  -- NULL = indefinite retention
+  consolidation_agent_key varchar(100) DEFAULT 'kairos',
+  -- which agent performs consolidation (default: KAIROS)
+  config_json            json         DEFAULT NULL,
+  created_ymdhis         bigint       NOT NULL DEFAULT 0,
+  updated_ymdhis         bigint       NOT NULL DEFAULT 0,
+  PRIMARY KEY (agent_memory_config_id)
+);
+
+CREATE UNIQUE INDEX {{prefix}}agent_memory_config_unq ON {{prefix}}agent_memory_config (agent_id);
+CREATE INDEX {{prefix}}agent_memory_config_idx_strategy ON {{prefix}}agent_memory_config (rollup_strategy);
 
 -- {{prefix}}aliases moved to future_features_lupopedia.sql (v4.0.86)
 
@@ -1657,7 +2059,11 @@ CREATE TABLE {{prefix}}contents (
   deleted_ymdhis bigint DEFAULT NULL,
   content_sections json DEFAULT NULL,
   version_number int NOT NULL DEFAULT '1',
-  file_path_from_root varchar(500) DEFAULT NULL COMMENT 'FLIP Header: path from repo root (4.0.86)',
+  storage_type varchar(16) NOT NULL DEFAULT 'database',
+  -- storage_type values: 'database' (content column) | 'file_backed' (file_path_from_root)
+  -- If storage_type='file_backed': content MUST be NULL, file_path_from_root MUST NOT be NULL.
+  -- If storage_type='database': content MUST NOT be NULL, file_path_from_root MUST be NULL.
+  file_path_from_root varchar(1024) DEFAULT NULL COMMENT 'Canonical path from repo root. Set when storage_type=file_backed.',
   file_last_modified_system_version varchar(20) DEFAULT NULL COMMENT 'FLIP: system version at last file edit',
   file_last_modified_utc bigint DEFAULT NULL COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS',
   tags json DEFAULT NULL,
@@ -1682,6 +2088,7 @@ CREATE TABLE {{prefix}}contents (
 );
 
 CREATE UNIQUE INDEX {{prefix}}contents_unique_content_slug_domain ON {{prefix}}contents (federation_node_id, slug);
+CREATE UNIQUE INDEX {{prefix}}contents_idx_slug_deleted ON {{prefix}}contents (slug, is_deleted);
 CREATE UNIQUE INDEX {{prefix}}contents_idx_custom_path ON {{prefix}}contents (custom_path);
 CREATE INDEX {{prefix}}contents_idx_file_path_from_root ON {{prefix}}contents (file_path_from_root);
 CREATE INDEX {{prefix}}contents_idx_content_parent ON {{prefix}}contents (content_parent_id);
@@ -2219,44 +2626,6 @@ CREATE INDEX {{prefix}}ticket_messages_idx_ticket ON {{prefix}}ticket_messages (
 --   PRIMARY KEY (doctrine_refinement_id)
 -- );
 
- 
-
--- (Deduplicated {{prefix}}edges table; canonical definition remains below)
-
-CREATE INDEX {{prefix}}edges_idx_left ON {{prefix}}edges (left_object_type, left_object_id);
-CREATE INDEX {{prefix}}edges_idx_right ON {{prefix}}edges (right_object_type, right_object_id);
-CREATE INDEX {{prefix}}edges_idx_edge_type ON {{prefix}}edges (edge_type);
-CREATE INDEX {{prefix}}edges_idx_edge_category ON {{prefix}}edges (edge_category);
-CREATE INDEX {{prefix}}edges_idx_actor ON {{prefix}}edges (actor_id);
-CREATE INDEX {{prefix}}edges_idx_domain ON {{prefix}}edges (domain_id);
-CREATE INDEX {{prefix}}edges_idx_is_deleted ON {{prefix}}edges (is_deleted);
-CREATE INDEX {{prefix}}edges_idx_semantic_weight ON {{prefix}}edges (semantic_weight);
-CREATE INDEX {{prefix}}edges_idx_relationship_type ON {{prefix}}edges (relationship_type);
-CREATE INDEX {{prefix}}edges_idx_channel_semantic ON {{prefix}}edges (channel_id, relationship_type, semantic_weight);
-CREATE INDEX {{prefix}}edges_idx_created ON {{prefix}}edges (created_ymdhis);
-CREATE INDEX {{prefix}}edges_idx_updated ON {{prefix}}edges (updated_ymdhis);
--- FLARE protocol indexes (added 2026-02-27)
-CREATE INDEX {{prefix}}edges_idx_flare_weight ON {{prefix}}edges (flare_weight, edge_type);
-CREATE INDEX {{prefix}}edges_idx_flare_discovered ON {{prefix}}edges (flare_discovered_via, flare_auto_generated);
-CREATE INDEX {{prefix}}edges_idx_flare_files ON {{prefix}}edges (left_object_type, left_object_id, edge_type, right_object_type, right_object_id);
-
--- Edge type registry: canonical edge types and semantics (4.0.86 LILITH implementation prompt). No FK; IDs from application.
-CREATE TABLE {{prefix}}edge_type_definitions (
-  edge_type_definition_id bigint NOT NULL,
-  edge_type varchar(100) NOT NULL,
-  domain varchar(100) NOT NULL,
-  description text NOT NULL,
-  allowed_left_object_types text NOT NULL,
-  allowed_right_object_types text NOT NULL,
-  is_bidirectional tinyint NOT NULL DEFAULT 0,
-  semantic_meaning text DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  created_by_actor_id bigint NOT NULL,
-  PRIMARY KEY (edge_type_definition_id),
-  UNIQUE KEY {{prefix}}edge_type_definitions_unique_edge_type (edge_type)
-);
-CREATE INDEX {{prefix}}edge_type_definitions_idx_domain ON {{prefix}}edge_type_definitions (domain);
-
 -- Pre-action authorization: required traits/capabilities/roles per action (4.0.86 LILITH implementation prompt). No FK; IDs from application.
 CREATE TABLE {{prefix}}action_authorization (
   action_authorization_id bigint NOT NULL,
@@ -2283,19 +2652,7 @@ CREATE TABLE {{prefix}}emotional_frameworks (
 );
 
 -- Old event log table removed in v4.0.86 - consolidated into {{prefix}}unified_log
-
-CREATE TABLE {{prefix}}event_metadata (
-  metadata_id bigint NOT NULL,
-  event_id bigint NOT NULL,
-  metadata_key varchar(100) NOT NULL,
-  metadata_value text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (metadata_id)
-);
-
-CREATE INDEX {{prefix}}event_metadata_idx_event_id ON {{prefix}}event_metadata (event_id);
-CREATE INDEX {{prefix}}event_metadata_idx_metadata_key ON {{prefix}}event_metadata (metadata_key);
-CREATE INDEX {{prefix}}event_metadata_idx_created_ymdhis ON {{prefix}}event_metadata (created_ymdhis);
+-- event_metadata removed per schema_corrected_core.sql SECTION 20
 
 CREATE TABLE {{prefix}}federation_categories (
   federation_category_id bigint NOT NULL,
@@ -2407,28 +2764,35 @@ CREATE TABLE {{prefix}}federation_discovery (
 );
 CREATE INDEX {{prefix}}federation_discovery_idx_domain ON {{prefix}}federation_discovery (domain);
 
+-- ============================================================================
+-- SECTION 16: GOVERNANCE OVERRIDES — fix N2 (typo: governance_overrid_id)
+-- ============================================================================
+
+-- NOTE: The existing table lupo_governance_overrides has typo column 'governance_overrid_id'.
+-- Corrected column name: governance_override_id
+-- Full table definition (corrected):
 CREATE TABLE {{prefix}}governance_overrides (
-  governance_overrid_id bigint NOT NULL,
-  agent_id bigint DEFAULT NULL,
-  applied_by_agent bigint DEFAULT NULL,
-  override_type varchar(100) NOT NULL,
-  target_key varchar(150) DEFAULT NULL,
-  old_value text,
-  new_value text,
-  reason_text text,
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  expires_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (governance_overrid_id)
+  governance_override_id bigint       NOT NULL,
+  actor_id              bigint        NOT NULL,
+  override_type         varchar(64)   NOT NULL,
+  override_scope        varchar(64)   DEFAULT NULL,
+  override_reason       text          DEFAULT NULL,
+  granted_by_actor_id   bigint        DEFAULT NULL,
+  expires_ymdhis        bigint        DEFAULT NULL,
+  is_active             tinyint       NOT NULL DEFAULT 1,
+  metadata_json         json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  PRIMARY KEY (governance_override_id)
 );
 
-CREATE INDEX {{prefix}}governance_overrides_idx_agent ON {{prefix}}governance_overrides (agent_id);
-CREATE INDEX {{prefix}}governance_overrides_idx_applied_by ON {{prefix}}governance_overrides (applied_by_agent);
+CREATE INDEX {{prefix}}governance_overrides_idx_actor ON {{prefix}}governance_overrides (actor_id);
 CREATE INDEX {{prefix}}governance_overrides_idx_type ON {{prefix}}governance_overrides (override_type);
-CREATE INDEX {{prefix}}governance_overrides_idx_target ON {{prefix}}governance_overrides (target_key);
-CREATE INDEX {{prefix}}governance_overrides_idx_created ON {{prefix}}governance_overrides (created_ymdhis);
+CREATE INDEX {{prefix}}governance_overrides_idx_active ON {{prefix}}governance_overrides (is_active);
+CREATE INDEX {{prefix}}governance_overrides_idx_expires ON {{prefix}}governance_overrides (expires_ymdhis);
+CREATE INDEX {{prefix}}governance_overrides_idx_deleted ON {{prefix}}governance_overrides (is_deleted);
 
 CREATE TABLE {{prefix}}help_topics (
   help_topic_id bigint NOT NULL,
@@ -2588,6 +2952,64 @@ CREATE TABLE {{prefix}}memory_rollups (
 );
 
 CREATE INDEX {{prefix}}memory_rollups_idx_actor_created ON {{prefix}}memory_rollups (actor_id, created_ymdhis);
+
+-- ============================================================================
+-- MEMORY NODES (4.0.96+) — DB source of truth; filesystem mirror via MemoryExportService
+-- PK memory_node_id = IdGenerator::generate() (YYYYMMDDHHIISS + 4-digit suffix).
+-- created_ymdhis MUST equal the first 14 digits of memory_node_id at insert time.
+-- Export path: lupo-memory/YYYY/MM/{slug}.json — slug from PHP (see MemoryExportService).
+-- Typed memory graph edges: {{prefix}}memory_edges (separate from {{prefix}}edges).
+-- ============================================================================
+
+CREATE TABLE {{prefix}}memory_nodes (
+  memory_node_id   bigint        NOT NULL,
+  created_ymdhis   bigint        NOT NULL DEFAULT 0,
+  owner_actor_id   bigint        NOT NULL,
+  owner_type       varchar(32)   NOT NULL DEFAULT 'actor',
+  memory_type      varchar(32)   NOT NULL,
+  memory_key       varchar(255)  NOT NULL,
+  memory_value     text,
+  context          varchar(32)   NOT NULL DEFAULT 'experiential',
+  status           varchar(32)   NOT NULL DEFAULT 'unsupported',
+  review_reason    varchar(64)   DEFAULT NULL,
+  content_hash     char(64)      NOT NULL,
+  context_json     json          DEFAULT NULL,
+  updated_ymdhis   bigint        NOT NULL DEFAULT 0,
+  expires_ymdhis   bigint        NOT NULL DEFAULT 0,
+  is_deleted       tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis   bigint        NOT NULL DEFAULT 0,
+  PRIMARY KEY (memory_node_id)
+);
+
+CREATE INDEX {{prefix}}memory_nodes_idx_owner ON {{prefix}}memory_nodes (owner_actor_id, owner_type, is_deleted);
+CREATE INDEX {{prefix}}memory_nodes_idx_created ON {{prefix}}memory_nodes (created_ymdhis, is_deleted);
+CREATE INDEX {{prefix}}memory_nodes_idx_type ON {{prefix}}memory_nodes (memory_type, status, is_deleted);
+CREATE INDEX {{prefix}}memory_nodes_idx_key ON {{prefix}}memory_nodes (memory_key, owner_actor_id);
+CREATE INDEX {{prefix}}memory_nodes_idx_updated ON {{prefix}}memory_nodes (updated_ymdhis, is_deleted);
+CREATE INDEX {{prefix}}memory_nodes_idx_expires ON {{prefix}}memory_nodes (expires_ymdhis, is_deleted);
+
+CREATE TABLE {{prefix}}memory_edges (
+  memory_edge_id        bigint       NOT NULL,
+  from_memory_node_id   bigint       NOT NULL,
+  to_memory_node_id     bigint       NOT NULL,
+  edge_type             varchar(64)  NOT NULL,
+  edge_context          varchar(32)  NOT NULL DEFAULT 'system_generated',
+  edge_status           varchar(32)  NOT NULL DEFAULT 'supported',
+  edge_direction        varchar(16)  NOT NULL DEFAULT 'unidirectional',
+  weight_hundredths     int          NOT NULL DEFAULT 100,
+  provenance_actor_id   bigint       NOT NULL,
+  provenance_tool       varchar(64)  NOT NULL,
+  review_reason         varchar(64)  DEFAULT NULL,
+  created_ymdhis        bigint       NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint       NOT NULL DEFAULT 0,
+  is_deleted            tinyint      NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint       NOT NULL DEFAULT 0,
+  PRIMARY KEY (memory_edge_id)
+);
+
+CREATE INDEX {{prefix}}memory_edges_idx_from ON {{prefix}}memory_edges (from_memory_node_id, is_deleted);
+CREATE INDEX {{prefix}}memory_edges_idx_to ON {{prefix}}memory_edges (to_memory_node_id, is_deleted);
+CREATE INDEX {{prefix}}memory_edges_idx_type ON {{prefix}}memory_edges (edge_type, edge_context, edge_status);
 
 -- Old meta log events table removed in v4.0.86 - consolidated into {{prefix}}unified_log
 
@@ -3132,6 +3554,7 @@ CREATE TABLE {{prefix}}folders (
   folder_id bigint NOT NULL,
   name varchar(255) NOT NULL,
   slug varchar(128) NOT NULL,
+  description text DEFAULT NULL,
   parent_folder_id bigint DEFAULT NULL,
   actor_id bigint DEFAULT NULL,
   channel_id bigint DEFAULT NULL,
@@ -3217,76 +3640,33 @@ CREATE TABLE {{prefix}}collection_map (
 CREATE INDEX {{prefix}}collection_map_idx_collection ON {{prefix}}collection_map (collection_id);
 CREATE INDEX {{prefix}}collection_map_idx_object ON {{prefix}}collection_map (object_type, object_id);
 
--- Edge Types (Definitions for semantic edges, 4.0.86)
+-- Merged from schema_corrected_core.sql SECTION 21 (replaces legacy edge_types slug/label + removes edge_map/questions/answers/question_map per SECTION 20)
+-- SECTION 21: EDGE_TYPES CONSOLIDATION
+-- ============================================================================
+
+-- Merge lupo_edge_types + lupo_edge_type_definitions into single authoritative table
 CREATE TABLE {{prefix}}edge_types (
-  edge_type_id bigint NOT NULL ,
-  slug varchar(64) NOT NULL,
-  label varchar(128) NOT NULL,
-  description text,
-  is_bidirectional tinyint NOT NULL DEFAULT 0,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
+  edge_type_id          bigint        NOT NULL,
+  edge_type_key         varchar(100)  NOT NULL,
+  edge_category         varchar(100)  DEFAULT NULL,
+  display_name          varchar(255)  DEFAULT NULL,
+  description           text          DEFAULT NULL,
+  is_bidirectional      tinyint       NOT NULL DEFAULT 0,
+  is_system             tinyint       NOT NULL DEFAULT 0,
+  valid_left_types      json          DEFAULT NULL,
+  valid_right_types     json          DEFAULT NULL,
+  metadata_json         json          DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
   PRIMARY KEY (edge_type_id)
 );
-CREATE UNIQUE INDEX {{prefix}}edge_types_uniq_slug ON {{prefix}}edge_types (slug);
 
--- Edge Map (Mapping edges between objects, 4.0.86)
-CREATE TABLE {{prefix}}edge_map (
-  edge_map_id bigint NOT NULL ,
-  edge_id bigint NOT NULL,
-  edge_type_id bigint NOT NULL,
-  source_type varchar(64) NOT NULL,
-  source_id bigint NOT NULL,
-  target_type varchar(64) NOT NULL,
-  target_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (edge_map_id)
-);
-CREATE INDEX {{prefix}}edge_map_idx_edge ON {{prefix}}edge_map (edge_id);
-CREATE INDEX {{prefix}}edge_map_idx_type ON {{prefix}}edge_map (edge_type_id);
-CREATE INDEX {{prefix}}edge_map_idx_source ON {{prefix}}edge_map (source_type, source_id);
-CREATE INDEX {{prefix}}edge_map_idx_target ON {{prefix}}edge_map (target_type, target_id);
-
--- Questions (Semantic Q/A, 4.0.86)
-CREATE TABLE {{prefix}}questions (
-  question_id bigint NOT NULL ,
-  slug varchar(128) NOT NULL,
-  question_text text NOT NULL,
-  actor_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (question_id)
-);
-CREATE UNIQUE INDEX {{prefix}}questions_uniq_slug ON {{prefix}}questions (slug);
-
--- Answers (Semantic Q/A, 4.0.86)
-CREATE TABLE {{prefix}}answers (
-  answer_id bigint NOT NULL ,
-  question_id bigint NOT NULL,
-  answer_text text NOT NULL,
-  actor_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (answer_id)
-);
-CREATE INDEX {{prefix}}answers_idx_question ON {{prefix}}answers (question_id);
-
--- Question Map (Mapping questions to objects/contexts, 4.0.86)
-CREATE TABLE {{prefix}}question_map (
-  question_map_id bigint NOT NULL ,
-  question_id bigint NOT NULL,
-  object_type varchar(64) NOT NULL,
-  object_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (question_map_id)
-);
-CREATE INDEX {{prefix}}question_map_idx_question ON {{prefix}}question_map (question_id);
-CREATE INDEX {{prefix}}question_map_idx_object ON {{prefix}}question_map (object_type, object_id);
+CREATE UNIQUE INDEX {{prefix}}edge_types_unq_key ON {{prefix}}edge_types (edge_type_key);
+CREATE INDEX {{prefix}}edge_types_idx_category ON {{prefix}}edge_types (edge_category);
+CREATE INDEX {{prefix}}edge_types_idx_system ON {{prefix}}edge_types (is_system);
+CREATE INDEX {{prefix}}edge_types_idx_deleted ON {{prefix}}edge_types (is_deleted);
 
 -- ============================================================
 
@@ -3692,7 +4072,7 @@ CREATE INDEX {{prefix}}actor_history_idx_is_deleted ON {{prefix}}actor_history(i
 -- Core Identity Expansion: Actor Intelligence Tables (added v4.0.94)
 -- Table: {{prefix}}actor_memory
 CREATE TABLE {{prefix}}actor_memory (
-  memory_id BIGINT NOT NULL,
+  actor_memory_id BIGINT NOT NULL,
   actor_id BIGINT NOT NULL,
   memory_type VARCHAR(64) NOT NULL,
   memory_key VARCHAR(128) NOT NULL,
@@ -3702,7 +4082,7 @@ CREATE TABLE {{prefix}}actor_memory (
   updated_ymdhis BIGINT,
   is_deleted TINYINT NOT NULL DEFAULT 0,
   deleted_ymdhis BIGINT,
-  PRIMARY KEY (memory_id)
+  PRIMARY KEY (actor_memory_id)
 );
 CREATE INDEX {{prefix}}actor_memory_idx_actor_id ON {{prefix}}actor_memory(actor_id);
 CREATE INDEX {{prefix}}actor_memory_idx_type_key ON {{prefix}}actor_memory(memory_type, memory_key);
@@ -4107,6 +4487,57 @@ CREATE TABLE {{prefix}}human_request_responses (
 
 CREATE INDEX idx_response_request ON {{prefix}}human_request_responses(request_id);
 CREATE INDEX idx_response_user ON {{prefix}}human_request_responses(auth_user_id, response_ymdhis DESC);
+
+-- ============================================================================
+-- AGENT TOOL CALLS — corrected per AS1 (schema_review_20260406.md)
+-- actor_id added: executing entity is an actor (runtime instance), not an agent (template).
+-- actor_id = which actor ran the call; agent_id = which agent definition was operated under.
+-- Restored from backup baseline; actor_id column added per schema_corrected_missing.sql SECTION 9.
+-- ============================================================================
+
+CREATE TABLE {{prefix}}agent_tool_calls (
+  agent_tool_call_id    bigint        NOT NULL,
+  actor_id              bigint        NOT NULL,
+  -- actor_id: runtime actor executing this call (faucet proxy pattern: HEPHAESTUS=102 for IDE faucets)
+  agent_id              bigint        NOT NULL,
+  faucet_id             bigint        DEFAULT NULL,
+  domain_id             bigint        NOT NULL,
+  tool_name             varchar(150)  NOT NULL,
+  action_type           varchar(100)  DEFAULT NULL,
+  input_json            text,
+  output_json           text,
+  provider              varchar(50)   DEFAULT NULL,
+  model_name            varchar(150)  DEFAULT NULL,
+  tokens_prompt         int           DEFAULT 0,
+  tokens_completion     int           DEFAULT 0,
+  tokens_total          int           DEFAULT 0,
+  cost_usd              decimal(10,6) DEFAULT 0.000000,
+  latency_ms            int           DEFAULT 0,
+  status                varchar(50)   DEFAULT 'success',
+  error_message         text,
+  parent_call_id        bigint        DEFAULT NULL,
+  thread_id             bigint        DEFAULT NULL,
+  message_id            bigint        DEFAULT NULL,
+  created_ymdhis        bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis        bigint        NOT NULL DEFAULT 0,
+  is_deleted            tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis        bigint        DEFAULT NULL,
+  archived_ymdhis       bigint        DEFAULT 0,
+  completed_ymdhis      bigint        DEFAULT NULL,
+  PRIMARY KEY (agent_tool_call_id)
+);
+
+CREATE INDEX {{prefix}}agent_tool_calls_idx_actor ON {{prefix}}agent_tool_calls (actor_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_actor_created ON {{prefix}}agent_tool_calls (actor_id, created_ymdhis);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_agent ON {{prefix}}agent_tool_calls (agent_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_faucet ON {{prefix}}agent_tool_calls (faucet_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_domain ON {{prefix}}agent_tool_calls (domain_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_model ON {{prefix}}agent_tool_calls (model_name);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_provider ON {{prefix}}agent_tool_calls (provider);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_parent ON {{prefix}}agent_tool_calls (parent_call_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_thread ON {{prefix}}agent_tool_calls (thread_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_message ON {{prefix}}agent_tool_calls (message_id);
+CREATE INDEX {{prefix}}agent_tool_calls_idx_deleted ON {{prefix}}agent_tool_calls (is_deleted);
 
 -- LILITH Audit: Data Model PRD (02_data_model.md)
 -- Accuracy Score: 92 - Approved with minor corrections

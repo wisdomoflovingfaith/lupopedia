@@ -1,39 +1,51 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.89"
-  lupopedia.schema: "index"
-  file_path_from_root: "lupo-docs/prd/PRD_INDEX.md"
-  file_hash: "created_prd_index"
-  last_updated_utc: "20260406154744"
-  system_version: "4.0.89"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/prd/PRD_INDEX.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/prd/PRD_INDEX.md
+  last_modified_utc: "20260408011934"
+  when_updated: "20260408011934"
+  federation_node_id: 0
   channel_id: 42
+  thread_id: prd-index
   actor_id: 1
-  delegation_chain: "1:102"
-  artifact_type: "index"
-  artifact_kind: "documentation"
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: documentation
+  artifact_kind: index
   purpose: "Index of all PRD documents with descriptions"
-  mood_rgb: "0066FF"
-  traits: ["canonical", "index", "v4.0.89"]
-  tags: ["prd", "index", "documentation", "requirements"]
-  lupo_agent: "wolfie"
-
+  tags:
+    - tag-prd
+    - tag-index
+    - tag-documentation
+    - tag-requirements
+  header_format_version: 2
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/prd/README.md", type: "references", weight: 1.0, reason: "PRD process documentation" }
-    - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0, reason: "Foundational constitutional requirements" }
-
+    - to: lupo-docs/prd/README.md
+      type: references
+      weight: 1.0
+      reason: PRD process documentation
+    - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
+      type: references
+      weight: 1.0
+      reason: Foundational constitutional requirements
 lupopedia.footer:
-  last_verified: "20260406154744"
-  last_verified_by: "wolfie"
+  last_verified: "20260408011934"
+  verified_by:
+    actor_id: 1
+    agent_name_identity: WOLFIE
+  orchestrator: "wolfie:root"
+---
 ---
 
 # PRD Index - Product Requirements Documents
 
-**Version:** 4.0.89  
-**Effective:** Version 4.0.89+  
+**Version:** 4.0.96  
+**Effective:** Version 4.0.96+  
 **Status:** ACTIVE  
 **Authority:** WOLFIE (actor_id: 1)  
-**Updated:** 2026-04-06  
+**Updated:** 2026-04-08  
 
 ---
 
@@ -59,7 +71,7 @@ This index provides a comprehensive listing of all Product Requirements Document
 - **[05_collections_navigation.md](05_collections_navigation.md)** - Collections and navigation systems
 - **[06_content_management.md](06_content_management.md)** - Content management and lifecycle
 - **[07_agents_faucets.md](07_agents_faucets.md)** - AI agents and IDE faucets system
-- **[08_actors.md](08_actors.md)** - Actor system and roles
+- **[08_actors.md](08_actors.md)** (SUPERSEDED — see 15_actors.md) - Actor system and roles
 - **[08_governance_rules.md](08_governance_rules.md)** - Governance and rule systems
 - **[09_federation_sync.md](09_federation_sync.md)** - Federation and synchronization
 
@@ -112,6 +124,16 @@ This index provides a comprehensive listing of all Product Requirements Document
 - **[35_mobile_native_app_separation.md](35_mobile_native_app_separation.md)** - Mobile app architecture
 - **[36_rose_multi_persona_synthetic_dialog.md](36_rose_multi_persona_synthetic_dialog.md)** - ROSE dialog system
 - **[37_kairos_channel_memory_consolidation.md](37_kairos_channel_memory_consolidation.md)** - Channel memory and KAIROS system
+- **[38_memory_unification.md](38_memory_unification.md)** - Unifies memory graph with DB as source of truth and exports to filesystem by date for IDE/Claude access
+
+---
+
+## Doctrine & extended PRDs (40+)
+
+### Versioning and install doctrine
+- **[40_versioning_doctrine.md](40_versioning_doctrine.md)** - Constitutional versioning model for Lupopedia (4.0.x line, Crafty Syntax 3.7.5 upgrade path, 4.1.0 gate, federation readiness)
+- **[41_install_seed_doctrine.md](41_install_seed_doctrine.md)** - Install seed rows as immutable reference truth (fourth PK tier; consolidation boundaries) — **draft**
+- **[42_content_seeding_and_truth_tables.md](42_content_seeding_and_truth_tables.md)** - Online help, `lupo_contents` seeding, truth Q&A tables, `lupo_edges` patterns, promotion/consolidation lifecycle — **draft**
 
 ---
 
@@ -131,6 +153,7 @@ This index provides a comprehensive listing of all Product Requirements Document
 - **Core Features**: 10-19 (Main functionality)
 - **Advanced Systems**: 20-29 (Specialized systems)
 - **Implementation**: 30-39 (Development guidelines)
+- **Doctrine / extended**: 40+ (Versioning, install seed, content/truth seeding)
 - **Meta**: Process documentation
 
 ### By Priority:
@@ -138,6 +161,7 @@ This index provides a comprehensive listing of all Product Requirements Document
 - **High**: 07, 16, 25, 31 (Agents, headers, organization)
 - **Medium**: 10-19 (Core features)
 - **Specialized**: 20-28, 30-39 (Advanced and implementation)
+- **Extended doctrine**: 40+ (Versioning, install/seed PK tiers)
 
 ---
 
@@ -151,6 +175,6 @@ This index provides a comprehensive listing of all Product Requirements Document
 ---
 
 **Index Status:** ACTIVE  
-**Last Updated:** 2026-04-06  
+**Last Updated:** 2026-04-08  
 **Maintained By:** System Architecture  
 **Next Review:** As needed when new PRDs are added

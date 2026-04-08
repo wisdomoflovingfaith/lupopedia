@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260330163000"
   file_path_from_root: "lupo-docs/prd/05_collections_navigation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/05_collections_navigation.md"
   last_modified_utc: "20260330163000"

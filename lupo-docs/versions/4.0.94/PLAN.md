@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: plan
-  when_updated: "20260406051111"
+  when_updated: "20260407015813"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  last_modified_utc: "20260406051111"
+  last_modified_utc: "20260407015813"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-plan"
@@ -19,7 +19,7 @@ lupopedia.headers:
   purpose: "Project plan for Lupopedia 4.0.94"
   tags: ["plan", "version", "4.0.94", "cursor"]
 lupopedia.footer:
-  last_verified: "20260406051111"
+  last_verified: "20260407015813"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -131,6 +131,16 @@ lupopedia.footer:
 
 ---
 
+## Phase 6b: Version documentation close-out (COMPLETED)
+
+**Epoch:** `2026-04-06 17:30 UTC` (header UTC **`20260406173021`** from **`python lupo-bin/tick.py`**).
+
+### Completed tasks
+
+- [x] **5W1H directive** — `decisions/20260406_173021_DECISION_version_4_0_94_five_w_one_h_doc_sync_closeout.md` + paired **`questions/`** / **`answers/`** files **`173022`**; **`CHANGELOG.md`** hourly prepend; **`edges.md`** outbound edges to **`4.0.95`** line + **`FOR_CLAUDE_CODE_2026_04_06.md`** + root **`CHANGELOG.md`**; **`THREAD_INDEX.md`** updates in **`decisions/`**, **`questions/`**, **`answers/`**
+
+---
+
 ## Phase 7: Packaging and testing (IN PROGRESS)
 
 Normative gate and packaging narrative: **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** (4.1.0 line); this phase executes **4.0.94 tarball / installer smoke** on Linux shared-host-class environment.
@@ -152,6 +162,45 @@ Normative gate and packaging narrative: **`lupo-docs/prd/33_softaculous_certific
 
 ---
 
+---
+
+## Phase 8: Schema review, agent activation, migration docs (COMPLETED)
+
+**Epoch:** `2026-04-06 20:00 UTC` (claude-code thread; resumed from prior session).
+
+### Completed tasks
+
+- [x] Full structural analysis of `install_new_lupopedia.sql` (pre-merge baseline **163** tables in backup `install_new_lupopedia_backup_20260406.sql`; review narrative referenced **168** — counts differ by snapshot)
+- [x] `schema_corrected_core.sql` — corrected DDL (actors PK, agent split, satellite tables, naming)
+- [x] `schema_corrected_missing.sql` — 20+ new required tables (KAIROS, runtime state, faucet rules, identity layers)
+- [x] `schema_corrected_identity_model.md` — corrected two-layer identity model
+- [x] CHRONOS kernel agent activated (`lupo-agents/chronos/` — agent.json, identity.json, tools.json, capabilities.json, system_prompt.txt)
+- [x] Verified all 1790 lines of `import_from_old_crafty_syntax.sql` (no assumptions)
+- [x] `migration_impact_summary.md` — verified import logic, actor ID formula, timestamp conversion
+- [x] Import SQL corrected (4 targeted edits: actor PK, remove deprecated columns, satellite table INSERTs, UNIQUE constraint safety)
+- [x] `livehelp_users_migration.md` updated with actor layer and satellite table documentation
+- [x] `livehelp_operator_departments_migration.md` updated with UNIQUE constraint notes
+- [x] `new_schema_tables_crafty_mapping.md` — complete mapping of 27 new tables to Crafty sources
+
+### Not completed (carry to next session)
+
+- [x] Option B migration: moved `lupo-actors/wolfie/` → `lupo-actors/1/`, `lupo-actors/lilith/` → `lupo-actors/2/`; `registry.json` `dir` values and repo path references updated; legacy named folders removed
+- [ ] Step 3: Actor Reconstruction Pass — deferred
+- [ ] Align PHP, seed, and import SQL with renamed/removed install tables (`agent_definitions`, `actor_faucets`, dropped `agent_tool_calls`, etc.) — see **`decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md`**
+
+---
+
+## Phase 8b: Install merge applied (COMPLETED)
+
+**Epoch:** `2026-04-07 02:00 UTC` (Cursor thread; header UTC **`20260407015813`** from **`python lupo-bin/tick.py`**).
+
+### Completed tasks
+
+- [x] Merge **`schema_corrected_core.sql`** + **`schema_corrected_missing.sql`** into **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**
+- [x] Post-merge install table count **170**; set diff vs **`install_new_lupopedia_backup_20260406.sql`** recorded in version **`CHANGELOG.md`** and **`decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md`**
+
+---
+
 ## Phase completion status (dependency order)
 
 Per **TASK_PLANNING_DOCTRINE** — status only, no calendar estimates.
@@ -164,7 +213,10 @@ Per **TASK_PLANNING_DOCTRINE** — status only, no calendar estimates.
 | Phase 4 — Database portability | COMPLETED |
 | Phase 5 — Locale support | COMPLETED |
 | Phase 6 — Documentation | COMPLETED |
+| Phase 6b — Version documentation close-out (5W1H) | COMPLETED |
 | Phase 7 — Packaging and testing | IN PROGRESS |
+| Phase 8 — Schema review + CHRONOS + migration docs | COMPLETED |
+| Phase 8b — Corrected DDL merged into canonical install | COMPLETED |
 
 ---
 
@@ -178,5 +230,6 @@ None at this time.
 
 1. **Softaculous packaging test** on Linux (primary gate for this phase)
 2. Run full regression test suite
-3. Track deferred product/docs tasks in **`lupo-docs/versions/4.0.95/TODO.md`**
-4. Prepare **4.1.0** / PRD 33 execution planning separately from 4.0.95 patch backlog
+3. **Schema/runtime alignment** — audit code + seed + import SQL against post-merge **`install_new_lupopedia.sql`** (see **`TODO.md`** T-SCHEMA-RUNTIME-001 / T-SCHEMA-TOOLCALLS-001)
+4. Track deferred product/docs tasks in **`lupo-docs/versions/4.0.95/TODO.md`**
+5. Prepare **4.1.0** / PRD 33 execution planning separately from 4.0.95 patch backlog

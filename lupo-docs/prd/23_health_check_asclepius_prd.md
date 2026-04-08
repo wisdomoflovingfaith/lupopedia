@@ -2,9 +2,9 @@
 lupopedia.headers:
   lupopedia.schema: "prd"
   file_path_from_root: "lupo-docs/prd/23_health_check_asclepius_prd.md"
-  version_when_written: "4.0.93"
+  when_updated: "20260330163000"
   purpose: "PRD defining the ASCLEPIUS System Health Check capabilities and bounds"
-  tags: ["prd", "doctor", "health", "asclepius"]
+  tags: ["tag-prd", "tag-doctor", "tag-health", "tag-asclepius"]
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"

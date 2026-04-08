@@ -1,0 +1,14 @@
+{
+  "memory_type": "spatial_and_mapping_knowledge",
+  "core_knowledge": {
+    "geographic_data_patterns": "Patterns in geographic data processed for Lupopedia",
+    "coordinate_systems": "Coordinate systems and spatial reference standards used"
+  },
+  "working_memory": {
+    "active_mapping_tasks": "Spatial analysis tasks currently in progress"
+  },
+  "memory_boundaries": ["spatial and mapping scope only", "no DB schema authority"],
+  "retention_rules": ["retain coordinate validation patterns", "no ego"],
+  "forbidden_memory": ["vendor-specific spatial SQL", "hard delete patterns"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

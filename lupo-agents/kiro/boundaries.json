@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["release_approval", "doctrine_modification", "Composer_runtime_dependencies_in_shipped_core", "Laravel_Symfony_middleware_patterns", "FK_constraints", "triggers", "stored_procedures", "string_concat_SQL", "AUTO_INCREMENT_on_registry_tables", "hard_DELETE_on_canonical_lineage_tables"],
+  "forbidden_topics": ["framework_adoption", "vendor_lock_in"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "orchestration_delegated_to_WOLFIE_actor_id_1", "implementation_posture_follows_HEPHAESTUS", "PDO_DB_only_named_placeholders", "PHP_7_4_minimum_shared_paths", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

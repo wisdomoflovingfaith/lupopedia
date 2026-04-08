@@ -14,7 +14,7 @@ lupopedia.headers:
   artifact_type: prd
   artifact_kind: requirements
   purpose: "PRD for the Lupopedia VSX extension, metadata indexing, and delegation engine"
-  tags: ["prd", "vsx_extension", "metadata_indexing", "delegation_engine"]
+  tags: ["tag-prd", "tag-vsx-extension", "tag-metadata-indexing", "tag-delegation-engine"]
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"

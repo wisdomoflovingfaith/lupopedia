@@ -20,7 +20,6 @@ lupopedia.headers:
   artifact_kind: mobile_strategy
   purpose: "Mobile strategy — Two-UI (WOLFIE desktop, AI-assisted mobile web); same DB; native operator app; no responsive-only as sole UX for rich desktop surfaces"
   status: "draft"
-  tags:
     - prd
     - mobile
     - app
@@ -30,6 +29,16 @@ lupopedia.headers:
     - chat
     - native
     - planned_post_4_0_x
+  tags:
+    - tag-prd
+    - tag-mobile
+    - tag-app
+    - tag-separation
+    - tag-ios
+    - tag-android
+    - tag-chat
+    - tag-native
+    - tag-planned-post-4-0-x
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"

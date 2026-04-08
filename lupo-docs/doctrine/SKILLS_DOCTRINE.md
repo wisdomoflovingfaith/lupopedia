@@ -107,7 +107,7 @@ lupopedia.skills:
 SkillService resolves skills from:
 
 - Actor profile (`profile.md` or equivalent) with `lupopedia.skills` block
-- Per-actor `skills/*.md` files under the actor directory (e.g. `lupo-actors/wolfie/skills/` or `lupo-actors/1/skills/`)
+- Per-actor `skills/*.md` files under the actor directory (e.g. `lupo-actors/1/skills/` for WOLFIE)
 
 ```php
 $skills = $skillService->getActorSkills(1);
@@ -123,5 +123,5 @@ Skills can be referenced in rules (e.g. permission or behavior rules) via condit
 ## See also
 
 - [lupo-skills/](../../lupo-skills/) — Skill documentation
-- [lupo-actors/wolfie/](../../lupo-actors/wolfie/) — WOLFIE (actor 1) actor directory
+- [lupo-actors/1/](../../lupo-actors/1/) — WOLFIE (actor 1) actor directory
 - [RULES_DOCTRINE.md](RULES_DOCTRINE.md) — Rules system

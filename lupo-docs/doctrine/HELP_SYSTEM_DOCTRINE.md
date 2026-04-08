@@ -130,11 +130,11 @@ Lupopedia includes a doctrine-aligned rules system for governance, permissions, 
 
 ### Skills system
 
-Actors can possess skills documented in `lupo-skills/` and attached via the `lupopedia.skills` header (in profile or `skills/*.md`). SkillService resolves skills from the actor directory (numeric `lupo-actors/1/` or slug `lupo-actors/wolfie/`).
+Actors can possess skills documented in `lupo-skills/` and attached via the `lupopedia.skills` header (in profile or `skills/*.md`). SkillService resolves skills from the actor directory given by registry `dir` (e.g. `lupo-actors/1/` for WOLFIE).
 
 - **Documentation:** [lupo-docs/doctrine/SKILLS_DOCTRINE.md](../lupo-docs/doctrine/SKILLS_DOCTRINE.md)
 - **Skills directory:** [lupo-skills/](../lupo-skills/)
-- **Example:** WOLFIE (actor 1) has the "lupopedia-headers" skill at master level; see [lupo-actors/wolfie/skills/lupopedia-headers.md](../lupo-actors/wolfie/skills/lupopedia-headers.md) and [lupo-actors/1/skills/lupopedia-headers.md](../lupo-actors/1/skills/lupopedia-headers.md).
+- **Example:** WOLFIE (actor 1) has the "lupopedia-headers" skill at master level; see [lupo-actors/1/skills/lupopedia-headers.md](../lupo-actors/1/skills/lupopedia-headers.md).
 
 ### Communication system
 

@@ -4,7 +4,8 @@ lupopedia.headers:
   lupopedia.schema: prd
   file_path_from_root: "lupo-docs/prd/02_data_model.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/02_data_model.md"
-  last_modified_utc: "20260403202128"
+  when_updated: "20260407233043"
+  last_modified_utc: "20260407233043"
   channel_id: 42
   thread_id: "data-model"
   actor_id: 102
@@ -92,7 +93,7 @@ CREATE TABLE lupo_contexts (
   sort_order int NOT NULL DEFAULT 0,              -- Display ordering
   created_ymdhis bigint NOT NULL DEFAULT 0,       -- UTC timestamp (YYYYMMDDHHIISS)
   updated_ymdhis bigint NOT NULL,                 -- UTC timestamp
-  weight_score decimal(5,2) NOT NULL DEFAULT 0.00, -- Semantic weight
+  weight_hundredths int NOT NULL DEFAULT 0, -- Semantic weight × 100 (e.g. 100 = 1.00)
   is_active tinyint NOT NULL DEFAULT 1,           -- Active status
   metadata_json json                              -- Flexible metadata
 );
@@ -143,7 +144,7 @@ CREATE TABLE lupo_truth_answers (
   is_accepted tinyint NOT NULL DEFAULT 0,         -- Accepted flag
   acceptance_votes int NOT NULL DEFAULT 0,         -- Acceptance votes
   rejection_votes int NOT NULL DEFAULT 0,         -- Rejection votes
-  confidence_score decimal(3,2) NOT NULL DEFAULT 0.50, -- Confidence
+  confidence_hundredths int NOT NULL DEFAULT 50, -- 50 = 0.50 confidence
   answer_status varchar(32) NOT NULL DEFAULT 'active', -- Status
   view_count bigint NOT NULL DEFAULT 0,            -- View statistics
   helpful_count bigint NOT NULL DEFAULT 0,         -- Helpful votes
@@ -227,18 +228,20 @@ CREATE INDEX lupo_votes_idx_deleted ON lupo_votes (is_deleted);
 ### Usage Examples
 
 ```sql
+-- Application (PHP): $voteId = IdGenerator::generate();
+-- Bind :vote_id in PDO_DB from that value (no DB-side generate_id()).
+
 -- Like a truth question
 INSERT INTO lupo_votes (vote_id, target_type, target_id, vote_type, vote_value, cast_by_actor_id, created_ymdhis, updated_ymdhis)
-VALUES (generate_id(), 'truth_question', 12345, 'like', 1, 2038, 20260331120000, 20260331120000);
+VALUES (:vote_id, 'truth_question', 12345, 'like', 1, 2038, 20260331120000, 20260331120000);
 
 -- Vote on a channel
 INSERT INTO lupo_votes (vote_id, target_type, target_id, vote_type, vote_value, cast_by_actor_id, created_ymdhis, updated_ymdhis)
-VALUES (generate_id(), 'channel', 42, 'like', 1, 2038, 20260331120000, 20260331120000);
+VALUES (:vote_id, 'channel', 42, 'like', 1, 2038, 20260331120000, 20260331120000);
 
 -- Flag a comment with reason
 INSERT INTO lupo_votes (vote_id, target_type, target_id, vote_type, vote_value, cast_by_actor_id, reason_code, reason_text, created_ymdhis, updated_ymdhis)
-VALUES (generate_id(), 'comment', 67890, 'flag', -1, 2038, 'spam', 'Unsolicited promotional content', 20260331120000, 20260331120000);
-```
+VALUES (:vote_id, 'comment', 67890, 'flag', -1, 2038, 'spam', 'Unsolicited promotional content', 20260331120000, 20260331120000);
 ```
 
 ### **lupo_truth_evidence (Evidence Tracking)**
@@ -254,8 +257,8 @@ CREATE TABLE lupo_truth_evidence (
   source_title varchar(500),                          -- Source title
   evidence_text text,                                 -- Evidence content
   evidence_excerpt varchar(1000),                     -- Evidence excerpt
-  reliability_score decimal(3,2) NOT NULL DEFAULT 0.50, -- Reliability score
-  relevance_score decimal(3,2) NOT NULL DEFAULT 0.50, -- Relevance score
+  reliability_hundredths int NOT NULL DEFAULT 50, -- 50 = 0.50 reliability
+  relevance_hundredths int NOT NULL DEFAULT 50, -- 50 = 0.50 relevance
   is_verified tinyint NOT NULL DEFAULT 0,            -- Verification status
   verified_by_actor_id bigint,                         -- Who verified
   verified_ymdhis bigint,                              -- Verification timestamp
@@ -395,3 +398,99 @@ findings:
 **RULE [93.PROTECT_SCHEMA_JSON]** (formerly PROTECT_TOONS): The IDE is strictly forbidden from writing to `lupo-database/lupopedia/json/*.json`. Any schema evolution must be drafted in `lupo-database/lupopedia/mysql/` (install/seed) and verified by running `generate_toon_files.py`. See `00_root_constitutional_system_requirements.md` §6.
 
 **LILITH Verdict**: The "Architect" must look at the "Senses" (JSON) but only write to the "DNA" (Install Scripts).
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

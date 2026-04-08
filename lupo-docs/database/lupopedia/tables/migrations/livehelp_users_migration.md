@@ -400,9 +400,63 @@ department assignments
 
 These belong to other subsystems.
 
-# 10. Final Decision
-Code
-livehelp_users -> IMPORTED -> DROPPED
+# 10. Actor Layer (Phase 1 of import)
+
+After auth_users are created, lupo_actors are created **from lupo_auth_users**, not directly from livehelp_users.
+
+Only operators (isoperator = 'Y') get actor rows. Visitors do not.
+
+```
+actor_id        = au.auth_user_id  (= 10000 + livehelp_users.user_id)
+actor_name      = username (or 'actor_{id}' fallback)
+slug            = username
+name            = display_name (or username)
+actor_type      = 'user'
+agent_key       = NULL  (humans have no agent template)
+actor_source_id = auth_user_id
+actor_source_type = '{{prefix}}auth_users'
+```
+
+**Corrected schema note (20260406):**
+The following columns were removed from lupo_actors in the corrected schema and are NOT populated during import:
+- `metadata text` — decomposed; Crafty has no adversarial data to migrate
+- `adversarial_role` — moved to lupo_actor_relationships; empty for Crafty imports
+- `adversarial_oversight_actor_id` — moved to lupo_actor_relationships; empty for Crafty imports
+- `paired_actor_id` — moved to lupo_actor_pairing; empty for Crafty imports
+- `department_id` — moved to lupo_actor_departments exclusively
+- `actor_root_path` template default — moved to lupo_actor_filesystem as computed value
+
+# 11. New Satellite Tables Populated During Import
+
+**lupo_actor_filesystem** — created for each imported operator actor:
+```
+actor_root_path = 'uploads/actors/{actor_id}/'  (computed, not template literal)
+workspace_path  = NULL
+php_namespace   = NULL
+```
+
+**lupo_actor_sync_state** — created for each imported operator actor:
+```
+sync_target  = 'who_json'
+sync_status  = 'pending'  (WHO.json not yet generated)
+last_sync_ymdhis = 0
+```
+
+**NOT populated from Crafty (no source data):**
+- lupo_actor_pairing — Crafty has no pairing data
+- lupo_actor_relationships — Crafty has no adversarial/oversight data
+- lupo_kairos_observations — Crafty has no KAIROS data
+- lupo_actor_runtime_state — initialized at first login
+- lupo_agent_definitions — seeded at install; not a Crafty concept
+
+# 12. Final Decision
+```
+livehelp_users → IMPORTED → DROPPED
+```
 Operators and visitors imported into lupo_auth_users.
-Session and routing data discarded.
+Operators get lupo_actors rows. Visitors do not.
+Satellite tables (actor_filesystem, actor_sync_state) initialized for each actor.
+Session, routing, and UI state discarded.
+
+Last updated: 20260406 by claude-code (actor_id 102) — corrected schema alignment.
 

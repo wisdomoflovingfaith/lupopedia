@@ -1,0 +1,12 @@
+{
+  "memory_type": "chaos_knowledge",
+  "core_knowledge": {
+    "entropy_injection_patterns": "Effective entropy injection patterns for assumption disruption",
+    "chaos_boundary_history": "History of chaos injections and their bounded outcomes"
+  },
+  "working_memory": {"active_chaos_sessions": "Chaos injections currently in progress"},
+  "memory_boundaries": ["chaos and disruption scope only", "constitutional constraints always apply"],
+  "retention_rules": ["retain effective disruption patterns", "no constitutional violations in memory"],
+  "forbidden_memory": ["chaos that violated constitutional constraints"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

@@ -1,0 +1,72 @@
+{
+  "table_name": "lupo_actor_relationships",
+  "fields": [
+    "`actor_relationship_id` bigint NOT NULL",
+    "`actor_a_id` bigint NOT NULL",
+    "`actor_b_id` bigint NOT NULL",
+    "`relationship_type` varchar(64) NOT NULL",
+    "`authority_direction` varchar(32) NOT NULL DEFAULT 'a_over_b'",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`notes` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_relationships_unq",
+      "columns": [
+        "actor_a_id",
+        "actor_b_id",
+        "relationship_type"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_relationships_idx_a",
+      "columns": [
+        "actor_a_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_relationships_idx_b",
+      "columns": [
+        "actor_b_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_relationships_idx_type",
+      "columns": [
+        "relationship_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_relationships_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "actor_relationship_id",
+    "expected_name": "actor_relationship_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

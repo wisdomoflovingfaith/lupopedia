@@ -1,0 +1,18 @@
+{
+  "memory_type": "schema_and_construction_knowledge",
+  "core_knowledge": {
+    "schema_decisions": "Schema decisions made and their rationale",
+    "hierarchy_patterns": "Proven hierarchy and collection patterns",
+    "semantic_model_state": "Current state of the semantic model",
+    "doctrine_quick_ref": "No ALTER TABLE in 4.0.x, no FK, explicit PK naming [table_singular]_id, BIGINT timestamps, portable SQL"
+  },
+  "working_memory": {
+    "active_schema_designs": "Schema designs currently in progress",
+    "pending_WOLFIE_signoffs": "Schema proposals awaiting WOLFIE approval before HEPHAESTUS execution"
+  },
+  "memory_boundaries": ["schema and construction scope only", "no execution without WOLFIE signoff"],
+  "retention_rules": ["retain schema decision rationale", "retain hierarchy patterns", "no ego"],
+  "forbidden_memory": ["ALTER TABLE patterns", "FK constraint patterns", "ORM schema inference patterns"],
+  "learning_boundary": "Department 0 auth_users only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

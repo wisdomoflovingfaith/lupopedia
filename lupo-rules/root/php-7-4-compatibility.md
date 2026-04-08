@@ -1,7 +1,7 @@
 ---
 lupopedia.init:
   orchestrator_actor: "any"
-  rule_set_version: "4.0.95+"
+  rule_set_version: "4.0.96+"
   applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
   enforcement: strict
 
@@ -14,12 +14,12 @@ lupopedia.headers:
     id: 102
     name: "cursor"
   delegation_chain: "cursor:root"
-  lupopedia.version: "4.0.95"
+  lupopedia.version: "4.0.96"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/php-7-4-compatibility.md"
   web_path: "http://www.lupopedia.com/rules/root/php-7-4-compatibility"
   last_modified_utc: "20260406062838"
-  system_version: "4.0.95"
+  system_version: "4.0.96"
   rule_name: "PHP tiered compatibility (Option 4)"
   rule_type: "constraint"
   artifact_type: "rule"
@@ -45,7 +45,7 @@ lupopedia.rules:
     version: "3.0"
     status: "active"
 lupopedia.footer:
-  version: "4.0.95"
+  version: "4.0.96"
   last_verified: "20260406062838"
   last_verified_by: "cursor"
   orchestrator: "cursor"

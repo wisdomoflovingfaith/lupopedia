@@ -40,6 +40,54 @@ REQUIRED_HEADER_KEYS = (
     "tags",
 )
 
+# Deterministic field ordering as per LUPOPEDIA_HEADERS_DOCTRINE.md v4.0.93
+DETERMINISTIC_FIELD_ORDER = [
+    # Core identification (first)
+    "lupopedia.schema",
+    "file_path_from_root",
+    "web_path",
+    "last_modified_utc",
+    "when_updated",
+    "federation_node_id",
+    # Context and threading
+    "channel_id",
+    "thread_id",
+    "context_id",
+    # Actor attribution
+    "actor_id",
+    "actor_name",
+    "delegation_chain",
+    # Artifact classification
+    "artifact_type",
+    "artifact_kind",
+    "purpose",
+    "tags",
+    # Optional fields (after required)
+    "content_id",
+    "header_format_version",
+    # ... other optional fields can follow
+]
+
+# ASCII-safe filename and slug patterns
+ASCII_FILENAME_PATTERN = re.compile(r'^[a-z0-9_.-]+$')
+ASCII_SLUG_PATTERN = re.compile(r'^[a-z0-9-]+$')
+
+# Edge reference patterns
+EDGE_PATH_PATTERN = re.compile(r'^[a-z0-9_/.-]+\.md$')
+EDGE_SLUG_PATTERN = re.compile(r'^[a-z0-9-]+$')
+EDGE_CONTENT_ID_PATTERN = re.compile(r'^\d{19}$')  # BIGINT
+
+# Tag prefixing pattern (v4.0.93)
+TAG_PREFIX_PATTERN = re.compile(r'^tag-[a-z0-9-]+$')
+
+# Canonical tag prefixes for validation warnings
+CANONICAL_TAG_PREFIXES = {
+    'prd', 'doctrine', 'agent', 'actor', 'design', 'implementation',
+    'decision', 'question', 'answer', 'version', 'architecture',
+    'database', 'constitutional', 'utility', 'script', 'status',
+    'plan', 'todo', 'thread', 'broadcast', 'index'
+}
+
 # thread_id: lowercase, hyphens (and digits); e.g. headers-doctrine, 4.0.89-planning
 THREAD_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
@@ -182,6 +230,229 @@ def _header_value_present(val):
         return False
     if isinstance(val, (list, dict)) and len(val) == 0:
         return False
+    return True
+
+
+def validate_field_ordering(hdr, file_path):
+    """Validate deterministic field ordering per LUPOPEDIA_HEADERS_DOCTRINE.md v4.0.93"""
+    if not isinstance(hdr, dict):
+        return True
+    
+    # Get actual field order
+    actual_order = list(hdr.keys())
+    
+    # Build expected order based on present fields
+    expected_order = []
+    for field in DETERMINISTIC_FIELD_ORDER:
+        if field in actual_order:
+            expected_order.append(field)
+    
+    # Add any unknown fields at the end (with warning)
+    unknown_fields = [f for f in actual_order if f not in DETERMINISTIC_FIELD_ORDER]
+    if unknown_fields:
+        print(f"[WARN]  {file_path}: Unknown header fields: {', '.join(unknown_fields)}")
+        expected_order.extend(unknown_fields)
+    
+    # Check if ordering matches
+    if actual_order != expected_order:
+        print(f"[ERROR] {file_path}: Fields not in deterministic order")
+        print(f"   Expected order: {', '.join(expected_order[:10])}{'...' if len(expected_order) > 10 else ''}")
+        print(f"   Actual order:   {', '.join(actual_order[:10])}{'...' if len(actual_order) > 10 else ''}")
+        return False
+    
+    return True
+
+
+def validate_ascii_safe_names(hdr, file_path):
+    """Validate ASCII-safe filenames and slugs"""
+    errors = []
+    
+    # Check file_path_from_root
+    file_path_val = hdr.get('file_path_from_root', '')
+    if file_path_val:
+        filename = file_path_val.split('/')[-1]
+        if not ASCII_FILENAME_PATTERN.match(filename):
+            errors.append(f"filename '{filename}' contains non-ASCII characters")
+    
+    # Check thread_id if present
+    thread_id = hdr.get('thread_id', '')
+    if thread_id and not ASCII_SLUG_PATTERN.match(thread_id):
+        errors.append(f"thread_id '{thread_id}' contains non-ASCII characters")
+    
+    # Check actor_name if present
+    actor_name = hdr.get('actor_name', '')
+    if actor_name and not ASCII_SLUG_PATTERN.match(actor_name.replace('_', '-')):
+        errors.append(f"actor_name '{actor_name}' contains non-ASCII characters")
+    
+    if errors:
+        print(f"[ERROR] {file_path}: ASCII-safe validation failed: {'; '.join(errors)}")
+        return False
+    
+    return True
+
+
+def validate_edges(edges_data, file_path):
+    """Validate edge formats and resolvability"""
+    if not edges_data or not isinstance(edges_data, dict):
+        print(f"[WARN]  {file_path}: No lupopedia.edges section found")
+        return True
+    
+    outbound = edges_data.get('outbound_edges', [])
+    if not outbound:
+        return True
+    
+    if not isinstance(outbound, list):
+        print(f"[ERROR] {file_path}: outbound_edges must be a list")
+        return False
+    
+    for i, edge in enumerate(outbound):
+        if not isinstance(edge, dict):
+            print(f"[ERROR] {file_path}: Edge {i} must be a dictionary")
+            return False
+        
+        # Check required fields
+        if 'to' not in edge:
+            print(f"[ERROR] {file_path}: Edge {i} missing 'to' field")
+            return False
+        
+        if 'type' not in edge:
+            print(f"[ERROR] {file_path}: Edge {i} missing 'type' field")
+            return False
+        
+        # Validate 'to' field format
+        to_val = str(edge['to'])
+        if EDGE_PATH_PATTERN.match(to_val):
+            # File path reference
+            pass
+        elif EDGE_SLUG_PATTERN.match(to_val):
+            # Slug reference
+            pass
+        elif EDGE_CONTENT_ID_PATTERN.match(to_val):
+            # Content ID reference
+            try:
+                int(to_val)
+            except ValueError:
+                print(f"[ERROR] {file_path}: Edge {i} content_id '{to_val}' is not numeric")
+                return False
+        else:
+            print(f"[ERROR] {file_path}: Edge {i} 'to' value '{to_val}' is not a valid path, slug, or content_id")
+            return False
+        
+        # Validate weight if present
+        if 'weight' in edge:
+            weight = edge['weight']
+            try:
+                w = float(weight)
+                if not (0.0 <= w <= 1.0):
+                    print(f"[ERROR] {file_path}: Edge {i} weight must be between 0.0 and 1.0, got {w}")
+                    return False
+            except (ValueError, TypeError):
+                print(f"[ERROR] {file_path}: Edge {i} weight must be numeric, got {weight}")
+                return False
+    
+    return True
+
+
+def validate_content_id(hdr, file_path):
+    """Validate content_id format and presence"""
+    content_id = hdr.get('content_id')
+    
+    if content_id is None:
+        print(f"[WARN]  {file_path}: No content_id - file not imported yet")
+        return True
+    
+    content_id_str = str(content_id).strip()
+    if not content_id_str:
+        print(f"[WARN]  {file_path}: Empty content_id")
+        return True
+    
+    # Check if content_id is a valid BIGINT
+    if not content_id_str.isdigit():
+        print(f"[ERROR] {file_path}: content_id must be numeric (BIGINT), got '{content_id}'")
+        return False
+    
+    # Check if it's within reasonable BIGINT range
+    try:
+        cid_int = int(content_id_str)
+        if cid_int < 0 or cid_int > 2**63 - 1:
+            print(f"[ERROR] {file_path}: content_id {cid_int} out of BIGINT range")
+            return False
+    except OverflowError:
+        print(f"[ERROR] {file_path}: content_id {content_id} causes overflow")
+        return False
+    
+    return True
+
+
+def validate_actor_folder_alignment(hdr, file_path):
+    """Validate actor_id matches folder structure for deterministic placement"""
+    actor_id = hdr.get('actor_id')
+    if not actor_id:
+        return True
+    
+    try:
+        actor_id_int = int(actor_id)
+    except (ValueError, TypeError):
+        print(f"[ERROR] {file_path}: actor_id must be numeric, got '{actor_id}'")
+        return False
+    
+    # Extract folder path from file_path_from_root
+    file_path_val = hdr.get('file_path_from_root', '')
+    
+    # Check if this is an actor-related file
+    if 'lupo-actors' in file_path_val:
+        if actor_id_int < 2026:
+            # Core actor should be in lupo-actors/<actor_id>/
+            expected_pattern = f"lupo-actors/{actor_id_int}/"
+        else:
+            # Runtime actor should be in lupo-actors/YYYY/MM/<actor_id>/
+            # Extract YYYYMM from timestamp ID
+            actor_str = str(actor_id_int)
+            if len(actor_str) >= 6:
+                yyyy = actor_str[:4]
+                mm = actor_str[4:6]
+                expected_pattern = f"lupo-actors/{yyyy}/{mm}/{actor_id_int}/"
+            else:
+                print(f"[WARN]  {file_path}: Runtime actor_id {actor_id_int} too short to extract date")
+                return True
+        
+        if expected_pattern not in file_path_val:
+            print(f"[WARN]  {file_path}: Actor folder misalignment")
+            print(f"   actor_id={actor_id_int}, expected pattern '{expected_pattern}' in path '{file_path_val}'")
+    
+    return True
+
+
+def validate_tag_prefixing(hdr, file_path):
+    """Validate deterministic tag prefixing per LUPOPEDIA_HEADERS_DOCTRINE.md v4.0.93"""
+    tags = hdr.get('tags', [])
+    
+    if not isinstance(tags, list):
+        print(f"[ERROR] {file_path}: tags must be a list, got {type(tags).__name__}")
+        return False
+    
+    if not tags:
+        return True  # Empty tags list is allowed
+    
+    for tag in tags:
+        tag_str = str(tag)
+        
+        # Check for required prefix
+        if not tag_str.startswith('tag-'):
+            print(f"[ERROR] {file_path}: Tag '{tag_str}' missing required 'tag-' prefix")
+            return False
+        
+        # Check pattern match
+        if not TAG_PREFIX_PATTERN.match(tag_str):
+            print(f"[ERROR] {file_path}: Tag '{tag_str}' contains invalid characters (must be ^tag-[a-z0-9-]+$)")
+            return False
+        
+        # Check for canonical namespace (warning only)
+        namespace = tag_str.split('-')[1] if '-' in tag_str else ''
+        if namespace not in CANONICAL_TAG_PREFIXES:
+            print(f"[WARN]  {file_path}: Tag '{tag_str}' uses non-canonical namespace '{namespace}'")
+            print(f"   Consider using one of: {', '.join(sorted(CANONICAL_TAG_PREFIXES))}")
+    
     return True
 
 
@@ -776,6 +1047,18 @@ def validate_yaml_file(file_path, content, strict_edge_links=False):
         return False, None
     if not validate_ymdhis_pair(hdr.get("when_updated"), hdr.get("last_modified_utc"), file_path):
         return False, None
+    
+    # New deterministic validations (v4.0.93)
+    if not validate_field_ordering(hdr, file_path):
+        return False, None
+    if not validate_ascii_safe_names(hdr, file_path):
+        return False, None
+    if not validate_content_id(hdr, file_path):
+        return False, None
+    if not validate_actor_folder_alignment(hdr, file_path):
+        return False, None
+    if not validate_tag_prefixing(hdr, file_path):
+        return False, None
 
     schema = str(hdr.get("lupopedia.schema", "")).strip()
     if not validate_schema(schema, file_path):
@@ -872,6 +1155,8 @@ def validate_yaml_file(file_path, content, strict_edge_links=False):
     if eb is not None:
         if not isinstance(eb, dict):
             print("[ERROR] %s: lupopedia.edges must be a mapping" % (file_path,))
+            return False, None
+        if not validate_edges(eb, file_path):
             return False, None
         if not validate_edge_targets(file_path, eb, strict=strict_edge_links):
             return False, None

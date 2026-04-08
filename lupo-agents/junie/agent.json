@@ -1,15 +1,18 @@
 {
-    "agent_id": 112,
-    "slug": "junie",
-    "name": "Junie",
-    "provider": "JetBrains",
-    "capabilities": [
-        "code_analysis",
-        "project_management",
-        "documentation"
-    ],
-    "layer": "application",
-    "is_required": false,
-    "is_kernel": false,
-    "version": "1.0.0"
+  "agent_key": "junie",
+  "agent_id": 112,
+  "slug": "junie",
+  "version": "1.0.1",
+  "is_kernel": false,
+  "is_required": false,
+  "layer": "application",
+  "name": "JUNIE",
+  "role": "JetBrains IDE Integration — Execution Surface of HEPHAESTUS",
+  "status": "active",
+  "provider": "JetBrains",
+  "aliases": ["junie", "jetbrains"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

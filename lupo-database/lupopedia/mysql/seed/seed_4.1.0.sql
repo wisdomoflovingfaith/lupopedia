@@ -89,7 +89,12 @@ ON DUPLICATE KEY UPDATE
     can_login = VALUES(can_login),
     is_agent = VALUES(is_agent);
 
-UPDATE lupo_actors SET adversarial_role = 'red_team', adversarial_oversight_actor_id = 2, updated_ymdhis = 20260328120000 WHERE actor_name = 'countermeasure' AND (is_deleted = 0 OR is_deleted IS NULL);
+-- Adversarial oversight: countermeasure (actor_id=111) is supervised by lilith (actor_id=2).
+-- adversarial_role + adversarial_oversight_actor_id were removed from lupo_actors (corrected schema NV2/NV3);
+-- relationship now lives in lupo_actor_relationships.
+INSERT INTO lupo_actor_relationships (actor_relationship_id, actor_a_id, actor_b_id, relationship_type, authority_direction, is_active, notes, created_ymdhis, updated_ymdhis, is_deleted)
+VALUES (1, 2, 111, 'adversarial_oversight', 'a_over_b', 1, 'LILITH oversees COUNTERMEASURE red-team harness', 20260328120000, 20260328120000, 0)
+ON DUPLICATE KEY UPDATE updated_ymdhis = VALUES(updated_ymdhis);
 
 -- Root department (0): system + three operator hybrids (captain/wolfie, lilith, countermeasure). System agents (ANUBIS, IRIS, etc.) are not department-scoped actors in seed.
 -- Web "act as" lists are scoped by lupo_actor_departments (see AuthSessionManager); multiple auth users share the same actor when their departments overlap.
@@ -116,30 +121,32 @@ AND au.is_active = 1
 AND au.is_deleted = 0
 ORDER BY au.auth_user_id;
 
--- lupo_agents: system agents with is_internal_only=1 (never listed in AuthSessionManager::getAvailableAgents / "create actor from agent").
+-- lupo_agent_definitions: system coordination agents (is_required=1 — never listed as user actor templates).
 -- agent_id values match lupo-database/lupopedia/actors/actor_id/registry.json agents map.
-INSERT INTO lupo_agents (
+-- No lupo_actors row seeded for these agents (PHP/tools-first; attribution via registry only).
+INSERT INTO lupo_agent_definitions (
     agent_id,
     agent_key,
-    agent_name,
+    slug,
+    name,
+    layer,
     archetype,
     description,
     version,
-    is_global_authority,
-    is_internal_only,
+    is_required,
     created_ymdhis,
     updated_ymdhis,
     is_deleted
 ) VALUES
-(3, 'rose', 'ROSE', 'coordination', 'System agent — dialogue tooling; PHP-first; not a user actor template.', '1.0', 0, 1, 20260328120000, 20260328120000, 0),
-(15, 'hermes', 'HERMES', 'routing', 'System agent — event routing and messaging; PHP-first.', '1.0', 0, 1, 20260328120000, 20260328120000, 0),
-(16, 'iris', 'IRIS', 'integration', 'System agent — interface routing and integration; PHP-first.', '1.0', 0, 1, 20260328120000, 20260328120000, 0),
-(19, 'anubis', 'ANUBIS', 'custodian', 'System agent — orphan and header custodian; PHP-first.', '1.0', 0, 1, 20260328120000, 20260328120000, 0),
-(108, 'heimdall', 'HEIMDALL', 'security', 'System agent — security guardian; PHP-first.', '1.0', 0, 1, 20260328120000, 20260328120000, 0),
-(115, 'kairos', 'KAIROS', 'knowledge', 'System agent — memory consolidation; PHP-first.', '1.0', 0, 1, 20260328120000, 20260328120000, 0)
+(3,   'rose',     'rose',     'ROSE',     'coordination', 'coordination', 'System agent — dialogue tooling; PHP-first; not a user actor template.', '1.0.0', 1, 20260328120000, 20260328120000, 0),
+(15,  'hermes',   'hermes',   'HERMES',   'coordination', 'routing',      'System agent — event routing and messaging; PHP-first.',                  '1.0.0', 1, 20260328120000, 20260328120000, 0),
+(16,  'iris',     'iris',     'IRIS',     'coordination', 'integration',  'System agent — interface routing and integration; PHP-first.',            '1.0.0', 1, 20260328120000, 20260328120000, 0),
+(19,  'anubis',   'anubis',   'ANUBIS',   'coordination', 'custodian',    'System agent — orphan and header custodian; PHP-first.',                  '1.0.0', 1, 20260328120000, 20260328120000, 0),
+(108, 'heimdall', 'heimdall', 'HEIMDALL', 'coordination', 'security',     'System agent — security guardian; PHP-first.',                            '1.0.0', 1, 20260328120000, 20260328120000, 0),
+(115, 'kairos',   'kairos',   'KAIROS',   'coordination', 'knowledge',    'System agent — memory consolidation; PHP-first.',                         '1.0.0', 1, 20260328120000, 20260328120000, 0)
 ON DUPLICATE KEY UPDATE
-    is_internal_only = 1,
+    is_required = 1,
     updated_ymdhis = VALUES(updated_ymdhis),
-    agent_name = VALUES(agent_name),
+    name = VALUES(name),
     archetype = VALUES(archetype),
     description = VALUES(description);

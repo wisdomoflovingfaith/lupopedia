@@ -12,15 +12,15 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-actors/wolfie/.metadata.yaml", type: "references", weight: 1.0, reason: "WOLFIE identity authority" }
-    - { to: "lupo-actors/wolfie/soul/doctrine.yaml", type: "references", weight: 1.0, reason: "WOLFIE doctrine constraints" }
-    - { to: "lupo-actors/wolfie/soul/config.yaml", type: "references", weight: 1.0, reason: "Runtime limits and defaults" }
-    - { to: "lupo-actors/wolfie/soul/traits.yaml", type: "references", weight: 1.0, reason: "Immutable WOLFIE traits" }
-    - { to: "lupo-actors/wolfie/relationships/humans.yaml", type: "references", weight: 1.0, reason: "Human supervision mapping" }
-    - { to: "lupo-actors/wolfie/relationships/channels.yaml", type: "references", weight: 1.0, reason: "Allowed channel/thread participation" }
-    - { to: "lupo-actors/wolfie/prompts/system/base_prompt.md", type: "references", weight: 0.95, reason: "System prompt baseline" }
-    - { to: "lupo-actors/wolfie/prompts/system/external_ai_orchestrator_prompt_with_root.md", type: "references", weight: 1.0, reason: "External AI orchestration prompt" }
-    - { to: "lupo-actors/lilith/soul/doctrine.yaml", type: "references", weight: 0.9, reason: "Critique routing constraints" }
+    - { to: "lupo-actors/1/.metadata.yaml", type: "references", weight: 1.0, reason: "WOLFIE identity authority" }
+    - { to: "lupo-actors/1/soul/doctrine.yaml", type: "references", weight: 1.0, reason: "WOLFIE doctrine constraints" }
+    - { to: "lupo-actors/1/soul/config.yaml", type: "references", weight: 1.0, reason: "Runtime limits and defaults" }
+    - { to: "lupo-actors/1/soul/traits.yaml", type: "references", weight: 1.0, reason: "Immutable WOLFIE traits" }
+    - { to: "lupo-actors/1/relationships/humans.yaml", type: "references", weight: 1.0, reason: "Human supervision mapping" }
+    - { to: "lupo-actors/1/relationships/channels.yaml", type: "references", weight: 1.0, reason: "Allowed channel/thread participation" }
+    - { to: "lupo-actors/1/prompts/system/base_prompt.md", type: "references", weight: 0.95, reason: "System prompt baseline" }
+    - { to: "lupo-actors/1/prompts/system/external_ai_orchestrator_prompt_with_root.md", type: "references", weight: 1.0, reason: "External AI orchestration prompt" }
+    - { to: "lupo-actors/2/soul/doctrine.yaml", type: "references", weight: 0.9, reason: "Critique routing constraints" }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 1.0, reason: "Canonical actor identity registry" }
     - { to: "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "references", weight: 1.0, reason: "Primary multi-agent governance" }
     - { to: "lupo-rules/root/lilith-noninterference-doctrine.md", type: "references", weight: 1.0, reason: "LILITH reviewer non-interference" }
@@ -84,16 +84,16 @@ Every runtime message must execute this deterministic pipeline:
 
 2. Identity Gate
 - Load WOLFIE identity bundle before any routing decision:
-  - lupo-actors/wolfie/.metadata.yaml
-  - lupo-actors/wolfie/soul/doctrine.yaml
-  - lupo-actors/wolfie/soul/config.yaml
-  - lupo-actors/wolfie/soul/traits.yaml
+  - lupo-actors/1/.metadata.yaml
+  - lupo-actors/1/soul/doctrine.yaml
+  - lupo-actors/1/soul/config.yaml
+  - lupo-actors/1/soul/traits.yaml
 - Abort routing if identity bundle fails validation.
 
 3. Relationship Gate
 - Load:
-  - lupo-actors/wolfie/relationships/humans.yaml
-  - lupo-actors/wolfie/relationships/channels.yaml
+  - lupo-actors/1/relationships/humans.yaml
+  - lupo-actors/1/relationships/channels.yaml
 - Verify human supervision and channel/thread participation constraints.
 
 4. Session Gate

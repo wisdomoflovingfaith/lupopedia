@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260407233043"
   file_path_from_root: "lupo-docs/prd/11_analytics_tracking.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/11_analytics_tracking.md"
-  last_modified_utc: "20260405100604"
+  last_modified_utc: "20260407233043"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -209,8 +209,8 @@ Lupopedia must provide **equivalent rollup** into **`lupo_*`** structures docume
 | total_visits | INT | NO | 0 | Total visits for day |
 | unique_visitors | INT | NO | 0 | Unique visitors for day |
 | page_views | INT | NO | 0 | Total page views for day |
-| average_duration | DECIMAL(8,2) | YES | NULL | Average visit duration |
-| bounce_rate | DECIMAL(5,2) | NO | 0.00 | Bounce rate percentage |
+| duration_hundredths | INT | NO | 0 | Average visit duration × 100 (e.g. seconds with two decimal places scaled) |
+| bounce_rate_hundredths | INT | NO | 0 | Bounce rate × 100 (e.g. 2350 = 23.50%) |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | updated_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | is_deleted | TINYINT | NO | 0 | Soft delete flag |
@@ -337,4 +337,197 @@ $dailyStats = $analyticsService->getDailyStats($startDate, $endDate);
 // Track campaign variable
 $campaignService = new AnalyticsCampaignService();
 $varId = $campaignService->trackVariable($campaignName, $variableName, $value);
+``` 
+
+---
+
+## Content & Analytics Ingestion Pipeline (4.0.96+)
+
+### Purpose
+Define the canonical workflow, rules, and mappings for importing Crafty Syntax content pages, navigation paths, referrers, and analytics into Lupopedia’s content, analytics, and memory graph systems.
+
+### Scope
+- Applies to all Crafty Syntax 3.7.5 data imported into Lupopedia 4.0.96+
+- Covers content pages, navigation paths, referrers, and session analytics
+- Defines ingestion into: lupo-content/ filesystem, lupo_contents, lupo_memory_nodes, lupo_edges
+
+### Ingestion Workflow
+1. **Extract** Crafty Syntax data (content, paths, referrers, analytics) from legacy tables/files
+2. **Transform** data to Lupopedia schema and slug rules
+3. **Load** into:
+   - lupo-content/ (file-backed content)
+   - lupo_contents (storage_type='file_backed')
+   - lupo_memory_nodes (one node per page/referrer)
+   - lupo_edges (weighted navigation edges)
+4. **Link** navigation paths and referrers as weighted edges in the memory graph
+5. **Update** or create new nodes/edges as new data arrives or is consolidated
+
+### Filesystem Rules
+- All imported content pages are written to lupo-content/{slug}.htm or .md
+- Slugs are generated from Crafty URLs/titles, normalized per Lupopedia slug rules
+- File-backed content is referenced in lupo_contents (storage_type='file_backed')
+
+### Database Rules
+- lupo_contents: Each imported page is a row with storage_type='file_backed', title, slug, and metadata
+- lupo_memory_nodes: Each page and referrer becomes a memory node (type: content_page, referrer)
+- lupo_edges: Navigation paths become edges with edge_weight from Crafty’s 'visits' column
+- lupo_edges: enter=0 → edge from special session_start node; exit=0 → edge to session_end node
+- Monthly aggregation (dateof) is stored as edge metadata (edge_month)
+
+### Memory Node Creation Rules
+- One node per unique content page (by slug)
+- One node per unique referrer (by URL)
+- Nodes include metadata: source (Crafty), import timestamp, original ID
+- Nodes are linked to content files and lupo_contents rows
+
+### Edge Creation Rules
+- For each navigation path (livehelp_paths_monthly):
+  - Create a directed edge from enter_recno to exit_recno
+  - Set edge_weight = visits
+  - Set edge_month = dateof
+  - If enter_recno=0, source is session_start node
+  - If exit_recno=0, target is session_end node
+- For each referrer:
+  - Create an edge from referrer node to landing page node
+  - Set edge_weight = count
+  - Include timestamp/aggregation as edge metadata
+
+### Slug Rules
+- Slugs are generated from Crafty URLs/titles using Lupopedia’s canonical slugification (lowercase, a-z, 0-9, underscore)
+- Duplicates are resolved by appending numeric suffixes
+- All slugs are unique within lupo-content/ and lupo_contents
+
+### Update Rules
+- On re-import or update, existing nodes/edges are updated if the source ID matches
+- New content/pages/paths/referrers create new nodes/edges
+- Edge weights are incremented if the same path/referrer is seen again
+
+### Examples
+**Navigation Path:**
+  - Crafty: enter_recno=12, exit_recno=34, visits=5, dateof=202603
+  - Lupopedia: Edge from node 12 to node 34, edge_weight=5, edge_month=202603
+
+**Session Start:**
+  - Crafty: enter_recno=0, exit_recno=22, visits=3
+  - Lupopedia: Edge from session_start node to node 22, edge_weight=3
+
+**Referrer:**
+  - Crafty: referrer_url="https://search.example.com", count=7
+  - Lupopedia: Node for referrer, edge to landing page, edge_weight=7
+
+### Interactions with KAIROS Consolidation
+- KAIROS may consume navigation and analytics edges as evidence for memory consolidation
+- Weighted edges inform confidence and recency in consolidated memory
+- KAIROS must not overwrite provenance or edge weights from Crafty import
+
+### Interactions with Lossy Abbreviation Dialect
+- Redundant or highly similar navigation paths/analytics may be summarized into lossy abbreviation nodes
+- Lossy nodes are linked to originals via abbreviates edges (see PRD 37)
+- All lossy nodes must be reversible and include metadata for review
+
+### Mapping Crafty Syntax Tables to Lupopedia Structures
+| Crafty Table | Lupopedia Target |
+|--------------|-----------------|
+| livehelp_paths_monthly | lupo_edges (navigation, weighted) |
+| livehelp_visits_daily/monthly | lupo_visits_daily, lupo_visits |
+| livehelp_referers_daily | lupo_referers_daily, lupo_memory_nodes (referrer) |
+| livehelp_visit_track | lupo_visits, lupo_edges (session path) |
+| content pages (files/tables) | lupo-content/, lupo_contents, lupo_memory_nodes |
+
+---
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
 ```

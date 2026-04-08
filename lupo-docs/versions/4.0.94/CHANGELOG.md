@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: changelog
-  when_updated: "20260406150859"
+  when_updated: "20260407015813"
   file_path_from_root: "lupo-docs/versions/4.0.94/CHANGELOG.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/CHANGELOG.md"
-  last_modified_utc: "20260406150859"
+  last_modified_utc: "20260407015813"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-changelog"
@@ -19,7 +19,7 @@ lupopedia.headers:
   purpose: "Record of significant changes for Lupopedia 4.0.94"
   tags: ["changelog", "version", "4.0.94", "cursor"]
 lupopedia.footer:
-  last_verified: "20260406150859"
+  last_verified: "20260407015813"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -30,6 +30,64 @@ lupopedia.footer:
 # file: lupo-docs/versions/4.0.94/CHANGELOG.md — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/CHANGELOG.md
 
 # Changelog - Lupopedia 4.0.94
+
+## [2026-04-07 02:00 UTC]
+
+**WHO:** Cursor IDE agent (actor_id **102**).
+
+**WHAT (this thread only):** Canonical installer **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** was updated from **`schema_corrected_core.sql`** + **`schema_corrected_missing.sql`** (verbatim DDL slices). Set diff vs local backup **`install_new_lupopedia_backup_20260406.sql`**: **170** vs **163** tables (**+7** net; **24** new names, **17** removed). Deprecated trio **`questions` / `answers` / `question_map`** dropped; canonical Q/A surface remains **`truth_questions`**, **`truth_answers`**, **`truth_evidence`**, **`truth_context_map`**, **`truth_followers`** (see **`answers/20260407_015815_ANSWER_truth_tables_replace_redundant_semantic_qa.md`**).
+
+**WHERE:** `lupo-database/lupopedia/mysql/install/` + `mysql/schema_review/`.
+
+**WHY:** Complete Phase 8 carry-forward “apply corrected schema to install” and record thread-verified outcomes for multi-agent sync.
+
+**HOW:** Receipt **`decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md`**; paired Q/A **`20260407_015814`** → **`20260407_015815`**; **`PLAN.md`** / **`TODO.md`** / **`edges.md`** updated in the same UTC batch (**`20260407015813`** via **`python lupo-bin/tick.py`**).
+
+**Follow-up (explicit):** Runtime/seed/import may still reference removed names (`agents`, `agent_faucets`, etc.); **`agent_tool_calls`** is not recreated in install though **`schema_corrected_missing.sql`** SECTION 9 notes an **ALTER** — restore or redesign if logging is required.
+
+**WHAT NOT (this epoch):** No duplicate of PRD **16/26/30/31**, validator, or COUNTERMEASURE narrative — those remain in **`## [4.0.94] - 2026-04-06`** and earlier hourly blocks where already recorded.
+
+---
+
+## [2026-04-06 20:00 UTC]
+
+**WHO:** claude-code (actor_id 102) — resumed from prior session that ran out of context.
+
+**Schema Review — install_new_lupopedia.sql (168 tables)**
+- Full structural analysis of all 168 tables in the 4.0.x install schema.
+- Critical flaws documented: `lupo_actors` PK was `actor_name` (must be `actor_id`); `lupo_agents` contaminated with LLM provider config; duplicate `lupo_edges` index block (SQL error on install); `utc_timestamp` reserved keyword; 5 more.
+- Naming violations: `lupo_rolls` (typo), `governance_overrid_id` (typo), `lupo_agent_faucets` (wrong layer — renamed to `lupo_actor_faucets`), mixed `_utc`/`_at`/`utc_` timestamp suffixes (all corrected to `_ymdhis`).
+- Normalization: `lupo_actors` decomposed — `paired_actor_id` → `lupo_actor_pairing`; adversarial columns → `lupo_actor_relationships`; filesystem paths → `lupo_actor_filesystem`; sync state → `lupo_actor_sync_state`; `department_id` column removed (junction table only).
+- 20+ missing tables identified and specified: KAIROS memory (`lupo_kairos_observations`, `lupo_kairos_memory`), runtime state, faucet rules, pairing rules, identity layers, department capabilities.
+- Deliverables: `schema_review_20260406.md`, `schema_corrected_core.sql` (21 tables), `schema_corrected_missing.sql` (10 new tables), `schema_corrected_identity_model.md`.
+
+**CHRONOS Kernel Agent Activation**
+- `lupo-agents/chronos/` fully activated from reserved-slot stub.
+- Role: Coordinated Hierarchical Reasoning & Optimization for Network Operation Systems (`agent_id: 709`, `is_kernel: true`).
+- 15 analytical tools across 4 categories: dependency_analysis, time_reasoning, scheduling, optimization.
+- 18 capabilities. Advisory-only (no execution authority, no system/DB/file/network access).
+- Domain boundaries encoded: yields orchestration to WOLFIE unconditionally; KAIROS owns memory; HYPNOS owns downtime; HERMES owns routing; VISHWAKARMA owns schema hierarchy.
+
+**Crafty Syntax → Lupopedia Migration Documentation**
+- Verified all 1790 lines of `import_from_old_crafty_syntax.sql` (no assumptions made).
+- Key verified facts: actor_id = 10000 + livehelp_users.user_id (not IdGenerator); actors created from lupo_auth_users, not directly from Crafty; department hybrids = 280000 + department_id; Unix timestamps converted via DATE_FORMAT(FROM_UNIXTIME(x), '%Y%m%d%H%i%S').
+- Import SQL corrected (4 targeted edits): removed `metadata`, `adversarial_role`, `adversarial_oversight_actor_id` from actor INSERTs (columns removed in corrected schema); added `agent_key`; promoted `actor_id` to PK position; converted `metadata = '...'` → `metadata_json = JSON_OBJECT(...)`; added `ON DUPLICATE KEY UPDATE` to `actor_departments` INSERT (UNIQUE constraint safety); added INSERT blocks for `lupo_actor_filesystem` and `lupo_actor_sync_state` for all imported actors.
+- Migration docs updated: `livehelp_users_migration.md` (actor layer + satellite tables); `livehelp_operator_departments_migration.md` (UNIQUE constraint, multi-phase insert sequence).
+- New: `new_schema_tables_crafty_mapping.md` — complete mapping table for all 27 new schema tables.
+
+**Not completed (carry forward):**
+- Option B migration (wolfie→/1, lilith→/2 folder move) — interrupted before execution.
+- Step 3 (Actor Reconstruction Pass) — blocked on Option B.
+
+**Completed after this block was written:** Applying corrected schema into `install_new_lupopedia.sql` — see **`## [2026-04-07 02:00 UTC]`** above.
+
+---
+
+## [2026-04-06 17:30 UTC]
+
+- **5W1H version-doc close-out:** New **`decisions/20260406_173021_DECISION_version_4_0_94_five_w_one_h_doc_sync_closeout.md`**, **`questions/20260406_173022_QUESTION_where_record_post_baseline_doctrine_batch.md`**, **`answers/20260406_173022_ANSWER_record_under_4_0_95_changelog_and_for_claude.md`**; **`decisions/`** / **`questions/`** / **`answers/`** **`THREAD_INDEX.md`** updated; **`PLAN.md`**, **`TODO.md`**, **`edges.md`** headers refreshed (UTC **`20260406173021`** via **`python lupo-bin/tick.py`**).
+- **Scope:** This prepend is a **navigation and handoff** layer. PRD **16** / **26** / **30** / **31**, **`validate_implementation.py`** / **`validate_lupopedia_headers_universal.py`**, COUNTERMEASURE review, PK naming (**Rule 93**), and **5W1H as writing heuristic** remain in **## [4.0.94] - 2026-04-06** below — not duplicated here.
+- **Handoff:** Ongoing doctrine batches, **`FOR_CLAUDE_CODE_2026_04_06.md`**, and **`lupo-docs/versions/4.0.95/CHANGELOG.md`** are the **active-line** homes; root **`CHANGELOG.md`** stays index-only per **Where release notes live (4.0.85+)**.
 
 ## [4.0.94] - 2026-04-06
 

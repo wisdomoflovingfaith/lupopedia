@@ -2,7 +2,8 @@
 lupopedia.headers:
   lupopedia.schema: prd
   file_path_from_root: "lupo-docs/prd/24_actor_onboarding_flow.md"
-  when_updated: "20260401000000"
+  when_updated: "20260407235921"
+  last_modified_utc: "20260407235921"
   purpose: "Defines the complete user onboarding flow: login, agent selection, actor creation, lease acquisition, and channel entry."
   tags: ["prd", "onboarding", "actor", "agent", "lease", "ui", "api"]
 lupopedia.edges:
@@ -69,11 +70,13 @@ After selecting an agent, the user MUST select a department (or be assigned one 
 
 ### Actor ID Generation
 
-- **Format:** `YYYYMMDDHHIISS` + 4 random digits (e.g., `202604011200001234`)
-- **Generation:** `IdGenerator::generate()`
+- **Runtime (onboarding / operator-created actors):** **`IdGenerator::generate()`** → **`YYYYMMDDHHIISS` + 4-digit suffix** (e.g. `202604011200001234`). Set **`created_ymdhis`** on **`lupo_actors`** to the **14-digit prefix** of the new **`actor_id`** at insert (same pattern as other generator-backed PKs).
+- **Seed / install actors:** Fixed low **`actor_id`** (e.g. WOLFIE **1**, LILITH **2**) from **`install_new_lupopedia.sql`** — **not** produced by **`IdGenerator`** in that seed INSERT. **`created_ymdhis`** on those rows = **install** packed UTC, **`0`** (immemorial), or another documented constant — **independent** of PK shape (PRD 00 §3.2, PRD 01 **`lupo_actors`**, PRD 38 for parallel **`lupo_memory_nodes`** rules).
 - **Workspace path:**
   - If actor_id < 2026: `lupo-actors/{actor_id}/`
   - If actor_id >= 2026: `lupo-actors/YYYY/MM/{actor_id}/`
+
+**Constitutional cross-reference:** Dual PK strategy (seed low ids vs runtime **`IdGenerator`**) for **all** seeded tables — **PRD 00 §3.2.1**.
 
 ### Actor Workspace Initialization
 
@@ -83,7 +86,7 @@ Upon actor creation, the system MUST:
 2. Copy template from source agent: `lupo-agents/{agent_key}/`
 3. Create `agent_link.json` referencing source agent
 4. Create `context.json` with department context
-5. Create empty `memory.json` for learning
+5. Register root memory node in `lupo_memory_nodes`; file stored at `lupo-memory/YYYY/MM/{memory_slug}.json` (4.0.96+; `memory.json` is DEPRECATED)
 6. Create empty `preferences.json` for user preferences
 
 ## 6. Lease Enforcement
@@ -95,7 +98,7 @@ Upon actor creation, the system MUST:
 
 ### Actor Learning
 
-Actors learn from the **department context**, not from individual users. Multiple users in the same department using the same actor will reinforce the same learned patterns. This is stored in the actor's `memory.json` workspace file.
+Actors learn from the **department context**, not from individual users. Multiple users in the same department using the same actor will reinforce the same learned patterns. Learning is stored as a root memory node at `lupo-memory/YYYY/MM/{memory_slug}.json`, registered in `lupo_memory_nodes`, and linked to the actor via `lupo_edges` (4.0.96+). `memory.json` workspace files are DEPRECATED.
 
 If the same user creates a new actor from the same agent for a different department, that actor will learn separate department-specific patterns.
 
@@ -124,3 +127,99 @@ If the same user creates a new actor from the same agent for a different departm
 ---
 
 **Status:** Drafted April 1, 2026 — covers all onboarding steps from login to channel entry. To be updated as implementation proceeds.
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

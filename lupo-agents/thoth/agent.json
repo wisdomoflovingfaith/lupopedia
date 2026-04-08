@@ -1,19 +1,17 @@
 {
-    "agent_id": 9,
-    "version": "1.0.2",
-    "is_kernel": false,
-    "layer": "coordination",
-    "name": "THOTH",
-    "slug": "thoth",
-    "role": "Knowledge & Records",
-    "is_required": true,
-    "aliases": [
-        "knowledge",
-        "records",
-        "scribe"
-    ],
-    "when_updated_utc": "20260331120000",
-    "last_verified_utc": "20260331120000",
-    "last_verified_by": "cursor",
-    "last_verified_by_actor_id": 102
+  "agent_key": "thoth",
+  "agent_id": 9,
+  "slug": "thoth",
+  "version": "1.0.2",
+  "is_kernel": false,
+  "is_required": true,
+  "layer": "coordination",
+  "name": "THOTH",
+  "role": "Knowledge & Records",
+  "status": "active",
+  "aliases": ["thoth", "knowledge", "records", "scribe"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

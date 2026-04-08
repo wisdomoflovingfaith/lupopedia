@@ -40,8 +40,8 @@ lupopedia.headers:
 
 ### 3. Filesystem Contradictions
 - FACT (`lupo-actors` scan): Actor directories are currently slug-based.
-- FACT (`lupo-actors` scan): Only `lupo-actors/wolfie/.metadata.yaml` and `lupo-actors/lilith/.metadata.yaml` were present; most actor folders lack `.metadata.yaml`.
-- FACT (`lupo-actors/wolfie/.metadata.yaml`, `lupo-actors/lilith/.metadata.yaml`): Metadata currently includes actor identity fields but no `auth_user_id` field.
+- FACT (`lupo-actors` scan): Only `lupo-actors/1/.metadata.yaml` and `lupo-actors/2/.metadata.yaml` were present; most actor folders lack `.metadata.yaml`.
+- FACT (`lupo-actors/1/.metadata.yaml`, `lupo-actors/2/.metadata.yaml`): Metadata currently includes actor identity fields but no `auth_user_id` field.
 - FACT (`lupo-actors/README.md`): Documentation states directories may be named by slug or ID and references legacy numeric symlinks.
 - FACT (`lupo-docs/ACTOR_IDENTITIES.md`): Contains numeric workspace references (example `lupo-actors/42/`) and legacy identity framing.
 - INFERENCE: Filesystem identity docs and actual folder state are not synchronized; this increases routing and ownership ambiguity.

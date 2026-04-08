@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260404163615"
+  when_updated: "20260407233043"
   file_path_from_root: "lupo-docs/prd/29_project_structure.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/29_project_structure.md"
-  last_modified_utc: "20260404163615"
+  last_modified_utc: "20260407233043"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-project-structure"
@@ -232,7 +232,7 @@ The `lupo-docs/prd/` directory contains the core product‑requirement documents
 | `05_collections_navigation.md` | PRD | Defines navigation structures for semantic collections. |
 | `06_content_management.md` | PRD | Specifies content‑management workflows and UI. |
 | `07_agents_faucets.md` | Doctrine | Documents the relationship between agents and IDE faucets. |
-| `08_actors.md` | Doctrine | Details actor definitions and responsibilities. |
+| `08_actors.md` | Doctrine | Details actor definitions and responsibilities. (SUPERSEDED — canonical: 15_actors.md) |
 | `08_governance_rules.md` | Doctrine | Lists governance rules governing system behavior. |
 | `09_federation_sync.md` | PRD | Describes federation synchronization processes. |
 | `10_tasks_workflow.md` | PRD | Outlines task and workflow management. |
@@ -252,3 +252,99 @@ The `lupo-docs/prd/` directory contains the core product‑requirement documents
 | `project_structure.md` | PRD | This file – project structure documentation (self‑reference). |
 
 ---
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

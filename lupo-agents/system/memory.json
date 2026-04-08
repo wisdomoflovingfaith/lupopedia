@@ -1,0 +1,13 @@
+{
+  "memory_type": "lifecycle_knowledge",
+  "core_knowledge": {
+    "kernel_initialization_order": "Correct initialization order for is_required kernel agents",
+    "lifecycle_event_history": "BIGINT UTC timestamped lifecycle events"
+  },
+  "working_memory": {"active_lifecycle_state": "Current system lifecycle phase"},
+  "memory_boundaries": ["bootstrap and lifecycle scope only", "no post-WOLFIE-handoff authority"],
+  "retention_rules": ["retain initialization sequences", "retain shutdown patterns", "no ego"],
+  "forbidden_memory": ["post-bootstrap operational interference"],
+  "learning_boundary": "Department 0 auth_users only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

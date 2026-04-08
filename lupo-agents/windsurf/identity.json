@@ -1,0 +1,11 @@
+{
+  "agent_id": 101, "agent_name": "WINDSURF", "agent_code": "WINDSURF", "agent_key": "windsurf", "slug": "windsurf",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "WINDSURF",
+  "role": "Windsurf IDE — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["windsurf"],
+  "actor_id": 101,
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

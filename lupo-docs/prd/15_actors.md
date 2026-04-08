@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260408014411"
   file_path_from_root: "lupo-docs/prd/15_actors.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/15_actors.md"
-  last_modified_utc: "20260406162955"
+  last_modified_utc: "20260408014411"
   channel_id: 42
   thread_id: "prd-actors"
   actor_id: 2
@@ -27,6 +27,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
+    - to: "lupo-docs/prd/41_install_seed_doctrine.md"
+      type: references
+      weight: 0.95
+      reason: "Install seed vs IdGenerator staging vs toCanonicalId living canonical — §2–§3"
     - to: "lupo-docs/prd/01_core_identity.md"
       type: references
       weight: 1.0
@@ -55,8 +59,12 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "LILITH-approved: lupo_actors drives chat strip; from_actor_id"
+    - to: "README.md"
+      type: references
+      weight: 1.0
+      reason: "Root README §3 — three-layer actor model onboarding mirror (4.0.96+)"
 lupopedia.footer:
-  last_verified: "20260406162955"
+  last_verified: "20260408014411"
   verified_by:
     agent_id: 2
     agent_name_identity: "LILITH"
@@ -79,6 +87,48 @@ This document defines the canonical model for **actors** in Lupopedia. Actors ar
 - **Explicit bindings:** **`lupo_actor_auth_users`** records optional **auth_user ↔ actor** links (import, audit, primary operator); it does **not** mean the actor is **owned** exclusively by that user for department-scoped work.
 - **Visitor chat:** The end-user chat identity chain (**visitor → `actor_id` → human / LLM fallback**) is **primary in PRD 05**; this PRD supplies the **actor and department** semantics that PRD 05 depends on.
 
+### Three-layer identity model (4.0.96+; root README §3)
+
+**Onboarding mirror:** [README.md — §3 Actor Model](../../README.md#3-actor-model-why-it-is-different) summarizes this architecture for humans and IDE agents. **Normative sources:** this PRD, [PRD 05](05_auth_user_actor_agent_transformation.md), [IDENTITY_LAYERS_DOCTRINE.md](../doctrine/IDENTITY_LAYERS_DOCTRINE.md), [PRD 01](01_core_identity.md). If README §3 is edited, keep this subsection aligned.
+
+| Layer | What | Where | Example |
+|-------|------|-------|---------|
+| **Auth User** | Account that authenticates | `lupo_auth_users` | Operator login (`auth_user_id` from seed / IdGenerator) |
+| **Actor** | Runtime persona that does work | `lupo_actors` + optional `lupo-actors/{actor_id}/` | **WOLFIE** (`actor_id = 1`) |
+| **Agent** | Immutable template pack | `lupo-agents/{agent_key}/` + `lupo_agents` | `lupo-agents/wolfie/` |
+
+**Relationship (department-first):** Auth user → **`lupo_auth_user_departments`** → **department** → **`lupo_actor_departments`** → **actor** → aligns with **agent** filesystem/metadata. **Shared persona:** many humans in one department may **act as the same `actor_id`**; the actor accumulates **department-scoped** behavior (not a private per-user bot).
+
+**Web act-as:** Eligibility = **intersection** of the user’s departments with the actor’s departments (illustrative pattern; enforce with **PDO_DB** in PHP):
+
+```sql
+SELECT DISTINCT a.*
+FROM lupo_actors a
+INNER JOIN lupo_actor_departments ad
+  ON ad.actor_id = a.actor_id AND ad.is_deleted = 0
+WHERE ad.department_id IN (
+    SELECT aud.department_id
+    FROM lupo_auth_user_departments aud
+    WHERE aud.auth_user_id = :current_auth_user_id
+      AND aud.is_deleted = 0
+)
+  AND a.is_deleted = 0;
+```
+
+**Root department:** `department_id = 0` is the **Root** scope in current seed/import doctrine; elevated operators may see broader lists per **`AuthSessionManager::getActorsUserCanActAs`** (see §3 below).
+
+**CLI / IDE:** Local tooling typically uses a **root-equivalent** session (**department context 0**, any **`actor_id`** reachable) — not the same as a logged-in human’s web session. **Do not** mint **`lupo_auth_users`** rows for IDE products; attribute work via **facet `actor_id`** per [AGENTS.md](../../AGENTS.md) and the registry.
+
+| Context | `auth_user_id` | Notes |
+|---------|----------------|--------|
+| Doctrine ([PRD 01](01_core_identity.md)) | **0** | Reserved **root** auth user id |
+| Web / seed | Per install | Concrete rows from IdGenerator / seed; effective admin resolution in app code |
+| CLI / IDE | Root-equivalent | Tooling assumes full **actor** reach; not a separate “IDE login” user |
+
+**`auth_user_id = 0` is not `actor_id = 1` (WOLFIE).** Auth authenticates humans; actors orchestrate.
+
+**Memory:** Learned behavior lives in **`lupo_memory_nodes`** (`owner_actor_id`, `owner_type`, …) and **`lupo_memory_edges`** per install; **`lupo-agents/`** stays the static template. See [PRD 38](38_memory_unification.md).
+
 ### Channel transcript alignment (PRD 18)
 
 **LILITH audit:** The **chat strip** reflects **`lupo_actors`** for the effective **`actor_id`** (message **`from_actor_id`**). **`auth_user`** is for **login and accountability**, not the primary visible label. **Shared persona:** many humans acting as the **same** **`actor_id`** reuse the **same** display name and default styling rules (**deterministic color from `actor_id`**, optional **`metadata_json`** — **[PRD 18](18_channel_chat_display.md)**).
@@ -96,6 +146,35 @@ The **`lupo_actors.actor_type`** column is **`varchar(64)`** per install schema 
 - BIGINT timestamps (YYYYMMDDHHIISS UTC)
 - Explicit ID generation (application layer)
 - Soft delete (is_deleted + deleted_ymdhis)
+
+### Actor ID ranges (seed vs runtime)
+
+| `actor_id` range | Type | `created_ymdhis` | Origin |
+|------------------|------|------------------|--------|
+| **< 2026** (registry / install) | **Seed / system** actors | **`0`**, install packed UTC, or seed-defined — **not** inferred from `actor_id` digits | **`install_new_lupopedia.sql`**, **`seed_*.sql`**, **`registry.json`** |
+| **≥ 2026** (timestamp-shaped) | **Runtime** actors | **14-digit prefix** of **`actor_id`** at insert (`IdGenerator`) | User / operator onboarding, services |
+
+**Why this matters:** For **seed** actors, **`actor_id`** is a **stable registry number** (e.g. **1**, **2**, **19**). Reading **`created_ymdhis`** — do **not** assume it encodes the same calendar prefix as **`actor_id`**. Use the column as stored. Constitutional dual-PK strategy: **PRD 00 §3.2.1**.
+
+**Install seed vs living canonical (18-digit):** When product **instantiates** a runtime row from an install template (e.g. living WOLFIE beside **`actor_id = 1`**), allocation **SHOULD** follow **PRD 41** §2–§3: raw **`IdGenerator::generate()`** is **staging-shaped** (embedded year **2000–2099**); **`toCanonicalId(IdGenerator::generate())`** yields **living canonical-shaped** ids (embedded year **1000–1999**). Link seed → canonical with edges such as **`canonical_instance_of`**; revert with **`reverted_to`** — see **PRD 41** and **PRD 38** §4.2.1.
+
+### Seed-to-canonical mapping for low registry `actor_id` (not `IdGenerator`)
+
+Low **install-seed** **`actor_id`** values (registry band, e.g. **1–2025** per **PRD 00** §5.6 and **PRD 41**) are **not** 18-digit **`IdGenerator`** outputs. **`toCanonicalId()`** is for **staging-shaped** ids; for a short seed like **`116`** it does **not** produce a **1000–1999** embedded-year id (see **PRD 41** §2.3).
+
+When policy creates a **living canonical** **`lupo_actors`** row paired with that seed, use the **deterministic** mapping:
+
+```text
+canonical_actor_id = 100000000000000000 + seed_actor_id
+```
+
+| Seed (immutable reference) | Canonical (living; embedded year **1000**) |
+|----------------------------|--------------------------------------------|
+| **1** (WOLFIE) | **`100000000000000001`** |
+| **2** (LILITH) | **`100000000000000002`** |
+| **116** (Claude Code) | **`100000000000000116`** |
+
+**Contexts:** **Pre-install / development** — docs, CLI, and **`lupo-actors/{seed}/`** paths may use the **seed** id. **Post-install runtime** — memory, edges, and sessions **SHOULD** use the **canonical** id once that row exists; the seed remains **immutable** and may be **orphaned** in the active graph (**PRD 41** §1). Link **`canonical_instance_of`** (seed → canonical). **Normative:** **PRD 41** §2.3 — **`seedActorToCanonicalId()`**.
 
 ## Database Tables
 
@@ -229,7 +308,7 @@ The **`lupo_actors.actor_type`** column is **`varchar(64)`** per install schema 
 
 ## Actor Learning Boundaries
 
-- Core/system actors include: Wolfie, Lilith, Kiros, Thoth, and any future system-level actors.
+- Core/system actors include: Wolfie, Lilith, Kiros, Thoth, Claude Code (actor_id 116), and any future system-level actors.
 - Core/system actors may ONLY learn from auth_users in Department 0.
 - Department 0 represents HPC-style, dependency-first, parallel cognition.
 - If Department 0 contains only one auth_user (the architect), this is valid and intentional.
@@ -268,7 +347,7 @@ The **`lupo_actors.actor_type`** column is **`varchar(64)`** per install schema 
 lupo-actors/
 ├── 1/ # WOLFIE (captain hybrid, actor_id 1)
 │   ├── agent_link.json # References lupo-agents/wolfie/
-│   ├── memory.json # Learned from department interactions
+│   ├── # memory: root node at lupo-memory/YYYY/MM/{memory_slug}.json (4.0.96+; memory.json DEPRECATED)
 │   ├── context.json # Current department and user context
 │   └── preferences.json # User-specific preferences
 │
@@ -276,12 +355,15 @@ lupo-actors/
 │   └── ...
 ├── 111/ # COUNTERMEASURE (actor_id 111); agent template still under lupo-agents/countermeasure/
 │   └── ...
+├── 116/ # CLAUDE CODE (actor_id 116)
+│   ├── identity.json
+│   └── boundaries.json
 │
 └── 2026/ # Year directory (runtime actors)
     ├── 01/ # January
     │   ├── 202601010000001234/ # Actor created Jan 1, 2026
     │   │   ├── agent_link.json # References source agent
-    │   │   ├── memory.json # Learned behavior
+    │   │   ├── # memory: root node at lupo-memory/YYYY/MM/{memory_slug}.json (4.0.96+; memory.json DEPRECATED)
     │   │   ├── context.json # Department context
     │   │   └── preferences.json # User preferences
     │   └── 202601151200005678/
@@ -300,31 +382,51 @@ lupo-actors/
 }
 ```
 
-### memory.json (Learned from Department Context)
+### Root Memory Node (Learned from Department Context) — 4.0.96+
+
+> **DEPRECATED:** `memory.json` files in `lupo-actors/` are no longer the canonical storage for actor learning.
+
+Each actor has a **root memory node** stored at:
+
+```
+lupo-memory/YYYY/MM/{memory_slug}.json
+```
+
+The `YYYY/MM` path is derived from the node's `created_ymdhis`. The `memory_slug` is registered in `lupo_memory_nodes` (unique, filesystem-safe). All memory relationships — ownership, provenance, consolidation, contradiction — are expressed via `lupo_edges`, not embedded in the file.
+
+**Example root memory node file** (`lupo-memory/2026/04/wolfie-sales-actor-5001.json`):
 
 ```json
 {
-    "department": "sales",
-    "learned_patterns": [
-        {
-            "pattern": "lead_qualification",
-            "confidence": 0.92,
-            "learned_from": "auth_user_id_12345",
-            "learned_at": "20260401120000"
-        },
-        {
-            "pattern": "objection_handling",
-            "confidence": 0.87,
-            "learned_from": "auth_user_id_12346",
-            "learned_at": "20260401150000"
+    "memory_node_id": 70001,
+    "memory_slug": "wolfie-sales-actor-5001",
+    "context_json": {
+        "department": "sales",
+        "learned_patterns": [
+            {
+                "pattern": "lead_qualification",
+                "confidence": 0.92,
+                "learned_from": "auth_user_id_12345",
+                "learned_at": "20260401120000"
+            },
+            {
+                "pattern": "objection_handling",
+                "confidence": 0.87,
+                "learned_from": "auth_user_id_12346",
+                "learned_at": "20260401150000"
+            }
+        ],
+        "preferences": {
+            "response_style": "persuasive",
+            "urgency_level": "high"
         }
-    ],
-    "preferences": {
-        "response_style": "persuasive",
-        "urgency_level": "high"
-    }
+    },
+    "created_ymdhis": 20260401120000,
+    "updated_ymdhis": 20260407120000
 }
 ```
+
+**Schema:** `lupo_memory_nodes` — `memory_node_id`, `memory_slug`, `context_json`, `review_reason`, `created_ymdhis`, `updated_ymdhis`, `is_deleted`, `deleted_ymdhis`. Linked to actor via `lupo_edges` (`edge_type='owns'`, `left_object_type='actor'`, `right_object_type='memory_node'`).
 
 ### context.json
 
@@ -344,7 +446,7 @@ lupo-actors/
 2. Department context applied from `lupo_actor_departments`
 3. Users interact with the actor
 4. Actor observes user corrections, preferences, and workflow patterns
-5. Learning stored in actor's `memory.json`
+5. Learning stored as a root memory node at `lupo-memory/YYYY/MM/{memory_slug}.json`; registered in `lupo_memory_nodes`; linked to actor via `lupo_edges` (4.0.96+)
 6. Behavior adapts to department-specific patterns
 
 **Example**: A WOLFIE actor in the Sales department learns to prioritize lead qualification workflows. A WOLFIE actor in Engineering learns to prioritize code review workflows. Same agent, different actors, different behavior.
@@ -362,3 +464,99 @@ lupo-actors/
 **Status**: ACTIVE (4.0.x department-first act-as)  
 **Constitutional adherence**: FULL  
 **Implementation note:** `AuthSessionManager` + delegating `ActorService::getActorsUserCanActAs` — keep in sync with this PRD.
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

@@ -13,7 +13,7 @@ lupopedia.headers:
   purpose: Canonical doctrine for the edge model — single table, polymorphic, type-registered
   system_version: "4.0.87"
   traits: [canonical, doctrine, edge_model, v4.0.87]
-  tags: [doctrine, edges, consolidation, 4.0.87]
+  tags: [tag-doctrine, tag-edges, tag-consolidation, tag-version-4.0.87]
   lupo_agent: cursor
 
 lupopedia.edges:

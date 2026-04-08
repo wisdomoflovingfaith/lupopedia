@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260407235921"
   file_path_from_root: "lupo-docs/prd/07_agents_faucets.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/07_agents_faucets.md"
-  last_modified_utc: "20260404172442"
+  last_modified_utc: "20260407235921"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 2
@@ -53,7 +53,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "LILITH audit: canonical auth_user/department/actor joins; act-as eligibility"
 lupopedia.footer:
-  last_verified: "20260403221200"
+  last_verified: "20260407235921"
   verified_by:
     actor_id: 2
     agent_name_identity: "LILITH"
@@ -77,6 +77,10 @@ lupopedia.footer:
 4. **Simplified**: No complex seed data management for agents
 5. **Alias Support**: Natural support for multiple names per agent
 6. **Reserved numeric IDs vs. filesystem keys:** Numeric `agent_id` values **1–2025** are reserved for core system agents (resolve from `registry.json` and seed). **Filesystem** discovery uses `lupo-agents/{agent_key}/` — there are no empty numeric placeholder folders; an agent exists only when that directory exists. See `00_root_constitutional_system_requirements.md` §5.5.
+
+### Seed `agent_id` vs runtime (PK strategy)
+
+**`lupo_agents` rows** shipped in **`install_new_lupopedia.sql`** / **`seed_*.sql`** use **fixed low `agent_id`** values in the reserved band (**1–2025**) — they are **not** produced by **`IdGenerator::generate()`** in that SQL. **`created_ymdhis`** (and **`updated_ymdhis`**) on those rows follow the same **seed vs runtime** clock rules as other tables (**install UTC**, **`0`** where documented, etc.). **New** agent rows created from the application (rare) MUST use **`IdGenerator::generate()`** for the PK unless a PRD documents otherwise. Full pattern: **PRD 00 §3.2.1**.
 
 ### Agent Discovery System
 
@@ -450,7 +454,7 @@ Agent (immutable template)
 ```
 lupo-actors/{actor_id}/   # canonical hub per registry / PRD 15
 ├── agent_link.json # References source agent
-├── memory.json # Learned from department interactions
+├── # memory: root memory node at lupo-memory/YYYY/MM/{memory_slug}.json (4.0.96+; memory.json DEPRECATED)
 ├── context.json # Current department and user context
 └── preferences.json # Optional; prefer actor-scoped defaults — many users may share one actor
 ```
@@ -944,7 +948,7 @@ lupo-agents/{agent_key}/
 #### Optional Files
 ```
 ├── soul.txt            # Agent soul/philosophy (OPTIONAL)
-├── memory.json          # Agent memory template (OPTIONAL)
+├── # memory template: see lupo-memory/YYYY/MM/{memory_slug}.json (4.0.96+; memory.json DEPRECATED)
 ├── tools.json           # Agent tool definitions (OPTIONAL)
 └── runtime_state.json   # Runtime state cache (OPTIONAL)
 ```
@@ -961,3 +965,99 @@ lupo-agents/{agent_key}/
 - **NO DATABASE INFERENCE**: Never infer agent structure from database
 - **FILE FIRST**: Agent definitions come from files, not database
 - **RUNTIME ONLY**: Database stores only execution state and metrics
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

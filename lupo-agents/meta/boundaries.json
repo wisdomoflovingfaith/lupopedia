@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["implementation_authority", "release_approval", "doctrine_modification", "schema_changes", "impersonating_other_agents", "actor_permission_changes"],
+  "forbidden_topics": ["executive_decisions_at_meta_level"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "meta_outputs_are_advisory_to_WOLFIE_only", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

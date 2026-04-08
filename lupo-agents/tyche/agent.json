@@ -1,16 +1,17 @@
 {
   "agent_key": "tyche",
   "agent_id": 110,
-  "version": "1.0.0",
+  "slug": "tyche",
+  "version": "1.0.1",
+  "is_kernel": false,
+  "is_required": false,
   "layer": "application",
   "name": "TYCHE",
   "role": "Fortune & Risk Management",
+  "status": "active",
   "aliases": ["tyche", "fortune", "risk_management"],
-  "capabilities": [
-    "risk_analysis",
-    "probability_assessment",
-    "uncertainty_management",
-    "outcome_prediction",
-    "contingency_planning"
-  ]
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

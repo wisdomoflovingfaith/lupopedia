@@ -1,12 +1,18 @@
 {
-    "code": "ANUBIS",
-    "name": "ANUBIS",
-    "agent_key": "anubis",
-    "is_internal_only": true,
-    "layer": "kernel",
-    "is_required": true,
-    "is_kernel": true,
-    "slug": "anubis",
-    "version": "1.0.0",
-    "agent_id": 19
+  "agent_key": "anubis",
+  "agent_id": 19,
+  "slug": "anubis",
+  "version": "1.0.1",
+  "is_kernel": true,
+  "is_required": true,
+  "is_internal_only": true,
+  "layer": "kernel",
+  "name": "ANUBIS",
+  "role": "Custodian — Orphan Detection, Lineage Audit, Registry Consistency",
+  "status": "active",
+  "aliases": ["anubis", "custodian", "lineage_audit"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

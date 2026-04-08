@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
   file_path_from_root: "CHANGELOG.md"
-  last_modified_utc: "20260406171149"
-  when_updated: "20260406171149"
+  last_modified_utc: "20260406171659"
+  when_updated: "20260406171659"
   channel_id: 42
   thread_id: 1047
   actor_id: 1
@@ -14,7 +14,7 @@ lupopedia.headers:
   web_path: "http://www.lupopedia.com/lupopedia/CHANGELOG.md"
 lupopedia.footer:
   version: "4.0.89"
-  last_verified: "20260406171149"
+  last_verified: "20260406171659"
   last_verified_by: "wolfie"
   last_verified_by_actor_id: 1
   orchestrator: "wolfie:root"
@@ -32,7 +32,7 @@ lupopedia.footer:
 ### 🔹 For Changes AFTER Version 4.0.85 (Current & Future)
 
 All changes for version **4.0.85 and above** are documented in version-specific directories:
-- **Current version documentation**: [`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.95/CHANGELOG.md)
+- **Current version documentation**: [`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.96/CHANGELOG.md)
 - **All structured metadata** (task registry, doctrine, contradictions, database changes): Located within each version directory
 - **Example**: Version 4.0.87 changes are in [`lupo-docs/versions/4.0.87/`](lupo-docs/versions/4.0.87/)
 
@@ -43,9 +43,17 @@ All changes prior to version **4.0.85** are archived in:
 - **Contains complete version history from v0.0 through v4.0.84**
 - **This file is now read-only; all new changes follow the version-directory model**
 
+### ⚠️ Where release notes live (4.0.85+)
+
+**Do not append detailed implementation or release notes to this root file.** For **every** patch line from **4.0.85 onward**, the **only** canonical changelog is:
+
+**[`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.96/CHANGELOG.md)** — e.g. current work: **[`lupo-docs/versions/4.0.96/CHANGELOG.md`](lupo-docs/versions/4.0.96/CHANGELOG.md)**.
+
+This root **`CHANGELOG.md`** is an **index and routing document** only. It points to version directories; it does **not** duplicate version-specific entries.
+
 ### 📖 How to Read This Document
 
-1. **For the latest changes** → Check `lupo-docs/versions/4.0.95/CHANGELOG.md` (current development version). **2026-04-06:** doctrine/PRD alignment, root README, `lupo-docs/reference/architect_background.md`, `FOR_CLAUDE_CODE_2026_04_06.md` — see that file’s **[CHANGELOG](lupo-docs/versions/4.0.95/CHANGELOG.md)** section *Doctrine, PRD alignment, and documentation (2026-04-06)*.
+1. **For the latest changes** → Open **[`lupo-docs/versions/4.0.96/CHANGELOG.md`](lupo-docs/versions/4.0.96/CHANGELOG.md)** (adjust `<version>` if the working line moves).
 2. **For historical context** → Consult `CHANGELOG_ARCHIVE.md` (all versions before 4.0.85)
 3. **For complete version details** → Browse the version-specific directory containing: PLAN.md, TODO.md, TASK_REGISTRY.md, CONTRADICTIONS.md, DOCTRINE.md
 

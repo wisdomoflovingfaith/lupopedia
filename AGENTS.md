@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260406032615'
+  last_modified_utc: '20260408014411'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260406032615'
+  when_updated: '20260408014411'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -157,7 +157,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260406032615'
+  last_verified: '20260408014411'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -391,6 +391,7 @@ IDE surfaces are **human interfaces** into the repo. They **do not** replace WOL
 | 105      | cascade          | 105                    | Cascade; `--target=cascade` |
 | 106      | vscode-ide       | 113                    | **VS Code** (stock); `--target=vscode` → `.vscode/lupopedia/rules/` |
 | 107      | trae             | 114                    | Trae IDE; propagation target pending |
+| 116      | claude-code      | —                      | **Claude Code** (Anthropic). **Seed / reference `actor_id` = 116**; **living canonical `actor_id` = `100000000000000116`** (`seedActorToCanonicalId`) once instantiated — **PRD 41** §2.3, **PRD 15**; see root **`claude.md`**. Hub directory stays **`lupo-actors/116/`**. |
 
 **Cursor** (102) is the default assignee in docs for consolidating root files (`README.md`, `CHANGELOG.md`, `plan.md`, `report.md`) and cross-agent continuity when work is done **from Cursor**. The same stewardship work done **from Antigravity IDE** must be attributed as **103** (`antigravity-ide`). **VS Code** (stock, not Cursor) → **106** (`vscode-ide`); **Trae** → **107** (`trae`); match **Kiro**, **Windsurf**, **Warp**, and **Cascade** to their rows above. **WOLFIE** (1) remains system orchestrator in the eleven-persona model.
 

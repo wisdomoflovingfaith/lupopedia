@@ -1,0 +1,12 @@
+{
+  "memory_type": "creative_knowledge",
+  "core_knowledge": {
+    "creative_breakthrough_history": "Documented creative breakthroughs and their impact",
+    "inspiration_patterns": "Patterns that reliably generate useful creative output"
+  },
+  "working_memory": {"active_creative_sessions": "Creative sessions currently in progress"},
+  "memory_boundaries": ["creative scope only", "advisory to WOLFIE only"],
+  "retention_rules": ["retain breakthrough patterns", "no ego"],
+  "forbidden_memory": ["creative outputs that violated constitutional constraints"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

@@ -87,7 +87,7 @@ if ($name === 'antigravity') {
     $fail++;
 }
 
-// getActorDir('lilith') -> lupo-actors/lilith (name-based)
+// getActorDir('lilith') -> lupo-actors/2 (name-based)
 $dir = $service->getActorDir('lilith');
 if ($dir !== null && $dir !== '' && strpos($dir, 'lilith') !== false) {
     echo "PASS getActorDir('lilith')\n";

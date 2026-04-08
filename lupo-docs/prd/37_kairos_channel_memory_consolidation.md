@@ -2,11 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.94"
-  when_updated: "20260404174956"
+  when_updated: "20260408012727"
   file_path_from_root: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
-  last_modified_utc: "20260404174956"
+  last_modified_utc: "20260408012727"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-kairos-memory"
@@ -57,15 +56,15 @@ lupopedia.edges:
       type: references
       weight: 0.7
       reason: "Synthetic dialog provenance affects observation trust"
-    - to: "lupo-database/lupopedia/toon/lupo_actor_memory.toon"
+    - to: "lupo-database/lupopedia/json/lupo_actor_memory.json"
       type: references
       weight: 1.0
       reason: "Observation and consolidated memory rows"
-    - to: "lupo-database/lupopedia/toon/lupo_edges.toon"
+    - to: "lupo-database/lupopedia/json/lupo_edges.json"
       type: references
       weight: 1.0
       reason: "Consolidation and contradiction edges"
-    - to: "lupo-database/lupopedia/toon/lupo_dialog_messages.toon"
+    - to: "lupo-database/lupopedia/json/lupo_dialog_messages.json"
       type: references
       weight: 1.0
       reason: "Canonical chat row shape for ingest provenance"
@@ -73,8 +72,12 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Current PHP consolidation implementation"
+    - to: "lupo-docs/prd/38_memory_unification.md"
+      type: references
+      weight: 1.0
+      reason: "Chronological Trust Ladder trust tiers; living canonical 1000-1999 vs staging 2000-2099 (IdGenerator) (PRD 38 §4.2; PRD 00 §3.7)"
 lupopedia.footer:
-  last_verified: "20260404174956"
+  last_verified: "20260408012727"
   verified_by:
     identity_type: "agent"
     actor_id: 102
@@ -88,6 +91,7 @@ lupopedia.footer:
     - "Channel-scoped observation ingest from lupo_dialog_messages (all actors in channel)"
     - "Implement recency-first winner for same topic_key contradictions + edge-weight overrides"
     - "Optional: link memory rows to dialog_message_id via context_json or edges"
+    - "When writing lupo_memory_nodes: staging 2000-9999; living canonical 1000-1999 (UPDATE allowed) per PRD 38 §4.2 / PRD 00 §3.7; link via kairos_consolidates_from / consolidated_into / merged_into"
 ---
 
 # file: PRD 37 — KAIROS channel memory consolidation — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/prd/37_kairos_channel_memory_consolidation.md](http://www.lupopedia.com/lupopedia/lupo-docs/prd/37_kairos_channel_memory_consolidation.md)
@@ -110,6 +114,12 @@ lupopedia.footer:
 | **Consolidated memory** | A row with **`memory_type` = `kairos_memory`**, produced by merging **multiple** observations that **normalize** to the same text; linked via **`kairos_consolidates_from`** edges. |
 | **Contradiction** | Two or more consolidated (or candidate) memories sharing a **`topic_key`** but **different** normalized **`memory_value`**; recorded with **`kairos_contradicts`** edges on **`lupo_edges`**. Resolution **policy** is defined below (recency + edges). |
 | **Channel scope** | **Target:** memory represents **the channel as a whole** (all participating actors). **Current implementation note:** `KairosConsolidationService::consolidateMemories($actorId, …)` operates on observations keyed by a **single `actor_id`** (typically the **logged-in session actor**). **Full channel-wide consolidation** requires **ingest** that writes observations with **shared channel topic keys** and/or a **channel-scoped consolidation pass**—see §9. |
+
+### 1.2 PK trust encoding (unified graph, PRD 38 — Chronological Trust Ladder pattern)
+
+**Raw `IdGenerator::generate()`** yields **staging-shaped** **`memory_node_id`** values (embedded calendar year **2000–2099**). **Living canonical** rows use embedded year **1000–1999**, obtained by **`toCanonicalId($stagingId)`** or **`toCanonicalId(IdGenerator::generate())`** before insert when no draft staging row is kept (**PRD 38** §4.2.1, **PRD 41** §2.2). That band is **high-trust and stable-id**, but **not read-only**: when new staging evidence arrives, consolidation **SHOULD UPDATE** the existing canonical row (**merge** non-null fields, **`updated_ymdhis`**) per **PRD 38** §4.2 and **PRD 00** §3.7. **If no canonical exists**, allocate via **`toCanonicalId`** on the staging id (or fresh generator output); disambiguate with **`archived_to`** vs merge edges, **`memory_type`**, **`context`**, and **`kairos_consolidates_from`** on **`lupo_edges` / `actor_memory`** plus **`consolidated_into`** / **`merged_into`** on **`lupo_memory_edges`** when aligned with install SQL.
+
+**Recency and contradiction policy** remain **§5**; this subsection **binds PK shape** to **staging vs living canonical** lifecycle.
 
 This output complies with Lupopedia Constitutional Root Rules.
 
@@ -168,11 +178,11 @@ Observations derived from messages with **`metadata_json.rose_synthesis: true`**
 
 ## 6. Data model (TOON-aligned)
 
-**`lupo_actor_memory`** (`lupo-database/lupopedia/toon/lupo_actor_memory.toon`):
+**`lupo_actor_memory`** (`lupo-database/lupopedia/json/lupo_actor_memory.json`):
 
 - **`memory_id`**, **`actor_id`**, **`memory_type`**, **`memory_key`**, **`memory_value`**, **`context_json`**, UTC BIGINT timestamps, soft delete.
 
-**`lupo_edges`** (`lupo-database/lupopedia/toon/lupo_edges.toon`):
+**`lupo_edges`** (`lupo-database/lupopedia/json/lupo_edges.json`):
 
 - **`edge_type`**: at minimum **`kairos_consolidates_from`**, **`kairos_contradicts`** (existing PHP constants).
 - **`left_object_type` / `right_object_type`**: use **`actor_memory`** for memory-to-memory links; future **`dialog_message`** endpoints as needed.
@@ -302,3 +312,161 @@ For **implementation-folder** markdown, KAIROS **SHALL** still apply **§10.2–
 - **Chat:** **PRD 18**  
 - **Edges namespace:** **PRD 04**  
 - **Synthetic dialog interplay:** **PRD 36**
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+
+---
+
+## 13. Lossy Abbreviation Dialect (Memory Compression)
+
+### Purpose
+Reduce token and storage footprint by creating abbreviated, lossy representations of memory nodes with repeated or redundant semantic content. Lossy nodes are compressed summaries, not replacements, and are linked to originals via edges.
+
+### Scope
+- Applies to all KAIROS-managed memory graphs (nodes/edges) in Lupopedia 4.0.96+
+- Operates on node content, not graph structure
+- Lossy nodes are always secondary/derived, never root memory nodes
+
+### Rules for Lossy Abbreviation
+1. Detect repeated entities or semantic patterns in memory nodes
+2. Generate a compressed “lossy” node summarizing the repeated content
+3. Link each original node to its lossy node using a new `edge_type`: **abbreviates**
+4. Mark the lossy node’s context with a new `edge_context`: **lossy_abbrev**
+5. Lossy nodes must include metadata describing what was compressed (e.g., source node ids, summary method, compression ratio)
+6. Lossy nodes must be reversible: KAIROS must be able to reconstruct or reference the originals
+7. Lossy nodes must be marked for review when needed, using `review_reason: compression_candidate`
+8. Lossy nodes are not root memory nodes and must not be treated as canonical for learning or provenance
+
+### Edge Context and Type Additions
+- **edge_type:** `abbreviates` (original → lossy)
+- **edge_context:** `lossy_abbrev`
+- **review_reason:** `compression_candidate`
+
+### KAIROS Routing Rules
+- KAIROS is responsible for generating, linking, and reviewing lossy abbreviation nodes
+- KAIROS must ensure lossy nodes are never used as root memory or canonical provenance
+- KAIROS must maintain reversibility and metadata for all lossy nodes
+
+### Example
+Suppose three memory nodes contain nearly identical observations about a channel event. KAIROS detects the redundancy and creates a lossy node:
+
+Originals:
+  - memory_node_id: 2001, memory_value: "User X joined channel A at 10:00"
+  - memory_node_id: 2002, memory_value: "User X joined channel A at 10:01"
+  - memory_node_id: 2003, memory_value: "User X joined channel A at 10:00"
+
+Lossy node:
+  - memory_node_id: 3001, memory_value: "User X joined channel A at ~10:00 (abbreviated)", context_json: {"source_ids": [2001,2002,2003], "compression_method": "lossy_abbrev", "compression_ratio": 0.6}
+
+Edges:
+  - 2001 → 3001 (edge_type: abbreviates, edge_context: lossy_abbrev)
+  - 2002 → 3001 (edge_type: abbreviates, edge_context: lossy_abbrev)
+  - 2003 → 3001 (edge_type: abbreviates, edge_context: lossy_abbrev)
+
+### Memory Slug and Filesystem Export
+- Lossy nodes use the standard memory_slug and are exported to `lupo-memory/YYYY/MM/{memory_slug}.json` as with all memory nodes
+- Metadata in the lossy node must indicate its lossy/compressed status
+
+### Consolidation Workflow
+1. KAIROS scans memory nodes for redundancy
+2. When detected, generates a lossy abbreviation node
+3. Links originals to lossy node with `abbreviates` edges
+4. Marks lossy node with `lossy_abbrev` context and `compression_candidate` review_reason if review is needed
+5. Ensures lossy node is not root/canonical, and maintains reversibility
+6. Exports lossy node to filesystem as with all memory nodes
+
+---
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

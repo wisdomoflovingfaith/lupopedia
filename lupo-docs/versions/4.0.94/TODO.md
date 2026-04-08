@@ -5,8 +5,8 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/TODO.md"
-  when_updated: "20260406051111"
-  last_modified_utc: "20260406051111"
+  when_updated: "20260407015813"
+  last_modified_utc: "20260407015813"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-todo"
@@ -45,8 +45,16 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Session authority Model A decision"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260406_173021_DECISION_version_4_0_94_five_w_one_h_doc_sync_closeout.md"
+      type: references
+      weight: 1.0
+      reason: "5W1H version-doc close-out receipt (2026-04-06)"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md"
+      type: references
+      weight: 1.0
+      reason: "Install merge receipt — schema_review → install_new_lupopedia.sql (2026-04-07)"
 lupopedia.footer:
-  last_verified: "20260406051111"
+  last_verified: "20260407015813"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -58,7 +66,7 @@ lupopedia.footer:
 # TODO - Lupopedia 4.0.94
 
 **Version:** 4.0.94  
-**Last updated:** UTC `20260406051111` (`python lupo-bin/tick.py`)
+**Last updated:** UTC `20260407015813` (`python lupo-bin/tick.py`)
 
 ---
 
@@ -139,9 +147,25 @@ Includes (non-exhaustive): P4-001, P4-003–P4-005; D-001–D-005; Phase 7 packa
 | P1 / P2 / P3 (001–004) | Constitutional, session, `$UNTRUSTED`, locale, validators |
 | P3-005–P3-007, P4-002, P4-006 | Deprecation logs, `main_layout` external CSS/JS, root rules `author` block |
 | Version docs | CHANGELOG, PLAN, edges, session decision, **VERSION_SUMMARY**, **4.0.95** scaffold |
+| Version docs (2026-04-06 17:30) | **5W1H** close-out — decision **`173021`**, Q/A **`173022`**, **`CHANGELOG`** hourly prepend, **`edges`** handoff to **4.0.95** / **`FOR_CLAUDE_CODE`** / root **`CHANGELOG`** |
 | Channel 66 | Extended integration test + ingester discovery fix |
+| Schema review (2026-04-06 20:00) | Structural analysis, `schema_corrected_core.sql`, `schema_corrected_missing.sql`, corrected identity model — `lupo-database/lupopedia/mysql/schema_review/` |
+| Install merge (2026-04-07 ~02:00) | **`install_new_lupopedia.sql`** merged from corrected SQL — **170** tables; receipt **`decisions/20260407_015813_…`** |
+| CHRONOS activation (2026-04-06 20:00) | Kernel agent `lupo-agents/chronos/` fully activated — agent.json, identity.json, tools.json (15 tools), capabilities.json (18), system_prompt.txt |
+| Migration docs (2026-04-06 20:00) | Import SQL corrected (4 edits); `livehelp_users_migration.md` + `livehelp_operator_departments_migration.md` updated; `new_schema_tables_crafty_mapping.md` created |
 
 ---
+
+## Open items from 2026-04-06 20:00 UTC epoch (carry to next session)
+
+- [x] **Option B migration:** Completed — filesystem hubs `lupo-actors/1/` and `lupo-actors/2/`; `lupo-database/lupopedia/actors/registry.json` `dir` updated; repo references updated; `lupo-actors/wolfie/` and `lupo-actors/lilith/` removed.
+- [ ] **Step 3: Actor Reconstruction Pass** — deferred.
+
+## Open items after install merge (2026-04-07 ~02:00 UTC)
+
+- [x] **Apply corrected schema to `install_new_lupopedia.sql`** — done; see **`decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md`** and **`CHANGELOG.md`** epoch **`[2026-04-07 02:00 UTC]`**.
+- [x] **T-SCHEMA-RUNTIME-001:** Completed UTC `20260407123924` — `install_wizard_classes.php` and `seed_4.1.0.sql` aligned; removed columns (`metadata`, `adversarial_role`, `adversarial_oversight_actor_id`) purged; `lupo_agents` → `lupo_agent_definitions`; adversarial relationship migrated to `lupo_actor_relationships`.
+- [x] **T-SCHEMA-TOOLCALLS-001:** Completed UTC `20260407123924` — `lupo_agent_tool_calls` CREATE TABLE restored to `install_new_lupopedia.sql` with `actor_id bigint NOT NULL` per SECTION 9. Install table count now **171**.
 
 ## Blocked tasks
 

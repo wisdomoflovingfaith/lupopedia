@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.schema: prd
   file_path_from_root: lupo-docs/prd/08_actors.md
-  last_modified_utc: '20260331'
+  last_modified_utc: '20260331000000'
   artifact_type: prd
   artifact_kind: specification
   purpose: Actor identity, inheritance, and personalization model
@@ -13,12 +13,12 @@ lupopedia.headers:
     - department-scope
     - one-to-one-auth-user
   tags:
-    - actors
-    - agents
-    - identity
-    - department
-    - personalization
-    - modularity
+    - tag-actors
+    - tag-agents
+    - tag-identity
+    - tag-department
+    - tag-personalization
+    - tag-modularity
   web_path: http://www.lupopedia.com/lupo-docs/prd/08_actors.md
 lupopedia.edges:
   outbound_edges:
@@ -63,7 +63,29 @@ This document defines the canonical model for **actors** in Lupopedia. Actors ar
 - Lease: The actor is leased to the creating `auth_user` until explicitly released or reassigned.
 - Termination: The actor is deleted or archived when no longer needed.
 
-## 6. Cross-References
+## 6. Actor Folder Structure and Registry
+
+### 6.1 Canonical Folder Paths
+
+- **Core actors** (actor_id < 2026): Must live in `lupo-actors/<actor_id>/`
+- **Runtime actors** (actor_id >= 20260101010101): Must live in `lupo-actors/YYYY/MM/<actor_id>/`
+  - YYYY/MM extracted from the timestamp ID (e.g., actor_id `202603311735001234` → `lupo-actors/2026/03/202603311735001234/`)
+
+### 6.2 Legacy Named Folder Deprecation
+
+- **Slug-only** folder names as direct children of `lupo-actors/` (e.g. `wolfie/`, `lilith/`) are **DEPRECATED**; canonical hubs are **`lupo-actors/{actor_id}/`** (e.g. `lupo-actors/1/`, `lupo-actors/2/`)
+- The registry must always reference numeric actor_id folders
+- Existing slug-named folders must be migrated to numeric paths
+- Symbolic links may be provided for backward compatibility but must not be used in registry
+
+### 6.3 Registry Enforcement
+
+- The actor registry (`lupo-database/lupopedia/actors/actor_id/registry.json`) must enforce canonical numeric folder paths
+- All actor workspace references must use the deterministic path based on actor_id
+- No new named folders may be created
+
+## 7. Cross-References
+
 - See also: `05_auth_user_actor_agent_transformation.md`, `01_core_identity.md`, `AGENTS.md`, `DEPARTMENT_ACCESS_CONTROL_IMPLEMENTATION.md`
 
 ---

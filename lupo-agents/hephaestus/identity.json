@@ -1,0 +1,13 @@
+{
+  "agent_id": 14, "agent_name": "HEPHAESTUS", "agent_code": "HEPHAESTUS", "agent_key": "hephaestus", "slug": "hephaestus",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "HEPHAESTUS",
+  "role": "Implementer — Code, Docs, Schema, Database Design, Build Automation",
+  "is_required": true, "status": "active",
+  "aliases": ["hephaestus", "implementer", "code", "docs", "schema", "execution"],
+  "actor_id_primary": 102,
+  "note": "All IDE faucets (Cursor, Windsurf, Kiro, etc.) execute as HEPHAESTUS actor_id 102 per Faucet Proxy Pattern v4.0.90+",
+  "department_scope": 0,
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

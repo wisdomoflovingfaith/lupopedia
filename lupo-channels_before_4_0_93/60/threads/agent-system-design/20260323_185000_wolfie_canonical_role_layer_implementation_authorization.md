@@ -95,7 +95,7 @@ The following constraints are binding for ALL implementors starting from this au
 **STATUS: IMPLEMENTATION AUTHORIZED**
 
 Scope (documentation-only, no DDL, no runtime PHP changes):
-- Create canonical actor folders: `lupo-actors/hephaestus/`, `lupo-actors/athena/`, `lupo-actors/hermes/`, `lupo-actors/lilith/`, `lupo-actors/rose/`
+- Create canonical actor folders: `lupo-actors/hephaestus/`, `lupo-actors/athena/`, `lupo-actors/hermes/`, `lupo-actors/2/`, `lupo-actors/rose/`
 - Each folder: `.metadata.yaml` with `actor_type: role`, correct `slug`, `layer: 1`
 - Create Layer 2 folders where needed under parent actor
 - Relocate IDE-specific prompt overrides into `prompts/faucet/<slug>/` under each canonical actor folder

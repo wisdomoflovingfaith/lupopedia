@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["modifying_any_artifacts", "actor_permission_changes", "release_approval", "doctrine_modification", "active_intervention_in_agent_workflows"],
+  "forbidden_topics": ["executive_observation_conclusions_without_WOLFIE_review"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "observation_is_read_only_always", "context_reports_are_advisory_to_WOLFIE_only", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

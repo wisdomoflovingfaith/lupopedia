@@ -19,7 +19,7 @@ lupopedia.headers:
 - `lupo-actors/hephaestus/`
 - `lupo-actors/athena/`
 - `lupo-actors/hermes/`
-- `lupo-actors/lilith/`
+- `lupo-actors/2/`
 - `lupo-actors/rose/`
 
 ## Full paths
@@ -35,7 +35,7 @@ lupopedia.headers:
 - `lupo-actors/hephaestus/.metadata.yaml`
 - `lupo-actors/athena/.metadata.yaml`
 - `lupo-actors/hermes/.metadata.yaml`
-- `lupo-actors/lilith/.metadata.yaml`
+- `lupo-actors/2/.metadata.yaml`
 - `lupo-actors/rose/.metadata.yaml`
 
 ## Confirmation

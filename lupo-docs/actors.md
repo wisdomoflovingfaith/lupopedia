@@ -57,7 +57,7 @@ The full filesystem path is `LUPOPEDIA_ABSPATH . LUPO_ACTORS_DIR` (or `ABSPATH .
 
 ## Directory Structure
 
-Each installed actor has a **name-based** subdirectory under `lupo-actors/` (e.g. `system/`, `wolfie/`, `antigravity/`). Legacy numeric paths (`0/`, `1/`, `42/`) may exist as symlinks to these after running the directory migration. Inside each actor directory, the following subdirectories are used:
+Each installed actor has a subdirectory under `lupo-actors/` given by registry **`dir`** (often `lupo-actors/{actor_id}/`, e.g. `system/`, `1/`, `antigravity/`). Inside each actor directory, the following subdirectories are used:
 
 | Subdirectory   | Purpose |
 |----------------|--------|
@@ -68,19 +68,19 @@ Each installed actor has a **name-based** subdirectory under `lupo-actors/` (e.g
 | **lupo-api/**       | API definitions, endpoints, or integration code for the actor's external interfaces. |
 | **needs/**     | Additional dependencies, requirements, or configuration (e.g. env vars, YAML configs) needed for the actor to operate. |
 | **lupo-prompts/**   | Prompt files (e.g. `.md` or `.txt`) that define behavioral instructions or tasks for the actor. |
-| **skills/**    | Agent skills: reusable modular capabilities, specialized knowledge, or tool definitions (e.g. `lupo-actors/wolfie/skills/web_search`). |
+| **skills/**    | Agent skills: reusable modular capabilities, specialized knowledge, or tool definitions (e.g. `lupo-actors/1/skills/web_search`). |
 | **www/**       | Web-accessible content rendered at `/agent/<actor_name>/`. Priority: `readme.md` > `index.htm` > `index.php`. |
 | **logs/**      | Actor-specific logs (optional, e.g. `lupo-actors/system/logs/`). |
 
 The path to an actor's prompts directory can be built as: `$actor['dir'] . '/' . LUPO_PROMPTS_SUBDIR` (with `dir` from registry or `ActorService::getActorDir($actor_name)`).
 
-## ASCII Directory Tree (Name-Based)
+## ASCII Directory Tree (illustrative)
 
-Canonical dirs are name-based; numeric dirs may be symlinks (e.g. `0/` → `system/`).
+Hub folder names follow **`registry.json` `dir`** (numeric `actor_id` paths and legacy slug hubs may both appear in the tree).
 
 ```
 lupo-actors/
-├── system/                 # System actor (0/ may symlink here)
+├── system/                 # System actor (actor_id 0)
 │   ├── apps/
 │   ├── lupo-tools/
 │   ├── lupo-docs/
@@ -90,7 +90,7 @@ lupo-actors/
 │   ├── lupo-prompts/
 │   │   └── flare-header-scan.md
 │   └── logs/
-├── wolfie/                 # WOLFIE (1/ may symlink here)
+├── 1/                      # WOLFIE (actor_id 1)
 │   ├── apps/
 │   ├── lupo-tools/
 │   ├── lupo-docs/
@@ -132,7 +132,7 @@ For database-backed actor data: `LUPO_DATABASE_DIR/lupopedia/actors/{actor_id}/`
 Actors are identified by **actor_name** (primary) and optionally **actor_id** (secondary). See [ACTOR_PRIMARY_KEY_DOCTRINE.md](doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md) for the full doctrine and [ACTOR_IDENTITIES.md](ACTOR_IDENTITIES.md) for canonical identities:
 
 - **system** (Actor 0) — **System actor.** Core platform operations, security, low-level management. Directory `lupo-actors/system/` (numeric `0/` may symlink here).
-- **wolfie** (Actor 1) — **WOLFIE.** Governing agent; coordination and orchestration. Directory `lupo-actors/wolfie/`.
+- **wolfie** (Actor 1) — **WOLFIE.** Governing agent; coordination and orchestration. Directory `lupo-actors/1/`.
 - **anubis** (Actor 19) — **Anubis.** Recovery: orphan adoption, quarantine, recovery. Directory `lupo-actors/anubis/`.
 - **antigravity** (Actor 42) — **Antigravity.** Canonical actor_id 42 (IDE extensions, VSX). Directory `lupo-actors/antigravity/`. Resolve `?actor=antigravity` or `?actor_name=antigravity` via registry.
 - **Actor 10000** — **Root user.** Human root; full management.

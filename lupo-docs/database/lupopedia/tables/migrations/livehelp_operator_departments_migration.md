@@ -263,8 +263,36 @@ consistent naming
 
 doctrine-aligned schema
 
-# 7. Final Decision
-Code
-livehelp_operator_departments -> IMPORTED -> DROPPED
+# 7. Corrected Schema Notes (20260406)
+
+**UNIQUE constraint added:** The corrected schema adds `UNIQUE (actor_id, department_id)` to lupo_actor_departments.
+
+**Impact on import:** The initial INSERT from livehelp_operator_departments now includes:
+```sql
+ON DUPLICATE KEY UPDATE
+    title = COALESCE(VALUES(title), title),
+    updated_ymdhis = VALUES(updated_ymdhis);
+```
+
+Reason: Legacy livehelp_operator_departments may contain duplicate (user_id, department) rows. The UNIQUE constraint would reject them without this clause. No data is lost — the first row wins, title preserved if set.
+
+**is_primary column added:** The corrected schema adds `is_primary tinyint NOT NULL DEFAULT 0`. All Crafty-imported rows get `is_primary = 0`. Primary department assignment is set by application after import via the wizard.
+
+**Two-phase actor_id assignment:** The import inserts actor_id = (10000 + user_id) initially, then UPDATEs to the real actor_id via JOIN chain through auth_users and actors. This pattern is required because actors are created AFTER the initial actor_departments import.
+
+**Multi-phase inserts:** After the base import, three additional INSERT passes add:
+1. Admin operators → department 0 (guarded with NOT EXISTS)
+2. Core actors (wolfie=1, lilith=2, etc.) → department 0 (guarded with NOT EXISTS)  
+3. Department hybrid actors → their respective departments (guarded with NOT EXISTS)
+
+All three passes are safe with the UNIQUE constraint because they use NOT EXISTS guards.
+
+# 8. Final Decision
+```
+livehelp_operator_departments → IMPORTED → DROPPED
+```
 All operator-department mappings preserved in lupo_actor_departments.
+UNIQUE constraint applied; duplicate-safe via ON DUPLICATE KEY UPDATE.
+
+Last updated: 20260406 by claude-code (actor_id 102) — corrected schema alignment.
 

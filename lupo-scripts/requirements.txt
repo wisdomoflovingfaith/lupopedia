@@ -3,3 +3,6 @@
 
 # MySQL database driver
 pymysql==1.1.0
+
+# PRD shorthand generator (generate_prd_shorthands.py) and other YAML header tooling
+PyYAML>=6.0

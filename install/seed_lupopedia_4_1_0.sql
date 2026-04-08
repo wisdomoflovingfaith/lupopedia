@@ -669,3 +669,137 @@ SELECT 'Edges seeded successfully' AS status,
        COUNT(*) AS content_items FROM {{prefix}}edges WHERE edge_id BETWEEN 4000001 AND 4000034;
 
 -- <<< END FILE: seed_online_help_and_content.sql
+
+-- =============================================================================
+-- FILE-BACKED CONTENT SEED (4.0.95+)
+-- Canonical structure: lupo-content/federation_node/{id}/{folder_key}/{file_name}
+--                      lupo-content/actor/{actor_id}/{folder_key}/{file_name}
+-- All slugs: lowercase ASCII, underscores only.
+-- storage_type='file_backed': content NULL, file_path_from_root NOT NULL.
+-- Timestamps: packed UTC BIGINT YYYYMMDDHHIISS.
+-- =============================================================================
+
+-- ----------------------------------------------------------------------------
+-- FOLDERS: one row per canonical folder_key
+-- ----------------------------------------------------------------------------
+
+INSERT INTO {{prefix}}folders (
+    folder_id,
+    name,
+    slug,
+    description,
+    parent_folder_id,
+    actor_id,
+    channel_id,
+    sort_order,
+    created_ymdhis,
+    updated_ymdhis,
+    is_deleted,
+    deleted_ymdhis
+) VALUES
+    (10, 'Captains Log',      'captains_log',      'File-backed content folder for captains_log',      NULL, NULL, NULL, 0, 20260407123924, 20260407123924, 0, 0),
+    (11, 'Help Documentation','help_documentation', 'File-backed content folder for help_documentation', NULL, NULL, NULL, 0, 20260407123924, 20260407123924, 0, 0),
+    (12, 'Reference',         'reference',          'File-backed content folder for reference',          NULL, NULL, NULL, 0, 20260407123924, 20260407123924, 0, 0)
+ON DUPLICATE KEY UPDATE
+    name        = VALUES(name),
+    description = VALUES(description),
+    updated_ymdhis = VALUES(updated_ymdhis);
+
+-- ----------------------------------------------------------------------------
+-- CONTENTS: file-backed rows (content=NULL, storage_type='file_backed')
+-- content_id 1000001-1000002 kept from existing seed; 1000000,1000003-1000005 new.
+-- utc_cycle='daily' (all published content; required NOT NULL column).
+-- ----------------------------------------------------------------------------
+
+INSERT INTO {{prefix}}contents (
+    content_id,
+    federation_node_id,
+    actor_id,
+    title,
+    slug,
+    storage_type,
+    file_path_from_root,
+    content,
+    content_type,
+    format,
+    status,
+    visibility,
+    created_ymdhis,
+    updated_ymdhis,
+    utc_cycle,
+    triage_status,
+    version_number,
+    is_deleted,
+    is_active
+) VALUES
+
+-- federation_node/0/captains_log/entry_001.md
+(1000000, 0, 0,
+ 'Captain''s Log Entry 001',
+ 'captains_log_entry_001',
+ 'file_backed',
+ 'lupo-content/federation_node/0/captains_log/entry_001.md',
+ NULL,
+ 'text/markdown', 'markdown', 'published', 'public',
+ 20260407123924, 20260407123924, 'daily', 'untriaged', 1, 0, 1),
+
+-- federation_node/0/captains_log/20260407_hello_world.md (draft AI session output)
+(1000003, 0, 0,
+ 'Hello World Draft',
+ 'captains_log_20260407_hello_world',
+ 'file_backed',
+ 'lupo-content/federation_node/0/captains_log/20260407_hello_world.md',
+ NULL,
+ 'text/markdown', 'markdown', 'draft', 'public',
+ 20260407123924, 20260407123924, 'daily', 'untriaged', 1, 0, 1),
+
+-- federation_node/0/help_documentation/1000001_getting_started_guide.md
+(1000001, 0, 0,
+ 'Getting Started Guide',
+ 'help_getting_started_guide',
+ 'file_backed',
+ 'lupo-content/federation_node/0/help_documentation/1000001_getting_started_guide.md',
+ NULL,
+ 'text/markdown', 'markdown', 'published', 'public',
+ 20260405120000, 20260407123924, 'daily', 'untriaged', 1, 0, 1),
+
+-- federation_node/0/help_documentation/1000002_actors_agents_overview.md
+(1000002, 0, 0,
+ 'Actors Agents Overview',
+ 'help_actors_agents_overview',
+ 'file_backed',
+ 'lupo-content/federation_node/0/help_documentation/1000002_actors_agents_overview.md',
+ NULL,
+ 'text/markdown', 'markdown', 'published', 'public',
+ 20260405120000, 20260407123924, 'daily', 'untriaged', 1, 0, 1),
+
+-- federation_node/0/help_documentation/readme.md
+(1000004, 0, 0,
+ 'Readme',
+ 'help_documentation_readme',
+ 'file_backed',
+ 'lupo-content/federation_node/0/help_documentation/readme.md',
+ NULL,
+ 'text/plain', 'markdown', 'published', 'public',
+ 20260407123924, 20260407123924, 'daily', 'untriaged', 1, 0, 1),
+
+-- actor/10000/reference/minimal_tables.md
+(1000005, NULL, 10000,
+ 'Minimal Tables',
+ 'actor_10000_reference_minimal_tables',
+ 'file_backed',
+ 'lupo-content/actor/10000/reference/minimal_tables.md',
+ NULL,
+ 'text/markdown', 'markdown', 'published', 'public',
+ 20260407123924, 20260407123924, 'daily', 'untriaged', 1, 0, 1)
+
+ON DUPLICATE KEY UPDATE
+    storage_type        = VALUES(storage_type),
+    file_path_from_root = VALUES(file_path_from_root),
+    content             = NULL,
+    slug                = VALUES(slug),
+    updated_ymdhis      = VALUES(updated_ymdhis);
+
+-- =============================================================================
+-- END FILE-BACKED CONTENT SEED
+-- =============================================================================

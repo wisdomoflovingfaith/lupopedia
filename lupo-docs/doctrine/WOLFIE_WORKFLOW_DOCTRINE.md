@@ -17,13 +17,13 @@ lupopedia.headers:
   purpose: "Consumer: mobile-first then desktop masterpiece; Admin/operator: desktop-first; mobile operators → native app PRD 35; shared backend; MOBILE_SEPARATION runtime"
   status: active
   tags:
-    - workflow
-    - mobile_first
-    - wolfie
-    - desktop_masterpiece
-    - doctrine
-    - admin_desktop_first
-    - operator_console
+    - tag-workflow
+    - tag-mobile-first
+    - tag-wolfie
+    - tag-desktop-masterpiece
+    - tag-doctrine
+    - tag-admin-desktop-first
+    - tag-operator-console
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"

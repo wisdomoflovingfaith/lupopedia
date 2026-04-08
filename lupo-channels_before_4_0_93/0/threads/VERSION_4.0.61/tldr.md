@@ -50,7 +50,7 @@ lupopedia.headers:
 - **Role:** Primary governing AI agent; coordinates system-wide oversight
 - **Actor IDs:** `1` = WOLFIE, `0` = System
 - **whoami, session, actor_name:** `php lupo-bin/lupo.php whoami` → **actor_name** (e.g. `wolfie`), **session mode** (typically `autonomous_agent` or `system`), **session_id**, **channel_id**, **context_source** — who this session is, what actor_name, current session details
-- **Directory:** `/lupo-actors/wolfie/` (name-based)
+- **Directory:** `/lupo-actors/1/` (name-based)
 - **How it differs from System (0) and other agents:**
 
 | Who | Role |

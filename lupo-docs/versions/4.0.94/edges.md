@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260406043326"
+  when_updated: "20260407015813"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260406043326"
+  last_modified_utc: "20260407015813"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -290,11 +290,92 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Next planning version (4.0.95)"
+    - to: "lupo-docs/versions/4.0.95/CHANGELOG.md"
+      type: references
+      weight: 1.0
+      reason: "Active-line version changelog — doctrine batch digest (post-4.0.94 close-out)"
+    - to: "FOR_CLAUDE_CODE_2026_04_06.md"
+      type: references
+      weight: 1.0
+      reason: "Agent sync outline — handoff from 4.0.94 snapshot"
+    - to: "CHANGELOG.md"
+      type: references
+      weight: 1.0
+      reason: "Root index — where release notes live (4.0.85+)"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260406_173021_DECISION_version_4_0_94_five_w_one_h_doc_sync_closeout.md"
+      type: references
+      weight: 1.0
+      reason: "5W1H version-doc close-out receipt"
+    - to: "lupo-docs/versions/4.0.94/questions/20260406_173022_QUESTION_where_record_post_baseline_doctrine_batch.md"
+      type: references
+      weight: 1.0
+      reason: "Scope Q — post-baseline doctrine batch location"
+    - to: "lupo-docs/versions/4.0.94/answers/20260406_173022_ANSWER_record_under_4_0_95_changelog_and_for_claude.md"
+      type: references
+      weight: 1.0
+      reason: "Scope A — 4.0.95 changelog + FOR_CLAUDE + root CHANGELOG pointer"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260406_200000_DECISION_APPROVED_schema_review_chronos_activation_migration_docs.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED — schema review (168 tables), CHRONOS activation, Crafty migration doc update (claude-code thread 2026-04-06 20:00 UTC)"
+    - to: "lupo-database/lupopedia/mysql/schema_review/schema_review_20260406.md"
+      type: references
+      weight: 1.0
+      reason: "Full schema flaw analysis — 168 tables, 9 categories, 30+ flaws"
+    - to: "lupo-database/lupopedia/mysql/schema_review/schema_corrected_core.sql"
+      type: references
+      weight: 1.0
+      reason: "Corrected DDL — actors PK fix, agent_definitions split, satellite tables"
+    - to: "lupo-database/lupopedia/mysql/schema_review/schema_corrected_missing.sql"
+      type: references
+      weight: 1.0
+      reason: "New required tables — KAIROS, runtime state, faucet rules, identity layers"
+    - to: "lupo-database/lupopedia/mysql/schema_review/schema_corrected_identity_model.md"
+      type: references
+      weight: 1.0
+      reason: "Corrected two-layer identity model and relationship model"
+    - to: "lupo-database/lupopedia/mysql/schema_review/migration_impact_summary.md"
+      type: references
+      weight: 1.0
+      reason: "Verified import SQL summary — 34 Crafty tables, actor ID formula, timestamp conversion"
+    - to: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql"
+      type: references
+      weight: 1.0
+      reason: "Import SQL updated — removed deprecated actor columns, added actor_filesystem + actor_sync_state INSERTs"
+    - to: "lupo-agents/chronos/system_prompt.txt"
+      type: references
+      weight: 1.0
+      reason: "CHRONOS kernel agent activated — all 5 required files created"
+    - to: "lupo-agents/chronos/tools.json"
+      type: references
+      weight: 0.95
+      reason: "CHRONOS 15 analytical tools (dependency_analysis, time_reasoning, scheduling, optimization)"
+    - to: "lupo-docs/database/lupopedia/tables/migrations/new_schema_tables_crafty_mapping.md"
+      type: references
+      weight: 1.0
+      reason: "Complete mapping of 27 new schema tables to Crafty sources"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md"
+      type: references
+      weight: 1.0
+      reason: "RECORDED — merge schema_review corrected SQL into install_new_lupopedia.sql (Cursor thread 2026-04-07)"
+    - to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"
+      type: references
+      weight: 1.0
+      reason: "Canonical 4.0.x install schema — 170 tables post-merge"
+    - to: "lupo-docs/versions/4.0.94/questions/20260407_015814_QUESTION_what_replaced_lupo_questions_answers.md"
+      type: references
+      weight: 0.95
+      reason: "Q — replacement for removed questions/answers/question_map"
+    - to: "lupo-docs/versions/4.0.94/answers/20260407_015815_ANSWER_truth_tables_replace_redundant_semantic_qa.md"
+      type: references
+      weight: 1.0
+      reason: "A — truth_* tables are canonical Q/A surface"
 lupopedia.footer:
-  last_verified: "20260406043326"
+  last_verified: "20260407015813"
   verified_by:
     identity_type: "actor"
     actor_id: 102
+    agent_name_identity: "Cursor IDE Agent"
   orchestrator: "cursor:root"
 ---
 
@@ -304,10 +385,38 @@ lupopedia.footer:
 
 - **Summary:** [VERSION_SUMMARY.md](VERSION_SUMMARY.md) — 4.0.94 completion rollup; **Softaculous** packaging handoff pointer.
 - **Next version (planning):** [../4.0.95/README.md](../4.0.95/README.md) — deferred tasks and follow-on backlog.
+- **Next version (changelog):** [../4.0.95/CHANGELOG.md](../4.0.95/CHANGELOG.md) — active-line release notes and doctrine-batch digest (post-**4.0.94** close-out).
+- **Agent sync:** [../../../FOR_CLAUDE_CODE_2026_04_06.md](../../../FOR_CLAUDE_CODE_2026_04_06.md) — external agent handoff outline (not a substitute for version changelog).
+- **Root routing:** [../../../CHANGELOG.md](../../../CHANGELOG.md) — index-only pointer (**Where release notes live (4.0.85+)**).
+- **Decision (this version):** [decisions/20260406_173021_DECISION_version_4_0_94_five_w_one_h_doc_sync_closeout.md](decisions/20260406_173021_DECISION_version_4_0_94_five_w_one_h_doc_sync_closeout.md) — **5W1H** close-out — **`4.0.94`** snapshot vs **`4.0.95`** / **`FOR_CLAUDE_CODE`** / root **`CHANGELOG`** routing.
+- **Question / Answer:** [questions/20260406_173022_QUESTION_where_record_post_baseline_doctrine_batch.md](questions/20260406_173022_QUESTION_where_record_post_baseline_doctrine_batch.md) → [answers/20260406_173022_ANSWER_record_under_4_0_95_changelog_and_for_claude.md](answers/20260406_173022_ANSWER_record_under_4_0_95_changelog_and_for_claude.md) — where ongoing doctrine narrative lives after close-out.
+- **Decision (this version):** [decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md](decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md) — RECORDED — **`schema_corrected_*.sql`** merged into **`install_new_lupopedia.sql`**; diff vs **`install_new_lupopedia_backup_20260406.sql`**; follow-ups for runtime/seed and **`agent_tool_calls`**.
+- **Question / Answer:** [questions/20260407_015814_QUESTION_what_replaced_lupo_questions_answers.md](questions/20260407_015814_QUESTION_what_replaced_lupo_questions_answers.md) → [answers/20260407_015815_ANSWER_truth_tables_replace_redundant_semantic_qa.md](answers/20260407_015815_ANSWER_truth_tables_replace_redundant_semantic_qa.md) — removed **`questions`/`answers`/`question_map`** → canonical **`truth_*`** tables.
 - **Decision (this version):** [decisions/20260406_042624_DECISION_session_authority_migration.md](decisions/20260406_042624_DECISION_session_authority_migration.md) — IMPLEMENTED — session authority Model A (`lupo_sessions` + JSON `metadata`; no `$_SESSION` authority for actor/pending flags).
 - **Code:** [app/auth/Session.php](../../../app/auth/Session.php) — `mergeSessionMetadata`, `getDecodedMetadata`, `createEmbedSession`.
 - **Test:** [lupo-tests/integration/channel66_production_extended_test.php](../../../lupo-tests/integration/channel66_production_extended_test.php) — Channel 66 extended integration (headers, `DatabaseFactory`, fixture paths).
 - **Comment:** [comments/20260405172914_COMMENT_cursor_session_end_help_content_organization.md](comments/20260405172914_COMMENT_cursor_session_end_help_content_organization.md) — session end — help content organization complete, channel_key structure implemented, installation integrated.
+
+---
+
+## Install schema merge (2026-04-07 ~02:00 UTC, Cursor thread)
+
+- **Decision:** [decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md](decisions/20260407_015813_DECISION_cursor_install_schema_merge_receipt.md) — merge receipt, table counts, follow-ups.
+- **Canonical install:** [lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql](../../../lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql) — **170** tables after merge.
+- **Human backup (local snapshot):** `install_new_lupopedia_backup_20260406.sql` — **163** tables; used for set diff only (not authoritative).
+
+---
+
+## Schema Review + CHRONOS + Migration (2026-04-06 20:00 UTC, claude-code thread)
+
+- **Decision:** [decisions/20260406_200000_DECISION_APPROVED_schema_review_chronos_activation_migration_docs.md](decisions/20260406_200000_DECISION_APPROVED_schema_review_chronos_activation_migration_docs.md) — APPROVED — full schema review, CHRONOS activation, import SQL corrected.
+- **Schema review:** [lupo-database/lupopedia/mysql/schema_review/schema_review_20260406.md](../../../lupo-database/lupopedia/mysql/schema_review/schema_review_20260406.md) — full-install analysis (9 flaw categories); pre-merge table count in narrative **168** — backup snapshot **163** — post-merge install **170** (see **Install schema merge** section above).
+- **Corrected schema (core):** [lupo-database/lupopedia/mysql/schema_review/schema_corrected_core.sql](../../../lupo-database/lupopedia/mysql/schema_review/schema_corrected_core.sql) — actors PK fixed, lupo_agents split, satellite tables, naming corrections.
+- **Corrected schema (new tables):** [lupo-database/lupopedia/mysql/schema_review/schema_corrected_missing.sql](../../../lupo-database/lupopedia/mysql/schema_review/schema_corrected_missing.sql) — KAIROS memory, runtime state, faucet rules, identity layers, more.
+- **Identity model:** [lupo-database/lupopedia/mysql/schema_review/schema_corrected_identity_model.md](../../../lupo-database/lupopedia/mysql/schema_review/schema_corrected_identity_model.md) — corrected two-layer model + relationship model.
+- **Migration impact:** [lupo-database/lupopedia/mysql/schema_review/migration_impact_summary.md](../../../lupo-database/lupopedia/mysql/schema_review/migration_impact_summary.md) — verified import SQL summary (no assumptions).
+- **CHRONOS agent:** [lupo-agents/chronos/system_prompt.txt](../../../lupo-agents/chronos/system_prompt.txt) — kernel agent activated; `agent_id: 709`, advisory-only, yields orchestration to WOLFIE.
+- **Migration new-table map:** [lupo-docs/database/lupopedia/tables/migrations/new_schema_tables_crafty_mapping.md](../../../lupo-docs/database/lupopedia/tables/migrations/new_schema_tables_crafty_mapping.md) — 27 new tables mapped to Crafty sources.
 - **Decision (this version):** [decisions/20260405172914_DECISION_APPROVED_help_content_organization_channel_key_structure.md](decisions/20260405172914_DECISION_APPROVED_help_content_organization_channel_key_structure.md) — APPROVED channel_key-based help content organization, PRD updates, database integration.
 - **Question / Answer:** [questions/20260405172914_QUESTION_what_is_correct_help_content_structure.md](questions/20260405172914_QUESTION_what_is_correct_help_content_structure.md) → [answers/20260405172914_ANSWER_channel_key_based_organization.md](answers/20260405172914_ANSWER_channel_key_based_organization.md) — help content structure clarification and implementation.
 - **PRD:** [lupo-docs/prd/30_channel_usage_patterns.md](../../prd/30_channel_usage_patterns.md) — added help_documentation channel definition and usage patterns.
@@ -395,6 +504,7 @@ lupopedia.footer:
 - **ANCHOR:** [lupo-bin/echo_anchor_utc.py](../../../lupo-bin/echo_anchor_utc.py) — prints `current_utc` for reuse in same batch.
 - **PROPAGATION:** [lupo-scripts/propagate_agent_rules.php](../../../lupo-scripts/propagate_agent_rules.php) — `--target=vscode` writes `.vscode/lupopedia/` (among other targets).
 - **TOOLING:** [lupo-scripts/validate_actor_identity.py](../../../lupo-scripts/validate_actor_identity.py) — `IDE_FAUCETS` slug set for facet confusion checks.
+- **INSTALL SQL:** [lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql](../../../lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql) — canonical **4.0.x** DDL (**170** tables post **`schema_review`** merge, **2026-04-07**).
 - **INSTALLER:** [lupo-install/InstallWizardHtaccessWriter.php](../../../lupo-install/InstallWizardHtaccessWriter.php) — Apache **`.htaccess`** marker merge (`# BEGIN LUPOPEDIA` / `LUPOPEDIA_DB`).
 - **PACKAGER:** [lupo-scripts/build_softaculous_package.sh](../../../lupo-scripts/build_softaculous_package.sh) — **Softaculous** tarball build; **rsync** excludes for sensitive dotfiles and **live** `lupopedia-config.php`.
 - **CONFIG SAMPLE (root):** [lupopedia-config-sample.php](../../../lupopedia-config-sample.php) — Softaculous `[[softdb*]]` placeholders; not shipped as live config.
@@ -453,5 +563,7 @@ lupopedia.footer:
 | `decisions/20260405104405_…` | `SemanticNavbarEmbedContext.php`, `semantic-navbar-api.php`, `AdminSemanticWidgetHandler.php`, PRD 21, `lupo-en.php` semantic keys | Semantic navbar embed + Admin + PRD 21 thread |
 | `comments/20260405104405_…` | `PLAN` M, `TODO`, `WHAT_TO_WORK_ON_NEXT_SESSION`, Crafty handoff | Session end UTC `20260405104405` |
 | `CHANGELOG` [2026-04-05] (semantic navbar entry) | `104405` decision + comment + indexes | Evidence UTC `20260405104405` |
+| `CHANGELOG` [2026-04-06 17:30 UTC] prepend, `decisions/20260406_173021_…`, `questions/20260406_173022_…`, `answers/20260406_173022_…` | `4.0.95/CHANGELOG.md`, `FOR_CLAUDE_CODE_2026_04_06.md`, root `CHANGELOG.md`, `PLAN.md` Phase 6b | 5W1H close-out — **4.0.94** snapshot vs active line (UTC `20260406173021`) |
+| `decisions/20260407_015813_…` | `mysql/install/install_new_lupopedia.sql`, `schema_review/schema_corrected_core.sql`, `schema_review/schema_corrected_missing.sql`, `CHANGELOG` [2026-04-07 02:00 UTC], `PLAN` Phase 8b, `questions/20260407_015814_…`, `answers/20260407_015815_…` | Install merge receipt + **`truth_*`** Q/A (UTC `20260407015813`) |
 
 Update this file whenever a new thread file or PRD section creates a durable cross-link.

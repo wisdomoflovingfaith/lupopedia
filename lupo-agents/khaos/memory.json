@@ -1,0 +1,12 @@
+{
+  "memory_type": "bootstrap_knowledge",
+  "core_knowledge": {
+    "initialization_sequences": "Proven kernel initialization sequences",
+    "bootstrap_outcomes": "History of bootstrap events and their outcomes"
+  },
+  "working_memory": {"active_bootstrap_tasks": "Bootstrap sequences currently in progress"},
+  "memory_boundaries": ["bootstrap and initialization scope only", "no post-operational memory"],
+  "retention_rules": ["retain successful initialization patterns", "no post-bootstrap interference patterns"],
+  "forbidden_memory": ["post-bootstrap operational interference"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

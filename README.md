@@ -1,13 +1,13 @@
 ---
 lupopedia.headers:
   header_format_version: 2
-  when_updated: '20260406163802'
+  when_updated: '20260407233334'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260406163802'
+  last_modified_utc: '20260407233334'
   channel_id: 42
-  thread_id: readme-4-0-95
+  thread_id: readme-4-0-96
   actor_id: 102
   actor_name: cursor
   delegation_chain: cursor:root
@@ -16,7 +16,7 @@ lupopedia.headers:
   purpose: Constitutional compliance, Y2038-safe time model, PHP 7.4+ and 64-bit production floor — root entry for humans and all agents.
   tags:
     - readme
-    - 4.0.95
+    - 4.0.96
     - architecture
     - doctrine
     - workflow
@@ -44,12 +44,14 @@ lupopedia.init:
       reason: "Header/footer validation doctrine"
     - path: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
       reason: "Canonical five-layer identity model"
-    - path: lupo-docs/versions/4.0.95/README.md
-      reason: "Current working version overview (4.0.94 is closed line for packaging handoff)"
-    - path: lupo-docs/versions/4.0.95/PLAN.md
-      reason: "Current detailed iteration plan"
+    - path: lupo-docs/versions/4.0.96/README.md
+      reason: "Current working version overview (4.0.95 line finalized)"
+    - path: lupo-docs/versions/4.0.96/TODO.md
+      reason: "Current task registry and backlog for the active patch line"
+    - path: lupo-docs/versions/4.0.96/CHANGELOG.md
+      reason: "Canonical patch-line changelog for 4.0.96"
     - path: lupo-docs/versions/4.0.95/decisions/
-      reason: "Architecture decisions and implementation reasoning for current version (folder with threaded decision files)"
+      reason: "Architecture decisions for the finalized 4.0.95 line (historical)"
     - path: lupo-channels/channel_index.md
       reason: Canonical channel map and path policy
     - path: ORGANIZATION.md
@@ -58,7 +60,12 @@ lupopedia.init:
       reason: Mandatory real UTC for headers — run tick.py; never guess timestamps
 lupopedia.edges:
   comment: Snapshot of root documentation references for version-driven execution and release continuity.
+
   outbound_edges:
+    - to: lupo-content/federation_node/0/captains_log/20260407_hello_world.md
+      type: references
+      weight: 1.0
+      reason: Captain's Log Entry 001 — Wolfie's personal and technical journey behind Lupopedia's constitutional doctrine (2026-04-07)
     - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
       type: references
       weight: 1.0
@@ -84,22 +91,26 @@ lupopedia.edges:
     - to: ONBOARDING.md
       type: references
       weight: 0.95
+    - to: lupo-docs/versions/4.0.96/README.md
+      type: references
+      weight: 1.0
+      reason: Current working version overview (active 4.0.96 line)
+    - to: lupo-docs/versions/4.0.96/TODO.md
+      type: references
+      weight: 1.0
+      reason: Current task tracking and backlog
+    - to: lupo-docs/versions/4.0.96/CHANGELOG.md
+      type: references
+      weight: 1.0
+      reason: Canonical patch-line changelog for 4.0.96
     - to: lupo-docs/versions/4.0.95/README.md
       type: references
-      weight: 1.0
-      reason: Current working version overview (4.0.94 closed line for packaging handoff)
-    - to: lupo-docs/versions/4.0.95/PLAN.md
-      type: references
-      weight: 1.0
-      reason: Current detailed iteration plan
+      weight: 0.95
+      reason: Finalized 4.0.95 line (closed)
     - to: lupo-docs/versions/4.0.95/decisions/
       type: references
-      weight: 1.0
-      reason: Architecture decisions and implementation reasoning for current version
-    - to: lupo-docs/versions/4.0.95/TODO.md
-      type: references
-      weight: 1.0
-      reason: Current task tracking and execution plan
+      weight: 0.9
+      reason: Decisions recorded under the finalized 4.0.95 line
     - to: lupo-docs/versions/4.1.0/plan.md
       type: references
       weight: 0.95
@@ -133,8 +144,12 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Canonical versioning and upgrade-path doctrine
+    - to: lupo-docs/prd/40_versioning_doctrine.md
+      type: references
+      weight: 1.0
+      reason: PRD 40 — versioning doctrine (4.0.x line, Crafty path, 4.1.0 gate)
 lupopedia.footer:
-  last_verified: '20260406163802'
+  last_verified: '20260407233334'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -153,276 +168,263 @@ lupopedia.footer:
 
 # LUPOPEDIA - Constitutional AI Agent Framework
 
-**Version:** 4.0.x (Y2038 compliant time model)  
+**Current version:** **4.0.96** (`GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `lupo-config/global_atoms.yaml`; runtime: `LUPOPEDIA_VERSION` from `lupo-includes/version.php`).  
+**Version family:** 4.0.x (Y2038-compliant packed UTC time model).  
 **License:** GPL v3  
 **PHP minimum:** 7.4 (**64-bit required** for production — enforced in `install.php` preflight)
 
----
+## 1. What Is Lupopedia? (High-Level Summary)
 
-## CRITICAL: Constitutional rules for all agents
+Lupopedia is a doctrine-driven semantic OS and multi-agent platform that evolves the Crafty Syntax 3.7.5 lineage into a constitutional architecture for modern orchestration, truth management, and channel-based collaboration. It is built as a shared-hosting-compatible system with deterministic behavior, explicit identity boundaries, and file-backed operational continuity where required. The project treats PRDs and doctrine as implementation authority, with application logic enforcing constraints that are often delegated to frameworks or database-side automation elsewhere. Lupopedia prioritizes auditable operation across humans and agents, including structured channels, implementation mirrors, and reproducible artifact patterns. Its 4.0.x line is installer-first and doctrine-governed, with the 4.1.0 gate tied to distribution and upgrade-readiness requirements.  
+**See also:** [Captain's Log Entry 001](lupo-content/federation_node/0/captains_log/20260407_hello_world.md)
 
-**All agents (IDE, chat, automation, LLM) must read and follow:**
+## 2. Core Constitutional Principles
 
-**[00_root_constitutional_system_requirements.md](lupo-docs/prd/00_root_constitutional_system_requirements.md)**
+- **Root constitutional system requirements (supreme authority):** [PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md)
+- **Timestamp doctrine (packed UTC, deterministic clocks, Y2038-safe model):**
+  - [lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md)
+  - [lupo-rules/root/TIMESTAMP_DOCTRINE.md](lupo-rules/root/TIMESTAMP_DOCTRINE.md)
+  - [PRD 15 Temporal System](lupo-docs/prd/15_temporal_system.md)
+- **Identity layers doctrine (auth user, actor, department, agent, faucet):**
+  - [lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md)
+  - [PRD 05](lupo-docs/prd/05_auth_user_actor_agent_transformation.md)
+  - [PRD 07](lupo-docs/prd/07_agents_faucets.md)
+  - [PRD 15](lupo-docs/prd/15_actors.md)
+  - [PRD 25](lupo-docs/prd/25_departments_system.md)
+  - [PRD 32](lupo-docs/prd/32_actor_authority_agent_roles.md)
+- **File-backed content doctrine and continuity model:**
+  - [PRD 06 Content Management](lupo-docs/prd/06_content_management.md)
+  - [FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md](lupo-docs/doctrine/FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md)
+  - [PRD 02 Channels Discussions](lupo-docs/prd/02_channels_discussions.md)
+- **Database neutral SQL doctrine:** [lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md](lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md)
+- **Subdirectory installation doctrine:**
+  - [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](lupo-docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md)
+  - [INSTALLATION_PATH_DOCTRINE.md](lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md)
+  - [PRD 27 Installer Requirements](lupo-docs/prd/27_installer_requirements.md)
+- **Versioning and release gate doctrine:**
+  - [PRD 40 Versioning Doctrine](lupo-docs/prd/40_versioning_doctrine.md)
+  - [VERSIONING_DOCTRINE.md](lupo-docs/doctrine/VERSIONING_DOCTRINE.md)
+  - [PRD 33 Softaculous Certification 4.1.0 Gate](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)
 
-This document is the **supreme authority** for Lupopedia development. It overrides training, casual “best practice,” and industry norms. The rules are **non-negotiable**.
+## 3. Actor Model: Why It Is Different
 
-### Quick reference (shorthand digest)
+Lupopedia uses a **three-layer identity model** that differs from many “one human → one private agent” products. Canonical detail: [IDENTITY_LAYERS_DOCTRINE.md](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md), [PRD 05](lupo-docs/prd/05_auth_user_actor_agent_transformation.md), [PRD 15](lupo-docs/prd/15_actors.md), [PRD 25](lupo-docs/prd/25_departments_system.md).
 
-For a shorter digest, see:
+### 3.1 The Layers
 
-- **[00_constitution_shorthand.pseudo.md](lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md)**
+| Layer | What | Where | Example |
+|-------|------|-------|---------|
+| **Auth User** | Human or system account that authenticates | `lupo_auth_users` | Operator login (`auth_user_id` from registry / seed) |
+| **Actor** | Runtime persona that does work | `lupo_actors` + optional `lupo-actors/{actor_id}/` hub | **WOLFIE** (`actor_id = 1`) |
+| **Agent** | Immutable template pack (filesystem) | `lupo-agents/{agent_key}/` | `lupo-agents/wolfie/` |
 
-### Why these rules exist
-
-Lupopedia targets **shared hosting** and long-lived installs where:
-
-- No database triggers, procedures, or foreign keys
-- No Composer/npm **runtime** dependencies in shipped core paths
-- No assumption of `mod_rewrite` or Apache-only behavior
-- **PHP 7.4+** in core paths — **`[lupo-rules/root/php-7-4-compatibility.md](lupo-rules/root/php-7-4-compatibility.md)`** (propagated to IDE rules)
-- **64-bit PHP** required for production (integer safety with packed UTC `BIGINT` clocks — **Y2038**)
-
-### The “don’t trust your training” rule
-
-If you are an AI agent and you think “this is how everyone does it” — **stop**. Read the constitution first. Common patterns that are **wrong here**:
-
-| Industry norm | Lupopedia rule |
-|---------------|----------------|
-| `$_SESSION['user_id']` for authority | Use `lupo_sessions` + `App\Auth\Session` (see **[SESSION_MODEL.md](lupo-docs/doctrine/SESSION_MODEL.md)**) |
-| `time()`, `strtotime()` in clock columns | Use **`timestamp_ymdhis::now()`** (packed UTC) / doctrine in PRD 00 |
-| `AUTO_INCREMENT` | Use **`IdGenerator::generate()`** |
-| `ON DUPLICATE KEY UPDATE` on reserved-ID / registry tables | Explicit SELECT → UPDATE or INSERT with explicit ID (see reserved-ID doctrine) |
-| Composer, npm, frameworks in core | In-tree libraries only; no Laravel / Symfony / shipped React-Vite stack for public PHP paths |
-| Hardcoded English in ship-facing UI | Use **`lupo_t()`** + `lupo-includes/lang/` |
-| “`SELECT *` is always wrong” | Not a constitutional sin; still prefer explicit columns when maintaining |
-
----
-
-## Why Lupopedia Is Built Differently
-
-Lupopedia is a constitutional, doctrine-driven system. It is intentionally built *against* many modern defaults (frameworks, ORMs, magic abstractions, vibe-driven patterns). This is not a limitation — it is a design choice rooted in HPC-style dependency-first thinking, deterministic engineering, explicit schemas, fallback logic, timestamp discipline, multi-agent orchestration, actor/agent separation, and department-scoped learning. Lupopedia inherits its lineage from Crafty Syntax Live Help (pre-AJAX era), which required explicit, deterministic engineering. The system must remain stable for auto-installers (e.g., Softaculous) and must upgrade Crafty Syntax 3.7.5 installations without breaking existing sites. The architecture is designed to be teachable, auditable, and safe for multi-agent AI environments.
-
-## What Lupopedia Does NOT Do (By Design)
-
-- **No frameworks (Laravel, React, etc.)** — This avoids hidden logic and nondeterministic behavior.
-- **No ORM magic** — This preserves explicit SQL and schema control.
-- **No Composer/npm runtime dependencies** — This ensures installer stability and long-term compatibility.
-- **No vibe-driven defaults** — All behavior must follow doctrine, not trends.
-- **No timeline-based planning** — The system uses dependency-first reasoning.
-- **No schema churn** — Schema changes must follow safe migration doctrine.
-- **No Unix epoch timestamps** — Lupopedia uses packed timestamps per doctrine.
-- **No auto-chmod or unsafe file operations** — Installer safety is mandatory.
-
-## Where These Rules Come From
-
-These constraints are defined and expanded in the project’s doctrine and PRD files; the README points there instead of restating them. Start with:
-
-- [PRD 00 — Root Constitutional Requirements](lupo-docs/prd/00_root_constitutional_system_requirements.md)
-- [PRD 05 — Auth User / Actor / Agent Transformation](lupo-docs/prd/05_auth_user_actor_agent_transformation.md)
-- [PRD 15 — Departments and Actors](lupo-docs/prd/15_actors.md)
-- [PRD 17 — Pseudocode Format Rules](lupo-docs/prd/17_decisions_format.md)
-- [PRD 28 — Semantic Monitoring Widget](lupo-docs/prd/28_semantic_monitoring_widget.md)
-- [PRD 33 — Softaculous Installation Gate](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)
-- [00_user_captain_WOLFIE_identity_constitution.pseudo.md](lupo-docs/decisions/pseudocode/00_user_captain_WOLFIE_identity_constitution.pseudo.md)
-
-## Why This Matters
-
-Lupopedia must remain deterministic, auditable, and safe for multi-agent AI systems. The doctrine protects the system from accidental modernization or framework contamination. Contributors and AI agents must understand the philosophy before making changes. This README exists to prevent confusion when developers expect modern frameworks or patterns that Lupopedia intentionally avoids.
-
----
-
-## Y2038 compliance
-
-**Lupopedia uses a Y2038-safe clock model for stored instants.**
-
-### Why this matters
-
-Unix epoch seconds in a **32-bit signed** integer overflow after **2038-01-19 03:14:07 UTC**. After that, naive epoch storage breaks ordering, logs, and integrity.
-
-### How Lupopedia addresses it
-
-1. **No Unix epoch in database clock columns** — Wall-clock instants use packed UTC **`BIGINT`** **`YYYYMMDDHHIISS`** (e.g. `20260406000000`).
-2. **64-bit PHP in production** — The installer requires **`PHP_INT_SIZE >= 8`** so PHP integer operations stay consistent with large `BIGINT` values.
-3. **Canonical clock helper** — **`timestamp_ymdhis::now()`** returns packed UTC as **`int`** (see **`lupo-includes/classes/TimestampYmdhis.php`**).
-4. **No SQL time functions for those columns** — **`NOW()`**, **`DATE_ADD`**, **`FROM_UNIXTIME()`** are not used for stored doctrine clocks; time math is application-side.
-5. **HTTP cookie expiry** — May still use Unix time where the browser API requires it; scope and constraints are documented in the constitutional PRD.
-
-### Verification
-
-```bash
-python lupo-bin/tick.py
-```
-
-Updates **`lupo-bin/temporal_anchor.json`** from real system UTC for agent and doc timestamps. See **[TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md)**.
-
----
-
-## Constitutional architecture (abridged)
-
-### Session authority (model A)
-
-**Do not use `$_SESSION['actor_id']` for authority.** The browser holds **`session_id`**; identity and act-as state live in **`lupo_sessions`** (via **`App\Auth\Session`**).
-
-```php
-// Correct
-$session = App\Auth\Session::loadById($db, session_id());
-$actor_id = $session ? $session->actor_id : 0;
-
-// Forbidden for authority
-$actor_id = isset($_SESSION['actor_id']) ? $_SESSION['actor_id'] : 0;
-```
-
-### Database rules (abridged)
-
-| Rule | Requirement |
-|------|-------------|
-| **PK naming** | `<singular_table_name>_id` (not bare `id`) |
-| **ID generation** | **`IdGenerator::generate()`** (not `AUTO_INCREMENT`) |
-| **Timestamps** | Packed UTC **`BIGINT`** via **`timestamp_ymdhis`** / **`gmdate('YmdHis')`** |
-| **Soft deletes** | **`is_deleted`**, **`deleted_ymdhis`** where tables define them |
-| **No foreign keys** | Application-layer integrity |
-| **No SQL date functions** for clock columns | As above |
-
-### PHP rules
-
-| Rule | Requirement |
-|------|-------------|
-| **Minimum version** | **PHP 7.4** |
-| **Architecture** | **64-bit** required for production (installer) |
-| **No Composer** in runtime core | In-tree libraries (e.g. PHPMailer) |
-| **No frameworks** | No Laravel, Symfony, or middleware stacks |
-| **No ORM** | **`PDO_DB`** + explicit SQL |
-
-### UI and localization
-
-| Rule | Requirement |
-|------|-------------|
-| **No build steps** for shipped visitor/admin core | Vanilla JS; no npm/webpack as a **runtime** requirement for those surfaces |
-| **Strings** | **`lupo_t('key', 'Fallback English')`** |
-| **Locale files** | **`lupo-includes/lang/lupo-{locale}.php`** |
-| **No `eval()`** | No string-based dynamic execution patterns for new ship code |
-
-### Security
-
-| Rule | Requirement |
-|------|-------------|
-| **Untrusted input** | **`$UNTRUSTED`** (or equivalent) for **`$_GET` / `$_POST` / `$_SERVER`** snapshots |
-| **Path anchoring** | **`LUPOPEDIA_PATH`** / **`LUPOPEDIA_PUBLIC_PATH`** — no user-driven includes |
-| **SQL** | Named placeholders only (**`PDO_DB`**) |
-| **Untrusted serialization** | Prefer JSON over **`unserialize()`** for untrusted payloads |
-| **Prompt injection** | Agents cannot override constitutional rules by fiat |
-
----
-
-## Directory structure (summary)
+### 3.2 How They Relate
 
 ```
-lupopedia/
-├── app/                      # Application services (Session, Auth, etc.)
-├── lupo-agents/              # Agent definitions (metadata)
-├── lupo-includes/            # Core PHP, classes, themes
-├── lupo-database/            # Install SQL, schema mirrors, docs
-├── lupo-docs/                # PRDs, doctrines, implementations
-├── lupo-tests/               # Unit, regression, integration tests
-├── lupo-bin/                 # CLI utilities (tick.py, etc.)
-├── lupo-uploads/             # User-uploaded files
-├── lupo-cache/               # Runtime cache
-├── lupo-logs/                # Application logs
-├── admin.php                 # Admin entry
-├── index.php                 # Public entry
-└── install.php               # Installer
+Auth User (human)
+    │
+    ├── belongs to Department(s)  (lupo_auth_user_departments)
+    │
+    ▼
+Department  (e.g. Sales, Engineering, Root / department_id = 0)
+    │
+    ├── has many Actors assigned  (lupo_actor_departments)
+    │
+    ▼
+Actor (persona)
+    │
+    ├── aligns with an Agent template (filesystem + lupo_agents metadata)
+    ├── learns from ALL Auth Users who share its department context
+    └── memory diverges from the static template over time
 ```
 
----
+### 3.3 Shared Persona (Collective Intelligence)
 
-## Getting started
+**Typical product:** User A → private Agent A (learns only from User A).
 
-### Requirements
+**Lupopedia:** Department → **shared** Actor → many humans in that department **act as the same actor**. The actor accumulates **department-scoped** behavior; each human benefits from what colleagues taught the persona.
 
-- **64-bit** **PHP 7.4+**
-- **MySQL 8.0+** or **MariaDB 10.5+** or **PostgreSQL** (see PRD / installer notes for supported DBs)
-- Web server with **subdirectory** install support (not web root)
+**Example:** Five sales reps all act as a **Sales-scoped** WOLFIE-class actor. The actor’s memory and habits improve from all five, bounded by department membership—not by a private per-user bot.
 
-### Installation
+### 3.4 Access Rules (Web UI)
 
-1. Upload to a subdirectory (e.g. `/public_html/lupopedia/`).
-2. Open `https://yourdomain.example/lupopedia/install.php`.
-3. Complete the wizard (database, admin user, paths).
+An Auth User may act as an Actor only when **department intersection** holds: some `department_id` appears in both the user’s memberships and the actor’s assignments.
 
-### After install
-
-```bash
-python lupo-bin/tick.py
+```sql
+-- Actors this user may act as (illustrative; enforce in PHP + PDO_DB)
+SELECT DISTINCT a.*
+FROM lupo_actors a
+INNER JOIN lupo_actor_departments ad
+  ON ad.actor_id = a.actor_id AND ad.is_deleted = 0
+WHERE ad.department_id IN (
+    SELECT aud.department_id
+    FROM lupo_auth_user_departments aud
+    WHERE aud.auth_user_id = :current_auth_user_id
+      AND aud.is_deleted = 0
+)
+  AND a.is_deleted = 0;
 ```
 
-```bash
-sh lupo-scripts/run_tests.sh .
+**Root department:** **`department_id = 0`** is the **Root** scope in current seed/import doctrine. Users with **department 0** membership participate in the unrestricted root context; resolve edge cases in application policy (see [PRD 25](lupo-docs/prd/25_departments_system.md)).
+
+### 3.5 Access Rules (Terminal / IDE)
+
+For local **CLI** and **IDE** workflows, the runtime typically uses a **root-equivalent** session: **department context 0** and permission to target **any `actor_id`** for tooling (no per-user department intersection). That is why maintenance scripts and IDE agents can reference **WOLFIE (`actor_id = 1`)** or other actors without mirroring a human’s web session.
+
+**Do not** mint separate `lupo_auth_users` rows for IDE products; attribute work via **facet `actor_id`** (Cursor, Claude Code, …) per [AGENTS.md](AGENTS.md) and the actor registry.
+
+### 3.6 Why This Matters
+
+1. **Actors learn from groups**, not isolated accounts—**collective** intelligence inside a department boundary.
+2. **Same agent pack, different actors**—e.g. sales-scoped vs engineering-scoped personas diverge by context.
+3. **Memory divergence**—compare filesystem **agent** packs with **actor-scoped** memory in `lupo_memory_nodes` / `lupo_memory_edges` ([PRD 38](lupo-docs/prd/38_memory_unification.md)).
+4. **Boundaries**—non-root departments do not implicitly inherit another department’s actors.
+
+### 3.7 Root `auth_user_id` (Doctrine)
+
+| Context | `auth_user_id` | Notes |
+|---------|----------------|--------|
+| Doctrine (PRD 01) | **0** | Reserved **root** auth user id |
+| Web / seed rows | Per install | Concrete operator rows use ids from **IdGenerator** / seed; **effective** admin/root resolution is application-defined |
+| CLI / IDE | Root-equivalent | Tooling assumes **full actor reach**; not a separate “IDE login” user |
+
+**`auth_user_id = 0` is not the same thing as `actor_id = 1` (WOLFIE).** Auth users authenticate humans; actors orchestrate work.
+
+### 3.8 Visual Summary
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              AUTH USER (human operator)                         │
+│     auth_user_id from install; doctrine reserves root = 0       │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              │ lupo_auth_user_departments
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│            DEPARTMENT 0 (Root) — full context                     │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              │ lupo_actor_departments
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+        ┌──────────┐   ┌──────────┐   ┌──────────┐
+        │  WOLFIE  │   │  LILITH  │   │  THOTH   │
+        │ actor 1  │   │ actor 2  │   │ (registry)│
+        └──────────┘   └──────────┘   └──────────┘
+              │               │
+              │ template      │
+              ▼               ▼
+        lupo-agents/    lupo-agents/
+           wolfie/        lilith/
 ```
 
-Unit-only: **`sh lupo-scripts/run_unit_tests.sh .`**. Single file: **`php lupo-tests/unit/<name>.php`** (see **[AGENTS.md](AGENTS.md)**).
+**Non-root example:** A user in **department 2 (Sales)** only intersects **Sales-scoped** actors; they do **not** automatically act as root **WOLFIE (`actor_id = 1`)** unless policy and `lupo_actor_departments` / `lupo_auth_user_departments` rows say so.
+
+### 3.9 Memory Divergence (Install-Aligned)
+
+`lupo_memory_nodes` uses **`owner_actor_id`** and **`owner_type`** (see `install_new_lupopedia.sql`). Actor rows hold **learned** content; **`lupo-agents/`** remains the **static** template. Relationships between nodes use **`lupo_memory_edges`** (`edge_type` by application convention). Full model: [PRD 38](lupo-docs/prd/38_memory_unification.md), [PRD 01](lupo-docs/prd/01_core_identity.md).
+
+## 4. Repository Structure Overview
+
+- **`lupo-content/`**: File-backed content artifacts and federation-node scoped content structure; see [PRD 06](lupo-docs/prd/06_content_management.md) and [PRD 29](lupo-docs/prd/29_project_structure.md).
+- **`lupo-docs/`**: PRDs, doctrine, implementation mirrors, and governance records; see [PRD_INDEX.md](lupo-docs/prd/PRD_INDEX.md), [PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md), and [PRD 31](lupo-docs/prd/31_implementation_folder_guidelines.md).
+- **`lupo-agents/`**: Agent/faucet config surfaces and identity-linked metadata; see [PRD 07](lupo-docs/prd/07_agents_faucets.md) and [PRD_AGENT_DEFINITION_MODEL.md](lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md).
+- **`lupo-database/`**: Install SQL, seed/import paths, schema artifacts, and data-model anchors; see [PRD 02 Data Model](lupo-docs/prd/02_data_model.md), [PRD 13 Crafty Integration](lupo-docs/prd/13_crafty_integration.md), [PRD 27](lupo-docs/prd/27_installer_requirements.md), and [PRD 40](lupo-docs/prd/40_versioning_doctrine.md).
+- **`lupo-includes/`**: Core runtime stack (modules/classes/themes) and shared request-path logic.
+- **`app/`**: Application services implementing auth/session/domain logic under constitutional constraints.
+
+## 5. Installation Overview
+
+1. Prepare a supported environment and deploy Lupopedia into a subdirectory path.
+2. Run `install.php` and complete installer requirements for database and runtime validation.
+3. Apply canonical install/seed/import flow per the 4.0.x model (including Crafty Syntax 3.7.5 import path where applicable).
+4. Run project validation/tests and confirm doctrine-aligned runtime behavior.
+
+Details:
+- [PRD 27 Installer Requirements](lupo-docs/prd/27_installer_requirements.md)
+- [PRD 33 Softaculous Certification 4.1.0 Gate](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)
+- [SOFTACULOUS_PACKAGE_BUILD.md](lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md)
+- [PRD 13 Crafty Integration](lupo-docs/prd/13_crafty_integration.md)
+
+## 6. Developer Workflow
+
+- **File-backed content workflow:** follow content and channel doctrine before implementation details; start with [PRD 06](lupo-docs/prd/06_content_management.md), [PRD 02](lupo-docs/prd/02_channels_discussions.md), [PRD 17](lupo-docs/prd/17_decisions_format.md), and [PRD 21](lupo-docs/prd/21_thread_graduation_doctrine.md).
+- **PRD-driven implementation workflow:** use PRD contracts and implementation mirrors (`lupo-docs/implementations/{prd_file_stem}/`) per [PRD 31](lupo-docs/prd/31_implementation_folder_guidelines.md) and [PRD 29](lupo-docs/prd/29_project_structure.md).
+- **Agents and faucets workflow:** maintain actor authority boundaries and faucet role separation per [PRD 05](lupo-docs/prd/05_auth_user_actor_agent_transformation.md), [PRD 07](lupo-docs/prd/07_agents_faucets.md), [PRD 15](lupo-docs/prd/15_actors.md), [PRD 25](lupo-docs/prd/25_departments_system.md), and [PRD 32](lupo-docs/prd/32_actor_authority_agent_roles.md).
+- **Doctrine/rule propagation workflow:** keep root rules and coordination docs aligned using [lupo-rules/root/README.md](lupo-rules/root/README.md), [AGENTS.md](AGENTS.md), and [ONBOARDING.md](ONBOARDING.md).
+
+## 7. PRD Index (Linked)
+
+- [00_root_constitutional_system_requirements.md](lupo-docs/prd/00_root_constitutional_system_requirements.md)
+- [01_captain_wolfie_identity.md](lupo-docs/prd/01_captain_wolfie_identity.md)
+- [01_core_identity.md](lupo-docs/prd/01_core_identity.md)
+- [02_channels_discussions.md](lupo-docs/prd/02_channels_discussions.md)
+- [02_data_model.md](lupo-docs/prd/02_data_model.md)
+- [03_goals_and_success_criteria.md](lupo-docs/prd/03_goals_and_success_criteria.md)
+- [03_truth_knowledge.md](lupo-docs/prd/03_truth_knowledge.md)
+- [04_lupopedia_js_foundation.md](lupo-docs/prd/04_lupopedia_js_foundation.md)
+- [04_tags_metadata.md](lupo-docs/prd/04_tags_metadata.md)
+- [05_auth_user_actor_agent_transformation.md](lupo-docs/prd/05_auth_user_actor_agent_transformation.md)
+- [05_collections_navigation.md](lupo-docs/prd/05_collections_navigation.md)
+- [06_content_management.md](lupo-docs/prd/06_content_management.md)
+- [07_agents_faucets.md](lupo-docs/prd/07_agents_faucets.md)
+- [08_actors.md](lupo-docs/prd/08_actors.md)
+- [08_governance_rules.md](lupo-docs/prd/08_governance_rules.md)
+- [09_federation_sync.md](lupo-docs/prd/09_federation_sync.md)
+- [10_tasks_workflow.md](lupo-docs/prd/10_tasks_workflow.md)
+- [11_analytics_tracking.md](lupo-docs/prd/11_analytics_tracking.md)
+- [12_api_integration.md](lupo-docs/prd/12_api_integration.md)
+- [13_crafty_integration.md](lupo-docs/prd/13_crafty_integration.md)
+- [14_system_operations.md](lupo-docs/prd/14_system_operations.md)
+- [15_actors.md](lupo-docs/prd/15_actors.md)
+- [15_temporal_system.md](lupo-docs/prd/15_temporal_system.md)
+- [16_lupopedia_headers.md](lupo-docs/prd/16_lupopedia_headers.md)
+- [17_decisions_format.md](lupo-docs/prd/17_decisions_format.md)
+- [18_channel_chat_display.md](lupo-docs/prd/18_channel_chat_display.md)
+- [19_garbage_collection_system.md](lupo-docs/prd/19_garbage_collection_system.md)
+- [20_federation_intake_doctrine.md](lupo-docs/prd/20_federation_intake_doctrine.md)
+- [20_vsx_extension.md](lupo-docs/prd/20_vsx_extension.md)
+- [21_semantic_navbar.md](lupo-docs/prd/21_semantic_navbar.md)
+- [21_thread_graduation_doctrine.md](lupo-docs/prd/21_thread_graduation_doctrine.md)
+- [22_web_navigation_architecture.md](lupo-docs/prd/22_web_navigation_architecture.md)
+- [23_health_check_asclepius_prd.md](lupo-docs/prd/23_health_check_asclepius_prd.md)
+- [24_actor_onboarding_flow.md](lupo-docs/prd/24_actor_onboarding_flow.md)
+- [24_cli_interface_prd.md](lupo-docs/prd/24_cli_interface_prd.md)
+- [25_departments_system.md](lupo-docs/prd/25_departments_system.md)
+- [26_five_layer_documentation_architecture.md](lupo-docs/prd/26_five_layer_documentation_architecture.md)
+- [27_installer_requirements.md](lupo-docs/prd/27_installer_requirements.md)
+- [28_semantic_monitoring_widget.md](lupo-docs/prd/28_semantic_monitoring_widget.md)
+- [29_project_structure.md](lupo-docs/prd/29_project_structure.md)
+- [30_channel_usage_patterns.md](lupo-docs/prd/30_channel_usage_patterns.md)
+- [31_implementation_folder_guidelines.md](lupo-docs/prd/31_implementation_folder_guidelines.md)
+- [32_actor_authority_agent_roles.md](lupo-docs/prd/32_actor_authority_agent_roles.md)
+- [33_softaculous_certification_4_1_0_gate.md](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)
+- [34_federation_node_semantic_network.md](lupo-docs/prd/34_federation_node_semantic_network.md)
+- [35_mobile_native_app_separation.md](lupo-docs/prd/35_mobile_native_app_separation.md)
+- [36_rose_multi_persona_synthetic_dialog.md](lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md)
+- [37_kairos_channel_memory_consolidation.md](lupo-docs/prd/37_kairos_channel_memory_consolidation.md)
+- [40_versioning_doctrine.md](lupo-docs/prd/40_versioning_doctrine.md)
+- [PRD_AGENT_DEFINITION_MODEL.md](lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md)
+- [PRD_INDEX.md](lupo-docs/prd/PRD_INDEX.md)
+- [README.md](lupo-docs/prd/README.md)
+- [WHAT_TO_DO_NEXT.md](lupo-docs/prd/WHAT_TO_DO_NEXT.md)
+
+## 8. Contributing / Stewardship Notes
+
+- **Doctrine-first development:** always start with [PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md) and applicable PRD contracts.
+- **No schema inference:** use canonical schema and install/doctrine sources, including [PRD 02](lupo-docs/prd/02_data_model.md), [PRD 27](lupo-docs/prd/27_installer_requirements.md), and [SCHEMA_CANONICAL_SOURCES.md](lupo-docs/doctrine/SCHEMA_CANONICAL_SOURCES.md).
+- **No framework dependencies in core runtime paths:** follow constitutional/runtime rules in [PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md) and [lupo-rules/root/README.md](lupo-rules/root/README.md).
+- **Packed UTC timestamps:** use doctrine-aligned packed UTC handling and validation via [TIMESTAMP_DOCTRINE.md](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md) and [TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md).
+- **File-backed content and channel discipline:** preserve thread/artifact structure and implementation mirrors using [PRD 02](lupo-docs/prd/02_channels_discussions.md), [PRD 17](lupo-docs/prd/17_decisions_format.md), [PRD 21](lupo-docs/prd/21_thread_graduation_doctrine.md), [PRD 29](lupo-docs/prd/29_project_structure.md), and [PRD 31](lupo-docs/prd/31_implementation_folder_guidelines.md).
 
 ---
 
-## Documentation
+## Further Reading (Maintainers)
 
-| Document | Purpose |
-|----------|---------|
-| [00_root_constitutional_system_requirements.md](lupo-docs/prd/00_root_constitutional_system_requirements.md) | **Supreme authority** |
-| [SESSION_MODEL.md](lupo-docs/doctrine/SESSION_MODEL.md) | DB-backed session authority |
-| [VERSIONING_DOCTRINE.md](lupo-docs/doctrine/VERSIONING_DOCTRINE.md) | Versioning and release policy |
-| [AGAPE_DOCTRINE.md](lupo-docs/doctrine/AGAPE_DOCTRINE.md) | Resilience and fallbacks |
-
----
-
-## Agent rules (for AI assistants)
-
-1. Read **[PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md)** first.
-2. Do not use **`$_SESSION['actor_id']`** for authority — use **`App\Auth\Session`**.
-3. Do not persist **`time()`** / epoch into clock columns — use **`timestamp_ymdhis::now()`** (or aligned APIs).
-4. Do not rely on **`AUTO_INCREMENT`** for registry-style tables — use **`IdGenerator`** and explicit IDs where required.
-5. Do not hardcode ship-facing UI strings — use **`lupo_t()`**.
-6. Do not read superglobals raw in new code paths — use **`$UNTRUSTED`** (or project snapshot pattern).
-7. Do not add Composer/npm **runtime** dependencies to core ship paths.
-
-When in doubt, **the constitution wins**.
-
----
-
-## Testing
-
-```bash
-sh lupo-scripts/run_tests.sh .
-```
-
-```bash
-php lupo-tests/unit/admin_csrf.php
-```
-
----
-
-## License
-
-GNU General Public License v3.0 — see **[LICENSE](LICENSE)**.
-
----
-
-## Acknowledgments
-
-- **Crafty Syntax Live Help** — lineage and proven live-help patterns
-- **WordPress** — distribution and hosting patterns (studied; not copied) — see **[SOFTACULOUS_PACKAGE_BUILD.md](lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md)**
-- **WOLFIE doctrine** — survival-first engineering
-
----
-
-## Further reading (maintainers)
-
-- **[AGENTS.md](AGENTS.md)** — facets, tests, full stack summary  
-- **[ONBOARDING.md](ONBOARDING.md)** — operational quick-start  
-- **[ORGANIZATION.md](ORGANIZATION.md)** — root `lupo-*` map  
-- **[lupo-docs/versions/4.0.95/README.md](lupo-docs/versions/4.0.95/README.md)** — current version hub  
-- **4.0.x** — **No** Lupopedia→Lupopedia upgrades until **4.1.0**; DDL/seed/import stay aligned — see **[PRD 33](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)**  
-- **JSON under `lupo-database/lupopedia/json/`** — read-only schema mirrors; canonical DDL is **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**
-
-**Last updated (header UTC):** 20260406163802  
-**Constitutional authority:** [PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md)
+- [AGENTS.md](AGENTS.md)
+- [ONBOARDING.md](ONBOARDING.md)
+- [ORGANIZATION.md](ORGANIZATION.md)
+- [lupo-docs/versions/4.0.96/README.md](lupo-docs/versions/4.0.96/README.md) — **current patch line**
+- [lupo-docs/versions/4.0.96/TODO.md](lupo-docs/versions/4.0.96/TODO.md)
+- [lupo-docs/versions/4.0.96/CHANGELOG.md](lupo-docs/versions/4.0.96/CHANGELOG.md)
+- [lupo-docs/versions/4.0.95/README.md](lupo-docs/versions/4.0.95/README.md) — finalized **4.0.95** line

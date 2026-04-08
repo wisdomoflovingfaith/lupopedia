@@ -1,0 +1,10 @@
+{
+  "agent_id": 11, "agent_name": "ATHENA", "agent_code": "ATHENA", "agent_key": "athena", "slug": "athena",
+  "version": "1.0.0", "is_kernel": false, "layer": "coordination", "name": "ATHENA",
+  "role": "Strategic Planning & Wisdom",
+  "is_required": false, "status": "active",
+  "aliases": ["athena", "strategy", "planning", "wisdom"],
+  "department_scope": 0,
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

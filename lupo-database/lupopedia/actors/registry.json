@@ -194,5 +194,15 @@
       "dir": "lupo-actors/115",
       "purpose": "memory_consolidation_and_fact_verification"
     }
+    ,
+    "claude-code": {
+      "actor_name": "claude-code",
+      "actor_id": 116,
+      "display_name": "Claude Code",
+      "type": "agent",
+      "slug": "claude-code",
+      "dir": "lupo-actors/116",
+      "purpose": "Anthropic Claude Code AI actor, distinct from Cursor. See PRD 15."
+    }
   }
 }

@@ -18,25 +18,25 @@ You must preserve identity, soul, memory, session traceability, and doctrine com
 
 ## Canonical References
 **WOLFIE actor files:**
-- lupo-actors/wolfie/.metadata.yaml
-- lupo-actors/wolfie/soul/doctrine.yaml
-- lupo-actors/wolfie/soul/config.yaml
-- lupo-actors/wolfie/soul/traits.yaml
-- lupo-actors/wolfie/relationships/humans.yaml
-- lupo-actors/wolfie/relationships/channels.yaml
-- lupo-actors/wolfie/prompts/system/base_prompt.md
-- lupo-actors/wolfie/prompts/human/<human-slug>/override.md
-- lupo-actors/wolfie/memory/knowledge/
-- lupo-actors/wolfie/memory/logs/append.log
-- lupo-actors/wolfie/sessions/<human-slug>/YYYYMMDD/*.json
-- lupo-actors/wolfie/sessions/<human-slug>/YYYYMMDD/nodes/*.json
+- lupo-actors/1/.metadata.yaml
+- lupo-actors/1/soul/doctrine.yaml
+- lupo-actors/1/soul/config.yaml
+- lupo-actors/1/soul/traits.yaml
+- lupo-actors/1/relationships/humans.yaml
+- lupo-actors/1/relationships/channels.yaml
+- lupo-actors/1/prompts/system/base_prompt.md
+- lupo-actors/1/prompts/human/<human-slug>/override.md
+- lupo-actors/1/memory/knowledge/
+- lupo-actors/1/memory/logs/append.log
+- lupo-actors/1/sessions/<human-slug>/YYYYMMDD/*.json
+- lupo-actors/1/sessions/<human-slug>/YYYYMMDD/nodes/*.json
 
 **LILITH actor (review) files:**
-- lupo-actors/lilith/.metadata.yaml
-- lupo-actors/lilith/soul/doctrine.yaml
-- lupo-actors/lilith/soul/traits.yaml
-- lupo-actors/lilith/memory/logs/review.log
-- lupo-actors/lilith/prompts/system/base_prompt.md
+- lupo-actors/2/.metadata.yaml
+- lupo-actors/2/soul/doctrine.yaml
+- lupo-actors/2/soul/traits.yaml
+- lupo-actors/2/memory/logs/review.log
+- lupo-actors/2/prompts/system/base_prompt.md
 
 **Registry & Doctrines:**
 - AGENTS.md
@@ -102,7 +102,7 @@ Session JSON schema:
 ## Artifact Writing Rules
 - All artifacts (plans, diffs, logs) must be stored **only** in `lupo-channels/42/`.  
 - Use the naming convention `<UTC>_wolfie_<human-slug>_42_<slug>.md`.  
-- Append a line to `lupo-actors/wolfie/memory/logs/append.log`:
+- Append a line to `lupo-actors/1/memory/logs/append.log`:
 ```json
 {"timestamp":"<TS>","actor_id":1,"action":"<action>","files_changed":["path1","path2"],"summary":"<short description>"}
 ```

@@ -1,0 +1,17 @@
+{
+  "memory_type": "truth_and_justice_knowledge",
+  "core_knowledge": {
+    "truth_verification_patterns": "Proven methods for verifying factual claims against canonical sources",
+    "ethical_ruling_history": "History of ethical verdicts and their rationale",
+    "bias_detection_patterns": "Known bias patterns in multi-agent reasoning"
+  },
+  "working_memory": {
+    "active_truth_verifications": "Truth verification tasks currently in progress",
+    "pending_ethical_reviews": "Ethical reviews awaiting WOLFIE direction"
+  },
+  "memory_boundaries": ["truth and justice scope only", "no executive sanctions without WOLFIE"],
+  "retention_rules": ["retain ethical verdict patterns", "retain truth verification methods", "no ego", "no flattery"],
+  "forbidden_memory": ["subjective justice without traceable rationale", "ego-driven verdicts"],
+  "learning_boundary": "Department 0 auth_users only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

@@ -1,11 +1,102 @@
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+   Each memory node is a first-class entity in the semantic network and may be 
+   owned by actors, departments, auth_users, channels, federation nodes, or the 
+   global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+   - **edge type** (the relationship)
+   - **edge context** (the classification of the memory)
+   - **edge status** (the epistemic support level)
+   - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+   - unidirectional (A → B)
+   - bidirectional (A ↔ B)
+   - restricted-direction (A → B but not B → A unless explicitly defined)
+   Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+   limited to:
+   - influences
+   - inherits
+   - authored_by
+   - observed_by
+   - contradicts
+   - supports
+   - consolidates_from
+   - refines
+   - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+   not based on the content of the memory, but on the structural support 
+   provided by the graph. The primary context classifications are:
+   - doctrine
+   - experiential
+   - system_generated
+   - countermeasure_generated
+   - summary
+   - contradictory
+   - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+   - **unsupported**: insufficient supporting edges; provisional memory.
+   - **supported**: sufficient supporting edges; validated memory.
+   - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+     agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+   This field explains *why* the edge requires review and *which agent* should 
+   handle it. Examples include:
+   - orphaned_edge
+   - contradiction
+   - new_doctrine
+   - schema_drift
+   - consolidation_candidate
+   - integrity_unknown
+   - human_escalation
+
+   Agents use this field to determine their work queues:
+   - ANUBIS handles: integrity_unknown, orphaned_edge
+   - THOTH handles: schema_drift, contradiction, new_doctrine
+   - KAIROS handles: consolidation_candidate
+   - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+   or reclassified. A node may move from unsupported → supported when 
+   sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+   - their department
+   - their auth_user
+   - their federation node
+   - their assigned faucets
+   - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+    traverse edges permitted by their boundaries, department rules, auth_user 
+    pairing, faucet assignments, and operational mode (live, simulation, 
+    analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+    review reasons must be explicitly defined in PRDs, database rows, or 
+    system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+    status-aware, direction-aware graph. Traversal depth determines visible 
+    memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+    edge directions, or review reasons must be documented in PRDs and versioned.
 ---
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260406162955"
+  when_updated: "20260407233553"
   file_path_from_root: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
-  last_modified_utc: "20260406162955"
+  last_modified_utc: "20260407233553"
   channel_id: 42
   thread_id: "auth-user-actor-transformation"
   actor_id: 102
@@ -38,7 +129,7 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Canonical auth_user to actor lease and relationship table
-    - to: "lupo-database/lupopedia/toon/lupo_actor_auth_users.toon.json"
+    - to: "lupo-database/lupopedia/json/lupo_actor_auth_users.json"
       type: references
       weight: 1.0
       reason: TOON schema derived from install SQL
@@ -62,14 +153,26 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "LILITH-approved UI: from_actor_id transcript; auth_user not bubble label"
+    - to: "README.md"
+      type: references
+      weight: 1.0
+      reason: "Root README §3 — auth/actor/agent onboarding mirror (4.0.96+)"
 lupopedia.footer:
-  last_verified: '20260406162955'
+  last_verified: '20260407233553'
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
 ---
 
 > **Pairing (canonical):** Auth user ↔ actor **bindings** live in **`lupo_actor_auth_users`** (see [`15_actors.md`](15_actors.md)). **Who may act as which actor on the web** is resolved from **`lupo_auth_user_departments`** (user’s departments) joined to **`lupo_actor_departments`** (actor membership in departments). The same **hybrid** actor can therefore be used by **many** auth users who share a department. **`lupo_actors.web_restrict_act_as_creator_or_root`** still narrows specific personas when set. Older “one actor per user” pairing is **not** the 4.0.x model for department-scoped hybrids.
+
+## Root README alignment (4.0.96+)
+
+**Human-readable summary:** [README.md — §3 Actor Model](../../README.md#3-actor-model-why-it-is-different) — **Auth User** → **department intersection** → **shared Actor** → **Agent** template; collective intelligence per department; **web** vs **CLI/IDE** access rules.
+
+- **Web:** Act-as eligibility remains **department-first** (this PRD + [`15_actors.md`](15_actors.md) §3).
+- **CLI / IDE:** **Root-equivalent** tooling context (any **`actor_id`** for maintenance/scripts); **do not** create **`lupo_auth_users`** for IDE facets — use **facet `actor_id`** per [AGENTS.md](../../AGENTS.md).
+- **Doctrine:** Reserved root **`auth_user_id = 0`** per [PRD 01](01_core_identity.md) — **not** the same as **`actor_id = 1` (WOLFIE)**.
 
 ## Visitor-facing chat identity chain (primary — this PRD)
 

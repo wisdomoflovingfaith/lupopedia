@@ -1,0 +1,59 @@
+{
+  "table_name": "lupo_actor_runtime_events",
+  "fields": [
+    "`actor_runtime_event_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`event_type` varchar(64) NOT NULL",
+    "`event_details_json` json",
+    "`triggered_by_actor_id` bigint",
+    "`session_id` varchar(100)",
+    "`occurred_ymdhis` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_runtime_events_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_runtime_events_idx_type",
+      "columns": [
+        "event_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_runtime_events_idx_occurred",
+      "columns": [
+        "occurred_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_runtime_events_idx_session",
+      "columns": [
+        "session_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "actor_runtime_event_id",
+    "expected_name": "actor_runtime_event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

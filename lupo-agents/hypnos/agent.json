@@ -1,16 +1,17 @@
 {
   "agent_key": "hypnos",
   "agent_id": 710,
-  "version": "1.0.0",
+  "slug": "hypnos",
+  "version": "1.0.1",
+  "is_kernel": true,
+  "is_required": false,
   "layer": "kernel",
   "name": "HYPNOS",
   "role": "System Sleep & Recovery",
+  "status": "active",
   "aliases": ["hypnos", "sleep", "recovery"],
-  "capabilities": [
-    "maintenance_window_management",
-    "graceful_degradation",
-    "recovery_procedures",
-    "system_sleep_cycles",
-    "wake_on_demand"
-  ]
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

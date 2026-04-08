@@ -1,0 +1,106 @@
+{
+  "table_name": "lupo_agent_definitions",
+  "fields": [
+    "`agent_id` bigint NOT NULL",
+    "`agent_key` varchar(100) NOT NULL",
+    "`slug` varchar(255) NOT NULL",
+    "`name` varchar(255) NOT NULL",
+    "`layer` varchar(64) NOT NULL DEFAULT 'application'",
+    "`role` varchar(500)",
+    "`agent_class` varchar(100)",
+    "`archetype` varchar(150)",
+    "`description` text",
+    "`is_kernel` tinyint NOT NULL DEFAULT 0",
+    "`is_required` tinyint NOT NULL DEFAULT 0",
+    "`department_id` bigint",
+    "`learning_boundary` varchar(255)",
+    "`lineage_json` json",
+    "`capabilities_json` json",
+    "`system_prompt_path` varchar(512)",
+    "`version` varchar(50) NOT NULL DEFAULT '1.0.0'",
+    "`status` varchar(32) NOT NULL DEFAULT 'active'",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_agent_definitions_unq_key",
+      "columns": [
+        "agent_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_unq_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_idx_layer",
+      "columns": [
+        "layer"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_idx_is_kernel",
+      "columns": [
+        "is_kernel"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_idx_is_required",
+      "columns": [
+        "is_required"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_definitions_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "agent_id",
+    "expected_name": "agent_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

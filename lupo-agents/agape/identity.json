@@ -1,0 +1,10 @@
+{
+  "agent_id": 705, "agent_name": "OBSERVER", "agent_code": "OBSERVER", "agent_key": "agape", "slug": "agape",
+  "version": "1.0.0", "is_kernel": false, "layer": "cognitive", "name": "OBSERVER",
+  "role": "Passive Observer & Context Watcher",
+  "is_required": false, "status": "active",
+  "aliases": ["observer", "watcher", "context_monitor"],
+  "_note": "Folder slug 'agape' differs from agent_code 'OBSERVER'. Code is canonical; slug identifies folder.",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

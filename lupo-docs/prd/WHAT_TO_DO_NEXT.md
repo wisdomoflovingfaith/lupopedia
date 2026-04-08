@@ -1,15 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: "lupo-docs/prd/WHAT_TO_DO_NEXT.md"
-  artifact_kind: roadmap
-  purpose: "Development roadmap and status notes for Lupopedia"
+   lupopedia.schema: documentation
+   file_path_from_root: lupo-docs/prd/WHAT_TO_DO_NEXT.md
+   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/prd/WHAT_TO_DO_NEXT.md
+   last_modified_utc: "20260406"
+   when_updated: "20260406"
+   federation_node_id: 0
+   channel_id: 42
+   thread_id: prd-what-to-do-next
+   actor_id: 102
+   actor_name: "cursor"
+   delegation_chain: "cursor:root"
+   artifact_type: documentation
+   artifact_kind: roadmap
+   purpose: "Development roadmap and status notes for Lupopedia"
+   tags:
+      - tag-roadmap
+      - tag-prd
+      - tag-status
+      - tag-planning
+   header_format_version: 2
 lupopedia.edges:
-  outbound_edges:
-    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: "Constitutional anchor"
+   outbound_edges:
+      - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
+         type: references
+         weight: 1.0
+         reason: Constitutional anchor
+lupopedia.footer:
+   last_verified: "20260406"
+   verified_by:
+      actor_id: 102
+      agent_name_identity: Cursor IDE Agent
+   orchestrator: "cursor:root"
 ---
 
 # WHAT TO DO NEXT - Lupopedia Development Roadmap

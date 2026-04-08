@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: "FOR_CLAUDE_CODE_2026_04_06.md"
   web_path: "http://www.lupopedia.com/lupopedia/FOR_CLAUDE_CODE_2026_04_06.md"
-  last_modified_utc: "20260406171149"
-  when_updated: "20260406171149"
+  last_modified_utc: "20260406181914"
+  when_updated: "20260406181914"
   federation_node_id: 0
   channel_id: 42
   thread_id: "claude-code-sync-2026-04-06"
@@ -20,7 +20,7 @@ lupopedia.headers:
     - "sync"
     - "2026-04-06"
 lupopedia.footer:
-  last_verified: "20260406171149"
+  last_verified: "20260406181914"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -98,3 +98,37 @@ lupopedia.footer:
   - Installation model
   - Semantic monitoring and collections system
   - Constitutional engineering rules
+
+## Versioning Doctrine Summary (Critical for All Agents)
+
+- Lupopedia starts at 4.0.x because it is the successor to Crafty Syntax 3.7.5.
+- There are NO Lupopedia→Lupopedia upgrades before 4.1.0.
+- 4.0.x is the installer-only era.
+- 4.1.0 is the first upgradeable version.
+- The ONLY valid upgrade path is:
+
+      Crafty Syntax 3.7.5 → Lupopedia 4.0.x
+
+- The upgrade imports all `livehelp_` tables into `lupo_` tables.
+- This import captures every edge in the installation.
+- Auto-installer acceptance is required before 4.1.0 can exist.
+- After 4.1.0, nodes become discoverable and federation begins.
+
+## Cursor IDE boundaries (for Claude Code)
+
+Claude Code should treat **`lupo-rules/root/CURSOR_IDE_RULES.md`** as the **authoritative** Cursor IDE agent doctrine (same repo; different tool). Summary so boundaries stay aligned:
+
+- **Default:** single-file work only; **no** whole-project scan unless the architect explicitly instructs it.
+- **Explicit instruction required** for: multi-file refactors, PRD/doctrine/constitutional edits, version-directory edits, validator script edits, migration SQL (architect-provided exact text only).
+- **Never:** recursive scans, repo-wide “guess” refactors, wholesale PRD rewrites, invented migrations, “modernizing” proven code without direction, suggesting new npm/Composer runtime deps.
+- **Context:** use shorthand files (`CAPTAIN_WOLFIE_WORKFLOW.md`, `FOR_CLAUDE_CODE_*.md`, `root CURSOR.md`, `lupo-rules/root/README.md`) — **ask** the architect instead of scanning when something is not listed.
+- **Cursor root shorthand:** `CURSOR.md` tells Cursor to load **`CURSOR_IDE_RULES.md` first**; Claude Code can read the same doctrine file to avoid proposing work that violates Cursor’s rules.
+
+## Castcade Summary (For Claude Code)
+
+- Castcade is the multi-file orchestrator.
+- It updates PRDs, doctrine, validators, schema JSON, and version folders.
+- It does NOT modify the installer.
+- It generates SQL only from JSON schema changes.
+- It maintains deterministic, reversible changes.
+- Cursor defers to Castcade for multi-file operations.

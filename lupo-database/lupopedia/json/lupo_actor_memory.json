@@ -5,7 +5,7 @@
   "_read_only": true,
   "table_name": "lupo_actor_memory",
   "fields": [
-    "`memory_id` bigint NOT NULL",
+    "`actor_memory_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`memory_type` varchar(64) NOT NULL",
     "`memory_key` varchar(128) NOT NULL",
@@ -44,8 +44,8 @@
     }
   ],
   "primary_key": {
-    "column_name": "memory_id",
-    "expected_name": "memory_id",
+    "column_name": "actor_memory_id",
+    "expected_name": "actor_memory_id",
     "is_correct": true,
     "needs_rename": false
   },

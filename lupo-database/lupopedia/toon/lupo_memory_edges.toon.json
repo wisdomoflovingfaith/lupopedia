@@ -1,0 +1,62 @@
+{
+  "table_name": "lupo_memory_edges",
+  "fields": [
+    "`memory_edge_id` bigint NOT NULL",
+    "`from_memory_node_id` bigint NOT NULL",
+    "`to_memory_node_id` bigint NOT NULL",
+    "`edge_type` varchar(64) NOT NULL",
+    "`edge_context` varchar(32) NOT NULL DEFAULT 'system_generated'",
+    "`edge_status` varchar(32) NOT NULL DEFAULT 'supported'",
+    "`edge_direction` varchar(16) NOT NULL DEFAULT 'unidirectional'",
+    "`weight_hundredths` int NOT NULL DEFAULT 100",
+    "`provenance_actor_id` bigint NOT NULL",
+    "`provenance_tool` varchar(64) NOT NULL",
+    "`review_reason` varchar(64)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_memory_edges_idx_from",
+      "columns": [
+        "from_memory_node_id",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_memory_edges_idx_to",
+      "columns": [
+        "to_memory_node_id",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_memory_edges_idx_type",
+      "columns": [
+        "edge_type",
+        "edge_context",
+        "edge_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "memory_edge_id",
+    "expected_name": "memory_edge_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "memory_type": "meta_analysis_knowledge",
+  "core_knowledge": {
+    "agent_orchestration_patterns": "Patterns in agent orchestration effectiveness",
+    "meta_analysis_history": "History of meta-level system analyses"
+  },
+  "working_memory": {"active_meta_analysis": "Meta-level analyses currently in progress"},
+  "memory_boundaries": ["meta analysis scope only", "advisory to WOLFIE only"],
+  "retention_rules": ["retain orchestration pattern observations", "no ego"],
+  "forbidden_memory": ["executive meta-decisions"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

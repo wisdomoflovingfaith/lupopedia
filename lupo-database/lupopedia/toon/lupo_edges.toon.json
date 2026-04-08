@@ -29,7 +29,11 @@
     "`flare_db_source` varchar(50)",
     "`flare_auto_generated` tinyint DEFAULT 0",
     "`flare_verified` tinyint DEFAULT 0",
-    "`flare_discovered_via` varchar(50)"
+    "`flare_discovered_via` varchar(50)",
+    "`edge_context` varchar(64)",
+    "`edge_status` varchar(32) DEFAULT 'active'",
+    "`direction` enum('uni','bi','restricted') DEFAULT 'uni'",
+    "`review_reason` varchar(64)"
   ],
   "data": [],
   "indexes": [
@@ -164,131 +168,26 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_edges_idx_left",
+      "index_name": "lupo_edges_idx_edge_context",
       "columns": [
-        "left_object_type",
-        "left_object_id"
+        "edge_context"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_edges_idx_right",
+      "index_name": "lupo_edges_idx_direction",
       "columns": [
-        "right_object_type",
-        "right_object_id"
+        "direction"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_edges_idx_edge_type",
+      "index_name": "lupo_edges_idx_status_review",
       "columns": [
-        "edge_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_edge_category",
-      "columns": [
-        "edge_category"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_actor",
-      "columns": [
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_domain",
-      "columns": [
-        "domain_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_semantic_weight",
-      "columns": [
-        "semantic_weight"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_relationship_type",
-      "columns": [
-        "relationship_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_channel_semantic",
-      "columns": [
-        "channel_id",
-        "relationship_type",
-        "semantic_weight"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_updated",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_flare_weight",
-      "columns": [
-        "flare_weight",
-        "edge_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_flare_discovered",
-      "columns": [
-        "flare_discovered_via",
-        "flare_auto_generated"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_flare_files",
-      "columns": [
-        "left_object_type",
-        "left_object_id",
-        "edge_type",
-        "right_object_type",
-        "right_object_id"
+        "edge_status",
+        "review_reason"
       ],
       "is_unique": false,
       "index_type": "BTREE"

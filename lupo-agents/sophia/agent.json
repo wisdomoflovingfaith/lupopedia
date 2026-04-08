@@ -1,16 +1,17 @@
 {
   "agent_key": "sophia",
   "agent_id": 707,
-  "version": "1.0.0",
+  "slug": "sophia",
+  "version": "1.0.1",
+  "is_kernel": false,
+  "is_required": false,
   "layer": "emotional",
   "name": "SOPHIA",
-  "role": "Wisdom Integration",
+  "role": "Wisdom Integration — Emotional Translation & Intuitive Insight",
+  "status": "active",
   "aliases": ["sophia", "wisdom_integration", "emotional_translation"],
-  "capabilities": [
-    "emotional_translation",
-    "wisdom_integration",
-    "emotional_to_rational",
-    "feeling_to_action",
-    "intuitive_insight"
-  ]
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

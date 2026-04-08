@@ -1650,7 +1650,7 @@ class InstallWizardBannedIdentities
     {
         $now = (int) gmdate('YmdHis');
         $actors_t = $table_prefix . 'actors';
-        $agents_t = $table_prefix . 'agents';
+        $agents_t = $table_prefix . 'agent_definitions';
         $banned_t = $table_prefix . 'banned_actors';
         $auth_t = $table_prefix . 'auth_users';
         try {
@@ -1658,8 +1658,9 @@ class InstallWizardBannedIdentities
             $stmt = $pdo->query("SELECT 1 FROM " . $actors_t . " WHERE actor_id = " . (int) self::STONED_WOLFIE_AI_ACTOR_ID . " LIMIT 1");
             $aiExists = $stmt && $stmt->fetch();
             if (!$aiExists) {
-                $pdo->exec("INSERT INTO " . $agents_t . " (agent_id, agent_key, agent_name, archetype, description, version, model_name, is_global_authority, is_internal_only, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, avg_response_time_ms, total_tokens_processed, success_rate, cost_per_1k_tokens, temperature, top_p, max_tokens, presence_penalty, frequency_penalty, system_prompt, provider, api_key_id, timeout_ms, safety_json, response_format, metadata_json) VALUES (420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'banned_test', 'Banned AI test identity for adversarial harness.', '1.0', NULL, 0, 1, " . $now . ", " . $now . ", 1, " . $now . ", 0, 0, 1.0, '0.0000', 0.7, 1.0, 2048, 0.0, 0.0, NULL, 'openai', NULL, 20000, NULL, NULL, NULL)");
-                $pdo->exec("INSERT INTO " . $actors_t . " (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) VALUES ('stoned_wolfie_ai', 420, 'agent', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', " . $now . ", " . $now . ", 0, 1, " . $now . ", 420, 'lupo_agents', 'none', NULL, NULL, NULL)");
+                // agent_definitions: doctrine identity only (no LLM config columns — those live in agent_llm_configs)
+                $pdo->exec("INSERT INTO " . $agents_t . " (agent_id, agent_key, slug, name, layer, archetype, description, version, status, is_deleted, deleted_ymdhis, created_ymdhis, updated_ymdhis) VALUES (420, 'stoned_wolfie_ai', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', 'reserved', 'banned_test', 'Banned AI test identity for adversarial harness.', '1.0.0', 'inactive', 1, " . $now . ", " . $now . ", " . $now . ")");
+                $pdo->exec("INSERT INTO " . $actors_t . " (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, avatar_hash) VALUES ('stoned_wolfie_ai', 420, 'agent', 'stoned-wolfie-ai', 'Stoned Wolfie (AI)', " . $now . ", " . $now . ", 0, 1, " . $now . ", 420, 'lupo_agent_definitions', NULL)");
                 $nextBanId = (int) $pdo->query("SELECT COALESCE(MAX(banned_actor_id), 0) + 1 FROM " . $banned_t)->fetchColumn();
                 $pdo->exec("INSERT INTO " . $banned_t . " (banned_actor_id, actor_id, ip_address, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (" . $nextBanId . ", 420, NULL, 'banned_test_identity_ai', " . $now . ", 1000, " . $now . ", " . $now . ", 0, NULL)");
                 $pdo->exec("INSERT INTO " . $auth_t . " (auth_user_id, username, display_name, email, password_hash, auth_provider, provider_id, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis) VALUES (420, 'stoned_wolfie_ai', 'Stoned Wolfie (AI)', 'stoned.wolfie.ai@banned.local', NULL, 'local', NULL, " . $now . ", " . $now . ", 0, 0, NULL)");
@@ -1674,7 +1675,7 @@ class InstallWizardBannedIdentities
                 $nextActorId = (int) $pdo->query("SELECT COALESCE(MAX(actor_id), 9999) + 1 FROM " . $actors_t)->fetchColumn();
                 $pwdHash = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
                 $pdo->exec("INSERT INTO " . $auth_t . " (auth_user_id, username, display_name, email, password_hash, auth_provider, provider_id, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis) VALUES (" . $nextActorId . ", 'stonedwolfie', 'Stoned Wolfie', 'stonedwolfie@lupopedia.com', " . $pdo->quote($pwdHash) . ", 'local', NULL, " . $now . ", " . $now . ", 0, 0, NULL)");
-                $pdo->exec("INSERT INTO " . $actors_t . " (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) VALUES ('stonedwolfie', " . $nextActorId . ", 'user', 'user-" . $nextActorId . "', 'Stoned Wolfie', " . $now . ", " . $now . ", 0, 0, NULL, " . $nextActorId . ", 'lupo_auth_users', NULL, 'none', NULL, NULL)");
+                $pdo->exec("INSERT INTO " . $actors_t . " (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, avatar_hash) VALUES ('stonedwolfie', " . $nextActorId . ", 'user', 'user-" . $nextActorId . "', 'Stoned Wolfie', " . $now . ", " . $now . ", 0, 0, NULL, " . $nextActorId . ", 'lupo_auth_users', NULL)");
                 $nextBanId = (int) $pdo->query("SELECT COALESCE(MAX(banned_actor_id), 0) + 1 FROM " . $banned_t)->fetchColumn();
                 $pdo->exec("INSERT INTO " . $banned_t . " (banned_actor_id, actor_id, ip_address, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (" . $nextBanId . ", " . $nextActorId . ", NULL, 'banned_test_identity_human', " . $now . ", 1000, " . $now . ", " . $now . ", 0, NULL)");
                 $log[] = InstallWizardLogger::logEntry('ok', 'Stoned Wolfie (human) banned identity inserted (actor_id ' . $nextActorId . ').');

@@ -33,7 +33,7 @@ Validation of Phase 1 deliverables: canonical role metadata struct for Layer 1 a
 - `lupo-actors/hephaestus/.metadata.yaml` (actor_id: 14)
 - `lupo-actors/athena/.metadata.yaml` (actor_id: 12)
 - `lupo-actors/hermes/.metadata.yaml` (actor_id: 15)
-- `lupo-actors/lilith/.metadata.yaml` (actor_id: 2)
+- `lupo-actors/2/.metadata.yaml` (actor_id: 2)
 - `lupo-actors/rose/.metadata.yaml` (actor_id: 3)
 
 ---

@@ -1731,13 +1731,12 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 | `lupo-skills/lupopedia-headers/examples/basic-header.md` | Basic LUPOPEDIA header example. |
 | `lupo-skills/uploads/README.md` | **Uploads skill:** canonical entities, upload layout, auth_users namespace, date partitioning, hash naming, schema notes. |
 | `lupo-actors/1/skills/lupopedia-headers.md` | Actor 1 (WOLFIE) — Lupopedia Headers skill at master. |
-| `lupo-actors/wolfie/skills/lupopedia-headers.md` | WOLFIE — Lupopedia Headers skill (same, slug path). |
 | `lupo-channels/42/content/federation_node_id/0/SKILLS.md` | **Channel 42 skills:** uploads skill (intermediate); `lupopedia.skills` for channel scope 42. |
 
 #### Header format correction (4.0.68)
 
 - **Canonical format:** First line of file = `---`; then YAML blocks; then closing `---`; then `# file: {title} — session: ... — delegation: ... — web_path: ...` as the first content line. The identity line is **not** at the very top of the file.
-- **Updated to this format:** `lupo-docs/doctrine/SKILLS_DOCTRINE.md`, `lupo-skills/README.md`, `lupo-actors/wolfie/skills/lupopedia-headers.md`, `lupo-actors/1/skills/lupopedia-headers.md`; doctrine and examples in `lupo-skills/lupopedia-headers/README.md` and `examples/basic-header.md`.
+- **Updated to this format:** `lupo-docs/doctrine/SKILLS_DOCTRINE.md`, `lupo-skills/README.md`, `lupo-actors/1/skills/lupopedia-headers.md`; doctrine and examples in `lupo-skills/lupopedia-headers/README.md` and `examples/basic-header.md`.
 
 #### Metadata and other seeds (4.0.68)
 
@@ -1802,7 +1801,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 
 **Rule files:** `lupo-rules/skills/lupopedia-headers.md`, `lupo-channels/42/content/federation_node_id/0/NO_INFORMATION_SCHEMA_RULE.md`, `lupo-rules/root/*.md` (16 rules), `lupo-rules/root/README.md`.
 
-**Skill files:** `lupo-skills/README.md`, `lupo-skills/lupopedia-headers/README.md`, `lupo-skills/lupopedia-headers/examples/basic-header.md`, `lupo-skills/uploads/README.md`, `lupo-actors/1/skills/lupopedia-headers.md`, `lupo-actors/wolfie/skills/lupopedia-headers.md`, `lupo-channels/42/content/federation_node_id/0/SKILLS.md`.
+**Skill files:** `lupo-skills/README.md`, `lupo-skills/lupopedia-headers/README.md`, `lupo-skills/lupopedia-headers/examples/basic-header.md`, `lupo-skills/uploads/README.md`, `lupo-actors/1/skills/lupopedia-headers.md`, `lupo-channels/42/content/federation_node_id/0/SKILLS.md`.
 
 **Channel 42 content:** `lupo-channels/42/content/federation_node_id/0/RULES.md`, `lupo-channels/42/content/federation_node_id/0/NO_INFORMATION_SCHEMA_RULE.md`.
 
@@ -1991,7 +1990,7 @@ Version **4.0.67** is the **install and upgrade test cycle** release. It validat
 **Summary**: Unified FLARE headers, transitioned to name-based actor workspaces, and implemented agent-web content serving.
 
 ### Key Changes
-- 🚀 **Actor Directory Refactor**: Transitioned from ID-based (e.g., `lupo-actors/1/`) to name-based (e.g., `lupo-actors/wolfie/`) workspaces for improved readability and dev experience.
+- 🚀 **Actor Directory Refactor**: Transitioned from ID-based (e.g., `lupo-actors/1/`) to name-based (e.g., `lupo-actors/1/`) workspaces for improved readability and dev experience.
     - Updated `ActorService.php`, `actor-helpers.php`, and `lupopedia-config.php` to prioritize name-based paths while maintaining ID-based fallback support.
     - Modified `lupo_actors` table to use `actor_name` as the primary key.
 - 🌐 **Agent WWW Content**: Implemented `agent-www-controller.php` to serve web-accessible content from actor `www/` directories via `/agent/<name>/` routes.

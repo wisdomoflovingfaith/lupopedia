@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260404161001"
+  when_updated: "20260407015813"
   file_path_from_root: "lupo-docs/versions/4.0.94/questions/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/questions/THREAD_INDEX.md"
-  last_modified_utc: "20260404161001"
+  last_modified_utc: "20260407015813"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-questions"
@@ -28,7 +28,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Answers index"
 lupopedia.footer:
-  last_verified: "20260404161001"
+  last_verified: "20260407015813"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -41,6 +41,8 @@ lupopedia.footer:
 
 | Opened (UTC) | File | Summary | Status |
 |--------------|------|---------|--------|
+| 20260407_015814 | [20260407_015814_QUESTION_what_replaced_lupo_questions_answers.md](20260407_015814_QUESTION_what_replaced_lupo_questions_answers.md) | What replaced **`questions`/`answers`/`question_map`** after install merge? | Resolved (see answers) |
+| 20260406_173022 | [20260406_173022_QUESTION_where_record_post_baseline_doctrine_batch.md](20260406_173022_QUESTION_where_record_post_baseline_doctrine_batch.md) | Where record post-baseline doctrine batch + agent-sync narrative after **4.0.94** close-out? | Resolved (see answers) |
 | 20260404_161004 | [20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md](20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md) | Must version docs merge unrelated PRD 16/26/30/31 + validator threads with service-agent / Softaculous work? | Resolved (see answers) |
 | 20260403_222042 | [20260403_222042_QUESTION_federation_navigation_compiler.md](20260403_222042_QUESTION_federation_navigation_compiler.md) | Federation navigation compiler — **LILITH audit 100/100**; privacy/consent/opt-out; defer **PRD 34**; not blocking 4.0.x | **Open** |
 | 20260403_140553 | [20260403_140553_QUESTION_version_ghost_cleanup_policy.md](20260403_140553_QUESTION_version_ghost_cleanup_policy.md) | Policy for **34** critical version-ghost files (phantom paths, **3.0.x** prose)? | Resolved (see answers) |

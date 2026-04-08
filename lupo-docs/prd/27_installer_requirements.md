@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403202128"
-  file_path_from_root: "/lupo-docs/prd/27_installer_requirements.md"
+  when_updated: "20260407233043"
+  file_path_from_root: "lupo-docs/prd/27_installer_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/27_installer_requirements.md"
-  last_modified_utc: "20260403202128"
+  last_modified_utc: "20260407233043"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-installer-requirements"
@@ -20,7 +20,7 @@ lupopedia.headers:
   artifact_kind: "installer"
   purpose: "Defines the installer requirements and constraints for Lupopedia, referencing the root constitutional system requirements."
   status: "approved"
-  tags: ["installer", "constitutional", "system_requirements"]
+  tags: ["tag-installer", "tag-constitutional", "tag-system-requirements"]
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0, reason: "Constitutional anchor" }

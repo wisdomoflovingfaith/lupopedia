@@ -8,7 +8,7 @@ $db = DatabaseFactory::getConnection();
 $GLOBALS['mydatabase'] = $db;
 
 $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : ABSPATH;
-$www_dir = $app_root . 'lupo-actors/wolfie/www';
+$www_dir = $app_root . 'lupo-actors/1/www';
 
 if (!is_dir($www_dir)) {
     mkdir($www_dir, 0777, true);

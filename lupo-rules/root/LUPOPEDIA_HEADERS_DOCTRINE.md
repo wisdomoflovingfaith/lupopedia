@@ -15,13 +15,13 @@ lupopedia.headers:
   purpose: LUPOPEDIA header field taxonomy, validation rules, and database mapping
     (lupo_contents, metadata, edges, revision_history)
   tags:
-  - doctrine
-  - headers
-  - schema
-  - artifact_type
-  - artifact_kind
-  - documentation
-  - validation
+  - tag-doctrine
+  - tag-headers
+  - tag-schema
+  - tag-artifact-type
+  - tag-artifact-kind
+  - tag-documentation
+  - tag-validation
   thread_id: headers-doctrine
   web_path: http://www.lupopedia.com/lupopedia/lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md
   when_updated: '20260406044907'
@@ -210,7 +210,88 @@ lupopedia.footer:
 
 ---
 
-## 🔧 **lupopedia.headers Fields**
+## � **Deterministic Field Ordering (v4.0.93)**
+
+All LUPOPEDIA HEADERS must follow this exact field order to ensure Notepad++ "Find in Files" can navigate the graph consistently:
+
+```yaml
+---
+lupopedia.headers:
+  # Core identification (first)
+  lupopedia.schema: <schema>
+  file_path_from_root: <path>
+  web_path: <url>
+  last_modified_utc: <YYYYMMDDHHIISS>
+  when_updated: <YYYYMMDDHHIISS>
+  federation_node_id: <int>
+  
+  # Context and threading
+  channel_id: <int>
+  thread_id: <slug>
+  context_id: <bigint>  # optional, when finalized
+  
+  # Actor attribution
+  actor_id: <int>
+  actor_name: <string>
+  delegation_chain: <chain>
+  
+  # Artifact classification
+  artifact_type: <type>
+  artifact_kind: <kind>
+  purpose: <description>
+  tags:
+    - <tag>
+    - <tag>
+  
+  # Optional fields (after required)
+  content_id: <bigint>  # when imported
+  header_format_version: <int>  # defaults to 2
+  # ... other optional fields
+
+lupopedia.edges:
+  outbound_edges:
+    - to: <path_or_slug_or_content_id>  # ASCII-safe filenames/slugs
+      type: <edge_type>
+      weight: <0.0-1.0>
+      reason: <description>
+
+lupopedia.footer:
+  last_verified: <YYYYMMDDHHIISS>
+  verified_by:
+    identity_type: actor
+    actor_id: <int>
+    agent_name_identity: <name>
+    department_id_delta: <int>
+  verified_via:
+    type: faucet
+    faucet_slug: <slug>
+  orchestrator: <chain>
+  next_action:
+    - <action>
+    - <action>
+---
+```
+
+### ASCII-Safe Filename and Slug Rules
+
+- **Filenames**: Use only `a-z0-9_-.` (lowercase letters, numbers, underscore, hyphen, dot)
+- **Slugs**: Use only `a-z0-9-` (lowercase letters, numbers, hyphen)
+- **No spaces**: Use underscores or hyphens instead
+- **No special chars**: Avoid `@#$%^&*()[]{}|\/:"'<>?`
+- **Content IDs**: BIGINT values for database references
+
+### Edge Reference Types
+
+Edges may reference:
+1. **File paths**: `"lupo-docs/prd/01_core_identity.md"`
+2. **Slugs**: `"headers-doctrine"` (for thread references)
+3. **Content IDs**: `5629208585196930598` (when imported)
+
+This ensures Notepad++ "Find in Files" can locate all references to any document.
+
+---
+
+## � **lupopedia.headers Fields**
 
 ### **Core Required Fields**
 
@@ -233,6 +314,63 @@ lupopedia.footer:
 | `purpose` | ✅ | descriptive text | `"Purpose of document"` |
 | `tags` | ✅ | array of strings | `["tag1", "tag2"]` |
 | `content_id` | ⚠️ | integer (BIGINT) | Assigned when the file is **imported** into `lupo_contents`; validators **warn** if missing. Not a hand-edited field for normal authoring. |
+
+### **Deterministic Tag Prefixing (v4.0.93)**
+
+All tags in `lupopedia.headers.tags` MUST use canonical prefixes for global searchability and taxonomy consistency.
+
+#### **Required Format**
+- **Pattern**: `^tag-[a-z0-9-]+$`
+- **Prefix**: `tag-` (required)
+- **Namespace**: lowercase, hyphens only
+- **No bare tags**: Unprefixed tags are forbidden
+
+#### **Canonical Prefixes**
+| Prefix | Use For | Examples |
+|--------|---------|----------|
+| `tag-prd` | Product Requirements | `tag-prd-core-identity` |
+| `tag-doctrine` | Binding rules | `tag-doctrine-headers` |
+| `tag-agent` | Agent definitions | `tag-agent-cursor` |
+| `tag-actor` | Actor instances | `tag-actor-wolfie` |
+| `tag-design` | Architecture designs | `tag-design-database` |
+| `tag-implementation` | Code implementations | `tag-implementation-php` |
+| `tag-decision` | Decisions | `tag-decision-approval` |
+| `tag-question` | Questions | `tag-question-technical` |
+| `tag-answer` | Answers | `tag-answer-resolution` |
+| `tag-version` | Version-specific | `tag-version-4.0.93` |
+| `tag-architecture` | Architecture | `tag-architecture-system` |
+| `tag-database` | Database-related | `tag-database-schema` |
+| `tag-constitutional` | Constitutional | `tag-constitutional-rule` |
+| `tag-utility` | Utility scripts | `tag-utility-validator` |
+| `tag-script` | Executable scripts | `tag-script-import` |
+| `tag-status` | Status reports | `tag-status-completed` |
+| `tag-plan` | Planning documents | `tag-plan-roadmap` |
+| `tag-todo` | Task tracking | `tag-todo-feature` |
+| `tag-thread` | Thread artifacts | `tag-thread-discussion` |
+| `tag-broadcast` | Broadcasts | `tag-broadcast-announcement` |
+| `tag-index` | Index documents | `tag-index-reference` |
+
+#### **Validation Rules**
+- **ERROR**: Tag without `tag-` prefix
+- **ERROR**: Tag contains uppercase letters or special chars (except hyphens)
+- **WARN**: Unknown namespace (should use canonical prefixes when possible)
+- **INFO**: Semantic meaning should be clear from tag name
+
+#### **Examples**
+```yaml
+# Valid tags
+tags:
+  - "tag-doctrine-headers"
+  - "tag-prd-actor-authority"
+  - "tag-implementation-validator"
+  - "tag-version-4.0.93"
+
+# Invalid tags
+tags:
+  - "headers"        # ERROR: missing prefix
+  - "TAG-DOCTRINE"   # ERROR: uppercase
+  - "tag@database"   # ERROR: invalid character
+```
 
 ---
 
@@ -892,6 +1030,43 @@ lupopedia.headers:
 
 ---
 
+## 🎯 **Deterministic Actor ID and Folder Rules (v4.0.93)**
+
+### Actor ID Classification
+
+| Actor ID Range | Type | Folder Path | Learning Boundary |
+|----------------|------|-------------|-------------------|
+| < 2026 | Core Actor | `lupo-actors/<actor_id>/` | Department 0 auth_users only |
+| ≥ 20260101010101 | Runtime Actor | `lupo-actors/YYYY/MM/<actor_id>/` | Department-scoped |
+
+### Rules for Headers
+
+1. **Core Actors** (actor_id < 2026):
+   - Must have `learning_boundary: "Department 0 auth_users only"` in authority PRDs
+   - Folder path is always `lupo-actors/<actor_id>/`
+   - Never regenerated or moved
+   - Examples: WOLFIE (1), LILITH (2), LEXA (3), CURSOR (102)
+
+2. **Runtime Actors** (actor_id ≥ 20260101010101):
+   - Use timestamp BIGINT format: `YYYYMMDDHHIISS + 4 random digits`
+   - Folder path: `lupo-actors/YYYY/MM/<actor_id>/` (extracted from timestamp)
+   - Department-scoped learning
+   - Created via `IdGenerator::generate()`
+
+3. **Sandbox Identity** (actor_id = 420):
+   - Allowed: Login and prompt only
+   - Forbidden: Database, system file, and network access
+   - Special case for testing
+
+### Registry Enforcement
+
+- Actor registry must enforce canonical numeric folder paths
+- Slug-only actor folder names under `lupo-actors/` (e.g. `wolfie/`, `lilith/`) are deprecated; registry `dir` uses `lupo-actors/{actor_id}/`
+- All references must use numeric actor_id paths
+- Deterministic ID generation ensures no collisions
+
+---
+
 ## 📚 **Examples**
 
 ### **Doctrine Document**
@@ -904,6 +1079,10 @@ lupopedia.headers:
   # ... rest of fields
   artifact_type: doctrine
   artifact_kind: database
+  tags:
+    - tag-doctrine
+    - tag-database
+    - tag-constitutional
 ```
 
 ### **Philosophy Document**
@@ -916,6 +1095,10 @@ lupopedia.headers:
   # ... rest of fields
   artifact_type: manifesto
   artifact_kind: philosophy
+  tags:
+    - tag-philosophy
+    - tag-manifesto
+    - tag-constitutional
 ```
 
 ### **Implementation File**
@@ -928,11 +1111,55 @@ lupopedia.headers:
   # ... rest of fields
   artifact_type: class
   artifact_kind: code
+  tags:
+    - tag-implementation
+    - tag-script
+    - tag-database
 ```
 
 ---
 
-## 📖 **Related Documents**
+## � **DB Import and Edge Merging Doctrine (v4.0.93)**
+
+### Import Logic
+
+1. **If content_id does not exist**:
+   - Import file as new content
+   - Create lupo_contents row
+   - Import all header fields to lupo_metadata
+   - Import all outbound_edges to lupo_edges
+   - Generate new content_id
+
+2. **If content_id exists**:
+   - Merge DB + file edges
+   - Update lupo_metadata with latest header values
+   - Soft-delete old edges, insert new edges
+   - Preserve revision_history if lupopedia.history exists
+
+### Edge Merging Rules
+
+- **File takes precedence**: Edges in file overwrite DB edges
+- **Unique by (to, type)**: Only one edge of each type per target
+- **Weight averaging**: When merging, use file weight
+- **Reason preservation**: Keep file reason for new edges
+
+### Content ID Resolution
+
+- **File references**: Use file_path_from_root to match lupo_contents
+- **Slug references**: Use thread_id for channel artifacts
+- **ID references**: Use content_id directly when available
+
+### Deterministic Folder Alignment
+
+During import:
+- Verify actor_id matches folder structure
+- Core actors: Must be in `lupo-actors/<actor_id>/`
+- Runtime actors: Must be in `lupo-actors/YYYY/MM/<actor_id>/`
+- Flag mismatches for manual review
+
+---
+
+## �� **Related Documents**
 
 - **[RULE_FILES_HEADER_REQUIREMENT.md](RULE_FILES_HEADER_REQUIREMENT.md)** — Meta-rule requiring headers on rule files
 - **[DATABASE_DOCTRINE.md](DATABASE_DOCTRINE.md)** — Database rules (no FK/triggers, timestamps, naming)

@@ -56,7 +56,7 @@ lupo-agents/
     system_prompt.txt
     skills.json
     tools.json
-    memory.json
+    # memory: root memory node at lupo-memory/YYYY/MM/{memory_slug}.json (4.0.96+; memory.json DEPRECATED)
     capabilities.json
     boundaries.json
     activation/
@@ -69,7 +69,7 @@ lupo-agents/
         system_prompt.txt
         skills.json
         tools.json
-        memory.json
+        # memory: root memory node at lupo-memory/YYYY/MM/{memory_slug}.json (4.0.96+; memory.json DEPRECATED)
         capabilities.json
         boundaries.json
 ```
@@ -111,7 +111,12 @@ lupo-agents/
 - tool usage rules
 - tool constraints
 
-### memory.json
+### Root Memory Node (4.0.96+) — replaces memory.json
+
+> **DEPRECATED:** `memory.json` is no longer the canonical memory storage for agents or actors.
+
+Memory is stored as a root memory node at `lupo-memory/YYYY/MM/{memory_slug}.json`, registered in `lupo_memory_nodes`, and linked via `lupo_edges`. The following concepts previously in `memory.json` are now expressed as node properties or edge metadata:
+
 - memory boundaries
 - retention rules
 - forbidden memory
@@ -146,7 +151,7 @@ lupo-agents/
 - Each agent must define allowed faucet surfaces and tool usage in tools.json and capabilities.json.
 
 ## Runtime State
-- Agents may have runtime state fields (e.g., last_activated, last_paired_user) tracked in memory.json or a runtime_state.json (optional).
+- Agents may have runtime state fields (e.g., last_activated, last_paired_user) tracked in a `runtime_state.json` (optional) or as memory nodes at `lupo-memory/YYYY/MM/{memory_slug}.json` (4.0.96+). `memory.json` is DEPRECATED.
 
 ## Compliance
 - All agent files must be ASCII, no symlinks, no schema inference, no framework patterns.
@@ -199,3 +204,99 @@ lupo-agents/
 
 ---
 This PRD is the constitutional anchor for all agent definitions in Lupopedia.
+
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
+```

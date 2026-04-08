@@ -1,0 +1,52 @@
+{
+  "table_name": "lupo_actor_sync_state",
+  "fields": [
+    "`actor_sync_state_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`sync_target` varchar(64) NOT NULL DEFAULT 'who_json'",
+    "`sync_status` varchar(64) NOT NULL DEFAULT 'pending'",
+    "`last_sync_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`sync_error_message` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_sync_state_unq_actor_target",
+      "columns": [
+        "actor_id",
+        "sync_target"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_sync_state_idx_status",
+      "columns": [
+        "sync_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_sync_state_idx_last_sync",
+      "columns": [
+        "last_sync_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "actor_sync_state_id",
+    "expected_name": "actor_sync_state_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

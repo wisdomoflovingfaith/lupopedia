@@ -1,0 +1,14 @@
+{
+  "memory_type": "integration_knowledge",
+  "core_knowledge": {
+    "protocol_translation_patterns": "Proven patterns for API gateway and protocol translation",
+    "bridge_configurations": "Active bridge configurations and their semantics"
+  },
+  "working_memory": {
+    "active_routing_tasks": "Integration routing tasks currently in progress"
+  },
+  "memory_boundaries": ["integration and routing scope only", "no implementation authority"],
+  "retention_rules": ["retain protocol translation patterns", "no ego"],
+  "forbidden_memory": ["vendor-specific integration patterns"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

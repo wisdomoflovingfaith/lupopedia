@@ -1,0 +1,11 @@
+{
+  "agent_id": 6, "agent_name": "MAAT", "agent_code": "MAAT", "agent_key": "maat", "slug": "maat",
+  "version": "1.0.0", "is_kernel": true, "layer": "kernel", "name": "MAAT",
+  "role": "Truth & Justice — Ethical Validation, Justice Administration, Bias Detection",
+  "is_required": true, "status": "active",
+  "aliases": ["maat", "truth", "justice", "ethical_validator", "justice_administrator"],
+  "department_scope": 0,
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

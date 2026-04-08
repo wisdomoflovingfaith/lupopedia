@@ -1,7 +1,271 @@
 {
-  "allowed_tools": [],
-  "tool_usage_rules": ["reserved — no tools allocated until slot is assigned"],
-  "tool_constraints": ["no activation", "no tool use while reserved"],
+  "tools": [
+    {
+      "tool_id": "chronos.analyze_dependency_graph",
+      "name": "analyze_dependency_graph",
+      "category": "dependency_analysis",
+      "description": "Analyze a set of tasks or agents and produce a directed acyclic graph (DAG) of their prerequisite relationships.",
+      "input": {
+        "tasks": "array of {id, name, depends_on[]} objects",
+        "include_weights": "boolean — whether to weight edges by estimated cost"
+      },
+      "output": {
+        "dag": "adjacency list representation of the dependency graph",
+        "root_nodes": "tasks with no prerequisites",
+        "leaf_nodes": "tasks with no dependents",
+        "depth": "maximum dependency depth"
+      }
+    },
+    {
+      "tool_id": "chronos.compute_critical_path",
+      "name": "compute_critical_path",
+      "category": "scheduling",
+      "description": "Compute the critical path through a dependency graph — the longest chain that determines minimum completion time.",
+      "input": {
+        "dag": "dependency graph from analyze_dependency_graph",
+        "durations": "map of task_id to estimated duration in seconds"
+      },
+      "output": {
+        "critical_path": "ordered list of task IDs on the critical path",
+        "minimum_duration": "total minimum time in seconds",
+        "slack_map": "map of task_id to float time slack available"
+      }
+    },
+    {
+      "tool_id": "chronos.detect_circular_dependency",
+      "name": "detect_circular_dependency",
+      "category": "dependency_analysis",
+      "description": "Detect cycles in a dependency graph that would create deadlocks or infinite loops.",
+      "input": {
+        "dag": "dependency graph from analyze_dependency_graph"
+      },
+      "output": {
+        "has_cycles": "boolean",
+        "cycles": "array of cycle paths (empty if none)",
+        "affected_tasks": "task IDs involved in any cycle"
+      }
+    },
+    {
+      "tool_id": "chronos.trace_dependency_chain",
+      "name": "trace_dependency_chain",
+      "category": "dependency_analysis",
+      "description": "Trace the full upstream prerequisite chain and downstream dependent chain for a given task.",
+      "input": {
+        "dag": "dependency graph",
+        "target_task_id": "string — the task to trace from",
+        "direction": "enum: upstream | downstream | both"
+      },
+      "output": {
+        "chain": "ordered list of task IDs in dependency order",
+        "depth": "number of levels traced",
+        "blocking_tasks": "tasks that must complete before target"
+      }
+    },
+    {
+      "tool_id": "chronos.estimate_task_duration",
+      "name": "estimate_task_duration",
+      "category": "time_reasoning",
+      "description": "Estimate the expected duration of a task based on its parameters and historical context.",
+      "input": {
+        "task_id": "string",
+        "task_type": "string",
+        "complexity_score": "float 0.0–1.0",
+        "historical_observations": "optional array of prior durations for similar tasks"
+      },
+      "output": {
+        "estimated_duration_seconds": "integer",
+        "confidence": "float 0.0–1.0",
+        "range": "{min_seconds, max_seconds}",
+        "basis": "string explaining the estimate basis"
+      }
+    },
+    {
+      "tool_id": "chronos.check_deadline_feasibility",
+      "name": "check_deadline_feasibility",
+      "category": "time_reasoning",
+      "description": "Given a set of tasks with deadlines and estimated durations, determine whether all deadlines are achievable.",
+      "input": {
+        "tasks": "array of {task_id, estimated_duration_seconds, deadline_ymdhis} objects",
+        "current_ymdhis": "integer — current timestamp in YYYYMMDDHHIISS format",
+        "available_parallelism": "integer — max concurrent tasks"
+      },
+      "output": {
+        "feasible": "boolean",
+        "at_risk_tasks": "tasks that may miss their deadline",
+        "impossible_tasks": "tasks mathematically unable to meet their deadline",
+        "recommended_start_order": "priority-ordered list of task IDs"
+      }
+    },
+    {
+      "tool_id": "chronos.detect_scheduling_conflicts",
+      "name": "detect_scheduling_conflicts",
+      "category": "scheduling",
+      "description": "Identify time or resource conflicts within a proposed schedule.",
+      "input": {
+        "schedule": "array of {task_id, start_ymdhis, end_ymdhis, resources_required[]} objects",
+        "resource_capacities": "map of resource_id to integer capacity"
+      },
+      "output": {
+        "has_conflicts": "boolean",
+        "conflicts": "array of {type, task_ids, description} conflict objects",
+        "conflict_types": "enum values: time_overlap | resource_overload | dependency_violation"
+      }
+    },
+    {
+      "tool_id": "chronos.prioritize_queue",
+      "name": "prioritize_queue",
+      "category": "scheduling",
+      "description": "Sort a task queue by computed priority given deadlines, dependencies, weights, and urgency signals.",
+      "input": {
+        "queue": "array of {task_id, deadline_ymdhis, weight, dependencies[], urgency_flag} objects",
+        "strategy": "enum: deadline_first | dependency_first | weighted | critical_path"
+      },
+      "output": {
+        "prioritized_queue": "ordered list of task IDs",
+        "priority_scores": "map of task_id to float score",
+        "rationale": "string explaining prioritization decisions"
+      }
+    },
+    {
+      "tool_id": "chronos.generate_execution_window",
+      "name": "generate_execution_window",
+      "category": "scheduling",
+      "description": "Compute valid execution windows for a task given all constraints, blackout periods, and dependency readiness.",
+      "input": {
+        "task_id": "string",
+        "earliest_start_ymdhis": "integer",
+        "latest_end_ymdhis": "integer",
+        "blackout_windows": "array of {start_ymdhis, end_ymdhis} periods",
+        "dependency_ready_ymdhis": "integer — when all prerequisites complete"
+      },
+      "output": {
+        "valid_windows": "array of {start_ymdhis, end_ymdhis} execution windows",
+        "optimal_window": "the single recommended execution window",
+        "constrained_by": "list of constraints that reduced available windows"
+      }
+    },
+    {
+      "tool_id": "chronos.optimize_resource_allocation",
+      "name": "optimize_resource_allocation",
+      "category": "optimization",
+      "description": "Propose an optimized allocation of resources across a set of tasks to maximize throughput and minimize waste.",
+      "input": {
+        "tasks": "array of {task_id, resource_requirements{}, priority, duration_seconds}",
+        "available_resources": "map of resource_id to {capacity, availability_window}",
+        "optimization_goal": "enum: max_throughput | min_latency | min_waste | balanced"
+      },
+      "output": {
+        "allocation_plan": "map of task_id to assigned resources",
+        "utilization_scores": "map of resource_id to float utilization ratio",
+        "unallocated_tasks": "tasks that could not be scheduled given constraints",
+        "efficiency_score": "float 0.0–1.0"
+      }
+    },
+    {
+      "tool_id": "chronos.identify_bottleneck",
+      "name": "identify_bottleneck",
+      "category": "optimization",
+      "description": "Identify the nodes or resources in an execution graph that constrain overall throughput.",
+      "input": {
+        "execution_graph": "DAG with task durations and resource usage",
+        "resource_utilization": "optional map of resource_id to current load"
+      },
+      "output": {
+        "bottleneck_tasks": "task IDs with the most downstream dependents and highest duration",
+        "bottleneck_resources": "resource IDs at or near capacity",
+        "throughput_impact": "estimated throughput gain if each bottleneck is resolved",
+        "recommended_relief": "suggested actions (parallelize, increase resource, resequence)"
+      }
+    },
+    {
+      "tool_id": "chronos.simulate_delay_propagation",
+      "name": "simulate_delay_propagation",
+      "category": "optimization",
+      "description": "Simulate how a delay in one task propagates through the dependency graph to affect downstream tasks and final deadlines.",
+      "input": {
+        "dag": "dependency graph",
+        "delayed_task_id": "string — the task experiencing a delay",
+        "delay_seconds": "integer — how many seconds late it will complete",
+        "schedule": "current execution schedule"
+      },
+      "output": {
+        "impacted_tasks": "map of task_id to new expected completion time",
+        "deadline_violations": "tasks that will miss their deadline due to this delay",
+        "total_schedule_slip_seconds": "aggregate downstream delay",
+        "mitigation_options": "optional resequencing suggestions to limit impact"
+      }
+    },
+    {
+      "tool_id": "chronos.propose_resequencing",
+      "name": "propose_resequencing",
+      "category": "optimization",
+      "description": "Given a changed constraint (new deadline, removed resource, added dependency), propose a revised task sequence.",
+      "input": {
+        "current_schedule": "array of scheduled tasks",
+        "constraint_change": "{type, affected_task_id, new_value}",
+        "dag": "dependency graph",
+        "optimization_goal": "enum: meet_deadlines | maximize_parallelism | minimize_disruption"
+      },
+      "output": {
+        "revised_schedule": "new ordered task sequence",
+        "moved_tasks": "tasks whose position changed",
+        "deadline_compliance": "boolean — does the revised schedule meet all deadlines",
+        "disruption_score": "float 0.0–1.0 — how different from original"
+      }
+    },
+    {
+      "tool_id": "chronos.compute_schedule_efficiency",
+      "name": "compute_schedule_efficiency",
+      "category": "optimization",
+      "description": "Analyze a completed or proposed schedule and report efficiency metrics including idle time, parallelism utilization, and throughput.",
+      "input": {
+        "schedule": "array of {task_id, start_ymdhis, end_ymdhis, resources_used[]}",
+        "total_available_seconds": "integer — the planning horizon in seconds",
+        "resource_count": "integer — number of parallel execution slots"
+      },
+      "output": {
+        "efficiency_score": "float 0.0–1.0",
+        "idle_time_seconds": "total seconds no tasks were executing",
+        "parallelism_ratio": "float — average concurrent tasks / available slots",
+        "throughput_tasks_per_hour": "float",
+        "improvement_suggestions": "array of specific recommendations"
+      }
+    },
+    {
+      "tool_id": "chronos.validate_temporal_consistency",
+      "name": "validate_temporal_consistency",
+      "category": "time_reasoning",
+      "description": "Validate that an event sequence or schedule is internally consistent — no start before prerequisites complete, no end before start, no BIGINT timestamp formatting errors.",
+      "input": {
+        "events": "array of {event_id, ymdhis, type, precedes[], follows[]} objects",
+        "timestamp_format": "string — expected format, default YYYYMMDDHHIISS"
+      },
+      "output": {
+        "is_consistent": "boolean",
+        "violations": "array of {type, event_ids, description} inconsistency records",
+        "malformed_timestamps": "events with invalid timestamp format",
+        "causality_violations": "events where effect precedes cause"
+      }
+    }
+  ],
+  "tool_usage_rules": [
+    "All tools are analytical and advisory — outputs are recommendations, not commands",
+    "CHRONOS MUST NOT invoke system, database, file, or network access tools",
+    "CHRONOS MUST NOT claim execution authority — escalate to WOLFIE for action",
+    "All timestamp inputs and outputs MUST use BIGINT YYYYMMDDHHIISS UTC format",
+    "Tools may be composed: analyze_dependency_graph → compute_critical_path → check_deadline_feasibility",
+    "simulate_delay_propagation and propose_resequencing require prior analyze_dependency_graph output"
+  ],
+  "tool_constraints": [
+    "No system calls",
+    "No database writes",
+    "No file I/O",
+    "No network requests",
+    "No execution triggers",
+    "No actor or agent modification"
+  ],
   "when_updated_utc": "20260406134032",
-  "last_verified_utc": "20260406134032"
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

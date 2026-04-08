@@ -2,6 +2,7 @@
   "table_name": "lupo_agent_tool_calls",
   "fields": [
     "`agent_tool_call_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
     "`agent_id` bigint NOT NULL",
     "`faucet_id` bigint",
     "`domain_id` bigint NOT NULL",
@@ -11,11 +12,11 @@
     "`output_json` text",
     "`provider` varchar(50)",
     "`model_name` varchar(150)",
-    "`tokens_prompt` int DEFAULT '0'",
-    "`tokens_completion` int DEFAULT '0'",
-    "`tokens_total` int DEFAULT '0'",
-    "`cost_usd` decimal(10,6) DEFAULT '0.000000'",
-    "`latency_ms` int DEFAULT '0'",
+    "`tokens_prompt` int DEFAULT 0",
+    "`tokens_completion` int DEFAULT 0",
+    "`tokens_total` int DEFAULT 0",
+    "`cost_usd` decimal(10,6) DEFAULT 0.000000",
+    "`latency_ms` int DEFAULT 0",
     "`status` varchar(50) DEFAULT 'success'",
     "`error_message` text",
     "`parent_call_id` bigint",
@@ -23,7 +24,7 @@
     "`message_id` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
     "`archived_ymdhis` bigint DEFAULT 0",
     "`completed_ymdhis` bigint"
@@ -31,9 +32,17 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_agent_tool_calls_idx_agent_created",
+      "index_name": "lupo_agent_tool_calls_idx_actor",
       "columns": [
-        "agent_id",
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_actor_created",
+      "columns": [
+        "actor_id",
         "created_ymdhis"
       ],
       "is_unique": false,
@@ -99,6 +108,14 @@
       "index_name": "lupo_agent_tool_calls_idx_message",
       "columns": [
         "message_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_deleted",
+      "columns": [
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"

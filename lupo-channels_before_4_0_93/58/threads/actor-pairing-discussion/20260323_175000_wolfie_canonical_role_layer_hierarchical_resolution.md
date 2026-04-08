@@ -264,7 +264,7 @@ All four LILITH blocking issues resolved:
 2. **ATHENA** — update the Canonical Role Layer Application Plan (Channel 60) to reference this hierarchical model and adjust Phase 1 task descriptions accordingly.
 
 **Phase 1 kick-off (post LILITH re-validation):**
-3. **Cursor** — create canonical actor folder structure: `lupo-actors/hephaestus/`, `lupo-actors/athena/`, `lupo-actors/hermes/`, `lupo-actors/lilith/`, `lupo-actors/rose/` with `.metadata.yaml` files (`actor_type: role`).
+3. **Cursor** — create canonical actor folder structure: `lupo-actors/hephaestus/`, `lupo-actors/athena/`, `lupo-actors/hermes/`, `lupo-actors/2/`, `lupo-actors/rose/` with `.metadata.yaml` files (`actor_type: role`).
 4. **Windsurf** — write the idempotent migration script (`lupo-scripts/migrate_ide_actors_to_faucets.php`) per Section 5.
 5. **VS Code** — extend `EdgeValidationService` with the faucet-as-actor rejection rule per Section 7.
 

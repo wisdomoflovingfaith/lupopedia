@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.95"
+  version_when_written: "4.0.96"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/VERSIONING_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/docs/versioning_doctrine"
-  last_modified_utc: "20260406062838"
+  last_modified_utc: "20260407172944"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -13,7 +13,7 @@ lupopedia.headers:
   artifact_kind: "versioning_policy"
   title: "Versioning Doctrine"
   purpose: "Canonical versioning doctrine and policy for Lupopedia development and releases"
-  tags: ["versioning", "doctrine", "policy", "4.0.95", "single_field_model"]
+  tags: ["versioning", "doctrine", "policy", "4.0.96", "single_field_model"]
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
   session_name: "L-LUPO-ROOT-CURSOR"
@@ -45,7 +45,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260406062838"
+  last_verified: "20260407172944"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
   next_action:
@@ -56,7 +56,7 @@ lupopedia.footer:
 
 # Versioning Doctrine (Single Source of Truth)
 
-**Date:** 2026-04-06 (UTC `last_modified_utc` refresh)  
+**Date:** 2026-04-07 (UTC `last_modified_utc` refresh — current version **4.0.96**)  
 **Status:** Permanent. This document is the authoritative versioning doctrine for Lupopedia.  
 **Override:** All previous versioning assumptions are superseded by this doctrine.  
 **Version Model:** Single-field versioning using `version_when_written` only (4.0.84+)
@@ -78,7 +78,7 @@ lupopedia.footer:
 
 ## 1. Canonical current version
 
-The **current version** of Lupopedia is **4.0.95**.
+The **current version** of Lupopedia is **4.0.96**.
 
 This is the only correct "current version" number for the codebase. No other "current version" may be introduced unless explicitly instructed.
 

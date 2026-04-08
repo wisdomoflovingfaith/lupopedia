@@ -35,7 +35,8 @@
     "`deleted_ymdhis` bigint",
     "`content_sections` json",
     "`version_number` int NOT NULL DEFAULT '1'",
-    "`file_path_from_root` varchar(500)",
+    "`storage_type` varchar(16) NOT NULL DEFAULT 'database'",
+    "`file_path_from_root` varchar(1024)",
     "`file_last_modified_system_version` varchar(20)",
     "`file_last_modified_utc` bigint",
     "`tags` json",
@@ -63,6 +64,15 @@
       "columns": [
         "federation_node_id",
         "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_slug_deleted",
+      "columns": [
+        "slug",
+        "is_deleted"
       ],
       "is_unique": true,
       "index_type": "BTREE"

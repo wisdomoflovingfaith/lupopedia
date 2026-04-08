@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260406163321"
+  when_updated: "20260408012727"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260406163321"
+  last_modified_utc: "20260408012727"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -191,6 +191,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "KAIROS memory consolidation — Section 5.7"
+    - to: "lupo-docs/prd/38_memory_unification.md"
+      type: references
+      weight: 1.0
+      reason: "Chronological Trust Ladder tiers, living canonical vs staging — Section 3.7 and Section 5.7 memory graph"
     - to: "app/Services/Kairos/KairosConsolidationService.php"
       type: implements
       weight: 1.0
@@ -232,7 +236,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Cursor IDE shared-hosting security audit checklist — operational companion to Section 17 (RULE 93.SECURITY)"
 lupopedia.footer:
-  last_verified: "20260406163321"
+  last_verified: "20260408012727"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -354,9 +358,9 @@ All relationships must be enforced in the application layer.
 
 ### 3.2 No AUTO_INCREMENT
 
-Primary keys must be generated using `IdGenerator::generate()`.
+**Runtime default:** For rows **created at runtime** by application code, primary keys MUST be obtained using **`IdGenerator::generate()`** unless another PRD documents an explicit allocator. **Install and seed** rows are a separate case — see **§3.2.1**.
 
-This ensures:
+This ensures (for **runtime** PKs):
 
 - 63-bit signed-safe BIGINTs
 - Timestamp-sortable IDs
@@ -364,9 +368,44 @@ This ensures:
 - No race conditions
 - No DB-specific behavior
 
-**Implementation:** `lupo-includes/classes/IdGenerator.php`. All `INSERT` statements must call `IdGenerator::generate()` for the PK column before insertion. Never pass `null` or `0` as a PK expecting the DB to fill it.
+**Implementation:** `lupo-includes/classes/IdGenerator.php`. **Runtime** `INSERT` paths must call **`IdGenerator::generate()`** for the PK unless a PRD documents another allocator. **Install/seed SQL** may use **literal PK values** per **§3.2.1**. Never pass **`null`** or rely on **`AUTO_INCREMENT`** expecting the DB to fill the PK.
+
+**Registry and seed exceptions (summary).** `install_new_lupopedia.sql` and **`seed_*.sql`** MAY assign **fixed, low-numbered primary keys** to reserved rows without calling **`IdGenerator::generate()`** in that INSERT. Full dual-strategy rules: **§3.2.1**.
 
 **Test:** `lupo-tests/unit/id_generation_compliance_test.php`
+
+### 3.2.1 Primary key strategy — seed vs runtime
+
+Lupopedia uses a **dual PK strategy** across many tables:
+
+| Record type | PK shape | `created_ymdhis` (or table’s create clock) | Origin |
+|-------------|-----------|---------------------------------------------|--------|
+| **Seed / install** | **Low, fixed BIGINT** (registry constants; not timestamp-shaped) | **Install** packed UTC, **`gmdate('YmdHis')`** at seed insert, or **`0`** = *before temporal tracking* / immemorial | **`install_new_lupopedia.sql`**, **`seed_*.sql`** |
+| **Runtime** | **`IdGenerator::generate()`** → **`YYYYMMDDHHIISS` + 4-digit suffix** | **Same 14-digit prefix** as the new PK at insert (when the table uses that pattern) | Application **PHP** (`DatabaseFactory` / services) |
+
+**Illustrative reserved / seed bands (authoritative values = install + seed + registries + table PRDs):**
+
+| Table / entity | Typical pattern | Resolve IDs from |
+|----------------|-----------------|------------------|
+| **`lupo_actors`** | Registry-backed **low** `actor_id`; workspace layout **`actor_id` < 2026** = system hub path | **`registry.json`**, install, **§5.6**, **PRD 01 / 15** |
+| **`lupo_agents`** | **`agent_id` 1–2025** reserved for core packs | **§5.5**, **`actor_id/registry.json` `agents` map**, install |
+| **`lupo_departments`** | **`department_id` 0** (Root), **1** (domain root) + imported dept ids | **PRD 25**, install, import SQL |
+| **`lupo_channels`** | **Low `channel_id`** for seeded workspace channels (e.g. coordination **42**) | **`lupo-channels/registry.json`**, install |
+| **`lupo_auth_users`** | Doctrine reserves **`auth_user_id = 0`** (root); seed may add **other** low ids for operators — **do not** assume a single numeric story without reading **PRD 01** + seed | **PRD 01**, install |
+| **`lupo_memory_nodes`** | Seed MAY use **low `memory_node_id`**; runtime uses **IdGenerator** | **PRD 38**, install |
+| **`lupo_edges`**, **`lupo_memory_edges`** | Seed MAY use **low edge PK**; runtime uses **IdGenerator** | Install, **PRD 04 / 38** |
+| **`lupo_permissions`**, **`lupo_rules`**, other config | Base rows often **low PK** | Install |
+
+**Rules:**
+
+1. **Seed** rows use **fixed PKs** defined in install/seed SQL — **not** `AUTO_INCREMENT`, **not** random.
+2. **Runtime** rows use **`IdGenerator::generate()`** unless a PRD names another explicit allocator.
+3. **`created_ymdhis` = `0`** (where allowed) means *pre-dates temporal tracking* or *immemorial*; it is **not** Unix epoch stored in the DB — still **packed-decimal doctrine** when non-zero.
+4. For **runtime** rows whose PK is IdGenerator-shaped, **`created_ymdhis`** SHOULD equal the **14-digit prefix** of that PK at insert.
+5. **Application code MUST NOT** assume every PK is timestamp-shaped; use **table + PRD** rules and **row provenance** (seed vs runtime).
+6. **Per-table reserved bands** are **not** guessed in hot paths — load from **install**, **seed**, or documented registry files.
+
+**Filesystem mirror (memory):** When **`lupo_memory_nodes.created_ymdhis`** is **`0`** (or too short for **`YYYYMM`**), **`MemoryExportService`** maps the mirror to **`lupo-memory/1970/01/`** using an **effective** packed UTC for path/slug only — see **PRD 38** §6. **Do not** write **`lupo-memory/`** as source of truth; DB remains authoritative.
 
 ### 3.3 No UNSIGNED
 
@@ -537,6 +576,32 @@ Forbidden SQL patterns:
 
 **Implementation:** See `lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md`.
 
+### 3.7 Universal data consolidation (Chronological Trust Ladder pattern)
+
+**Scope.** Where a table uses **`IdGenerator`**-style **timestamp-shaped** **`BIGINT`** primary keys (**18 digits**: embedded calendar year + packed UTC clock + suffix), product code **MAY** encode **trust tier** in the **first four digits** of the PK so operators read **authority / lifecycle** without extra flags. This subsection is the **constitutional summary**; **memory** normative detail is **PRD 38** §4.2 and **§4.2.1**; **KAIROS** behavior is **PRD 37**; **install seed vs living canonical** for low fixed PKs is **PRD 41**.
+
+**Multiple PK families:** **Install seeds** use **low fixed `BIGINT`s** from SQL/registry (**§3.2.1**, **PRD 41**). **`IdGenerator::generate()`** (**`lupo-includes/classes/IdGenerator.php`**) always returns an **18-digit** id whose embedded calendar year is **2000–2099** — that is the **staging-shaped** output. To allocate a **new living canonical** id (embedded year **1000–1999**), use **`toCanonicalId(IdGenerator::generate())`** **before** **`INSERT`** unless product policy deliberately persists a **draft staging** row first (**PRD 38** §4.2.1, **PRD 41** §2.2).
+
+**PK trust tiers (timestamp-shaped ids and install seed rows)**
+
+| PK shape | Tier | Mutable? | Lifespan |
+|----------|------|----------|----------|
+| **Low install / seed** ids (**not** timestamp-shaped; per **§3.2.1** and registry) | **System / install** | **No** (immutable per install doctrine) | Permanent |
+| **18-digit** id, embedded year **1000–1999** | **Living canonical** | **Yes** — **UPDATE** as new evidence arrives; **id stays stable** | Permanent until soft-deleted |
+| **18-digit** id, embedded year **2000–2099** (raw **`IdGenerator`** output) | **Staging / runtime** | **Yes** — short-lived; merged into canonical, then **soft-deleted**, or **never inserted** if converted pre-persist | Temporary |
+
+**Consolidation flow (application layer only — no DB FKs, no hard deletes on lineage)**
+
+1. New data is written as **staging** (**2000–2099** embedded year on raw **`IdGenerator`** ids) or arrives from existing staging rows.
+2. **If no living canonical** exists for the logical entity (topic / **`memory_key`** / policy-defined key): **promote** — set canonical id to **`toCanonicalId($stagingId)`** (or **`toCanonicalId(IdGenerator::generate())`** if no staging row is persisted), populate payload, record edges from staging → canonical (**`promoted_to`**, **`consolidated_into`**, or install-aligned **`edge_type`**) — full reference **PRD 38** §8.3 / §4.2.1.
+3. **If living canonical already exists:** **merge** non-null fields into that row (**UPDATE** canonical; **no** silent overwrite of non-null with null unless policy explicitly allows), set **`updated_ymdhis`** (packed UTC per **§3.5**), record edges staging → canonical (**`merged_into`** / **`consolidated_into`**).
+4. **Soft-delete** consumed staging rows (**`is_deleted`**, **`deleted_ymdhis`**).
+5. **Re-point** parent / child links in **application logic** so stable references target the **canonical** id.
+
+**Benefits.** The PK band signals trust; **repeated passes refine** the canonical row; **edges + soft delete** preserve auditability; **parents** target a **stable** canonical id.
+
+**Cross-references:** **PRD 37** §1.2; **PRD 38** §4.2, §8 (Option B archive shares the **1000–1999** visual band — disambiguate with **`archived_to`** vs merge edges and **`memory_type` / `context`**).
+
 ---
 
 
@@ -661,6 +726,8 @@ See `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` for the full five-layer mod
 **Maturity and compaction.** **`context_json.kairos`** evolves (e.g. **`stage`**, **`confidence`**, **`source_observation_ids`**, **`verified_ymdhis`**, **`canonical`**) so the actor’s **stored** memory stays **consistent and bounded** while the agent files remain the unchanged blueprint.
 
 **Invocation (runtime).** Consolidation is **not** triggered by a simple “every N observation rows” counter. **`KairosConsolidationService::consolidateMemories($actorId, $departmentId)`** runs a **pass** that merges **groups of two or more** active observations that **bucket to the same normalized value**; single observations stay until a peer arrives or policy promotes them. The shipped **HTTP** entry is **`POST`** **`api/lupo-kairos/tick`** (**`lupo-includes/modules/api/kairos-api.php`**), which applies a **session rate limit** (e.g. minimum interval between ticks) and uses the **logged-in user’s `actor_id`**. Additional triggers (cron, queue workers) are product choices and must remain explicit in application code — not hidden DB triggers.
+
+**Unified memory graph (PRD 38, companion to KAIROS storage above).** **`lupo_memory_nodes`** / **`lupo_memory_edges`** hold the constitutional **memory graph** mirror export under **`lupo-memory/`**. **Runtime** rows: **`memory_node_id`** from **`IdGenerator::generate()`**; **`created_ymdhis`** = the same **14-digit** prefix as the PK at insert. **Seed / pre-existing** rows: **`memory_node_id`** MAY be a **low reserved id**; **`created_ymdhis`** MAY be **`0`** (“before temporal tracking”) or the **install** packed UTC — independent of PK shape. **`MemoryExportService`** maps **`created_ymdhis`** of **`0`** (or too short to form YYYYMM) to path **`lupo-memory/1970/01/`** so pre-history mirrors stay grouped. **Chronological Trust Ladder** (**staging** embedded year **2000–2099** vs **living canonical** **1000–1999**): **§3.7**; full spec **`lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md`** and **`lupo-docs/prd/38_memory_unification.md`** §4.2.
 
 ### 5.8 Implementation mirroring (IDE directive)
 
@@ -1196,7 +1263,100 @@ Never remove a lower rung of the ladder. The oldest rung is the most reliable.
 
 This section governs **browser-side** interaction, layering, and animation for **shipped** Lupopedia surfaces (public templates, operator UI scripts under `lupo-includes/js/`, theme assets loaded by entrypoints). It exists to block **dependency creep** and **agent over-helpfulness** (framework pitches, CDN scripts, build pipelines) while aligning with **§14** (WOLFIE) and the eval-free **`LupoLayer`** lineage in **`lupo-includes/js/lupo-layers.js`**.
 
-**Scope note:** In-repo **developer-only** trees (`lupo-tools/`, editor extensions, CI) may use local npm for **tooling**; those stacks MUST NOT become **required** at runtime for `lupo-includes/` bootstrap, `index.php`, `login.php`, `admin.php`, or visitor-facing routes.
+
+---
+
+## Context‑Typed, Status‑Aware, Directional Edged Memory Doctrine (4.0.96)
+
+1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
+  Each memory node is a first-class entity in the semantic network and may be 
+  owned by actors, departments, auth_users, channels, federation nodes, or the 
+  global system.
+
+2. Every edge in the memory graph has FOUR dimensions:
+  - **edge type** (the relationship)
+  - **edge context** (the classification of the memory)
+  - **edge status** (the epistemic support level)
+  - **edge direction** (the traversal orientation)
+
+3. **Edge Direction** defines whether the relationship is:
+  - unidirectional (A → B)
+  - bidirectional (A ↔ B)
+  - restricted-direction (A → B but not B → A unless explicitly defined)
+  Reverse traversal MUST NOT be inferred unless explicitly defined.
+
+4. **Edge Type** defines the relationship between nodes, including but not 
+  limited to:
+  - influences
+  - inherits
+  - authored_by
+  - observed_by
+  - contradicts
+  - supports
+  - consolidates_from
+  - refines
+  - overrides
+
+5. **Edge Context** defines the classification of the memory node. Context is 
+  not based on the content of the memory, but on the structural support 
+  provided by the graph. The primary context classifications are:
+  - doctrine
+  - experiential
+  - system_generated
+  - countermeasure_generated
+  - summary
+  - contradictory
+  - deprecated
+
+6. **Edge Status** defines the epistemic support level of the memory node:
+  - **unsupported**: insufficient supporting edges; provisional memory.
+  - **supported**: sufficient supporting edges; validated memory.
+  - **needs_review**: conflicting, incomplete, or ambiguous edges requiring 
+    agent or human intervention.
+
+7. When `edge_status = 'needs_review'`, a **review_reason** MUST be provided. 
+  This field explains *why* the edge requires review and *which agent* should 
+  handle it. Examples include:
+  - orphaned_edge
+  - contradiction
+  - new_doctrine
+  - schema_drift
+  - consolidation_candidate
+  - integrity_unknown
+  - human_escalation
+
+  Agents use this field to determine their work queues:
+  - ANUBIS handles: integrity_unknown, orphaned_edge
+  - THOTH handles: schema_drift, contradiction, new_doctrine
+  - KAIROS handles: consolidation_candidate
+  - Human operator handles: human_escalation
+
+8. Memory nodes may transition between statuses as edges are added, removed, 
+  or reclassified. A node may move from unsupported → supported when 
+  sufficient supporting edges accumulate.
+
+9. Actors inherit memory edges from:
+  - their department
+  - their auth_user
+  - their federation node
+  - their assigned faucets
+  - their assigned tasks
+
+10. Memory traversal is context-aware and direction-aware. Actors may only 
+   traverse edges permitted by their boundaries, department rules, auth_user 
+   pairing, faucet assignments, and operational mode (live, simulation, 
+   analysis).
+
+11. No inference is allowed. All edges, contexts, statuses, directions, and 
+   review reasons must be explicitly defined in PRDs, database rows, or 
+   system-generated memory.
+
+12. Memory is not a flat file. It is a structured, typed, classified, 
+   status-aware, direction-aware graph. Traversal depth determines visible 
+   memory; deeper traversal reveals more context, subject to boundary rules.
+
+13. All changes to memory structure, edge types, edge contexts, edge statuses, 
+   edge directions, or review reasons must be documented in PRDs and versioned.
 
 ### 16.1 The WOLFIE UI standard (canonical layer controller)
 

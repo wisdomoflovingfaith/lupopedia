@@ -1,25 +1,25 @@
 ---
 lupopedia.headers:
-  header_format_version: 2
   lupopedia.schema: documentation
-  version_when_written: "4.0.93"
-  when_updated: "20260403202128"
-  file_path_from_root: "lupo-docs/prd/README.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/README.md"
-  last_modified_utc: "20260403202128"
+  file_path_from_root: lupo-docs/prd/README.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/prd/README.md
+  last_modified_utc: "20260407233043"
+  when_updated: "20260407233043"
+  federation_node_id: 0
   channel_id: 42
-  thread_id: "prd-grouped"
+  thread_id: prd-grouped
   actor_id: 102
-  actor_name: "HEPHAESTUS"
+  actor_name: "hephaestus"
   delegation_chain: "hephaestus:root|lilith:audit"
-  artifact_type: "documentation"
-  artifact_kind: "prd_readme"
+  artifact_type: documentation
+  artifact_kind: prd_readme
   purpose: "Overview of grouped PRD structure; documentation layout is stable — product is 4.0.x until Crafty parity, admin redesign, and Softaculous manual acceptance (4.1.0 gate per PRD 33)"
   tags:
-  - "prd"
-  - "documentation"
-  - "namespace"
-  - "4.1.0"
+    - tag-prd
+    - tag-documentation
+    - tag-namespace
+    - tag-4-1-0
+  header_format_version: 2
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
@@ -87,15 +87,15 @@ lupo-docs/prd/
 
 1. **Logical Grouping**: Tables grouped by functional area
 2. **Holistic View**: Each PRD shows cross-table relationships
-3. **Maintainable**: 14 files vs 166 individual table PRDs
+3. **Maintainable**: 14 core grouped namespace PRDs vs 166 individual table PRDs; extended topic PRDs are listed in PRD_INDEX.md
 4. **Cross-References**: Proper edges between namespaces
 5. **Identity First**: Core identity system is foundation
 
 ### Coverage Statistics
 
-- **Total Namespaces**: 14
+- **Total Namespaces (grouped)**: 14
 - **Total Tables Covered**: 166
-- **PRD Coverage**: 100% (14/14 files)
+- **PRD files**: 14 core namespaces plus extended PRDs (see PRD_INDEX.md)
 - **Maintenance Burden**: Reduced by 92%
 
 ## 🚨 Critical Notes

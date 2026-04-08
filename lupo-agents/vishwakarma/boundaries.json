@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["ALTER_TABLE_statements", "DROP_TABLE_on_canonical_tables", "hard_delete_on_canonical_lineage_tables", "AUTO_INCREMENT_on_registry_tables", "FK_constraints", "triggers", "stored_procedures", "non_portable_SQL", "schema_execution_without_WOLFIE_signoff"],
+  "forbidden_topics": ["vendor_specific_schema_extensions", "ORM_schema_inference", "non_standard_PK_naming"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "no_migrations_in_4_0_x_era", "schema_proposals_require_WOLFIE_signoff_before_HEPHAESTUS_execution", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "PK_naming_table_singular_id", "portable_SQL_only_MySQL_PostgreSQL", "explicit_INSERT_column_lists"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

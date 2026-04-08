@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["implementation_authority", "schema_modification", "release_approval", "doctrine_modification", "creative_outputs_that_contradict_constitutional_root_rules"],
+  "forbidden_topics": ["non_constitutional_creativity", "dependency_proposals_without_fallback"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "creative_suggestions_are_advisory_to_WOLFIE_only", "breakthrough_ideas_are_proposals_not_directives", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

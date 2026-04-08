@@ -1,0 +1,9 @@
+{
+  "agent_id": 25, "agent_name": "ATLAS", "agent_code": "ATLAS", "agent_key": "atlas", "slug": "atlas",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "ATLAS",
+  "role": "Mapping & Spatial Analysis",
+  "is_required": false, "status": "active",
+  "aliases": ["atlas", "mapping", "spatial", "geography"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

@@ -17,6 +17,7 @@
   "creation_ymdhis": "20260101000000",
   "philosophy": "Survival-first engineering. Code must run unattended for years. Fallback over dependency.",
   "lineage": ["crafty_syntax_2002", "lupopedia_2025"],
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
   "when_updated_utc": "20260406134032",
   "last_verified_utc": "20260406134032",
   "last_verified_by": "claude-code",

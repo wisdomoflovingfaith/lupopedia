@@ -5,8 +5,8 @@ lupopedia.headers:
   version_when_written: "4.0.95"
   file_path_from_root: "lupo-docs/versions/4.0.95/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.95/TODO.md"
-  when_updated: "20260406171149"
-  last_modified_utc: "20260406171149"
+  when_updated: "20260407172944"
+  last_modified_utc: "20260407172944"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.95-todo"
@@ -17,8 +17,8 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: "todo"
   artifact_kind: "master_backlog"
-  purpose: "Deferred and new tasks for Lupopedia 4.0.95"
-  tags: ["todo", "version", "4.0.95", "cursor"]
+  purpose: "Closed registry for Lupopedia 4.0.95 — no open tasks; successor backlog is 4.0.96"
+  tags: ["todo", "version", "4.0.95", "cursor", "finalized"]
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/versions/4.0.94/TODO.md"
@@ -28,9 +28,13 @@ lupopedia.edges:
     - to: "lupo-docs/versions/4.0.95/PLAN.md"
       type: references
       weight: 1.0
-      reason: "Plan for this line"
+      reason: "Plan for this line (finalized)"
+    - to: "lupo-docs/versions/4.0.96/TODO.md"
+      type: references
+      weight: 1.0
+      reason: "Active backlog — tasks migrated from 4.0.95"
 lupopedia.footer:
-  last_verified: "20260406171149"
+  last_verified: "20260407172944"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -39,49 +43,28 @@ lupopedia.footer:
 
 # file: lupo-docs/versions/4.0.95/TODO.md — delegation: cursor:root
 
-# TODO - Lupopedia 4.0.95
+# TODO - Lupopedia 4.0.95 (FINALIZED)
 
-**Version:** 4.0.95 (planning)  
-**Last updated:** UTC `20260406171149`
+**Version:** 4.0.95 — **closed** (UTC `20260407172944`)  
+**Successor backlog:** **[../4.0.96/TODO.md](../4.0.96/TODO.md)**
 
-**Source:** Deferred from **`lupo-docs/versions/4.0.94/TODO.md`**. Items **P3-005, P3-006, P3-007, P4-002, P4-006** completed in **4.0.94** (packaging gate).
-
----
-
-## Priority 3
-
-_No open P3 items from the former 4.0.94 deferral list._
-
-## Priority 4 (future / post-4.0.94)
-
-- [ ] P4-001: Rewrite PRD 30 as writing guide (not metadata spec)
-- [ ] P4-003: Remove AuthSessionManager entirely (4.1.0)
-- [ ] P4-004: Remove ToonSchemaCache entirely (4.1.0)
-- [ ] P4-005: Add PostgreSQL support to installer
-
-## Additional deferred (D-series)
-
-- [ ] D-001: Update `validate_implementation.py` to validate author block over actor_id (hardening beyond current support)
-- [ ] D-002: Add `$UNTRUSTED` boundary to remaining legacy files (if any)
-- [ ] D-003: Convert remaining `gmdate('YmdHis')` to `timestamp_ymdhis::now()` where appropriate
-- [ ] D-004: Add complete unit test coverage for Session metadata helpers
-- [ ] D-005: Add integration test for password change flow with metadata
+This file intentionally contains **no open tasks**. Items that were open at closeout were migrated to **`lupo-docs/versions/4.0.96/TODO.md`** under **Carried Over from 4.0.95**.
 
 ---
 
-## Phase 7 carryover (from 4.0.94 PLAN)
+## Historical note
 
-Execute while **4.0.94** is still the shipping candidate unless version bump moves first:
-
-- [ ] Softaculous packaging test on Linux
-- [ ] Full regression (`sh lupo-scripts/run_tests.sh .`)
-- [ ] PHP 5.6 legacy install flag path
-- [ ] 32-bit PHP warning verification
+**Source:** Deferred work had been tracked from **`lupo-docs/versions/4.0.94/TODO.md`**. Items **P3-005, P3-006, P3-007, P4-002, P4-006** were completed in **4.0.94** (packaging gate). Schema/runtime alignment **T-SCHEMA-RUNTIME-001** and **T-SCHEMA-TOOLCALLS-001** were completed in **4.0.95** (see **`CHANGELOG.md`**).
 
 ---
 
-## Notes
+## Completed in 4.0.95 (archive)
 
-- Completing an item here should add a **thread-verified** entry to **`CHANGELOG.md`** per PRD 17 / version-doc scope rules.
+### Schema / runtime alignment (carry from 4.0.94 install merge — COMPLETED 2026-04-07)
+
+- [x] **T-SCHEMA-RUNTIME-001:** Align PHP installer + seed SQL with renamed/removed install tables (see **`CHANGELOG.md`**).
+- [x] **T-SCHEMA-TOOLCALLS-001:** `lupo_agent_tool_calls` restored to `install_new_lupopedia.sql` (see **`CHANGELOG.md`**).
+
+---
 
 This output complies with Lupopedia Constitutional Root Rules.

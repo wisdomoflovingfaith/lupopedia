@@ -4,6 +4,7 @@
     "`folder_id` bigint NOT NULL",
     "`name` varchar(255) NOT NULL",
     "`slug` varchar(128) NOT NULL",
+    "`description` text",
     "`parent_folder_id` bigint",
     "`actor_id` bigint",
     "`channel_id` bigint",

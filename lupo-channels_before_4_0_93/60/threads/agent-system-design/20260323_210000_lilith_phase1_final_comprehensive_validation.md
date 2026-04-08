@@ -44,7 +44,7 @@ All five Layer 1 actor folders exist at the expected paths:
 | HEPHAESTUS | `lupo-actors/hephaestus/` | ✅ EXISTS | Layer 1 routing target |
 | ATHENA | `lupo-actors/athena/` | ✅ EXISTS | Layer 1 routing target |
 | HERMES | `lupo-actors/hermes/` | ✅ EXISTS | Layer 1 routing target |
-| LILITH | `lupo-actors/lilith/` | ✅ EXISTS | Layer 1 routing target |
+| LILITH | `lupo-actors/2/` | ✅ EXISTS | Layer 1 routing target |
 | ROSE | `lupo-actors/rose/` | ✅ EXISTS | Layer 1 routing target |
 
 **Verification source:** Cursor completion report `20260323_143930`. All five folders confirmed as created in this session.

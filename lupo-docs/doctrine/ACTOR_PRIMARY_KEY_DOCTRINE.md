@@ -113,7 +113,7 @@ The `dir` field in **`registry.json`** is the **actor hub** path relative to the
 ## 3.1 Directory structure (actor_id–keyed hub)
 
 - **Canonical hub paths:** Decimal **`actor_id`** (and date sharding when required). Examples: `lupo-actors/0/`, `lupo-actors/111/`, `lupo-actors/102/`.
-- **Legacy slug directories** (e.g. `lupo-actors/wolfie/`) may still exist on disk until migrated; **`SkillService`** and **`ActorService::getActorDir()`** should follow **`registry.json` `dir`** first.
+- **Legacy slug-only hubs** (folder name is a slug, not the decimal `actor_id`) may still exist on disk for some facets until migrated; **`SkillService`** and **`ActorService::getActorDir()`** should follow **`registry.json` `dir`** first.
 - **Standard subdirs:** `apps/`, `lupo-tools/`, `lupo-docs/`, `db-changes/`, `lupo-api/`, `needs/`, `lupo-prompts/`, `skills/`, `logs/`.
 - **Resolving path in code:** Use `ActorService::getActorDir($actor_name)` to get the registry **`dir`** (e.g. `lupo-actors/111`). Use `Resolver::actorPathByDir($base_path, $actor['dir'])` where applicable for safe file access.
 

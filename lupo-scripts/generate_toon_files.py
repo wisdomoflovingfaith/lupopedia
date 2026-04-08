@@ -296,4 +296,12 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    ret = main()
+    # Also export lupo_memory_nodes for actor_id 116
+    try:
+        from subprocess import run
+        script_path = str((Path(__file__).parent / "export_memory_nodes_116.py").resolve())
+        run([sys.executable, script_path], check=True)
+    except Exception as e:
+        print("[WARN] Could not export lupo_memory_nodes for actor_id 116:", e, file=sys.stderr)
+    raise SystemExit(ret)

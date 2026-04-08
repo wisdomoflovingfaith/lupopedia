@@ -1,9 +1,19 @@
 {
-  "schema_version": "4.0.48",
-  "actor_id": "1",
+  "schema_version": "4.0.95",
+  "actor_id": 1,
+  "actor_name": "wolfie",
   "actor_type": "agent",
-  "slug": "captain-wolfie",
-  "name": "Captain Wolfie",
+  "agent_key": "wolfie",
+  "agent_id": 1,
+  "slug": "wolfie",
+  "name": "WOLFIE",
+  "display_name": "WOLFIE",
+  "layer": "coordination",
+  "is_kernel": true,
+  "is_required": true,
+  "department": 0,
+  "status": "active",
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
   "created_ymdhis": "20260227000000",
-  "updated_ymdhis": "20260227184700"
+  "updated_ymdhis": "20260406134032"
 }

@@ -56,7 +56,7 @@ Created comprehensive WOLFIE orchestrator prompt for Windsurf IDE with full doct
 - Ready for Windsurf IDE integration
 - Session logging will begin on first task execution
 - LILITH review prompts will be routed as broadcasts
-- Memory logs will accumulate in lupo-actors/wolfie/memory/logs/append.log
+- Memory logs will accumulate in lupo-actors/1/memory/logs/append.log
 
 ## Risk Notes
 - No conflicts detected with existing doctrine

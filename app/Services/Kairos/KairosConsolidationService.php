@@ -1,9 +1,9 @@
 <?php
 /**
- * KAIROS — memory consolidation using lupo_actor_memory + lupo_edges.
+ * KAIROS — memory consolidation using lupo_memory_nodes (PRD 38) + lupo_edges.
  *
- * Schema (lupo-database/lupopedia/json): lupo_actor_memory, lupo_edges.
- * There is no lupo_actor_observations table; observations are memory_type kairos_observation.
+ * Observations use staging-shaped PKs (IdGenerator::generate()). Consolidated memories use
+ * living canonical band (toCanonicalIdSafe) per Chronological Trust Ladder doctrine.
  */
 class KairosConsolidationService
 {
@@ -12,6 +12,9 @@ class KairosConsolidationService
 
     const EDGE_CONSOLIDATES_FROM = 'kairos_consolidates_from';
     const EDGE_CONTRADICTS = 'kairos_contradicts';
+
+    /** Object type for lupo_edges endpoints (memory_node_id PKs). */
+    const EDGE_OBJECT_TYPE_MEMORY_NODE = 'memory_node';
 
     /** @var PDO_DB|object */
     private $db;
@@ -32,6 +35,40 @@ class KairosConsolidationService
         $this->db = $db ? $db : DatabaseFactory::getConnection();
         $this->tablePrefix = $tablePrefix !== null ? $tablePrefix : (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_');
         $this->kairosActorId = (int) $kairosActorId;
+    }
+
+    /**
+     * @return string
+     */
+    private function memoryNodesTable()
+    {
+        return $this->tablePrefix . 'memory_nodes';
+    }
+
+    /**
+     * Install doctrine: created_ymdhis SHOULD match the first 14 digits of memory_node_id (packed UTC clock).
+     *
+     * @param int|string $memoryNodeId
+     * @return int|string BIGINT-safe (string on 32-bit PHP for large values)
+     */
+    private function packedUtcFromMemoryNodeId($memoryNodeId)
+    {
+        $s = (string) $memoryNodeId;
+        if (strlen($s) >= 14) {
+            return (int) substr($s, 0, 14);
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param string $memoryKey
+     * @param string $memoryValue
+     * @return string 64-char hex
+     */
+    private function contentHash($memoryKey, $memoryValue)
+    {
+        return hash('sha256', (string) $memoryKey . "\0" . (string) $memoryValue);
     }
 
     /**
@@ -84,7 +121,7 @@ class KairosConsolidationService
      * @param string $text
      * @param int|null $departmentId
      * @param string|null $topicKey optional logical topic for contradiction detection
-     * @return string memory_id
+     * @return string memory_node_id (staging-shaped)
      */
     public function recordObservation($actorId, $text, $departmentId = null, $topicKey = null)
     {
@@ -95,6 +132,7 @@ class KairosConsolidationService
         $actorId = (int) $actorId;
         $now = KairosTemporalAnchor::getUtcYmdHis();
         $memoryId = IdGenerator::generate();
+        IdGenerator::validateTrustLadderPk($memoryId, 'kairos.memory_node_id', true);
         $key = 'kairos_obs:' . $memoryId;
 
         $kairos = array(
@@ -106,21 +144,28 @@ class KairosConsolidationService
         );
 
         $ctx = array('kairos' => $kairos);
-        $t = $this->tablePrefix . 'actor_memory';
+        $t = $this->memoryNodesTable();
+        $memVal = (string) $text;
 
         $this->db->insert(
             $t,
             array(
-                'memory_id' => $memoryId,
-                'actor_id' => $actorId,
+                'memory_node_id' => $memoryId,
+                'created_ymdhis' => $this->packedUtcFromMemoryNodeId($memoryId),
+                'owner_actor_id' => $actorId,
+                'owner_type' => 'actor',
                 'memory_type' => self::MEMORY_OBSERVATION,
                 'memory_key' => $key,
-                'memory_value' => (string) $text,
+                'memory_value' => $memVal,
+                'context' => 'experiential',
+                'status' => 'unsupported',
+                'review_reason' => null,
+                'content_hash' => $this->contentHash($key, $memVal),
                 'context_json' => json_encode($ctx),
-                'created_ymdhis' => $now,
                 'updated_ymdhis' => $now,
+                'expires_ymdhis' => 0,
                 'is_deleted' => 0,
-                'deleted_ymdhis' => null,
+                'deleted_ymdhis' => 0,
             )
         );
 
@@ -129,13 +174,13 @@ class KairosConsolidationService
 
     private function loadActiveObservations($actorId, $departmentId)
     {
-        $t = $this->tablePrefix . 'actor_memory';
-        $sql = "SELECT memory_id, actor_id, memory_type, memory_key, memory_value, context_json, created_ymdhis
+        $t = $this->memoryNodesTable();
+        $sql = "SELECT memory_node_id, owner_actor_id AS actor_id, memory_type, memory_key, memory_value, context_json, created_ymdhis
                 FROM {$t}
-                WHERE actor_id = :actor_id
+                WHERE owner_actor_id = :actor_id
                 AND memory_type = :mtype
                 AND is_deleted = 0
-                ORDER BY created_ymdhis ASC, memory_id ASC";
+                ORDER BY created_ymdhis ASC, memory_node_id ASC";
 
         return $this->db->fetchAll(
             $sql,
@@ -187,7 +232,7 @@ class KairosConsolidationService
         $topicKey = null;
 
         foreach ($group as $r) {
-            $sourceIds[] = (string) $r['memory_id'];
+            $sourceIds[] = (string) $r['memory_node_id'];
             $ctx = $this->decodeContext(isset($r['context_json']) ? $r['context_json'] : null);
             $tk = $this->getTopicKey($ctx);
             if ($tk !== null && $tk !== '') {
@@ -201,7 +246,10 @@ class KairosConsolidationService
             $confidence = 0.85;
         }
 
-        $memoryId = IdGenerator::generate();
+        $stagingId = IdGenerator::generate();
+        $memoryId = IdGenerator::toCanonicalIdSafe($stagingId, 'memory_nodes', 'memory_node_id');
+        IdGenerator::validateTrustLadderPk($memoryId, 'kairos.memory_node_id', true);
+
         $memKey = 'kairos_mem:' . $memoryId;
 
         $ctxOut = array(
@@ -216,27 +264,35 @@ class KairosConsolidationService
             ),
         );
 
-        $t = $this->tablePrefix . 'actor_memory';
+        $t = $this->memoryNodesTable();
+        $memVal = $content;
+
         $this->db->insert(
             $t,
             array(
-                'memory_id' => $memoryId,
-                'actor_id' => $actorId,
+                'memory_node_id' => $memoryId,
+                'created_ymdhis' => $this->packedUtcFromMemoryNodeId($memoryId),
+                'owner_actor_id' => $actorId,
+                'owner_type' => 'actor',
                 'memory_type' => self::MEMORY_CONSOLIDATED,
                 'memory_key' => $memKey,
-                'memory_value' => $content,
+                'memory_value' => $memVal,
+                'context' => 'experiential',
+                'status' => 'unsupported',
+                'review_reason' => null,
+                'content_hash' => $this->contentHash($memKey, $memVal),
                 'context_json' => json_encode($ctxOut),
-                'created_ymdhis' => $now,
                 'updated_ymdhis' => $now,
+                'expires_ymdhis' => 0,
                 'is_deleted' => 0,
-                'deleted_ymdhis' => null,
+                'deleted_ymdhis' => 0,
             )
         );
 
         $edgeCount = 0;
         foreach ($group as $r) {
             $this->markObservationSuperseded($r, $memoryId, $now);
-            if ($this->insertConsolidationEdge((string) $memoryId, (string) $r['memory_id'], $now)) {
+            if ($this->insertConsolidationEdge((string) $memoryId, (string) $r['memory_node_id'], $now)) {
                 $edgeCount++;
             }
         }
@@ -264,30 +320,31 @@ class KairosConsolidationService
         $ctx['kairos']['superseded_by_memory_id'] = (string) $consolidatedMemoryId;
         $ctx['kairos']['stage'] = 'superseded';
 
-        $t = $this->tablePrefix . 'actor_memory';
+        $t = $this->memoryNodesTable();
         $this->db->update(
             $t,
             array(
                 'context_json' => json_encode($ctx),
                 'updated_ymdhis' => $now,
             ),
-            'memory_id = :mid',
-            array('mid' => $row['memory_id'])
+            'memory_node_id = :mid',
+            array('mid' => $row['memory_node_id'])
         );
     }
 
     private function insertConsolidationEdge($memoryId, $observationMemoryId, $now)
     {
         $edges = $this->tablePrefix . 'edges';
+        $ot = self::EDGE_OBJECT_TYPE_MEMORY_NODE;
         $dup = $this->db->fetchRow(
             "SELECT edge_id FROM {$edges}
              WHERE left_object_type = :lt AND left_object_id = :lid
              AND right_object_type = :rt AND right_object_id = :rid
              AND edge_type = :et AND is_deleted = 0 LIMIT 1",
             array(
-                'lt' => 'actor_memory',
+                'lt' => $ot,
                 'lid' => $memoryId,
-                'rt' => 'actor_memory',
+                'rt' => $ot,
                 'rid' => $observationMemoryId,
                 'et' => self::EDGE_CONSOLIDATES_FROM,
             )
@@ -301,14 +358,15 @@ class KairosConsolidationService
         }
 
         $edgeId = IdGenerator::generate();
+        IdGenerator::validateTrustLadderPk($edgeId, 'kairos.lupo_edges.edge_id', true);
 
         $this->db->insert(
             $edges,
             array(
                 'edge_id' => $edgeId,
-                'left_object_type' => 'actor_memory',
+                'left_object_type' => $ot,
                 'left_object_id' => $memoryId,
-                'right_object_type' => 'actor_memory',
+                'right_object_type' => $ot,
                 'right_object_id' => $observationMemoryId,
                 'edge_type' => self::EDGE_CONSOLIDATES_FROM,
                 'edge_category' => 'kairos',
@@ -330,7 +388,7 @@ class KairosConsolidationService
                 'properties' => null,
                 'flare_weight' => 0.5,
                 'flare_reason' => 'kairos_consolidation',
-                'flare_db_source' => 'lupo_actor_memory',
+                'flare_db_source' => 'lupo_memory_nodes',
                 'flare_auto_generated' => 1,
                 'flare_verified' => 0,
                 'flare_discovered_via' => 'kairos',
@@ -342,11 +400,11 @@ class KairosConsolidationService
 
     private function detectContradictions($actorId, $now)
     {
-        $t = $this->tablePrefix . 'actor_memory';
+        $t = $this->memoryNodesTable();
         $rows = $this->db->fetchAll(
-            "SELECT memory_id, memory_value, context_json FROM {$t}
-             WHERE actor_id = :aid AND memory_type = :mt AND is_deleted = 0
-             ORDER BY memory_id ASC",
+            "SELECT memory_node_id, memory_value, context_json FROM {$t}
+             WHERE owner_actor_id = :aid AND memory_type = :mt AND is_deleted = 0
+             ORDER BY memory_node_id ASC",
             array('aid' => $actorId, 'mt' => self::MEMORY_CONSOLIDATED)
         );
 
@@ -370,7 +428,7 @@ class KairosConsolidationService
             }
             $norms = array();
             foreach ($list as $r) {
-                $mid = (string) $r['memory_id'];
+                $mid = (string) $r['memory_node_id'];
                 $norms[$mid] = $this->normalizeText(isset($r['memory_value']) ? $r['memory_value'] : '');
             }
             $unique = array_unique(array_values($norms));
@@ -385,10 +443,9 @@ class KairosConsolidationService
 
             $a = $pair['a'];
             $b = $pair['b'];
-            $left = min($a, $b);
-            $right = max($a, $b);
+            $ab = $this->orderMemoryNodeIdsForEdge($a, $b);
 
-            if ($this->insertContradictionEdge($left, $right, $now)) {
+            if ($this->insertContradictionEdge($ab['left'], $ab['right'], $now)) {
                 $added++;
             }
         }
@@ -396,12 +453,30 @@ class KairosConsolidationService
         return $added;
     }
 
+    /**
+     * Deterministic left/right for dedup: compare zero-padded 18-digit strings (numeric order).
+     *
+     * @param string $a
+     * @param string $b
+     * @return array left, right
+     */
+    private function orderMemoryNodeIdsForEdge($a, $b)
+    {
+        $pa = str_pad((string) $a, 18, '0', STR_PAD_LEFT);
+        $pb = str_pad((string) $b, 18, '0', STR_PAD_LEFT);
+        if (strcmp($pa, $pb) <= 0) {
+            return array('left' => $a, 'right' => $b);
+        }
+
+        return array('left' => $b, 'right' => $a);
+    }
+
     private function pickTwoDistinctIds($list, $norms)
     {
         $firstId = null;
         $firstNorm = null;
         foreach ($list as $r) {
-            $id = (string) $r['memory_id'];
+            $id = (string) $r['memory_node_id'];
             $n = isset($norms[$id]) ? $norms[$id] : '';
             if ($firstId === null) {
                 $firstId = $id;
@@ -418,15 +493,16 @@ class KairosConsolidationService
     private function insertContradictionEdge($leftId, $rightId, $now)
     {
         $edges = $this->tablePrefix . 'edges';
+        $ot = self::EDGE_OBJECT_TYPE_MEMORY_NODE;
         $dup = $this->db->fetchRow(
             "SELECT edge_id FROM {$edges}
              WHERE left_object_type = :lt AND left_object_id = :lid
              AND right_object_type = :rt AND right_object_id = :rid
              AND edge_type = :et AND is_deleted = 0 LIMIT 1",
             array(
-                'lt' => 'actor_memory',
+                'lt' => $ot,
                 'lid' => $leftId,
-                'rt' => 'actor_memory',
+                'rt' => $ot,
                 'rid' => $rightId,
                 'et' => self::EDGE_CONTRADICTS,
             )
@@ -440,13 +516,14 @@ class KairosConsolidationService
         }
 
         $edgeId = IdGenerator::generate();
+        IdGenerator::validateTrustLadderPk($edgeId, 'kairos.lupo_edges.edge_id', true);
         $this->db->insert(
             $edges,
             array(
                 'edge_id' => $edgeId,
-                'left_object_type' => 'actor_memory',
+                'left_object_type' => $ot,
                 'left_object_id' => $leftId,
-                'right_object_type' => 'actor_memory',
+                'right_object_type' => $ot,
                 'right_object_id' => $rightId,
                 'edge_type' => self::EDGE_CONTRADICTS,
                 'edge_category' => 'kairos',
@@ -468,7 +545,7 @@ class KairosConsolidationService
                 'properties' => null,
                 'flare_weight' => 0.5,
                 'flare_reason' => 'kairos_contradiction',
-                'flare_db_source' => 'lupo_actor_memory',
+                'flare_db_source' => 'lupo_memory_nodes',
                 'flare_auto_generated' => 1,
                 'flare_verified' => 0,
                 'flare_discovered_via' => 'kairos',
@@ -480,10 +557,10 @@ class KairosConsolidationService
 
     private function promoteVerifiedFacts($actorId, $now)
     {
-        $t = $this->tablePrefix . 'actor_memory';
+        $t = $this->memoryNodesTable();
         $rows = $this->db->fetchAll(
-            "SELECT memory_id, context_json FROM {$t}
-             WHERE actor_id = :aid AND memory_type = :mt AND is_deleted = 0",
+            "SELECT memory_node_id, context_json FROM {$t}
+             WHERE owner_actor_id = :aid AND memory_type = :mt AND is_deleted = 0",
             array('aid' => $actorId, 'mt' => self::MEMORY_CONSOLIDATED)
         );
 
@@ -511,8 +588,8 @@ class KairosConsolidationService
                     'context_json' => json_encode($ctx),
                     'updated_ymdhis' => $now,
                 ),
-                'memory_id = :mid',
-                array('mid' => $row['memory_id'])
+                'memory_node_id = :mid',
+                array('mid' => $row['memory_node_id'])
             );
             $n++;
         }

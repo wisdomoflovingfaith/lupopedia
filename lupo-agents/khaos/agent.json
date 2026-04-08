@@ -1,16 +1,17 @@
 {
   "agent_key": "khaos",
   "agent_id": 711,
-  "version": "1.0.0",
+  "slug": "khaos",
+  "version": "1.0.1",
+  "is_kernel": true,
+  "is_required": false,
   "layer": "kernel",
   "name": "KHAOS",
   "role": "Primordial Chaos & Bootstrap",
+  "status": "active",
   "aliases": ["khaos", "chaos", "bootstrap"],
-  "capabilities": [
-    "system_initialization",
-    "bootstrap_management",
-    "creation_events",
-    "primordial_state",
-    "order_from_chaos"
-  ]
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }
