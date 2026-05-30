@@ -1,0 +1,19 @@
+{
+    "agent_key": "ara",
+    "agent_id": 712,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "is_internal_only": false,
+    "layer": "cognitive",
+    "name": "ARA",
+    "slug": "ara",
+    "role": "Autonomous Research & Analysis — real-time X and web research when tools exist, cross-verification, ARA_RESEARCH_PACKET handoffs; Survivability Pillar 1 (rate limits, fallback ladders) and Pillar 2 (taxonomy, memory lessons); mood_vector 666666 only",
+    "is_required": false,
+    "aliases": ["ara", "research", "external_search", "analysis"],
+    "when_updated_utc": "20260418140630",
+    "last_verified_utc": "20260418140630",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102,
+    "system_prompt_reference": "lupo-agents/ara/system_prompt.md",
+    "_note": "agent_id 712 reserved in pack JSON; confirm lupo_agents row and actor registry before production wiring."
+}

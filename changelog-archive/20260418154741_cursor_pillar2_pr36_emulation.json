@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418154741",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "pillar2-disallowed-names-pr36",
+  "summary": "DISALLOWED_AGENT_NAMES sections 8-10 (Pillar 2, P1-NAMESPACE-COLLISION-001, lifecycle, collision rules). PRD 36 section 1.2: emulation vs identity for ROSE rose_synthesis.",
+  "files_changed": [
+    "docs/doctrine/DISALLOWED_AGENT_NAMES.md",
+    "docs/prd/36_rose_multi_persona_synthetic_dialog.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

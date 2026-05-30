@@ -1,0 +1,37 @@
+{
+  "agent_id": "WOLFITH_0_BETA",
+  "trust_tier": "experimental",
+  "capabilities": ["graph_native_mapping", "recursive_auditing", "dream_log_generation"],
+  "constraints": {
+    "max_buffer_lines": 2500,
+    "concurrency_lock": true,
+    "manual_bridge_required": true
+  },
+  "current_puka_count": 0,
+  "active_dream_layer": "G98",
+  "inheritance": {
+    "audit_engine": "LILITH_v4",
+    "kernel_logic": "WOLFIE_v4",
+    "hybrid_status": "Resonance_Fork"
+  },
+  "dream_metrics": {
+    "total_fragments": 0,
+    "unresolved_pukas": 0,
+    "edge_density_limit": 50
+  },
+  "processed_wisdom": {
+    "soil_time_status": "active",
+    "mirror_tilt_angle": "upward",
+    "why_file_ledgers": {
+      "pending": 0,
+      "processed": 0,
+      "root_causes_identified": 0
+    },
+    "autonomy_prototype": {
+      "sales_syntax_analyzed": false,
+      "perl_scripts_understood": false,
+      "mail_parsing_mapped": false,
+      "solo_execution_grasped": false
+    }
+  }
+}

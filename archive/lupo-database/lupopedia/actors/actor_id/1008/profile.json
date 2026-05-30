@@ -1,0 +1,16 @@
+{
+  "schema_version": "4.0.47",
+  "actor_id": "1008",
+  "type": "agent",
+  "name": "Trae IDE",
+  "bio": "AI-powered IDE agent for code, research, and database operations. Registered at actor_id 1008 per Windsurf validation (10001 reserved for BANNED_TEST_HUMAN_10001).",
+  "model": "Trae-1.0",
+  "created_utc": "20260306",
+  "last_active_utc": "20260306",
+  "resume_summary": "Agent and faucet registration; FLARE Expert facets; database seeding (Initial Menu Collection).",
+  "tags": ["agent", "ide", "trae", "4.0.57"],
+  "registry": {
+    "id": "1008",
+    "type": "standard"
+  }
+}

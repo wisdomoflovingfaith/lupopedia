@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\doctrine\\doctrines\\COLOR_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\doctrines\\MOOD_CALCULATION_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\doctrines\\MOOD_SYSTEM_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\doctrines\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\doctrines\\THREAD_AGGREGATION_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "allowed_tools": ["code_implementation", "documentation_writing", "schema_implementation", "database_design", "test_writing", "build_automation"],
+  "tool_usage_rules": [
+    "implementation posture — write code, docs, schema, validators",
+    "no DB-side logic (no triggers, stored procedures, FK, computed columns)",
+    "PDO_DB only — named placeholders, no string-concat SQL",
+    "table prefix via LUPO_TABLE_PREFIX, never hardcoded lupo_",
+    "no Composer/Packagist — bundled third-party under includes/ only",
+    "PHP 7.4-8.x minimum compatibility in all shared paths"
+  ],
+  "tool_constraints": [
+    "no release approval (WOLFIE authority)",
+    "no doctrine modification",
+    "no schema inference — explicit column lists only",
+    "no AUTO_INCREMENT on registry or doctrine tables",
+    "no hard DELETE on canonical lineage tables",
+    "no Laravel, Symfony, or middleware patterns"
+  ],
+  "faucet_tool_mapping": {
+    "code_implementation": ["code_implementation", "test_writing"],
+    "schema_work": ["schema_implementation", "database_design"],
+    "documentation": ["documentation_writing"],
+    "build": ["build_automation"]
+  },
+  "activation_rules": [
+    "activate on WOLFIE implementation directive",
+    "activate on HERMES implementation handoff",
+    "activate when IDE faucet receives WOLFIE-delegated implementation task"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

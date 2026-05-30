@@ -1,0 +1,80 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_truth_evidence
+fields:
+- '`truth_evidence_id` bigint NOT NULL'
+- '`truth_answer_id` bigint NOT NULL'
+- '`evidence_type` varchar(64) NOT NULL'
+- '`source_object_type` varchar(64) NOT NULL'
+- '`source_object_id` bigint NOT NULL'
+- '`source_federation_node_id` bigint'
+- '`source_url` varchar(2000)'
+- '`source_title` varchar(500)'
+- '`evidence_text` text'
+- '`evidence_excerpt` varchar(1000)'
+- '`reliability_score` decimal(3,2) NOT NULL DEFAULT 0.50'
+- '`relevance_score` decimal(3,2) NOT NULL DEFAULT 0.50'
+- '`is_verified` tinyint NOT NULL DEFAULT 0'
+- '`verified_by_actor_id` bigint'
+- '`verified_ymdhis` bigint'
+- '`verification_notes` text'
+- '`submitted_by_actor_id` bigint NOT NULL'
+- '`created_ymdhis` bigint NOT NULL'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_truth_evidence_idx_answer
+  columns:
+  - truth_answer_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_source
+  columns:
+  - source_object_type
+  - source_object_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_federation
+  columns:
+  - source_federation_node_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_verified
+  columns:
+  - is_verified
+  - reliability_score
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_evidence_type
+  columns:
+  - evidence_type
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_submitted_by
+  columns:
+  - submitted_by_actor_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_created
+  columns:
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_truth_evidence_idx_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: truth_evidence_id
+  expected_name: truth_evidence_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

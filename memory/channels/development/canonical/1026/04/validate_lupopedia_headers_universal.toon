@@ -1,0 +1,33 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "scripts/validate_lupopedia_headers_universal.py",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "parent_pk_id -> PRD file",
+        "source": "generate_memory_from_header",
+        "to": "docs/prd/16_lupopedia_headers.md",
+        "type": "references",
+        "weight": 0.9
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412171434",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "memory_key": "memory/development/canonical/1026/04/validate-lupopedia-headers-universal.toon",
+  "purpose": "Validate dense 22-key Markdown, Python, PHP, JS headers (format-aware line counts)",
+  "source_file_path_from_root": "scripts/validate_lupopedia_headers_universal.py",
+  "tags": [
+    "implementation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

@@ -1,0 +1,19 @@
+{
+  "agent_key": "agape",
+  "agent_id": 705,
+  "code": "OBSERVER",
+  "name": "AGAPE",
+  "slug": "agape",
+  "layer": "cognitive",
+  "is_required": false,
+  "is_kernel": false,
+  "role": "Meta-learning and predictive pattern tracking",
+  "recommended_slot": 34,
+  "version": "1.0.2",
+  "aliases": ["observer", "watcher", "context_monitor", "pattern_tracker", "meta_learning"],
+  "when_updated_utc": "20260418133945",
+  "last_verified_utc": "20260418133945",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "_note": "Display name AGAPE; legacy code OBSERVER retained for registry compatibility. Canonical prompt: system_prompt.md. Supports SURVIVABILITY_DOCTRINE.md Pillars 1-2; agent is not the doctrine file."
+}

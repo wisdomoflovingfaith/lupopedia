@@ -1,0 +1,133 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_projects",
+  "fields": [
+    "`project_id` bigint NOT NULL",
+    "`project_key` varchar(64) NOT NULL",
+    "`project_slug` varchar(255) NOT NULL",
+    "`project_name` varchar(255) NOT NULL",
+    "`federation_node_id` bigint NOT NULL",
+    "`default_channel_id` bigint",
+    "`orchestrator_id` bigint NOT NULL",
+    "`project_type` varchar(64) DEFAULT standard",
+    "`description` text",
+    "`github_repository` varchar(512)",
+    "`status` varchar(32) NOT NULL DEFAULT active",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_archived` tinyint NOT NULL DEFAULT 0",
+    "`is_frozen` tinyint NOT NULL DEFAULT 0",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint DEFAULT 0",
+    "`created_by_actor_id` bigint",
+    "`updated_by_actor_id` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "uk_project_key_node",
+      "columns": [
+        "project_key",
+        "federation_node_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "uk_project_slug_node",
+      "columns": [
+        "project_slug",
+        "federation_node_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_federation_node",
+      "columns": [
+        "federation_node_id",
+        "status",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_project_key",
+      "columns": [
+        "project_key",
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_project_slug",
+      "columns": [
+        "project_slug",
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_orchestrator",
+      "columns": [
+        "orchestrator_id",
+        "status",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_default_channel",
+      "columns": [
+        "default_channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_status",
+      "columns": [
+        "status",
+        "is_active",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "project_id",
+    "expected_name": "project_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

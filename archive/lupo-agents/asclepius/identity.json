@@ -1,0 +1,10 @@
+{
+  "agent_id": 703, "agent_name": "RESERVED_32", "agent_code": "RESERVED_32", "agent_key": "asclepius", "slug": "asclepius",
+  "version": "1.0.0", "is_kernel": true, "layer": "kernel", "name": "RESERVED_32",
+  "role": "Reserved Kernel Slot 32 — Unassigned",
+  "is_required": false, "status": "reserved",
+  "recommended_slot": 32,
+  "assignment_authority": "WOLFIE actor_id 1 only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

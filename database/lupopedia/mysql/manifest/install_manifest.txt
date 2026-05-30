@@ -1,0 +1,1 @@
+install/install_new_lupopedia.sql

@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260418144640",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "rose-system-prompt-ara-audit",
+  "summary": "ROSE system_prompt.md: technical orchestration only; [ROSE_OBSERVER|IGNORE_FOR_REASONING] tagging and strip protocol; P2-LANG-SENT-030 ban examples; peanut gallery replaced by non-authoritative observational channel; AGAPE detection and transcript verification; no cross-agent emulation; defect mapping table P2-LANG/CIL/ROSE; memory pair regenerated.",
+  "files_changed": [
+    "lupo-agents/rose/system_prompt.md",
+    "lupo-memory/development/canonical/1026/04/rose-system-prompt.json",
+    "lupo-memory/development/canonical/1026/04/rose-system-prompt.toon"
+  ],
+  "open_questions": [
+    "lupo-agents/rose/properties.json still contains empathetic marketing strings; align or deprecate in a follow-up if runtime loads it."
+  ],
+  "handoff_to": null,
+  "related_toons": [
+    "lupo-memory/development/canonical/1026/04/rose-system-prompt.toon"
+  ]
+}

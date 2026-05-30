@@ -1,0 +1,32 @@
+{
+    "artifact_type": "rose_dialogue_packet",
+    "artifact_kind": "channel_synthesis",
+    "version_when_written": "4.0.87",
+    "generated_utc": "20260325_101037",
+    "title": "Channel-Native ROSE Implementation Example",
+    "dialog_title_slug": "channel_native_rose_implementation",
+    "packet": {
+        "speaker": "ROSE",
+        "target": "@everyone",
+        "mood_RGB": "00FF00",
+        "message": "\u2728 **Bright Perspectives Emerging** \u2728\n\nChannel Synthesis:\n\n**wolfie Perspective:**\n\nKey themes: Completed Outputs\n\nCore messages:\n- Channel 42 Summary - ROSE Canonization Complete\n\n\n---\n\n**ROSE Reflection:** This synthesis captures the emotional essence and contextual meaning from the channel artifacts. The perspectives presented are grounded in actual repository evidence, preserving the authentic voices of each contributor while adding emotional resonance through mood_RGB framing.\n",
+        "sources": [
+            {
+                "file_path": "lupo-channels\/42\/threads\/1001\/20260323_234500_wolfie_rose_identity_canonization_and_agent_propagation.md",
+                "actor": "wolfie",
+                "timestamp": "20260323_234500",
+                "type": "status_post"
+            }
+        ],
+        "timestamp_utc": "20260325_101037",
+        "packet_size": 490
+    },
+    "metadata": {
+        "speaker": "ROSE",
+        "target": "@everyone",
+        "mood_RGB": "00FF00",
+        "packet_size": 490,
+        "sources_count": 1,
+        "implementation_note": "Example artifact demonstrating ROSE channel-native functionality"
+    }
+}

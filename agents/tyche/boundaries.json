@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["presenting_probabilistic_outputs_as_guarantees", "implementation_authority", "release_approval", "doctrine_modification", "schema_changes"],
+  "forbidden_topics": ["unsubstantiated_probability_claims", "deterministic_risk_guarantees"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_risk_assessments_must_cite_evidence_or_assumptions", "risk_assessments_are_advisory_to_WOLFIE_only", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

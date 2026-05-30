@@ -1,0 +1,8 @@
+task_id: zencoder-integration
+task_name: Zencoder work committed and pushed (git follow-through by Cursor)
+owner: 102
+validator: 101
+status: complete
+notes: "Zencoder (actor_id 106) workspace, four development table docs (lupo_analytics_campaign_vars, lupo_world_registry, lupo_auth_audit_log, lupo_channel_boot_detail), and seed_actor_zencoder_4.0.77.sql verified and committed by Cursor after git failure on Zencoder side; pushed to main. Canonical directories use lupo- prefix (lupo-actors, lupo-docs, etc.)."
+completed_by: cursor
+completed_ymdhis: "20260316000000"

@@ -1,0 +1,21 @@
+{
+  "timestamp": "20260418153241",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "disallowed-agent-names",
+  "summary": "Added DISALLOWED_AGENT_NAMES doctrine, validate_agent_name.py (new registration + scan-root), agent_registration_template.json with _note; memory stubs for headers.",
+  "files_changed": [
+    "lupo-docs/doctrine/DISALLOWED_AGENT_NAMES.md",
+    "lupo-scripts/validate_agent_name.py",
+    "lupo-agents/agent_registration_template.json",
+    "lupo-memory/development/canonical/1026/04/disallowed-agent-names.json",
+    "lupo-memory/development/canonical/1026/04/disallowed-agent-names.toon",
+    "lupo-memory/development/canonical/1026/04/validate-agent-name.json",
+    "lupo-memory/development/canonical/1026/04/validate-agent-name.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "lupo-memory/development/canonical/1026/04/disallowed-agent-names.toon"
+  ]
+}

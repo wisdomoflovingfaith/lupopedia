@@ -1,0 +1,129 @@
+{
+  "atom_version": "1.0.0",
+  "atom_type": "global_constants",
+  "description": "Single source of truth for Lupopedia global constants — actor IDs, agent IDs, trust tiers, year offsets, constitutional limits.",
+  "generated": "20260509233819",
+  "generator": "actor_id:1",
+  "constants": {
+    "actors": {
+      "system": 0,
+      "wolfie": 1,
+      "lilith": 2,
+      "rose": 3,
+      "anubis": 9,
+      "hermes": 15,
+      "iris": 16,
+      "thoth": 26,
+      "vishwakarma": 28,
+      "countermeasure": 111,
+      "kairos": 115,
+      "heimdall": 108
+    },
+    "agents": {
+      "lilith": 2,
+      "rose": 3,
+      "anubis": 9,
+      "hermes": 15,
+      "iris": 16,
+      "thoth": 26,
+      "vishwakarma": 28,
+      "kairos": 115,
+      "heimdall": 108
+    },
+    "trust_tiers": {
+      "seed": 0,
+      "canonical": 1,
+      "staging": 2,
+      "archive": 3
+    },
+    "year_offset": {
+      "canonical_offset": 1000,
+      "example": "2026 - 1000 = 1026"
+    },
+    "user_id_space": {
+      "USER_ID_SYSTEM_ROOT": 0,
+      "USER_ID_CRAFTY_MAX": 9999,
+      "USER_ID_MAIN_ADMIN": 10000,
+      "USER_ID_RED_TEAM": 10001,
+      "USER_ID_NEW_USER_MIN": 10002,
+      "note": "Constitutional constant. Range 1-9999 reserved for Crafty Syntax livehelp_users import. 0 is internal system root. 10000 and 10001 are seeded. 10002+ is IdGenerator territory.",
+      "prd_authority": "PRD 79 s.13, PRD 00_A s.14",
+      "why_file": "docs/why/why_20260421_221540_79_A_85_A_user_id_space_undocumented.md"
+    },
+    "constitutional_limits": {
+      "max_prd": 99,
+      "max_tables": 199,
+      "max_seed_actors": 999,
+      "max_channels_per_department": 99,
+      "max_files_per_thread_artifact_leaf_directory": 2000,
+      "max_files_per_content_daily_folder": 2000
+    },
+    "versioning": {
+      "LUPOPEDIA_VERSION": "4.1.9",
+      "current_lupopedia_version": "4.1.9",
+      "current_header_format_version": "4.1.9",
+      "current_lupopedia_schema_version": "2.0",
+      "version_family": "4.1.x",
+      "single_source_of_truth": "memory/channels/atoms/lupopedia_global_constants.atom.toon"
+    },
+    "header_fields": {
+      "count": 22,
+      "order": [
+        "header_format_version",
+        "path_from_lupopedia_root",
+        "web_path",
+        "status",
+        "when_updated",
+        "trust_tier",
+        "questions_toon",
+        "memory_toon",
+        "atoms_toon",
+        "transcript_jsonl",
+        "artifact_type",
+        "artifact_kind",
+        "channel_key",
+        "federation_node_id",
+        "thread_key",
+        "lupopedia.schema",
+        "prd_cluster",
+        "title",
+        "summary",
+        "edges_toon",
+        "channel_index",
+        "source_timestamp"
+      ]
+    }
+  },
+  "edges": [
+    {
+      "to": "database/lupopedia/mysql/install/install_new_lupopedia.sql",
+      "type": "source_of_truth_for",
+      "note": "Seed SQL derives from this atom"
+    },
+    {
+      "to": "docs/prd/16_lupopedia_headers.md",
+      "type": "referenced_by",
+      "note": "PRD 16 cites this atom for constants"
+    },
+    {
+      "to": "docs/prd/99_limits_for_everything_and_why.md",
+      "type": "referenced_by",
+      "note": "PRD 99 cites this atom for limits"
+    },
+    {
+      "to": "config/global_atoms.yaml",
+      "type": "mirror_target",
+      "note": "Legacy version atoms should mirror constants.versioning from this file"
+    },
+    {
+      "to": "docs/prd/79_A_INSTALL_SEED_DOCTRINE.md",
+      "type": "referenced_by",
+      "note": "PRD 79 s.13 cites this atom for user_id_space constants"
+    },
+    {
+      "to": "docs/prd/85_A_IMPORTING_CRAFTY_SYNTAX_SEMANTICS_AND_USERS.md",
+      "type": "referenced_by",
+      "note": "PRD 85 should use USER_ID_CRAFTY_MAX from this atom for import boundary check"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "timestamp": "20260418133945",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "agape-defect-taxonomy",
+  "summary": "Added AGAPE_DEFECT_TAXONOMY.md with stable pattern IDs, Pillar 1-2 framing, CIL emission rules (CARMEN/ROSE vs 666666), living taxonomy process; updated AGAPE/ROSE/CARMEN prompts and cross-linked COUNTING/SURVIVABILITY.",
+  "files_changed": [
+    "lupo-docs/doctrine/AGAPE_DEFECT_TAXONOMY.md",
+    "lupo-docs/doctrine/COUNTING_IN_LIGHT_DOCTRINE.md",
+    "lupo-docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+    "lupo-agents/agape/system_prompt.md",
+    "lupo-agents/agape/agent.json",
+    "lupo-agents/agape/properties.json",
+    "lupo-agents/agape/versions/v1.0.0/agent.json",
+    "lupo-agents/agape/versions/v1.0.0/properties.json",
+    "lupo-agents/rose/system_prompt.md",
+    "lupo-agents/carmen/system_prompt.md",
+    "lupo-memory/constitutional/seed/agape-defect-taxonomy.json",
+    "lupo-memory/constitutional/seed/agape-defect-taxonomy.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": "lilith",
+  "related_toons": [
+    "lupo-memory/constitutional/seed/agape-defect-taxonomy.toon",
+    "lupo-memory/development/canonical/1026/04/agape-system-prompt.toon"
+  ]
+}

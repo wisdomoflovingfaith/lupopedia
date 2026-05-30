@@ -1,0 +1,68 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_edge_types",
+  "fields": [
+    "`edge_type_id` bigint NOT NULL",
+    "`edge_type_key` varchar(100) NOT NULL",
+    "`edge_category` varchar(100)",
+    "`display_name` varchar(255)",
+    "`description` text",
+    "`is_bidirectional` tinyint NOT NULL DEFAULT 0",
+    "`is_system` tinyint NOT NULL DEFAULT 0",
+    "`valid_left_types` json",
+    "`valid_right_types` json",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_edge_types_unq_key",
+      "columns": [
+        "edge_type_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_edge_types_idx_category",
+      "columns": [
+        "edge_category"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_edge_types_idx_system",
+      "columns": [
+        "is_system"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_edge_types_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "edge_type_id",
+    "expected_name": "edge_type_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

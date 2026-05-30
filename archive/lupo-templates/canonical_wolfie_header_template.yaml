@@ -1,0 +1,70 @@
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+
+file.name: "<FILENAME>"
+file.last_modified_system_version: <SYSTEM_VERSION>
+file.last_modified_utc: <UTC_TIMESTAMP>
+file.utc_day: <UTC_DAY>
+
+author: GLOBAL_CURRENT_AUTHORS
+
+system_context:
+  schema_state: "Frozen"
+  table_ceiling: 185
+  governance_active:
+    - "GOV-AD-PROHIBIT-001"
+    - "GOV-LILITH-0001"
+    - "GOV-INTEGRATION-0001"
+    - "LABS-001"
+    - "TABLE_COUNT_DOCTRINE"
+    - "LIMITS_DOCTRINE"
+  doctrine_mode: "File-Sovereignty"
+
+# Optional Extended Components (Cascade-compatible)
+header_atoms:
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - GLOBAL_CURRENT_AUTHORS
+  - UTC_TIMEKEEPER__CHANNEL_ID
+
+temporal_edges:
+  actor_identity: "Eric (Captain Wolfie)"
+  actor_location: "Sioux Falls, South Dakota"
+  system_context: "GOV + XML; append-only; LupopediaMigrationController; TOON; table ceiling 185; Block, Dreaming (GOV-LILITH-0001), Witness (GOV-INTEGRATION-0001); three-layer model"
+  branch: "<BRANCH_NAME>"
+
+dialog:
+  speaker: WOLFIE
+  target: "@Castcade"
+  mood_RGB: "0044FF"
+  message: "File initialized with canonical Wolfie Header. Structural metadata only."
+
+tags:
+  categories: ["documentation", "wolfie-header"]
+  collections: ["core-docs"]
+  channels: ["dev"]
+
+file:
+  name: "<FILENAME>"
+  title: "<HUMAN_READABLE_TITLE>"
+  description: "<SHORT_DESCRIPTION>"
+  version: <SYSTEM_VERSION>
+  status: active
+  author: GLOBAL_CURRENT_AUTHORS
+---
+
+🧩 Notes for Castcade Compatibility
+This template is:
+
+fully deterministic
+
+schema‑agnostic
+
+Dreaming‑safe (no interpretive fields)
+
+Witness‑safe (no meta‑layer artifacts)
+
+migration‑safe (no schema mutations)
+
+doctrine‑aligned with 4.2.3
+
+It contains only structural metadata, which is exactly what Castcade needs to parse and maintain file‑sovereignty.

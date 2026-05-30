@@ -1,0 +1,43 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_references
+fields:
+- '`reference_id` bigint NOT NULL'
+- '`source_entity_type` varchar(64) NOT NULL'
+- '`source_entity_id` bigint NOT NULL'
+- '`url` varchar(2000)'
+- '`title` varchar(500)'
+- '`citation_text` text'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_references_idx_source
+  columns:
+  - source_entity_type
+  - source_entity_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_references_idx_created
+  columns:
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_references_idx_is_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: reference_id
+  expected_name: reference_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

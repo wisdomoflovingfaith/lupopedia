@@ -1,0 +1,77 @@
+{
+  "toon_version": "1.0",
+  "agent": "cursor",
+  "status": "complete",
+  "artifact_type": "doctrine",
+  "artifact_kind": "prd",
+  "source_file_path": "docs/prd/16_lupopedia_headers.md",
+  "channel_key": "lupopedia_headers",
+  "memory_path": "memory/lupopedia_headers/canonical/2026/04/16_lupopedia_headers.toon",
+  "updated_utc": "20260417092315",
+  "summary": "PRD 16 header contract sidecar with explicit ANUBIS baseline execution references, validator dependencies, and gap/proposal linkage preserved as non-canonical extension points.",
+  "validation_snapshot": {
+    "prd": "16_lupopedia_headers",
+    "result": "PASS",
+    "notes": [
+      "ANUBIS execution baseline present and minimal in section 12.1.1.",
+      "Direct synchronous repair is explicitly canonical.",
+      "No hidden daemon assumption: async only via explicit invocation.",
+      "Retry-safe and no-partial-success clauses are explicit.",
+      "Queue model remains non-canonical and cross-referenced as future work."
+    ]
+  },
+  "edges": {
+    "outbound": [
+      {
+        "edge_type": "references",
+        "target": "docs/prd/38_memory_unification.md",
+        "context": "Header validator and channel/path rules depend on PRD 38 memory type distinctions."
+      },
+      {
+        "edge_type": "references",
+        "target": "docs/doctrine/runtime/ANUBIS_QUEUE_EXECUTION_PROPOSAL.md",
+        "context": "Queue execution is visible as future work and explicitly non-canonical."
+      },
+      {
+        "edge_type": "references",
+        "target": "docs/doctrine/gaps/MEMORY_CHANNEL_ENFORCEMENT.md",
+        "context": "PRD 16 channel/path enforcement references current known implementation gaps."
+      },
+      {
+        "edge_type": "implements",
+        "target": "scripts/validate_lupopedia_headers_universal.py",
+        "context": "PRD 16 field order/type and mismatch rules are enforced by universal validator."
+      },
+      {
+        "edge_type": "implements",
+        "target": "scripts/lib/header_spec_v3_1.py",
+        "context": "Artifact type and kind cross-field enums are sourced from this specification library."
+      },
+      {
+        "edge_type": "depends_on",
+        "target": "database/lupopedia/mysql/install/install_new_lupopedia.sql",
+        "context": "Header identity fields align with canonical content schema in install SQL."
+      },
+      {
+        "edge_type": "depends_on",
+        "target": "memory://lupo_contents/canonical-linkage",
+        "context": "Orphan resolution semantics depend on deterministic canonical content row linkage."
+      },
+      {
+        "edge_type": "constrains",
+        "target": "memory://anubis/orphan-resolution/baseline",
+        "context": "ANUBIS must run direct synchronous repair baseline with explicit invocation and no partial success."
+      },
+      {
+        "edge_type": "constrains",
+        "target": "memory://header-mutation/rules",
+        "context": "Header mutation must preserve 22-field order, type constraints, and channel/path consistency."
+      },
+      {
+        "edge_type": "gap_reference",
+        "target": "docs/doctrine/gaps/MEMORY_CHANNEL_ENFORCEMENT.md",
+        "context": "Validator and runtime enforcement limitations are tracked as explicit open gaps."
+      }
+    ]
+  }
+}

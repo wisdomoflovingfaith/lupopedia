@@ -1,0 +1,34 @@
+# Generated from: lupo-memory/development/canonical/2026/04/33-softaculous-certification.json
+# Generated at: 2026-04-10 12:41:40 UTC
+# JSON master checksum: 1b242ba4341cb0846594b465c0d38620
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410123014,20260410123014,canonical,33,softaculous-certification,lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Defines the 4.1.0 release gate for hosting-distribution readiness and Crafty parity.,Purpose and Release Positioning
+  2,Preserves Crafty lineage constraints and enforces 4.0.x single-install migration doctrine.,Legacy and Migration Doctrine
+  3,"Specifies non-negotiable constraints for PHP runtime, root scripts, and operator console parity.",Technical and Runtime Constraints
+  4,Lists product-level one-click packaging checks and formal 4.1.0 completion gate criteria.,Softaculous Checklist and Completion Criteria
+  5,"Captures audit record, traceability duties, and context-typed memory doctrine alignment.","Traceability, Audit, and Doctrine Addendum"
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,release_gate_before_4_1_0,1,critical,Lupopedia must not tag 4.1.0 until Softaculous and parity completion criteria are met.
+  2,single_install_4_0_x_doctrine,2,critical,"During 4.0.x, fresh install from Crafty is the supported path; no Lupopedia-to-Lupopedia upgrade."
+  3,no_new_package_manager_runtime,3,high,Runtime remains plain PHP with approved in-tree libraries; no new package-manager stack in core path.
+  4,softaculous_checklist_must_pass,4,high,Distribution package and installer compatibility checklist must pass before release gate closes.
+  5,doctrine_changes_require_traceability,5,critical,Changes affecting gate conditions require traceable PRD updates and auditable review record.
+
+definitions[5]{pk,meaning,term}:
+  1,Mandatory release checkpoint for shared-hosting distribution and one-click install readiness.,softaculous_gate
+  2,Functional parity target with Crafty Syntax 3.7.5 live-help behavior before 4.1.0 release.,crafty_parity
+  3,4.0.x installation model requiring fresh install path without in-series upgrade migrations.,single_install_doctrine
+  4,Compatibility guarantees for required root scripts in distribution and hosting environments.,root_script_contract
+  5,"Deployment checklist validating package structure, installer behavior, and runtime compatibility.",one_click_checklist
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/27_installer_requirements.md,95
+  3,doctrine,outbound,supported,references,lupo-docs/prd/13_crafty_integration.md,95
+  4,doctrine,outbound,supported,references,lupo-docs/prd/18_channel_chat_display.md,90
+  5,doctrine,outbound,supported,references,lupo-docs/prd/38_memory_unification.md,85

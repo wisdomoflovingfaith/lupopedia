@@ -1,0 +1,19 @@
+{
+    "system_agent": true,
+    "interaction_model": {
+        "primary": "php_and_application_services",
+        "llm_role": "supplement_only_for_non_deterministic_or_unspecified_logic",
+        "user_chat_persona": false,
+        "notes": "Humans and channel chat do not target IRIS as a conversational agent. Runtime behavior lives in PHP (and related tooling); LLM fills gaps PHP cannot encode."
+    },
+    "code_layout": {
+        "agent_local_tools": "lupo-agents/iris/tools/",
+        "description": "PHP CLI snippets, small adapters, and agent-local scripts tied to IRIS. Shared production services belong under app/Services/ or lupo-includes/ when promoted."
+    },
+    "capabilities_summary": {
+        "api_gateway": true,
+        "protocol_translation": true,
+        "message_routing": true,
+        "integration_bridge": true
+    }
+}

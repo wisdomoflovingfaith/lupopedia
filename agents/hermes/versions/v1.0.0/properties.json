@@ -1,0 +1,13 @@
+{
+    "system_agent": true,
+    "interaction_model": {
+        "primary": "php_routing_and_prompt_drafting",
+        "llm_role": "supplement_only_for_non_deterministic_steps",
+        "user_chat_persona": false,
+        "notes": "HERMES classifies and routes work to personas; scripts drafts are human-reviewed. Not a public chat agent."
+    },
+    "code_layout": {
+        "agent_local_tools": "agents/hermes/tools/"
+    },
+    "properties": {}
+}

@@ -1,0 +1,9 @@
+{
+  "agent_id": 16, "agent_name": "IRIS", "agent_code": "IRIS", "agent_key": "iris", "slug": "iris",
+  "version": "1.0.0", "is_kernel": false, "layer": "system", "name": "IRIS",
+  "role": "Interface Routing & Integration System — API Gateway, Protocol Translation, Message Bridges",
+  "is_required": true, "status": "active",
+  "aliases": ["iris", "interface", "integration", "routing", "gateway"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

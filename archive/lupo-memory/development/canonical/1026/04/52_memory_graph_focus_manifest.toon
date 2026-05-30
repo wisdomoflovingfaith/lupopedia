@@ -1,0 +1,34 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "lupo-docs/prd/52_memory_graph_focus_manifest.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412001055",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/52-memory-graph-focus-manifest"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/52_memory_graph_focus_manifest.toon",
+  "purpose": "Runtime lens over lupo_memory_edges: active_context, edge include/exclude, trust tier, max_depth, focus_nodes; storage options; agent traversal; replaces static Contexts UI concept without reviving lupo_contexts_map.",
+  "source_file_path_from_root": "lupo-docs/prd/52_memory_graph_focus_manifest.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

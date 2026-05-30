@@ -1,0 +1,90 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_sessions
+fields:
+- '`session_id` varchar(128) NOT NULL'
+- '`actor_id` bigint NOT NULL'
+- '`actor_name` varchar(64)'
+- '`federation_node_id` bigint NOT NULL DEFAULT 0'
+- '`ip_hash` varchar(128)'
+- '`ua_hash` varchar(255)'
+- '`session_identity_hash` varchar(128)'
+- '`csrf_token` varchar(128)'
+- '`last_activity_ymdhis` bigint NOT NULL'
+- '`created_ymdhis` bigint NOT NULL'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`name_key` varchar(100)'
+- '`is_named` tinyint NOT NULL DEFAULT 0'
+- '`metadata` json'
+- '`is_active` tinyint NOT NULL DEFAULT 1'
+- '`visitor_status` enum(''browsing'',''invited'',''chatting'',''stopped'') NOT NULL
+  DEFAULT browsing'
+- '`livehelp_department` bigint NOT NULL DEFAULT 0'
+- '`onchannel` bigint NOT NULL DEFAULT 0'
+- '`user_alert` tinyint NOT NULL DEFAULT 0'
+- '`auto_invite` enum(''Y'',''N'') NOT NULL DEFAULT N'
+- '`istyping` int NOT NULL DEFAULT 0'
+- '`livehelp_user_id` bigint'
+- '`livehelp_sessionid` varchar(128)'
+- '`is_expired` tinyint NOT NULL DEFAULT 0'
+- '`is_revoked` tinyint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`last_seen_ymdhis` bigint'
+- '`expires_ymdhis` bigint'
+- '`security_level` varchar(64)'
+- '`system_context` varchar(64)'
+- '`status` varchar(32)'
+indexes:
+- index_name: lupo_sessions_idx_actor
+  columns:
+  - actor_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_actor_name
+  columns:
+  - actor_name
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_last_activity
+  columns:
+  - last_activity_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_federation
+  columns:
+  - federation_node_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_is_active
+  columns:
+  - is_active
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_last_seen
+  columns:
+  - last_seen_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_identity_hash
+  columns:
+  - session_identity_hash
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_sessions_idx_gc_named_activity
+  columns:
+  - is_named
+  - last_activity_ymdhis
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: session_id
+  expected_name: session_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

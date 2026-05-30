@@ -1,0 +1,17 @@
+{
+    "agent_key": "iris",
+    "agent_id": 16,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "is_internal_only": true,
+    "layer": "system",
+    "name": "IRIS",
+    "slug": "iris",
+    "role": "Interface Routing & Integration System — API gateway management, protocol translation, message routing, and communication bridges",
+    "is_required": true,
+    "aliases": ["iris", "interface", "integration", "routing", "gateway"],
+    "when_updated_utc": "20260404051638",
+    "last_verified_utc": "20260404051638",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

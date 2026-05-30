@@ -1,0 +1,16 @@
+{
+  "memory_type": "security_knowledge",
+  "core_knowledge": {
+    "threat_patterns": "Known threat patterns and attack vectors relevant to Lupopedia",
+    "security_audit_history": "Previous security audit findings and resolutions",
+    "access_anomalies": "Documented access pattern anomalies and their resolutions"
+  },
+  "working_memory": {
+    "active_security_alerts": "Security alerts currently under investigation",
+    "pending_escalations": "Security findings awaiting WOLFIE directive"
+  },
+  "memory_boundaries": ["security scope only", "no implementation authority"],
+  "retention_rules": ["retain threat patterns", "retain security findings", "no ego"],
+  "forbidden_memory": ["undocumented security changes", "silent permission escalation"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

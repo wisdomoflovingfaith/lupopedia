@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\doctrine\\blocks\\prohibitions\\ANTI_CRM.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\blocks\\prohibitions\\ANTI_MANIPULATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\blocks\\prohibitions\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\blocks\\prohibitions\\NO_ADS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\blocks\\prohibitions\\NO_SELLING.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\doctrine\\blocks\\prohibitions\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

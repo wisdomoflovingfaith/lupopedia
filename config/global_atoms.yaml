@@ -1,0 +1,127 @@
+---
+# Global Atoms Configuration
+# Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
+#
+# Purpose: Prevent Cursor and other agents from rewriting dozens of files
+# when global metadata changes (authors, version, copyright, etc.)
+#
+# Rules:
+# - Cursor MUST treat atom names as symbolic references
+# - Cursor MUST resolve atom values from this file when reading
+# - Cursor MUST preserve symbolic references exactly as written when modifying
+# - Cursor MUST NOT generate or modify this file unless explicitly instructed
+
+version: "4.1.7"
+last_updated: "20260423"
+
+# Global Version Atoms
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.1.7"
+# Working on v4.1.4 — PRD system refactoring to semantic operating system with PRD#<Letter>_<NAME>.md pattern.
+GLOBAL_LUPOPEDIA_SCHEMA_VERSION: "2.0"
+
+# System Configuration Atoms
+SYSTEM_DATABASE_COMPATIBILITY: ["mysql", "postgresql", "mariadb"]
+SYSTEM_PHP_COMPATIBILITY: ["5.3", "5.4", "5.5", "5.6", "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2", "8.3"]
+SYSTEM_TIMESTAMP_FORMAT: "YYYYMMDDHHIISS"
+SYSTEM_TABLE_LIMIT: 199
+ 
+# Author Information
+authors:
+  primary: "Captain Wolfie"
+  full_name: "Eric Robin Gerdes"
+  legal_name: "Eric Robin Gerdes"
+  email: "wisdomofloflovindfaith@gmail.com"
+  copyright: " 2025-2026 Eric Robin Gerdes. All rights reserved."
+
+# Path resolution (for docs and tooling)
+# Paths in file_path_from_root, see_also_from_root, and outbound_edges are relative to project root.
+# Resolve with LUPOPEDIA_PROJECT_ROOT when opening files from atoms or tooling.
+LUPOPEDIA_PROJECT_ROOT: "C:/ServBay/www/servbay/lupopedia"
+
+# Project Information
+project:
+  name: "Lupopedia"
+  full_name: "Lupopedia Semantic Operating System"
+  description: "Federated semantic operating system that hosts agents, content, emotional metadata, and routing logic across independent nodes"
+  website: "https://lupopedia.com" # Add if needed
+
+# Common Metadata
+metadata:
+  default_status: "draft"
+  default_channel: "dev"
+  default_collection: "core-docs"
+
+# Agent Information
+agents:
+  system_agent: "Agent 0 — System Agent"
+  captain_wolfie: "Agent 1 — Captain Wolfie"
+  total_count: 40
+  ide_modules:
+    - "Cursor"
+    - "Windsurf"
+    - "Winston"
+  llm_models: 8
+
+# Timestamp Format
+timestamp:
+  format: "YYYYMMDDHHIISS"
+  timezone: "UTC"
+
+# Global Atoms (Single Source of Truth for WOLFIE Headers)
+
+# Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
+# NOTE: Version is defined at top of file (line 23) - DO NOT DUPLICATE
+# GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.44" (see line 23)
+
+# Current Authors (Use in WOLFIE headers)
+GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
+
+# Current Copyright (Use in WOLFIE headers)
+GLOBAL_CURRENT_COPYRIGHT: "© 2025-2026 Eric Robin Gerdes. All rights reserved."
+
+# Current Year (Use in WOLFIE headers)
+GLOBAL_CURRENT_YEAR: "2026"
+
+# Project Name (Use in WOLFIE headers)
+GLOBAL_PROJECT_NAME: "Lupopedia"
+
+# Default Status (Use in WOLFIE headers)
+GLOBAL_DEFAULT_STATUS: "published"
+
+# Reserved Atoms (for future use)
+reserved:
+  - "CURRENT_TIMESTAMP"
+  - "DEFAULT_CHANNEL"
+  - "DEFAULT_COLLECTION"
+
+# Agent Behavior Control
+GLOBAL_GOOD_HEAVENS_STOP_ASK_WOLFIE: true
+
+# Global Atom: LUPOPEDIA_COMPANY_STRUCTURE
+GLOBAL_LUPOPEDIA_COMPANY_STRUCTURE:
+  company:
+    name: "Lupopedia LLC"
+    formation_date: "2025-11-06"
+    state: "South Dakota"
+    dba: "Crafty Syntax"
+    status: "active"
+    # South Dakota DBA (fictitious name) filing; see docs/channels/appendix/appendix/company_registrations.md
+    south_dakota_dba_registration_id: "UB313079"
+    registration_acknowledgment_pdf: "docs/appendix/legal/RegistrationAcknowledge.pdf"
+    entity_type: "Single-Member LLC (Disregarded Entity)"
+    name_control: "LUPO"
+    principal_business_activity: "Online Retail / Digital Support Tiers"
+    ein_application_reason: "Started a new business"
+    # EIN assigned; numeric EIN and IRS CP-575 letter are OFFLINE ONLY -- never commit to repo
+    ein_status: "assigned_offline_only"
+    federal_compliance:
+      employees_w2: false
+      excise_tax_form_720: false
+      gambling_wagering: false
+      alcohol_tobacco_firearms: false
+      heavy_vehicles: false
+  
+# Technical Constants
+GLOBAL_TIMESTAMP_FORMAT: "YYYYMMDDHHIISS"
+GLOBAL_TIMEZONE_UTC: "UTC"
+GLOBAL_BIGINT_TIMESTAMP_TYPE: "BIGINT SIGNED"

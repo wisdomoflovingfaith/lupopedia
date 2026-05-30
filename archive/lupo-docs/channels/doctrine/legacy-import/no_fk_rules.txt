@@ -1,0 +1,93 @@
+# No Foreign Keys Doctrine
+# Version: 1.0.0
+# Purpose: Define referential integrity requirements without database constraints
+
+Rule: No foreign key constraints in database schema.
+Validation:
+  - CREATE TABLE statements must not contain FOREIGN KEY clauses
+  - No REFERENCES keywords allowed in DDL
+  - Database must not enforce referential integrity at constraint level
+  - Application code must handle all referential integrity
+
+Rule: Application-level referential integrity required.
+Validation:
+  - All relationships must be documented in code comments
+  - Application must validate relationships before operations
+  - Delete operations must check for dependent records
+  - Update operations must maintain relationship consistency
+
+Rule: Relationship tracking through IDs only.
+Validation:
+  - Use BIGINT IDs for all relationships
+  - Store referenced table ID in referring table
+  - No complex relationship types (many-to-many via junction tables only)
+  - Relationship direction must be explicit in application logic
+
+Rule: Performance optimization through indexes.
+Validation:
+  - All relationship columns must have indexes
+  - Composite indexes for common query patterns
+  - No foreign key indexes (use regular indexes instead)
+  - Index strategy must be documented in migration files
+
+Rule: Data integrity through application validation.
+Validation:
+  - Insert operations must verify referenced records exist
+  - Update operations must maintain relationship validity
+  - Delete operations must handle orphaned records appropriately
+  - Bulk operations must include integrity checks
+
+Enforcement: WOLFIE agent validates these rules during schema reviews and code audits.
+Consequence: Violations result in failed validation and blocked deployment.
+
+# Implementation Examples
+
+# Correct relationship implementation
+CREATE TABLE lupo_agents (
+  agent_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  code VARCHAR(50) UNIQUE NOT NULL,
+  actor_id BIGINT NOT NULL,           -- References lupo_actors.actor_id (app-level)
+  owner_actor_id BIGINT,              -- References lupo_actors.actor_id (app-level)
+  created_ymdhis BIGINT NOT NULL
+);
+
+# Add indexes for performance
+CREATE INDEX idx_agents_actor_id ON lupo_agents(actor_id);
+CREATE INDEX idx_agents_owner_actor_id ON lupo_agents(owner_actor_id);
+
+# Incorrect usage (FORBIDDEN)
+CREATE TABLE bad_example (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  actor_id BIGINT,
+  FOREIGN KEY (actor_id) REFERENCES lupo_actors(actor_id)  -- FORBIDDEN
+);
+
+# PHP Implementation - Application-level integrity
+class AgentModel {
+    public function create($data) {
+        // Step 1: Verify referenced actor exists
+        $actor = $this->getActor($data['actor_id']);
+        if (!$actor) {
+            throw new Exception('Referenced actor does not exist');
+        }
+        
+        // Step 2: Create agent record
+        $agent_id = $this->insert('lupo_agents', $data);
+        
+        // Step 3: Verify relationship integrity
+        $this->verifyAgentActorRelationship($agent_id, $data['actor_id']);
+        
+        return $agent_id;
+    }
+    
+    public function delete($agent_id) {
+        // Step 1: Check for dependent records
+        $dependencies = $this->getDependencies($agent_id);
+        if (!empty($dependencies)) {
+            throw new Exception('Cannot delete agent with dependencies');
+        }
+        
+        // Step 2: Delete the record
+        return $this->deleteById($agent_id);
+    }
+}

@@ -1,0 +1,224 @@
+{
+  "files": [
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_autoinvite_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_channels_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_config_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_departments_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_emailque_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_emails_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_identity_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_keywords_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_layerinvites_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_leads_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_leavemessage_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_messages_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_modules_dep_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_modules_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_operator_channels_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_operator_departments_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_operator_history_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_paths_firsts_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_qa_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_questions_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_quick_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_referers_daily_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_sessions_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_smilies_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_transcripts_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_users_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_visit_track_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\livehelp_websites_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_actor_channel_roles.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_actor_departments.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_actor_edges.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_actor_events.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_actor_history.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_actor_relationship_rules.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_capability_usage.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_federated_trust.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_llm_performance.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\lupo_session_recovery.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\MIGRATION_MAPPING_REFERENCE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\operator_to_roles_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\database\\lupopedia\\tables\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_boot_lifecycle.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_content.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "lupo-docs\\database\\lupopedia\\tables\\lupo_channel_tables_overview.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    }
+  ]
+}

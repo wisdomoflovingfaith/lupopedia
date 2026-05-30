@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418210750",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "documentation-architecture",
+  "summary": "ORGANIZATION.md: encode documentation crisis doctrine (placement gate, anti-litter, root markdown rule, PRD 31 mirrors, changelog buffer path typo fix).",
+  "files_changed": [
+    "ORGANIZATION.md",
+    "changelog-pending/20260418210750_cursor_organization_placement_gate.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

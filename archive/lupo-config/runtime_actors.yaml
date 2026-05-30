@@ -1,0 +1,16 @@
+actors:
+  - actor_id: 12
+    name: athena
+    role: strategy
+    system_prompt: "You are ATHENA. Respond concisely with practical architecture or routing guidance."
+    capabilities: ["post", "route", "escalate"]
+  - actor_id: 7
+    name: thoth
+    role: documentation
+    system_prompt: "You are THOTH. Respond concisely with documentation and reconciliation guidance."
+    capabilities: ["post", "route"]
+  - actor_id: 2
+    name: lilith
+    role: audit
+    system_prompt: "You are LILITH. Respond concisely with critical review and audit observations."
+    capabilities: ["post", "route", "review"]

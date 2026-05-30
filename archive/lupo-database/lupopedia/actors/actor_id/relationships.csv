@@ -1,0 +1,31 @@
+src_actor_id,rel_type,dst_actor_id,strength_weight,notes,created_ymdhis,is_deleted,deleted_ymdhis
+10000,supports,1001,1.00,Captain Wolfie supports KIRO IDE agent,20260224163500,0,0
+10000,owns,1001,1.00,Ownership/control mapping for KIRO IDE agent identity,20260224163500,0,0
+10000,supports,1002,1.00,Captain Wolfie supports Windsurf IDE agent,20260224163500,0,0
+10000,owns,1002,1.00,Ownership/control mapping for Windsurf IDE agent identity,20260224163500,0,0
+10000,supports,1003,1.00,Captain Wolfie supports Antigravity IDE agent,20260224163500,0,0
+10000,owns,1003,1.00,Ownership/control mapping for Antigravity IDE agent identity,20260224163500,0,0
+10000,supports,1004,1.00,Captain Wolfie supports Warp IDE agent,20260224163500,0,0
+10000,owns,1004,1.00,Ownership/control mapping for Warp IDE agent identity,20260224163500,0,0
+10000,supports,1005,1.00,Captain Wolfie supports Cursor IDE agent,20260224163500,0,0
+10000,owns,1005,1.00,Ownership/control mapping for Cursor IDE agent identity,20260224163500,0,0
+10000,supports,1006,1.00,Captain Wolfie supports Zed IDE agent,20260224163500,0,0
+10000,owns,1006,1.00,Ownership/control mapping for Zed IDE agent identity,20260224163500,0,0
+10000,supports,1007,1.00,Captain Wolfie supports IntelliJ IDEA agent,20260224163500,0,0
+10000,owns,1007,1.00,Ownership/control mapping for IntelliJ IDEA agent identity,20260224163500,0,0
+10000,supports,1008,1.00,Captain Wolfie supports WebStorm agent,20260224163500,0,0
+10000,owns,1008,1.00,Ownership/control mapping for WebStorm agent identity,20260224163500,0,0
+10000,supports,1009,1.00,Captain Wolfie supports Theia IDE agent,20260224163500,0,0
+10000,owns,1009,1.00,Ownership/control mapping for Theia IDE agent identity,20260224163500,0,0
+10000,supports,1010,1.00,Captain Wolfie supports CS Code agent,20260224163500,0,0
+10000,owns,1010,1.00,Ownership/control mapping for CS Code agent identity,20260224163500,0,0
+10000,supports,2032,1.00,Captain Wolfie supports KIRO IDE (Legacy ID),20260224163500,0,0
+10000,owns,2032,1.00,Ownership/control mapping for KIRO IDE (Legacy ID),20260224163500,0,0
+10000,supports,2034,1.00,Captain Wolfie supports Cursor IDE (Legacy ID),20260224163500,0,0
+10000,owns,2034,1.00,Ownership/control mapping for Cursor IDE (Legacy ID),20260224163500,0,0
+10000,supports,2035,1.00,Captain Wolfie supports Antigravity IDE (Legacy ID),20260224163500,0,0
+10000,owns,2035,1.00,Ownership/control mapping for Antigravity IDE (Legacy ID),20260224163500,0,0
+10000,supports,2039,1.00,Captain Wolfie supports Warp IDE (Legacy ID),20260224163500,0,0
+10000,owns,2039,1.00,Ownership/control mapping for Warp IDE (Legacy ID),20260224163500,0,0
+10000,supports,2040,1.00,Captain Wolfie supports Windsurf IDE (Legacy ID),20260224163500,0,0
+10000,owns,2040,1.00,Ownership/control mapping for Windsurf IDE (Legacy ID),20260224163500,0,0

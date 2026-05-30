@@ -1,0 +1,13 @@
+{
+    "schema_version": "4.0.47",
+    "operations": {
+        "db_query": true,
+        "file_write": true
+    },
+    "limitations": {
+        "max_tasks": 100
+    },
+    "channel_roles": {
+        "42": "admin"
+    }
+}

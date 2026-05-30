@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418234714",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "personal-context-isolation",
+  "summary": "PERSONAL_CONTEXT_ISOLATION.md: added section 2.1 non-system storage clarification; when_updated tick.",
+  "files_changed": [
+    "docs/doctrine/PERSONAL_CONTEXT_ISOLATION.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

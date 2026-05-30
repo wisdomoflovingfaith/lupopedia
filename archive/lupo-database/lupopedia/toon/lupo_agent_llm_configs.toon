@@ -1,0 +1,68 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_agent_llm_configs
+fields:
+- '`agent_llm_config_id` bigint NOT NULL'
+- '`agent_id` bigint NOT NULL'
+- '`config_name` varchar(100) NOT NULL DEFAULT default'
+- '`provider` varchar(50) NOT NULL DEFAULT anthropic'
+- '`model_name` varchar(100)'
+- '`api_key_id` bigint'
+- '`temperature` float DEFAULT 0.7'
+- '`top_p` float DEFAULT 1'
+- '`max_tokens` int DEFAULT 2048'
+- '`presence_penalty` float DEFAULT 0'
+- '`frequency_penalty` float DEFAULT 0'
+- '`timeout_ms` int DEFAULT 20000'
+- '`cost_per_1k_tokens` decimal(10,4) DEFAULT 0.0000'
+- '`safety_json` json'
+- '`response_format` varchar(50)'
+- '`is_active` tinyint NOT NULL DEFAULT 1'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_agent_llm_configs_unq_agent_config
+  columns:
+  - agent_id
+  - config_name
+  is_unique: true
+  index_type: BTREE
+- index_name: lupo_agent_llm_configs_idx_agent
+  columns:
+  - agent_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_llm_configs_idx_provider
+  columns:
+  - provider
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_llm_configs_idx_api_key
+  columns:
+  - api_key_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_llm_configs_idx_active
+  columns:
+  - is_active
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_llm_configs_idx_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: agent_llm_config_id
+  expected_name: agent_llm_config_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

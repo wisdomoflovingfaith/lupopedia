@@ -1,0 +1,12 @@
+{
+  "type": "agent_memory",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "current",
+  "trust_tier": "staging",
+  "status": "in_progress",
+  "start_time": "20260416160402",
+  "notes": "Migrating Cursor thread memory to memory trust-tier toon path and removing legacy .cursor/memory JSON reference.",
+  "files_changed": [],
+  "handoff_to": null
+}

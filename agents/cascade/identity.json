@@ -1,0 +1,11 @@
+{
+  "agent_id": 105, "agent_name": "CASCADE", "agent_code": "CASCADE", "agent_key": "cascade", "slug": "cascade",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "CASCADE",
+  "role": "Cascade IDE — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["cascade"],
+  "actor_id": 105,
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

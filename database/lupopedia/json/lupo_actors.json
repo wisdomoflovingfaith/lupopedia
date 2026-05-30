@@ -1,0 +1,131 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_actors",
+  "fields": [
+    "`actor_id` bigint NOT NULL",
+    "`actor_name` varchar(64) NOT NULL",
+    "`slug` varchar(255) NOT NULL",
+    "`name` varchar(255) NOT NULL",
+    "`actor_type` varchar(64) NOT NULL",
+    "`agent_key` varchar(100)",
+    "`is_kernel` tinyint NOT NULL DEFAULT 0",
+    "`is_required` tinyint NOT NULL DEFAULT 0",
+    "`can_login` tinyint NOT NULL DEFAULT 0",
+    "`is_agent` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`actor_tier` tinyint DEFAULT 3",
+    "`auth_user_id` bigint",
+    "`actor_source_id` bigint",
+    "`actor_source_type` varchar(64)",
+    "`avatar_hash` varchar(64)",
+    "`primary_federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`web_restrict_act_as_creator_or_root` tinyint NOT NULL DEFAULT 0",
+    "`identity_provider_config` json",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`agent_role` varchar(32) NOT NULL DEFAULT watcher",
+    "`agent_blueprint_path` varchar(512)",
+    "`current_channel_key` varchar(255)",
+    "`current_thread_id` varchar(255)",
+    "`ccv_actor_centroid_embedding_json` json"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_actors_unq_actor_name",
+      "columns": [
+        "actor_name"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_unq_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_actor_type",
+      "columns": [
+        "actor_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_agent_key",
+      "columns": [
+        "agent_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_is_kernel",
+      "columns": [
+        "is_kernel"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_role",
+      "columns": [
+        "agent_role"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actors_idx_channel",
+      "columns": [
+        "current_channel_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_id",
+    "expected_name": "actor_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

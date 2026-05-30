@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418184432",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-17-workflow",
+  "summary": "PRD 17 header v4.1.3 (content_* fields), staged workflow, template-first rule, language array rule, artifact table, validation item 10, and reframed implementation notes.",
+  "files_changed": [
+    "docs/prd/17_decisions_format.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

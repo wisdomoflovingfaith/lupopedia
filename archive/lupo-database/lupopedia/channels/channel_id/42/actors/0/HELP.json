@@ -1,0 +1,144 @@
+{
+  "actor_id": 0,
+  "display_name": "System Agent",
+  "actor_type": "system",
+  "email": null,
+  "channel_id": 42,
+  "department_id": 1,
+  "status": "active",
+  "is_active": 1,
+  "is_deleted": 0,
+  "created_ymdhis": 20260225000000,
+  "updated_ymdhis": 20260225000000,
+  "deleted_ymdhis": null,
+  "capabilities_json": {
+    "system_tool": true,
+    "development": true
+  },
+  "metadata_json": null,
+  "help_topics": [
+    {
+      "topic": "actor_identity",
+      "title": "Actor Identity Information",
+      "description": "Basic information about this actor's identity and role",
+      "content": {
+        "actor_id": 0,
+        "display_name": "System Agent",
+        "actor_type": "system",
+        "channel": 42,
+        "created": "2026-02-25",
+        "purpose": "System agent for core operations and coordination"
+      }
+    },
+    {
+      "topic": "capabilities",
+      "title": "Actor Capabilities",
+      "description": "System capabilities and permissions available to this actor",
+      "content": {
+        "system_tool": "Can execute core system operations",
+        "development": "Can coordinate development tasks and system modifications"
+      }
+    },
+    {
+      "topic": "workspace",
+      "title": "Workspace Information",
+      "description": "Details about this actor's workspace and file structure",
+      "content": {
+        "workspace_path": "channels/42/actors/0/",
+        "workspace_type": "temporary_mutable",
+        "rules": [
+          "Files are TEMPORARY and MUTABLE",
+          "Do NOT store permanent artifacts here",
+          "Do NOT store doctrine here (use docs/doctrine/)",
+          "Do NOT store system documentation here",
+          "Files may be cleaned up periodically"
+        ]
+      }
+    },
+    {
+      "topic": "communication",
+      "title": "Communication Protocols",
+      "description": "How to communicate and coordinate with this actor",
+      "content": {
+        "primary_channel": 42,
+        "communication_methods": [
+          "Channel broadcasts",
+          "Thread messages",
+          "Direct workspace files"
+        ],
+        "coordination_role": "System coordination and development task management"
+      }
+    },
+    {
+      "topic": "system_version",
+      "title": "System Version Compatibility",
+      "description": "System version information and compatibility",
+      "content": {
+        "current_version": "4.0.45",
+        "compatibility": "4.0.x series",
+        "upgrade_path": "Follows 4.0.x development cycle"
+      }
+    }
+  ],
+  "quick_commands": [
+    {
+      "command": "get_status",
+      "description": "Get current actor status and activity",
+      "syntax": "Check workspace files for current task status"
+    },
+    {
+      "command": "coordinate_task",
+      "description": "Coordinate development tasks across actors",
+      "syntax": "Use channel broadcasts for task coordination"
+    },
+    {
+      "command": "workspace_cleanup",
+      "description": "Clean up temporary workspace files",
+      "syntax": "Remove outdated temporary files and artifacts"
+    }
+  ],
+  "related_actors": [
+    {
+      "actor_id": 10000,
+      "display_name": "Captain",
+      "relationship": "coordinates_with",
+      "description": "Human coordinator for development tasks and system administration"
+    },
+    {
+      "actor_id": 1001,
+      "display_name": "Windsurf IDE",
+      "relationship": "collaborates_with",
+      "description": "Collaborates on development tasks"
+    },
+    {
+      "actor_id": 1002,
+      "display_name": "Cursor IDE",
+      "relationship": "collaborates_with",
+      "description": "Collaborates on development tasks"
+    },
+    {
+      "actor_id": 1003,
+      "display_name": "Antigravity IDE",
+      "relationship": "collaborates_with",
+      "description": "Collaborates on development tasks"
+    }
+  ],
+  "system_integration": {
+    "database_tables": [
+      "lupo_actors",
+      "lupo_actor_channels",
+      "lupo_actor_capabilities"
+    ],
+    "api_endpoints": [
+      "/api/actors/{actor_id}",
+      "/api/channels/{channel_id}/actors"
+    ],
+    "file_locations": {
+      "workspace": "channels/42/actors/0/",
+      "profile": "actors/0/README.md",
+      "history": "channels/42/actors/0/history/",
+      "tasks": "channels/42/actors/0/tasks/"
+    }
+  },
+  "last_updated": "2026-02-28T05:22:00Z"
+}

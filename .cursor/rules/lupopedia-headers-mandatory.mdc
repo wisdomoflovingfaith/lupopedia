@@ -1,0 +1,53 @@
+---
+description: New hand-authored files must include LUPOPEDIA HEADERS (PRD 16 dense envelope frozen at 4.1.3)
+alwaysApply: true
+---
+
+# LUPOPEDIA HEADERS — mandatory for new files
+
+## Rule
+
+When **creating** any new hand-authored source or documentation file, you **MUST** include a complete **PRD 16** `lupopedia.headers` block at the top of the file: Markdown **YAML front matter** (`---` … `---`) **or** the **same 25-line `#` comment grid** for **Python (`.py`)** and **PHP (`.php`)** CLI/scripts (see **PRD 16 §4.3**). **Do not** put `lupopedia.headers:` YAML under `/**` without ` * ` line leaders (validator **`HDR_PHP_LEGACY_INLINE_V3`**).
+
+- Set **`header_format_version: "4.1.3"`** exactly (**PRD 16 — Header freeze rule** until the Crafty Syntax human live-help baseline is complete; evolution resumes **4.1.4+**). Do **not** use **`4.1.4`**, **`4.2.0`**, or generic **`4.1.x`** placeholders in normative new-file copy. **`GLOBAL_CURRENT_LUPOPEDIA_VERSION`** tracks product semver separately; do not conflate it with the frozen header contract string.
+- **All 22 scalar keys** (**§4.2**) must appear in **exact order** — **never omit a key**. Use **`''`** for empty string fields and YAML **`null`** only where **§4.2** allows (e.g. **`content_id`**, **`content_parent_id`**, **`atoms_toon`**). Use **`content_parent_id`**, **`content_slug`**, **`default_collection_id`** — legacy **`pk_*`** / **`prd_*`** names are deprecated. **Field 9 is `atoms_toon`** (not `module` — `module` is deprecated; use `atoms_toon: null` in new files).
+- **Markdown:** line **1** `---`, line **2** `lupopedia.headers:`, lines **3–24** the **22** key lines (two-space indent), line **25** closing `---`, then **immediately** the body.
+- **Python / PHP:** optional shebang line **1**; PHP line **2** `<?php` when shebang present; **25-line** `#` grid (open `# -----`, `# lupopedia.headers:`, **22** `#   key:` rows, close `# -----`). **`web_path`** = **`https://www.lupopedia.com/lupopedia/`** + `file_path_from_root` (never `file://` or filesystem paths). See **`validate_lupopedia_headers_universal.py`** and **LUPOPEDIA_HEADERS_FORMAT.md**.
+
+## In scope (examples)
+
+`.md`, `.py`, `.php`, `.js`, `.sql`, `.html`, `.htm`, hand-authored `.txt`, pseudocode under `decisions/pseudocode/`, etc.
+
+## Exceptions
+
+Generated files, binaries, `node_modules/`, `vendor/`, lockfiles, build outputs, bulk exports (TOON/JSON generators), and paths **PRD 16** lists as out of scope — **no** header unless policy says otherwise.
+
+## Recommended workflow
+
+1. Run **`python lupo-bin/tick.py`** once per editing batch; reuse UTC from **`python lupo-bin/echo_anchor_utc.py`** for **`when_updated`**. Field 7 is **`questions_toon: null`** unless a Q&A sidecar exists. Field 9 is **`atoms_toon: null`** when no atoms file — do NOT use `module` (deprecated).
+2. Copy a template from **`lupo-docs/doctrine/lupopedia-headers/templates_new_file.md`**.
+3. Bootstrap one **`.md` / `.py` / `.php`** file: **`python lupo-scripts/add_lupopedia_header_to_file.py <path> [--create] [--title "..."]`**.
+4. Batch many **`.md` / `.py` / `.php`** files (defaults: **`lupo-docs/`** + **`lupo-scripts/`**): **`python lupo-scripts/add_lupopedia_headers_everywhere.py --dry-run`**, then rerun without **`--dry-run`** when ready (optional **`--under`**, **`--all-repo`** — use with care).
+5. Validate: **`python lupo-scripts/validate_lupopedia_headers_universal.py <path>`** (optional **`--quiet`** for scripts).
+6. **`memory_toon` pairing:** In-scope markdown with a **`memory_toon`** path ending in **`.toon`** **MUST** have a tracked **`.json`** master beside the **`.toon`** and regenerate with **`python lupo-scripts/json_to_toon.py`** after JSON edits (**PRD 16** §5.2.2). Do **not** ship doctrine/spec body text alone.
+
+## Why the 25-line limit exists (agent efficiency)
+
+The fixed 25-line envelope is not a style rule — it is the **agent discovery protocol** (**PRD 16 §18**). Any agent can read complete file metadata with `head -25 file.md`, without loading the file body, without a database query, and without a network call. Breaking the 25-line contract (e.g. extra keys, blank lines, comments inside the block) destroys this guarantee for the entire corpus.
+
+The 22 header fields give agents three things: the **DB key** (`content_id`) to load engagement data, the **memory pointer** (`memory_toon`) to load compressed knowledge from the `.toon` file, and the **WHY slug** (`transcript_jsonl`) to fetch the reasoning thread. These three pointers replace full-file reads for discovery tasks — turning O(n-files × avg-file-size) scans into O(n-files × 25-lines).
+
+**Do not add keys. Do not add blank lines. Do not move fields.** The envelope is a protocol, not a comment block.
+
+## Anti-pattern (IDE agents)
+
+Accepting **body-only** pasted spec or doctrine content into **`lupo-docs/`** without the **PRD 16** envelope, without **`tick.py`** timestamps, and without the **`lupo-memory/`** pair is invalid. **Merge** pasted bodies into a header-first file (bootstrap script or template), then validate.
+
+## References
+
+- **`lupo-docs/prd/16_lupopedia_headers.md`** — full normative spec (**§4.2** field list, **§4.3** envelope rules).
+- **`lupo-docs/doctrine/lupopedia-headers/lupopedia_headers_format.md`** — exact 25-line layouts.
+- **`AGENTS.md`** — LUPOPEDIA HEADERS / IDE onboarding.
+
+**Status:** Active  
+**Enforced since:** 2026-04-10 UTC

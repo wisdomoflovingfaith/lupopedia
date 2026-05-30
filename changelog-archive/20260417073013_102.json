@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260417073013",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Refreshes when_updated on PRD16 files, confirms canonical 22-field order consistency, and adds default_collection_id nullable clarifications in main and migration docs.",
+  "files_changed": [
+    "docs/prd/16_lupopedia_headers.md",
+    "docs/prd/16_lupopedia_headers_migration.md",
+    "docs/prd/16_lupopedia_headers_examples.md",
+    "docs/versions/4.1.2/buffer/20260417073013_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

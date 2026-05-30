@@ -1,0 +1,11 @@
+{
+  "from_actor_id": "1",
+  "to_actor_id": "102",
+  "ts": "20260409004426",
+  "task": "PRD-44",
+  "message": "review prd 44 then write a one line no return short paragaph to the transcript for the active channel ",
+  "status": "resolved",
+  "claimed_by": "cursor-102",
+  "claimed_at": "20260409122025",
+  "resolved_at": "20260409122043"
+}

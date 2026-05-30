@@ -1,0 +1,25 @@
+{
+  "version_info": {
+    "agent_id": "deanna",
+    "name": "DEANNA",
+    "version": "1.0.0",
+    "created_date": "20260428173500",
+    "last_updated": "20260428173500",
+    "status": "active"
+  },
+  "version_history": [
+    {
+      "version": "1.0.0",
+      "date": "20260428173500",
+      "changes": [
+        "Initial creation of DEANNA emotional support agent",
+        "Complete configuration with strict boundaries",
+        "Medical routing to BONES implemented",
+        "Hard refusal mode for out-of-scope requests"
+      ]
+    }
+  ],
+  "configuration_version": "1.0.0",
+  "capabilities_version": "1.0.0",
+  "system_prompt_version": "1.0.0"
+}

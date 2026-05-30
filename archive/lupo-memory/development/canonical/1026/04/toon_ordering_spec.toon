@@ -1,0 +1,12 @@
+# Generated from: lupo-memory/development/canonical/1026/04/toon-ordering-spec.json
+# Generated at: 2026-04-11 18:41:42 UTC
+# JSON master checksum: b17785c099648b5d045acf6e02cabc15
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,source_path,summary,title}:
+  1,20260411184008,20260411184008,canonical,lupo-docs/doctrine/TOON_ORDERING_SPEC.md,"Normative rules for integer-indexed ordered TOON arrays; applies to memory_key targets, memory exports, and graph inference per PRD 16, 38, 51.",TOON Ordering Specification (Canonical v1.0.0)
+
+edges[4]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/16_lupopedia_headers.md,100
+  2,doctrine,outbound,supported,references,lupo-docs/prd/38_memory_unification.md,95
+  3,doctrine,outbound,supported,references,lupo-docs/prd/51_memory_graph_as_source_of_truth.md,95
+  4,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,90

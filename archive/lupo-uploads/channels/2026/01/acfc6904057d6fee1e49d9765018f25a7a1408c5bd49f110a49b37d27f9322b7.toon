@@ -1,0 +1,38 @@
+{
+    "table_name": "lupo_channel_context",
+    "context_metadata": {
+        "channel_id": 1003,
+        "channel_key": "GOV‑PROGRAMMERS‑001",
+        "context_type": "governance_programming",
+        "context_purpose": "GOV‑PROGRAMMERS‑001"
+    },
+    "semantic_structure": {
+        "domain": "governance_programming",
+        "primary_concepts": [
+            "governance_system_development",
+            "policy_coordination",
+            "system_architecture",
+            "governance_protocol_implementation",
+            "programmer_standards"
+        ],
+        "excluded_concepts": [
+            "user_conversations",
+            "general_chat",
+            "non_system_operations",
+            "casual_discussions"
+        ]
+    },
+    "agent_expectations": {
+        "assumed_persona": "governance_programmer",
+        "communication_style": "technical_direct",
+        "response_format": "structured_governance",
+        "emotional_geometry": "neutral",
+        "task_orientation": "governance_focus"
+    },
+    "context_rules": {
+        "task_scope": "governance_programming_only",
+        "conversation_type": "technical_coordination",
+        "emotional_protocol": "neutral_stance",
+        "temporal_context": "continuous_operations"
+    }
+}

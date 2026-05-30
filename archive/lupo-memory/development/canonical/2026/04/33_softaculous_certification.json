@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410123014,
+      "last_updated": 20260410123014,
+      "layer": "canonical",
+      "prd_id": 33,
+      "prd_slug": "softaculous-certification",
+      "source_path": "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Purpose and Release Positioning",
+      "summary": "Defines the 4.1.0 release gate for hosting-distribution readiness and Crafty parity."
+    },
+    {
+      "pk": 2,
+      "title": "Legacy and Migration Doctrine",
+      "summary": "Preserves Crafty lineage constraints and enforces 4.0.x single-install migration doctrine."
+    },
+    {
+      "pk": 3,
+      "title": "Technical and Runtime Constraints",
+      "summary": "Specifies non-negotiable constraints for PHP runtime, root scripts, and operator console parity."
+    },
+    {
+      "pk": 4,
+      "title": "Softaculous Checklist and Completion Criteria",
+      "summary": "Lists product-level one-click packaging checks and formal 4.1.0 completion gate criteria."
+    },
+    {
+      "pk": 5,
+      "title": "Traceability, Audit, and Doctrine Addendum",
+      "summary": "Captures audit record, traceability duties, and context-typed memory doctrine alignment."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "release_gate_before_4_1_0",
+      "severity": "critical",
+      "summary": "Lupopedia must not tag 4.1.0 until Softaculous and parity completion criteria are met."
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "single_install_4_0_x_doctrine",
+      "severity": "critical",
+      "summary": "During 4.0.x, fresh install from Crafty is the supported path; no Lupopedia-to-Lupopedia upgrade."
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "no_new_package_manager_runtime",
+      "severity": "high",
+      "summary": "Runtime remains plain PHP with approved in-tree libraries; no new package-manager stack in core path."
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "softaculous_checklist_must_pass",
+      "severity": "high",
+      "summary": "Distribution package and installer compatibility checklist must pass before release gate closes."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "doctrine_changes_require_traceability",
+      "severity": "critical",
+      "summary": "Changes affecting gate conditions require traceable PRD updates and auditable review record."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "softaculous_gate",
+      "meaning": "Mandatory release checkpoint for shared-hosting distribution and one-click install readiness."
+    },
+    {
+      "pk": 2,
+      "term": "crafty_parity",
+      "meaning": "Functional parity target with Crafty Syntax 3.7.5 live-help behavior before 4.1.0 release."
+    },
+    {
+      "pk": 3,
+      "term": "single_install_doctrine",
+      "meaning": "4.0.x installation model requiring fresh install path without in-series upgrade migrations."
+    },
+    {
+      "pk": 4,
+      "term": "root_script_contract",
+      "meaning": "Compatibility guarantees for required root scripts in distribution and hosting environments."
+    },
+    {
+      "pk": 5,
+      "term": "one_click_checklist",
+      "meaning": "Deployment checklist validating package structure, installer behavior, and runtime compatibility."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/27_installer_requirements.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/13_crafty_integration.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/18_channel_chat_display.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 85
+    }
+  ]
+}

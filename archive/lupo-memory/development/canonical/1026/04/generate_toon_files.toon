@@ -1,0 +1,11 @@
+{
+  "type": "header_metadata",
+  "memory_key": "lupo-memory/development/canonical/1026/04/generate-toon-files.toon",
+  "purpose": "Sidecar for lupo-scripts/generate_toon_files.py (live schema TOON/JSON export).",
+  "tags": ["toon", "schema", "mysql", "lupo-scripts"],
+  "footer": {
+    "last_verified": "20260412022118",
+    "last_verified_by": "kairos",
+    "last_verified_by_actor_id": 115
+  }
+}

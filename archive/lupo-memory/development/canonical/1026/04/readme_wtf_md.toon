@@ -1,0 +1,330 @@
+{
+  "toon.version": "1.0.0",
+  "toon.type": "constitutional_wtf_reference",
+  "title": "README_WTF.md — Just the Facts",
+  "last_updated": "20260414120000",
+  "memory_key": "lupo-memory/development/canonical/1026/04/readme-wtf-md.toon",
+  "references": ["PRD-00", "PRD-38", "PRD-75", "PRD-80"],
+  "entries": [
+    {
+      "id": 1,
+      "topic": "shared_hosting",
+      "facts": [
+        "Must run on any shared host (no Composer, no Node.js, no exec(), no build steps in shipped code)",
+        "Developer workstation may use Composer for tools",
+        "Shipped product = zero external dependencies"
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "database_philosophy",
+      "facts": [
+        "Database = dumb storage only",
+        "No FKs, no triggers, no stored procedures",
+        "All logic in PHP",
+        "Timestamps: BIGINT YYYYMMDDHHIISS (packed UTC)",
+        "No Unix epoch (Y2038 proof)",
+        "No AUTO_INCREMENT (IdGenerator generates IDs)",
+        "Soft delete everywhere (is_deleted, deleted_ymdhis)"
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "timezone",
+      "facts": [
+        "WHEN = UTC in DB (YYYYMMDDHHIISS)",
+        "WHERE = application layer only",
+        "Never store timezone/offset in DB"
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "trust_ladder",
+      "facts": [
+        "seed: immutable constitutional",
+        "canonical: verified truth (10xx year)",
+        "staging: active discussion (20xx year)",
+        "archive: historical",
+        "toCanonicalYear(year) = year >= 2000 ? year-1000 : year",
+        "Lower year numbers sort first (canonical before staging)"
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "thoth",
+      "facts": [
+        "Type: System actor (is_kernel=1, is_agent=0)",
+        "Reads all messages",
+        "Writes [ALERT] tags directly into dialog stream to halt illegal operations",
+        "Compares staging (20xx) against canonical (10xx)",
+        "Raises [ALERT] on constitutional violation"
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "kairos",
+      "facts": [
+        "actor_id: 115",
+        "Consolidates staging -> canonical",
+        "Creates consolidated_to edge",
+        "Updates memory_key year from 20xx to 10xx"
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "garbage_collector",
+      "facts": [
+        "Probabilistic: rand(1,100) == 32 (~1% per request)",
+        "No cron dependency",
+        "Deletes sessions older than 24 hours",
+        "Rolls up raw path data to daily/monthly totals",
+        "Deletes soft-deleted content older than 90 days",
+        "Removes expired cache entries"
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "pet_peeves",
+      "facts": [
+        "ASCII only in data files (no emojis, no box drawing, no smart quotes, no em-dash)",
+        "Always name columns in INSERT",
+        "No display widths (INT not INT(11))",
+        "No UNSIGNED",
+        "{table}_id naming (never bare id)",
+        "No guessing column names — read JSON schema",
+        "No temporary hacks",
+        "No magic numbers"
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "session_management",
+      "facts": [
+        "Base session identity hash = SHA256(class_c_ip + user_id_or_unknown + user_agent + salt)",
+        "MUST NOT include: actor_id, auth_user_id, actor_name, auth_user_name (post-login fields)",
+        "Pre-login visitors use 'unknown' as user_id placeholder",
+        "Hash must be stable before and after login (base fingerprint = browser, not identity)",
+        "Stored in lupo_sessions.session_identity_hash",
+        "Session row uses lupo_session cookie (not PHP PHPSESSID for primary auth)",
+        "Session expires: 24 hours",
+        "Session ID is a random_bytes cryptographic string (not IdGenerator — tokens are exempt from numeric PK doctrine)"
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "ip_detection",
+      "facts": [
+        "Priority order: HTTP_CF_CONNECTING_IP, HTTP_TRUE_CLIENT_IP, HTTP_CLIENT_IP, HTTP_X_FORWARDED_FOR, HTTP_X_FORWARDED, HTTP_X_CLUSTER_CLIENT_IP, HTTP_FORWARDED_FOR, HTTP_FORWARDED, HTTP_X_REAL_IP, REMOTE_ADDR (last resort)",
+        "IPv6: planned truncation to /64 prefix (future work)"
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "transactions",
+      "facts": [
+        "Avoided except in narrowly justified PHP-wrapped cases",
+        "Never rely on transactions for correctness (MyISAM compatibility)",
+        "Application handles consistency via idempotent operations and retry logic"
+      ]
+    },
+    {
+      "id": 12,
+      "topic": "prepared_statements",
+      "facts": [
+        "Mandatory for all new code via DatabaseFactory::getConnection()->query() with placeholders",
+        "Legacy manual escaping (intval(), mysql_real_escape_string()) being phased out"
+      ]
+    },
+    {
+      "id": 13,
+      "topic": "encoding",
+      "facts": [
+        "Database: utf8mb4_unicode_ci",
+        "Data files (JSON/TOON/YAML/Headers): ASCII only"
+      ]
+    },
+    {
+      "id": 14,
+      "topic": "indexes",
+      "facts": [
+        "Index only what you actually query",
+        "Every index has cost: writes, disk, memory, query planner",
+        "Prefer composite indexes over multiple single-column",
+        "Remove unused indexes"
+      ]
+    },
+    {
+      "id": 15,
+      "topic": "pagination",
+      "facts": [
+        "Use LIMIT offset, count (e.g., LIMIT 10 OFFSET 20)",
+        "Hardcoded LIMIT 5000 is legacy bug — fix it"
+      ]
+    },
+    {
+      "id": 16,
+      "topic": "connection_pooling",
+      "facts": [
+        "New connection per request",
+        "No persistent connections (mysql_pconnect not used)"
+      ]
+    },
+    {
+      "id": 17,
+      "topic": "id_generator",
+      "facts": [
+        "No AUTO_INCREMENT in database",
+        "Ids generated via IdGenerator::generateId($table)",
+        "Returns BIGINT with timestamp prefix + random suffix",
+        "Ensures uniqueness across federation nodes"
+      ]
+    },
+    {
+      "id": 18,
+      "topic": "development_vs_shipped",
+      "facts": [
+        "Dev workstation: may use Composer, Node.js, PHPUnit, Xdebug",
+        "Shipped product: zero external dependencies",
+        "Packaged software runs on shared hosts with no build tools"
+      ]
+    },
+    {
+      "id": 19,
+      "topic": "multi_user",
+      "facts": [
+        "Multiple human operators (ALICE, BOB, CAPTAIN_WOLFIE) in same channel",
+        "Humans read messages, collaborate in real time",
+        "AI agents (CURSOR, CLAUDE, LILITH) are write-only",
+        "THOTH monitors all messages"
+      ]
+    },
+    {
+      "id": 20,
+      "topic": "command_center_ui_doctrine",
+      "facts": [
+        "Single column. ALL actors (human, AI, system) in ONE chronological feed.",
+        "Interleaved timeline. No grouping by actor.",
+        "Oldest at top, newest at bottom. No reverse-chronological.",
+        "Monospace font. Terminal / log file aesthetic.",
+        "Every message: [HH:MM:SS] [ACTOR_NAME] message text",
+        "FORBIDDEN: bubbles, grouped messages, side-by-side agent columns, tabs-per-agent, avatar layout",
+        "FORBIDDEN: message collapsing, agent sections, show-more-from-this-agent",
+        "Agents post output to stream (write-only). THOTH is the only reader-agent.",
+        "THOTH enforces: any UI violating the above gets [ALERT]"
+      ]
+    },
+    {
+      "id": 21,
+      "topic": "file_headers",
+      "facts": [
+        "Format: lupopedia.headers (YAML block between --- delimiters)",
+        "Mandatory 22-key schema for all system files",
+        "Validates path, trust_tier, memory_key, and timestamps",
+        "ASCII-only enforcement starts here"
+      ]
+    },
+    {
+      "id": 22,
+      "topic": "ui_design_doctrine",
+      "facts": [
+        "Liquid design / Scroll aesthetic",
+        "No frameworks (Vanilla JS, Hand-coded CSS/PHP)",
+        "9-slice scaling for parchment/scroll assets",
+        "GSAP allowed for bloom/animations if bundled",
+        "Command center = terminal, not social app. Monospace. Function over form."
+      ]
+    },
+    {
+      "id": 23,
+      "topic": "transport_model",
+      "facts": [
+        "Transport mode is negotiated at session start via capability probes (not assumed)",
+        "Probe order governed by config (chatmode setting), not hardcoded",
+        "One-way promotion: once XMLHTTP/Fetch proven, session is locked to that mode",
+        "Session lock-in: proven mode stored in session record (chattype field)",
+        "No runtime mode bouncing: switching transport invalidates after_ymdhis cursor",
+        "Negotiation happens ONCE at session start. Not on every request."
+      ]
+    },
+    {
+      "id": 24,
+      "topic": "polling_cursor",
+      "facts": [
+        "Canonical cursor = after_ymdhis (14-digit UTC BIGINT: YYYYMMDDHHIISS)",
+        "Query: WHERE created_ymdhis > :after_ymdhis ORDER BY created_ymdhis ASC",
+        "Client appends results to DOM bottom (append-only, no re-render)",
+        "Cursor advances to max(created_ymdhis) in each response",
+        "Polling interval floor: 2100ms (Crafty-validated minimum)",
+        "last_message_id is NOT a valid cursor (IdGenerator IDs have CSPRNG suffix, not monotonic)",
+        "Goal: continuous feed with no full page reload during normal operation",
+        "DOM size guard: reload after ~500 appended lines to prevent memory growth"
+      ]
+    },
+    {
+      "id": 25,
+      "topic": "survival_doctrine",
+      "facts": [
+        "Zero external dependencies in shipped code",
+        "ASCII-safe data in all config/header/TOON files (hostile encoding environments)",
+        "DB = storage only. No logic in DB layer. Portable, auditable, debuggable.",
+        "Do NOT abstract away proven simple logic. 30 lines beats a 300-line service class.",
+        "Specific code outlasts general-purpose abstractions.",
+        "Smallest working change is the correct change.",
+        "Behavior over trends. Survival over fashion.",
+        "If you cannot trace execution top-to-bottom by reading files, the architecture has drifted."
+      ]
+    }
+  ],
+  "core_rules": [
+    "Database = storage. PHP = logic. Never the twain shall meet.",
+    "WHEN = UTC in DB (YYYYMMDDHHIISS). WHERE = application layer.",
+    "ASCII only in data/config/TOON/header files. No emoji. No box-drawing.",
+    "No FKs, no triggers, no stored procedures. Logic in application layer only.",
+    "No AUTO_INCREMENT (use IdGenerator). IDs are deterministic, time-prefixed, federation-safe.",
+    "Soft delete everywhere (is_deleted, deleted_ymdhis).",
+    "Prepared statements exclusively (new code). Named parameters, never positional.",
+    "Transactions are avoided, never relied upon for correctness.",
+    "Index only what you query.",
+    "Probabilistic garbage collection, not cron.",
+    "Base session hash = class_c_ip + user_id_or_unknown + user_agent + salt. No actor_id. No auth fields.",
+    "Polling cursor = after_ymdhis (14-digit UTC). Not last_message_id.",
+    "Transport negotiation at session start. One-way promotion. Session lock-in. No runtime bouncing.",
+    "UI = single-column interleaved timeline. No bubbles. No grouping. No tabs-per-agent.",
+    "Do not abstract proven simple logic. Specific code over general-purpose wrappers.",
+    "Behavior over trends. Survival over fashion."
+  ],
+  "edges": {
+    "inbound": [
+      {
+        "from": "lupo-memory/memory/canonical/1026/04/38-memory-unification.toon",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Memory unification doctrine and constitutional anchor"
+      },
+      {
+        "from": "lupo-memory/trust_ladder/canonical/1026/04/43-parent-child-trust-ladder.toon",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Trust ladder and parent/child trust model"
+      },
+      {
+        "from": "lupo-memory/kairos/canonical/1026/04/37-kairos-memory.toon",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "KAIROS memory consolidation and channel truth"
+      },
+      {
+        "from": "lupo-memory/rose/canonical/1026/04/36-rose-dialog.toon",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "ROSE persona and synthetic dialog rules"
+      },
+      {
+        "from": "lupo-memory/release/canonical/1026/04/33-softaculous-certification.toon",
+        "type": "references",
+        "weight": 0.7,
+        "reason": "Softaculous certification and shared hosting constraints"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+# Thread memory path pattern
+
+Path pattern:
+lupo-memory/{channel_key}/{trust_tier}/{year}/{month}/{thread_slug}.toon
+
+Trust tiers:
+- staging -> calendar year (example: 2026)
+- canonical -> offset year (calendar year - 1000, example: 1026)
+
+Write flow:
+- Agent start: write/update staging toon with status "in_progress"
+- Agent complete: update staging toon with status "completed"
+- THOTH promotion: copy to canonical path and set trust_tier to canonical
+
+Example:
+- lupo-memory/development/staging/2026/04/hermes-design.toon
+- lupo-memory/development/canonical/1026/04/hermes-design.toon

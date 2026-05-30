@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260419190519",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "4-1-3-docs",
+  "summary": "Synced TODO when_updated; rewrote Helen weekly report for Thursday cadence, removed dated milestones and May 1 4.1.4 kickoff, added Next Dependencies table aligned with layers A-F and channel row/task notes.",
+  "files_changed": [
+    "lupo-docs/versions/4.1.3/TODO.md",
+    "lupo-docs/versions/4.1.3/REPORT_EMAIL_TO_HELEN_2026_04_23.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

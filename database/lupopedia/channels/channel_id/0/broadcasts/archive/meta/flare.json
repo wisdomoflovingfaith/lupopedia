@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "channels\\0\\broadcasts\\archive\\20260225000000_10001_0_0_php_compatibility.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\archive\\20260225000003_10001_0_0_soft_delete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\archive\\20260225122400_10000_1000_0_actor_420_preservation_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "channels\\0\\broadcasts\\archive\\20260225122500_10000_1000_0_flip_v3_retrofit_doctrine.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

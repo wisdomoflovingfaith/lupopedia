@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\appendix\\examples\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\appendix\\examples\\LABS_HANDSHAKE_SIMULATION_WOLFIE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\appendix\\examples\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\appendix\\examples\\SAMPLE_REFERENCE_ENTRY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

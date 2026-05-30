@@ -1,0 +1,34 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "docs/prd/01_core_identity.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260411085204",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/prd_files/core-identity"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/01_core_identity.toon",
+  "purpose": "Memory sidecar",
+  "source_file_path_from_root": "docs/prd/01_core_identity.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

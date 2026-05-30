@@ -1,0 +1,56 @@
+{
+  "schema_version": "4.0.99",
+  "channels": {
+    "development": {
+      "id": 42,
+      "description": "Main development channel",
+      "default_trust_tier": "canonical",
+      "memory_paths": {
+        "seed": "lupo-memory/development/seed",
+        "canonical": "lupo-memory/development/canonical",
+        "staging": "lupo-memory/development/staging"
+      },
+      "allowed_cross_channel_memory": ["trust_ladder", "prd_files"]
+    },
+    "prd_files": {
+      "id": 43,
+      "description": "PRD and discussion artifacts",
+      "default_trust_tier": "canonical",
+      "memory_paths": {
+        "canonical": "lupo-memory/prd_files/canonical",
+        "staging": "lupo-memory/prd_files/staging"
+      },
+      "allowed_cross_channel_memory": ["development", "trust_ladder"]
+    },
+    "organization": {
+      "id": 44,
+      "description": "Organization and governance threads",
+      "default_trust_tier": "canonical",
+      "memory_paths": {
+        "canonical": "lupo-memory/organization/canonical",
+        "staging": "lupo-memory/organization/staging"
+      },
+      "allowed_cross_channel_memory": ["development"]
+    },
+    "trust_ladder": {
+      "id": 45,
+      "description": "Trust ladder PK system development",
+      "default_trust_tier": "canonical",
+      "memory_paths": {
+        "canonical": "lupo-memory/trust_ladder/canonical",
+        "staging": "lupo-memory/trust_ladder/staging"
+      },
+      "allowed_cross_channel_memory": ["development"]
+    },
+    "memory_compaction": {
+      "id": 46,
+      "description": "Memory compaction and archive logic",
+      "default_trust_tier": "staging",
+      "memory_paths": {
+        "canonical": "lupo-memory/memory_compaction/canonical",
+        "staging": "lupo-memory/memory_compaction/staging"
+      },
+      "allowed_cross_channel_memory": ["development", "trust_ladder"]
+    }
+  }
+}

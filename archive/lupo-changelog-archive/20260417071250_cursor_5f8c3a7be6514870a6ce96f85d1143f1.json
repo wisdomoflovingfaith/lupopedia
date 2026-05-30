@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260417071250",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "changelog-buffer-architecture",
+  "summary": "Replaced AGENTS changelog completion protocol with the new JSON buffer system and added canonical doctrine documentation for pending and archive buffers.",
+  "files_changed": [
+    "AGENTS.md",
+    "lupo-docs/doctrine/CHANGELOG_BUFFER_ARCHITECTURE.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "lupo-memory/development/canonical/1026/04/agents-md.toon",
+    "lupo-memory/development/canonical/1026/04/changelog-buffer-architecture-md.toon"
+  ]
+}

@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/37-kairos-memory-consolidation.json
+# Generated at: 2026-04-10 12:41:13 UTC
+# JSON master checksum: 0ca743bb09c61e6c004db8fbca3a6dda
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410122911,20260410122911,canonical,37,kairos-memory-consolidation,docs/prd/37_kairos_channel_memory_consolidation.md
+
+prd_sections[5]{pk,summary,title}:
+  1,"Defines KAIROS channel memory consolidation behavior, truth ordering, and contradiction handling.",Overview and Scope
+  2,"Describes background note-taking, consolidation outcomes, and chat-adjacent visibility constraints.",Goals and User-visible Behavior
+  3,Specifies recency-first conflict handling with edge-informed validity and explicit contradiction links.,Truth and Contradiction Policy
+  4,Uses lupo_actor_memory and lupo_edges with PHP-first authority and controlled configuration surface.,Data Model and Security
+  5,Defines dependency-ordered rollout and anti-backwards-read temporal safety rules.,Implementation and Temporal Discipline
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,kairos_php_first_consolidation,1,critical,"KAIROS consolidation is PHP-first with optional LLM assist, never model-only authority."
+  2,contradictions_must_be_explicit,3,critical,Conflicting topic memories require explicit kairos_contradicts edge representation.
+  3,recency_first_with_edge_override,3,high,Truth ordering prefers recency unless stronger validated evidence edges justify override.
+  4,soft_delete_and_auditability,4,high,Memory consolidation actions must preserve lineage and avoid hard-delete semantics.
+  5,temporal_no_backwards_reads,5,critical,Temporal discipline forbids backward-reading assumptions in consolidation state transitions.
+
+definitions[5]{pk,meaning,term}:
+  1,Atomic note row in lupo_actor_memory used as consolidation input.,kairos_observation
+  2,Consolidated memory row produced from normalized observations.,kairos_memory
+  3,Edge relation linking consolidated memory to its source observations.,kairos_consolidates_from
+  4,Edge relation recording contradictory consolidated claims under shared topic key.,kairos_contradicts
+  5,Normalization key grouping memory candidates for consolidation and contradiction checks.,topic_key
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,95
+  4,doctrine,outbound,supported,references,docs/prd/36_rose_multi_persona_synthetic_dialog.md,90
+  5,doctrine,outbound,supported,references,docs/prd/07_agents_faucets.md,90

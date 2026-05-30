@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\agents\\agent-1\\workflows\\channel_initialization.workflow.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\workflows\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\workflows\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

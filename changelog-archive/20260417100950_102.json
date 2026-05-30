@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417100950",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Aligns universal header validator wording with canonical ANUBIS baseline by removing queue-as-default implication and clarifying content_id shape-only validation scope.",
+  "files_changed": [
+    "scripts/validate_lupopedia_headers_universal.py"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

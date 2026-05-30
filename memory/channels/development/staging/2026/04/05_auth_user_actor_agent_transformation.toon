@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410122012,
+      "last_updated": 20260410122012,
+      "layer": "canonical",
+      "prd_id": 5,
+      "prd_slug": "auth-user-actor-agent-transformation",
+      "source_path": "docs/prd/05_auth_user_actor_agent_transformation.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Core Doctrine",
+      "summary": "Defines canonical auth user, actor, and agent transformation model for 4.0.x."
+    },
+    {
+      "pk": 2,
+      "title": "Visitor Chat Identity Chain",
+      "summary": "Establishes primary visitor-facing identity routing and alignment with channel chat UI."
+    },
+    {
+      "pk": 3,
+      "title": "Permission and Department Rules",
+      "summary": "Formalizes department-based eligibility, creation rules, and actor selection semantics."
+    },
+    {
+      "pk": 4,
+      "title": "Database and Leasing Requirements",
+      "summary": "Specifies required tables and lease logic between auth users and actors."
+    },
+    {
+      "pk": 5,
+      "title": "Memory Doctrine Addendum",
+      "summary": "Applies directional, context-typed, status-aware edges with explicit review_reason requirements."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "identity_model_canonical_chain",
+      "severity": "critical",
+      "summary": "Auth users, actors, and agent templates must remain distinct identity layers with explicit mappings."
+    },
+    {
+      "pk": 2,
+      "section_pk": 3,
+      "rule_name": "department_first_act_as_policy",
+      "severity": "critical",
+      "summary": "Act-as eligibility is based on department intersection, not single-user ownership."
+    },
+    {
+      "pk": 3,
+      "section_pk": 4,
+      "rule_name": "actor_auth_user_lease_required",
+      "severity": "high",
+      "summary": "Auth-user-to-actor relationships must be represented in canonical lease/binding structures."
+    },
+    {
+      "pk": 4,
+      "section_pk": 2,
+      "rule_name": "visitor_identity_chain_primary",
+      "severity": "high",
+      "summary": "Visitor-facing routing must preserve actor attribution and deterministic fallback behavior."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "needs_review_must_define_review_reason",
+      "severity": "critical",
+      "summary": "Edges marked needs_review require explicit review_reason for agent queue routing."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "auth_user",
+      "meaning": "Human authentication identity used for login and accountability."
+    },
+    {
+      "pk": 2,
+      "term": "actor",
+      "meaning": "Runtime persona identity used for orchestration and chat attribution."
+    },
+    {
+      "pk": 3,
+      "term": "agent_template",
+      "meaning": "Immutable agent definition in filesystem used to shape actor behavior."
+    },
+    {
+      "pk": 4,
+      "term": "act_as",
+      "meaning": "Department-authorized selection of runtime actor by authenticated user."
+    },
+    {
+      "pk": 5,
+      "term": "actor_auth_user_lease",
+      "meaning": "Binding record governing auth-user and actor operational relationship."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/15_actors.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/25_departments_system.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

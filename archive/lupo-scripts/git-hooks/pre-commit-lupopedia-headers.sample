@@ -1,0 +1,30 @@
+#!/bin/sh
+# Sample pre-commit hook: staged .md / .py must contain "lupopedia.headers:".
+# Install (Unix / Git Bash):
+#   cp lupo-scripts/git-hooks/pre-commit-lupopedia-headers.sample .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+#
+# For full validation, run: python lupo-scripts/validate_lupopedia_headers_universal.py <file>
+
+REPO="$(git rev-parse --show-toplevel)"
+cd "$REPO" || exit 1
+
+for f in $(git diff --cached --name-only --diff-filter=ACM); do
+  case "$f" in
+    *.md|*.py) ;;
+    *) continue ;;
+  esac
+  case "$f" in
+    */node_modules/*|*/vendor/*|*/lupo-archive/*|*/lupo-memory/*|*.toon.json)
+      continue
+      ;;
+  esac
+  test -f "$REPO/$f" || continue
+  if ! grep -q "lupopedia.headers:" "$REPO/$f"; then
+    echo "[pre-commit] ERROR: missing lupopedia.headers: $f"
+    echo "           Fix: python lupo-scripts/add_lupopedia_header_to_file.py \"$f\""
+    exit 1
+  fi
+done
+
+exit 0

@@ -1,0 +1,30 @@
+{
+  "schema_version": "4.0.79",
+  "actor_id": 59,
+  "actor_name": "anubis",
+  "generated_utc": "20260317120000",
+  "source_rules": "lupo-rules/root/",
+  "rules_count": 20,
+  "rules": [
+    "LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md",
+    "README.md",
+    "channels-federation-offline-session-doctrine.md",
+    "database-logic-prohibition-doctrine.md",
+    "database-offline-fallback-import-doctrine.md",
+    "flip-doctrine.md",
+    "ide-agent-identity-actor-pairing-doctrine.md",
+    "lilith-noninterference-doctrine.md",
+    "migration-doctrine.md",
+    "no-laravel-no-middleware.md",
+    "pdo-db-database-access-doctrine.md",
+    "php-7-4-compatibility.md",
+    "pk-reference-naming-doctrine.md",
+    "required-tables-future-features-doctrine.md",
+    "reserved-id-doctrine.md",
+    "safe-database-operations-doctrine.md",
+    "single-install-no-4.0-upgrade-doctrine.md",
+    "task-planning-doctrine.md",
+    "toon-source-of-truth.md",
+    "versioning-doctrine-single-source.md"
+  ]
+}

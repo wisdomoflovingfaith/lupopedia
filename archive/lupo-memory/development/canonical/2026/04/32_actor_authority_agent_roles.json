@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410131114,
+      "last_updated": 20260410131114,
+      "layer": "canonical",
+      "prd_id": 32,
+      "prd_slug": "actor-authority-agent-roles",
+      "source_path": "lupo-docs/prd/32_actor_authority_agent_roles.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "1. Overview",
+      "summary": "Operational summary for actor-authority-agent-roles section 1."
+    },
+    {
+      "pk": 2,
+      "title": "2. Actor Hierarchy",
+      "summary": "Operational summary for actor-authority-agent-roles section 2."
+    },
+    {
+      "pk": 3,
+      "title": "3. Approval Authority Matrix",
+      "summary": "Operational summary for actor-authority-agent-roles section 3."
+    },
+    {
+      "pk": 4,
+      "title": "4. Red Team Agent Roles",
+      "summary": "Operational summary for actor-authority-agent-roles section 4."
+    },
+    {
+      "pk": 5,
+      "title": "5. Agent Interaction Protocols",
+      "summary": "Operational summary for actor-authority-agent-roles section 5."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "prd_32_rule_1",
+      "severity": "critical",
+      "summary": "Rule 1 for PRD 32 (actor-authority-agent-roles)"
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "prd_32_rule_2",
+      "severity": "high",
+      "summary": "Rule 2 for PRD 32 (actor-authority-agent-roles)"
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "prd_32_rule_3",
+      "severity": "high",
+      "summary": "Rule 3 for PRD 32 (actor-authority-agent-roles)"
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "prd_32_rule_4",
+      "severity": "medium",
+      "summary": "Rule 4 for PRD 32 (actor-authority-agent-roles)"
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "prd_32_rule_5",
+      "severity": "critical",
+      "summary": "Rule 5 for PRD 32 (actor-authority-agent-roles)"
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "scope",
+      "meaning": "Scope boundary for PRD 32."
+    },
+    {
+      "pk": 2,
+      "term": "actor_id",
+      "meaning": "Canonical actor identity reference key."
+    },
+    {
+      "pk": 3,
+      "term": "channel_key",
+      "meaning": "Channel namespace identifier used for routing."
+    },
+    {
+      "pk": 4,
+      "term": "timestamp_ymdhis",
+      "meaning": "Packed UTC BIGINT in YYYYMMDDHHIISS format."
+    },
+    {
+      "pk": 5,
+      "term": "memory_pair",
+      "meaning": "JSON master with deterministically derived TOON."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+      "weight_hundredths": 85
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/15_actors.md",
+      "weight_hundredths": 80
+    }
+  ]
+}

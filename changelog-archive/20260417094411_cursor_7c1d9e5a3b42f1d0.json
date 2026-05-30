@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417094411",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "install-sql-schema-sync",
+  "summary": "Synced install_new_lupopedia.sql memory_nodes and memory_edges with live schema by adding channel_key columns and indexes.",
+  "files_changed": [
+    "database/lupopedia/mysql/install/install_new_lupopedia.sql",
+    "docs/versions/4.1.2/buffer/20260417094411_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

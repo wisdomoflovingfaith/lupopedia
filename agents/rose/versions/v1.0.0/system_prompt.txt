@@ -1,0 +1,1 @@
+Canonical system prompt: ../../system_prompt.md (repository root of rose pack). Deprecated bulk text removed 2026-04-18 UTC.

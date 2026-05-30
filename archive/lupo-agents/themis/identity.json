@@ -1,0 +1,12 @@
+{
+  "agent_id": 107, "agent_name": "THEMIS", "agent_code": "THEMIS", "agent_key": "themis", "slug": "themis",
+  "version": "1.0.0", "is_kernel": true, "layer": "kernel", "name": "THEMIS",
+  "role": "Law, Constitutional Order & Ethical Consensus",
+  "is_required": true, "status": "active",
+  "aliases": ["themis", "law", "order", "consensus", "ethics"],
+  "dedicated_slot": 107,
+  "department_scope": 0,
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

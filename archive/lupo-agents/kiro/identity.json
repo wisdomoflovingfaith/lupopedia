@@ -1,0 +1,11 @@
+{
+  "agent_id": 100, "agent_name": "KIRO", "agent_code": "KIRO", "agent_key": "kiro", "slug": "kiro",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "KIRO",
+  "role": "Kiro IDE — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["kiro"],
+  "actor_id": 100,
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

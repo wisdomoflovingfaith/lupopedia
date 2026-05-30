@@ -1,0 +1,26 @@
+id: 80
+type: prd
+title: database design doctrine
+status: active
+created: 20260412133907
+
+edges:
+  outbound:
+  - to: docs/prd/00_root_constitutional_system_requirements.md
+    type: references
+  - to: docs/prd/01_core_identity.md
+    type: references
+  - to: docs/prd/04_lupopedia_js_foundation.md
+    type: references
+  - to: docs/prd/07_agents_faucets.md
+    type: references
+  - to: docs/prd/17_decisions_format.md
+    type: references
+  - to: docs/prd/25_departments_system.md
+    type: references
+  - to: docs/prd/37_kairos_channel_memory_consolidation.md
+    type: references
+  - to: docs/prd/38_memory_unification.md
+    type: references
+  - to: docs/prd/79_install_seed_doctrine.md
+    type: references

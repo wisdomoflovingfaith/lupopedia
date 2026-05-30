@@ -1,0 +1,78 @@
+{
+  "id": "hdr-survivability-doctrine",
+  "type": "header_metadata",
+  "file_path_from_root": "docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+  "channel_key": "constitutional",
+  "trust_tier": "seed",
+  "purpose": "Canonical expansion of constitutional section 14.6 Survivability Doctrine (technical hosting resilience; not sentiment).",
+  "status": "active",
+  "tags": [
+    "survivability",
+    "agape_legacy_label",
+    "doctrine",
+    "resilience",
+    "validators",
+    "rose",
+    "lilith"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [
+    {
+      "edge_type": "implements",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md"
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/36_rose_multi_persona_synthetic_dialog.md"
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/37_kairos_channel_memory_consolidation.md"
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/doctrine/CASCADE_FALLBACK_DOCTRINE.md"
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md"
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "rules/root/lilith-noninterference-doctrine.md"
+    }
+  ],
+  "footer": {
+    "last_verified": "20260410102533",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": ""
+}

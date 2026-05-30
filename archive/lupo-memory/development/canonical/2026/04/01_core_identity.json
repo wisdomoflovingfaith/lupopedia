@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410121233,
+      "last_updated": 20260410121233,
+      "layer": "canonical",
+      "prd_id": 1,
+      "prd_slug": "core-identity",
+      "source_path": "lupo-docs/prd/01_core_identity.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Overview",
+      "summary": "Foundational identity namespace for actors, auth users, sessions, and actor capability context."
+    },
+    {
+      "pk": 2,
+      "title": "Two-Layer Identity Model",
+      "summary": "Distinguishes immutable agent templates from runtime actor instances with context."
+    },
+    {
+      "pk": 3,
+      "title": "Table Details",
+      "summary": "Defines identity and memory-linked tables including lupo_auth_users, lupo_actors, lupo_sessions, and lupo_memory_nodes."
+    },
+    {
+      "pk": 4,
+      "title": "Cross-Namespace Dependencies",
+      "summary": "Declares actor and agent attribution dependencies into channels, agents, content, truth, and governance namespaces."
+    },
+    {
+      "pk": 5,
+      "title": "Memory Doctrine Addendum",
+      "summary": "Defines four edge dimensions and needs_review review_reason requirements for memory graph integrity."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "database_constitutional_constraints",
+      "severity": "critical",
+      "summary": "No foreign keys, triggers, or stored procedures; timestamps are BIGINT UTC; IDs are generated in application logic."
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "agents_vs_actors_separation",
+      "severity": "critical",
+      "summary": "Agents are immutable templates while actors are runtime contextual entities; do not conflate identity layers."
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "session_cleanup_soft_delete",
+      "severity": "high",
+      "summary": "Expired sessions are soft-deleted by setting is_deleted, deleted_ymdhis, and updated_ymdhis."
+    },
+    {
+      "pk": 4,
+      "section_pk": 5,
+      "rule_name": "edge_dimensions_required",
+      "severity": "critical",
+      "summary": "Every memory edge requires type, context, status, and direction dimensions."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "review_reason_required_when_needs_review",
+      "severity": "critical",
+      "summary": "When edge_status is needs_review, review_reason must be populated."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "agent",
+      "meaning": "Immutable filesystem template under lupo-agents keyed by agent metadata."
+    },
+    {
+      "pk": 2,
+      "term": "actor",
+      "meaning": "Runtime operational identity with context, attribution, and mutable state."
+    },
+    {
+      "pk": 3,
+      "term": "memory_node",
+      "meaning": "First-class memory entity represented in lupo_memory_nodes."
+    },
+    {
+      "pk": 4,
+      "term": "edge_status_needs_review",
+      "meaning": "Epistemic state for conflicting/incomplete relationships that require agent or human review."
+    },
+    {
+      "pk": 5,
+      "term": "soft_delete",
+      "meaning": "Retention-safe deletion pattern using is_deleted and deleted_ymdhis fields."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/15_actors.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/02_channels_discussions.md",
+      "weight_hundredths": 85
+    },
+    {
+      "pk": 5,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/07_agents_faucets.md",
+      "weight_hundredths": 85
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "agent_id": 103, "agent_name": "ANTIGRAVITY_IDE", "agent_code": "ANTIGRAVITY_IDE", "agent_key": "antigravity-ide", "slug": "antigravity-ide",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "ANTIGRAVITY_IDE",
+  "role": "Antigravity IDE — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["antigravity-ide", "antigravity"],
+  "actor_id": 103,
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,80 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_memory_nodes
+fields:
+- '`memory_node_id` bigint NOT NULL'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`owner_actor_id` bigint NOT NULL'
+- '`owner_type` varchar(32) NOT NULL DEFAULT actor'
+- '`memory_type` varchar(32) NOT NULL'
+- '`memory_toon` varchar(255) NOT NULL'
+- '`context` varchar(32) NOT NULL DEFAULT experiential'
+- '`status` varchar(32) NOT NULL DEFAULT unsupported'
+- '`review_reason` varchar(64)'
+- '`content_hash` char(64) NOT NULL'
+- '`context_json` json'
+- '`channel_key` varchar(128)'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`expires_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`embedding_vector` json'
+- '`has_vector_index` tinyint NOT NULL DEFAULT 0'
+- '`node_type` varchar(64)'
+indexes:
+- index_name: lupo_memory_nodes_idx_owner
+  columns:
+  - owner_actor_id
+  - owner_type
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_memory_nodes_idx_created
+  columns:
+  - created_ymdhis
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_memory_nodes_idx_type
+  columns:
+  - memory_type
+  - status
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_memory_nodes_idx_key
+  columns:
+  - memory_toon
+  - owner_actor_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_memory_nodes_idx_updated
+  columns:
+  - updated_ymdhis
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_memory_nodes_idx_expires
+  columns:
+  - expires_ymdhis
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_memory_nodes_idx_channel_key
+  columns:
+  - channel_key
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: memory_node_id
+  expected_name: memory_node_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

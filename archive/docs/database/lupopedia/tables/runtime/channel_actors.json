@@ -1,0 +1,37 @@
+{
+  "_comment": "THIS SCHEMA IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference for channel-local actor state.",
+  "_source": "Lupopedia Runtime Ledger Specification v1.0",
+  "_read_only": true,
+  "ledger_name": "channel_actors",
+  "fields": [
+    "`event_id` varchar(64) NOT NULL",
+    "`timestamp_ymdhis` bigint NOT NULL",
+    "`channel_key` varchar(64) NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`actor_state` varchar(64) NOT NULL",
+    "`current_task` varchar(255)",
+    "`metadata_json` json"
+  ],
+  "indexes": [
+    {
+      "index_name": "channel_actors_idx_channel_key",
+      "columns": ["channel_key"],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "event_id",
+    "expected_name": "event_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "append_only": true,
+    "channel_local": true,
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

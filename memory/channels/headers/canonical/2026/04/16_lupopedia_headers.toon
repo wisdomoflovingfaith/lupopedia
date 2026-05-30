@@ -1,0 +1,108 @@
+{
+  "id": "16-headers-review-20260409",
+  "type": "header_metadata",
+  "schema_version": "lupo_toon_v1",
+  "header_format_version": "4.1.0",
+  "file_path_from_root": "docs/prd/16_lupopedia_headers.md",
+  "channel_key": "headers",
+  "trust_tier": "canonical",
+  "memory_toon": "memory/headers/canonical/2026/04/16_lupopedia_headers.toon",
+  "transcript_jsonl": "0/headers/lupopedia-headers",
+  "purpose": "Canonical specification for Lupopedia file headers, verification, and metadata propagation; memory_toon connects the artifact to its canonical memory representation",
+  "status": "active",
+  "tags": [
+    "prd",
+    "lupopedia_headers",
+    "metadata",
+    "verification",
+    "memory_toon_migration"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 2,
+    "name": "LILITH"
+  },
+  "delegation_chain": "lilith:audit",
+  "edges": {
+    "outbound": [
+      {
+        "to": "docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Constitutional anchor"
+      },
+      {
+        "to": "docs/prd/26_five_layer_documentation_architecture.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Five-layer documentation architecture"
+      },
+      {
+        "to": "docs/doctrine/LUPOPEDIA_HEADERS/README.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical doctrine for Lupopedia headers"
+      },
+      {
+        "to": "docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Header format and validation rules"
+      },
+      {
+        "to": "docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Header validation and tooling"
+      },
+      {
+        "to": "docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "Header versioning model"
+      },
+      {
+        "to": "scripts/validate_lupopedia_headers_universal.py",
+        "type": "implements",
+        "weight": 1.0,
+        "reason": "Python validator (artifact types, author, optional content_id / context_id, --check-db)"
+      },
+      {
+        "to": "scripts/import_content.py",
+        "type": "implements",
+        "weight": 1.0,
+        "reason": "Import into lupo_contents; metadata and lupopedia_header edges sync"
+      },
+      {
+        "to": "scripts/lib/header_db_sync.py",
+        "type": "implements",
+        "weight": 1.0,
+        "reason": "Persists headers to lupo_metadata and lupo_edges"
+      },
+      {
+        "to": "docs/prd/17_decisions_format.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "decisions/pseudocode layout; LUPOPEDIA HEADERS required on *.pseudo.* for agent handoff"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260415040000",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 2,
+      "agent_name_identity": "LILITH"
+    },
+    "verified_via": {
+      "type": "direct",
+      "faucet_slug": "none"
+    },
+    "orchestrator": "lilith:audit",
+    "next_action": [
+      "Keep aligned with import_content.py and header_db_sync behavior",
+      "Align validator path globs with Header applicability and scope (required extensions)",
+      "Update stale artifacts with correct header format (4.1.0)"
+    ]
+  }
+}

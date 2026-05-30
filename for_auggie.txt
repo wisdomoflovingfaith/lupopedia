@@ -1,0 +1,88 @@
+AUGGIE:
+
+Read this entire file. Then execute all tasks.
+
+---
+
+## TASK: Update Global Atoms to v4.1.1 and Migrate References to TOON
+
+### Background
+- Atom system live at `lupo-memory/atoms/lupopedia_global_constants.atom.toon`
+- Old YAML atom (`config/global_atoms.yaml`) is deprecated but kept for BC
+- Current version must be updated from 4.0.99/4.1.0 to 4.1.1 everywhere
+
+### Step 1: Update Atom TOON
+File: `lupo-memory/atoms/lupopedia_global_constants.atom.toon`
+
+Set `atom_version` to `"4.1.1"` and `constants.platform_version` to `"4.1.1"`
+
+### Step 2: Mark Legacy YAML as Deprecated
+File: `config/global_atoms.yaml`
+
+Add comment at top:
+```yaml
+# DEPRECATED: Use lupo-memory/atoms/lupopedia_global_constants.atom.toon instead
+# This file maintained for backward compatibility only.
+Update GLOBAL_CURRENT_LUPOPEDIA_VERSION to 4.1.1
+
+Step 3: Create AtomReader.php
+File: lupo-includes/classes/AtomReader.php
+
+Priority: .atom.toon (1) → .atom.json (2) → global_atoms.yaml (3, deprecated)
+Include getVersion() method that returns platform version from atom.
+
+Step 4: Update README_WTF.md
+Change header header_format_version to "4.1.1"
+
+Add line: "Current version: 4.1.1 (see lupo-memory/atoms/lupopedia_global_constants.atom.toon)"
+
+Step 5: Update CLAUDE.md and AGENTS.md (if they exist)
+Update any version references to 4.1.1
+
+Step 6: Update Validator to Use Atom Version
+File: lupo-scripts/validate_lupopedia_headers_universal.py
+
+Add get_current_platform_version() that reads from atom TOON first, falls back to YAML.
+Update version validation to accept 4.1.x family and warn on mismatch.
+
+Step 7: Create Migration Script
+File: lupo-scripts/migrate_atoms_to_toon.py
+
+Converts global_atoms.yaml to .atom.toon format. Does NOT delete YAML.
+
+Step 8: Find and Update All Version References
+Run:
+
+bash
+grep -r "4\.0\.99\|4\.1\.0" --include="*.md" --include="*.py" --include="*.php" --include="*.yaml" \
+  --exclude-dir=".venv" --exclude-dir=".git" | grep -v "CHANGELOG.md" | grep -v "versions/4.0.99"
+Update each occurrence to 4.1.1 (except historical changelog entries and version archive folders).
+
+Step 9: Run Migration Script
+bash
+python lupo-scripts/migrate_atoms_to_toon.py
+Step 10: Run Validation
+bash
+python lupo-scripts/validate_lupopedia_headers_universal.py lupo-docs/prd/16_lupopedia_headers.md
+Expected Output
+PASS for PRD 16
+
+AtomReader loads from .atom.toon
+
+All version references at 4.1.1
+
+Backward compatibility maintained
+
+Report Format
+When done, print:
+
+text
+✅ Global atoms updated to 4.1.1
+✅ AtomReader.php created
+✅ README_WTF.md, CLAUDE.md, AGENTS.md updated
+✅ Validator now reads version from atom
+✅ migrate_atoms_to_toon.py created
+✅ [N] files updated with version 4.1.1
+✅ Validation PASS
+
+Next: Commit changes. Legacy YAML kept for BC.

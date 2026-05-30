@@ -1,0 +1,21 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_agent_colors
+fields:
+- '`actor_id` bigint NOT NULL'
+- '`background_color` varchar(7) NOT NULL'
+- '`text_color` varchar(7) NOT NULL DEFAULT #FFFFFF'
+- '`last_used_ymdhis` bigint NOT NULL'
+indexes: []
+primary_key:
+  column_name: actor_id
+  expected_name: actor_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

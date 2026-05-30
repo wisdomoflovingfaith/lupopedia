@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418190503",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-17-consistency",
+  "summary": "PRD 17 surgical pass: header_format_version aligned to 4.1.x family, UTF-8 mojibake cleanup, pseudocode and no-inference clarifications, THREAD_INDEX and Action Items alignment notes.",
+  "files_changed": [
+    "lupo-docs/prd/17_decisions_format.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

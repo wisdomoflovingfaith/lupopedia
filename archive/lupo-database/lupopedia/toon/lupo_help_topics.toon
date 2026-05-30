@@ -1,0 +1,61 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_help_topics
+fields:
+- '`help_topic_id` bigint NOT NULL'
+- '`slug` varchar(255) NOT NULL'
+- '`title` varchar(255) NOT NULL'
+- '`content_html` text'
+- '`content_markdown` text'
+- '`category` varchar(100)'
+- '`parent_slug` varchar(255)'
+- '`view_count` bigint DEFAULT 0'
+- '`helpful_count` bigint DEFAULT 0'
+- '`not_helpful_count` bigint DEFAULT 0'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`author_actor_id` bigint'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+indexes:
+- index_name: lupo_help_topics_slug
+  columns:
+  - slug
+  is_unique: true
+  index_type: BTREE
+- index_name: lupo_help_topics_idx_slug
+  columns:
+  - slug
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_help_topics_idx_category
+  columns:
+  - category
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_help_topics_idx_parent
+  columns:
+  - parent_slug
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_help_topics_idx_created
+  columns:
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_help_topics_idx_author
+  columns:
+  - author_actor_id
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: help_topic_id
+  expected_name: help_topic_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

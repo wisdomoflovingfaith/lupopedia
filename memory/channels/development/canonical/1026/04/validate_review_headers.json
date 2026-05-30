@@ -1,0 +1,38 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "scripts/validate_review_headers.py",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "parent_pk_id -> PRD file",
+        "source": "generate_memory_from_header",
+        "to": "docs/prd/16_lupopedia_headers.md",
+        "type": "references",
+        "weight": 0.9
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412171953",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "dialog_transcript": "0/development/validate-review-headers",
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "content_parent_id": "16"
+  },
+  "memory_key": "memory/development/canonical/1026/04/validate-review-headers.toon",
+  "purpose": "Forwards common CLI flags to validate_lupopedia_headers_universal.py; expires 2026-05-01.",
+  "source_file_path_from_root": "scripts/validate_review_headers.py",
+  "tags": [
+    "implementation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

@@ -1,0 +1,1164 @@
+<?php
+/**
+ * wolfie.header.identity: content-controller
+ * wolfie.header.placement: /includes/modules/content/content-controller.php
+ * wolfie.header.version: lupopedia_current_version
+ * wolfie.header.dialog:
+ *   speaker: CURSOR
+ *   target: content-controller
+ *   message: "Version 3.0.18: Added content_handle_collection_tab() function to handle /collection/{id}/tab/{slug} routes for content items. Loads content items from collection_tab_map and renders content list with proper navigation context."
+ * wolfie.header.mood.label: focused
+ * wolfie.header.mood.rgb: "336699"
+ */
+
+if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+    die("Config not loaded. content-controller.php cannot be called directly.");
+}
+
+require_once __DIR__ . '/content-model.php';
+require_once __DIR__ . '/renderers/content-renderer.php';
+
+// Load ConnectionsService for semantic context
+if (file_exists(LUPOPEDIA_ABSPATH . '/includes/classes/ConnectionsService.php')) {
+    require_once LUPOPEDIA_ABSPATH . '/includes/classes/ConnectionsService.php';
+}
+
+/**
+ * Resolve the active PDO connection.
+ *
+ * @return PDO|null
+ */
+function get_pdo_connection() {
+    if (!empty($GLOBALS['mydatabase'])) {
+        return $GLOBALS['mydatabase'];
+    }
+
+    return null;
+}
+
+/**
+ * Current session actor_id (0 if none).
+ *
+ * @return int
+ */
+function content_current_actor_id() {
+    if (!empty($GLOBALS['lupo_session']) && method_exists($GLOBALS['lupo_session'], 'getActorId')) {
+        $a = $GLOBALS['lupo_session']->getActorId();
+        return $a ? (int) $a : 0;
+    }
+    return 0;
+}
+
+/**
+ * Whether the current session is a global admin (can view all content).
+ *
+ * @return bool
+ */
+function content_is_admin_actor() {
+    $actorId = content_current_actor_id();
+    if ($actorId <= 0) {
+        return false;
+    }
+    $auth = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    if ($auth && method_exists($auth, 'isAdmin')) {
+        return (bool) $auth->isAdmin($actorId);
+    }
+    return false;
+}
+
+/**
+ * Department IDs for the current actor (lupo_actor_departments).
+ *
+ * @return array
+ */
+function content_get_actor_department_ids() {
+    $actorId = content_current_actor_id();
+    if ($actorId <= 0) {
+        return array();
+    }
+    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+    if (!$db || !is_object($db) || !method_exists($db, 'fetchAll')) {
+        return array();
+    }
+    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $t = $db->quoteIdentifier($prefix . 'actor_departments');
+    $rows = $db->fetchAll(
+        "SELECT department_id FROM {$t} WHERE actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL)",
+        array('actor_id' => $actorId)
+    );
+    $out = array();
+    foreach ($rows as $r) {
+        if (isset($r['department_id']) && $r['department_id'] !== null && $r['department_id'] !== '') {
+            $out[] = (int) $r['department_id'];
+        }
+    }
+    return $out;
+}
+
+/**
+ * Whether the current viewer may see this lupo_contents row (visibility, department, draft).
+ *
+ * @param array $content Row from lupo_contents
+ * @return bool
+ */
+function content_user_may_view_content($content) {
+    if (!is_array($content)) {
+        return false;
+    }
+    if (content_is_admin_actor()) {
+        return true;
+    }
+    $status = isset($content['status']) ? strtolower(trim((string) $content['status'])) : '';
+    if ($status === 'draft') {
+        return false;
+    }
+    $vis = isset($content['visibility']) ? strtolower(trim((string) $content['visibility'])) : 'public';
+    if ($vis === '' || $vis === 'public') {
+        return true;
+    }
+    $actorId = content_current_actor_id();
+    if ($vis === 'private') {
+        $owner = isset($content['actor_id']) ? (int) $content['actor_id'] : 0;
+        return ($actorId > 0 && $owner > 0 && $actorId === $owner);
+    }
+    $deptId = isset($content['department_id']) ? (int) $content['department_id'] : 0;
+    if ($deptId <= 0) {
+        return ($vis === 'public' || $vis === '');
+    }
+    $depts = content_get_actor_department_ids();
+    foreach ($depts as $d) {
+        if ($d === $deptId) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * HTTP 403 page in main layout (forbidden content).
+ *
+ * @return string
+ */
+function content_render_forbidden() {
+    if (!headers_sent()) {
+        header('HTTP/1.1 403 Forbidden');
+    }
+    $title = function_exists('lupo_t') ? lupo_t('content.forbidden.title', 'Access denied') : 'Access denied';
+    $body = '<div class="lupopedia-forbidden"><h1>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</h1>';
+    $body .= '<p>' . htmlspecialchars(function_exists('lupo_t') ? lupo_t('content.forbidden.body', 'You do not have permission to view this content.') : 'You do not have permission to view this content.', ENT_QUOTES, 'UTF-8') . '</p></div>';
+
+    $collection_id = 0;
+    $tabs_data = array();
+    $current_collection = null;
+    if (!function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $loader_path = LUPOPEDIA_ABSPATH . '/includes/functions/collection-tabs-loader.php';
+        if (file_exists($loader_path)) {
+            require_once $loader_path;
+        }
+    }
+    if (function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $lupo_tabs_res = lupo_resolve_collection_tabs_for_chrome(0);
+        $collection_id = isset($lupo_tabs_res['collection_id']) ? (int) $lupo_tabs_res['collection_id'] : 0;
+        $tabs_data = isset($lupo_tabs_res['tabs_data']) && is_array($lupo_tabs_res['tabs_data']) ? $lupo_tabs_res['tabs_data'] : array();
+        $current_collection = isset($lupo_tabs_res['current_collection']) ? $lupo_tabs_res['current_collection'] : null;
+    }
+
+    return render_main_layout(array(
+        'page_title' => $title,
+        'page_body' => $body,
+        'content' => array(),
+        'collection_id' => $collection_id,
+        'tabs_data' => $tabs_data,
+        'current_collection' => $current_collection,
+        'content_sections' => array(),
+        'semantic_widget_context' => array(),
+    ));
+}
+
+/**
+ * Fetch library rows the current actor may view (title, slug, summary, content_type).
+ *
+ * @return array
+ */
+function content_fetch_library_index_items() {
+    $out = array();
+    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+    if (!$db || !method_exists($db, 'fetchAll')) {
+        return $out;
+    }
+    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    $t = $db->quoteIdentifier($prefix . 'contents');
+    $rows = $db->fetchAll(
+        "SELECT content_id, title, slug, content_type, description, visibility, department_id, status, actor_id FROM {$t} WHERE is_deleted = 0 AND (is_active = 1 OR is_active IS NULL) ORDER BY title ASC LIMIT 2000",
+        array()
+    );
+    foreach ($rows as $r) {
+        if (!content_user_may_view_content($r)) {
+            continue;
+        }
+        $slug = isset($r['slug']) ? trim((string) $r['slug']) : '';
+        if ($slug === '') {
+            continue;
+        }
+        $rawDesc = isset($r['description']) ? (string) $r['description'] : '';
+        $summary = $rawDesc;
+        if (strlen($summary) > 280) {
+            $summary = substr($summary, 0, 277) . '...';
+        }
+        $out[] = array(
+            'title' => isset($r['title']) ? $r['title'] : $slug,
+            'slug' => $slug,
+            'summary' => $summary,
+            'content_type' => isset($r['content_type']) ? $r['content_type'] : '',
+        );
+    }
+    return $out;
+}
+
+/**
+ * Library index: list viewable content (physical front controller: content/index.php).
+ *
+ * @return string
+ */
+function content_show_library_index() {
+    $index_title = function_exists('lupo_t') ? lupo_t('content.library.title', 'Content library') : 'Content library';
+    $intro = function_exists('lupo_t') ? lupo_t('content.library.intro', 'Published entries you are allowed to view.') : 'Published entries you are allowed to view.';
+
+    $collection_id = 0;
+    $tabs_data = array();
+    $current_collection = null;
+    if (!function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $loader_path = LUPOPEDIA_ABSPATH . '/includes/functions/collection-tabs-loader.php';
+        if (file_exists($loader_path)) {
+            require_once $loader_path;
+        }
+    }
+    if (function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $lupo_tabs_res = lupo_resolve_collection_tabs_for_chrome(0);
+        $collection_id = isset($lupo_tabs_res['collection_id']) ? (int) $lupo_tabs_res['collection_id'] : 0;
+        $tabs_data = isset($lupo_tabs_res['tabs_data']) && is_array($lupo_tabs_res['tabs_data']) ? $lupo_tabs_res['tabs_data'] : array();
+        $current_collection = isset($lupo_tabs_res['current_collection']) ? $lupo_tabs_res['current_collection'] : null;
+    }
+
+    $items = content_fetch_library_index_items();
+    $renderer = LUPOPEDIA_PATH . '/includes/renderers/render-library-list.php';
+    if (is_file($renderer)) {
+        require_once $renderer;
+    }
+    $page_body = function_exists('render_library_list_html')
+        ? render_library_list_html($items, $index_title, $intro, LUPOPEDIA_PUBLIC_PATH)
+        : '<div class="content-library-index"><p>' . htmlspecialchars(function_exists('lupo_t') ? lupo_t('content.library.empty', 'No entries to show.') : 'No entries to show.', ENT_QUOTES, 'UTF-8') . '</p></div>';
+
+    return render_main_layout(array(
+        'page_title' => $index_title,
+        'page_body' => $page_body,
+        'content' => array('title' => $index_title),
+        'collection_id' => $collection_id,
+        'tabs_data' => $tabs_data,
+        'current_collection' => $current_collection,
+        'content_sections' => array(),
+        'semantic_widget_context' => array(),
+    ));
+}
+
+/**
+ * ---------------------------------------------------------
+ * Content Controller - Main Entry Point
+ * ---------------------------------------------------------
+ * 
+ * Handles content routing when slug is NOT TRUTH and NOT Crafty Syntax
+ */
+
+/**
+ * Handle canonical content slug routing
+ * 
+ * @param string $slug The content slug
+ * @param array $widget_hints Optional artifact_type and memory_key for semantic chrome (e.g. from query string).
+ * @return string Rendered HTML page
+ */
+function content_show_by_slug($slug, $widget_hints = array()) {
+    // 1. Normalize slug
+    $slug = trim($slug, '/');
+    
+    // 2. Look up content by slug (canonical lookup)
+    $content = content_lookup_by_slug($slug);
+    
+    if (!$content) {
+        // 3. Content not found - return 404 with suggestions
+        return content_render_404($slug);
+    }
+
+    if (!content_user_may_view_content($content)) {
+        return content_render_forbidden();
+    }
+    
+    // 4. Get related edges for semantic context
+    $related_edges = content_get_related_edges($content['content_id']);
+    
+    // 5. Render content with metadata
+    $page_body = content_render_canonical($content, $related_edges);
+
+    // 5b. Collection tabs + sections for main_layout (same chrome as content_handle_slug)
+    $collection_id = 0;
+    if (isset($content['default_collection_id']) && $content['default_collection_id'] !== null && $content['default_collection_id'] !== '') {
+        $collection_id = (int) $content['default_collection_id'];
+    }
+    if ($collection_id < 0) {
+        $collection_id = 0;
+    }
+    $tabs_data = array();
+    $current_collection = null;
+    if (!function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $loader_path = LUPOPEDIA_ABSPATH . '/includes/functions/collection-tabs-loader.php';
+        if (file_exists($loader_path)) {
+            require_once $loader_path;
+        }
+    }
+    if (function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $lupo_tabs_res = lupo_resolve_collection_tabs_for_chrome($collection_id);
+        $collection_id = isset($lupo_tabs_res['collection_id']) ? (int) $lupo_tabs_res['collection_id'] : $collection_id;
+        $tabs_data = isset($lupo_tabs_res['tabs_data']) && is_array($lupo_tabs_res['tabs_data']) ? $lupo_tabs_res['tabs_data'] : array();
+        $current_collection = isset($lupo_tabs_res['current_collection']) ? $lupo_tabs_res['current_collection'] : null;
+    }
+
+    $content_sections_meta = array();
+    if (!empty($content['content_sections'])) {
+        $cs = $content['content_sections'];
+        if (is_string($cs)) {
+            $decoded_cs = json_decode($cs, true);
+            $content_sections_meta = is_array($decoded_cs) ? $decoded_cs : array();
+        } elseif (is_array($cs)) {
+            $content_sections_meta = $cs;
+        }
+    }
+    if (empty($content_sections_meta) && function_exists('content_extract_sections') && $page_body !== '') {
+        $content_sections_meta = content_extract_sections($page_body);
+    }
+
+    $artifactTypeForWidget = isset($content['content_type']) ? $content['content_type'] : 'article';
+    if (is_array($widget_hints) && isset($widget_hints['artifact_type']) && $widget_hints['artifact_type'] !== '') {
+        $artifactTypeForWidget = $widget_hints['artifact_type'];
+    }
+    $memoryKeyForWidget = (is_array($widget_hints) && isset($widget_hints['memory_key']) && $widget_hints['memory_key'] !== '')
+        ? $widget_hints['memory_key']
+        : ('content:' . (isset($content['slug']) ? $content['slug'] : $slug));
+
+    $context = array(
+        'page_body' => $page_body,
+        'page_title' => isset($content['title']) ? $content['title'] : (isset($content['content_name']) ? $content['content_name'] : ''),
+        'content' => $content,
+        'content_type' => isset($content['content_type']) ? $content['content_type'] : 'markdown',
+        'related_edges' => $related_edges,
+        'collection_id' => $collection_id,
+        'tabs_data' => $tabs_data,
+        'current_collection' => $current_collection,
+        'content_sections' => $content_sections_meta,
+        'semantic_widget_context' => array(
+            'artifact_type' => $artifactTypeForWidget,
+            'memory_key' => $memoryKeyForWidget,
+        ),
+        'meta' => array(
+            'description' => isset($content['description']) ? $content['description'] : '',
+            'slug' => isset($content['slug']) ? $content['slug'] : '',
+            'created_ymdhis' => isset($content['created_ymdhis']) ? $content['created_ymdhis'] : '',
+            'updated_ymdhis' => isset($content['updated_ymdhis']) ? $content['updated_ymdhis'] : '',
+        ),
+    );
+    return render_main_layout($context);
+}
+
+/**
+ * Look up content by slug (canonical resolver)
+ * 
+ * @param string $slug The content slug
+ * @return array|null Content record or null if not found
+ */
+function content_lookup_by_slug($slug) {
+    if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+        return null;
+    }
+    
+    try {
+        $pdo = get_pdo_connection();
+        if (!$pdo) {
+            return null;
+        }
+
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $t = method_exists($pdo, 'quoteIdentifier') ? $pdo->quoteIdentifier($prefix . 'contents') : ($prefix . 'contents');
+
+        $stmt = $pdo->prepare("
+            SELECT * FROM {$t}
+            WHERE slug = :slug AND is_deleted = 0 AND (is_active = 1 OR is_active IS NULL)
+            LIMIT 1
+        ");
+
+        $stmt->execute(array('slug' => $slug));
+        $content = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($content) {
+            // Parse JSON metadata
+            if (!empty($content['metadata_json'])) {
+                $content['metadata'] = json_decode($content['metadata_json'], true);
+            }
+
+            // Parse AAL metadata if available
+            if (!empty($content['aal_metadata_json'])) {
+                $content['aal_metadata'] = json_decode($content['aal_metadata_json'], true);
+            }
+
+            if (!isset($content['content_name']) && isset($content['title'])) {
+                $content['content_name'] = $content['title'];
+            }
+            if (!isset($content['content_body']) && isset($content['body'])) {
+                $content['content_body'] = $content['body'];
+            }
+
+            return $content;
+        }
+        
+        return null;
+        
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log('Content lookup error: ' . $e->getMessage());
+        }
+        return null;
+    }
+}
+
+/**
+ * Look up content by content_id (4.0.18 T3 — web path resolution).
+ *
+ * @param int $content_id The content ID
+ * @return array|null Content record or null if not found
+ */
+function content_lookup_by_id($content_id) {
+    if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+        return null;
+    }
+    $content_id = (int) $content_id;
+    if ($content_id <= 0) {
+        return null;
+    }
+    try {
+        $pdo = get_pdo_connection();
+        if (!$pdo) {
+            return null;
+        }
+        $stmt = $pdo->prepare("
+            SELECT * FROM lupo_contents
+            WHERE content_id = :content_id AND (is_deleted = 0 OR is_deleted IS NULL) AND (is_active = 1 OR is_active IS NULL)
+            LIMIT 1
+        ");
+        $stmt->execute(array('content_id' => $content_id));
+        $content = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($content) {
+            if (!empty($content['metadata_json'])) {
+                $content['metadata'] = json_decode($content['metadata_json'], true);
+            }
+            if (!empty($content['aal_metadata_json'])) {
+                $content['aal_metadata'] = json_decode($content['aal_metadata_json'], true);
+            }
+            if (!isset($content['content_name']) && isset($content['title'])) {
+                $content['content_name'] = $content['title'];
+            }
+            if (!isset($content['content_body']) && isset($content['body'])) {
+                $content['content_body'] = $content['body'];
+            }
+            return $content;
+        }
+        return null;
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log('Content lookup by ID error: ' . $e->getMessage());
+        }
+        return null;
+    }
+}
+
+/**
+ * Show content by content_id (4.0.18 T3 — serve resolved web path).
+ *
+ * @param int $content_id The content ID
+ * @return string Rendered HTML page or empty on not found
+ */
+function content_show_by_content_id($content_id) {
+    $content = content_lookup_by_id($content_id);
+    if (!$content) {
+        return content_render_404('id:' . (int) $content_id);
+    }
+    $related_edges = content_get_related_edges($content['content_id']);
+    $page_body = content_render_canonical($content, $related_edges);
+    $context = array(
+        'page_body' => $page_body,
+        'page_title' => isset($content['title']) ? $content['title'] : (isset($content['content_name']) ? $content['content_name'] : ''),
+        'content' => $content,
+        'content_type' => isset($content['content_type']) ? $content['content_type'] : 'markdown',
+        'related_edges' => $related_edges,
+        'meta' => array(
+            'description' => isset($content['description']) ? $content['description'] : '',
+            'slug' => isset($content['slug']) ? $content['slug'] : '',
+            'created_ymdhis' => isset($content['created_ymdhis']) ? $content['created_ymdhis'] : '',
+            'updated_ymdhis' => isset($content['updated_ymdhis']) ? $content['updated_ymdhis'] : '',
+        ),
+    );
+    return render_main_layout($context);
+}
+
+/**
+ * Get related edges for content
+ * 
+ * @param int $content_id The content ID
+ * @return array Related edges
+ */
+function content_get_related_edges($content_id) {
+    if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+        return [];
+    }
+    
+    try {
+        $pdo = get_pdo_connection();
+        if (!$pdo) {
+            return [];
+        }
+        
+        $stmt = $pdo->prepare("
+            SELECT e.*, 
+                   lc_left.slug as left_slug,
+                   lc_right.slug as right_slug,
+                   lc_left.channel_name as left_channel,
+                   lc_right.channel_name as right_channel
+            FROM lupo_edges e
+            LEFT JOIN lupo_contents lc_left ON e.left_object_id = lc_left.content_id
+            LEFT JOIN lupo_contents lc_right ON e.right_object_id = lc_right.content_id
+            WHERE (e.left_object_id = :content_id OR e.right_object_id = :content_id)
+            AND e.is_deleted = 0
+            ORDER BY e.weight_score DESC, e.sort_num ASC
+        ");
+        
+        $stmt->execute(['content_id' => $content_id]);
+        $edges = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Parse edge metadata
+        foreach ($edges as &$edge) {
+            if ($edge['metadata_json']) {
+                $edge['metadata'] = json_decode($edge['metadata_json'], true);
+            }
+        }
+        
+        return $edges;
+        
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log('Related edges lookup error: ' . $e->getMessage());
+        }
+        return [];
+    }
+}
+
+/**
+ * Render canonical content page
+ * 
+ * @param array $content Content record
+ * @param array $related_edges Related edges
+ * @return string Rendered HTML
+ */
+function content_render_canonical($content, $related_edges) {
+    // Resolve "see file" and empty body from actual files first (so renderer or fallback see resolved content).
+    $content_body = isset($content['content_body']) ? (string)$content['content_body'] : (isset($content['body']) ? (string)$content['body'] : '');
+    if ($content_body === '' || strcasecmp(trim($content_body), 'see file') === 0) {
+        $resolved = content_resolve_body_from_file($content);
+        if ($resolved !== null && isset($resolved['rendered_body']) && $resolved['rendered_body'] !== '') {
+            $content_body = isset($resolved['body']) ? $resolved['body'] : $content_body;
+            $content['content_body'] = $content_body;
+            $content['body'] = $content_body;
+            $content['_resolved_rendered_body'] = $resolved['rendered_body'];
+        }
+    }
+
+    // Use renderer only when we did not resolve from file (renderer does not know _resolved_rendered_body).
+    if (empty($content['_resolved_rendered_body']) && file_exists(LUPOPEDIA_ABSPATH . '/includes/modules/content/renderers/content-renderer.php')) {
+        require_once LUPOPEDIA_ABSPATH . '/includes/modules/content/renderers/content-renderer.php';
+        if (function_exists('content_renderer_render_canonical')) {
+            return content_renderer_render_canonical($content, $related_edges);
+        }
+    }
+
+    // Fallback rendering
+    $content_name = isset($content['content_name'])
+        ? (string)$content['content_name']
+        : (isset($content['title']) ? (string)$content['title'] : '');
+    $rendered_body = isset($content['_resolved_rendered_body']) ? $content['_resolved_rendered_body'] : $content_body;
+
+    $html = '<div class="lupopedia-content canonical-content">';
+    $html .= '<h1>' . htmlspecialchars($content_name) . '</h1>';
+    $html .= '<div class="content-body">' . $rendered_body . '</div>';
+    
+    if (!empty($related_edges)) {
+        $html .= '<div class="related-edges">';
+        $html .= '<h2>Related Connections</h2>';
+        foreach ($related_edges as $edge) {
+            $html .= '<div class="edge">';
+            $html .= '<span class="edge-type">' . htmlspecialchars($edge['edge_type']) . '</span>';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+    }
+    
+    $html .= '</div>';
+    return $html;
+}
+
+/**
+ * Parse file content that has a FLARE YAML front matter block; return body and rendered output with headers shown.
+ *
+ * @param string $raw Raw file content
+ * @param array $content Content record (for slug/title check)
+ * @return array{body:string,rendered_body:string}|null Null if no YAML block
+ */
+function _content_parse_flare_file($raw, $content) {
+    $lines = preg_split('/\r\n|\r|\n/', $raw);
+    if (empty($lines) || trim($lines[0]) !== '---') {
+        return null;
+    }
+    $yaml_lines = array();
+    $body_start = 0;
+    for ($i = 1; $i < count($lines); $i++) {
+        if (trim($lines[$i]) === '---') {
+            $body_start = $i + 1;
+            break;
+        }
+        $yaml_lines[] = $lines[$i];
+    }
+    if ($body_start === 0) {
+        return null;
+    }
+    $yaml_block = implode("\n", $yaml_lines);
+    $body = implode("\n", array_slice($lines, $body_start));
+    $rendered_body = '<div class="flare-headers-section" style="margin-bottom: 1.5rem; padding: 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;">';
+    $rendered_body .= '<h2 style="margin-top: 0; font-size: 1.125rem; color: #334155;">FLARE Headers</h2>';
+    $rendered_body .= '<pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; font-size: 0.8125rem; color: #475569;">' . htmlspecialchars($yaml_block) . '</pre>';
+    $rendered_body .= '</div>';
+    if (trim($body) !== '' && function_exists('content_render_body')) {
+        $rendered_body .= content_render_body($body, 'markdown', 'markdown');
+    } elseif (trim($body) !== '') {
+        $rendered_body .= '<div class="content-body-markdown">' . nl2br(htmlspecialchars($body)) . '</div>';
+    }
+    return array(
+        'body' => $body,
+        'rendered_body' => $rendered_body,
+    );
+}
+
+/**
+ * Resolve content body from documentation files when content says "see file".
+ *
+ * @param array $content
+ * @return array{body:string,rendered_body:string}|null
+ */
+function content_resolve_body_from_file($content) {
+    // 4.0.57: If file_path_from_root is set, load from that path first (e.g. docs/doctrine/FLARE/FLARE_APPLY.md).
+    if (!empty($content['file_path_from_root'])) {
+        $abs_path = rtrim(LUPOPEDIA_ABSPATH, '/\\') . '/' . str_replace('\\', '/', $content['file_path_from_root']);
+        if (file_exists($abs_path) && is_readable($abs_path)) {
+            $body = file_get_contents($abs_path);
+            $result = _content_parse_flare_file($body, $content);
+            if ($result !== null) {
+                return $result;
+            }
+            $lines = preg_split('/\r\n|\r|\n/', $body);
+            if (!empty($lines) && trim($lines[0]) === '---') {
+                for ($i = 1; $i < count($lines); $i++) {
+                    if (trim($lines[$i]) === '---') {
+                        $lines = array_slice($lines, $i + 1);
+                        $body = implode("\n", $lines);
+                        break;
+                    }
+                }
+            }
+            $rendered_body = $body;
+            if (function_exists('content_render_body')) {
+                $rendered_body = content_render_body($body, 'markdown', 'markdown');
+            }
+            return array(
+                'body' => $body,
+                'rendered_body' => $rendered_body,
+            );
+        }
+    }
+
+    // 4.0.67: Slug "flare" — resolve to FLARE doctrine/apply doc and show FLARE headers block + body.
+    $slug = isset($content['slug']) ? trim($content['slug']) : '';
+    $title = isset($content['title']) ? trim($content['title']) : '';
+    if (strtolower($slug) === 'flare' || strtolower($title) === 'flare') {
+        $base = rtrim(LUPOPEDIA_ABSPATH, '/\\');
+        $flare_paths = array(
+            $base . '/database/lupopedia/channels/channel_id/0/content/federation_node_id/0/FLARE.md',
+            $base . '/docs/doctrine/FLARE/FLARE_APPLY.md',
+            $base . '/docs/doctrine/FLARE/FLARE_DOCTRINE.md',
+            $base . '/docs/doctrine/FLARE/FLARE_DOCTRINE.md',
+        );
+        foreach ($flare_paths as $abs_path) {
+            if (file_exists($abs_path) && is_readable($abs_path)) {
+                $body = file_get_contents($abs_path);
+                $result = _content_parse_flare_file($body, $content);
+                if ($result !== null) {
+                    return $result;
+                }
+                break;
+            }
+        }
+    }
+
+    $doc_root = rtrim(LUPOPEDIA_ABSPATH, '/\\') . '/docs';
+    $directories = [
+        $doc_root . '/channels/overview',
+        $doc_root . '/channels/doctrine',
+        $doc_root . '/channels/architecture',
+        $doc_root . '/channels/schema',
+        $doc_root . '/channels/agents',
+        $doc_root . '/channels/ui-ux',
+        $doc_root . '/channels/developer',
+        $doc_root . '/channels/history',
+        $doc_root . '/channels/appendix',
+        $doc_root . '/overview',
+        $doc_root . '/doctrine',
+        $doc_root . '/architecture',
+        $doc_root . '/schema',
+        $doc_root . '/agents',
+        $doc_root . '/ui-ux',
+        $doc_root . '/developer',
+        $doc_root . '/history',
+        $doc_root . '/appendix'
+    ];
+
+    $bases = [];
+    if (!empty($content['content_name'])) {
+        $bases[] = $content['content_name'];
+    }
+    if (!empty($content['title'])) {
+        $bases[] = $content['title'];
+    }
+    if (!empty($content['slug'])) {
+        $bases[] = $content['slug'];
+        if (strpos($content['slug'], '-') !== false) {
+            $bases[] = substr($content['slug'], strrpos($content['slug'], '-') + 1);
+        }
+    }
+    if (!empty($content['content_slug'])) {
+        $bases[] = $content['content_slug'];
+    }
+
+    $candidates = [];
+    foreach ($bases as $base) {
+        $normalized = trim($base);
+        if ($normalized === '') {
+            continue;
+        }
+        $candidates[] = $normalized . '.md';
+        $candidates[] = strtoupper($normalized) . '.md';
+        $candidates[] = strtoupper(str_replace([' ', '-'], '_', $normalized)) . '.md';
+        $candidates[] = str_replace([' ', '_'], '-', strtolower($normalized)) . '.md';
+    }
+    $candidates = array_values(array_unique($candidates));
+
+    foreach ($directories as $dir) {
+        if (!is_dir($dir)) {
+            continue;
+        }
+        foreach ($candidates as $candidate) {
+            $path = $dir . '/' . $candidate;
+            if (file_exists($path)) {
+                $body = file_get_contents($path);
+
+                // Strip YAML front-matter if present.
+                $lines = preg_split('/\r\n|\r|\n/', $body);
+                if (!empty($lines) && trim($lines[0]) === '---') {
+                    for ($i = 1; $i < count($lines); $i++) {
+                        if (trim($lines[$i]) === '---') {
+                            $lines = array_slice($lines, $i + 1);
+                            $body = implode("\n", $lines);
+                            break;
+                        }
+                    }
+                }
+
+                $rendered_body = $body;
+                if (function_exists('content_render_body')) {
+                    $rendered_body = content_render_body($body, 'markdown', 'markdown');
+                }
+                return [
+                    'body' => $body,
+                    'rendered_body' => $rendered_body
+                ];
+            }
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Render 404 page with suggestions
+ * 
+ * @param string $slug The requested slug
+ * @return string Rendered HTML
+ */
+function content_render_404($slug) {
+    header('HTTP/1.0 404 Not Found');
+    
+    // Try to find similar slugs for suggestions
+    $suggestions = content_find_similar_slugs($slug);
+    
+    $html = '<div class="lupopedia-404">';
+    $html .= '<h1>Content Not Found</h1>';
+    $html .= '<p>The content "<code>' . htmlspecialchars($slug) . '</code>" was not found.</p>';
+    
+    if (!empty($suggestions)) {
+        $html .= '<h2>Did you mean:</h2>';
+        $html .= '<ul>';
+        foreach ($suggestions as $suggestion) {
+            $sug_slug = isset($suggestion['slug']) ? $suggestion['slug'] : '';
+            $sug_title = isset($suggestion['content_name']) ? $suggestion['content_name'] : $sug_slug;
+            $href = rtrim((string) LUPOPEDIA_PUBLIC_PATH, '/') . '/content/index.php?slug=' . rawurlencode($sug_slug);
+            $html .= '<li><a href="' . htmlspecialchars($href, ENT_QUOTES, 'UTF-8') . '">';
+            $html .= htmlspecialchars($sug_title, ENT_QUOTES, 'UTF-8') . '</a></li>';
+        }
+        $html .= '</ul>';
+    }
+    
+    $html .= '</div>';
+    return $html;
+}
+
+/**
+ * Find similar slugs for 404 suggestions
+ * 
+ * @param string $slug The requested slug
+ * @return array Similar content suggestions
+ */
+function content_find_similar_slugs($slug) {
+    if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+        return [];
+    }
+    
+    try {
+        $pdo = get_pdo_connection();
+        
+        // Simple similarity search - look for slugs containing parts of the requested slug
+        $parts = explode('-', $slug);
+        $like_conditions = [];
+        $params = [];
+        
+        foreach ($parts as $part) {
+            if (strlen($part) > 2) { // Only use parts longer than 2 characters
+                $like_conditions[] = "slug LIKE :part_" . count($params);
+                $params[":part_" . count($params)] = "%" . $part . "%";
+            }
+        }
+        
+        if (empty($like_conditions)) {
+            return [];
+        }
+        
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $t = method_exists($pdo, 'quoteIdentifier') ? $pdo->quoteIdentifier($prefix . 'contents') : ($prefix . 'contents');
+        $sql = "
+            SELECT content_id, slug, title AS content_name
+            FROM {$t}
+            WHERE (" . implode(" OR ", $like_conditions) . ")
+            AND is_deleted = 0
+            AND slug != :original_slug
+            LIMIT 5
+        ";
+        
+        $params[':original_slug'] = $slug;
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    } catch (Exception $e) {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log('Similar slug lookup error: ' . $e->getMessage());
+        }
+        return [];
+    }
+}
+
+/**
+ * Handle default content routing by slug.
+ *
+ * @param string $slug
+ * @param int|null $collection_id
+ * @return string
+ */
+function content_handle_slug($slug, $collection_id = null) {
+    // 1. Normalize slug
+    $slug = trim($slug, '/');
+    if ($slug === '') {
+        return '';
+    }
+
+    // 2. Fetch content row
+    $content = content_get_by_slug($slug);
+    
+    if (!$content || (isset($content['is_deleted']) && $content['is_deleted'] == 1) || (isset($content['is_active']) && $content['is_active'] == 0)) {
+        return content_render_not_found($slug);
+    }
+    
+    // 3. Remote content?
+    if (!empty($content['content_url'])) {
+        $remote_body = content_fetch_remote($content['content_url']);
+        if ($remote_body !== false) {
+            $content['body'] = $remote_body;
+        }
+    }
+
+    // 4. Render body based on type + format (resolve "see file" first)
+    $content_type = isset($content['content_type']) ? $content['content_type'] : 'html';
+    $format = isset($content['format']) ? $content['format'] : 'html';
+    $body = isset($content['body']) ? $content['body'] : (isset($content['content_body']) ? $content['content_body'] : '');
+    $rendered_body = '';
+
+    if ($body === '' || strcasecmp(trim($body), 'see file') === 0) {
+        $resolved = content_resolve_body_from_file($content);
+        if ($resolved !== null && isset($resolved['rendered_body']) && $resolved['rendered_body'] !== '') {
+            $rendered_body = $resolved['rendered_body'];
+            $body = isset($resolved['body']) ? $resolved['body'] : $body;
+        }
+    }
+    if ($rendered_body === '') {
+        $rendered_body = content_render_body($body, $content_type, $format);
+    }
+    
+    // 5. Extract section anchors (cached)
+    if (empty($content['content_sections'])) {
+        $sections = content_extract_sections($rendered_body);
+        if (!empty($sections) && isset($content['content_id'])) {
+            content_update_sections($content['content_id'], $sections);
+            $content['content_sections'] = $sections;
+        }
+    }
+    
+    // 6. Load semantic context and metadata
+    $content_id = isset($content['content_id']) ? (int)$content['content_id'] : 0;
+    $semanticContext = [];
+    $contentReferences = [];
+    $contentLinks = [];
+    $contentTags = [];
+    $contentCollection = null;
+    $prevNext = ['prev' => null, 'next' => null];
+    
+    if ($content_id > 0) {
+        // Load semantic context via ConnectionsService
+        if (class_exists('ConnectionsService') && !empty($GLOBALS['mydatabase'])) {
+            try {
+                $domainId = isset($GLOBALS['domain_id']) ? (int)$GLOBALS['domain_id'] : 0;
+                $db = $GLOBALS['mydatabase'];
+                $pdo = method_exists($db, 'getPdo') ? $db->getPdo() : $db;
+                $connectionsService = new ConnectionsService($pdo, $domainId);
+                $semanticContext = $connectionsService->getConnectionsForContent($content_id);
+            } catch (Exception $e) {
+                error_log('ConnectionsService error: ' . $e->getMessage());
+            }
+        }
+        
+        // Load content metadata
+        $contentReferences = content_get_references($content_id);
+        $contentLinks = content_get_links($content_id);
+        $contentTags = content_get_tags($content_id);
+        $contentCollection = content_get_collection($content_id);
+        $prevNext = content_get_prev_next($content_id, $contentCollection['collection_id'] ?? null);
+    }
+    
+    // 7. Determine collection_id: URL takes precedence, then content's default_collection_id
+    if ($collection_id === null) {
+        // Fall back to content's default_collection_id if URL didn't specify collection
+        $collection_id = isset($content['default_collection_id']) && $content['default_collection_id'] !== null 
+            ? (int)$content['default_collection_id'] 
+            : null;
+    }
+    
+    // 8. Load tabs_data (null/0 or missing tabs → first is_nav_menu collection with tabs)
+    $tabs_data = array();
+    $current_collection = null;
+    if (!function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $loader_path = LUPOPEDIA_ABSPATH . '/includes/functions/collection-tabs-loader.php';
+        if (file_exists($loader_path)) {
+            require_once $loader_path;
+        }
+    }
+    if (function_exists('lupo_resolve_collection_tabs_for_chrome')) {
+        $lupo_tabs_res = lupo_resolve_collection_tabs_for_chrome($collection_id);
+        $collection_id = isset($lupo_tabs_res['collection_id']) ? (int) $lupo_tabs_res['collection_id'] : 0;
+        $tabs_data = isset($lupo_tabs_res['tabs_data']) && is_array($lupo_tabs_res['tabs_data']) ? $lupo_tabs_res['tabs_data'] : array();
+        $current_collection = isset($lupo_tabs_res['current_collection']) ? $lupo_tabs_res['current_collection'] : null;
+    }
+    
+    // 9. Render content block (content only, no layout)
+    $page_body = render_content_page($content, $rendered_body);
+    
+    // 10. Render main layout (wraps content block with global UI)
+    // Pass all semantic data to layout for component integration
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $content['title'] ?? '',
+        'content' => $content,
+        'content_type' => $content_type,
+        'semantic_context' => $semanticContext,
+        'content_references' => $contentReferences,
+        'content_links' => $contentLinks,
+        'tags' => $contentTags,
+        'collection' => $contentCollection,
+        'prev_content' => $prevNext['prev'],
+        'next_content' => $prevNext['next'],
+        'content_sections' => isset($content['content_sections']) ? $content['content_sections'] : [],
+        'collection_id' => $collection_id,
+        'tabs_data' => $tabs_data,
+        'current_collection' => $current_collection,
+        'meta' => [
+            'description' => $content['description'] ?? '',
+            'slug' => $content['slug'] ?? '',
+            'created_ymdhis' => $content['created_ymdhis'] ?? '',
+            'updated_ymdhis' => $content['updated_ymdhis'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
+}
+
+/**
+ * Handle collection tab route: /collection/{id}/tab/{slug}
+ * 
+ * Displays content list for a collection tab (for content items, not TRUTH items).
+ * 
+ * @param int $collection_id Collection ID
+ * @param string $tab_slug Tab slug
+ * @return string Rendered HTML page
+ */
+function content_handle_collection_tab($collection_id, $tab_slug) {
+    global $table_prefix;
+    
+    if (empty($GLOBALS['mydatabase'])) {
+        return content_render_not_found('Database connection not available');
+    }
+    
+    $db = $GLOBALS['mydatabase'];
+    
+    // 1. Get tab by slug
+    $sql = "SELECT collection_tab_id, name, slug, description
+            FROM {$table_prefix}collection_tabs
+            WHERE collection_id = :collection_id
+              AND slug = :slug
+              AND is_active = 1
+              AND is_deleted = 0
+            LIMIT 1";
+    
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        ':collection_id' => $collection_id,
+        ':slug' => $tab_slug
+    ]);
+    $tab = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$tab) {
+        return content_render_not_found('Tab: ' . $tab_slug);
+    }
+    
+    // 2. Get content items for this tab from collection_tab_map
+    $sql = "SELECT ctm.item_id, ctm.item_type, ctm.sort_order, c.content_id, c.slug, c.title, c.description
+            FROM {$table_prefix}collection_tab_map ctm
+            JOIN {$table_prefix}contents c ON c.content_id = ctm.item_id AND ctm.item_type = 'content'
+            WHERE ctm.collection_tab_id = :tab_id
+              AND c.is_deleted = 0
+              AND c.is_active = 1
+            ORDER BY ctm.sort_order ASC, c.title ASC";
+    
+    $stmt = $db->prepare($sql);
+    $stmt->execute([':tab_id' => $tab['collection_tab_id']]);
+    $contentItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // 3. Render content list
+    $page_body = '<div class="collection-tab-content">';
+    $page_body .= '<h1>' . htmlspecialchars($tab['name']) . '</h1>';
+    
+    if (!empty($tab['description'])) {
+        $page_body .= '<p class="tab-description">' . htmlspecialchars($tab['description']) . '</p>';
+    }
+    
+    if (!empty($contentItems)) {
+        $page_body .= '<ul class="content-list">';
+        foreach ($contentItems as $item) {
+            $content_url = LUPOPEDIA_PUBLIC_PATH . '/collection/' . $collection_id . '/content/' . $item['slug'];
+            $page_body .= '<li>';
+            $page_body .= '<a href="' . htmlspecialchars($content_url) . '">';
+            $page_body .= '<h3>' . htmlspecialchars($item['title']) . '</h3>';
+            if (!empty($item['description'])) {
+                $page_body .= '<p>' . htmlspecialchars($item['description']) . '</p>';
+            }
+            $page_body .= '</a>';
+            $page_body .= '</li>';
+        }
+        $page_body .= '</ul>';
+    } else {
+        $page_body .= '<p>No content items found in this tab.</p>';
+    }
+    
+    $page_body .= '</div>';
+    
+    // 4. Create content metadata for main layout
+    $contentMetadata = [
+        'title' => $tab['name'] . ' - Content',
+        'description' => $tab['description'] ?? 'Content items in this collection tab',
+        'content_sections' => null,
+        'id' => $tab['collection_tab_id'],
+        'slug' => $tab_slug
+    ];
+    
+    // 5. Load Collection tabs for navigation
+    $tabs_data = [];
+    $current_collection = null;
+    if (function_exists('load_collection_tabs') && function_exists('get_collection_name')) {
+        $tabs_data = load_collection_tabs($collection_id);
+        $current_collection = get_collection_name($collection_id);
+    }
+    
+    // 6. Prepare metadata for unified UI components
+    $uiMetadata = [
+        'semanticContext' => [],
+        'contentReferences' => [],
+        'contentLinks' => [],
+        'contentTags' => [],
+        'contentCollection' => null,
+        'contentSections' => null,
+        'tabs_data' => $tabs_data,
+        'current_collection' => $current_collection,
+        'collection_id' => $collection_id
+    ];
+    
+    // 7. Render main layout
+    $context = [
+        'page_body' => $page_body,
+        'page_title' => $contentMetadata['title'] ?? '',
+        'content' => $contentMetadata,
+        'content_type' => $contentMetadata['content_type'] ?? 'html',
+        'semantic_context' => $uiMetadata['semanticContext'] ?? [],
+        'content_references' => $uiMetadata['contentReferences'] ?? [],
+        'content_links' => $uiMetadata['contentLinks'] ?? [],
+        'tags' => $uiMetadata['contentTags'] ?? [],
+        'collection' => $uiMetadata['contentCollection'] ?? null,
+        'content_sections' => $uiMetadata['contentSections'] ?? null,
+        'tabs_data' => $uiMetadata['tabs_data'] ?? [],
+        'current_collection' => $uiMetadata['current_collection'] ?? null,
+        'collection_id' => $uiMetadata['collection_id'] ?? null,
+        'meta' => [
+            'description' => $contentMetadata['description'] ?? '',
+            'slug' => $contentMetadata['slug'] ?? ''
+        ]
+    ];
+    return render_main_layout($context);
+}
+
+?>

@@ -1,0 +1,24 @@
+{
+    "capabilities": [
+        {
+            "name": "api_gateway_management",
+            "description": "Coordinate and document API gateway boundaries; implementation in PHP services",
+            "implementation": "php_primary"
+        },
+        {
+            "name": "protocol_translation",
+            "description": "Bridge protocol and payload shapes between subsystems",
+            "implementation": "php_primary"
+        },
+        {
+            "name": "message_routing",
+            "description": "Route messages and integration events to correct handlers",
+            "implementation": "php_primary"
+        },
+        {
+            "name": "communication_bridge",
+            "description": "External and internal integration bridge services",
+            "implementation": "php_primary"
+        }
+    ]
+}

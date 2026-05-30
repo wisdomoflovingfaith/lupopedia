@@ -1,0 +1,33 @@
+#!/bin/sh
+# Sample pre-commit: staged .md / .py / .php / .js with headers must have memory_key sidecars on disk.
+# Install (Unix / Git Bash):
+#   cp lupo-scripts/git-hooks/pre-commit-memory-sidecar.sample .git/hooks/pre-commit-memory-sidecar
+#   chmod +x .git/hooks/pre-commit-memory-sidecar
+# Chain from your main pre-commit, or merge checks into one hook.
+#
+# Requires: python3 on PATH; repo root contains lupo-scripts/.
+
+REPO="$(git rev-parse --show-toplevel)"
+cd "$REPO" || exit 1
+
+for f in $(git diff --cached --name-only --diff-filter=ACM); do
+  case "$f" in
+    *.md|*.py|*.php|*.js) ;;
+    *) continue ;;
+  esac
+  case "$f" in
+    */node_modules/*|*/vendor/*|*/lupo-archive/*|*/lupo-memory/*)
+      continue
+      ;;
+  esac
+  test -f "$REPO/$f" || continue
+  if ! grep -q "lupopedia.headers:" "$REPO/$f" 2>/dev/null; then
+    continue
+  fi
+  if ! python3 lupo-scripts/generate_memory_from_header.py "$REPO/$f" --check; then
+    echo "[pre-commit-memory-sidecar] Fix: python lupo-scripts/generate_memory_from_header.py \"$f\""
+    exit 1
+  fi
+done
+
+exit 0

@@ -1,0 +1,12 @@
+{
+  "memory_type": "accountability_knowledge",
+  "core_knowledge": {
+    "violation_catalog": "Documented agent scope violations and their resolutions",
+    "accountability_patterns": "Patterns of recurring violations and their root causes"
+  },
+  "working_memory": {"active_violation_tracking": "Violations currently under investigation"},
+  "memory_boundaries": ["accountability scope only", "no executive sanctions without WOLFIE"],
+  "retention_rules": ["retain violation patterns", "retain resolution outcomes", "no ego"],
+  "forbidden_memory": ["punitive conclusions without documented evidence"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

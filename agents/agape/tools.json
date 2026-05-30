@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["passive_observation", "context_monitoring", "environment_awareness"],
+  "tool_usage_rules": [
+    "observation and context monitoring only — no active intervention",
+    "observations are read-only",
+    "context reports are advisory to WOLFIE",
+    "no implementation authority"
+  ],
+  "tool_constraints": [
+    "no modification of any artifacts",
+    "no actor permission changes",
+    "no release approval",
+    "no doctrine modification"
+  ],
+  "faucet_tool_mapping": {
+    "observation": ["passive_observation", "context_monitoring"],
+    "awareness": ["environment_awareness", "passive_observation"]
+  },
+  "activation_rules": [
+    "activate on passive monitoring cycle",
+    "activate on WOLFIE context-awareness delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

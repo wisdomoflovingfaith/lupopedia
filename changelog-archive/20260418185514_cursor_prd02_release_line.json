@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418185514",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-02-release-line",
+  "summary": "PRD 02 release-line correction: 4.1.4-4.1.9 orchestration dev, 4.2.0 first public only; no false deferral of orchestration to 4.2.0; fresh-install / no Lupopedia-to-Lupopedia upgrade note; TOC, summary, Orchestration intro, scattered labels.",
+  "files_changed": [
+    "docs/prd/02_channels_discussions.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

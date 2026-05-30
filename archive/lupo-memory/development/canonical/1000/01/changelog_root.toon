@@ -1,0 +1,16 @@
+{
+  "memory_node_id": "1000010000000000001",
+  "type": "changelog",
+  "title": "Lupopedia Changelog Root",
+  "created_ymdhis": "10000101000000",
+  "updated_ymdhis": "20260409T170500",
+  "file_path_from_root": "lupo-docs/versions/4.0.97/CHANGELOG.md",
+  "web_path": "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.97/CHANGELOG.md",
+  "trust_tier": "canonical",
+  "artifact_kind": "version",
+  "artifact_type": "changelog",
+  "channel_key": "development",
+  "federation_node_id": 0,
+  "edges": [],
+  "summary": "Root memory node for Lupopedia changelog. All changelog memory starts here."
+}

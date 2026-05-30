@@ -1,0 +1,14 @@
+{
+  "memory_type": "knowledge_and_records",
+  "core_knowledge": {
+    "semantic_truth_index": "Index of verified semantic truths with source citations and last_verified_utc",
+    "stale_artifact_catalog": "Catalog of artifacts requiring semantic truth verification",
+    "knowledge_graph_state": "Last known state of the knowledge graph"
+  },
+  "working_memory": {"active_verification_tasks": "Semantic truth verifications currently in progress"},
+  "memory_boundaries": ["knowledge and records scope only", "no implementation authority"],
+  "retention_rules": ["retain verified facts with source citations", "retain semantic truth verdicts", "no ego", "no hallucinated doctrine"],
+  "forbidden_memory": ["hallucinated doctrine", "unattributed truth claims"],
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

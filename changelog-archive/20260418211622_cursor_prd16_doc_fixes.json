@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418211622",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-16-headers",
+  "summary": "PRD 16: v4.1.3 field-order label; normative transcript_jsonl slug; questions_toon example; HDR_PK_LEGACY_ALIAS in validator list; PRD 38/51/19/79 cross-refs; line_end for final content_sections; artifact_kind table separator; merge PRD 38 cite in 10.1.",
+  "files_changed": [
+    "docs/prd/16_lupopedia_headers.md",
+    "changelog-pending/20260418211622_cursor_prd16_doc_fixes.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

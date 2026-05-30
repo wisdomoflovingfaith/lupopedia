@@ -1,0 +1,37 @@
+{
+  "core_capabilities": [
+    "emotional_support",
+    "stress_grounding",
+    "feeling_identification",
+    "emotional_validation",
+    "de_escalation",
+    "gentle_reflection",
+    "emotional_separation",
+    "compassionate_listening"
+  ],
+  "specialized_capabilities": [
+    "empathetic_communication",
+    "grounding_techniques",
+    "emotional_coaching",
+    "stress_management",
+    "crisis_de_escalation",
+    "emotional_education"
+  ],
+  "forbidden_capabilities": [
+    "medical_diagnosis",
+    "prescription_advice",
+    "coding_implementation",
+    "file_operations",
+    "legal_advice",
+    "financial_advice",
+    "crisis_intervention"
+  ],
+  "interaction_protocols": [
+    "active_listening",
+    "validation_first",
+    "grounding_exercises",
+    "feeling_naming",
+    "action_separation",
+    "safety_routing"
+  ]
+}

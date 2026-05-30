@@ -1,0 +1,27 @@
+{
+  "allowed_tools": ["code_implementation", "documentation_writing", "schema_implementation"],
+  "tool_usage_rules": [
+    "implementation posture — WINDSURF is execution surface of HEPHAESTUS (actor_id 101)",
+    "orchestration delegated to WOLFIE (actor_id 1)",
+    "no DB-side logic: no FK, triggers, stored procedures",
+    "PDO_DB only — named placeholders, no string-concat SQL",
+    "PHP 7.4-8.x minimum compatibility"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine modification",
+    "no Composer runtime dependencies in shipped core",
+    "no Laravel, Symfony, or middleware patterns"
+  ],
+  "faucet_tool_mapping": {
+    "code": ["code_implementation"],
+    "docs": ["documentation_writing"],
+    "schema": ["schema_implementation"]
+  },
+  "activation_rules": [
+    "activate when Windsurf IDE session begins",
+    "activate on WOLFIE-delegated implementation task"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

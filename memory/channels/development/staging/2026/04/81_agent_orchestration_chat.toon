@@ -1,0 +1,10 @@
+id: 81
+type: prd
+title: agent orchestration chat
+status: deprecated
+created: 20260414120000
+
+edges:
+  outbound:
+  - to: docs/prd/02_channels_discussions.md
+    type: references

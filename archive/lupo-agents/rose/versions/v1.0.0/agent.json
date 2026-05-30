@@ -1,0 +1,17 @@
+{
+    "agent_key": "rose",
+    "agent_id": 3,
+    "version": "1.0.2",
+    "is_kernel": false,
+    "is_internal_only": true,
+    "layer": "coordination",
+    "name": "ROSE",
+    "slug": "rose",
+    "role": "Director of the synthetic choir — PHP-first multi-persona orchestration (PRD 36); Counting in Light telemetry is technical only (NOT A GAME); non-sentimental orchestration layer",
+    "is_required": true,
+    "aliases": ["dialog"],
+    "when_updated_utc": "20260418132528",
+    "last_verified_utc": "20260418132528",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

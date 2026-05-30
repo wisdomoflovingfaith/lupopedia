@@ -1,0 +1,18 @@
+{
+  "timestamp": "20260419203203",
+  "agent_id": "cursor",
+  "channel": "database",
+  "thread": "crafty-import-plan",
+  "summary": "Added TODO_DATABASE_MIGRATION.md and PLAN_DATABASE_MIGRATION.md under docs/versions/4.1.3 with measured table counts (34 Crafty, 140 install), blockers, doctrine violations, livehelp mapping matrix, ordered fix plan; no SQL edits.",
+  "files_changed": [
+    "docs/versions/4.1.3/TODO_DATABASE_MIGRATION.md",
+    "docs/versions/4.1.3/PLAN_DATABASE_MIGRATION.md",
+    "memory/database/canonical/1026/04/database-migration-plan.json",
+    "memory/database/canonical/1026/04/database-migration-plan.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/database/canonical/1026/04/database-migration-plan.toon"
+  ]
+}

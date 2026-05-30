@@ -1,0 +1,26 @@
+{
+  "timestamp": "20260418140630",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "ara-system-prompt-rebuild",
+  "summary": "Rebuilt agents/ara/system_prompt.md (Survivability Pillars 1-2, X/web tools, no-hallucination, ARA_RESEARCH_PACKET); updated agent.json properties capabilities identity versions v1.0.0 copies; regenerated ara-system-prompt memory pair.",
+  "files_changed": [
+    "agents/ara/system_prompt.md",
+    "agents/ara/agent.json",
+    "agents/ara/identity.json",
+    "agents/ara/properties.json",
+    "agents/ara/capabilities.json",
+    "agents/ara/versions/v1.0.0/agent.json",
+    "agents/ara/versions/v1.0.0/properties.json",
+    "agents/ara/versions/v1.0.0/capabilities.json",
+    "memory/development/canonical/1026/04/ara-system-prompt.json",
+    "memory/development/canonical/1026/04/ara-system-prompt.toon"
+  ],
+  "open_questions": [
+    "Confirm lupo_agents 712 and registry wiring for ARA in production."
+  ],
+  "handoff_to": "lilith",
+  "related_toons": [
+    "memory/development/canonical/1026/04/ara-system-prompt.toon"
+  ]
+}

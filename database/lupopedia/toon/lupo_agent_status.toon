@@ -1,0 +1,23 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_agent_status
+fields:
+- '`agent_status_id` bigint NOT NULL'
+- '`actor_id` bigint NOT NULL'
+- '`status_code` enum(''ACTIVE'',''IDLE'',''SLEEPING'',''THROTTLED'',''FAILED'',''UNKNOWN'',''MANUAL'')
+  DEFAULT UNKNOWN'
+- '`heartbeat_ymdhis` bigint NOT NULL'
+- '`status_note` varchar(255)'
+indexes: []
+primary_key:
+  column_name: agent_status_id
+  expected_name: agent_status_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

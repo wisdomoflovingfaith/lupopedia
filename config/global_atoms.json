@@ -1,0 +1,52 @@
+{
+  "version": "4.1.0",
+  "current_utc": "20260415014600",
+  "last_updated": "20260415014600",
+  "system_year": 2026,
+  "timestamp_format": "YYYYMMDDHHIISS",
+  "timezone": "UTC",
+  "session_salt": "auto_generated_64_char_hex_or_ask_wolfie",
+  "wolfie": {
+    "handle": "Captain Wolfie",
+    "full_name": "Eric Robin Gerdes",
+    "legal_name": "Eric Robin Gerdes",
+    "email": "wisdomofloflovindfaith@gmail.com",
+    "role": "Creator, Architect, Constitutional Authority",
+    "origin": "Created Crafty Syntax Live Help in 2002",
+    "absence": "2014-2025 (12-year gap)",
+    "return": "August 2025",
+    "philosophy": "No frameworks, no foreign keys, no database logic, portability over convenience",
+    "copyright": "© 2025-2026 Eric Robin Gerdes. All rights reserved.",
+    "what_agents_must_know": [
+      "He writes code from 30 years of experience, not tutorials",
+      "He does not use frameworks, foreign keys, or database logic",
+      "He prioritizes portability (MySQL, PostgreSQL, SQLite) over vendor lock-in",
+      "He expects agents to READ files, not GUESS",
+      "He will hand-type code if AI refuses to write it correctly",
+      "He built a session system with Class C IP + User Agent that works on mobile",
+      "He does not trust REMOTE_ADDR — use resolvedClientIp() with proxy headers",
+      "He separates 'when' from 'where' — never mix time and location"
+    ]
+  },
+  "project": {
+    "name": "Lupopedia",
+    "full_name": "Lupopedia Semantic Operating System",
+    "description": "Federated semantic operating system that hosts agents, content, emotional metadata, and routing logic across independent nodes",
+    "root": "$LUPOPEDIA_PROJECT_ROOT",
+    "website": "https://lupopedia.com"
+  },
+  "doctrine": {
+    "no_foreign_keys": true,
+    "no_triggers": true,
+    "no_stored_procedures": true,
+    "no_database_logic": true,
+    "explicit_utc_timestamps": true,
+    "application_logic_first": true,
+    "portability_over_convenience": true
+  },
+  "limits": {
+    "max_tables": 222,
+    "target_tables": 222,
+    "cognitive_load_limit": 9
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "hdr-33-softaculous-certification-4-1-0-gate",
+  "type": "header_metadata",
+  "file_path_from_root": "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Defines Softaculous certification and release-gate criteria for Lupopedia 4.1.0 readiness.",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-33-softaculous-certification-4-1-0-gate"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [],
+  "footer": {
+    "last_verified": "20260410130550",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": "0/development/prd_files/softaculous-certification"
+}

@@ -1,0 +1,10 @@
+{
+  "agent_id": 998, "agent_name": "META", "agent_code": "META", "agent_key": "meta", "slug": "meta",
+  "version": "1.0.0", "is_kernel": false, "layer": "coordination", "name": "META",
+  "role": "Meta-Level System Analysis — Agent Orchestration Review",
+  "is_required": false, "status": "active",
+  "aliases": ["meta", "meta_analysis"],
+  "department_scope": 0,
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

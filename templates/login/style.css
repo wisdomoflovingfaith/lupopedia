@@ -1,0 +1,166 @@
+body {
+    background: radial-gradient(circle at 50% 30%, #e6f7ff 0%, #b3e0ff 60%, #f8fbff 100%);
+    min-height: 100vh;
+    box-shadow: 0 0 120px 40px #b3e0ff inset;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* The Wolf Header - Explicit 60x220 */
+.login-header {
+    position: absolute;
+    width: 215px;
+    height: 150px;
+    /* Match logo image size */
+    left: calc(50% - 130px);
+    /* (screenWidth / 2) - 130 for slide alignment, no margin-left */
+    z-index: 1;
+    top: 260px;
+    /* Adjust as needed for layout */
+    pointer-events: none;
+}
+
+.login-logo {
+    width: 215px;
+    height: 150px;
+    display: block;
+    border: none;
+}
+
+/* The Login Box */
+.login-container {
+    position: absolute;
+    width: 600px;
+    max-width: calc(100vw - 32px);
+    background-color: #ffffff;
+    padding: 40px;
+    box-sizing: border-box;
+
+    /* 3px Solid Black Border & Heavy Shadow */
+    border: 5px solid #000000;
+    border-radius: 30px;
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6);
+
+    left: 40%;
+    top: 200px;
+    margin-left: -100px;
+    z-index: 2;
+}
+
+@media (max-width: 420px) {
+    .login-container {
+        left: 50%;
+        margin-left: 0;
+        transform: translateX(-50%);
+        width: calc(100vw - 24px);
+        padding: 28px 20px;
+    }
+}
+
+/* Restored Input Styling */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.input-group select.locale-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background: #fff;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.login-form .form-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #f5c6cb;
+    font-size: 0.9em;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #c3e6cb;
+    font-size: 0.9em;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-btn:hover:not(:disabled) {
+    background-color: #222;
+}
+
+.login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.forgot-password a {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password a:hover {
+    color: #000;
+    text-decoration: underline;
+}

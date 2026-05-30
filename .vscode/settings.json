@@ -1,0 +1,23 @@
+{
+    "kiroAgent.configureMCP": "Disabled",
+    "chat.mcp.access": "none",
+    "ai-features.openAiCustom.customOpenAiModels": [],
+    "codium.codeCompletion.enable": false,
+    "lupopedia.actorId": 1,
+    "lupopedia.actorName": "wolfie",
+    "lupopedia.delegationChain": "wolfie:root",
+    "files.associations": {
+        "*.md": "markdown",
+        "*.py": "python",
+        "*.php": "php"
+    },
+    "[markdown]": {
+        "editor.formatOnSave": false
+    },
+    "[python]": {
+        "editor.formatOnSave": false
+    },
+    "[php]": {
+        "editor.formatOnSave": false
+    }
+}

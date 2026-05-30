@@ -1,0 +1,151 @@
+{
+  "report_timestamp": "20260420060000",
+  "generating_actor": "castcade",
+  "task": "Register External LLMs + API Config + Web UI for Keys",
+  "actors_ensured_or_created": [
+    {
+      "actor_id": 1002,
+      "name": "gemini",
+      "gateway": "api_http",
+      "channel_key": "logs",
+      "status": "active",
+      "notes": "Gemini - Log processing and analysis",
+      "action": "updated_existing"
+    },
+    {
+      "actor_id": 113,
+      "name": "copilot_vscode",
+      "gateway": "ide_panel",
+      "channel_key": "routing",
+      "status": "active",
+      "notes": "VS Code Copilot - IDE development environment",
+      "action": "updated_existing"
+    },
+    {
+      "actor_id": 2005,
+      "name": "chatgpt",
+      "gateway": "manual_web_chat",
+      "channel_key": "analysis",
+      "status": "active",
+      "notes": "ChatGPT - OpenAI web interface",
+      "action": "created_new"
+    },
+    {
+      "actor_id": 2006,
+      "name": "deepseek",
+      "gateway": "api_http",
+      "channel_key": "analysis",
+      "status": "active",
+      "notes": "DeepSeek - AI model",
+      "action": "created_new"
+    },
+    {
+      "actor_id": 2007,
+      "name": "grok",
+      "gateway": "api_http",
+      "channel_key": "analysis",
+      "status": "active",
+      "notes": "Grok - X AI model",
+      "action": "created_new"
+    },
+    {
+      "actor_id": 2004,
+      "name": "castcade",
+      "gateway": "local_agent",
+      "channel_key": "registry",
+      "status": "active",
+      "notes": "Registry + governance agent",
+      "action": "already_existed"
+    }
+  ],
+  "db_sync_status": {
+    "db_available": false,
+    "sync_performed": false,
+    "fallback_used": "file_registry_only",
+    "reason": "Database connection not available in this environment"
+  },
+  "config_updates": {
+    "lupopedia_config_updated": true,
+    "api_keys_structure_added": true,
+    "api_keys_configured": [
+      "chatgpt",
+      "deepseek",
+      "grok",
+      "gemini",
+      "copilot_vscode"
+    ],
+    "security_notes": [
+      "Keys stored only in config file",
+      "No database storage of keys",
+      "No logging of keys",
+      "No echoing of keys in responses"
+    ]
+  },
+  "web_interface": {
+    "path": "admin/api_keys.php",
+    "created": true,
+    "features": [
+      "HTML form for all 5 API keys",
+      "CSRF token protection",
+      "Masked display of existing keys (****last4)",
+      "POST handling with config file updates",
+      "Success message on save",
+      "Prevents form resubmission"
+    ]
+  },
+  "runtime_wiring": {
+    "gateway_stub_path": "runtime/gateways/llm_gateway_stub.php",
+    "created": true,
+    "class_name": "LLM_Gateway_Stub",
+    "features": [
+      "Reads keys from lupopedia-config.php",
+      "Maps actor_id to service name",
+      "Provides call_llm() method",
+      "Includes stub methods for each service",
+      "Documentation for future implementation"
+    ],
+    "services_supported": [
+      "chatgpt (actor_id: 2005)",
+      "deepseek (actor_id: 2006)",
+      "grok (actor_id: 2007)",
+      "gemini (actor_id: 1002)",
+      "copilot_vscode (actor_id: 113)"
+    ]
+  },
+  "issues_or_todos": [
+    {
+      "item": "Implement actual HTTP calls in LLM_Gateway_Stub",
+      "priority": "medium",
+      "location": "runtime/gateways/llm_gateway_stub.php",
+      "methods": [
+        "call_chatgpt()",
+        "call_deepseek()",
+        "call_grok()",
+        "call_gemini()",
+        "call_copilot()"
+      ]
+    },
+    {
+      "item": "Test API key management interface",
+      "priority": "low",
+      "location": "admin/api_keys.php",
+      "notes": "Verify config file updates work correctly"
+    },
+    {
+      "item": "Add error handling for invalid API keys",
+      "priority": "medium",
+      "location": "runtime/gateways/llm_gateway_stub.php",
+      "notes": "Handle API authentication failures gracefully"
+    }
+  ],
+  "summary": {
+    "total_actors_processed": 6,
+    "actors_created": 3,
+    "actors_updated": 2,
+    "actors_already_existed": 1,
+    "config_files_updated": 1,
+    "web_interfaces_created": 1,
+    "gateway_stubs_created": 1,
+    "status": "completed"
+  }
+}

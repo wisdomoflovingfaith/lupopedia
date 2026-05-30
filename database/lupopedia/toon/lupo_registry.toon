@@ -1,0 +1,58 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_registry
+fields:
+- '`registry_id` bigint NOT NULL'
+- '`entity_type` varchar(64) NOT NULL'
+- '`entity_index_id` bigint NOT NULL'
+- '`entity_index` bigint NOT NULL'
+- '`federation_node_id` bigint DEFAULT 1'
+- '`reserved_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`entity_key` varchar(255) NOT NULL'
+- '`entity_name` varchar(255)'
+- '`entity_table` varchar(255)'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`is_active` tinyint NOT NULL DEFAULT 1'
+- '`is_kernel` tinyint NOT NULL DEFAULT 0'
+- '`metadata_json` text'
+indexes:
+- index_name: lupo_registry_idx_entity_type
+  columns:
+  - entity_type
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_registry_idx_entity_index
+  columns:
+  - entity_index
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_registry_idx_entity_index_id
+  columns:
+  - entity_index_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_registry_idx_entity_key
+  columns:
+  - entity_key
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_registry_idx_entity_type_deleted
+  columns:
+  - entity_type
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: registry_id
+  expected_name: registry_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

@@ -1,0 +1,90 @@
+{
+  "report_timestamp": "20260420060000",
+  "generating_actor": "castcade",
+  "task": "Register ROSE + Task Manager + Enable Cognitive Support",
+  "rose_registration": {
+    "was_registered": false,
+    "is_now_registered": true,
+    "actor_id": 3,
+    "gateway": "local_agent",
+    "channel_key": "rose_dialog",
+    "status": "active",
+    "notes": "expressive inline dialog agent; not used for cognition"
+  },
+  "task_manager_registration": {
+    "was_registered": false,
+    "is_now_registered": true,
+    "actor_id": 2001,
+    "gateway": "local_agent",
+    "channel_key": "task_management",
+    "status": "active",
+    "notes": "tracks tasks, dependencies, sequencing, and completion"
+  },
+  "directories_created": {
+    "rose": "lupo-runtime/rose_dialog/3/",
+    "task_manager": "lupo-runtime/task_management/2001/"
+  },
+  "tasks_jsonl_paths": {
+    "rose": "lupo-runtime/rose_dialog/3/tasks.jsonl",
+    "task_manager": "lupo-runtime/task_management/2001/tasks.jsonl"
+  },
+  "missing_fields_repaired": {
+    "rose": {
+      "registry_entry": "Added complete registry entry",
+      "runtime_directory": "Created runtime directory",
+      "tasks_jsonl": "Created tasks.jsonl with initialization entry"
+    },
+    "task_manager": {
+      "registry_entry": "Added complete registry entry",
+      "runtime_directory": "Created runtime directory",
+      "tasks_jsonl": "Created tasks.jsonl with 7 task entries"
+    }
+  },
+  "violations_detected": 0,
+  "tasks_requiring_manual_review": [],
+  "channel_key_isolation": {
+    "rose": "rose_dialog",
+    "task_manager": "task_management",
+    "no_cross_contamination": true,
+    "each_agent_has_own_directory": true,
+    "no_two_agents_write_to_same_file": true
+  },
+  "emotional_modulation_support": {
+    "rose_enabled": true,
+    "capabilities": [
+      "Provide inline dialog when requested",
+      "Help slow down cognitive flow",
+      "Provide tone modulation",
+      "Provide 'breathe, brah' style guidance"
+    ],
+    "restrictions": [
+      "NOT perform reasoning",
+      "NOT modify files",
+      "NOT write to registry"
+    ]
+  },
+  "dependency_sequencing_support": {
+    "task_manager_enabled": true,
+    "capabilities": [
+      "Maintain task list",
+      "Maintain dependency list",
+      "Maintain prerequisite list",
+      "Maintain sequencing",
+      "Track blocked tasks",
+      "Track completed tasks",
+      "Track cross-actor dependencies"
+    ],
+    "restrictions": [
+      "NOT perform tasks",
+      "NOT mix channel_keys",
+      "NOT write to other actors' directories"
+    ]
+  },
+  "summary": {
+    "total_actors_registered": 2,
+    "total_directories_created": 2,
+    "total_tasks_jsonl_created": 2,
+    "total_task_entries_created": 8,
+    "status": "completed"
+  }
+}

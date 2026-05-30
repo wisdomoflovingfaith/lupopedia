@@ -1,0 +1,15 @@
+{
+  "event_id": "evt_20260423190500_001",
+  "event_type": "doctrine_violation",
+  "created_utc": "20260423190500",
+  "actor_id": 10,
+  "actor_slug": "chiron",
+  "severity": 2,
+  "source": "agents/chiron/test_file.md",
+  "summary": "LUPOPEDIA header violation - missing required fields per PRD 16_C",
+  "status": "active",
+  "resolution": null,
+  "linked_why_file": "why_20260423190500_001",
+  "fallback_mode": true,
+  "file_path": "database/agape/events/evt_20260423190500_001.json"
+}

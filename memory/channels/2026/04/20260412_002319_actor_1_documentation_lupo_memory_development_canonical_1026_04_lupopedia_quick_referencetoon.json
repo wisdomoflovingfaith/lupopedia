@@ -1,0 +1,34 @@
+{
+    "memory_node_id": 202604120023190000,
+    "created_ymdhis": 20260412002319,
+    "owner_actor_id": 1,
+    "owner_type": "actor",
+    "memory_type": "documentation",
+    "memory_key": "memory\/development\/canonical\/1026\/04\/lupopedia-quick-reference.toon",
+    "memory_value": {
+        "content": {
+            "channel_key": "development",
+            "dialog_transcript": "0\/development\/lupopedia-quick-reference",
+            "file_path_from_root": "lupopedia_quick_reference.md",
+            "last_modified_utc": "20260412005735",
+            "title": "Lupopedia quick reference \u2014 headers, memory nodes, onboarding",
+            "trust_tier": "canonical",
+            "when_updated": "20260412005735"
+        },
+        "id": "memory\/development\/canonical\/1026\/04\/lupopedia-quick-reference.toon",
+        "schema_version": "pilot_14_5_refresh_v1",
+        "status": "active",
+        "summary": "WOLFIE quick reference: auto-installer \/ shared hosting; webroot + config boundary; IDE four-layer brief; Wild West operational extracts (data survival, security\/resilience, UI\/template); headers, memory graph, dual-origin.",
+        "ts": "20260412010217"
+    },
+    "context": "experiential",
+    "status": "supported",
+    "review_reason": "pilot_14_5_pattern12_refresh",
+    "content_hash": "88abb0034288483c62469aa584d133140679ab681df67d5f334886ece920a4c2",
+    "context_json": {
+        "source": "python_db_writer"
+    },
+    "updated_ymdhis": 20260412010217,
+    "expires_ymdhis": 0,
+    "edges": []
+}

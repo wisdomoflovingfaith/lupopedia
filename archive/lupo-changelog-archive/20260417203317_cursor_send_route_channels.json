@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260417203317",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "channels-ui",
+  "summary": "Added per-message [send to actor] routing UI on channels index, shared row HTML, channel-members and send-route-copy APIs.",
+  "files_changed": [
+    "lupo-includes/functions/channel_chat_row.php",
+    "channels/index.php",
+    "lupo-api/dialog/channel-members.php",
+    "lupo-api/dialog/send-route-copy.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "lupo-memory/development/staging/2026/04/channel-members-api.toon",
+    "lupo-memory/development/staging/2026/04/send-route-copy-api.toon"
+  ]
+}

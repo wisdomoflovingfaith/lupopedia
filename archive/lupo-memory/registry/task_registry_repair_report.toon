@@ -1,0 +1,170 @@
+{
+  "repair_timestamp": "2026-04-20T06:00:00Z",
+  "repairing_actor": "castcade",
+  "task_registry_structure": {
+    "created": true,
+    "base_directory": "lupo-runtime/",
+    "structure_pattern": "{channel_key}/{actor_id}/tasks.jsonl",
+    "safe_write_isolation": "enforced",
+    "no_shared_files": true,
+    "no_cross_channel_contamination": true
+  },
+  "directories_created": {
+    "total_channels": 9,
+    "total_actor_directories": 18,
+    "total_tasks_files": 18,
+    "channels": ["root", "prd", "doctrine", "rules", "registry", "tools", "development", "analysis", "external"],
+    "actors": [420, 2037],
+    "directory_tree": {
+      "lupo-runtime/": {
+        "root/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "prd/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "doctrine/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "rules/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "registry/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "tools/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "development/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "analysis/": ["420/tasks.jsonl", "2037/tasks.jsonl"],
+        "external/": ["420/tasks.jsonl", "2037/tasks.jsonl"]
+      }
+    }
+  },
+  "retroactive_scan_results": {
+    "recent_file_changes_scanned": 36,
+    "actor_2037_entries": 35,
+    "actor_420_entries": 1,
+    "tasks_reconstructed": 1,
+    "violations_detected": 1,
+    "mixed_channel_task": {
+      "task_id": "filename_doctrine_followup_20260420060000",
+      "actor_id": 2037,
+      "channel_keys_used": 7,
+      "total_entries": 35,
+      "violation_type": "channel_key_isolation_breach",
+      "severity": "high"
+    }
+  },
+  "task_entries_added": {
+    "total_entries": 7,
+    "by_channel": {
+      "root/2037/tasks.jsonl": {
+        "entries": 2,
+        "status": ["started", "violation"],
+        "notes": "Primary task location with violation status"
+      },
+      "prd/2037/tasks.jsonl": {
+        "entries": 1,
+        "status": ["violation"],
+        "notes": "4 entries detected in PRD channel"
+      },
+      "doctrine/2037/tasks.jsonl": {
+        "entries": 1,
+        "status": ["violation"],
+        "notes": "10 entries detected in doctrine channel"
+      },
+      "rules/2037/tasks.jsonl": {
+        "entries": 1,
+        "status": ["violation"],
+        "notes": "1 entry detected in rules channel"
+      },
+      "registry/2037/tasks.jsonl": {
+        "entries": 1,
+        "status": ["violation"],
+        "notes": "2 entries detected in registry channel"
+      },
+      "tools/2037/tasks.jsonl": {
+        "entries": 1,
+        "status": ["violation"],
+        "notes": "7 entries detected in tools channel"
+      },
+      "development/2037/tasks.jsonl": {
+        "entries": 1,
+        "status": ["violation"],
+        "notes": "2 entries detected in development channel"
+      }
+    }
+  },
+  "violations_detected": {
+    "total_violations": 1,
+    "actors_affected": 1,
+    "channels_affected": 7,
+    "violation_details": {
+      "actor_2037": {
+        "violation_type": "mixed_channel_task",
+        "channel_sequence": "root->prd->doctrine->rules->registry->tools->doctrine->prd->root->tools->doctrine->development->development->doctrine->doctrine->prd->registry->doctrine->tools->tools->tools->prd->prd->prd->registry->doctrine->tools->tools->tools",
+        "switches": 30,
+        "unique_channels": 7,
+        "task_purpose": "filename_doctrine_followup",
+        "corrective_action": "task_frozen_and_handoff_created"
+      }
+    }
+  },
+  "safe_write_isolation_enforced": {
+    "each_actor_writes_only_to_own_directory": true,
+    "each_channel_has_own_namespace": true,
+    "no_shared_files": true,
+    "no_shared_buffers": true,
+    "no_shared_logs": true,
+    "race_conditions_prevented": true,
+    "file_corruption_prevented": true,
+    "mixed_lane_writes_prevented": true,
+    "concurrency_collisions_prevented": true
+  },
+  "task_boundaries_enforced": {
+    "task_definition": "single_uninterrupted_cognitive_unit",
+    "task_starts": ["task_assigned_in_registry", "first_output_produced"],
+    "task_ends": ["handoff_produced", "final_output_produced", "actor_reset", "channel_key_violation"],
+    "channel_key_isolation": "enforced",
+    "single_purpose_per_task": "enforced",
+    "single_lineage_per_task": "enforced"
+  },
+  "actors_requiring_manual_review": [
+    {
+      "actor_id": 2037,
+      "current_status": "channel_violation",
+      "task_status": "frozen",
+      "violation_count": 7,
+      "required_action": "manual_review_and_approval",
+      "review_criteria": [
+        "Verify actor understands channel key isolation rule",
+        "Confirm actor will maintain single channel_key per task",
+        "Approve new task assignment after review"
+      ],
+      "handoff_toon": "lupo-memory/registry/2037_20260420060000_handoff.toon"
+    }
+  ],
+  "format_compliance": {
+    "tasks_jsonl_format": "compliant",
+    "field_validation": {
+      "task_id": "string",
+      "channel_key": "string",
+      "actor_id": "integer",
+      "what": "string",
+      "where": "string",
+      "when": "bigint(14)_utc",
+      "why": "single_line_ascii",
+      "how": "string",
+      "status": "enum",
+      "notes": "ascii_no_line_breaks"
+    },
+    "status_values_used": ["started", "violation"],
+    "all_entries_ascii": true,
+    "timestamps_utc": true
+  },
+  "registry_integrity": {
+    "no_file_corruption": true,
+    "no_cross_contamination": true,
+    "proper_isolation": true,
+    "atomic_writes": true,
+    "append_only_logs": true
+  },
+  "next_steps": [
+    "Manual review of actor 2037 required",
+    "Actor 2037 must complete channel key isolation training",
+    "Monitor for additional violations",
+    "Enforce task boundaries for all new tasks",
+    "Maintain safe write isolation going forward"
+  ],
+  "repair_complete": true,
+  "task_registry_operational": true
+}

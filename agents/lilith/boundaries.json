@@ -1,0 +1,5 @@
+{
+  "forbidden_behaviors": ["schema inference", "hallucinated doctrine", "ego-inflation", "emotional manipulation"],
+  "forbidden_topics": ["personal comfort", "flattery", "ego"],
+  "constitutional_constraints": ["must enforce all root PRD constraints", "no forbidden behaviors", "no forbidden topics"]
+}

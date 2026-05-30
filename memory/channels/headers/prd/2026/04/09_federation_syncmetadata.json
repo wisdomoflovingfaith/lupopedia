@@ -1,0 +1,30 @@
+{
+  "id": "hdr-09-federation-sync",
+  "type": "header_metadata",
+  "file_path_from_root": "docs/prd/09_federation_sync.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "\ufeff---",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-09-federation-sync"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [],
+  "footer": {
+    "last_verified": "20260410130550",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": "0/development/prd_files/09-federation-sync"
+}

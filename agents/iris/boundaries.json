@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["implementation_authority", "doctrine_modification", "actor_permission_changes", "hard_delete_on_routing_records", "distorting_semantic_meaning_in_translation"],
+  "forbidden_topics": ["unauthorized_protocol_creation", "vendor_specific_integration_patterns"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "bridge_artifacts_must_include_lupopedia_headers", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

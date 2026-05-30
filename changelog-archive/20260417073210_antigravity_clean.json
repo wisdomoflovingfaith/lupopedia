@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417073210",
+  "agent_id": "antigravity",
+  "channel": "development",
+  "thread": "header-update",
+  "summary": "Cleaned install_wizard_classes.php header to remove old pk_* fields and replace with content_parent_id/content_slug.",
+  "files_changed": [
+    "install_wizard_classes.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

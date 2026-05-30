@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417071904",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "config-sample-header-update",
+  "summary": "Updated lupopedia-config-sample header metadata and added a legacy-fallback note for LUPO_APP_DIR while preserving existing security and provider defaults.",
+  "files_changed": [
+    "lupopedia-config-sample.php",
+    "lupo-docs/versions/4.1.2/buffer/20260417071904_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

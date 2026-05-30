@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Validate Lupopedia Headers (Current File)",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "${workspaceFolder}/lupo-scripts/validate_lupopedia_headers_universal.py",
+        "${file}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Validate Lupopedia Headers (All PRDs)",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "${workspaceFolder}/lupo-scripts/validate_lupopedia_headers_universal.py",
+        "${workspaceFolder}/lupo-docs/prd/*.md"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

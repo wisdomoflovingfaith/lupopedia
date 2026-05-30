@@ -1,0 +1,82 @@
+{
+  "file_id": "00_root_constitutional_system_requirements.md",
+  "file_path": "docs/prd/00_root_constitutional_system_requirements.md",
+  "last_updated": "20260409113315",
+  "memory_ref": "memory/2026/04/M-constitutional-20260409.toon",
+  "edges": {
+    "outbound": [
+      {
+        "to": "rules/root/",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "rules/root/WOLFIE_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "rules/root/pk-reference-naming-doctrine.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "rules/root/php-7-4-compatibility.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "rules/root/PHP_VERSION_COMPATIBILITY.md",
+        "type": "references",
+        "weight": 0.95
+      },
+      {
+        "to": "docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "to": "docs/doctrine/CASCADE_FALLBACK_DOCTRINE.md",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "to": "docs/doctrine/DEPENDENCY_DOCTRINE.md",
+        "type": "references",
+        "weight": 0.9
+      }
+    ]
+  },
+  "tags": [
+    "root",
+    "constitutional",
+    "doctrine",
+    "system_requirements",
+    "php56",
+    "shared_hosting",
+    "database_neutral",
+    "identity_model",
+    "draft"
+  ],
+  "prd_id": 0,
+  "prd_slug": "root_constitutional_system_requirements",
+  "status": "approved",
+  "schema_version": "header_json_v1",
+  "footer": {
+    "last_verified": "20260409113315",
+    "verified_by": {
+      "actor_id": 116,
+      "agent_name_identity": "Claude Code"
+    }
+  }
+}

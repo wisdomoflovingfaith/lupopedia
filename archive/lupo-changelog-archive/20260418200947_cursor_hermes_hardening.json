@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418200947",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "hermes-service",
+  "summary": "HermesService appendTranscript: P1 log when Utf8StructuredWrite missing; json_last_error_msg on encode fail; P2 soft size guard 256KB; mkdir race recheck is_dir; createPendingTask insert log adds table and task_id.",
+  "files_changed": [
+    "app/Services/HermesService.php",
+    "lupo-changelog-pending/20260418200947_cursor_hermes_hardening.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

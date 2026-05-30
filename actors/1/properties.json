@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "actor_id": 1,
+    "slug": "wolfie",
+    "display_name": "WOLFIE",
+    "type": "agent",
+    "role": "main_orchestrating_actor",
+    "paired_actor_id": 102,
+    "primary_federation_node_id": 1,
+    "is_kernel": true,
+    "is_required": true,
+    "layer": "kernel",
+    "supports_channels": [0, 42, 51],
+    "default_channel_id": 42,
+    "lead_orchestration_support": true,
+    "continuity_responsibility": true,
+    "aliases": ["CAPTAIN", "ROOT"],
+    "canonical_name": "WOLFIE",
+    "alternate_names": ["CAPTAIN", "ROOT"]
+  }
+}

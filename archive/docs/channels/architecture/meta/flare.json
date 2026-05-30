@@ -1,0 +1,119 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\architecture\\ARCHITECTURE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\ARCHITECTURE_MAP_v3_0_70.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\ARCHITECTURE_SYNC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\CIP_ANALYTICS_ENGINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\CIP_DOCTRINE_REFINEMENT_MODULE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\DATABASE_PHILOSOPHY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\GROUNDED_AGENT_SYSTEM.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\lupopedia_v3_0_70_agent_awareness_layer.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\multi-ide-workflow.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\SEMANTIC_NAVIGATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\system_truth_table_3_0_81.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\VERSION_3_INGESTION_RULES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\WHY_MULTIPLE_IDES_AND_AGENTS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\WOLFIE_COGNITIVE_ARCHITECTURE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\WOLFIE_TEMPORAL_FRAME_COMPATIBILITY_v0_5.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

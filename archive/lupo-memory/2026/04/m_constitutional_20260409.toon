@@ -1,0 +1,39 @@
+{
+  "id": "M-constitutional-20260409",
+  "type": "constitutional_memory",
+  "ts": "20260409113315.000",
+  "actor_id": 116,
+  "summary": "JSON header companion created for 00_root_constitutional_system_requirements.md \u2014 memory compaction bootstrap",
+  "edges": [
+    {
+      "to": "FILE:00_root_constitutional_system_requirements.md",
+      "type": "modifies",
+      "weight": 1.0
+    },
+    {
+      "to": "lupo-rules/root/WOLFIE_DOCTRINE.md",
+      "type": "references",
+      "weight": 1.0
+    },
+    {
+      "to": "lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md",
+      "type": "references",
+      "weight": 1.0
+    },
+    {
+      "to": "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md",
+      "type": "references",
+      "weight": 1.0
+    }
+  ],
+  "content": {
+    "prd_id": 0,
+    "prd_slug": "root_constitutional_system_requirements",
+    "action": "json_header_companion_created",
+    "header_schema_version": "header_json_v1",
+    "outbound_edge_count": 10,
+    "status": "draft"
+  },
+  "schema_version": "toon_v1",
+  "status": "draft"
+}

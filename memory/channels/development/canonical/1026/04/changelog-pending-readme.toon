@@ -1,0 +1,33 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Weekly report verification stub (Cursor)",
+        "source": "weekly_report_verification",
+        "to": "changelog-pending/README.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260416215839",
+    "last_verified_by": "cursor_verification",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "changelog-pending-readme",
+    "default_collection_id": null,
+    "transcript_jsonl": "0/development/changelog-pending-readme"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/changelog-pending-readme.toon",
+  "purpose": "Explains changelog-pending buffer role for merge workflow.",
+  "source_file_path_from_root": "changelog-pending/README.md",
+  "tags": [
+    "documentation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

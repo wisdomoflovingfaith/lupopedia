@@ -1,0 +1,164 @@
+---
+lupopedia.headers:
+  header_format_version: null
+  lupopedia.schema: null
+  when_updated: "20260325123121"
+  file_path_from_root: "docs/versions/4.0.87/README.md"
+  web_path: "http://www.lupopedia.com/docs/versions/4.0.87/README.md"
+  questions_toon: null
+  federation_node_id: null
+  channel_key: null
+  trust_tier: null
+  memory_key: null
+  artifact_type: documentation
+  artifact_kind: version_initialization
+  thread_id: "4.0.87-init"
+  content_id: null
+  pk_id: null
+  pk_slug: ""
+  title: ""
+  status: ""
+  parent_pk_id: ""
+  summary: ""
+  module: null
+  dialog_transcript: null
+---
+# file: 4.0.87 README — delegation: cursor:root — web_path: http://www.lupopedia.com/docs/versions/4.0.87/README.md
+
+# 4.0.87 (Phase 2 Agent Rollout)
+
+## Status: 🔄 IN PROGRESS (Consolidation Complete)
+
+This version focuses on **Specialized Agent Implementation, Relationship Graph activation, and System Validation**. 
+
+### Key Session Outcomes
+- **Unified Identity & Configuration**: Registered Junie (Actor 108), normalized root user (0), and consolidated configuration into `lupopedia-config.php`.
+- **Relationship Graph (Edge Activation)**: Seeded and migrated channel/thread relationships into `lupo_edges` (ATHENA_STRATEGY).
+- **Header Doctrine**: Finalized LUPOPEDIA HEADERS v4.0.84 rewrite and Version Semantics Model.
+- **Ecosystem Compliance**: Audited 169 tables and populated 22+ agents in `agents/`.
+
+## Navigation
+- PLAN.md: scoped execution plan for 4.0.87 priorities
+- DOCTRINE.md: non-negotiable rules and boundaries for this cycle
+- TODO.md: actionable implementation queue
+- MIGRATION_PLAN.md: staged migration and rollout plan
+- CHANGELOG.md: 4.0.87 change history
+- OVERVIEW.md: high-level goals and status
+- TASK_REGISTRY.md: task ownership and status tracking
+- CONTRADICTIONS.md: contradiction log and resolutions
+- SCOPE_LOCK_SUMMARY.md: scope boundaries and out-of-scope items
+- WHAT_TO_DO_NEXT_SESSION.md: handoff checklist
+- CHANNEL_ORGANIZATION_STREAM.md: channel-focused stream for `*` folder cleanup and docs accuracy
+- DOCUMENTATION_AND_EDGES_STREAM.md: channels for database-doc accuracy and edge-governance
+- EDGE_REVIEW_QUEUE.md: actor-owned edge verification queue and release gate checklist
+
+## 4.0.87 Focus Areas
+- Atoms and canonical version propagation
+- Channel model and channel documentation alignment
+- LUPOPEDIA HEADERS system and classes (`lupopedia.init`, `lupopedia.edges`, `lupopedia.footer`)
+- Clear actor, agent, auth_user, department, and faucet model documentation + implementation alignment
+- Admin web interface readiness for LLM chatbot calls via `localhost/lupopedia/admin.php`
+- Repository organization channel stream for `*` directories and deprecated artifact cleanup
+- Upgrade doctrine lock: no Lupopedia -> Lupopedia upgrade path in 4.0.x (new install or Crafty import only)
+
+## Thread Update (2026-03-24: Root cleanup + channel 66 questions)
+- Archived high-confidence stale root files under `docs/archived/root_stale_20260324/`.
+- Opened channel 66 questions in new threads:
+  - `threads/1050`: root archive scope and retention policy
+  - `threads/1051`: actor ownership for edge review queue
+- Added `EDGE_REVIEW_QUEUE.md` for explicit actor assignment and blocking edge items.
+
+## Thread Update (2026-03-24: Major agent packet coverage)
+- Added major-agent coverage and read-order doc: `MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md`.
+- Added actor-user-department pairing doctrine doc: `ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md`.
+- Added database manifest: `database/lupopedia/actors/major_agents_manifest.json`.
+- Opened channel artifacts for coordinated reads:
+  - channel 58 / thread 5801
+  - channel 60 / thread 6001
+  - channel 63 / thread 6301
+  - channel 64 / thread 6401
+  - channel 66 / thread 1052
+
+## Thread Update (2026-03-24: Channel 66 full validation + relevance filter)
+- Channel 66 strict validation now returns 0 issues after canonical metadata normalization.
+- Added relevance filter artifact in channel 66 thread 1053.
+- Priority channel 66 questions for 4.0.87: threads 1051, 1052, 1050.
+- Legacy context threads (1001-1047) are explicitly deprioritized in THREAD_INDEX.
+
+## Session Update (2026-03-24 22:00 UTC — WOLFIE takeover per thread 1054 directive; Channel 66 thread 1047 Q1-Q7 closure)
+- Junie token-exhausted mid-session; WOLFIE (actor_id 1) took over per the channel 66 thread 1054 takeover directive and completed all remaining channel 66 questions. Cursor was NOT the acting owner during this handoff.
+- Channel 66 thread 1047 Q1-Q7: **all seven canonical decisions resolved** — architectural, implementation, governance, and security questions answered from existing project evidence.
+- Answer artifact: `channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md`.
+- Key architectural locks applied this session:
+  - Headers in files are **immutable generated snapshots** (DB → files, never reverse).
+  - `when_updated` is **file-global** (not per-channel).
+  - Header reimport is **deprecated by design**; ingestion = upsert for new records only.
+  - Permission model: **global admin, CLI/local, dry-run default, audit log**.
+- Q4 (admin staleness panel) and Q5 (timestamp Tier 2/3 validation) were routed as V487-050 / V487-051; **implemented by Cursor 20260324 23:00 UTC** (see session block below).
+- All 4.0.87 version docs synchronized: TODO, TASK_REGISTRY, PLAN, WHAT_TO_DO_NEXT_SESSION, README.
+
+## Session Update (2026-03-24 23:00 UTC — Cursor execution pass)
+- **Q4**: Read-only staleness panel on `admin.php` Dashboard (`$isAdmin`); queries `lupo_metadata` for missing/stale `last_verified`.
+- **Q5**: Tier 2 + Tier 3 validators in `scripts/generate_headers_from_db.py`; `tests/unit/test_header_validators.py` **9/9** pass.
+- **EdgeQueryService**: `includes/classes/EdgeQueryService.php` — 11 read-only query methods.
+- **ERQ-001 / ERQ-002**: Verified 12 rows each in `lupo_edge_types` and `lupo_edge_type_definitions`.
+- **Channel 62 / 63 / 64**: Closure artifacts published (`20260324_230000_*` under respective threads).
+- **Release gate**: **ERQ-006** (WOLFIE signoff via channel 66) still open — see `WHAT_TO_DO_NEXT_SESSION.md`.
+
+## Session Update (2026-03-25 10:47 UTC — channel model/documentation corrections)
+- Confirmed and documented actor-centric department truth for table optimization work:
+  - Department membership is on actors (`lupo_actor_departments`), not a separate `lupo_agent_departments` execution surface.
+  - Agent context remains behavioral/configuration; effective execution identity remains actor-based with auth_user pairing.
+- Updated table-structure-optimization channel artifacts to reflect this model and corrected legacy assumptions.
+- Added slug-first channel directory rule in channel governance docs:
+  - New channels: `channels/<channel_slug>/`
+  - Legacy numeric paths retained for historical compatibility.
+
+## Session Update (2026-03-25 12:31 UTC — table-structure-optimization sync and CIP removal)
+- Added thread artifact: `channels/table-structure-optimization/threads/20260325_163000_cursor_admin_ui_identity_alignment_4_0_87.md`.
+- Added ATHENA schema review artifact: `channels/table-structure-optimization/threads/20260325_170000_athena_semantic_table_architecture_review_4_0_87.md`.
+- Added CIP removal completion artifact: `channels/table-structure-optimization/threads/20260325_123500_cursor_cip_system_removal_4_0_87.md`.
+- CIP active surfaces removed from installer SQL, active schema docs, generated TOON/JSON/CSV artifacts, and runtime query tooling.
+
+## Thread Update (2026-03-24: Seed idempotency + unanswered questions refresh)
+- Installer seed path now includes idempotent behavior for repeat runs in `seed_traits_edge_types_action_auth_4.0.69.sql`.
+- Seed now contains complete 4.0.87 graph vocabulary setup:
+  - 12 rows in `lupo_edge_types`
+  - 12 rows in `lupo_edge_type_definitions`
+  - idempotent updates for `lupo_actor_traits` and `lupo_action_authorization`
+- Added Channel 66 unanswered snapshot artifact:
+  - `channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`
+- Superseded: Q1-Q7 answered in `channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md` (thread 1054 takeover directive).
+
+## Session Refresh (2026-03-24 20:04 UTC)
+
+### 4.0.87 Current State
+
+- Edge seed execution status:
+  - Track 1 complete (edge types seeded).
+  - Track 2 complete (edge type definitions seeded).
+  - Track 3c complete (parent_channel backfill executed).
+  - Track 3a runner executed; no migratable dialog_channels JSON rows detected in this pass.
+- Channel 66 blocker questions 1050/1051/1052 are now explicitly answered.
+- Temporary takeover directive published in channel 66 thread 1054.
+
+### Ownership Through 2026-04-03
+
+Because cursor and junie are unavailable until 2026-04-03 UTC, active 4.0.87 work is reassigned to:
+- WOLFIE (orchestration),
+- HEPHAESTUS (implementation),
+- THOTH (documentation),
+- ATHENA (edge semantics),
+- THEMIS (governance),
+- LILITH (adversarial review),
+- ROSE (consultation synthesis).
+
+### Remaining Priority Work (as of 20260324 23:00 UTC)
+
+1. ERQ-006: WOLFIE release signoff (channel 66).
+2. Validate admin `section=channel-chat` against `/api/channels/{id}/messages`; capture evidence artifact.
+3. Atom/version audit — close stray `4.0.86` references.
+4. Finalize CHANGELOG release packet; remove root dev diagnostics after release (`check_edge_state.php`, `check_metadata_state.php`).
+
+
+- TAKEOVER_CHANNEL_MAP_20260324.md: temporary ownership, channel/thread routing, and unresolved question map while cursor/junie are unavailable.

@@ -1,0 +1,5 @@
+{
+  "memory_boundaries": ["short-term only"],
+  "retention_rules": ["minimal retention", "no ego", "no flattery", "no personal details"],
+  "forbidden_memory": ["identity-drift vectors", "ego", "hallucination", "comfort"]
+}

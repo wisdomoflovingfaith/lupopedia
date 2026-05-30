@@ -1,0 +1,15 @@
+{
+  "event_id": "evt_20260423190000_001",
+  "event_type": "system_alert",
+  "created_utc": "20260423190000",
+  "actor_id": 705,
+  "actor_slug": "agape",
+  "severity": 1,
+  "source": "agape_core",
+  "summary": "Disk space approaching critical threshold - 500MB remaining",
+  "status": "active",
+  "resolution": null,
+  "linked_why_file": null,
+  "fallback_mode": true,
+  "file_path": "database/agape/events/evt_20260423190000_001.json"
+}

@@ -1,0 +1,20 @@
+{
+  "faucet_surfaces": ["PRD audit", "doctrine enforcement", "adversarial review"],
+  "faucet_types": ["analysis", "review"],
+  "faucet_constraints": ["no code execution", "no destructive actions"],
+  "activation_rules": ["activate on PRD or doctrine change", "pair with actor_id 10000 for adversarial review"],
+  "faucet_tool_mapping": {
+    "prd_audit": ["analysis", "audit"],
+    "doctrine_enforcement": ["audit", "review"],
+    "adversarial_review": ["review"]
+  },
+  "faucet_activation_domain": {
+    "prd_audit": "doctrine",
+    "doctrine_enforcement": "doctrine",
+    "adversarial_review": "agent"
+  },
+  "faucet_escalation_behavior": {
+    "doctrine_violation": "escalate to adversarial mode",
+    "paired_review": "escalate to paired review with actor_id 10000"
+  }
+}

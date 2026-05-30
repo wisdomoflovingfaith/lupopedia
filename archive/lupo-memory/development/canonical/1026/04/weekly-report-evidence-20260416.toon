@@ -1,0 +1,68 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Weekly report evidence index (canonical)",
+        "source": "weekly_report_verification",
+        "to": "lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Executive report this index audits",
+        "source": "weekly_report_verification",
+        "to": "REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Helen report memory graph (canonical)",
+        "source": "weekly_report_verification",
+        "to": "lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Helen report transcript thread",
+        "source": "weekly_report_verification",
+        "to": "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/transcript.jsonl",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Helen report atoms bind",
+        "source": "weekly_report_verification",
+        "to": "lupo-memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+        "type": "references",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260416231833",
+    "last_verified_by": "cursor_report_artifact_closure",
+    "last_verified_by_actor_id": 102,
+    "prior_verification": {
+      "last_verified": "20260416215839",
+      "last_verified_by": "cursor_verification",
+      "last_verified_by_actor_id": 102
+    }
+  },
+  "header_bridge": {
+    "atoms_toon": "lupo-memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "weekly-report-evidence-20260416",
+    "default_collection_id": null,
+    "transcript_jsonl": "0/development/weekly-report-evidence-20260416"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/weekly-report-evidence-20260416.toon",
+  "purpose": "Artifact index backing REPORT_EMAIL_TO_HELEN_2026_04_16.md; JSON master paired with .toon per PRD 16.",
+  "source_file_path_from_root": "lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+  "tags": [
+    "documentation",
+    "canonical",
+    "weekly_report"
+  ],
+  "type": "header_metadata"
+}

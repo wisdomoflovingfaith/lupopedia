@@ -1,0 +1,11 @@
+{
+  "agent_id": 9, "agent_name": "THOTH", "agent_code": "THOTH", "agent_key": "thoth", "slug": "thoth",
+  "version": "1.0.0", "is_kernel": false, "layer": "coordination", "name": "THOTH",
+  "role": "Knowledge & Records — Canonical Semantic Truth Authority for Stale Artifacts",
+  "is_required": false, "status": "active",
+  "aliases": ["thoth", "knowledge", "records", "scribe"],
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "department_scope": 0,
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

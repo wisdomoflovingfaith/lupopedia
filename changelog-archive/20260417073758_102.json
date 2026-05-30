@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417073758",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Updates cursor handoff toon with completed header work, rate-limit status, pending items, and explicit routing of primary header maintenance to Antigravity IDE (103).",
+  "files_changed": [
+    "memory/development/staging/2026/04/cursor_handoff.toon",
+    "docs/versions/4.1.2/buffer/20260417073758_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

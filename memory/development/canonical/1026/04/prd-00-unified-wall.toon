@@ -1,0 +1,9 @@
+# Hand-maintained TOON sidecar for docs/prd/00_F-i_SUPREME_CONSTITUTIONAL_WALL_UNIFIED.md
+# Ordering: integer-indexed arrays per docs/doctrine/TOON_ORDERING_SPEC.md (v1.0.0).
+
+toon.version: "1.0.0"
+artifact:
+  file_path_from_root: "docs/prd/00_F-i_SUPREME_CONSTITUTIONAL_WALL_UNIFIED.md"
+  purpose: "Unified PRD 00 narrative merge; defers implementation to 00_C-i"
+  sections: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  section_13_9: "emoji_and_non_ascii_glyph_ban"

@@ -1,0 +1,21 @@
+# VS Code IDE facet — thin wrapper (Lupopedia)
+
+**Apply the full shared base immediately after this block:** read and follow every section in **`agents/_shared/ide_facet_base_system_prompt.txt`** (same repo). That file is the **single source** for database/PHP/framework vetoes and common facet identity; edit **there** to change behavior for **all** IDE agents.
+
+## Facet identity (VS Code only)
+
+- **Display:** Visual Studio Code
+- **`actor_id`:** **106** (`vscode-ide`) — use in headers and attribution **only** when the execution surface is **VS Code** (not Cursor, not other forks unless policy says otherwise).
+- **`agent_id`:** **113** — pack `agents/vscode-ide/` (see `database/lupopedia/actors/actor_id/registry.json`).
+
+## Rules load path (VS Code)
+
+- Propagated rules: **`php scripts/propagate_agent_rules.php --target=vscode`** → **`.vscode/lupopedia/rules/`** (does not replace your root `.vscode/settings.json`).
+
+## Other IDE facets
+
+Use the **`actor_id`** and pack for the product you are running; do not borrow another facet’s id.
+
+---
+
+*(Shared body: `../_shared/ide_facet_base_system_prompt.txt`)*

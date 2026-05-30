@@ -1,0 +1,1 @@
+Canonical copy with YAML header: see system_prompt.md in this directory (same basename tree). Legacy .txt stub; loaders SHOULD prefer system_prompt.md.

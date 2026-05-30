@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\architecture\\protocols\\CADUCEUS_ROUTING_RFC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\COPILOT_QUICK_REFERENCE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\dialog_extract_help.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\DIALOG_EXTRACTION_SPEC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\HERMES_ROUTING_RFC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\REVERSE_HANDSHAKE_SHAKA.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\THREAD_MOOD_RFC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\architecture\\protocols\\WOLFIE_HEADER_RFC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

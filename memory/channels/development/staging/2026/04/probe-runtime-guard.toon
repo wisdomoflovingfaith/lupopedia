@@ -1,0 +1,34 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "scripts/probe_runtime_guard.py",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412122132",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/probe-runtime-guard"
+  },
+  "memory_toon": "memory/development/staging/2026/04/probe-runtime-guard.toon",
+  "purpose": "First fenced block extraction; stable ERROR: violation codes; optional self-grade, parrot, role-collision, continuation, TEST_COMPLETE ordering, knowledge-ack mode; CLI guard flags.",
+  "source_file_path_from_root": "scripts/probe_runtime_guard.py",
+  "tags": [
+    "implementation",
+    "staging"
+  ],
+  "type": "header_metadata"
+}

@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418221907",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-45-header-phase4",
+  "summary": "PRD 45: thread_id null; Phase 4 and G4 cite PRD 38 sections 3 and 6 and PRD 51; when_updated from tick.",
+  "files_changed": [
+    "docs/prd/45_template_first_staged_ui_workflow.md",
+    "changelog-pending/20260418221907_cursor_prd45_thread_graph_refs.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

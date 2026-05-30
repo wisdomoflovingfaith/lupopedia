@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418234551",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-first-docs",
+  "summary": "AGENTS.md: added Documentation Architecture Enforcement (PRD-First) after LUPOPEDIA HEADERS; updated when_updated.",
+  "files_changed": [
+    "AGENTS.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

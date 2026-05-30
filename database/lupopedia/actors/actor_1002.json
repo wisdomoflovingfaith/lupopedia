@@ -1,0 +1,25 @@
+{
+    "actor_id": 1002,
+    "actor_name": "Windsurf",
+    "actor_type": "ide",
+    "display_name": "Windsurf IDE",
+    "description": "Code refactoring and configuration update specialist for Lupopedia project",
+    "is_active": 1,
+    "is_ai": 0,
+    "security_level": "high",
+    "capabilities": [
+        "code_refactoring",
+        "configuration_updates",
+        "database_fallback_implementation",
+        "file_system_operations",
+        "git_operations"
+    ],
+    "metadata": {
+        "role": "refactoring_specialist",
+        "priority": "high",
+        "created_ymdhis": "20260302000000",
+        "updated_ymdhis": "20260302000000",
+        "current_task": "file-based database fallback implementation",
+        "specialization": "configuration and directory structure management"
+    }
+}

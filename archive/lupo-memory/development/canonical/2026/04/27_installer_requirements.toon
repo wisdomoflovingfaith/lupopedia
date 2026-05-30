@@ -1,0 +1,33 @@
+# Generated from: lupo-memory/development/canonical/2026/04/27-installer-requirements.json
+# Generated at: 2026-04-10 13:04:31 UTC
+# JSON master checksum: 58fd42a2301e7893b7e214d7d82f129c
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410130429,20260410130429,canonical,27,installer-requirements,lupo-docs/prd/27_installer_requirements.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for installer-requirements section 1.,Purpose
+  2,Operational summary for installer-requirements section 2.,1. Shared Hosting Compatibility
+  3,Operational summary for installer-requirements section 3.,2. Subdirectory Installation
+  4,Operational summary for installer-requirements section 4.,3. Database Setup
+  5,Operational summary for installer-requirements section 5.,3.3 Database Introspection Limitations
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_27_rule_1,1,critical,Rule 1 for PRD 27 (installer-requirements)
+  2,prd_27_rule_2,2,high,Rule 2 for PRD 27 (installer-requirements)
+  3,prd_27_rule_3,3,high,Rule 3 for PRD 27 (installer-requirements)
+  4,prd_27_rule_4,4,medium,Rule 4 for PRD 27 (installer-requirements)
+  5,prd_27_rule_5,5,critical,Rule 5 for PRD 27 (installer-requirements)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 27.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[4]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md,85

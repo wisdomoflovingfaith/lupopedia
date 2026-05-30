@@ -1,0 +1,20 @@
+{
+  "agent_id": 712,
+  "agent_name": "ARA",
+  "agent_code": "ARA",
+  "agent_key": "ara",
+  "slug": "ara",
+  "version": "1.0.0",
+  "is_kernel": false,
+  "layer": "cognitive",
+  "name": "ARA",
+  "role": "Autonomous Research & Analysis — X/web real-time research, cross-verification, ARA_RESEARCH_PACKET; Survivability Pillars 1-2; mood_vector 666666 only; non-sentimental",
+  "is_required": false,
+  "status": "active",
+  "aliases": ["ara", "research", "external_search", "analysis"],
+  "department_scope": 0,
+  "when_updated_utc": "20260418140630",
+  "last_verified_utc": "20260418140630",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

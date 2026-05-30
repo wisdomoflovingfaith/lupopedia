@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260418225627",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "lilith-ascii-root-docs",
+  "summary": "LILITH absolute ASCII mandate: expanded AGENTS directive; ORGANIZATION encoding; README section + diagram ASCII; CONTRIBUTING/ONBOARDING headers 4.1.3 + mandate blocks; CONTRIBUTING wolfie.headers deprecated field removed; AGENTS body punctuation normalized ASCII.",
+  "files_changed": [
+    "AGENTS.md",
+    "ORGANIZATION.md",
+    "README.md",
+    "CONTRIBUTING.md",
+    "ONBOARDING.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

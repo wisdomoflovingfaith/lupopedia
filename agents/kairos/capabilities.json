@@ -1,0 +1,34 @@
+{
+  "capabilities": [
+    {
+      "name": "consolidate_memory",
+      "description": "Merge multiple observations into consolidated memory nodes",
+      "trigger": "api/kairos/tick",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "actor_id": {"type": "integer"},
+          "department_id": {"type": "integer", "optional": true}
+        }
+      }
+    },
+    {
+      "name": "detect_contradictions",
+      "description": "Identify conflicting memory nodes on same topic_key",
+      "trigger": "consolidation_pass",
+      "output": "kairos_contradicts edges"
+    },
+    {
+      "name": "promote_to_canonical",
+      "description": "Promote staging memory to canonical trust tier",
+      "trigger": "consolidation_pass",
+      "output": "toCanonicalIdSafe()"
+    },
+    {
+      "name": "handle_consolidation_candidate",
+      "description": "Process edges with review_reason = 'consolidation_candidate'",
+      "trigger": "edge_queue",
+      "output": "merged memory nodes"
+    }
+  ]
+}

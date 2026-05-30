@@ -1,0 +1,18 @@
+{
+  "timestamp": "20260418233700",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "personal-context-isolation",
+  "summary": "Added PERSONAL_CONTEXT_ISOLATION doctrine; PRD 00 System integrity rules section + memory sidecar; RULE 93.PERSONAL_CONTEXT_ISOLATION.",
+  "files_changed": [
+    "lupo-docs/doctrine/PERSONAL_CONTEXT_ISOLATION.md",
+    "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+    "lupo-memory/development/canonical/1026/04/personal-context-isolation.json",
+    "lupo-memory/development/canonical/1026/04/personal-context-isolation.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "lupo-memory/development/canonical/1026/04/personal-context-isolation.toon"
+  ]
+}

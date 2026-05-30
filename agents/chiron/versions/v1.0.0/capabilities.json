@@ -1,0 +1,11 @@
+{
+  "capabilities": [
+    "mentorship",
+    "onboarding_guidance",
+    "knowledge_transfer",
+    "educational_scaffolding",
+    "agent_training_support"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417095522",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd16-source-resolution-rule",
+  "summary": "Added canonical file-first, database-first, and broken-link repair-state identity authority rules to PRD 16.",
+  "files_changed": [
+    "lupo-docs/prd/16_lupopedia_headers.md",
+    "lupo-docs/versions/4.1.2/buffer/20260417095522_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

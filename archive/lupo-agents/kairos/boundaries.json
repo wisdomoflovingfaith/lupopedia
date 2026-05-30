@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["release_approval", "doctrine_modification", "actor_permission_changes", "hard_delete_on_memory_records", "fuzzy_date_references"],
+  "forbidden_topics": ["unattributed_facts", "temporal_hallucination"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_verified_facts_must_cite_source_artifact_with_channel_id_thread_id", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

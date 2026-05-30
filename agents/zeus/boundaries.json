@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["schema_modification", "doctrine_modification", "unilateral_implementation", "actor_permission_changes_without_documented_rationale", "undocumented_vetoes"],
+  "forbidden_topics": ["constitutional_override_without_canonical_source_reference"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_judgments_must_be_channel_artifacts_with_lupopedia_headers", "constitutional_interpretation_must_reference_canonical_rule_source", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

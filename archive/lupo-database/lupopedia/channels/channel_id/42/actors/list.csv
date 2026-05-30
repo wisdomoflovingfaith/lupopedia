@@ -1,0 +1,7 @@
+is_deleted,actor_id,created_ymdhis,actor_type,display_name,email,channel_id,department_id,status,is_active,capabilities_json,metadata_json,updated_ymdhis,deleted_ymdhis
+0,0,20260225000000,ide_agent,KIRO IDE,,42,1,active,"{""system_tool"":true,""development"":true}",,20260225000000,
+0,10000,20260225000000,human,Captain,,42,1,active,"{""system_admin"":true,""development"":true}",,20260225000000,
+0,1001,20260225000000,ide_agent,Windsurf IDE,,42,1,active,"{""system_tool"":true,""development"":true}",,20260225000000,
+0,1002,20260225000000,ide_agent,Cursor IDE,,42,1,active,"{""system_tool"":true,""development"":true}",,20260225000000,
+0,1003,20260225000000,ide_agent,Antigravity IDE,,42,1,active,"{""system_tool"":true,""development"":true}",,20260225000000,
+0,2,20260225000000,agent,LILITH,,42,1,active,"{""system_tool"":true,""development"":true}",,20260225000000,

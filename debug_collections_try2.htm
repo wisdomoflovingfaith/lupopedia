@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LUPOPEDIA - Fixed Menu</title>
+  <style>
+    :root {
+      --lupo-blue: #2973e4;
+      --lupo-green: #4CAF50;
+      --lupo-bg: #E8F5E9;
+    }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+    }
+
+    .saved-collections-nav {
+      background: var(--lupo-bg);
+      padding: 10px 20px;
+      border-bottom: 2px solid var(--lupo-green);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 50px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .lupo-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-button {
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .btn-blue { background: var(--lupo-blue); }
+    .btn-green { background: var(--lupo-green); }
+
+    .dropdown-panel {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 5px;
+      z-index: 2000;
+      padding: 6px 0;
+    }
+
+    .lupo-dropdown.active > .dropdown-panel {
+      display: block;
+    }
+
+    .menu-item {
+      display: block;
+      padding: 10px 15px;
+      color: #333;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      position: relative;
+    }
+    .menu-item:hover {
+      background: #f5f5f5;
+      color: var(--lupo-blue);
+    }
+
+    .has-submenu::after {
+      content: '▶';
+      float: right;
+      font-size: 10px;
+      color: #999;
+      margin-top: 2px;
+    }
+
+    /* Floating submenu (portal) */
+    .floating-submenu {
+      position: fixed;
+      background: white;
+      border: 1px solid #ccc;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
+      min-width: 200px;
+      border-radius: 4px;
+      padding: 6px 0;
+      display: none;
+      z-index: 9999;
+    }
+    .floating-submenu.active {
+      display: block;
+    }
+
+    .count-badge {
+      background: rgba(255,255,255,0.3);
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="saved-collections-nav">
+  <!-- COLLECTIONS -->
+  <div class="lupo-dropdown" id="master-collections">
+    <button class="dropdown-button btn-blue" onclick="toggleMenu(this)">COLLECTIONS <span class="count-badge">3</span></button>
+    <div class="dropdown-panel">
+      <div class="menu-item has-submenu" onmouseenter="openSubmenu(this)">Research Root</div>
+      <a class="menu-item" href="#">Personal Archive</a>
+      <a class="menu-item" href="#">Shared Vault</a>
+    </div>
+  </div>
+
+  <!-- WHO -->
+  <div class="lupo-dropdown">
+    <button class="dropdown-button btn-green" onclick="toggleMenu(this)">WHO <span class="count-badge">2</span></button>
+    <div class="dropdown-panel">
+      <div class="menu-item has-submenu" onmouseenter="openSubmenu(this)">Captain Wolfie</div>
+      <div class="menu-item has-submenu" onmouseenter="openSubmenu(this)">Agent ARA</div>
+    </div>
+  </div>
+
+  <!-- WHAT -->
+  <div class="lupo-dropdown">
+    <button class="dropdown-button btn-green" onclick="toggleMenu(this)">WHAT <span class="count-badge">2</span></button>
+    <div class="dropdown-panel">
+      <div class="menu-item has-submenu" onmouseenter="openSubmenu(this)">Ontology Engine</div>
+      <div class="menu-item has-submenu" onmouseenter="openSubmenu(this)">9-Slice Layout</div>
+    </div>
+  </div>
+</nav>
+
+<div style="padding: 50px; color: #666;">
+  <h2>Fixed Menu System</h2>
+  <p>Hover works reliably now. All menus have nested submenus.</p>
+</div>
+
+<script>
+  let activeSubmenu = null;
+
+  function toggleMenu(btn) {
+    const dropdown = btn.closest('.lupo-dropdown');
+    const wasActive = dropdown.classList.contains('active');
+
+    // Close all other menus
+    document.querySelectorAll('.lupo-dropdown').forEach(d => d.classList.remove('active'));
+    if (activeSubmenu) {
+      activeSubmenu.classList.remove('active');
+      activeSubmenu = null;
+    }
+
+    if (!wasActive) {
+      dropdown.classList.add('active');
+    }
+  }
+
+  function openSubmenu(item) {
+    // Close any previously open submenu
+    if (activeSubmenu) activeSubmenu.classList.remove('active');
+
+    const submenu = item.querySelector('.floating-submenu') || createSubmenu(item);
+    
+    const rect = item.getBoundingClientRect();
+    submenu.style.top = rect.top + 'px';
+    submenu.style.left = rect.right + 5 + 'px'; // small gap
+
+    submenu.classList.add('active');
+    activeSubmenu = submenu;
+
+    // Move to body only once
+    if (!submenu.parentElement || submenu.parentElement.tagName !== 'BODY') {
+      document.body.appendChild(submenu);
+    }
+  }
+
+  // Create submenu content on first hover (you can also hard-code them)
+  function createSubmenu(item) {
+    const submenu = document.createElement('div');
+    submenu.className = 'floating-submenu';
+
+    const text = item.textContent.trim();
+
+    if (text === 'Research Root') {
+      submenu.innerHTML = `
+        <a class="menu-item">Project Alpha</a>
+        <a class="menu-item">Project Beta</a>
+        <a class="menu-item">Project Gamma</a>
+      `;
+    } else if (text === 'Captain Wolfie') {
+      submenu.innerHTML = `<a class="menu-item">Wolf Pack Reports</a><a class="menu-item">Howls Archive</a>`;
+    } else if (text === 'Agent ARA') {
+      submenu.innerHTML = `<a class="menu-item">Mission Logs</a><a class="menu-item">Intelligence Briefs</a>`;
+    } else if (text === 'Ontology Engine') {
+      submenu.innerHTML = `<a class="menu-item">Concept Map</a><a class="menu-item">Entity Graph</a>`;
+    } else if (text === '9-Slice Layout') {
+      submenu.innerHTML = `<a class="menu-item">Component Library</a><a class="menu-item">Layout Examples</a>`;
+    }
+
+    item.appendChild(submenu); // keep reference inside item
+    return submenu;
+  }
+
+  // Close menus when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lupo-dropdown') && !e.target.closest('.floating-submenu')) {
+      closeAll();
+    }
+  });
+
+  function closeAll() {
+    document.querySelectorAll('.lupo-dropdown').forEach(d => d.classList.remove('active'));
+    if (activeSubmenu) {
+      activeSubmenu.classList.remove('active');
+      activeSubmenu = null;
+    }
+  }
+
+  // ESC key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAll();
+  });
+</script>
+</body>
+</html>

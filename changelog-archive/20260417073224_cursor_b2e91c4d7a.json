@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417073224",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "agents-minimal-polish",
+  "summary": "Refreshed AGENTS header timestamp, shortened summary text, and added two concise full-doctrine pointers with consistent internal link paths.",
+  "files_changed": [
+    "AGENTS.md",
+    "docs/versions/4.1.2/buffer/20260417073224_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

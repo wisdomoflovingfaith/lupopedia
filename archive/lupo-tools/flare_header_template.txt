@@ -1,0 +1,91 @@
+# file: {FILE_TITLE} — session: {SESSION_NAME} — delegation: {DELEGATION_CHAIN}  — web_path: {CANONICAL_URL}
+---
+flame.init:
+  requirements:
+    flare:
+      version: "{FLARE_VERSION_REQ}"
+  execution_mode: "{EXECUTION_MODE}"
+  pre_actions:
+    - {PRE_ACTIONS_OBJECT}
+
+flare.conditional:
+  guards:
+    execution_mode: "{GUARD_MODE}"
+    allow:
+      actor_ids: [{ALLOW_ACTOR_IDS}]
+      agent_names: [{ALLOW_AGENT_NAMES}]
+    deny:
+      actor_ids: [{DENY_ACTOR_IDS}]
+    time_window:
+      not_before_utc: "{NOT_BEFORE_UTC}"
+      not_after_utc: "{NOT_AFTER_UTC}"
+    conditions:
+      - {CONDITIONS_LIST}
+  brief:
+    who:
+      owner_actor_id: {OWNER_ACTOR_ID}
+      intended_actors: [{INTENDED_ACTORS}]
+      audience: [{AUDIENCE}]
+    what:
+      artifact_type: "{ARTIFACT_TYPE}"
+      objective: "{OBJECTIVE}"
+    where:
+      repo_paths: [{REPO_PATHS}]
+      runtime_scope: "{RUNTIME_SCOPE}"
+      channels:
+        primary_channel_id: {PRIMARY_CHANNEL_ID}
+    when:
+      urgency: "{URGENCY}"
+      effective_utc: "{EFFECTIVE_UTC}"
+    why:
+      rationale: "{RATIONALE}"
+    how:
+      method: "{METHOD}"
+      success_criteria: [{SUCCESS_CRITERIA}]
+
+flare.headers:
+  flare.version: "1.0"
+  flare.schema: "{SCHEMA}"
+  file_path_from_root: "{FILE_PATH_FROM_ROOT}"
+  file_hash: "{FILE_HASH}"
+  federation_node_id: "{FEDERATION_NODE_ID}"
+  web_path: "{WEB_PATH}"
+  last_updated_utc: "{LAST_UPDATED_UTC}"
+  system_version: "{SYSTEM_VERSION}"
+  channel_id: "{CHANNEL_ID}"
+  actor_id: "{ACTOR_ID}"
+  delegation_chain: "{DELEGATION_CHAIN}"
+  artifact_type: "{ARTIFACT_TYPE}"
+  artifact_kind: "{ARTIFACT_KIND}"
+  purpose: "{PURPOSE}"
+  mood_vector: "{MOOD_VECTOR}"
+  traits: ["{TRAITS}"]
+  tags: ["{TAGS}"]
+  lupo_agent: "{LUPO_AGENT}"
+
+flare.edges:
+  outbound_edges:
+    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
+  semantic_tags: ["flare", "federation", "canonical", "protocol"]
+
+flare.footer:
+  last_verified: "{LAST_VERIFIED}"
+  last_verified_by: "{LAST_VERIFIED_BY}"
+  orchestrator: "{ORCHESTRATOR}"
+  next_action:
+    - "{NEXT_ACTION_1}"
+    - "{NEXT_ACTION_2}"
+    - "{NEXT_ACTION_3}"
+
+flame.see:
+  mappings:
+    - ["{FILE_PATH_FROM_ROOT}", "{CANONICAL_URL}"]
+
+flame.close:
+  post_actions:
+    - {POST_ACTIONS_OBJECT}
+  actor_id: {ACTOR_ID}
+---
+
+{CONTENT}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260419000543",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "onboarding-prd-first",
+  "summary": "ONBOARDING.md: enforcement behavior subsection, PRD_INDEX MUST gate, AGENTS.md linkage; when_updated tick.",
+  "files_changed": [
+    "ONBOARDING.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

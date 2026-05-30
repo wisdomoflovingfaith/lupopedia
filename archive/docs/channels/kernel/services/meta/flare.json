@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\kernel\\services\\ACTOR_MOOD_SERVICE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\kernel\\services\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\kernel\\services\\MOOD_SERVICES_INTEGRATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\kernel\\services\\MOOD_SERVICES_OVERVIEW.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\kernel\\services\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

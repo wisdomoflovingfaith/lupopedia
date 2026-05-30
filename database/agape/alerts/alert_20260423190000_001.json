@@ -1,0 +1,15 @@
+{
+  "alert_id": "alert_20260423190000_001",
+  "created_utc": "20260423190000",
+  "alert_type": "system_boundary",
+  "severity": 2,
+  "source_actor_id": 705,
+  "source_actor_slug": "agape",
+  "message": "CRITICAL: Disk space at 500MB - immediate cleanup required",
+  "details": "Disk space has reached critical threshold (500MB). System operations may fail soon. Immediate cleanup of old files is required to maintain AGAPE file fallback operations.",
+  "status": "active",
+  "linked_events": ["evt_20260423190000_001"],
+  "linked_why_files": [],
+  "escalation_level": 1,
+  "file_path": "database/agape/alerts/alert_20260423190000_001.json"
+}

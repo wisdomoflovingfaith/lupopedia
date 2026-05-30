@@ -1,0 +1,719 @@
+/* Main layout: collections chrome, content shell, dropdowns. Decorative border tile backgrounds use LUPOPEDIA_PUBLIC_PATH in main_layout.php (inline). */
+/* Saved Collections Navigation - Q/A Tag Based */
+.saved-collections-nav {
+    background: #E8F5E9;
+    padding: 10px 20px;
+    border-bottom: 2px solid #4CAF50;
+    margin-bottom: 0;
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 49px;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+}
+
+/* Footer semantic bar (components/footer.php #lupo-footer-semantic-nav): hidden by default via [hidden]; title-row icons + JS sync body.lupo-semantic-nav-visible. */
+.lupo-semantic-hide-nav-trigger {
+    display: none;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+body.lupo-semantic-nav-visible .lupo-semantic-hide-nav-trigger {
+    display: inline-block;
+}
+
+.saved-collections-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 48px;
+    overflow: visible;
+}
+
+.saved-collections-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.saved-collections-button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* collections tab uses blue color instead of green */
+.saved-collections-button[data-qa-type="collections"],
+.saved-collections-dropdown[data-qa-type="collections"] .saved-collections-button {
+    background: #2973e4;
+}
+
+.saved-collections-dropdown[data-qa-type="collections"] .saved-collections-button:hover {
+    background: #1f5bb8;
+}
+
+.saved-collections-button:hover {
+    background: #45a049;
+}
+
+.saved-collections-button .count {
+    background: rgba(255,255,255,0.3);
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.saved-collections-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    max-width: 300px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 10000;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 2px;
+    padding: 4px 0;
+}
+
+.saved-collections-submenu {
+    position: relative;
+}
+
+.saved-collections-submenu-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.saved-collections-submenu-trigger:hover {
+    background: #f5f5f5;
+}
+
+.saved-collections-submenu-trigger::after {
+    content: '▶';
+    margin-left: 8px;
+    font-size: 10px;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+.saved-collections-submenu.active .saved-collections-submenu-trigger::after {
+    transform: rotate(90deg);
+}
+
+.saved-collections-submenu-trigger .count {
+    background: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+.saved-collections-submenu-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    max-width: 400px;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 10001;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 4px 0;
+}
+
+/* Visible submenu panel: portaled clone on body uses .active; do not use
+   .saved-collections-submenu.active .saved-collections-submenu-content { display:block }
+   or it overrides display:none on the hidden source node while a clone is open. */
+.saved-collections-submenu-content.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Optional: parent .dropdown.active if JS ever toggles the wrapper */
+.dropdown.active .dropdown-content {
+    display: block !important;
+}
+
+.saved-collections-item {
+    display: block;
+    padding: 8px 12px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+    font-size: 13px;
+}
+
+.saved-collections-item:hover {
+    background: #f0f7ff;
+    color: #0066cc;
+}
+
+.saved-collections-item:last-child {
+    border-bottom: none;
+}
+
+.saved-collections-item.selected {
+    background: #e3f2fd;
+    font-weight: 600;
+}
+
+#firstHeading { 
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; 
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Content container (9-slice book): grid sizing lives under body.lupo-book-layout below */
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 450px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 2px 6px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Unified open state: .active (book chrome + collections); .show kept for legacy includes */
+.dropdown-content.show,
+.dropdown-content.active {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Master + green tab panels: must win over .saved-collections-dropdown-content { display:none } and sit above book shell */
+.saved-collections-dropdown.active .saved-collections-dropdown-content,
+.saved-collections-dropdown.active #dropdown-collections,
+.saved-collections-dropdown-content.active,
+#dropdown-collections.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10002;
+}
+
+/* Book-bar shortcut / contents above collections strip when open */
+#shortcutDropdown.active,
+#contentsDropdown.active {
+    z-index: 10003 !important;
+}
+
+#contentsDropdown {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#shortcutDropdown {
+    min-width: 450px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1200;
+}
+
+.add-action {
+    color: #28a745 !important;
+    font-size: 0.85em;
+    font-style: italic;
+    padding-left: 25px !important;
+}
+
+.add-action:hover {
+    background-color: #e8f5e9 !important;
+    text-decoration: underline;
+}
+
+.add-action.global {
+    font-weight: bold;
+    font-style: normal;
+    background-color: #f0fdf4;
+}
+
+.main-tab { font-weight: bold; }
+.sub-tab { padding-left: 20px !important; color: #555; }
+
+/* Book body: optional left TOC (in-page vertical nav) beside main article */
+.book-page-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+.book-page-sidebar {
+    flex: 0 0 210px;
+    max-width: 240px;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    max-height: calc(100vh - 107px - 80px);
+    overflow-y: auto;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.book-page-sidebar-title {
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.book-page-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.book-page-toc li {
+    margin: 0.35rem 0;
+}
+
+.book-page-toc a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.book-page-toc a:hover {
+    text-decoration: underline;
+}
+
+.book-page-main {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 900px) {
+    .book-page-inner {
+        flex-direction: column;
+    }
+    .book-page-sidebar {
+        flex: none;
+        max-width: none;
+        width: 100%;
+        max-height: none;
+        position: relative;
+    }
+}
+
+/* -------------------------------------------------------------------------
+ * Liquid book shell (9-slice): CSS Grid fills viewport below chrome; center
+ * scrolls so bindings (s4b/s6b) stay visually fixed. Avoids 100vw scrollbar gap.
+ * Grid is bound to .content-list-container directly so the shell cannot "vanish"
+ * if body shell classes drift; body classes still gate tile art and overflow.
+ * ------------------------------------------------------------------------- */
+main.lupo-book-shell {
+    display: contents;
+}
+
+body.lupo-book-layout,
+body.lupo-scroll-layout {
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.content-list-container {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) 54px;
+    grid-template-rows: 42px minmax(0, 1fr) 42px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 107px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* visible: overflow:hidden clips .dropdown-content in the top row (shortcut / contents). */
+    overflow: visible;
+    /* Below .saved-collections-nav (z-index 1000) so green-bar dropdowns paint on top */
+    z-index: 0;
+}
+
+body.lupo-book-layout .resources-top-left,
+body.lupo-book-layout .resources-top-right,
+body.lupo-book-layout .resources-middle-left,
+body.lupo-book-layout .resources-middle-right,
+body.lupo-book-layout .resources-bottom-left,
+body.lupo-book-layout .resources-bottom-right,
+body.lupo-scroll-layout .resources-top-left,
+body.lupo-scroll-layout .resources-top-right,
+body.lupo-scroll-layout .resources-middle-left,
+body.lupo-scroll-layout .resources-middle-right,
+body.lupo-scroll-layout .resources-bottom-left,
+body.lupo-scroll-layout .resources-bottom-right,
+.content-list-container.lupo-book-layout .resources-top-left,
+.content-list-container.lupo-book-layout .resources-top-right,
+.content-list-container.lupo-book-layout .resources-middle-left,
+.content-list-container.lupo-book-layout .resources-middle-right,
+.content-list-container.lupo-book-layout .resources-bottom-left,
+.content-list-container.lupo-book-layout .resources-bottom-right,
+.content-list-container.lupo-scroll-layout .resources-top-left,
+.content-list-container.lupo-scroll-layout .resources-top-right,
+.content-list-container.lupo-scroll-layout .resources-middle-left,
+.content-list-container.lupo-scroll-layout .resources-middle-right,
+.content-list-container.lupo-scroll-layout .resources-bottom-left,
+.content-list-container.lupo-scroll-layout .resources-bottom-right {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+}
+
+body.lupo-book-layout .resources-top-center,
+body.lupo-scroll-layout .resources-top-center,
+.content-list-container.lupo-book-layout .resources-top-center,
+.content-list-container.lupo-scroll-layout .resources-top-center {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+    width: auto;
+    height: auto;
+}
+
+body.lupo-book-layout .resources-middle-center,
+body.lupo-scroll-layout .resources-middle-center,
+.content-list-container.lupo-book-layout .resources-middle-center,
+.content-list-container.lupo-scroll-layout .resources-middle-center {
+    min-width: 0;
+    min-height: 0;
+    width: auto;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+body.lupo-book-layout .resources-bottom-center,
+body.lupo-scroll-layout .resources-bottom-center,
+.content-list-container.lupo-book-layout .resources-bottom-center,
+.content-list-container.lupo-scroll-layout .resources-bottom-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+}
+
+body.lupo-book-layout .book-page-inner,
+body.lupo-scroll-layout .book-page-inner,
+.content-list-container.lupo-book-layout .book-page-inner,
+.content-list-container.lupo-scroll-layout .book-page-inner {
+    max-width: 100%;
+}
+
+body.lupo-book-layout .book-page-sidebar,
+body.lupo-scroll-layout .book-page-sidebar,
+.content-list-container.lupo-book-layout .book-page-sidebar,
+.content-list-container.lupo-scroll-layout .book-page-sidebar {
+    max-height: 100%;
+}
+
+/* Library index (content front controller) */
+.content-library-index {
+    max-width: 100%;
+}
+
+.content-library-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.content-library-list li {
+    margin: 0.65rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.content-library-list a {
+    font-weight: 600;
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+.content-library-list a:hover {
+    text-decoration: underline;
+}
+
+.content-library-summary {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.4;
+}
+
+.content-lib-meta {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* FORCE VISIBILITY ON ACTIVE/SHOW CLASSES — wins over stray display:none from legacy rules or inline styles */
+.dropdown-content.show,
+.dropdown-content.active,
+.saved-collections-dropdown-content.active,
+.saved-collections-submenu-content.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10005 !important;
+}
+
+/* Portal clones appended to body (submenu panels) */
+body > .saved-collections-submenu-content.active {
+    position: fixed !important;
+    display: block !important;
+}
+
+/* FORCE VISIBILITY ON ACTIVE STATE — book-bar #shortcutDropdown / #contentsDropdown use .active from JS */
+.dropdown-content.active,
+.saved-collections-dropdown-content.active,
+.saved-collections-submenu-content.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10005 !important;
+}
+
+/* -------------------------------------------------------------------------
+ * Collections nav try2 (.lupo-dropdown + .dropdown-panel + .floating-submenu)
+ * ------------------------------------------------------------------------- */
+.saved-collections-nav.debug-try2-nav .debug-try2-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+    min-height: 48px;
+    width: 100%;
+}
+
+.saved-collections-nav.debug-try2-nav .lupo-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.saved-collections-nav.debug-try2-nav .dropdown-button {
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.saved-collections-nav.debug-try2-nav .btn-blue {
+    background: #2973e4;
+    border: 1px solid #1f5bb8;
+}
+
+.saved-collections-nav.debug-try2-nav .btn-green {
+    background: #4CAF50;
+}
+
+.saved-collections-nav.debug-try2-nav .dropdown-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    z-index: 2000;
+    padding: 6px 0;
+}
+
+.saved-collections-nav.debug-try2-nav .lupo-dropdown.active > .dropdown-panel {
+    display: block;
+}
+
+.saved-collections-nav.debug-try2-nav .menu-item {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    position: relative;
+}
+
+.saved-collections-nav.debug-try2-nav a.menu-item:hover {
+    background: #f5f5f5;
+    color: #2973e4;
+}
+
+.saved-collections-nav.debug-try2-nav .has-submenu::after {
+    content: '\25B6';
+    float: right;
+    font-size: 10px;
+    color: #999;
+    margin-top: 2px;
+}
+
+.saved-collections-nav.debug-try2-nav .count-badge {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+}
+
+.floating-submenu {
+    position: fixed;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 220px;
+    max-width: 360px;
+    padding: 6px 0;
+    display: none;
+    z-index: 10006;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    box-sizing: border-box;
+}
+
+.floating-submenu.active {
+    display: block;
+}
+
+.floating-submenu .menu-item {
+    display: block;
+    padding: 10px 15px;
+    margin: 0;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.35;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+}
+
+.floating-submenu .menu-item:last-child {
+    border-bottom: none;
+}
+
+.floating-submenu a.menu-item,
+.floating-submenu a.menu-item:visited {
+    color: #333;
+}
+
+.floating-submenu .menu-item-label {
+    display: block;
+    pointer-events: none;
+}
+
+.floating-submenu .has-submenu::after {
+    content: '\25B6';
+    float: right;
+    font-size: 10px;
+    color: #999;
+    margin-top: 2px;
+    pointer-events: none;
+}
+
+.floating-submenu a.menu-item:hover,
+.floating-submenu .menu-item:hover {
+    background: #f0f7ff;
+    color: #2973e4;
+}
+
+.floating-submenu a.menu-item:hover:visited {
+    color: #2973e4;
+}

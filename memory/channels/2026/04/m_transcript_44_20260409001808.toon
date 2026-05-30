@@ -1,0 +1,21 @@
+{
+  "id": "M-transcript-44-20260409001808",
+  "type": "transcript_memory",
+  "ts": "20260409001808.000",
+  "actor_id": 1,
+  "summary": "Actor 1 sent task to actor 103: update claude.md so that it knows how to use this system with channels and tasks so that i can send messages to claude from the ide agents",
+  "edges": [
+    {"to": "channels/0/development/prd_files/44_prd_discussion/", "type": "belongs_to", "weight": 1.0},
+    {"to": "ACTOR:103", "type": "sent_to", "weight": 1.0},
+    {"to": "PRD-44", "type": "task_ref", "weight": 1.0}
+  ],
+  "content": {
+    "original_ts": "20260409001808.000",
+    "original_actor_id": 1,
+    "original_action": "1 sent task to 103 on development: update claude.md so that it knows how to use this system with channels and tasks so that i can send messages to claude from the ide agents",
+    "task_ref": "PRD-44",
+    "compaction_note": "original transcript entry preserved in transcript.jsonl; this memory is the compacted graph node"
+  },
+  "schema_version": "toon_v1",
+  "status": "draft"
+}

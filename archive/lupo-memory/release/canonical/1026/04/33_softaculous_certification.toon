@@ -1,0 +1,301 @@
+{
+  "id": "33-softaculous-certification",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md",
+  "channel_key": "release",
+  "trust_tier": "canonical",
+  "purpose": "Softaculous / shared-hosting certification and Crafty Syntax live-help parity as the explicit 4.1.0 release gate; 4.0.x until requirements satisfied",
+  "status": "approved",
+  "tags": [
+    "prd",
+    "softaculous",
+    "hosting",
+    "live_help",
+    "crafty_syntax",
+    "release_gate",
+    "4.1.0",
+    "emoji",
+    "lupo_emoji",
+    "shared_hosting",
+    "subdirectory_install",
+    "i18n",
+    "localization",
+    "multilingual",
+    "visitor_session",
+    "name_key",
+    "analytics",
+    "rollup",
+    "operator_console",
+    "admin_chat",
+    "typing_preview",
+    "lilith_audit_approved",
+    "lilith_audit_final_20260403"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Constitutional anchor \u2014 PHP 7.4+, no banned stack patterns, subdirectory install"
+      },
+      {
+        "to": "lupo-docs/prd/13_crafty_integration.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Crafty 3.7.5 import and livehelp\u2192lupo table semantics"
+      },
+      {
+        "to": "lupo-docs/prd/18_channel_chat_display.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Operator multi-chat UI, actor color coding, channel display"
+      },
+      {
+        "to": "lupo-docs/prd/28_semantic_monitoring_widget.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Root lupopedia_js.php semantic / Eye widget requirements"
+      },
+      {
+        "to": "lupo-docs/prd/11_analytics_tracking.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Paths, referrer, visitor tracking, campaign analytics \u2014 paired with \u00a73.9 rollup shapes"
+      },
+      {
+        "to": "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Authoritative lupo_visits, visits_daily, paths, referers_* DDL \u2014 \u00a73.9"
+      },
+      {
+        "to": "lupo-docs/prd/27_installer_requirements.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Installer and distribution expectations"
+      },
+      {
+        "to": "lupo-docs/prd/25_departments_system.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Department-scoped chat templates and routing"
+      },
+      {
+        "to": "lupo-docs/doctrine/migrations/livehelp_migrations_readme.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "livehelp_* \u2192 {{prefix}} mapping narrative"
+      },
+      {
+        "to": "lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Crafty lineage and migration intent"
+      },
+      {
+        "to": "lupo-includes/modules/crafty_syntax/",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "Runtime module surface for legacy-compatible endpoints (path may vary by tree)"
+      },
+      {
+        "to": "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "LegacyAdminChatXmlHttp, LegacyLiveHelpJs, xmlhttp-style service layer in repo"
+      },
+      {
+        "to": "lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_SESSION_IDENTITY_DOCTRINE_v2.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "identity(), get_identitystring, detectID fallback chain, IP/session doctrine"
+      },
+      {
+        "to": "lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_BUFFER_STREAMING_DOCTRINE.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "sendbuffer / buffer streaming vs flush detection and chatmode"
+      },
+      {
+        "to": "craftysyntax-reference/",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "In-repo Crafty Syntax reference tree \u2014 data.php, functions.php, image.php, gc.php, javascript/dynapi"
+      },
+      {
+        "to": "craftysyntax-reference/lang/",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Legacy 14-locale $lang packs (charset + txt keys) \u2014 parity reference for \u00a73.7 / \u00a77.9"
+      },
+      {
+        "to": "craftysyntax-reference/user_questions.php",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Visitor naming (isnamed, username uniqueness loop) \u2014 parity reference for \u00a73.8 / \u00a77.6"
+      },
+      {
+        "to": "craftysyntax-reference/live.php",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Operator frameset shell \u2014 parity reference for \u00a73.10 / \u00a77.1 (iframe/div in Lupopedia)"
+      },
+      {
+        "to": "craftysyntax-reference/admin_connect.php",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Chat transport redirect (chatmode \u2192 is_xmlhttp / is_flush / refresh)"
+      },
+      {
+        "to": "craftysyntax-reference/is_xmlhttp.php",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "XMLHTTP probe \u2192 admin_chat_xmlhttp vs fallback chain"
+      },
+      {
+        "to": "craftysyntax-reference/admin_chat_bot.php",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Visitor tabs, channelsplit, compose row \u2014 bottom frame of live.php"
+      },
+      {
+        "to": "craftysyntax-reference/admin_chat_xmlhttp.php",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "DynLayer typing preview (UserIsTypingDiv), update_typing \u2014 \u00a73.11"
+      },
+      {
+        "to": "craftysyntax-reference/image.php",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "what=startedtyping / donetyping, writediv messages \u2014 \u00a73.11"
+      },
+      {
+        "to": "craftysyntax-reference/javascript/dynapi/",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Reference dynapi/dynlayer sources \u2014 parity for DHTML layers (\u00a73.0, \u00a78)"
+      },
+      {
+        "to": "lupo-docs/database/lupopedia/tables/migrations/",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Per-table livehelp_* \u2192 lupo_* migration markdown (paired with livehelp_migrations_readme.md)"
+      },
+      {
+        "to": "lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Wide livehelp \u2192 lupo mapping reference"
+      },
+      {
+        "to": "lupo-emoji/",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "Emoji/image picker asset roots \u2014 folder per set (\u00a77.8)"
+      },
+      {
+        "to": "lupo-rules/root/lilith-noninterference-doctrine.md",
+        "type": "references",
+        "weight": 0.75,
+        "reason": "LILITH reviewer role \u2014 audit is review-only (LIL001)"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/README.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Implementation workspace \u2014 questions/decisions/status vs PRD \u00a712"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "FTP-safe distribution zip/tar \u2014 no dotdirs except .htaccess; build_softaculous_package.sh"
+      },
+      {
+        "to": "lupo-scripts/build_softaculous_package.sh",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Canonical packager (run from checkout; excluded from distribution archive)"
+      },
+      {
+        "to": "lupo-install/InstallWizardHtaccessWriter.php",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Install-time .htaccess generation (WordPress-style; no dotfiles in zip)"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/status/wordpress_study_20260404.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "WordPress reference study report (Section 14)"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/questions/20260404_061540_QUESTION_wordpress_distribution_patterns_unresolved.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "WordPress distribution study question thread (resolved)"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "LILITH answers to Section 14 questions (UTC 20260404061932)"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/status/wordpress_pattern_implementation_tasks_20260404.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Implementation backlog from LILITH resolutions"
+      },
+      {
+        "to": "lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical WordPress-derived pattern distillate \u2014 read before re-scanning lupo-archive/legacy/wordpress-reference/"
+      },
+      {
+        "to": "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "No shared desktop/mobile layouts; mobile web vs native operator app (PRD 35)"
+      },
+      {
+        "to": "lupo-docs/prd/35_mobile_native_app_separation.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Mobile native app and separation; mobile visitor checklist \u00a77.4"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260406162955",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 102,
+      "agent_name_identity": "CURSOR"
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "cursor:root",
+    "next_action": [
+      "PRD header status approved \u2014 gate text is authoritative; execute \u00a77.4\u2013\u00a77.9 + \u00a710 via lupo-docs/versions/4.0.94/TODO.md (\u00a712)",
+      "LILITH (actor_id 2) final audit \u00a713 \u2014 APPROVED for code (100/100); \u00a77.4 = Crafty parity roadmap; \u00a710 = 4.1.0 gate; \u00a712 traceability in TODO.md",
+      "Implementers: pick \u00a77.4 rows (e.g. mobile client chat, real visitor list, typing preview) after TODO.md rows exist; 34 doctrine ghosts are not blocking this track",
+      "Before Softaculous submit: run build_softaculous_package.sh; zip must contain zero dotfiles; install wizard attempts .htaccess when host allows (WordPress pattern per SOFTACULOUS_PACKAGE_BUILD.md); must not fail install if absent \u2014 PRD 00 \u00a72, \u00a79.5, \u00a718",
+      "Section 14 WordPress study: LILITH answered all six questions (answers/20260404_061932_*); execute status/wordpress_pattern_implementation_tasks_20260404.md; trace in versions/*/TODO.md per \u00a712",
+      "WordPress patterns: read lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md (\u00a714.5) before scanning lupo-archive/legacy/wordpress-reference/"
+    ]
+  }
+}

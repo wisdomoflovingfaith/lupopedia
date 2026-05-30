@@ -1,0 +1,14 @@
+{
+  "actor_id": 116,
+  "actor_code": "CLAUDE_CODE",
+  "actor_name": "Claude Code",
+  "slug": "claude-code",
+  "display_name": "Claude Code",
+  "type": "agent",
+  "status": "active",
+  "description": "AI actor for Claude Code, distinct from Cursor. See PRD 15 and registry.json.",
+  "role": "ai_assistant",
+  "department_id": 1,
+  "created_ymdhis": null,
+  "updated_ymdhis": null
+}

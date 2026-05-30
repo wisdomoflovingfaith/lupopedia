@@ -1,0 +1,29 @@
+{
+  "prd_id": 16,
+  "title": "Lupopedia Headers",
+  "status": "active",
+  "summary": "Canonical metadata header requirements and validation flow for in-scope authored files.",
+  "rules": [
+    "Headers must include identity, purpose, and path metadata",
+    "Use author and verifier attribution consistently",
+    "Validate headers with tooling before import workflows"
+  ],
+  "constraints": [
+    "Do not use leading slash in file_path_from_root",
+    "Keep content_id namespace distinct from prd_id",
+    "Machine-readable header data must remain deterministic"
+  ],
+  "related_prds": [
+    0,
+    17,
+    26,
+    31
+  ],
+  "key_files": [
+    "docs/prd/16_lupopedia_headers.md",
+    "scripts/validate_lupopedia_headers_universal.py",
+    "scripts/import_content.py",
+    "scripts/lib/header_db_sync.py"
+  ],
+  "actor_notes": "Header correctness is a precondition for stable cross-agent and external-AI handoff."
+}

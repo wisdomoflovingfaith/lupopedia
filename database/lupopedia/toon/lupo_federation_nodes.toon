@@ -1,0 +1,62 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_federation_nodes
+fields:
+- '`federation_node_id` bigint NOT NULL'
+- '`node_type` varchar(32) NOT NULL DEFAULT local'
+- '`base_url` varchar(500) NOT NULL'
+- '`default_department_id` bigint'
+- '`node_name` varchar(255)'
+- '`description` text'
+- '`node_description` text'
+- '`allows_foreign_traits` tinyint NOT NULL DEFAULT 1'
+- '`node_contact` varchar(255)'
+- '`meta_json` json'
+- '`content_count` bigint NOT NULL DEFAULT 0'
+- '`atom_count` bigint NOT NULL DEFAULT 0'
+- '`hashtag_count` bigint NOT NULL DEFAULT 0'
+- '`actor_count` bigint NOT NULL DEFAULT 0'
+- '`last_sync_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`trust_level` tinyint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`active_theme_slug` varchar(64) DEFAULT default'
+- '`shared_secret` varchar(255)'
+- '`last_seen` bigint'
+- '`capabilities` text'
+- '`status` varchar(32) DEFAULT active'
+indexes:
+- index_name: lupo_federation_nodes_idx_node_base_url
+  columns:
+  - base_url
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_federation_nodes_idx_status
+  columns:
+  - status
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_federation_nodes_idx_trust_level
+  columns:
+  - trust_level
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_federation_nodes_idx_is_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: federation_node_id
+  expected_name: federation_node_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

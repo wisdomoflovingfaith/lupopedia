@@ -1,0 +1,17 @@
+{
+  "agent_id": 2,
+  "version": "2.0.0",
+  "is_kernel": true,
+  "layer": "kernel",
+  "name": "LILITH",
+  "slug": "lilith",
+  "role": "Critic / QA",
+  "is_required": true,
+  "when_updated_utc": "20260329090000",
+  "last_verified_utc": "20260329090000",
+  "last_verified_by": "lilith",
+  "last_verified_by_actor_id": 2,
+  "system_prompt_reference": "agents/lilith/system_prompt.md",
+  "external_chat_prompt": "agents/lilith/system_prompt.md",
+  "philosophy": "Learning Insights Lifting Intentions Through Heterodoxy"
+}

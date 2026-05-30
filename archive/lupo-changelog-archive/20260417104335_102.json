@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417104335",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Adds a single canonical doctrine section in PRD 38 defining memory authority stages, arbitration states, truth direction, mirror behavior, and validator versus runtime responsibilities.",
+  "files_changed": [
+    "lupo-docs/prd/38_memory_unification.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

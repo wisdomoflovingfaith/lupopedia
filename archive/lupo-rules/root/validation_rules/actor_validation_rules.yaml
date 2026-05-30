@@ -1,0 +1,309 @@
+---
+# Actor Validation Rules
+# Canonical rules for actor validation and compliance checking
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: actor_validation_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Actor Validation Framework
+validation_framework:
+  definition: "Actor validation ensures that actors comply with system doctrines, maintain proper identity, and execute correctly within the Lupopedia semantic OS"
+  principles:
+    - validation must be comprehensive and systematic
+    - validation must be automated where possible
+    - validation must be continuous and ongoing
+    - validation must be documented and tracked
+    - validation must support improvement and evolution
+
+# Validation Categories
+validation_categories:
+  identity_validation:
+    description: "Validate actor identity and authority compliance"
+    requirements:
+      - actor_id must be valid and unique
+      - actor_name must comply with naming rules
+      - actor_type must be appropriate
+      - actor_status must be correct
+      - actor_authority must be appropriate
+    
+    validation_rules:
+      - check actor_id uniqueness and validity
+      - validate actor_name against naming rules
+      - verify actor_type classification
+      - confirm actor_status accuracy
+      - assess actor_authority appropriateness
+    
+    success_criteria:
+      - actor_id is unique and valid
+      - actor_name follows naming rules
+      - actor_type is correctly classified
+      - actor_status is accurate
+      - actor_authority is appropriate
+  
+  responsibility_validation:
+    description: "Validate actor responsibilities and scope compliance"
+    requirements:
+      - responsibilities must be clearly defined
+      - responsibilities must be appropriate to role
+      - responsibilities must be documented
+      - responsibilities must be executable
+      - responsibilities must be measurable
+    
+    validation_rules:
+      - verify responsibility definitions
+      - assess responsibility appropriateness
+      - check responsibility documentation
+      - test responsibility executability
+      - measure responsibility performance
+    
+    success_criteria:
+      - responsibilities are clearly defined
+      - responsibilities are appropriate to role
+      - responsibilities are documented
+      - responsibilities are executable
+      - responsibilities are measurable
+  
+  behavior_validation:
+    description: "Validate actor behavior and performance compliance"
+    requirements:
+      - behavior must be consistent with role
+      - behavior must comply with doctrines
+      - behavior must be predictable and reliable
+      - behavior must be high quality
+      - behavior must be efficient
+    
+    validation_rules:
+      - test behavior consistency
+      - verify doctrine compliance
+      - assess predictability and reliability
+      - measure quality and performance
+      - evaluate efficiency and effectiveness
+    
+    success_criteria:
+      - behavior is consistent with role
+      - behavior complies with doctrines
+      - behavior is predictable and reliable
+      - behavior is high quality
+      - behavior is efficient
+
+# Validation Procedures
+validation_procedures:
+  pre_creation_validation:
+    description: "Validate actors before creation"
+    requirements:
+      - validate actor identity requirements
+      - validate actor responsibility requirements
+      - validate actor capability requirements
+      - validate actor integration requirements
+      - validate actor compliance requirements
+    
+    procedures:
+      - check actor identity compliance
+      - verify responsibility definitions
+      - assess capability requirements
+      - test integration compatibility
+      - confirm compliance with rules
+    
+    success_criteria:
+      - identity requirements met
+      - responsibility requirements met
+      - capability requirements met
+      - integration requirements met
+      - compliance requirements met
+  
+  post_creation_validation:
+    description: "Validate actors after creation"
+    requirements:
+      - validate actor initialization
+      - validate actor configuration
+      - validate actor integration
+      - validate actor performance
+      - validate actor compliance
+    
+    procedures:
+      - test actor initialization
+      - verify actor configuration
+      - check actor integration
+      - measure actor performance
+      - assess actor compliance
+    
+    success_criteria:
+      - initialization successful
+      - configuration correct
+      - integration functional
+      - performance acceptable
+      - compliance maintained
+  
+  ongoing_validation:
+    description: "Validate actors continuously during operation"
+    requirements:
+      - monitor actor performance
+      - check actor compliance
+      - assess actor health
+      - evaluate actor effectiveness
+      - track actor improvement
+    
+    procedures:
+      - monitor performance metrics
+      - check compliance status
+      - assess health indicators
+      - evaluate effectiveness metrics
+      - track improvement progress
+    
+    success_criteria:
+      - performance meets targets
+      - compliance maintained
+      - health indicators positive
+      - effectiveness metrics met
+      - improvement progress observed
+
+# Validation Automation
+automation_rules:
+  automated_validation:
+    description: "Automate validation processes where possible"
+    requirements:
+      - automate identity validation
+      - automate compliance checking
+      - automate performance monitoring
+      - automate health assessment
+      - automate reporting
+    
+    implementation:
+      - implement identity validation automation
+      - create compliance checking automation
+      - develop performance monitoring automation
+      - build health assessment automation
+      - establish reporting automation
+    
+  validation_scheduling:
+    description: "Schedule validation processes appropriately"
+    requirements:
+      - schedule regular validation checks
+      - schedule compliance audits
+      - schedule performance reviews
+      - schedule health assessments
+      - schedule improvement evaluations
+    
+    implementation:
+      - establish regular validation schedule
+      - create compliance audit schedule
+      - develop performance review schedule
+      - build health assessment schedule
+      - implement improvement evaluation schedule
+
+# Validation Reporting
+reporting_rules:
+  validation_reports:
+    description: "Generate comprehensive validation reports"
+    requirements:
+      - reports must be comprehensive
+      - reports must be accurate
+      - reports must be timely
+      - reports must be actionable
+      - reports must be tracked
+    
+    report_types:
+      - identity validation reports
+      - responsibility validation reports
+      - behavior validation reports
+      - compliance validation reports
+      - performance validation reports
+    
+    report_content:
+      - validation summary and status
+      - detailed validation results
+      - identified issues and concerns
+      - recommended actions and improvements
+      - validation trends and patterns
+
+# Validation Enforcement
+enforcement_rules:
+  compliance_enforcement:
+    description: "Enforce validation compliance"
+    requirements:
+      - non-compliant actors must be flagged
+      - validation issues must be addressed
+      - compliance improvements must be implemented
+      - compliance progress must be tracked
+      - compliance success must be measured
+    
+    enforcement_procedures:
+      - flag non-compliant actors
+      - address validation issues
+      - implement compliance improvements
+      - track compliance progress
+      - measure compliance success
+  
+  corrective_actions:
+    description: "Implement corrective actions for validation failures"
+    requirements:
+      - identify root causes of failures
+      - develop corrective action plans
+      - implement corrective actions
+      - validate corrective effectiveness
+      - document corrective outcomes
+    
+    corrective_procedures:
+      - analyze failure root causes
+      - create action plans
+      - implement corrective actions
+      - validate effectiveness
+      - document outcomes
+
+# Validation Metrics
+validation_metrics:
+  identity_metrics:
+    - identity compliance rate
+    - naming rule compliance rate
+    - authority appropriateness rate
+    - uniqueness validation rate
+    - consistency validation rate
+  
+  responsibility_metrics:
+    - responsibility clarity rate
+    - responsibility appropriateness rate
+    - responsibility documentation rate
+    - responsibility executability rate
+    - responsibility performance rate
+  
+  behavior_metrics:
+    - behavior consistency rate
+    - doctrine compliance rate
+    - performance quality rate
+    - reliability rate
+    - efficiency rate
+  
+  compliance_metrics:
+    - overall compliance rate
+    - rule adherence rate
+    - doctrine compliance rate
+    - validation success rate
+    - improvement rate
+
+# Validation Success Criteria
+success_criteria:
+  identity_validation_success: > 95%
+  responsibility_validation_success: > 90%
+  behavior_validation_success: > 90%
+  compliance_validation_success: > 95%
+  overall_validation_success: > 90%
+
+# Validation Documentation
+documentation_requirements:
+  validation_documentation:
+    - complete validation procedures and rules
+    - validation automation and scheduling procedures
+    - validation reporting and tracking procedures
+    - validation enforcement and corrective procedures
+    - validation metrics and success criteria
+  
+  troubleshooting_documentation:
+    - validation failure troubleshooting procedures
+    - common validation issues and solutions
+    - validation system maintenance procedures
+    - validation optimization procedures
+    - validation improvement procedures

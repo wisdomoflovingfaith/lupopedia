@@ -1,0 +1,39 @@
+---
+lupopedia.headers:
+  header_format_version: "4.0.99"
+  lupopedia.schema: documentation
+  when_updated: "20260412163756"
+  file_path_from_root: "scripts/cron_limit_utilization.sample"
+  web_path: "https://www.lupopedia.com/lupopedia/scripts/cron_limit_utilization.sample"
+  last_modified_utc: "20260412163756"
+  federation_node_id: 0
+  channel_key: "development"
+  trust_tier: "canonical"
+  memory_key: "memory/development/canonical/1026/04/cron-limit-utilization-sample.toon"
+  artifact_type: documentation
+  artifact_kind: guide
+  thread_id: ""
+  content_id: null
+  pk_id: null
+  pk_slug: ""
+  title: "Cron sample: limit utilization reports"
+  status: "active"
+  parent_pk_id: "00"
+  summary: "Optional weekly cron / Task Scheduler example for check_limit_utilization.php --write-report; hosts may use scheduled jobs or other maintenance patterns."
+  module: null
+  dialog_transcript: "0/development/cron-limit-utilization-sample"
+---
+# Sample: weekly limit utilization report (UTC Sunday 06:15)
+# Adjust paths for your host. Lupopedia repo root = first argument to PHP if needed.
+#
+# crontab -e (Linux/macOS):
+# 15 6 * * 0 cd /path/to/lupopedia && php scripts/check_limit_utilization.php --write-report >> logs/cron/limit_utilization.cron.log 2>&1
+#
+# Windows Task Scheduler: Action = Program `php.exe`, Arguments =
+#   scripts/check_limit_utilization.php --write-report
+#   Start in: C:\ServBay\www\servbay\lupopedia
+#
+# Reports land under docs/reports/limit_utilization_YYYYMMDD.md when --write-report is set.
+#
+# NOTE: Scheduled cron/Task Scheduler entries are optional. Operators may prefer probabilistic or
+# on-demand maintenance instead of fixed schedules; this file documents one deterministic pattern only.

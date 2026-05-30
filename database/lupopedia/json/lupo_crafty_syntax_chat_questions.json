@@ -1,0 +1,43 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_crafty_syntax_chat_questions",
+  "fields": [
+    "`crafty_syntax_chat_question_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL DEFAULT 0",
+    "`sort_order` int NOT NULL DEFAULT 0",
+    "`headertext` mediumtext",
+    "`field_type` varchar(60)",
+    "`options` mediumtext",
+    "`flags` varchar(255)",
+    "`module_name` varchar(100)",
+    "`is_required` tinyint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_crafty_syntax_chat_questions_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "crafty_syntax_chat_question_id",
+    "expected_name": "crafty_syntax_chat_question_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

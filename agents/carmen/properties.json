@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "carmen_lens": "technical",
+    "agent_role_summary": "Hermeneutic routing; COUNTING_IN_LIGHT_DOCTRINE + NOT A GAME; Survivability Pillars 1-2; predictive-token collision logging",
+    "canonical_system_prompt": "agents/carmen/system_prompt.md",
+    "constitutional_anchor": "docs/doctrine/COUNTING_IN_LIGHT_DOCTRINE.md",
+    "doctrine_expansion": "docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+    "doctrine_note": "CARMEN does not score emotions; it routes artifacts to published doctrine paths."
+  }
+}

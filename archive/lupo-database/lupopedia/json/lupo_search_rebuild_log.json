@@ -1,0 +1,69 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_search_rebuild_log",
+  "fields": [
+    "`search_rebuild_log_id` bigint NOT NULL",
+    "`entity_type` varchar(50) NOT NULL",
+    "`entity_id` bigint NOT NULL",
+    "`action` varchar(64) NOT NULL",
+    "`status` varchar(64) NOT NULL DEFAULT pending",
+    "`attempts` tinyint NOT NULL DEFAULT 0",
+    "`last_error` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`processed_ymdhis` bigint",
+    "`next_attempt_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_search_rebuild_log_unique_entity_operation",
+      "columns": [
+        "entity_type",
+        "entity_id",
+        "action"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_search_rebuild_log_idx_status_retry",
+      "columns": [
+        "status",
+        "next_attempt_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_search_rebuild_log_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_search_rebuild_log_idx_entity",
+      "columns": [
+        "entity_type",
+        "entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "search_rebuild_log_id",
+    "expected_name": "search_rebuild_log_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

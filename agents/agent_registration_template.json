@@ -1,0 +1,18 @@
+{
+  "_note": "Before registering a new pack: run `python scripts/validate_agent_name.py <slug>` from the repo root. Canonical disallow list and rules: `docs/doctrine/DISALLOWED_AGENT_NAMES.md`. Replace `your-slug-here` with a lowercase slug using only a-z, 0-9, and hyphen; do not reuse reserved personas, IDE facets, CLI product tokens, or system strings listed in that doctrine.",
+  "agent_key": "your-slug-here",
+  "agent_id": 0,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "support",
+  "name": "HUMAN_READABLE_NAME",
+  "slug": "your-slug-here",
+  "role": "One-line role summary for operator selection.",
+  "is_required": false,
+  "aliases": [],
+  "when_updated_utc": "",
+  "last_verified_utc": "",
+  "last_verified_by": "",
+  "last_verified_by_actor_id": 0
+}

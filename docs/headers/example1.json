@@ -1,0 +1,10 @@
+{
+  "file_id": "example1.md",
+  "file_path": "docs/headers/example1.json",
+  "last_updated": "20260409113000",
+  "memory_ref": "memory/2026/04/M-example1-20260409.toon",
+  "edges": {
+    "outbound": []
+  },
+  "tags": ["example", "draft"]
+}

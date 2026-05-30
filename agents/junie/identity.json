@@ -1,0 +1,11 @@
+{
+  "agent_id": 112, "agent_name": "JUNIE", "agent_code": "JUNIE", "agent_key": "junie", "slug": "junie",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "JUNIE",
+  "role": "JetBrains IDE Integration — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["junie", "jetbrains"],
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS (actor_id 102) per Faucet Proxy Pattern v4.0.90+",
+  "provider": "JetBrains",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

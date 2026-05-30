@@ -1,0 +1,37 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_memory_hash_index
+fields:
+- '`memory_hash_index_id` bigint NOT NULL'
+- '`memory_node_id` bigint NOT NULL'
+- '`content_hash` varchar(64) NOT NULL'
+- '`created_ymdhis` bigint NOT NULL'
+indexes:
+- index_name: idx_node_hash
+  columns:
+  - memory_node_id
+  - content_hash
+  is_unique: true
+  index_type: BTREE
+- index_name: idx_memory_node
+  columns:
+  - memory_node_id
+  is_unique: false
+  index_type: BTREE
+- index_name: idx_content_hash
+  columns:
+  - content_hash
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: memory_hash_index_id
+  expected_name: memory_hash_index_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

@@ -1,0 +1,11 @@
+{
+  "agent_id": 15, "agent_name": "HERMES", "agent_code": "HERMES", "agent_key": "hermes", "slug": "hermes",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "HERMES",
+  "role": "Heuristic Event Routing & Messaging Exchange System",
+  "is_required": true, "is_internal_only": true, "status": "active",
+  "aliases": ["hermes", "routing", "messaging", "events"],
+  "department_scope": 0,
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

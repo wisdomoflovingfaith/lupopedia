@@ -1,0 +1,33 @@
+{
+  "id": "sidecar-doctrine-ai-actor-probe-harness-and-guards",
+  "type": "header_metadata",
+  "schema_version": "lupo_toon_v1",
+  "file_path_from_root": "lupo-docs/doctrine/AI_ACTOR_PROBE_HARNESS_AND_GUARDS.md",
+  "memory_key": "lupo-memory/development/canonical/1026/04/ai-actor-probe-harness-and-guards.toon",
+  "purpose": "TOON sidecar: harness+guard doctrine; invariant_tags PRD 61 section 2; outbound edge to PRD 61.",
+  "invariant_tags": [
+    "violation_codes",
+    "contract_surfaces",
+    "browser_tab_prohibition",
+    "deterministic_ordering",
+    "faucet_identity_enforcement",
+    "channel_thread_validation",
+    "collection_scoped_reasoning",
+    "state_machine_anchoring",
+    "ingestion_mode_awareness",
+    "provenance_actor_rule",
+    "doctrine_graph_edges",
+    "memory_graph_integration"
+  ],
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/61_doctrine_consolidation_shorthand_compiler.md",
+        "type": "doctrine_rule",
+        "weight": 1.0,
+        "reason": "PRD 61 invariant checklist for cross-layer harness doctrine",
+        "source": "cursor-prd61-batch-20260412131327"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "agent_key": "cursor",
+    "agent_id": 102,
+    "actor_id": 102,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "ide_faucet",
+    "name": "CURSOR",
+    "slug": "cursor",
+    "role": "Lead_orchestration_IDE",
+    "is_required": false,
+    "aliases": ["cursor", "cursor-ide"],
+    "extends_shared": "agents/_shared/ide_facet_base_system_prompt.txt",
+    "rules_propagation_target": "cursor",
+    "rules_source_repo_path": "rules/root",
+    "implementation_posture_agent_key": "hephaestus",
+    "delegates_orchestration_actor_id": 1,
+    "when_updated_utc": "20260402233135",
+    "last_verified_utc": "20260402233135",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

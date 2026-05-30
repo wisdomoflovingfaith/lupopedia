@@ -1,0 +1,19 @@
+{
+  "report_id": "prd_peel_dryrun_20260411",
+  "artifact_path_from_root": "docs/versions/4.0.99/prd_peel_dryrun_20260411.json",
+  "packed_utc_context": "20260411162345",
+  "command": "python scripts/normalize_lupopedia_md_header_25.py --target-version 4.0.99 --dry-run --path \"docs/prd/[0-9][0-9]_*.md\"",
+  "summary": {
+    "scanned": 56,
+    "changed": 1,
+    "unchanged": 55,
+    "skip_multi": 0,
+    "skip_error": 0
+  },
+  "would_normalize_repo_relative": [
+    "docs/prd/51_memory_graph_as_source_of_truth.md"
+  ],
+  "tooling_gap": "normalize_lupopedia_md_header_25.py has no --under, --report-json, --peel-aggressive, --peel-first, --create-memory-nodes-if-missing, --strict-header, --log-registry-updates; extend script or wrap before relying on those flags.",
+  "full_batch_next": "Same command without --dry-run; add --backup for per-file .bak before writes.",
+  "plaintext_log_from_root": "docs/versions/4.0.99/prd_peel_dryrun_20260411.txt"
+}

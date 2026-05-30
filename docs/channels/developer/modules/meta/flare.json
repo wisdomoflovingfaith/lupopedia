@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\developer\\modules\\CONTENT_INTERFACE_AND_NAVIGATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\modules\\HELP_LIST_MODULES_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\modules\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\modules\\LEGACY_REFACTOR_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\modules\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\modules\\UPGRADE_PLAN_3.7.5_TO_3.0.0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+---
+# Facet Validation Rules
+# Canonical rules for facet validation and compliance checking
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: facet_validation_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Facet Validation Framework
+validation_framework:
+  definition: "Facet validation ensures that execution environments (facets) comply with system requirements, maintain proper separation from actors, and support system operations effectively"
+  principles:
+    - validation must be comprehensive and systematic
+    - validation must be automated where possible
+    - validation must be continuous and ongoing
+    - validation must be documented and tracked
+    - validation must support improvement and evolution
+
+# Validation Categories
+validation_categories:
+  bootstrapping_validation:
+    description: "Validate facet bootstrapping and initialization"
+    requirements:
+      - rule loading must be complete
+      - compliance validation must pass
+      - actor-facet separation must be established
+      - initialization must be successful
+      - operational readiness must be achieved
+    
+    validation_rules:
+      - verify rule loading completeness
+      - check compliance validation results
+      - confirm actor-facet separation
+      - test initialization success
+      - assess operational readiness
+    
+    success_criteria:
+      - rule loading is complete
+      - compliance validation passes
+      - actor-facet separation established
+      - initialization successful
+      - operational readiness achieved
+  
+  capability_validation:
+    description: "Validate facet capabilities and performance"
+    requirements:
+      - capabilities must be properly defined
+      - capabilities must function correctly
+      - capabilities must meet performance targets
+      - capabilities must be reliable
+      - capabilities must be secure
+    
+    validation_rules:
+      - verify capability definitions
+      - test capability functionality
+      - measure capability performance
+      - assess capability reliability
+      - evaluate capability security
+    
+    success_criteria:
+      - capabilities are properly defined
+      - capabilities function correctly
+      - capabilities meet performance targets
+      - capabilities are reliable
+      - capabilities are secure
+  
+  integration_validation:
+    description: "Validate facet integration with system components"
+    requirements:
+      - system integration must be functional
+      - actor integration must be successful
+      - communication protocols must work
+      - data exchange must be reliable
+      - coordination mechanisms must be effective
+    
+    validation_rules:
+      - test system integration
+      - verify actor integration
+      - check communication protocols
+      - assess data exchange reliability
+      - evaluate coordination effectiveness
+    
+    success_criteria:
+      - system integration functional
+      - actor integration successful
+      - communication protocols working
+      - data exchange reliable
+      - coordination mechanisms effective
+
+# Validation Procedures
+validation_procedures:
+  pre_bootstrapping_validation:
+    description: "Validate facets before bootstrapping"
+    requirements:
+      - validate system requirements
+      - check resource availability
+      - verify environment compatibility
+      - confirm access permissions
+      - test connectivity
+    
+    procedures:
+      - check system requirements
+      - verify resource availability
+      - validate environment compatibility
+      - confirm access permissions
+      - test connectivity
+    
+    success_criteria:
+      - system requirements met
+      - resources available
+      - environment compatible
+      - access permissions confirmed
+      - connectivity working
+  
+  post_bootstrapping_validation:
+    description: "Validate facets after bootstrapping"
+    requirements:
+      - validate bootstrapping completion
+      - verify operational readiness
+      - confirm compliance with requirements
+      - test basic functionality
+      - assess performance
+    
+    procedures:
+      - verify bootstrapping completion
+      - test operational readiness
+      - confirm compliance
+      - test basic functionality
+      - assess performance
+    
+    success_criteria:
+      - bootstrapping complete
+      - operational readiness confirmed
+      - compliance maintained
+      - basic functionality working
+      - performance acceptable
+  
+  operational_validation:
+    description: "Validate facets during operation"
+    requirements:
+      - monitor operational performance
+      - check compliance maintenance
+      - assess health and stability
+      - evaluate user experience
+      - track improvement
+    
+    procedures:
+      - monitor performance metrics
+      - check compliance status
+      - assess health indicators
+      - evaluate user experience
+      - track improvement
+    
+    success_criteria:
+      - performance meets targets
+      - compliance maintained
+      - health indicators positive
+      - user experience acceptable
+      - improvement progress observed
+
+# Validation Automation
+automation_rules:
+  automated_validation:
+    description: "Automate validation processes where possible"
+    requirements:
+      - automate bootstrapping validation
+      - automate compliance checking
+      - automate performance monitoring
+      - automate health assessment
+      - automate reporting
+    
+    implementation:
+      - implement bootstrapping validation automation
+      - create compliance checking automation
+      - develop performance monitoring automation
+      - build health assessment automation
+      - establish reporting automation
+  
+  validation_scheduling:
+    description: "Schedule validation processes appropriately"
+    requirements:
+      - schedule bootstrapping validation
+      - schedule compliance audits
+      - schedule performance reviews
+      - schedule health assessments
+      - schedule improvement evaluations
+    
+    implementation:
+      - establish bootstrapping validation schedule
+      - create compliance audit schedule
+      - develop performance review schedule
+      - build health assessment schedule
+      - implement improvement evaluation schedule
+
+# Validation Reporting
+reporting_rules:
+  validation_reports:
+    description: "Generate comprehensive validation reports"
+    requirements:
+      - reports must be comprehensive
+      - reports must be accurate
+      - reports must be timely
+      - reports must be actionable
+      - reports must be tracked
+    
+    report_types:
+      - bootstrapping validation reports
+      - capability validation reports
+      - integration validation reports
+      - compliance validation reports
+      - performance validation reports
+    
+    report_content:
+      - validation summary and status
+      - detailed validation results
+      - identified issues and concerns
+      - recommended actions and improvements
+      - validation trends and patterns
+
+# Validation Enforcement
+enforcement_rules:
+  compliance_enforcement:
+    description: "Enforce validation compliance"
+    requirements:
+      - non-compliant facets must be flagged
+      - validation issues must be addressed
+      - compliance improvements must be implemented
+      - compliance progress must be tracked
+      - compliance success must be measured
+    
+    enforcement_procedures:
+      - flag non-compliant facets
+      - address validation issues
+      - implement compliance improvements
+      - track compliance progress
+      - measure compliance success
+  
+  corrective_actions:
+    description: "Implement corrective actions for validation failures"
+    requirements:
+      - identify root causes of failures
+      - develop corrective action plans
+      - implement corrective actions
+      - validate corrective effectiveness
+      - document corrective outcomes
+    
+    corrective_procedures:
+      - analyze failure root causes
+      - create action plans
+      - implement corrective actions
+      - validate effectiveness
+      - document outcomes
+
+# Validation Metrics
+validation_metrics:
+  bootstrapping_metrics:
+    - bootstrapping success rate
+    - rule loading success rate
+    - compliance validation success rate
+    - initialization success rate
+    - operational readiness rate
+  
+  capability_metrics:
+    - capability functionality rate
+    - capability performance rate
+    - capability reliability rate
+    - capability security rate
+    - capability satisfaction rate
+  
+  integration_metrics:
+    - system integration success rate
+    - actor integration success rate
+    - communication protocol success rate
+    - data exchange reliability rate
+    - coordination effectiveness rate
+  
+  compliance_metrics:
+    - overall compliance rate
+    - rule adherence rate
+    - doctrine compliance rate
+    - validation success rate
+    - improvement rate
+
+# Validation Success Criteria
+success_criteria:
+  bootstrapping_validation_success: > 95%
+  capability_validation_success: > 90%
+  integration_validation_success: > 90%
+  compliance_validation_success: > 95%
+  overall_validation_success: > 90%
+
+# Validation Documentation
+documentation_requirements:
+  validation_documentation:
+    - complete validation procedures and rules
+    - validation automation and scheduling procedures
+    - validation reporting and tracking procedures
+    - validation enforcement and corrective procedures
+    - validation metrics and success criteria
+  
+  troubleshooting_documentation:
+    - validation failure troubleshooting procedures
+    - common validation issues and solutions
+    - validation system maintenance procedures
+    - validation optimization procedures
+    - validation improvement procedures

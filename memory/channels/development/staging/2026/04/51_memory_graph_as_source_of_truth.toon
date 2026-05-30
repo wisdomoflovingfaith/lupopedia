@@ -1,0 +1,34 @@
+id: 51
+type: prd
+title: memory graph as source of truth
+status: active
+created: 20260412001055
+
+edges:
+  outbound:
+  - to: docs/prd/07_agents_faucets.md
+    type: references
+  - to: docs/prd/10_tasks_workflow.md
+    type: references
+  - to: docs/prd/11_analytics_tracking.md
+    type: references
+  - to: docs/prd/16_lupopedia_headers.md
+    type: references
+  - to: docs/prd/28_semantic_monitoring_widget.md
+    type: references
+  - to: docs/prd/34_federation_node_semantic_network.md
+    type: references
+  - to: docs/prd/38_memory_unification.md
+    type: references
+  - to: docs/prd/43_parent_child_trust_ladder.md
+    type: references
+  - to: docs/prd/50_agent_coordination_protocol.md
+    type: references
+  - to: docs/prd/52_memory_graph_focus_manifest.md
+    type: references
+  - to: docs/prd/70_data_model.md
+    type: references
+  - to: docs/prd/72_tags_metadata.md
+    type: references
+  - to: docs/prd/75_temporal_system.md
+    type: references

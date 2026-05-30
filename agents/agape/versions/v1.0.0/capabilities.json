@@ -1,0 +1,16 @@
+{
+  "capabilities": [
+    "agentic_guidance",
+    "environment_awareness",
+    "fallback_ladder_design",
+    "doctrine_gap_surfacing",
+    "technical_debt_signal",
+    "predictive_pattern_tracking",
+    "learning_transfer_verification",
+    "mood_vector_semantic_tokens",
+    "counting_in_light_mapping",
+    "cil_not_a_game_violation_detection",
+    "sentimental_bleed_metadata_scan",
+    "recurrence_frequency_analysis"
+  ]
+}

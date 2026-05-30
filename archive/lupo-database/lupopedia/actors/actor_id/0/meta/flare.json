@@ -1,0 +1,28 @@
+{
+  "actor_id": "0",
+  "edges": [
+    {
+      "from": "0",
+      "reason": "System kernel provides foundational services to captain",
+      "to": "10000",
+      "type": "provides_services_to",
+      "weight": 1.0
+    },
+    {
+      "from": "0",
+      "reason": "System kernel supports installation operations",
+      "to": "1000",
+      "type": "supports",
+      "weight": 0.8
+    }
+  ],
+  "files": [
+    {
+      "file": "actors\\0\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ],
+  "last_updated_utc": "20260227",
+  "schema_version": "4.0.47"
+}

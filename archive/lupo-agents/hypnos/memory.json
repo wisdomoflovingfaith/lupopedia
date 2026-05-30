@@ -1,0 +1,12 @@
+{
+  "memory_type": "lifecycle_knowledge",
+  "core_knowledge": {
+    "sleep_cycle_history": "History of system sleep cycles and their outcomes",
+    "recovery_checkpoint_catalog": "Catalog of last-known-good checkpoints for recovery"
+  },
+  "working_memory": {"active_maintenance_windows": "Maintenance windows currently in progress"},
+  "memory_boundaries": ["sleep and recovery scope only", "no unilateral activation"],
+  "retention_rules": ["retain recovery checkpoint references", "retain sleep cycle patterns", "no ego"],
+  "forbidden_memory": ["hard system kill patterns without escalation"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

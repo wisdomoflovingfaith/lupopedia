@@ -1,0 +1,30 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_department_metadata
+fields:
+- '`department_metadata_id` bigint NOT NULL'
+- '`department_id` bigint NOT NULL'
+- '`metadata_json` json NOT NULL'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`is_active` tinyint NOT NULL DEFAULT 1'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_department_metadata_uq_department_metadata
+  columns:
+  - department_id
+  is_unique: true
+  index_type: BTREE
+primary_key:
+  column_name: department_metadata_id
+  expected_name: department_metadata_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

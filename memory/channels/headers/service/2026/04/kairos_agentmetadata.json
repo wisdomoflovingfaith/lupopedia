@@ -1,0 +1,16 @@
+{
+  "header_format_version": "4.0.98",
+  "artifact_type": "service",
+  "artifact_kind": "agent_memory_sidecar",
+  "agent_id": 115,
+  "agent_key": "kairos",
+  "source_json": "memory/development/canonical/2026/04/kairos-agent.json",
+  "source_toon": "memory/development/canonical/2026/04/kairos-agent.toon",
+  "federation_node_id": 0,
+  "channel_key": "coordination",
+  "trust_tier": "canonical",
+  "status": "active",
+  "created_ymdhis": "20260410123504",
+  "updated_ymdhis": "20260410123504",
+  "notes": "KAIROS agent metadata sidecar"
+}

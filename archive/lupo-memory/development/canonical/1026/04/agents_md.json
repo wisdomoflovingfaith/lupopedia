@@ -1,0 +1,447 @@
+{
+  "id": "hdr-agents-md-root-guide",
+  "type": "header_metadata",
+  "schema_version": "lupo_toon_v1",
+  "file_path_from_root": "AGENTS.md",
+  "memory_key": "lupo-memory/development/canonical/1026/04/agents-md.toon",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Sidecar for root AGENTS.md: outbound edges (references + consumes), violation_codes, see mappings, footer; probe stack PRDs 53/54/56/58/60 + doctrine graph for faucets.",
+  "tags": [
+    "agents",
+    "cursor",
+    "lead_orchestration",
+    "development_environment",
+    "architecture",
+    "doctrine",
+    "ide_faucets",
+    "documentation",
+    "multi_agent"
+  ],
+  "violation_codes": [
+    "ACTOR_SELF_EVAL_FORBIDDEN",
+    "ACTOR_PARROT_LOOP",
+    "ACTOR_ROLE_COLLISION",
+    "ACTOR_CONTINUED_AFTER_TERMINATION",
+    "KNOWLEDGE_ACK_INVALID",
+    "ACTOR_OUT_OF_COLLECTION_SCOPE",
+    "ACTOR_SCHEMA_VIOLATION"
+  ],
+  "edges_comment": "AGENTS.md sidecar: outbound edges for multi-agent + probe governance stack; every edge carries reason for deterministic graph regeneration. violation_codes lists stable tokens referenced in AGENTS.md (full table in MULTI_AGENT §3.12). Runtime guard PRD file in repo: lupo-docs/prd/53_runtime_guard.md (not 52_runtime_guard.md).",
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Identity model quickstart guide",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical multi-agent coordination; violation codes §3.12; probe harness §3.10; faucet proxy §8.7; channel validation §8.3.1",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md",
+        "type": "consumes",
+        "weight": 1.0,
+        "reason": "AGENTS.md sidecar consumes this doctrine as normative authority for IDE faucet coordination",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_ACTOR_COMPETENCY_TEST_PATTERN.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Programming-test competency probes; probe harness + runtime guard REQUIRED for multi-actor examinee paths per PRD 50 §1.2; maps ACTOR_SELF_EVAL_FORBIDDEN, ACTOR_PARROT_LOOP, ACTOR_ROLE_COLLISION",
+        "source": "cursor-batch-20260412102115"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_ACTOR_COMPETENCY_TEST_PATTERN.md",
+        "type": "consumes",
+        "weight": 1.0,
+        "reason": "AGENTS.md consumes competency doctrine for examiner/examinee contracts",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/doctrine/AGENT_ORCHESTRATION.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Orchestration hub: coordination links, competency probes, PRD 00/38/50 pointers",
+        "source": "cursor-batch-20260412102115"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Session boot and knowledge alignment tests after rules merge",
+        "source": "cursor-batch-20260412102115"
+      },
+      {
+        "to": "lupo-docs/doctrine/VALIDATION_PATTERNS.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Index: validators, self-tests, programming-test validation pattern",
+        "source": "cursor-batch-20260412102115"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_ACTOR_KNOWLEDGE_UPDATE_PROTOCOL.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "After failed probe: lupo_memory_nodes + lupo_memory_edges; first-line ack MUST be Node received.; violation KNOWLEDGE_ACK_INVALID when wrong; PRD 50 §1.3",
+        "source": "cursor-batch-20260412104649"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_ACTOR_KNOWLEDGE_UPDATE_PROTOCOL.md",
+        "type": "consumes",
+        "weight": 1.0,
+        "reason": "AGENTS.md consumes knowledge update protocol for remediation + ack rules",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_ACTOR_PROBE_HARNESS_AND_GUARDS.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Probe harness L1-L5; runtime guard (probe_runtime_guard.py); transcript filter; violation mapping PROBE_BOUNDARY_VIOLATION, ACTOR_ROLE_COLLISION, ACTOR_CONTINUED_AFTER_TERMINATION; forbids browser-tab metadata as instruction surface",
+        "source": "cursor-batch-20260412111202"
+      },
+      {
+        "to": "lupo-docs/doctrine/AI_ACTOR_PROBE_HARNESS_AND_GUARDS.md",
+        "type": "consumes",
+        "weight": 1.0,
+        "reason": "AGENTS.md consumes probe harness doctrine for guard ordering and tab-context ban",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/doctrine/collection_payload_format_v1_0_0.md",
+        "type": "doctrine_rule",
+        "weight": 1.0,
+        "reason": "Collection payload v1.0.0 contract (input/output acks); collection-scoped reasoning requirement ACTOR_OUT_OF_COLLECTION_SCOPE; reverse-binding: AGENTS.md is consumer; PRD 00 §22, PRD 38 §18, PRD 50 §1.4",
+        "source": "cursor-batch-20260412113124"
+      },
+      {
+        "to": "lupo-docs/doctrine/collection_payload_format_v1_0_0.md",
+        "type": "consumes",
+        "weight": 1.0,
+        "reason": "AGENTS.md consumes collection envelope doctrine for faucet contract surfaces",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/prd/50_agent_coordination_protocol.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "PRD 50: probe policy, knowledge update, collection ingestion; coordination with runtime guard and transcript filter",
+        "source": "cursor-batch-20260412123026"
+      },
+      {
+        "to": "lupo-docs/prd/38_memory_unification.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "PRD 38: memory graph binding; collection scope and remediation after failed probes",
+        "source": "cursor-batch-20260412123026"
+      },
+      {
+        "to": "lupo-docs/prd/53_runtime_guard.md",
+        "type": "doctrine_rule",
+        "weight": 1.0,
+        "reason": "PRD 53 (canonical filename 53_runtime_guard.md): AI actor runtime guard; enforcement pipeline; if external index cites PRD 52 stem, resolve to this file; links compliance PRD 54, harness PRD 56, filter PRD 58, scheduler PRD 60",
+        "source": "cursor-batch-20260412115019"
+      },
+      {
+        "to": "lupo-docs/prd/54_actor_compliance.md",
+        "type": "doctrine_rule",
+        "weight": 0.95,
+        "reason": "PRD 54: compliance scoring, actor states, hooks; consumes guard events",
+        "source": "cursor-batch-20260412115019"
+      },
+      {
+        "to": "lupo-docs/prd/56_probe_harness_v2.md",
+        "type": "doctrine_rule",
+        "weight": 0.95,
+        "reason": "PRD 56: probe harness v2; L1-L5 levels; integrates guard, filter, scheduler",
+        "source": "cursor-batch-20260412115019"
+      },
+      {
+        "to": "lupo-docs/prd/58_transcript_filter.md",
+        "type": "doctrine_rule",
+        "weight": 0.95,
+        "reason": "PRD 58: transcript filter; multi-actor hygiene; hub edges to coordinating PRDs",
+        "source": "cursor-batch-20260412115019"
+      },
+      {
+        "to": "lupo-docs/prd/60_orchestrator_scheduler.md",
+        "type": "doctrine_rule",
+        "weight": 0.95,
+        "reason": "PRD 60: orchestrator scheduler; context, collections, probe lifecycle, task routing",
+        "source": "cursor-batch-20260412115019"
+      },
+      {
+        "to": "lupo-docs/prd/61_doctrine_consolidation_shorthand_compiler.md",
+        "type": "doctrine_rule",
+        "weight": 0.95,
+        "reason": "PRD 61: twelve cross-PRD invariants, shorthand TOON, IDE auto-patch rules, consolidation pipeline, enforcement map",
+        "source": "cursor-batch-20260412121331"
+      },
+      {
+        "to": "lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Channel artifact routing contract; COM001 filesystem layout; faucet outputs MUST conform before DB/dialog ingest",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "IACP: cross-session continuity; contract surface for faucet handoffs aligned with coordination doctrine",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/doctrine/AGENT_REGISTRY.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical agent registry prose; faucet identity enforcement pairs with actors/registry.json",
+        "source": "cursor-batch-20260412123325"
+      },
+      {
+        "to": "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Checklist for registering new IDE or web agents before AGENTS.md attribution",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "lupo-docs/status: historical agent identity registry snapshot for facet display names",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "LUPOPEDIA HEADERS doctrine overview; required metadata on routed artifacts",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "PRD 16 v4 fixed-position envelope; header_format_version 4.0.x",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-database/lupopedia/actors/registry.json",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical lupo_actors (facet actor_id); faucet metadata MUST NOT override these ids",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-database/lupopedia/actors/actor_id/registry.json",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "lupo_agents id map",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical actor vs agent vs facet; registry authority (section 3)",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/TICK_PY_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Run tick.py before header timestamps; never guess UTC",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "PRD 00 UI strings / locale — lupo_t() and lupo-includes/lang/",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "lupo-docs/status: LILITH flame faucet report for header expert channel 42",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-agents/",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "Per-facet agent.json packs; ide_facet_base_system_prompt shared vetoes",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/database/lupopedia/tables/active",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Per-table documentation for all TOON/schema tables",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "plan.md",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "Repository root coordination plan mirror for lead IDE stewardship",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "report.md",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "Repository root status report mirror for cross-agent continuity",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/02_channels_discussions.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Channel and filesystem thread semantics",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/17_decisions_format.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Thread filename patterns and multi-folder layout",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-scripts/validate_pseudocode_discipline.py",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "Optional Purpose 2 pseudocode discipline warnings (PRD 17)",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/77_thread_graduation_doctrine.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "THREAD_MANIFEST and thread lifecycle",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/29_project_structure.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Active vs archive channel filesystem strategy",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/31_implementation_folder_guidelines.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "PRD-scoped lupo-docs/implementations trees; folder name = PRD file stem; decisions/questions/answers",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/implementations/README.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Implementations index and naming rule summary",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Softaculous / FTP package; WordPress-style patterns; no dotfiles in zip",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Study security packages without adopting runtime dependencies",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Path/visit analytics foundation; navigation compiler ethics",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/prd/34_federation_node_semantic_network.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Federation PRD; navigation compiler planned deliverable",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/CRAFTY_NODE_REACTIVATION_STRATEGY.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Dormant Crafty to Lupopedia; opt-in federation order",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "WOLFIE lineage; chair-falling moment; hand-coded UI templates (integrate, do not generate)",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Two-UI Strategy — WOLFIE desktop hand-coded; AI-assisted simple mobile web; shared DB",
+        "source": "git-restored-agents-md"
+      },
+      {
+        "to": "lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Consumer mobile-first then desktop; admin desktop-first; operator mobile native PRD 35",
+        "source": "git-restored-agents-md"
+      }
+    ]
+  },
+  "see": {
+    "mappings": [
+      [
+        "AGENTS.md",
+        "https://www.lupopedia.com/lupopedia/AGENTS.md"
+      ]
+    ]
+  },
+  "footer": {
+    "provenance": "git_restore_pre_v4_agents_md_edges_see_footer",
+    "last_verified": "20260412123325",
+    "last_verified_by_actor_id": 102,
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 102,
+      "agent_name_identity": "Cursor IDE Agent (Lead Orchestration)",
+      "department_id_delta": 0
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "junie:root",
+    "next_action": [
+      "Keep agent identity and faucet links current with registry",
+      "Validate LUPOPEDIA HEADERS and next_action when updating this guide",
+      "Point new IDE agents to MULTI_AGENT_COORDINATION_DOCTRINE and ONBOARDING.md",
+      "Before writing last_modified_utc or last_verified run python lupo-bin/tick.py then echo_anchor_utc.py for batch edits",
+      "Verify faucet identity metadata on every update",
+      "Validate probe-related edges after doctrine changes",
+      "Ensure runtime guard PRDs are referenced in future edits (canonical file: lupo-docs/prd/53_runtime_guard.md)"
+    ],
+    "note": "Migrated from in-file lupopedia.footer 2026-04-12; paired with agents-md.toon per AGENTS.md memory_key."
+  }
+}

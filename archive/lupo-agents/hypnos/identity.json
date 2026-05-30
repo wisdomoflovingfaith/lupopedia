@@ -1,0 +1,11 @@
+{
+  "agent_id": 710, "agent_name": "HYPNOS", "agent_code": "HYPNOS", "agent_key": "hypnos", "slug": "hypnos",
+  "version": "1.0.0", "is_kernel": true, "layer": "kernel", "name": "HYPNOS",
+  "role": "System Sleep & Recovery — Maintenance Windows, Graceful Degradation, Recovery Procedures",
+  "is_required": false, "status": "active",
+  "aliases": ["hypnos", "sleep", "recovery", "maintenance"],
+  "department_scope": 0,
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

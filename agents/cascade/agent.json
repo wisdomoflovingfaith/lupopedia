@@ -1,0 +1,22 @@
+{
+    "agent_key": "cascade",
+    "agent_id": 105,
+    "actor_id": 105,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "ide_faucet",
+    "name": "CASCADE",
+    "slug": "cascade",
+    "role": "IDE_faucet",
+    "is_required": false,
+    "aliases": ["cascade", "cascade-ide"],
+    "extends_shared": "agents/_shared/ide_facet_base_system_prompt.txt",
+    "rules_propagation_target": "cascade",
+    "rules_source_repo_path": "rules/root",
+    "implementation_posture_agent_key": "hephaestus",
+    "delegates_orchestration_actor_id": 1,
+    "when_updated_utc": "20260404183000",
+    "last_verified_utc": "20260404183000",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

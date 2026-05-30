@@ -1,0 +1,66 @@
+---
+DIALOG REQUEST TEMPLATE
+Use this template when invoking DIALOG from other agents or IDEs
+---
+
+When calling DIALOG, append this mandatory format reminder at the end of your request:
+
+=== MANDATORY FORMAT REMINDER ===
+DIALOG: Output ONLY a YAML dialog block. Format:
+
+dialog:
+  speaker: [speaker_name]
+  target: [target]
+  persona: [persona_name]
+  message: "[rewritten message]"
+  mood: [calculated_mood_color]
+
+Your ENTIRE response must be ONLY this YAML block. Start with "dialog:" and end after "mood:". No prose, no explanations, no triple backticks, no markdown.
+=== END FORMAT REMINDER ===
+
+---
+EXAMPLE FULL REQUEST:
+---
+
+summary_text: "User is asking about channels in Lupopedia."
+persona_name: "default_dialog"
+speaker_name: "WOLFIE"
+target: "@everyone"
+suggested_mood_color: "00FF00"
+channel_type: "lobby"
+relationship: "operator_visitor"
+short_context_summary: "User is learning about the channel system."
+
+=== MANDATORY FORMAT REMINDER ===
+DIALOG: Output ONLY a YAML dialog block. Format:
+
+dialog:
+  speaker: [speaker_name]
+  target: [target]
+  persona: [persona_name]
+  message: "[rewritten message]"
+  mood: [calculated_mood_color]
+
+Your ENTIRE response must be ONLY this YAML block. Start with "dialog:" and end after "mood:". No prose, no explanations, no triple backticks, no markdown.
+=== END FORMAT REMINDER ===
+
+---
+SHORT VERSION (for tight token budgets):
+---
+
+=== MANDATORY: Output ONLY YAML dialog block. Start "dialog:" end "mood:". No prose, no ```. ===
+
+---
+FOR GROK AND OTHER MODELS THAT STRUGGLE WITH FORMAT:
+---
+
+=== CRITICAL: DIALOG MUST output ONLY this exact YAML format. No markdown, no prose, no explanations:
+
+dialog:
+  speaker: [speaker_name]
+  target: [target]
+  persona: [persona_name]
+  message: "[message]"
+  mood: [calculated_mood_color]
+
+DO NOT include ```yaml or ``` markers. DO NOT add any text before or after the dialog block. The dialog block IS your entire response. ===

@@ -1,0 +1,148 @@
+{
+  "plan_created": "2026-04-20T06:00:00Z",
+  "plan_version": "1.0",
+  "total_violations_session": 7,
+  "violations_requiring_rename": 5,
+  "exception_files": 2,
+  "migration_stages": [
+    {
+      "stage": 1,
+      "name": "Doctrine Files",
+      "description": "Rename uppercase doctrine files to lowercase",
+      "files": [
+        {
+          "from": "lupo-docs/doctrine/ACTOR_GATEWAY_TYPES.md",
+          "to": "lupo-docs/doctrine/actor_gateway_types.md",
+          "type": "uppercase_letters",
+          "impact": "cross_references_in_prd_15"
+        },
+        {
+          "from": "lupo-docs/doctrine/CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+          "to": "lupo-docs/doctrine/castcade_metadata_handling_checklist.md",
+          "type": "uppercase_letters",
+          "impact": "cross_references_in_prd_16"
+        },
+        {
+          "from": "lupo-docs/doctrine/METADATA_VALIDATION_SPECIFICATION.md",
+          "to": "lupo-docs/doctrine/metadata_validation_specification.md",
+          "type": "uppercase_letters",
+          "impact": "cross_references_in_prd_16"
+        },
+        {
+          "from": "lupo-docs/doctrine/THREE_LAYER_METADATA_DOCTRINE.md",
+          "to": "lupo-docs/doctrine/three_layer_metadata_doctrine.md",
+          "type": "uppercase_letters",
+          "impact": "cross_references_in_prd_16"
+        }
+      ],
+      "prerequisites": [
+        "Update PRD 15 cross-reference to ACTOR_GATEWAY_TYPES.md",
+        "Update PRD 16 cross-references to 3 doctrine files"
+      ],
+      "rollback": "Restore original filenames and revert cross-references"
+    },
+    {
+      "stage": 2,
+      "name": "PRD File Format",
+      "description": "Normalize PRD_XX_ format to XX_ format",
+      "files": [
+        {
+          "from": "lupo-docs/prd/PRD_46_ACTOR_GATEWAY_TYPES.md",
+          "to": "lupo-docs/prd/46_actor_gateway_types.md",
+          "type": "prd_prefix_format",
+          "impact": "prd_index_entry"
+        }
+      ],
+      "prerequisites": [
+        "Verify PRD index maker script handles both formats",
+        "Update PRD index to reflect new filename"
+      ],
+      "rollback": "Restore PRD_XX_ format and update index"
+    }
+  ],
+  "directories_with_violations": {
+    "lupo-docs/doctrine": {
+      "count": 4,
+      "pattern": "uppercase_letters",
+      "priority": "high"
+    },
+    "lupo-docs/prd": {
+      "count": 1,
+      "pattern": "prd_prefix_format",
+      "priority": "medium"
+    }
+  },
+  "top_violation_patterns": [
+    {
+      "pattern": "uppercase_letters",
+      "count": 4,
+      "directories": ["lupo-docs/doctrine"],
+      "action": "rename_to_lowercase"
+    },
+    {
+      "pattern": "prd_prefix_format",
+      "count": 1,
+      "directories": ["lupo-docs/prd"],
+      "action": "remove_prd_prefix"
+    }
+  ],
+  "cross_reference_updates": [
+    {
+      "file": "lupo-docs/prd/15_actors.md",
+      "updates": [
+        {
+          "from": "ACTOR_GATEWAY_TYPES.md",
+          "to": "actor_gateway_types.md"
+        }
+      ]
+    },
+    {
+      "file": "lupo-docs/prd/16_lupopedia_headers.md",
+      "updates": [
+        {
+          "from": "THREE_LAYER_METADATA_DOCTRINE.md",
+          "to": "three_layer_metadata_doctrine.md"
+        },
+        {
+          "from": "METADATA_VALIDATION_SPECIFICATION.md",
+          "to": "metadata_validation_specification.md"
+        },
+        {
+          "from": "CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+          "to": "castcade_metadata_handling_checklist.md"
+        }
+      ]
+    }
+  ],
+  "exception_files": [
+    {
+      "file": "README_WTF.md",
+      "reason": "root_level_debug_file",
+      "action": "no_change"
+    },
+    {
+      "file": "TODO.md",
+      "reason": "root_level_task_file",
+      "action": "no_change"
+    }
+  ],
+  "validation_steps": [
+    "Scan for any remaining violations after each stage",
+    "Verify all cross-references still work",
+    "Run PRD index maker to ensure compatibility",
+    "Check for any broken links in documentation"
+  ],
+  "execution_order": [
+    "Update cross-references in PRDs",
+    "Stage 1: Rename doctrine files",
+    "Validate Stage 1",
+    "Stage 2: Rename PRD file",
+    "Validate Stage 2",
+    "Final validation scan"
+  ],
+  "risk_assessment": {
+    "low_risk": "Cross-reference updates are straightforward",
+    "medium_risk": "PRD index compatibility needs verification",
+    "mitigation": "Test PRD index maker script before and after changes"
+  }
+}

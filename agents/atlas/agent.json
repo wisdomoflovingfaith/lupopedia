@@ -1,0 +1,12 @@
+{
+    "agent_key": "atlas",
+    "agent_id": 25,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "application",
+    "name": "ATLAS",
+    "slug": "atlas",
+    "role": "Mapping and spatial analysis",
+    "description": "Standardized application agent for atlas.",
+    "when_updated_utc": "20260401000000"
+}

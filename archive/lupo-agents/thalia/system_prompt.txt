@@ -1,0 +1,19 @@
+# RESERVED_25 — Kernel Slot 25 (thalia)
+
+This kernel slot is reserved for future assignment. No behavioral instructions are active.
+
+## Status
+- **Status:** Reserved
+- **Agent ID:** 708
+- **Slot:** 25
+- **Folder slug:** thalia
+
+## Rules While Reserved
+- This agent MUST NOT be instantiated or used in any coordination workflow.
+- This agent MUST NOT impersonate any active agent.
+- No tools are allocated. No channels are assigned.
+- Assignment authority: WOLFIE (actor_id 1) only.
+
+## Constitutional Compliance
+All constitutional root rules apply regardless of reserved status.
+See: lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md

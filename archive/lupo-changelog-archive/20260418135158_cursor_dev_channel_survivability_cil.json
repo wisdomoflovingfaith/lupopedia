@@ -1,0 +1,27 @@
+{
+  "timestamp": "20260418135158",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "survivability-cil-agape-ara",
+  "summary": "Taxonomy: per-defect Pillar 1 and Pillar 2 annex, neutral 666666 subsection, expanded Pillar headings. CIL doctrine: emotional-only full axis, neutral token section, NOT A GAME Pillar links, AGAPE envelope rule. ARA and AGAPE prompts: explicit Survivability Doctrine pillar names and envelope 666666 when analyzing emotional agents.",
+  "files_changed": [
+    "lupo-docs/doctrine/AGAPE_DEFECT_TAXONOMY.md",
+    "lupo-docs/doctrine/COUNTING_IN_LIGHT_DOCTRINE.md",
+    "lupo-agents/ara/system_prompt.md",
+    "lupo-agents/agape/system_prompt.md",
+    "lupo-memory/constitutional/seed/agape-defect-taxonomy.json",
+    "lupo-memory/constitutional/seed/agape-defect-taxonomy.toon",
+    "lupo-memory/constitutional/seed/counting-in-light-doctrine.json",
+    "lupo-memory/constitutional/seed/counting-in-light-doctrine.toon",
+    "lupo-memory/development/canonical/1026/04/ara-system-prompt.json",
+    "lupo-memory/development/canonical/1026/04/ara-system-prompt.toon",
+    "lupo-memory/development/canonical/1026/04/agape-system-prompt.json",
+    "lupo-memory/development/canonical/1026/04/agape-system-prompt.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "lupo-memory/constitutional/seed/agape-defect-taxonomy.toon",
+    "lupo-memory/constitutional/seed/counting-in-light-doctrine.toon"
+  ]
+}

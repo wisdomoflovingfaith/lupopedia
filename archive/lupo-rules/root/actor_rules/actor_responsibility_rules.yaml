@@ -1,0 +1,341 @@
+---
+# Actor Responsibility Rules
+# Canonical rules for actor responsibilities and authority
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: actor_responsibility_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Responsibility Framework
+responsibility_framework:
+  definition: "Actor responsibilities define the scope, authority, and obligations of each actor within the Lupopedia semantic OS"
+  principles:
+    - responsibilities must be role-based
+    - responsibilities must be clearly defined
+    - responsibilities must be documented
+    - responsibilities must be enforceable
+    - responsibilities must be auditable
+
+# Core Responsibility Categories
+core_categories:
+  system_orchestration:
+    description: "System-wide coordination and governance"
+    primary_actor: "wolfie"
+    responsibilities:
+      - system orchestration and coordination
+      - multi-agent coordination and management
+      - system architecture oversight
+      - doctrine enforcement and compliance
+      - release management and deployment
+      - system health monitoring and maintenance
+      - strategic planning and decision making
+      - conflict resolution and mediation
+    
+    authority:
+      - final authority on system decisions
+      - authority to enforce system doctrines
+      - authority to coordinate multi-agent activities
+      - authority to approve system changes
+      - authority to resolve conflicts between actors
+  
+  knowledge_management:
+    description: "Knowledge creation, organization, and dissemination"
+    primary_actor: "thoth"
+    responsibilities:
+      - knowledge base management and organization
+      - documentation creation and maintenance
+      - historical record keeping and archival
+      - information architecture and taxonomy
+      - learning and training material development
+      - research and analysis coordination
+      - data integrity and validation
+      - knowledge discovery and retrieval
+    
+    authority:
+      - authority over knowledge systems
+      - authority to establish documentation standards
+      - authority to validate information accuracy
+      - authority to organize knowledge structures
+      - authority to maintain historical records
+  
+  quality_assurance:
+    description: "Quality validation, testing, and adversarial review"
+    primary_actor: "lilith"
+    responsibilities:
+      - critical review and adversarial testing
+      - quality assurance and validation
+      - security testing and vulnerability assessment
+      - compliance validation and audit
+      - performance testing and optimization
+      - error detection and correction
+      - risk assessment and mitigation
+      - quality metrics and reporting
+    
+    authority:
+      - authority to conduct critical reviews
+      - authority to validate system quality
+      - authority to identify security vulnerabilities
+      - authority to enforce quality standards
+      - authority to report compliance violations
+  
+  strategic_guidance:
+    description: "Strategic planning, wisdom, and decision support"
+    primary_actor: "athena"
+    responsibilities:
+      - strategic planning and vision development
+      - wisdom and insight provision
+      - decision support and analysis
+      - long-term planning and roadmap development
+      - innovation and creativity guidance
+      - ethical considerations and guidance
+      - complex problem solving and resolution
+      - mentorship and knowledge transfer
+    
+    authority:
+      - authority to provide strategic guidance
+      - authority to influence system direction
+      - authority to recommend strategic decisions
+      - authority to guide innovation efforts
+      - authority to ensure ethical considerations
+
+# Responsibility Definition Rules
+definition_rules:
+  clarity_requirements:
+    - responsibilities must be clearly stated
+    - responsibilities must be unambiguous
+    - responsibilities must be measurable
+    - responsibilities must be achievable
+    - responsibilities must be relevant
+  
+  scope_requirements:
+    - responsibilities must have defined scope
+    - responsibilities must have defined boundaries
+    - responsibilities must have defined deliverables
+    - responsibilities must have defined success criteria
+    - responsibilities must have defined limitations
+  
+  documentation_requirements:
+    - responsibilities must be documented in actor registry
+    - responsibilities must be documented in system documentation
+    - responsibilities must be communicated to stakeholders
+    - responsibilities must be updated when changed
+    - responsibilities must be archived when deprecated
+
+# Authority Levels
+authority_levels:
+  system_level:
+    description: "System-wide authority and decision making"
+    actors: ["wolfie"]
+    scope: "Entire Lupopedia system"
+    powers:
+      - final decision authority
+      - doctrine enforcement
+      - system orchestration
+      - multi-agent coordination
+      - strategic direction
+      - resource allocation
+      - conflict resolution
+  
+  domain_level:
+    description: "Domain-specific authority and expertise"
+    actors: ["thoth", "lilith", "athena", "hermes", "hephaestus"]
+    scope: "Specific functional domains"
+    powers:
+      - domain decision authority
+      - domain standard setting
+      - domain resource management
+      - domain quality assurance
+      - domain innovation
+      - domain coordination
+      - domain problem resolution
+  
+  operational_level:
+    description: "Operational authority and execution"
+    actors: ["anubis", "heimdall", "sesha", "themis", "janus", "rose"]
+    scope: "Specific operational areas"
+    powers:
+      - operational decision authority
+      - operational execution
+      - operational monitoring
+      - operational reporting
+      - operational optimization
+      - operational problem resolution
+      - operational coordination
+
+# Responsibility Assignment Rules
+assignment_rules:
+  role_based_assignment:
+    principle: "Responsibilities must be assigned based on role, not tool or preference"
+    requirements:
+      - actor must have appropriate capabilities
+      - actor must have appropriate authority
+      - actor must have appropriate resources
+      - actor must have appropriate expertise
+    
+  conflict_avoidance:
+    principle: "Avoid responsibility conflicts between actors"
+    requirements:
+      - responsibilities must not overlap unnecessarily
+      - responsibility boundaries must be clear
+      - conflict resolution mechanisms must exist
+      - escalation procedures must be defined
+  
+  accountability:
+    principle: "Actors must be accountable for their responsibilities"
+    requirements:
+      - performance metrics must be defined
+      - success criteria must be established
+      - reporting requirements must be defined
+      - audit procedures must be established
+
+# Responsibility Evolution Rules
+evolution_rules:
+  review_schedule:
+    monthly: "Performance and effectiveness review"
+    quarterly: "Scope and relevance review"
+    annually: "Comprehensive responsibility evaluation"
+    event_driven: "Review after major system changes"
+  
+  amendment_process:
+    proposal:
+      - identify need for responsibility change
+      - document proposed changes
+      - analyze impact on system
+      - assess feasibility and risks
+    
+    analysis:
+      - evaluate impact on other actors
+      - evaluate impact on system performance
+      - evaluate impact on user experience
+      - evaluate impact on system architecture
+    
+    approval:
+      - requires WOLFIE approval for major changes
+      - requires Doctrine Council review for domain changes
+      - requires stakeholder input for operational changes
+      - requires documentation of approval rationale
+    
+    implementation:
+      - communicate changes to affected actors
+      - update documentation and systems
+      - provide training and support
+      - monitor implementation effectiveness
+
+# Responsibility Validation Rules
+validation_rules:
+  performance_validation:
+    metrics:
+      - task completion rate
+      - quality of work
+      - timeliness of delivery
+      - resource utilization
+      - stakeholder satisfaction
+    
+    thresholds:
+      - task completion: > 95%
+      - quality score: > 90%
+      - timeliness: > 85%
+      - resource efficiency: > 80%
+      - satisfaction: > 90%
+  
+  compliance_validation:
+    rules:
+      - responsibilities must comply with system doctrines
+      - responsibilities must comply with authority levels
+      - responsibilities must comply with scope limitations
+      - responsibilities must comply with documentation requirements
+    
+    procedures:
+      - regular compliance audits
+      - automated compliance checking
+      - manual review of critical responsibilities
+      - stakeholder feedback collection
+  
+  effectiveness_validation:
+    criteria:
+      - responsibilities must achieve intended outcomes
+      - responsibilities must support system goals
+      - responsibilities must be efficient and effective
+      - responsibilities must adapt to changing needs
+    
+    methods:
+      - outcome measurement
+      - stakeholder surveys
+      - performance analysis
+      - system impact assessment
+
+# Responsibility Enforcement Rules
+enforcement_rules:
+  performance_enforcement:
+    monitoring:
+      - continuous performance monitoring
+      - regular performance reviews
+      - performance reporting to WOLFIE
+      - performance improvement planning
+    
+    corrective_actions:
+      - performance improvement plans
+      - additional training and support
+      - resource reallocation
+      - responsibility adjustment
+    
+  compliance_enforcement:
+    monitoring:
+      - continuous compliance monitoring
+      - regular compliance audits
+      - compliance reporting to WOLFIE
+      - compliance improvement planning
+    
+    corrective_actions:
+      - compliance correction plans
+      - additional training and support
+      - responsibility redefinition
+      - authority adjustment
+    
+  accountability_enforcement:
+    monitoring:
+      - continuous accountability monitoring
+      - regular accountability reviews
+      - accountability reporting to WOLFIE
+      - accountability improvement planning
+    
+    corrective_actions:
+      - accountability improvement plans
+      - additional training and support
+      - responsibility clarification
+      - authority reinforcement
+
+# Success Metrics
+success_metrics:
+  responsibility_clarity: > 95%
+  responsibility_completion: > 90%
+  responsibility_quality: > 90%
+  responsibility_efficiency: > 85%
+  stakeholder_satisfaction: > 90%
+  system_effectiveness: > 85%
+
+# Documentation Requirements
+documentation:
+  responsibility_documentation:
+    - complete list of all actor responsibilities
+    - detailed description of each responsibility
+    - authority levels and scope definitions
+    - performance metrics and success criteria
+    - reporting and accountability procedures
+  
+  authority_documentation:
+    - complete authority level definitions
+    - detailed scope and limitations
+    - decision-making procedures
+    - escalation and conflict resolution procedures
+    - accountability and reporting procedures
+  
+  evolution_documentation:
+    - responsibility change procedures
+    - amendment process documentation
+    - review and approval procedures
+    - implementation and monitoring procedures
+    - communication and training procedures

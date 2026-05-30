@@ -1,0 +1,118 @@
+{
+  "enforcement_timestamp": "2026-04-20T06:00:00Z",
+  "enforcing_actor": "castcade",
+  "rule_enforced": "Channel Key Isolation Rule",
+  "rule_description": "An actor MUST NOT change channel_key during an active task. A channel_key change is only allowed AFTER a task completes and BEFORE a new task begins.",
+  "violations_detected": {
+    "total_violations": 1,
+    "actors_violating": 1,
+    "violations_summary": [
+      {
+        "actor_id": 2037,
+        "violation_count": 7,
+        "channel_keys_used": ["root", "prd", "doctrine", "rules", "registry", "tools", "development"],
+        "task": "filename_doctrine_followup",
+        "violation_type": "mid_task_channel_switching",
+        "entries_in_registry": 35,
+        "violation_severity": "high"
+      }
+    ]
+  },
+  "corrective_actions_taken": {
+    "actor_2037": {
+      "task_frozen": true,
+      "status_changed_to": "channel_violation",
+      "channel_key_cleared": true,
+      "task_cleared": true,
+      "handoff_created": "memory/registry/2037_20260420060000_handoff.toon",
+      "registry_updated": true,
+      "violation_logged": true
+    }
+  },
+  "handoff_files_created": [
+    {
+      "file": "memory/registry/2037_20260420060000_handoff.toon",
+      "actor_id": 2037,
+      "reason": "channel_key_isolation_breach",
+      "timestamp": "2026-04-20T06:00:00Z"
+    }
+  ],
+  "registry_updates": {
+    "actor_registry": {
+      "file": "registry/actor_registry.toon",
+      "updates": [
+        {
+          "actor_id": 2037,
+          "channel_key": "null",
+          "task": "",
+          "status": "channel_violation",
+          "memory_handoff_toon": "memory/registry/2037_20260420060000_handoff.toon"
+        }
+      ]
+    },
+    "recent_file_changes": {
+      "file": "memory/registry/recent_file_changes.toon",
+      "violation_entry_added": true,
+      "entry_details": {
+        "channel_key": "registry",
+        "what": "channel_key violation",
+        "who": 2037,
+        "notes": "lane switch blocked - actor used 7 different channel_keys"
+      }
+    }
+  },
+  "violation_analysis": {
+    "channel_switching_pattern": {
+      "sequence": "root -> prd -> doctrine -> rules -> registry -> tools -> doctrine -> prd -> root -> tools -> doctrine -> development -> development -> doctrine -> doctrine -> prd -> registry -> doctrine -> tools -> tools -> tools -> prd -> prd -> prd -> registry -> doctrine -> tools -> tools -> tools",
+      "switches": 30,
+      "unique_channels": 7,
+      "most_used_channel": "doctrine (8 times)",
+      "least_used_channel": "rules (1 time)"
+    },
+    "impact_assessment": {
+      "state_bleed_risk": "high",
+      "cross_contamination": "detected",
+      "corrupted_lineage": "prevented",
+      "mixed_lane_artifacts": "identified"
+    }
+  },
+  "actors_requiring_manual_review": [
+    {
+      "actor_id": 2037,
+      "current_status": "channel_violation",
+      "required_action": "manual_review_and_approval",
+      "review_criteria": [
+        "Verify actor understands channel key isolation rule",
+        "Confirm actor will maintain single channel_key per task",
+        "Approve new task assignment"
+      ]
+    }
+  ],
+  "prevention_measures": {
+    "implemented": [
+      "Channel key violation detection in recent file changes",
+      "Automatic actor freezing on violation",
+      "Handoff TOON creation for violations",
+      "Registry updates for audit trail"
+    ],
+    "recommended": [
+      "Add channel key validation to actor task assignment",
+      "Implement real-time channel key monitoring",
+      "Create channel key isolation training for actors"
+    ]
+  },
+  "compliance_status": {
+    "total_actors_checked": 2,
+    "compliant_actors": 1,
+    "violating_actors": 1,
+    "actors_reset": 1,
+    "violations_resolved": 1
+  },
+  "next_steps": [
+    "Manual review of actor 2037 required",
+    "Actor 2037 must await_new_task status until approved",
+    "Monitor for additional violations",
+    "Update channel key isolation documentation if needed"
+  ],
+  "enforcement_complete": true
+}

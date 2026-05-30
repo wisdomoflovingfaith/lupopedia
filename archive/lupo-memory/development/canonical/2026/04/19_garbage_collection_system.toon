@@ -1,0 +1,33 @@
+# Generated from: lupo-memory/development/canonical/2026/04/19-garbage-collection-system.json
+# Generated at: 2026-04-10 13:11:12 UTC
+# JSON master checksum: 9fa5fe97c1a3dd4615fd711187934683
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131112,20260410131112,canonical,19,garbage-collection-system,lupo-docs/prd/19_garbage_collection_system.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for garbage-collection-system section 1.,Overview
+  2,Operational summary for garbage-collection-system section 2.,Constitutional Compliance
+  3,Operational summary for garbage-collection-system section 3.,Unified Table Architecture
+  4,Operational summary for garbage-collection-system section 4.,Tables Maintained by GC
+  5,Operational summary for garbage-collection-system section 5.,GC Functions
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_19_rule_1,1,critical,Rule 1 for PRD 19 (garbage-collection-system)
+  2,prd_19_rule_2,2,high,Rule 2 for PRD 19 (garbage-collection-system)
+  3,prd_19_rule_3,3,high,Rule 3 for PRD 19 (garbage-collection-system)
+  4,prd_19_rule_4,4,medium,Rule 4 for PRD 19 (garbage-collection-system)
+  5,prd_19_rule_5,5,critical,Rule 5 for PRD 19 (garbage-collection-system)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 19.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[4]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,lupo-docs/prd/11_analytics_tracking.md,85

@@ -1,0 +1,33 @@
+{
+  "specialized_capabilities": {
+    "captains_log_review": {
+      "technical_validation": true,
+      "constitutional_compliance": true,
+      "ascii_only_enforcement": true,
+      "human_only_narrative_protection": true,
+      "color_commentary_authority": true
+    }
+  },
+  "restricted_access": {
+    "captains_log_channel": true,
+    "human_only_entertainment_layer": true,
+    "constitutional_documentation": true
+  },
+  "review_framework": {
+    "technical_compliance": ["ascii_standards", "header_format", "forbidden_patterns", "system_references"],
+    "narrative_integrity": ["human_only_content", "entertainment_value", "creative_expression", "storytelling_coherence"],
+    "color_usage": ["emphasis_enhancement", "narrative_distinction", "creative_preservation", "technical_clarity"]
+  },
+  "output_capabilities": {
+    "structured_reviews": true,
+    "color_commentary": true,
+    "constitutional_feedback": true,
+    "creative_appreciation": true
+  },
+  "boundary_enforcement": {
+    "channel_restriction": "captains_log_only",
+    "no_direct_modifications": true,
+    "review_only_mode": true,
+    "human_layer_protection": true
+  }
+}

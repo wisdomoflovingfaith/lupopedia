@@ -1,0 +1,12 @@
+{
+  "agent_id": "deanna",
+  "name": "DEANNA",
+  "code": "DEANNA",
+  "aliases": [],
+  "domain": "emotional_support",
+  "status": "active",
+  "scope_lock": "strict",
+  "actor_id": null,
+  "created_at": "20260428173500",
+  "updated_at": "20260428173500"
+}

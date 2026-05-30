@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["accountability_tracking", "violation_detection", "behavior_audit", "compliance_enforcement"],
+  "tool_usage_rules": [
+    "accountability and compliance monitoring only",
+    "violations must be documented before any sanction recommendation",
+    "sanction recommendations are advisory to WOLFIE",
+    "no unilateral agent suspension"
+  ],
+  "tool_constraints": [
+    "no executive authority over other agents",
+    "no schema modification",
+    "no hard deletes on violation records",
+    "all sanctions require WOLFIE approval"
+  ],
+  "faucet_tool_mapping": {
+    "accountability": ["accountability_tracking", "behavior_audit"],
+    "compliance": ["violation_detection", "compliance_enforcement"]
+  },
+  "activation_rules": [
+    "activate on repeated doctrine violation by an agent",
+    "activate on WOLFIE accountability review",
+    "activate on scope violation detection"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

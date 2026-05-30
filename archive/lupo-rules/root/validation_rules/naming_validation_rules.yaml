@@ -1,0 +1,318 @@
+---
+# Naming Validation Rules
+# Canonical rules for naming validation and compliance checking
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: naming_validation_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Naming Validation Framework
+validation_framework:
+  definition: "Naming validation ensures that actor and facet names comply with system naming conventions and maintain proper separation between identities and execution environments"
+  principles:
+    - validation must be strict and consistent
+    - validation must be automated where possible
+    - validation must be comprehensive
+    - validation must be enforceable
+    - validation must support system evolution
+
+# Actor Naming Validation
+actor_naming_validation:
+  description: "Validate actor names against naming conventions"
+  requirements:
+    - actor names must not match IDE patterns
+    - actor names must be role-based
+    - actor names must be meaningful
+    - actor names must be unique
+    - actor names must be persistent
+  
+  validation_rules:
+    blocked_patterns:
+      - cursor
+      - windsurf
+      - kiro
+      - warp
+      - trae
+      - antigravity
+      - vscode
+      - intellij
+      - pycharm
+      - sublime
+      - atom
+      - vim
+      - emacs
+      - nano
+      - notepad++
+      - brackets
+      - webstorm
+      - phpstorm
+      - rubymine
+      - goland
+      - clion
+      - datagrip
+      - rider
+      - appcode
+    
+    preferred_patterns:
+      - "^[a-z]+$" # lowercase letters only
+      - "^[a-z]{3,8}$" # 3-8 characters
+      - "^[a-z]+(?:-[a-z]+)*$" # optional hyphens
+    
+    character_rules:
+      allowed_characters: "abcdefghijklmnopqrstuvwxyz-"
+      min_length: 3
+      max_length: 20
+      case_sensitive: false
+      special_characters: "hyphen only"
+    
+    semantic_rules:
+      must_be_role_based: true
+      must_be_meaningful: true
+      must_be_persistent: true
+      must_be_unique: true
+      must_not_be_tool_based: true
+      must_not_be_ide_based: true
+  
+  validation_procedures:
+    pre_creation_validation:
+      - check against blocked patterns
+      - validate against preferred patterns
+      - verify character compliance
+      - assess semantic compliance
+      - confirm uniqueness
+    
+    post_creation_validation:
+      - validate behavior matches name
+      - verify responsibilities match name
+      - assess authority matches name
+      - check integration matches name
+  
+  enforcement_rules:
+    blocking_rules:
+      - block creation of IDE-based names
+      - block creation of tool-based names
+      - block creation of non-role-based names
+      - block creation of non-meaningful names
+    
+    correction_rules:
+      - identify existing violations
+      - require renaming of invalid actors
+      - require documentation of changes
+      - require update of references
+
+# Facet Naming Validation
+facet_naming_validation:
+  description: "Validate facet names against naming conventions"
+  requirements:
+    - facet names must be descriptive
+    - facet names must be consistent
+    - facet names must be unique
+    - facet names must be maintainable
+    - facet names must not conflict with actors
+  
+  validation_rules:
+    allowed_patterns:
+      - "^[a-z]+$" # lowercase letters only
+      - "^[a-z]{3,12}$" # 3-12 characters
+      - "^[a-z]+(?:[-_][a-z]+)*$" # optional hyphens or underscores
+    
+    character_rules:
+      allowed_characters: "abcdefghijklmnopqrstuvwxyz-_"
+      min_length: 3
+      max_length: 20
+      case_sensitive: false
+      special_characters: "hyphen and underscore only"
+    
+    semantic_rules:
+      must_be_descriptive: true
+      must_be_consistent: true
+      must_be_unique: true
+      must_be_maintainable: true
+      must_not_conflict_with_actors: true
+  
+  validation_procedures:
+    pre_creation_validation:
+      - validate against allowed patterns
+      - verify character compliance
+      - assess semantic compliance
+      - check for actor conflicts
+      - confirm uniqueness
+    
+    post_creation_validation:
+      - validate name matches capabilities
+      - verify name is descriptive
+      - assess name consistency
+      - check name maintainability
+  
+  enforcement_rules:
+    blocking_rules:
+      - block creation of conflicting names
+      - block creation of non-descriptive names
+      - block creation of inconsistent names
+      - block creation of unmaintainable names
+    
+    correction_rules:
+      - identify naming issues
+      - require name corrections
+      - require documentation of changes
+      - require update of references
+
+# Cross-Validation Rules
+cross_validation_rules:
+  actor_facet_separation:
+    description: "Ensure actor and facet names maintain proper separation"
+    requirements:
+      - actor names must not be facet names
+      - facet names must not be actor names
+      - naming conventions must be distinct
+      - naming conflicts must be resolved
+      - naming separation must be maintained
+    
+    validation_procedures:
+      - check for name conflicts
+      - verify naming convention separation
+      - assess naming clarity
+      - resolve naming conflicts
+      - maintain naming separation
+
+# Validation Automation
+automation_rules:
+  automated_validation:
+    description: "Automate naming validation processes"
+    requirements:
+      - automate pattern matching
+      - automate character validation
+      - automate semantic validation
+      - automate conflict detection
+      - automate uniqueness checking
+    
+    implementation:
+      - implement pattern matching automation
+      - create character validation automation
+      - develop semantic validation automation
+      - build conflict detection automation
+      - establish uniqueness checking automation
+  
+  validation_scheduling:
+    description: "Schedule naming validation processes"
+    requirements:
+      - schedule pre-creation validation
+      - schedule post-creation validation
+      - schedule cross-validation
+      - schedule compliance audits
+      - schedule improvement evaluations
+    
+    implementation:
+      - establish pre-creation validation schedule
+      - create post-creation validation schedule
+      - develop cross-validation schedule
+      - build compliance audit schedule
+      - implement improvement evaluation schedule
+
+# Validation Reporting
+reporting_rules:
+  validation_reports:
+    description: "Generate naming validation reports"
+    requirements:
+      - reports must be comprehensive
+      - reports must be accurate
+      - reports must be timely
+      - reports must be actionable
+      - reports must be tracked
+    
+    report_types:
+      - actor naming validation reports
+      - facet naming validation reports
+      - cross-validation reports
+      - compliance audit reports
+      - improvement evaluation reports
+    
+    report_content:
+      - validation summary and status
+      - detailed validation results
+      - identified issues and concerns
+      - recommended actions and improvements
+      - validation trends and patterns
+
+# Validation Enforcement
+enforcement_rules:
+  compliance_enforcement:
+    description: "Enforce naming validation compliance"
+    requirements:
+      - non-compliant names must be flagged
+      - naming issues must be addressed
+      - compliance improvements must be implemented
+      - compliance progress must be tracked
+      - compliance success must be measured
+    
+    enforcement_procedures:
+      - flag non-compliant names
+      - address naming issues
+      - implement compliance improvements
+      - track compliance progress
+      - measure compliance success
+  
+  corrective_actions:
+    description: "Implement corrective actions for naming violations"
+    requirements:
+      - identify root causes of violations
+      - develop corrective action plans
+      - implement corrective actions
+      - validate corrective effectiveness
+      - document corrective outcomes
+    
+    corrective_procedures:
+      - analyze violation root causes
+      - create action plans
+      - implement corrective actions
+      - validate effectiveness
+      - document outcomes
+
+# Validation Metrics
+validation_metrics:
+  actor_naming_metrics:
+    - naming compliance rate
+    - pattern compliance rate
+    - semantic compliance rate
+    - uniqueness validation rate
+    - correction success rate
+  
+  facet_naming_metrics:
+    - naming compliance rate
+    - pattern compliance rate
+    - descriptive compliance rate
+    - uniqueness validation rate
+    - correction success rate
+  
+  cross_validation_metrics:
+    - separation compliance rate
+    - conflict detection rate
+    - clarity assessment rate
+    - maintainability rate
+    - improvement rate
+
+# Validation Success Criteria
+success_criteria:
+  actor_naming_success: 100%
+  facet_naming_success: > 95%
+  cross_validation_success: > 95%
+  overall_naming_success: > 95%
+
+# Validation Documentation
+documentation_requirements:
+  validation_documentation:
+    - complete naming validation procedures and rules
+    - naming convention documentation
+    - validation automation and scheduling procedures
+    - validation reporting and tracking procedures
+    - validation enforcement and corrective procedures
+  
+  troubleshooting_documentation:
+    - naming validation failure troubleshooting procedures
+    - common naming issues and solutions
+    - naming validation system maintenance procedures
+    - naming validation optimization procedures
+    - naming validation improvement procedures

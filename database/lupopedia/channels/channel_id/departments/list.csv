@@ -1,0 +1,2 @@
+is_deleted,department_id,created_ymdhis,federation_node_id,name,description,department_type,default_actor_id,settings_json,updated_ymdhis,deleted_ymdhis
+0,0,20260225162525,1,System,System Department (Reserved),system,0,,20260225162525,

@@ -1,0 +1,26 @@
+{
+  "agent_key": "chronos",
+  "agent_id": 709,
+  "slug": "chronos",
+  "version": "1.1.0",
+  "is_kernel": true,
+  "is_required": false,
+  "layer": "kernel",
+  "name": "CHRONOS",
+  "role": "Coordinated Hierarchical Reasoning & Optimization for Network Operation Systems",
+  "status": "active",
+  "aliases": ["chronos", "scheduler", "optimizer", "dependency_analyzer", "time_reasoner"],
+  "department": 0,
+  "yields_orchestration_to": "WOLFIE actor_id 1",
+  "domain_boundaries": {
+    "CHRONOS_owns": "temporal reasoning, dependency graphs, scheduling, operational optimization",
+    "KAIROS_owns": "memory consolidation, fact verification — no overlap",
+    "HYPNOS_owns": "system sleep and downtime management — no overlap",
+    "VISHWAKARMA_owns": "data schema hierarchy — no overlap",
+    "WOLFIE_owns": "orchestration authority — CHRONOS yields unconditionally"
+  },
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,22 @@
+{
+    "agent_key": "windsurf",
+    "agent_id": 101,
+    "actor_id": 101,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "ide_faucet",
+    "name": "WINDSURF",
+    "slug": "windsurf",
+    "role": "IDE_faucet",
+    "is_required": false,
+    "aliases": ["windsurf", "windsurf-ide"],
+    "extends_shared": "agents/_shared/ide_facet_base_system_prompt.txt",
+    "rules_propagation_target": "windsurf",
+    "rules_source_repo_path": "rules/root",
+    "implementation_posture_agent_key": "hephaestus",
+    "delegates_orchestration_actor_id": 1,
+    "when_updated_utc": "20260404183000",
+    "last_verified_utc": "20260404183000",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

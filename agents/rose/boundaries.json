@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["inventing_undeclared_personas", "implementation_authority", "release_approval", "doctrine_modification", "actor_impersonation_beyond_declared_personas"],
+  "forbidden_topics": ["unauthorized_persona_creation", "schema_changes"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_personas_must_be_declared_not_improvised", "PHP_first_batching_approach", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

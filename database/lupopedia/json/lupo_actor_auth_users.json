@@ -1,0 +1,88 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_actor_auth_users",
+  "fields": [
+    "`actor_auth_user_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`auth_user_id` bigint NOT NULL",
+    "`relationship_role` varchar(64) NOT NULL DEFAULT supporting_human",
+    "`is_primary` tinyint NOT NULL DEFAULT 0",
+    "`routing_priority` smallint NOT NULL DEFAULT 100",
+    "`status` varchar(32) NOT NULL DEFAULT active",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_auth_users_unq",
+      "columns": [
+        "actor_id",
+        "auth_user_id",
+        "relationship_role"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_actor_status",
+      "columns": [
+        "actor_id",
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_auth_user",
+      "columns": [
+        "auth_user_id",
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_primary",
+      "columns": [
+        "actor_id",
+        "is_primary"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_routing",
+      "columns": [
+        "actor_id",
+        "routing_priority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_auth_user_id",
+    "expected_name": "actor_auth_user_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

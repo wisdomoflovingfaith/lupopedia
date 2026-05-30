@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260417092315",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "anubis-doctrine-split",
+  "summary": "Patched PRD16 with a canonical synchronous ANUBIS execution baseline and created a separate non-canonical queue execution proposal doctrine.",
+  "files_changed": [
+    "docs/prd/16_lupopedia_headers.md",
+    "docs/doctrine/runtime/ANUBIS_QUEUE_EXECUTION_PROPOSAL.md",
+    "docs/versions/4.1.2/buffer/20260417092315_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

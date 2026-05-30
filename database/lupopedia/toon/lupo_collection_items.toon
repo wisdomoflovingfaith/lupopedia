@@ -1,0 +1,23 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_collection_items
+fields:
+- '`collection_item_id` bigint NOT NULL'
+- '`collection_id` bigint'
+- '`item_type` varchar(64)'
+- '`item_id_ref` bigint'
+- '`sort_order` int DEFAULT 0'
+- '`created_ymdhis` bigint'
+indexes: []
+primary_key:
+  column_name: collection_item_id
+  expected_name: collection_item_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

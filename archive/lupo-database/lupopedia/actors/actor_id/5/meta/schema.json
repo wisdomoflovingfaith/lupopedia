@@ -1,0 +1,7 @@
+{
+  "version": "4.0.47",
+  "db_sync": {
+    "profile.json": "lupo_actors",
+    "logs/*.ndjson": "lupo_logs"
+  }
+}

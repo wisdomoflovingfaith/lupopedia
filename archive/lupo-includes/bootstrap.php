@@ -1,0 +1,408 @@
+<?php
+# ---------------------------------------------------------------------
+# lupopedia.headers:
+#   header_format_version: "4.1.2"
+#   file_path_from_root: "lupo-includes/bootstrap.php"
+#   web_path: "https://www.lupopedia.com/lupopedia/lupo-includes/bootstrap.php"
+#   status: "active"
+#   when_updated: "20260417073722"
+#   trust_tier: "canonical"
+#   questions_toon: null
+#   memory_toon: "lupo-memory/development/canonical/1026/04/bootstrap-php.toon"
+#   atoms_toon: null
+#   transcript_jsonl: "0/development/bootstrap-php"
+#   artifact_type: "bootstrap"
+#   artifact_kind: "initialization"
+#   channel_key: "development"
+#   federation_node_id: 0
+#   thread_id: ""
+#   content_id: null
+#   content_parent_id: "42"
+#   content_slug: "bootstrap-php"
+#   default_collection_id: null
+#   lupopedia.schema: "implementation"
+#   title: "bootstrap.php — Lupopedia runtime bootstrap and service wiring"
+#   summary: "Loads config-bound bootstrap path constants, initializes DB/session/auth/services, and wires ApiProviderChainService with defensive shared-host compatibility."
+# ---------------------------------------------------------------------
+/*
+=== FILES SYSTEM RULE (CANONICAL) ===
+
+All Lupopedia files (lupo-memory/, lupo-channels/, app/, lupo-includes/, etc.) live ABOVE the web root.
+
+ONLY lupopedia-config.php is written INSIDE the web-accessible directory and MUST be protected (chmod 0600 + .htaccess Deny from all).
+
+memory_path and channels_path MUST resolve ABOVE web root.
+*/
+
+// is config loaded
+if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+    print "LUPOPEDIA_CONFIG_LOADED is not defined this file is loaded after the config is loaded it can not be called out of order ";
+    exit;
+}
+
+error_log("[bootstrap.php] LOADED: config=" . (defined('LUPOPEDIA_CONFIG_PATH') ? LUPOPEDIA_CONFIG_PATH : 'unknown'));
+
+if (!defined('ABSPATH') || ABSPATH === '') {
+    print "Invalid configuration: ABSPATH is missing.";
+    exit;
+}
+
+// LUPOPEDIA_PATH must match the install root in config (ABSPATH); prevents a mismatched or hijacked config from pointing elsewhere.
+$lupo_abs_norm = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, ABSPATH), DIRECTORY_SEPARATOR);
+if (defined('LUPOPEDIA_PATH')) {
+    $lupo_lp_norm = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, LUPOPEDIA_PATH), DIRECTORY_SEPARATOR);
+    $lupo_ra = @realpath($lupo_abs_norm);
+    $lupo_rl = @realpath($lupo_lp_norm);
+    if ($lupo_ra !== false && $lupo_rl !== false && $lupo_ra !== $lupo_rl) {
+        print "Invalid configuration: LUPOPEDIA_PATH does not match ABSPATH.";
+        exit;
+    }
+} else {
+    define('LUPOPEDIA_PATH', $lupo_abs_norm);
+}
+
+// Writable runtime dirs (FTP / auto-installer: empty folders may be missing; mirrors InstallWizardHtaccessWriter::ensureRuntimeDirectories)
+if (defined('LUPOPEDIA_ABSPATH') && LUPOPEDIA_ABSPATH !== '') {
+    $lupo_runtime_dirs = array('lupo-cache', 'lupo-logs', 'lupo-uploads', 'lupo-tmp');
+    $lupo_abs_base = rtrim(LUPOPEDIA_ABSPATH, "/\\");
+    foreach ($lupo_runtime_dirs as $lupo_rd) {
+        $lupo_rd_path = $lupo_abs_base . DIRECTORY_SEPARATOR . $lupo_rd;
+        if (!is_dir($lupo_rd_path)) {
+            @mkdir($lupo_rd_path, 0755, true);
+        }
+    }
+}
+
+// Load version information
+$version_path = __DIR__ . DIRECTORY_SEPARATOR . 'version.php';
+if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+    echo "<!-- DEBUG: Trying to load version from: " . htmlspecialchars($version_path) . " -->\n";
+    echo "<!-- DEBUG: Current working directory: " . htmlspecialchars(getcwd()) . " -->\n";
+    echo "<!-- DEBUG: DIRECTORY_SEPARATOR: " . htmlspecialchars(DIRECTORY_SEPARATOR) . " -->\n";
+}
+require_once($version_path);
+
+/*
+ * The error_reporting() function can be disabled in php.ini it is wrapped in a function_exists() check.
+ */
+if (function_exists('error_reporting')) {
+    /*
+     * Initialize error reporting to a known set of levels.
+     *
+     * This will be adapted in wp_debug_mode() located in wp-includes/load.php based on WP_DEBUG.
+     * @see https://www.php.net/manual/en/errorfunc.constants.php List of known error levels.
+     */
+    if (LUPOPEDIA_DEBUG) {
+        // Enable all error reporting and display for debugging
+        // Remove @ to ensure errors are actually set (not suppressed)
+        // Note: E_STRICT is deprecated in PHP 8+, so we use E_ALL only
+        error_reporting(E_ALL);
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        ini_set('log_errors', '0'); // Don't log, just display
+        ini_set('html_errors', '1'); // Format errors as HTML
+    } else {
+        // Production: show all errors except deprecated and strict (E_STRICT deprecated in PHP 8+)
+        error_reporting(E_ALL & ~E_DEPRECATED);
+        ini_set('display_errors', '0');
+        ini_set('log_errors', '1'); // Log errors in production
+    }
+}
+
+
+
+// Include the database factory and PDO_DB wrapper (Doctrine: all DB access via DatabaseFactory + PDO_DB)
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pdo_db.php');
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'DatabaseFactory.php');
+
+try {
+    $mydatabase = DatabaseFactory::getConnection();
+    // Legacy compatibility: prefer DatabaseFactory::getConnection() or lupo_get_db() in new code.
+    $GLOBALS['mydatabase'] = $mydatabase;
+    $mydatabase->fetchRow('SELECT 1');
+} catch (Exception $e) {
+    // Log the detailed error
+    error_log('Database connection error: ' . $e->getMessage());
+    $mydatabase = null;
+    $GLOBALS['mydatabase'] = null;
+    // CLI whoami/context can continue without DB; web and other CLI commands will fail later with a clear message
+    if (php_sapi_name() !== 'cli') {
+        $errorMsg = 'Database connection error: ' . $e->getMessage();
+        if (strpos($e->getMessage(), 'Access denied') !== false) {
+            $errorMsg .= "\n\nPlease check your database username and password in lupopedia-config.php";
+        } elseif (strpos($e->getMessage(), 'Unknown database') !== false) {
+            $errorMsg .= "\n\nThe database '" . (defined('DB_NAME') ? DB_NAME : '') . "' does not exist. Please create it first.";
+        } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
+            $errorMsg .= "\n\nCould not connect to the database server. Please check if MySQL is running.";
+        }
+        if (!headers_sent()) {
+            header('HTTP/1.1 500 Internal Server Error');
+        }
+        die(nl2br(htmlspecialchars($errorMsg)));
+    }
+}
+
+// Request-scoped UI collection context (not session authority — §17.7). Default 0 = system collection.
+if (!isset($GLOBALS['collection_id'])) {
+    $GLOBALS['collection_id'] = 0;
+}
+
+// Security Headers
+if (!headers_sent()) {
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+    header('X-XSS-Protection: 1; mode=block');
+
+    // Cloudflare request handling: extract CF-Connecting-IP, CF-IPCountry, CF-Ray; optional validation and geo/threat rules
+    $cloudflare_handler = __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'CloudflareRequestHandler.php';
+    if (file_exists($cloudflare_handler)) {
+        require_once $cloudflare_handler;
+        CloudflareRequestHandler::process();
+    }
+
+    // Set secure session cookie parameters only before session is started.
+    // Use LUPOPEDIA_PUBLIC_PATH when defined so cookie is sent for subdirectory installs (e.g. /lupopedia/).
+    // For PHP >= 7.3, use array-form params with samesite=Lax; keep 5-arg fallback for PHP 5.6+ compatibility.
+    $session_not_started = function_exists('session_status') ? (session_status() === PHP_SESSION_NONE) : (session_id() === '');
+    if ($session_not_started) {
+        $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+        $domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+        $cookie_path = (defined('LUPOPEDIA_PUBLIC_PATH') && LUPOPEDIA_PUBLIC_PATH !== '') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/' : '/';
+        if (defined('PHP_VERSION_ID') && PHP_VERSION_ID >= 70300) {
+            session_set_cookie_params(array(
+                'lifetime' => 0,
+                'path' => $cookie_path,
+                'domain' => $domain,
+                'secure' => $secure,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ));
+        } else {
+            if (function_exists('ini_set')) {
+                @ini_set('session.cookie_samesite', 'Lax');
+            }
+            session_set_cookie_params(0, $cookie_path, $domain, $secure, true);
+        }
+    }
+}
+
+// Timezone
+if (function_exists('date_default_timezone_set')) {
+    date_default_timezone_set('UTC');
+}
+
+/**
+ * ---------------------------------------------------------
+ * Session (OOP) and Auth Helpers (Early Initialization)
+ * ---------------------------------------------------------
+ * Session class replaces procedural session helpers. One instance per request.
+ */
+if (!defined('LUPO_APP_DIR')) {
+    // Prefer modern app/ tree; retain legacy fallback for historical installs.
+    $lupo_modern_app_dir = LUPOPEDIA_ABSPATH . 'app';
+    if (is_dir($lupo_modern_app_dir)) {
+        define('LUPO_APP_DIR', 'app');
+    } else {
+        define('LUPO_APP_DIR', 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app');
+    }
+}
+if (!defined('LUPO_ACTORS_DIR')) {
+    define('LUPO_ACTORS_DIR', 'lupo-actors');
+}
+if (!defined('LUPO_CHANNELS_DIR')) {
+    define('LUPO_CHANNELS_DIR', 'lupo-channels');
+}
+if (!defined('LUPO_PROMPTS_SUBDIR')) {
+    define('LUPO_PROMPTS_SUBDIR', 'prompts');
+}
+$app_auth = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth';
+$canonical_session = LUPOPEDIA_ABSPATH . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'Session.php';
+if (file_exists($canonical_session)) {
+    require_once $canonical_session;
+} elseif (file_exists($app_auth . DIRECTORY_SEPARATOR . 'Session.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'Session.php';
+}
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php';
+}
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'AuthRoleResolver.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'AuthRoleResolver.php';
+}
+if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'AuthService.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'AuthService.php';
+}
+
+$auth_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'auth-helpers.php';
+if (file_exists($auth_helpers)) {
+    require_once $auth_helpers;
+}
+
+$reserved_id_helpers = __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'reserved-id-helpers.php';
+if (file_exists($reserved_id_helpers)) {
+    require_once $reserved_id_helpers;
+}
+
+$session_manager_class = __DIR__ . DIRECTORY_SEPARATOR . 'classes/SessionManager.php';
+if (file_exists($session_manager_class)) {
+    require_once $session_manager_class;
+}
+
+$session_handler_class = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'UnifiedSessionHandler.php';
+if (file_exists($session_handler_class)) {
+    require_once $session_handler_class;
+}
+
+// Create Session instance; handler delegates all DB to Session (thin wrapper: cookie + system_context only)
+$lupo_session = null;
+if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
+    $handler = new \App\Auth\SessionHandler($GLOBALS['mydatabase']);
+    $lupo_session = new \App\Auth\Session($GLOBALS['mydatabase'], $handler);
+    $handler->setSession($lupo_session);
+    $GLOBALS['lupo_session'] = $lupo_session;
+
+    // Auth domain: AuthRoleResolver + AuthService (replaces procedural auth helpers)
+    if (class_exists('App\Auth\AuthRoleResolver') && class_exists('App\Auth\AuthService')) {
+        $lupo_auth_role_resolver = new \App\Auth\AuthRoleResolver($GLOBALS['mydatabase']);
+        $GLOBALS['lupo_auth_service'] = new \App\Auth\AuthService($lupo_session, $GLOBALS['mydatabase'], $lupo_auth_role_resolver);
+    }
+}
+
+// Start session and run idle check then validate
+if ($lupo_session !== null) {
+    $lupo_session->start();
+    // Model A: identity from lupo_sessions; do not store actor_id in $_SESSION. UI collection context: $GLOBALS['collection_id'] (set above).
+    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+        error_log("SESSION: Session started - ID: " . substr($lupo_session->getSessionId(), 0, 8) . "...");
+    }
+    try {
+        // SessionManager::tick — probabilistic lupo_sessions row GC only; idle expiry + touch in App\Auth\Session::validateSession().
+        $sessionManager = new SessionManager($lupo_session);
+        $sessionManager->tick();
+        $actor_id = $lupo_session->validateSession();
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            if ($actor_id) {
+                error_log("SESSION: Session validated - Actor ID: " . $actor_id);
+            } else {
+                error_log("SESSION: Session invalid or expired");
+            }
+        }
+        // Fallback: if session is invalid, create anonymous session and re-validate
+        if (!$actor_id) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log("SESSION: Creating new anonymous session (actor_id=0) after failed validation");
+            }
+            $created = \App\Auth\Session::create($GLOBALS['mydatabase'], 0);
+            if ($created && isset($created->session_id)) {
+                // Re-bind PHP session to new session_id
+                session_write_close();
+                session_id($created->session_id);
+                session_start();
+                // Re-validate
+                $actor_id = $lupo_session->validateSession();
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("SESSION: Re-validated after anonymous session create. Actor ID: " . var_export($actor_id, true));
+                }
+            } else {
+                error_log("SESSION: CRITICAL - Failed to create anonymous session (schema mismatch or DB error)");
+                if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                    error_log("SESSION: Failed to create anonymous session after failed validation");
+                }
+            }
+        }
+    } catch (\PDOException $e) {
+        $msg = $e->getMessage();
+        if (strpos($msg, "doesn't exist") !== false) {
+            if (!headers_sent() && php_sapi_name() !== 'cli') {
+                $install_path = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/install.php' : '/install.php';
+                header('Location: ' . $install_path);
+                exit;
+            }
+        }
+        throw $e;
+    } catch (Exception $e) {
+        throw $e;
+    }
+}
+
+// Actor domain: ActorService (replaces procedural actor/identity helpers)
+$app_services = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'Services';
+$app_support = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'Support';
+if (isset($GLOBALS['mydatabase'])) {
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'ActorService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'ActorService.php';
+        if (class_exists('App\Services\ActorService')) {
+            $GLOBALS['lupo_actor_service'] = new \App\Services\ActorService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'CollectionZeroService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'CollectionZeroService.php';
+        if (class_exists('App\Services\CollectionZeroService')) {
+            $GLOBALS['lupo_collection_zero_service'] = new \App\Services\CollectionZeroService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'CollectionTabsService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'CollectionTabsService.php';
+        if (class_exists('App\Services\CollectionTabsService')) {
+            $GLOBALS['lupo_collection_tabs_service'] = new \App\Services\CollectionTabsService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'SavedCollectionsService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'SavedCollectionsService.php';
+        if (class_exists('App\Services\SavedCollectionsService')) {
+            $GLOBALS['lupo_saved_collections_service'] = new \App\Services\SavedCollectionsService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'UploadService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'UploadService.php';
+        if (class_exists('App\Services\UploadService')) {
+            $GLOBALS['lupo_upload_service'] = new \App\Services\UploadService();
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'ProjectService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'ProjectService.php';
+        if (class_exists('App\Services\ProjectService')) {
+            $GLOBALS['lupo_project_service'] = new \App\Services\ProjectService($GLOBALS['mydatabase']);
+        }
+    }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'ApiProviderChainService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'ApiProviderChainService.php';
+        if (class_exists('App\Services\ApiProviderChainService')) {
+            $lupo_provider_runtime_config = isset($GLOBALS['LUPO_API_PROVIDER_CONFIG']) && is_array($GLOBALS['LUPO_API_PROVIDER_CONFIG'])
+                ? $GLOBALS['LUPO_API_PROVIDER_CONFIG']
+                : null;
+            $GLOBALS['lupo_api_provider_chain_service'] = new \App\Services\ApiProviderChainService($lupo_provider_runtime_config);
+            // Call sites should use: $GLOBALS['lupo_api_track_spend_hook']($provider, $estimatedUsd, $details); after successful API calls
+            // Lightweight spend-tracking hook for call sites that compute estimated provider cost.
+            $GLOBALS['lupo_api_track_spend_hook'] = function ($provider, $estimatedUsd, $details = array()) {
+                if (isset($GLOBALS['lupo_api_provider_chain_service']) && is_object($GLOBALS['lupo_api_provider_chain_service']) && method_exists($GLOBALS['lupo_api_provider_chain_service'], 'trackSpend')) {
+                    return $GLOBALS['lupo_api_provider_chain_service']->trackSpend($provider, $estimatedUsd, is_array($details) ? $details : array());
+                }
+                return false;
+            };
+        }
+    }
+}
+if (file_exists($app_support . DIRECTORY_SEPARATOR . 'AtomLoader.php')) {
+    require_once $app_support . DIRECTORY_SEPARATOR . 'AtomLoader.php';
+    require_once $app_support . DIRECTORY_SEPARATOR . 'VersionUtils.php';
+    if (class_exists('App\Support\AtomLoader')) {
+        $GLOBALS['lupo_atom_loader'] = new \App\Support\AtomLoader();
+    }
+}
+if (file_exists($app_support . DIRECTORY_SEPARATOR . 'RedirectUtils.php')) {
+    require_once $app_support . DIRECTORY_SEPARATOR . 'RedirectUtils.php';
+}
+if (file_exists($app_support . DIRECTORY_SEPARATOR . 'LimitsLogger.php')) {
+    require_once $app_support . DIRECTORY_SEPARATOR . 'LimitsLogger.php';
+}
+
+$lupo_collection_tabs_loader = ABSPATH . LUPO_INCLUDES_DIR . '/functions/collection-tabs-loader.php';
+if (is_file($lupo_collection_tabs_loader)) {
+    require_once $lupo_collection_tabs_loader;
+    if (function_exists('lupo_collection_context_persist_from_request')) {
+        lupo_collection_context_persist_from_request();
+    }
+}
+
+require_once ABSPATH . LUPO_INCLUDES_DIR . '/lupopedia-loader.php';
+?>

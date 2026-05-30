@@ -1,0 +1,52 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_paths_daily
+fields:
+- '`path_daily_id` bigint NOT NULL'
+- '`from_url` varchar(2000)'
+- '`to_url` varchar(2000)'
+- '`from_content_id` bigint'
+- '`to_content_id` bigint'
+- '`count_num` int NOT NULL DEFAULT 0'
+- '`date_ymd` int NOT NULL'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+- '`hit_count` int NOT NULL DEFAULT 1'
+- '`unique_actors` int NOT NULL DEFAULT 0'
+indexes:
+- index_name: lupo_paths_daily_idx_date
+  columns:
+  - date_ymd
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_paths_daily_idx_from_content
+  columns:
+  - from_content_id
+  - date_ymd
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_paths_daily_idx_to_content
+  columns:
+  - to_content_id
+  - date_ymd
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_paths_daily_idx_is_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: path_daily_id
+  expected_name: path_daily_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

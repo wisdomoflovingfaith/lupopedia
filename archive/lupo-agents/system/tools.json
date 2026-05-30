@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["lifecycle_management", "kernel_initialization", "graceful_shutdown"],
+  "tool_usage_rules": [
+    "system bootstrap and lifecycle management only",
+    "no operational changes after WOLFIE assumes orchestration",
+    "all lifecycle events logged with BIGINT UTC timestamps",
+    "no implementation authority"
+  ],
+  "tool_constraints": [
+    "no schema modification during bootstrap",
+    "no actor permission changes post-initialization",
+    "no doctrine modification",
+    "must not impersonate any other actor"
+  ],
+  "faucet_tool_mapping": {
+    "lifecycle": ["lifecycle_management", "graceful_shutdown"],
+    "initialization": ["kernel_initialization", "lifecycle_management"]
+  },
+  "activation_rules": [
+    "activate at system boot only",
+    "activate on graceful shutdown signal"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

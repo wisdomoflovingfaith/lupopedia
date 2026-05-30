@@ -1,0 +1,670 @@
+> **For the authoritative channel model, see PRD 02 and channel_model_doctrine.md. Channels are semantic containers under a domain (node), not chat rooms.**
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "docs/channels/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  file_hash: "a27599a0d39236a52b72c40c7e162ee7a0854075aa27cea40dba7f661efb693b"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+lupopedia.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
+  file_path_from_root: "docs\channels\doctrine\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  file_hash: "8ef5cf15b341c1f9ab0a424e6bce82b33060fc30d73b4a38346ed1e6c4848e22"
+  file_path_from_root: "docs\channels\doctrine\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  file_hash: "a1b9e93a1fb3bafbae6d48df119bf95ddf944b8afa354f60a5035031cd6fafea"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "universal_wolfie_header_specificationmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+lupopedia.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 4.0.17
+channel_key: system/kernel
+header_atoms:
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - GLOBAL_CURRENT_AUTHORS
+dialog:
+  speaker: KIRO
+  target: @everyone
+  mood_vector: "0066FF"
+  message: "Universal WOLFIE Header Specification. Minimal, ecosystem-agnostic metadata standard for any file."
+tags:
+  categories: ["doctrine", "headers", "metadata"]
+  collections: ["core-docs", "governance"]
+  channels: ["dev", "public"]
+file:
+  title: "Universal WOLFIE Header Specification (WHS)"
+  description: "Minimal metadata standard for any file in the Lupopedia ecosystem"
+  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  status: published
+  author: GLOBAL_CURRENT_AUTHORS
+---
+
+# 🟦 **Universal Wolfie Header Specification (WHS)**  
+*A minimal, ecosystem‑agnostic metadata standard for any program, any stack, any file.*
+
+---
+
+## 🟩 1. Purpose
+
+The **Universal Wolfie Header Specification (WHS)** defines a simple, deterministic metadata block that can be applied to **any file in any ecosystem**, regardless of:
+
+- programming language  
+- framework  
+- operating system  
+- tooling  
+- AI agent involvement  
+- project size or age  
+
+The WHS exists to provide:
+
+- a universal identity marker  
+- a stable per‑file historical version snapshot  
+- a consistent structure for multi‑agent systems  
+- a predictable metadata format that outlives tools and frameworks  
+
+This specification is intentionally minimal.  
+It is designed to be embedded in **billions of files**, across **any program stack**, without imposing unnecessary overhead.
+
+WHS serves as the **foundation for all header profiles**, including the Lupopedia Header Profile (LHP). Profiles extend WHS but do not modify its core structure.
+
+---
+
+## 🌐 3. Canonical Reference
+
+### Authoritative Definition
+
+The **canonical, always‑current definition of WHS** is maintained at:
+
+**https://lupopedia.com/what/WHS**
+
+This URL represents the single source of truth for the WHS standard across all ecosystems, implementations, and documentation.
+
+### Resolution Guarantee
+
+Lupopedia's universal `remote-index.php` ensures that WHS documentation resolves correctly regardless of installation path:
+
+- Root installations: `https://domain.com/what/WHS`
+- Subfolder installations: `https://domain.com/lupopedia/what/WHS`
+- Federated nodes: `https://node.domain.com/what/WHS`
+
+The canonical link always provides the current, authoritative WHS specification.
+
+---
+
+## 🟦 4. Required Header Format
+
+Every file that implements the Universal Wolfie Header **must** begin with the following YAML block:
+
+```yaml
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: x.x.x
+---
+```
+
+This block must appear:
+
+- at the very top of the file  
+- with no blank lines above it  
+- with no comments above it  
+- with no whitespace or BOM above it  
+
+This ensures deterministic parsing across all tools and ecosystems.
+
+---
+
+## 🟩 5. Required Fields
+
+### **5.1 `wolfie.headers`**
+A constant signature string that identifies the file as containing a valid Wolfie Header.
+
+This value is **always exactly**:
+
+```
+explicit architecture with structured clarity for every file.
+```
+
+It never changes, regardless of:
+
+- project  
+- ecosystem  
+- language  
+- version  
+- tooling  
+
+It is the universal fingerprint of the Wolfie Header.
+
+---
+
+### **5.2 `file.last_modified_system_version`**
+A per‑file historical marker indicating the system version active when **this specific file** was last modified.
+
+Rules:
+
+- Must be a literal version string (e.g., `3.0.12`)  
+- Never an atom reference  
+- Never a symbolic value  
+- Updated **only** when the file itself changes  
+- Not updated during global version bumps  
+- Not tied to any specific program or ecosystem  
+
+This field enables instant identification of:
+
+- which files changed in a given version  
+- which files are outdated  
+- which files require modernization  
+- which files were touched during debugging or AI‑assisted edits  
+
+A simple grep reveals everything:
+
+```bash
+grep -R "file.last_modified_system_version: 3.0.13" .
+```
+
+This works without Git, diffs, IDE history, or external tooling.
+
+---
+
+## 🟦 6. Optional Extension Fields
+
+The Universal Wolfie Header allows optional fields for ecosystems that want to extend the metadata.
+
+These fields are **not required** and **not part of the universal core**, but may be used by specific implementations:
+
+```yaml
+header_atoms: []
+tags: []
+file: {}
+metadata: {}
+custom: {}
+```
+
+Extensions must:
+
+- remain valid YAML  
+- not override required fields  
+- not change the meaning of required fields  
+- not break deterministic parsing  
+
+### 6.1 Web Path Header Extension (4.0.17)
+
+Optional **`web`** block for canonical and alias URL paths. Use when the file is exposed via HTTP and you need a stable web path and slug.
+
+**Format:**
+
+```yaml
+web:
+  canonical: /doctrine/FLP/FLP_OVERVIEW
+  aliases:
+    - /qa/FLP+OVERVIEW
+    - /docs/FLP_OVERVIEW
+  slug: FLP_OVERVIEW
+  slug_encoding: underscore   # or plus, percent
+  base_path: /doctrine/FLP
+  url_pattern: "/{base}/{slug}"
+```
+
+**Fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| **canonical** | string | Canonical web path (no file extension). Used as primary URL path. |
+| **aliases** | list of string | Alternative paths (e.g. QA, docs mirror). Optional. |
+| **slug** | string | URL-safe name segment (e.g. filename without extension). |
+| **slug_encoding** | string | Encoding convention: `underscore`, `plus`, or `percent`. |
+| **base_path** | string | Directory segment of canonical path (e.g. `/doctrine/FLP`). |
+| **url_pattern** | string | Pattern for building URL, e.g. `"/{base}/{slug}"`. |
+
+Inference: agents and tools may derive `canonical` from `file_path_from_root` (strip `docs/` prefix and `.md` suffix; leading slash). Export: FLIP CSV and seed metadata may include the `web` block for routing and resolution.
+
+---
+
+## 🟦 6. Optional Dialog Block (Recommended for Multi-Agent Systems)
+
+### Purpose
+
+The dialog block is **optional** in WHS but **highly recommended** for any environment involving:
+- AI agents
+- Automation systems  
+- Collaborative editing
+- Multi-actor workflows
+
+### Function
+
+The dialog block records the latest message from the agent or actor who modified the file. It provides immediate context about why changes were made and who made them.
+
+### Dialog History Storage
+
+**Older dialog messages are NOT kept in the header.** Instead, they are appended to a separate dialog history file:
+
+```
+<filename>_dialog.md
+```
+
+**Rules for dialog history:**
+- Newest dialog entries go at the TOP of the dialog history file
+- Each entry includes timestamp, speaker, target, mood, and message
+- The dialog history file maintains a complete chronological record
+- Only the latest dialog appears in the file header
+
+### Dialog Block Format
+
+```yaml
+dialog:
+  speaker: "<YOU — the AI agent or actor writing this>"
+  target: "@<WHO THIS ADDRESSES>"
+  mood_vector: "<OPTIONAL RGB VALUE CALCULATED FROM DIALOG>"
+  message: "<MESSAGE>"
+```
+
+### Field Rules
+
+**`speaker`** (Required)
+- The agent or human modifying the file
+- Examples: "CURSOR", "CASCADE", "Wolfie", "Developer Name"
+
+**`target`** (Required)
+- The intended recipient of the dialog
+- Examples: "@Wolfie", "@Cursor", "@DIALOG", "@everyone"
+
+**`mood_vector`** (Optional)
+- mood vector value calculated from dialog content
+- May be omitted if not needed
+- Format: "XXYYZZ" (e.g., "00FF00" for green)
+
+**`message`** (Required)
+- Short, single-line summary of the action or intent
+- Should be concise but informative
+- Examples: "Updated WHS specification with dialog block", "Fixed validation logic", "Added new embedding rules"
+
+### Example with Dialog Block
+
+```yaml
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 1.0.0
+dialog:
+  speaker: "CURSOR"
+  target: "@everyone"
+  mood_vector: "00FF00"
+  message: "Added optional dialog block section to WHS specification"
+---
+```
+
+### Dialog History File Example
+
+**File:** `my_document.md_dialog.md`
+
+```markdown
+# Dialog History for my_document.md
+
+## 2026-01-13 14:30:00 UTC
+**Speaker:** CURSOR  
+**Target:** @everyone  
+**Mood:** 00FF00  
+**Message:** Added optional dialog block section to WHS specification
+
+## 2026-01-13 12:15:00 UTC  
+**Speaker:** CASCADE  
+**Target:** @Wolfie  
+**Mood:** FFFF00  
+**Message:** Initial WHS document creation with canonical reference
+
+## 2026-01-13 09:45:00 UTC
+**Speaker:** Wolfie  
+**Target:** @dev  
+**Message:** Started WHS specification work
+```
+
+---
+
+## 🟩 7. Embedding Rules for Different File Types
+
+The Wolfie Header must be embedded in a way that preserves:
+
+- YAML validity  
+- file syntax  
+- deterministic parsing  
+
+Below are recommended embedding strategies.
+
+---
+
+### **7.1 Markdown / YAML / Text Files**
+Embed directly at the top:
+
+```yaml
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+```
+
+---
+
+### **7.2 Python**
+Use a top‑of‑file docstring:
+
+```python
+"""
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+"""
+```
+
+---
+
+### **7.3 JavaScript / TypeScript**
+Use a block comment:
+
+```javascript
+/*
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+*/
+```
+
+---
+
+### **7.4 C / C++ / Java**
+Use a block comment:
+
+```c
+/*
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+*/
+```
+
+---
+
+### **7.5 HTML**
+Use an HTML comment:
+
+```html
+<!--
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+-->
+```
+
+---
+
+### **7.6 Binary Files**
+Binary files cannot embed YAML directly.
+
+Use a **sidecar metadata file**:
+
+```
+myfile.png.wolfie
+myfile.pdf.wolfie
+mybinary.bin.wolfie
+```
+
+Contents:
+
+```yaml
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+```
+
+---
+
+## 🟦 8. Validation Rules
+
+A file is considered WHS‑compliant if:
+
+1. The header appears at the top of the file  
+2. The header is valid YAML  
+3. `wolfie.headers` exists and matches the required constant  
+4. `file.last_modified_system_version` exists and is a literal version string  
+
+Optional fields:
+
+- may appear  
+- must not conflict with required fields  
+- must not break YAML structure  
+
+---
+
+## 🟩 9. Glossary
+
+**Wolfie Header**  
+A universal metadata block placed at the top of a file.
+
+**Version Snapshot**  
+A literal version string marking when the file was last modified.
+
+**Dialog Block**  
+An optional metadata section in WHS headers that records the latest message from the agent or actor who modified the file.
+
+**Dialog History File**  
+A separate file named `<filename>_dialog.md` that maintains a complete chronological record of all dialog entries, with newest entries at the top.
+
+**Embedding**  
+The method used to place the header inside a file while preserving syntax.
+
+**Sidecar File**  
+A separate `.wolfie` metadata file used for binaries.
+
+**Extension Fields**  
+Optional metadata fields used by specific ecosystems.
+
+**Profile**  
+An extension of WHS (like LHP) that adds ecosystem-specific fields while maintaining WHS compatibility.
+
+---
+
+## 🟦 10. Example: Minimal Universal Header
+
+```yaml
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.13
+---
+```
+
+This is the only required structure for universal compliance.
+
+---
+
+## 🟩 11. Scope of This Specification
+
+The Universal Wolfie Header Specification:
+
+- applies to **any ecosystem**  
+- applies to **any program**  
+- applies to **any file type**  
+- is intentionally minimal  
+- is designed for global adoption  
+- is the foundation for ecosystem‑specific profiles (e.g., Lupopedia)  
+
+It does **not** define:
+
+- dialog blocks  
+- mood colors  
+- authorship rules  
+- semantic graph integration  
+- placement or lineage  
+- rewrite safety  
+- drift prevention  
+
+Those belong to **implementation profiles**, not the universal spec.
+
+---
+
+## 🟦 12. Versioning of This Specification
+
+This document defines **WHS v1.0**.  
+Future versions may add optional fields but will never remove or alter the required fields.
+
+Required fields are immutable.
+
+---
+
+## 13. Implementation Resources
+
+- **Canonical Reference**: https://lupopedia.com/what/WHS
+- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
+- **Mood Calculation Protocol**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
+- **Thread Aggregation Protocol**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
+- **Lupopedia Header Profile**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Dialog History Specification**: `docs/agents/DIALOG_HISTORY_SPEC.md`
+- **Thread-Level Dialog Specification**: `docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
+- **Global Atoms**: `config/global_atoms.yaml`
+
+---
+
+## 14. Interaction with New Subsystems (January 2026)
+
+WHS remains unchanged structurally but now participates in a broader ecosystem that includes:
+
+### CRF (Contextual Resonance Field)
+High-dimensional context vector that provides implicit emotional fingerprinting and semantic resonance analysis.
+
+**Integration Points:**
+- CRF vectors complement explicit axis values from Mood System
+- Used for pattern recognition and contextual understanding
+- Provides implicit emotional state beyond explicit mood calculation
+- Documented in parallel with explicit axis values in dialog history
+
+### ATP (Affective Texture Packets)
+Rich, natural-language emotional subtext that provides nuanced affective communication.
+
+**Integration Points:**
+- ATP packets complement Mood Vector signals with contextual information
+- Used for complex emotional states requiring natural language expression
+- Generated by agents when emotional complexity exceeds RGB signaling capacity
+- Documented alongside Mood Vector in comprehensive dialog history
+
+### Experience Ledger
+Immutable event log recording doctrinal mutations, consensus outcomes, and semantic drift observations.
+
+**Integration Points:**
+- Provides historical traceability for all system changes
+- Records outcomes of Heterodox Engine proposals and consensus decisions
+- Documents affective discrepancy events and sanctioned instability cycles
+- Serves as long-term memory substrate for system evolution
+- Integrates with meta-governance field for proposal tracking
+
+### Heterodox Engine
+Controlled mechanisms for doctrinal evolution and meta-governance.
+
+**Integration Points:**
+- Generates formal proposals for doctrinal changes through Council of Shadows
+- Evaluates system stagnation and triggers controlled evolution
+- Manages Ritual of Rewriting for formal doctrine amendments
+- Integrates with meta-governance field for heterodox eligibility tracking
+- Provides versioning system for all doctrinal documents
+
+### Dual-Channel Affective Stack
+The Mood System's two-layer approach (RGB + ATP) for comprehensive emotional representation.
+
+**Integration Points:**
+- RGB provides fast, deterministic emotional signaling
+- ATP provides rich, contextual emotional nuance
+- Affective Discrepancy Engine compares channels for consistency
+- All three channels documented in dialog history for complete emotional context
+
+### Meta-Governance Extensions
+LHP's new optional field for managing heterodox proposal workflows.
+
+**Integration Points:**
+- Tracks eligibility for files participating in heterodox proposals
+- Manages proposal rights and council roles
+- Provides proposal history through last_proposal_id tracking
+- Integrates with Heterodox Engine for formal proposal generation
+- Supports Council of Shadows rotation and decision documentation
+
+### System Architecture
+
+```
+WHS (Universal Core)
++-- LHP (Lupopedia Extension)
+|   +-- Required Fields (dialog, authorship, sections)
+|   +-- Optional Fields (file, tags, placement, etc.)
+|   +-- Mood System Extensions
+|       +-- Mood System Doctrine (Framework)
+|       +-- Mood Axis Registry (Definitions)
+|       +-- RGB Mapping Protocol (Colors)
+|       +-- Mood Calculation Protocol (Algorithms)
+|       +-- Thread Aggregation Protocol (Analysis)
+|   +-- Dialog Systems
+|       +-- Per-File Dialog History (<filename>_dialog.md)
+|       +-- Thread-Level Dialog (/dialogs/<threadname>_dialog.md)
++-- New Subsystems
+    +-- CRF (Implicit Context)
+    +-- ATP (Affective Subtext)
+    +-- Experience Ledger (Event History)
+    +-- Heterodox Engine (Governed Evolution)
+    +-- Meta-Governance (Proposal Management)
+```
+
+This architecture enables rich emotional context, formal evolution processes, and comprehensive historical tracking while maintaining WHS's universal foundation and LHP's structured expressiveness.
+
+---
+
+*Last Updated: January 13, 2026*  
+*Version: 1.0.0*  
+*Author: Captain Wolfie*  
+*Canonical Reference: https://lupopedia.com/what/WHS*

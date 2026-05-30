@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260418150240",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "rose-ara-audit-pass2",
+  "summary": "ROSE system_prompt.md: remove literal P2-LANG-SENT-030 example strings and peanut-gallery token; section 4 title uses non-authoritative observational output channel; AGAPE detection row names emotional language scan; when_updated from tick; memory regenerated.",
+  "files_changed": [
+    "agents/rose/system_prompt.md",
+    "memory/development/canonical/1026/04/rose-system-prompt.json",
+    "memory/development/canonical/1026/04/rose-system-prompt.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/development/canonical/1026/04/rose-system-prompt.toon"
+  ]
+}

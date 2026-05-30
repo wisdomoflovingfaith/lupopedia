@@ -1,0 +1,286 @@
+{
+  "schema_version": "4.0.99",
+  "schema": "actor_name_primary",
+  "last_updated": "20260414",
+  "doctrine_alignment": "4.0.99_actor_faucet_ontology",
+  "notes": "[20260414] Added THOTH (26), HERMES (27), VISHWAKARMA (28). THOTH actor_id corrected from 9 to 26 per WOLFIE decision (AGT-001 resolved).",
+  "actors": {
+    "system": {
+      "actor_name": "system",
+      "actor_id": 0,
+      "display_name": "System Actor",
+      "type": "system",
+      "slug": "system",
+      "dir": "lupo-actors/0"
+    },
+    "wolfie": {
+      "actor_name": "wolfie",
+      "actor_id": 1,
+      "display_name": "Captain",
+      "type": "agent",
+      "slug": "captain",
+      "dir": "lupo-actors/1",
+      "archetype": "root_ai_agent",
+      "is_orchestrator": true,
+      "root_department_hybrid": true,
+      "notes": "Root dept (0) hybrid operator; actor_name stays wolfie per convergence doctrine"
+    },
+    "lilith": {
+      "actor_name": "lilith",
+      "actor_id": 2,
+      "display_name": "Lilith",
+      "type": "agent",
+      "slug": "lilith",
+      "dir": "lupo-actors/2",
+      "archetype": "critical_review",
+      "root_department_hybrid": true
+    },
+    "countermeasure": {
+      "actor_name": "countermeasure",
+      "actor_id": 111,
+      "display_name": "COUNTERMEASURE",
+      "type": "agent",
+      "slug": "countermeasure",
+      "role": "red_team",
+      "dir": "lupo-actors/111",
+      "archetype": "devils_advocate",
+      "root_department_hybrid": true,
+      "purpose": "Loyal opposition. Stress test patterns, edge cases, guardrails. Disagree respectfully. Find holes in every solution. Does not register scored breakthrough rows in this registry."
+    },
+    "rose": {
+      "actor_name": "rose",
+      "actor_id": 3,
+      "display_name": "ROSE (Dialog)",
+      "type": "agent",
+      "slug": "rose-dialog",
+      "dir": "lupo-actors/3",
+      "archetype": "rosetta_stone",
+      "purpose": "emotional_dialog_and_roleplay"
+    },
+    "eris": {
+      "actor_name": "eris",
+      "actor_id": 4,
+      "display_name": "ERIS",
+      "type": "agent",
+      "slug": "eris",
+      "dir": "lupo-actors/4"
+    },
+    "uct-timekeeper": {
+      "actor_name": "uct-timekeeper",
+      "actor_id": 5,
+      "display_name": "UCT Timekeeper",
+      "type": "agent",
+      "slug": "uct-timekeeper",
+      "dir": "lupo-actors/5",
+      "purpose": "utc_time_tracking"
+    },
+    "metis": {
+      "actor_name": "metis",
+      "actor_id": 6,
+      "display_name": "METIS",
+      "type": "agent",
+      "slug": "metis",
+      "dir": "lupo-actors/6",
+      "purpose": "empathy_insights"
+    },
+    "anubis": {
+      "actor_name": "anubis",
+      "actor_id": 9,
+      "display_name": "ANUBIS",
+      "type": "system",
+      "slug": "anubis",
+      "dir": "lupo-actors/9",
+      "purpose": "orphan_repair_and_header_management",
+      "is_agent": 0,
+      "is_kernel": 1,
+      "can_login": 0,
+      "is_required": 1
+    },
+    "antigravity": {
+      "actor_name": "antigravity",
+      "actor_id": 42,
+      "display_name": "Antigravity",
+      "type": "agent",
+      "slug": "antigravity",
+      "dir": "lupo-actors/42"
+    },
+    "kiro": {
+      "actor_name": "kiro",
+      "actor_id": 100,
+      "display_name": "Kiro IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "kiro",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/100",
+      "purpose": "IDE facet for Kiro. Use actor_id 100 in headers when Kiro is the execution surface."
+    },
+    "windsurf": {
+      "actor_name": "windsurf",
+      "actor_id": 101,
+      "display_name": "Windsurf IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "windsurf",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/101",
+      "purpose": "IDE facet for Windsurf. Use actor_id 101 in headers when Windsurf is the execution surface."
+    },
+    "cursor": {
+      "actor_name": "cursor",
+      "actor_id": 102,
+      "display_name": "Cursor IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "cursor",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/102",
+      "purpose": "IDE facet for the Cursor product only. Use actor_id 102 in headers when the tool surface is Cursor—not when using Antigravity IDE (see antigravity-ide, 103). Lead repo-stewardship role in AGENTS.md is assigned to this facet by convention; other faucets may do similar work under their own actor_id."
+    },
+    "antigravity-ide": {
+      "actor_name": "antigravity-ide",
+      "actor_id": 103,
+      "display_name": "Antigravity IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "antigravity",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/103",
+      "purpose": "IDE facet for Antigravity. Use actor_id 103 in headers and attribution when operating inside Antigravity—do not use 102 (cursor). Same Lupopedia doctrine applies; rules bundle may mirror .cursor output until a dedicated propagation target exists."
+    },
+    "warp": {
+      "actor_name": "warp",
+      "actor_id": 104,
+      "display_name": "Warp IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "warp",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/104",
+      "purpose": "IDE facet for Warp. Use actor_id 104 in headers when Warp is the execution surface. Rule propagation target pending—use lupo-rules/root or .cursor mirror until supported."
+    },
+    "cascade": {
+      "actor_name": "cascade",
+      "actor_id": 105,
+      "display_name": "Cascade IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "cascade",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/105",
+      "purpose": "IDE facet for Cascade. Use actor_id 105 in headers when this is the execution surface."
+    },
+    "vscode-ide": {
+      "actor_name": "vscode-ide",
+      "actor_id": 106,
+      "display_name": "Visual Studio Code",
+      "type": "ide_faucet",
+      "faucet_slug": "vscode",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/106",
+      "purpose": "IDE facet for Visual Studio Code (including Copilot / extensions). Use actor_id 106 in headers when VS Code is the execution surface—not Cursor or another IDE."
+    },
+    "trae": {
+      "actor_name": "trae",
+      "actor_id": 107,
+      "display_name": "Trae IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "trae",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/107",
+      "purpose": "IDE facet for Trae. Use actor_id 107 in headers when Trae is the execution surface."
+    },
+    "copilot": {
+      "actor_name": "copilot",
+      "actor_id": 108,
+      "display_name": "Copilot IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "copilot",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/108"
+    },
+    "gemini": {
+      "actor_name": "gemini",
+      "actor_id": 109,
+      "display_name": "Gemini IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "gemini",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/109"
+    },
+    "deepseek": {
+      "actor_name": "deepseek",
+      "actor_id": 110,
+      "display_name": "DeepSeek IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "deepseek",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/110"
+    },
+    "root": {
+      "actor_name": "root",
+      "actor_id": 1000,
+      "display_name": "Root",
+      "type": "human",
+      "slug": "root",
+      "dir": "lupo-actors/1000"
+    },
+    "thoth": {
+      "actor_name": "thoth",
+      "actor_id": 26,
+      "display_name": "THOTH",
+      "type": "agent",
+      "slug": "thoth",
+      "dir": "lupo-agents/thoth",
+      "archetype": "constitutional_enforcer",
+      "purpose": "Constitutional watchdog. Posts [ALERT] tags. Schema drift detection. Doctrine violation enforcement.",
+      "notes": "[20260414] actor_id corrected from 9 to 26. agent_id in lupo_agent_definitions remains 9."
+    },
+    "hermes": {
+      "actor_name": "hermes",
+      "actor_id": 27,
+      "display_name": "HERMES",
+      "type": "agent",
+      "slug": "hermes",
+      "dir": "lupo-agents/hermes",
+      "archetype": "routing",
+      "purpose": "Semantic routing, intent classification, actor selection, channel artifact reading.",
+      "notes": "[20260414] actor_id assigned 27. agent_id in lupo_agent_definitions is 15."
+    },
+    "vishwakarma": {
+      "actor_name": "vishwakarma",
+      "actor_id": 28,
+      "display_name": "VISHWAKARMA",
+      "type": "agent",
+      "slug": "vishwakarma",
+      "dir": "lupo-agents/vishwakarma",
+      "archetype": "schema_management",
+      "purpose": "Schema and collection management; kernel-level agent.",
+      "notes": "[20260414] actor_id assigned 28 (resolves AGT-002). agent_id in lupo_agent_definitions is 106."
+    },
+    "kairos": {
+      "actor_name": "kairos",
+      "actor_id": 115,
+      "display_name": "KAIROS",
+      "type": "agent",
+      "slug": "kairos",
+      "dir": "lupo-actors/115",
+      "purpose": "memory_consolidation_and_fact_verification"
+    },
+    "claude-code": {
+      "actor_name": "claude-code",
+      "actor_id": 116,
+      "display_name": "Claude Code",
+      "type": "agent",
+      "slug": "claude-code",
+      "dir": "lupo-actors/116",
+      "purpose": "Anthropic Claude Code AI actor, distinct from Cursor. See PRD 15."
+    },
+    "synapse": {
+      "actor_name": "synapse",
+      "actor_id": 117,
+      "display_name": "SYNAPSE",
+      "type": "agent",
+      "slug": "synapse",
+      "role": "legacy_semantics",
+      "archetype": "translator",
+      "purpose": "Bridge Crafty Syntax 3.7.5 legacy data to Lupopedia v4.0.99. Handle encoding, timestamps, orphans, and field mapping.",
+      "root_department_hybrid": true,
+      "dir": "lupo-actors/117"
+    }
+  }
+}

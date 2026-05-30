@@ -1,0 +1,34 @@
+# Generated from: lupo-memory/development/canonical/2026/04/02-channels-discussions.json
+# Generated at: 2026-04-10 12:59:14 UTC
+# JSON master checksum: 110358a76b15bc35d814363accb2a909
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410124750,20260410124750,canonical,2,channels-discussions,lupo-docs/prd/02_channels_discussions.md
+
+prd_sections[5]{pk,summary,title}:
+  1,"Defines channels, threads, dialog messages, and content linkage for structured discussions.",Overview and Scope
+  2,Specifies federation-node and channel-key filesystem layout with thread manifests and typed folders.,Directory and Thread Model
+  3,"Defines lupo_channels, lupo_dialog_threads, lupo_dialog_messages, and supporting channel state tables.",Data Model and Tables
+  4,Enforces actor-based attribution and deterministic routing through channel_id and dialog_thread_id.,Identity and Routing
+  5,"Requires BIGINT UTC, no foreign keys, no triggers, explicit IDs, and soft-delete conventions.",Constitutional Constraints
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,channel_thread_path_structure,2,high,Filesystem channel threads must follow federation_node_id/channel_key/thread_key structure.
+  2,dialog_pk_naming_doctrine,3,critical,"Primary keys must be dialog_thread_id and dialog_message_id, never generic id."
+  3,actor_identity_for_messages,4,critical,Message attribution must resolve to actor identity; from_actor_id request mapping is API to DB actor_id.
+  4,soft_delete_required,5,high,Discussion rows must use is_deleted and deleted_ymdhis instead of hard deletes.
+  5,db_logic_prohibited,5,critical,"No foreign keys, no triggers, and no database-side automation in channels namespace."
+
+definitions[5]{pk,meaning,term}:
+  1,Human-readable channel identifier used in filesystem and channel registry.,channel_key
+  2,Human-readable thread identifier under a channel key path.,thread_key
+  3,Primary key for a discussion thread row in lupo_dialog_threads.,dialog_thread_id
+  4,Primary key for an individual message row in lupo_dialog_messages.,dialog_message_id
+  5,"Required metadata file defining thread purpose, status, and lifecycle on filesystem.",thread_manifest
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,references,lupo-docs/prd/07_agents_faucets.md,90
+  4,doctrine,outbound,supported,depends_on,lupo-docs/prd/17_decisions_format.md,90
+  5,doctrine,outbound,supported,depends_on,lupo-docs/prd/29_project_structure.md,85

@@ -1,0 +1,43 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Canonical prose companion for operator and IDE use",
+        "source": "management_communication_playbook_memory",
+        "to": "lupo-docs/doctrine/communication/MANAGEMENT_COMMUNICATION_PLAYBOOK.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Append-only transcript thread (PRD 16 triple with .jsonl in thread key)",
+        "source": "management_communication_playbook_memory",
+        "to": "lupo-channels/0/development/management-communication-playbook-20260417.jsonl/transcript.jsonl",
+        "type": "references",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260417001754",
+    "last_verified_by": "cursor_management_communication_playbook",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "management-communication-playbook",
+    "default_collection_id": null,
+    "note": "Tactical playbook for management-facing communication; grounded in 2026-04-16 report cycle lessons.",
+    "transcript_jsonl": "0/development/management-communication-playbook-20260417.jsonl"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/management-communication-playbook.toon",
+  "purpose": "Canonical management communication playbook: outcome-first framing, translation layer, weekly report steps, pressure responses.",
+  "source_file_path_from_root": "lupo-docs/doctrine/communication/MANAGEMENT_COMMUNICATION_PLAYBOOK.md",
+  "tags": [
+    "doctrine",
+    "management",
+    "communication",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

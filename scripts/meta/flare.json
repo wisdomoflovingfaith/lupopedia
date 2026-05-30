@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "scripts\\bulk_update_headers_4_1_6.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "scripts\\PYTHON_VS_PHP.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "scripts\\README_migration.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "scripts\\README_PYTHON.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

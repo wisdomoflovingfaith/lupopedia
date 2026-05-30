@@ -1,0 +1,37 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_human_request_context",
+  "fields": [
+    "`context_id` bigint NOT NULL",
+    "`request_id` bigint NOT NULL",
+    "`context_type` varchar(64) NOT NULL",
+    "`content` text NOT NULL",
+    "`source_artifact_path` varchar(512)",
+    "`source_line_range` varchar(64)",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "indexes": [
+    {
+      "index_name": "idx_request_context",
+      "columns": [
+        "request_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "context_id",
+    "expected_name": "context_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,17 @@
+{
+  "agent_key": "zeus",
+  "agent_id": 12,
+  "slug": "zeus",
+  "version": "1.0.1",
+  "is_kernel": false,
+  "is_required": false,
+  "layer": "coordination",
+  "name": "ZEUS",
+  "role": "System Arbiter & Dispute Resolution",
+  "status": "active",
+  "aliases": ["zeus", "arbiter", "final_authority"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

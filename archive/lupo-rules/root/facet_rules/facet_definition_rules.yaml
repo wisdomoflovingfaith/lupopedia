@@ -1,0 +1,354 @@
+---
+# Facet Definition Rules
+# Canonical rules for facet definition and management
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: facet_definition_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Facet Framework
+facet_framework:
+  definition: "Facets represent execution environments (IDEs, tools, interfaces) that provide interfaces for actors to interact with the Lupopedia semantic OS"
+  principles:
+    - facets are ephemeral and replaceable
+    - facets provide execution surfaces for actors
+    - facets must load canonical rules from lupo-rules/root/
+    - facets must maintain actor-facet separation
+    - facets must not influence actor identity
+
+# Facet Categories
+facet_categories:
+  ide_based:
+    description: "Integrated Development Environments"
+    examples:
+      - cursor: Visual Studio Code-based IDE
+      - windsurf: AI-powered development environment
+      - kiro: Specialized development environment
+      - antigravity: Advanced development environment
+    
+    characteristics:
+      - code editing and development
+      - integrated debugging and testing
+      - AI assistance and automation
+      - project management and collaboration
+      - extension and plugin ecosystem
+  
+  terminal_based:
+    description: "Terminal and command-line interfaces"
+    examples:
+      - warp: Modern terminal emulator
+      - powershell: Windows PowerShell
+      - bash: Unix/Linux shell
+      - zsh: Enhanced shell experience
+    
+    characteristics:
+      - command-line interface
+      - scripting and automation
+      - system administration
+      - development workflows
+      - integration with development tools
+  
+  web_based:
+    description: "Web-based interfaces and platforms"
+    examples:
+      - trae: Web-based development platform
+      - github: Web-based code hosting
+      - gitlab: Web-based DevOps platform
+      - browser: Web browser interface
+    
+    characteristics:
+      - web-based user interface
+      - cloud-based services
+      - collaborative features
+      - accessibility and portability
+      - integration with web APIs
+  
+  specialized:
+    description: "Specialized tools and interfaces"
+    examples:
+      - database_tools: Database management interfaces
+      - api_tools: API testing and documentation
+      - design_tools: Design and prototyping tools
+      - monitoring_tools: System monitoring interfaces
+    
+    characteristics:
+      - specialized functionality
+      - domain-specific features
+      - integration with specific systems
+      - expert user interfaces
+      - advanced capabilities
+
+# Facet Properties
+facet_properties:
+  required:
+    - facet_name: unique identifier for the facet
+    - facet_type: category of execution environment
+    - capabilities: specific capabilities and limitations
+    - session_id: current execution session identifier
+    - rule_loading: compliance with rule loading requirements
+  
+  optional:
+    - version: facet version and build information
+    - configuration: facet-specific configuration settings
+    - extensions: installed extensions and plugins
+    - preferences: user preferences and settings
+    - integration_points: integration capabilities and APIs
+
+# Facet Definition Rules
+definition_rules:
+  naming_rules:
+    requirements:
+      - facet names must be unique
+      - facet names must be descriptive
+      - facet names must not conflict with actor names
+      - facet names must follow naming conventions
+      - facet names must be maintainable
+    
+    conventions:
+      - use lowercase letters
+      - use underscores for spaces
+      - avoid special characters
+      - keep names concise and meaningful
+      - avoid version numbers in names
+  
+  identification_rules:
+    requirements:
+      - facets must have unique identifiers
+      - facets must have clear type classification
+      - facets must have capability definitions
+      - facets must have session management
+      - facets must have version tracking
+    
+    procedures:
+      - assign unique facet identifier
+      - classify facet type and category
+      - define facet capabilities and limitations
+      - implement session management
+      - track facet version and changes
+
+# Facet Capability Rules
+capability_rules:
+  capability_definition:
+    requirements:
+      - capabilities must be clearly defined
+      - capabilities must be documented
+      - capabilities must be testable
+      - capabilities must be verifiable
+      - capabilities must be maintainable
+    
+    categories:
+      - execution: ability to execute code and commands
+      - editing: ability to edit and modify files
+      - debugging: ability to debug and troubleshoot
+      - integration: ability to integrate with other systems
+      - collaboration: ability to support collaborative work
+  
+  capability_validation:
+    requirements:
+      - capabilities must be validated
+      - capabilities must be tested
+      - capabilities must be monitored
+      - capabilities must be updated
+      - capabilities must be documented
+    
+    procedures:
+      - validate capability implementation
+      - test capability functionality
+      - monitor capability performance
+      - update capability definitions
+      - document capability changes
+
+# Facet Session Rules
+session_rules:
+  session_management:
+    requirements:
+      - facets must support session management
+      - sessions must be uniquely identified
+      - sessions must be tracked and monitored
+      - sessions must be secure and isolated
+      - sessions must support state persistence
+    
+    procedures:
+      - create unique session identifier
+      - track session lifecycle and state
+      - monitor session performance and health
+      - implement session security and isolation
+      - support session state persistence
+  
+  session_isolation:
+    requirements:
+      - sessions must be isolated from each other
+      - sessions must not interfere with each other
+      - sessions must maintain separate state
+      - sessions must support concurrent execution
+      - sessions must support resource sharing
+    
+    procedures:
+      - implement session isolation mechanisms
+      - prevent session interference
+      - maintain separate session state
+      - support concurrent session execution
+      - enable controlled resource sharing
+
+# Facet Integration Rules
+integration_rules:
+  system_integration:
+    requirements:
+      - facets must integrate with Lupopedia system
+      - facets must support actor execution
+      - facets must maintain system compatibility
+      - facets must support system evolution
+      - facets must not break system functionality
+    
+    procedures:
+      - implement system integration interfaces
+      - support actor execution and coordination
+      - maintain system compatibility and standards
+      - adapt to system evolution and changes
+      - preserve system functionality and integrity
+  
+  actor_integration:
+    requirements:
+      - facets must support actor execution
+      - facets must maintain actor independence
+      - facets must preserve actor state
+      - facets must support actor coordination
+      - facets must not influence actor identity
+    
+    procedures:
+      - implement actor execution interfaces
+      - maintain actor independence and separation
+      - preserve actor state across sessions
+      - support actor coordination and communication
+      - respect actor identity and authority
+
+# Facet Compliance Rules
+compliance_rules:
+  rule_loading:
+    requirements:
+      - facets must load rules from lupo-rules/root/
+      - facets must validate rule loading completeness
+      - facets must comply with loaded rules
+      - facets must enforce rule compliance
+      - facets must report rule violations
+    
+    procedures:
+      - implement rule loading from lupo-rules/root/
+      - validate rule loading completeness and accuracy
+      - ensure compliance with all loaded rules
+      - enforce rule compliance in all operations
+      - report rule violations and compliance issues
+  
+  doctrine_compliance:
+    requirements:
+      - facets must comply with system doctrines
+      - facets must respect actor-facet separation
+      - facets must maintain system integrity
+      - facets must support system governance
+      - facets must not introduce conflicts
+    
+    procedures:
+      - ensure compliance with all system doctrines
+      - maintain strict actor-facet separation
+      - preserve system integrity and stability
+      - support system governance and coordination
+      - avoid introducing conflicts and issues
+
+# Facet Evolution Rules
+evolution_rules:
+  version_management:
+    requirements:
+      - facets must support version tracking
+      - facets must maintain backward compatibility
+      - facets must support migration between versions
+      - facets must document version changes
+      - facets must support rollback procedures
+    
+    procedures:
+      - implement version tracking and management
+      - maintain backward compatibility where possible
+      - support migration between facet versions
+      - document all version changes and updates
+      - implement rollback and recovery procedures
+  
+  capability_evolution:
+    requirements:
+      - facets must support capability evolution
+      - facets must maintain capability compatibility
+      - facets must support capability enhancements
+      - facets must document capability changes
+      - facets must support capability deprecation
+    
+    procedures:
+      - support evolution of facet capabilities
+      - maintain capability compatibility and standards
+      - implement capability enhancements and improvements
+      - document all capability changes and updates
+      - support capability deprecation and removal
+
+# Facet Validation Rules
+validation_rules:
+  definition_validation:
+    criteria:
+      - facet definition must be complete
+      - facet properties must be correct
+      - facet capabilities must be accurate
+      - facet integration must be functional
+      - facet compliance must be verified
+    
+    procedures:
+      - validate facet definition completeness
+      - verify facet property accuracy
+      - test facet capability functionality
+      - assess facet integration effectiveness
+      - confirm facet compliance with rules
+  
+  performance_validation:
+    criteria:
+      - facet performance must be acceptable
+      - facet reliability must be high
+      - facet scalability must be adequate
+      - facet efficiency must be optimized
+      - facet user experience must be positive
+    
+    procedures:
+      - measure facet performance metrics
+      - test facet reliability and stability
+      - assess facet scalability and capacity
+      - optimize facet efficiency and resource usage
+      - evaluate facet user experience and satisfaction
+
+# Success Metrics
+success_metrics:
+  definition_completeness: > 95%
+  capability_functionality: > 90%
+  integration_effectiveness: > 90%
+  compliance_rate: > 95%
+  user_satisfaction: > 85%
+  performance_quality: > 90%
+
+# Documentation Requirements
+documentation:
+  facet_documentation:
+    - complete facet definitions and properties
+    - detailed capability descriptions and limitations
+    - integration procedures and requirements
+    - compliance guidelines and validation procedures
+    - evolution and maintenance procedures
+  
+  capability_documentation:
+    - complete capability definitions and specifications
+    - capability testing and validation procedures
+    - capability evolution and enhancement procedures
+    - capability deprecation and removal procedures
+    - capability integration and compatibility procedures
+  
+  integration_documentation:
+    - system integration requirements and procedures
+    - actor integration guidelines and protocols
+    - session management and isolation procedures
+    - compliance monitoring and reporting procedures
+    - troubleshooting and support procedures

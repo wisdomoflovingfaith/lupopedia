@@ -1,0 +1,14 @@
+{
+  "id": "M-example1-20260409",
+  "type": "example_memory",
+  "ts": "20260409113000.000",
+  "actor_id": 116,
+  "summary": "First example memory file for testing",
+  "edges": [
+    {"to": "FILE:example1.json", "type": "references", "weight": 1.0}
+  ],
+  "content": {
+    "status": "draft",
+    "notes": "Example memory node 1"
+  }
+}

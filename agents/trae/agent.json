@@ -1,0 +1,23 @@
+{
+    "agent_key": "trae",
+    "agent_id": 114,
+    "actor_id": 107,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "ide_faucet",
+    "name": "TRAE",
+    "slug": "trae",
+    "role": "IDE_faucet",
+    "is_required": false,
+    "aliases": ["trae", "trae-ide"],
+    "extends_shared": "agents/_shared/ide_facet_base_system_prompt.txt",
+    "rules_propagation_target": "pending",
+    "rules_reference_target": "cursor",
+    "rules_source_repo_path": "rules/root",
+    "implementation_posture_agent_key": "hephaestus",
+    "delegates_orchestration_actor_id": 1,
+    "when_updated_utc": "20260404183000",
+    "last_verified_utc": "20260404183000",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

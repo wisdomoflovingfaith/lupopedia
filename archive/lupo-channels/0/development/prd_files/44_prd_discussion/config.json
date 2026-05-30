@@ -1,0 +1,22 @@
+{
+    "channel_key": "development",
+    "slug": "prd_files\/44_prd_discussion",
+    "created": "20260409113315",
+    "memory_follow_rules": {
+        "max_depth": 3,
+        "edge_types": [
+            "parent",
+            "related",
+            "implements",
+            "references",
+            "follows",
+            "modifies"
+        ],
+        "exclude_patterns": [
+            "*_deprecated.toon",
+            "*\/archive\/*"
+        ],
+        "active_memory_ref": "lupo-memory\/2026\/04\/M-constitutional-20260409.toon",
+        "exclude_memory_refs": []
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "_comment": "THIS SCHEMA IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference for actor-local install state tracking.",
+  "_source": "Lupopedia Runtime Ledger Specification v1.0",
+  "_read_only": true,
+  "ledger_name": "actor_install_state",
+  "fields": [
+    "`actor_id` bigint NOT NULL",
+    "`channel_key` varchar(64) NOT NULL",
+    "`install_phase` varchar(64) NOT NULL",
+    "`last_updated_ymdhis` bigint NOT NULL",
+    "`pending_steps` json",
+    "`completed_steps` json",
+    "`errors` json",
+    "`metadata_json` json"
+  ],
+  "primary_key": {
+    "column_name": "actor_id",
+    "expected_name": "actor_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "single_object": true,
+    "actor_local": true,
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,49 @@
+{
+  "id": "hdr-16-lupopedia-headers",
+  "type": "header_metadata",
+  "file_path_from_root": "docs/prd/16_lupopedia_headers.md",
+  "channel_key": "headers",
+  "trust_tier": "canonical",
+  "purpose": "Defines Lupopedia header format, verification requirements, and sidecar metadata contract across in-scope authored files.",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-16-lupopedia-headers"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight": 1.0,
+      "reason": "Constitutional anchor"
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/38_memory_unification.md",
+      "weight": 0.95,
+      "reason": "Memory unification PRD"
+    }
+  ],
+  "footer": {
+    "last_verified": "20260411043625",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "transcript_jsonl": "0/headers/lupopedia-headers"
+}

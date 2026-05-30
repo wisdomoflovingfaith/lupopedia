@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417071544",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "changelog-buffer-doctrine-update",
+  "summary": "Refined AGENTS changelog buffer protocol section with strict filename slug pattern, explicit handoff toon rule, and THOTH consolidation ownership.",
+  "files_changed": [
+    "AGENTS.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

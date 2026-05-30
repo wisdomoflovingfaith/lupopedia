@@ -1,0 +1,241 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_contents",
+  "fields": [
+    "`content_id` bigint NOT NULL",
+    "`content_parent_id` bigint",
+    "`federation_node_id` bigint DEFAULT 1",
+    "`federation_source_url` varchar(2000)",
+    "`channel_id` bigint",
+    "`department_id` bigint",
+    "`actor_id` bigint",
+    "`title` varchar(255) NOT NULL",
+    "`slug` varchar(255) NOT NULL",
+    "`custom_path` varchar(255)",
+    "`description` text",
+    "`seo_keywords` varchar(500)",
+    "`body` text",
+    "`content` text",
+    "`content_type` varchar(50) DEFAULT article",
+    "`format` varchar(20) DEFAULT markdown",
+    "`content_url` varchar(2000)",
+    "`default_collection_id` bigint",
+    "`source_url` varchar(2000)",
+    "`source_title` varchar(500)",
+    "`is_template` tinyint NOT NULL DEFAULT 0",
+    "`status` varchar(64) DEFAULT draft",
+    "`visibility` varchar(64) DEFAULT public",
+    "`view_count` int DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`utc_cycle` varchar(64) NOT NULL",
+    "`triage_status` varchar(64) NOT NULL DEFAULT untriaged",
+    "`triage_notes` text",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`deleted_ymdhis` bigint",
+    "`content_sections` json",
+    "`version_number` int NOT NULL DEFAULT 1",
+    "`storage_type` varchar(16) NOT NULL DEFAULT database",
+    "`file_path_from_root` varchar(1024)",
+    "`file_last_modified_system_version` varchar(20)",
+    "`file_last_modified_utc` bigint",
+    "`tags` json",
+    "`dialog_notes` text",
+    "`atom_mappings` json",
+    "`category_mappings` json",
+    "`content_events` json",
+    "`hashtags` json",
+    "`inbound_links` json",
+    "`like_users` json",
+    "`media_attachments` json",
+    "`question_mappings` json",
+    "`content_references` json",
+    "`revision_history` json",
+    "`share_users` json",
+    "`tag_relationships` json",
+    "`like_count` bigint NOT NULL DEFAULT 0",
+    "`share_count` bigint NOT NULL DEFAULT 0",
+    "`comment_count` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_contents_idx_slug_deleted",
+      "columns": [
+        "slug",
+        "is_deleted"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_unique_content_slug_domain",
+      "columns": [
+        "federation_node_id",
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_custom_path",
+      "columns": [
+        "custom_path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_file_path_from_root",
+      "columns": [
+        "file_path_from_root"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_content_parent",
+      "columns": [
+        "content_parent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_content_type",
+      "columns": [
+        "content_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_visibility",
+      "columns": [
+        "visibility"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_updated_ymdhis",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_domain",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_user",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_engagement_counts",
+      "columns": [
+        "like_count",
+        "share_count",
+        "comment_count"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_has_media",
+      "columns": [
+        null
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_has_events",
+      "columns": [
+        null
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_has_hashtags",
+      "columns": [
+        null
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "content_id",
+    "expected_name": "content_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

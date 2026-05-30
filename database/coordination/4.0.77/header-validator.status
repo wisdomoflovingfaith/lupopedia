@@ -1,0 +1,8 @@
+task_id: header-validator
+task_name: LUPOPEDIA HEADERS validator command
+owner: 102
+validator: 101
+status: complete
+notes: "4.0.77: headers validate, export, import in lupo.php; validate_lupopedia_headers.php, export_lupopedia_headers.php, import_lupopedia_headers.php. Fixtures and round-trip steps in tests/fixtures/headers/README.md. lupo_metadata integration deferred."
+completed_by: cursor
+completed_ymdhis: "20260316000000"

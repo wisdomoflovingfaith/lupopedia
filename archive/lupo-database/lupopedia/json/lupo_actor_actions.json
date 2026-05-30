@@ -1,0 +1,55 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_actor_actions",
+  "fields": [
+    "`actor_action_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`action_type` varchar(64) NOT NULL",
+    "`entity_type` varchar(64)",
+    "`entity_id` bigint",
+    "`description` text",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_actions_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_actions_idx_action_type",
+      "columns": [
+        "action_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_actions_idx_entity",
+      "columns": [
+        "entity_type",
+        "entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_action_id",
+    "expected_name": "actor_action_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

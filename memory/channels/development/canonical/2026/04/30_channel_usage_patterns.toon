@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/30-channel-usage-patterns.json
+# Generated at: 2026-04-10 13:11:13 UTC
+# JSON master checksum: 66a04cdf41757ef75a4e87325ac6e1d4
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131113,20260410131113,canonical,30,channel-usage-patterns,docs/prd/30_channel_usage_patterns.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for channel-usage-patterns section 1.,Overview
+  2,Operational summary for channel-usage-patterns section 2.,Core Principle
+  3,Operational summary for channel-usage-patterns section 3.,Constitutional alignment (Tier 1 vs database)
+  4,Operational summary for channel-usage-patterns section 4.,Channel Purpose
+  5,Operational summary for channel-usage-patterns section 5.,Message Formats
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_30_rule_1,1,critical,Rule 1 for PRD 30 (channel-usage-patterns)
+  2,prd_30_rule_2,2,high,Rule 2 for PRD 30 (channel-usage-patterns)
+  3,prd_30_rule_3,3,high,Rule 3 for PRD 30 (channel-usage-patterns)
+  4,prd_30_rule_4,4,medium,Rule 4 for PRD 30 (channel-usage-patterns)
+  5,prd_30_rule_5,5,critical,Rule 5 for PRD 30 (channel-usage-patterns)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 30.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,docs/prd/02_channels_discussions.md,85
+  5,doctrine,outbound,supported,references,docs/prd/16_lupopedia_headers.md,80

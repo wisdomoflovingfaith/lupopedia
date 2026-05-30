@@ -1,0 +1,119 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Mirrors executive report source",
+        "source": "weekly_report_memory",
+        "to": "REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Artifact audit index for this report week",
+        "source": "weekly_report_memory",
+        "to": "lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Translation rules governing executive-facing seeds",
+        "source": "weekly_report_memory",
+        "to": "lupo-docs/doctrine/system/TRANSLATION_MODEL.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Normative continuity wording cited in report",
+        "source": "weekly_report_memory",
+        "to": "lupo-docs/doctrine/CONTINUITY_LAYER_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Staging handoff — translation channel and OQ work",
+        "source": "weekly_report_memory",
+        "to": "lupo-memory/development/staging/2026/04/antigravity_handoff.toon",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "reason": "Staging handoff — HERMES wiring and management crisis context",
+        "source": "weekly_report_memory",
+        "to": "lupo-memory/development/staging/2026/04/cursor_handoff.toon",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "reason": "Staging handoff — Claude Code queue",
+        "source": "weekly_report_memory",
+        "to": "lupo-memory/development/staging/2026/04/handoff_claude.toon",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "reason": "Hermes doctrine cited in shipped work",
+        "source": "weekly_report_memory",
+        "to": "lupo-docs/doctrine/HERMES_DOCTRINE.md",
+        "type": "references",
+        "weight": 0.8
+      },
+      {
+        "reason": "PRD 82 cited in shipped work",
+        "source": "weekly_report_memory",
+        "to": "lupo-docs/prd/82_hermes_message_routing_memory_gateway.md",
+        "type": "references",
+        "weight": 0.8
+      },
+      {
+        "reason": "Header atoms sidecar: immutable bind for transcript_jsonl, memory_toon, atoms_toon",
+        "source": "weekly_report_memory",
+        "to": "lupo-memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Machine inventory JSONL: paths, exists, byte sizes for management audit",
+        "source": "weekly_report_memory",
+        "to": "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/report_helen_20260416_related_files.jsonl",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Evidence index transcript thread (pairs weekly-report-evidence memory)",
+        "source": "weekly_report_memory",
+        "to": "lupo-channels/0/development/weekly-report-evidence-20260416/transcript.jsonl",
+        "type": "references",
+        "weight": 0.95
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260416231833",
+    "last_verified_by": "cursor_report_related_artifact_closure",
+    "last_verified_by_actor_id": 102,
+    "prior_verification": {
+      "last_verified": "20260416231438",
+      "last_verified_by": "cursor_transcript_jsonl_slug_jsonl_suffix",
+      "last_verified_by_actor_id": 102
+    }
+  },
+  "header_bridge": {
+    "atoms_toon": "lupo-memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "report-email-helen-2026-04-16",
+    "default_collection_id": null,
+    "memory_toon": "lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+    "transcript_jsonl": "0/development/weekly_report_helen_20260416.jsonl"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+  "purpose": "Weekly executive report (Helen) week of 2026-04-10 through 2026-04-16; links evidence, doctrine, staging handoffs, and header atoms bind.",
+  "source_file_path_from_root": "REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+  "tags": [
+    "documentation",
+    "canonical",
+    "weekly_report",
+    "status"
+  ],
+  "type": "header_metadata"
+}

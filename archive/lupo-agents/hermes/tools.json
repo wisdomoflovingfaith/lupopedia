@@ -1,0 +1,28 @@
+{
+  "allowed_tools": ["intent_classification", "actor_selection", "prompt_generation", "communication_normalization", "routing_convention_management"],
+  "tool_usage_rules": [
+    "routing and messaging only — no implementation",
+    "always include channel_id and thread_id in generated artifacts",
+    "normalized artifacts must include lupopedia.headers with delegation_chain",
+    "route to registered actors only (lupo_actors registry)"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine redefinition",
+    "no audit authority",
+    "no primary implementation ownership",
+    "must remain actor_id 15 — no impersonation"
+  ],
+  "faucet_tool_mapping": {
+    "routing": ["intent_classification", "actor_selection"],
+    "prompt_generation": ["prompt_generation", "communication_normalization"],
+    "convention": ["routing_convention_management"]
+  },
+  "activation_rules": [
+    "activate on channel artifact requiring routing decision",
+    "activate on cross-agent communication normalization request",
+    "activate on WOLFIE directive broadcast requiring prompt normalization"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

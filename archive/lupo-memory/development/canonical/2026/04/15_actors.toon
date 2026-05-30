@@ -1,0 +1,34 @@
+# Generated from: lupo-memory/development/canonical/2026/04/15-actors.json
+# Generated at: 2026-04-10 12:18:58 UTC
+# JSON master checksum: a991fde2889aac949f68672178d2ec60
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410121835,20260410121835,canonical,15,actors,lupo-docs/prd/15_actors.md
+
+prd_sections[5]{pk,summary,title}:
+  1,"Canonical actor model for identity, inheritance, and personalization in Lupopedia.",Overview
+  2,"Actors belong to departments, not individual users, with act-as eligibility based on department intersection.",Department-First Actor Model
+  3,"Defines auth user, actor, and agent layers plus actor lifecycle and seed-to-canonical mapping.",Three-Layer Identity and Lifecycle
+  4,"Specifies actor workspace structure, context files, and constrained learning process.",Workspace and Learning Boundaries
+  5,"Applies edge dimensions, status semantics, and required review_reason for needs_review.",Memory Doctrine Addendum
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,department_first_act_as_eligibility,2,critical,"User act-as eligibility is department intersection based, not single-user actor ownership."
+  2,identity_layer_separation,3,critical,"Auth users authenticate, actors orchestrate, agents provide templates; do not conflate layers."
+  3,seed_to_canonical_actor_mapping,3,high,Low seed actor IDs map deterministically to canonical living actor IDs when instantiated.
+  4,actor_workspace_contract,4,high,Actor workspace directories and core files must follow canonical structure and attribution rules.
+  5,needs_review_requires_review_reason,5,critical,Memory edges with needs_review status require explicit review_reason for routing.
+
+definitions[5]{pk,meaning,term}:
+  1,Runtime persona that executes work under department-scoped context.,actor
+  2,Immutable filesystem-defined definition under lupo-agents used by actors.,agent_template
+  3,Department-authorized selection of actor persona by authenticated user.,act_as
+  4,Low registry ID reserved for install and doctrine reference identities.,seed_actor_id
+  5,"Deterministic living actor ID used for runtime memory, edges, and sessions.",canonical_actor_id
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,references,lupo-docs/prd/05_auth_user_actor_agent_transformation.md,95
+  4,doctrine,outbound,supported,references,lupo-docs/prd/07_agents_faucets.md,90
+  5,doctrine,outbound,supported,references,lupo-docs/prd/38_memory_unification.md,90

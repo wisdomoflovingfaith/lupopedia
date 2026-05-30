@@ -1,0 +1,27 @@
+---
+description: LILITH ASCII-only mandate for all authored output. No emoji, Unicode arrows, box drawing, curly quotes, or em dashes. Code points U+0020 through U+007E only unless an exception is explicitly documented elsewhere.
+alwaysApply: true
+---
+
+# ASCII-ONLY DOCTRINE - NO EXCEPTIONS
+
+ALWAYS apply this rule. It is permanent.
+
+- NEVER write emoji or pictographic symbols (smileys, hearts, stars, checkmarks, X marks, and similar)
+- NEVER write Unicode arrow glyphs, box-drawing characters, or triangle / down-arrow symbols (use ASCII sequences such as `->`, `<->`, `v`, `down`)
+- NEVER write curly quotes or em dash / en dash characters
+- ALWAYS use ASCII (code points 32 through 126) only for normative text
+
+Replacements:
+
+- `[x]` or OK for checkmark
+- `[ ]` or FAIL for X mark
+- `->` for direction (arrow meaning)
+- `--` for em dash
+- Straight `"` and `'` for quotes
+
+When editing existing files with mojibake (UTF-8 shown wrong after a bad encoding conversion, often shown as `a-hat` plus garbage), replace with ASCII equivalents.
+
+Canonical full text: [AGENTS.md](../../AGENTS.md) section **ASCII-ONLY DOCTRINE (LILITH / constitutional)**.
+
+This rule is constitutional. Violations will be rejected.

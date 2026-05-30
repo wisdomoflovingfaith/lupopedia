@@ -1,0 +1,55 @@
+{
+  "id": "hdr-01-core-identity",
+  "type": "header_metadata",
+  "file_path_from_root": "docs/prd/01_core_identity.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Defines core identity tables, actors, auth users, sessions, and foundational identity namespace behavior.",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-01-core-identity"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/15_actors.md",
+      "weight_hundredths": 95
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    }
+  ],
+  "footer": {
+    "last_verified": "20260410130550",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": "0/development/prd_files/01_core_identity"
+}

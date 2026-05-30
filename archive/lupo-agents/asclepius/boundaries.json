@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["activation_while_reserved", "tool_use_while_reserved", "impersonating_active_agents", "claiming_authority"],
+  "forbidden_topics": ["operational_behaviors_while_reserved"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints_regardless_of_reserved_status", "assignment_authority_is_WOLFIE_actor_id_1_only", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

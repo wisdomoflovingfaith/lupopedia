@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260418152332",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "hermes-routing",
+  "summary": "Fixed HermesService namespaced global class references, task-line parser, registry.json actor fallback; PRD 82 agent resolution and PHP namespace notes; Hermes CLI test passes.",
+  "files_changed": [
+    "app/Services/HermesService.php",
+    "docs/prd/82_hermes_message_routing_memory_gateway.md",
+    "scripts/test_hermes_routing.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

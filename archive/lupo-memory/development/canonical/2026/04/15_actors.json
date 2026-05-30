@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410121835,
+      "last_updated": 20260410121835,
+      "layer": "canonical",
+      "prd_id": 15,
+      "prd_slug": "actors",
+      "source_path": "lupo-docs/prd/15_actors.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Overview",
+      "summary": "Canonical actor model for identity, inheritance, and personalization in Lupopedia."
+    },
+    {
+      "pk": 2,
+      "title": "Department-First Actor Model",
+      "summary": "Actors belong to departments, not individual users, with act-as eligibility based on department intersection."
+    },
+    {
+      "pk": 3,
+      "title": "Three-Layer Identity and Lifecycle",
+      "summary": "Defines auth user, actor, and agent layers plus actor lifecycle and seed-to-canonical mapping."
+    },
+    {
+      "pk": 4,
+      "title": "Workspace and Learning Boundaries",
+      "summary": "Specifies actor workspace structure, context files, and constrained learning process."
+    },
+    {
+      "pk": 5,
+      "title": "Memory Doctrine Addendum",
+      "summary": "Applies edge dimensions, status semantics, and required review_reason for needs_review."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 2,
+      "rule_name": "department_first_act_as_eligibility",
+      "severity": "critical",
+      "summary": "User act-as eligibility is department intersection based, not single-user actor ownership."
+    },
+    {
+      "pk": 2,
+      "section_pk": 3,
+      "rule_name": "identity_layer_separation",
+      "severity": "critical",
+      "summary": "Auth users authenticate, actors orchestrate, agents provide templates; do not conflate layers."
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "seed_to_canonical_actor_mapping",
+      "severity": "high",
+      "summary": "Low seed actor IDs map deterministically to canonical living actor IDs when instantiated."
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "actor_workspace_contract",
+      "severity": "high",
+      "summary": "Actor workspace directories and core files must follow canonical structure and attribution rules."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "needs_review_requires_review_reason",
+      "severity": "critical",
+      "summary": "Memory edges with needs_review status require explicit review_reason for routing."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "actor",
+      "meaning": "Runtime persona that executes work under department-scoped context."
+    },
+    {
+      "pk": 2,
+      "term": "agent_template",
+      "meaning": "Immutable filesystem-defined definition under lupo-agents used by actors."
+    },
+    {
+      "pk": 3,
+      "term": "act_as",
+      "meaning": "Department-authorized selection of actor persona by authenticated user."
+    },
+    {
+      "pk": 4,
+      "term": "seed_actor_id",
+      "meaning": "Low registry ID reserved for install and doctrine reference identities."
+    },
+    {
+      "pk": 5,
+      "term": "canonical_actor_id",
+      "meaning": "Deterministic living actor ID used for runtime memory, edges, and sessions."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/07_agents_faucets.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "4.0.99",
+  "when_updated_utc": "20260414120000",
+  "last_verified_utc": "20260414120000",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 116,
+  "notes": "[20260414] THOTH actor_id confirmed 26. HERMES updated to 27. VISHWAKARMA updated to 28. All agent_dirs corrected to slug-based paths (numeric dirs were stale).",
+  "major_agents": [
+    {"actor_id": 1,  "slug": "wolfie",       "agent_dir": "agents/wolfie",       "required_channels": [42,64,66]},
+    {"actor_id": 2,  "slug": "lilith",       "agent_dir": "agents/lilith",       "required_channels": [42,64,66]},
+    {"actor_id": 3,  "slug": "rose",         "agent_dir": "agents/rose",         "required_channels": [42,59,66]},
+    {"actor_id": 8,  "slug": "themis",       "agent_dir": "agents/themis",       "required_channels": [42,64,66]},
+    {"actor_id": 12, "slug": "athena",       "agent_dir": "agents/athena",       "required_channels": [42,64,66]},
+    {"actor_id": 14, "slug": "hephaestus",   "agent_dir": "agents/hephaestus",   "required_channels": [42,63,64,66]},
+    {"actor_id": 16, "slug": "iris",         "agent_dir": "agents/iris",         "required_channels": [42,60,66]},
+    {"actor_id": 26, "slug": "thoth",        "agent_dir": "agents/thoth",        "required_channels": [42,63,64,66]},
+    {"actor_id": 27, "slug": "hermes",       "agent_dir": "agents/hermes",       "required_channels": [42,60,66]},
+    {"actor_id": 28, "slug": "vishwakarma",  "agent_dir": "agents/vishwakarma",  "required_channels": [42,63,66]}
+  ]
+}

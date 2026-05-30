@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417071005",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Replaces obsolete header blocks in install.php with canonical lupopedia.headers, adds filesystem doctrine guidance, and keeps installer API budget defaults aligned to gemini/deepseek/groq.",
+  "files_changed": [
+    "install.php",
+    "lupo-docs/versions/4.1.2/buffer/20260417071005_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

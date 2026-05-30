@@ -1,0 +1,17 @@
+{
+  "schema_version": "4.0.99",
+  "capabilities": [
+    "synthetic_multi_persona_orchestration",
+    "php_first_batching",
+    "metadata_json_provenance",
+    "channel_visibility_enforcement",
+    "prd_36_compliance",
+    "counting_in_light_telemetry_only",
+    "not_a_game_enforcement",
+    "survivability_cooperation_metric_technical",
+    "memory_graph_query",
+    "transcript_fetch"
+  ],
+  "when_updated_utc": "20260418132528",
+  "last_verified_utc": "20260418132528"
+}

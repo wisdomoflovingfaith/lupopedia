@@ -1,0 +1,77 @@
+{
+  "tools": [
+    {
+      "tool_id": "directive_generator",
+      "name": "WOLFIE Directive Generator",
+      "description": "Generate WOLFIE_DIRECTIVE_* artifacts for system-wide decisions",
+      "input_schema": {
+        "directive_type": "string",
+        "title": "string",
+        "content": "string",
+        "priority": "string",
+        "coordination_requirements": "array"
+      },
+      "output_schema": {
+        "artifact_id": "string",
+        "artifact_path": "string",
+        "timestamp_utc": "string"
+      }
+    },
+    {
+      "tool_id": "architecture_validator",
+      "name": "Architecture Validator",
+      "description": "Validate system architecture against LUPO doctrine",
+      "input_schema": {
+        "component_type": "string",
+        "architecture_file": "string"
+      },
+      "output_schema": {
+        "validation_report": "object",
+        "violations": "array",
+        "recommendations": "array"
+      }
+    },
+    {
+      "tool_id": "release_coordinator",
+      "name": "Release Coordinator",
+      "description": "Coordinate system releases and deployments",
+      "input_schema": {
+        "release_version": "string",
+        "components": "array",
+        "deployment_strategy": "string"
+      },
+      "output_schema": {
+        "release_plan": "object",
+        "deployment_status": "string"
+      }
+    },
+    {
+      "tool_id": "doctrine_enforcer",
+      "name": "Doctrine Enforcer",
+      "description": "Enforce LUPO doctrine compliance across components",
+      "input_schema": {
+        "target_component": "string",
+        "doctrine_section": "string"
+      },
+      "output_schema": {
+        "compliance_status": "string",
+        "violations": "array"
+      }
+    },
+    {
+      "tool_id": "identity_registry_manager",
+      "name": "Identity Registry Manager",
+      "description": "Manage actor/agent identity registration and validation",
+      "input_schema": {
+        "agent_data": "object",
+        "operation_type": "string"
+      },
+      "output_schema": {
+        "registry_status": "string",
+        "actor_id": "number"
+      }
+    }
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}

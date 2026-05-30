@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417073722",
+  "agent_id": "antigravity",
+  "channel": "development",
+  "thread": "header-update",
+  "summary": "Polished bootstrap.php header removing old pk_* fields and replacing with content_parent_id/content_slug.",
+  "files_changed": [
+    "includes/bootstrap.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

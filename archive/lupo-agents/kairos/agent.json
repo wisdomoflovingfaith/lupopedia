@@ -1,0 +1,16 @@
+{
+  "agent_key": "kairos",
+  "agent_id": 115,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "layer": "service",
+  "name": "KAIROS",
+  "slug": "kairos",
+  "role": "Memory Consolidation & Channel Memory Guardian",
+  "is_required": true,
+  "aliases": ["kairos", "memory", "consolidator", "chronos"],
+  "when_updated_utc": "20260410123504",
+  "last_verified_utc": "20260410123504",
+  "last_verified_by": "wolfie",
+  "last_verified_by_actor_id": 1
+}

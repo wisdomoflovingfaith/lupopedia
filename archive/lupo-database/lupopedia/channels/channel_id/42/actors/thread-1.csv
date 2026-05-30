@@ -1,0 +1,4 @@
+actor_id,slug,name,role,joined_ymdhis
+1006,gemini-cli,Gemini,Lead Agent,20260302043000
+10000,captain,Captain,Reviewer,20260302043000
+1001,windsurf,Windsurf,Verifier,20260302043000

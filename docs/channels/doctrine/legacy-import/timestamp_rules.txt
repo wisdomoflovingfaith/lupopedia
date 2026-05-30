@@ -1,0 +1,57 @@
+# Timestamp Rules Doctrine
+# Version: 1.0.0
+# Purpose: Define temporal integrity requirements for Lupopedia
+
+Rule: All timestamps must be BIGINT in YYYYMMDDHHIISS format.
+Validation: 
+  - Check that every table has created_ymdhis and updated_ymdhis columns
+  - Verify all timestamp columns are BIGINT type
+  - Ensure format is exactly 14 digits (YYYYMMDDHHMMSS)
+  - All timestamps must be UTC
+
+Rule: No automatic timestamp updates.
+Validation:
+  - Database triggers are forbidden
+  - Application must handle all timestamp updates
+  - created_ymdhis should never change after record creation
+  - updated_ymdhis must be explicitly updated by application
+
+Rule: Temporal consistency across all tables.
+Validation:
+  - All timestamp columns follow naming convention: *_ymdhis
+  - No datetime, timestamp, or other temporal column types
+  - All time calculations must use BIGINT arithmetic
+  - Time zone handling must be UTC-only
+
+Rule: Temporal integrity in relationships.
+Validation:
+  - Edge tables must have created_ymdhis and updated_ymdhis
+  - Temporal ordering must be preserved in queries
+  - No temporal gaps in audit trails
+  - All events must be traceable through timestamps
+
+Enforcement: WOLFIE agent validates these rules during migrations and runtime checks.
+Consequence: Violations result in failed validation and blocked deployment.
+
+# Implementation Examples
+
+# Correct timestamp usage
+CREATE TABLE example_table (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  created_ymdhis BIGINT NOT NULL,    -- UTC YYYYMMDDHHMMSS
+  updated_ymdhis BIGINT NOT NULL     -- UTC YYYYMMDDHHMMSS
+);
+
+# Incorrect usage (FORBIDDEN)
+CREATE TABLE bad_example (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  created_at DATETIME,               -- FORBIDDEN: DATETIME type
+  updated_at TIMESTAMP,              -- FORBIDDEN: TIMESTAMP type
+  last_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- FORBIDDEN: automatic updates
+);
+
+# PHP Implementation
+$timestamp = date('YmdHis'); // UTC
+$query = "INSERT INTO table (name, created_ymdhis, updated_ymdhis) VALUES (?, ?, ?)";

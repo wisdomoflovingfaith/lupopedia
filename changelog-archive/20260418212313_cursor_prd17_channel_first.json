@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260418212313",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-17-decisions",
+  "summary": "PRD 17: channel-first decisions/{channel_key}/ tree; questions+answers in questions/; derived decision doctrine; THREAD_INDEX rules; edge types; header example per PRD 16; transcript_jsonl 3-segment slug; version metadata in body; memory appendix moved to PRD 03/38/51; pseudocode path updates.",
+  "files_changed": [
+    "docs/prd/17_decisions_format.md",
+    "docs/prd/PRD_INDEX.md",
+    "changelog-pending/20260418212313_cursor_prd17_channel_first.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

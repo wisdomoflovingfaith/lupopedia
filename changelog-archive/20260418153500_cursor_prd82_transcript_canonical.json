@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418153500",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-82-transcript",
+  "summary": "PRD 82: transcript JSONL is canonical-only under memory/transcripts; removed channels mirror from sections 3.2 and 4.1; aligned appendTranscript contract and section 8.",
+  "files_changed": [
+    "docs/prd/82_hermes_message_routing_memory_gateway.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

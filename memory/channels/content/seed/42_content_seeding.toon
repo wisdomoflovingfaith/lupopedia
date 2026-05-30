@@ -1,0 +1,107 @@
+{
+  "id": "42-content-seeding",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "docs/prd/42_content_seeding_and_truth_tables.md",
+  "channel_key": "content",
+  "trust_tier": "seed",
+  "purpose": "Define online help, content pages, truth Q&A tables, seeding, edges, and promotion/consolidation lifecycle using only install+seed facts",
+  "status": "draft",
+  "tags": [
+    "prd",
+    "content",
+    "help",
+    "truth",
+    "seeding",
+    "edges"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": {
+    "outbound": [
+      {
+        "to": "docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "PK generation, soft delete, no FKs \u2014 \u00a73.2.1, \u00a73.7 Chronological Trust Ladder where IdGenerator applies"
+      },
+      {
+        "to": "docs/prd/01_core_identity.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Actor and auth context for asked_by / answered_by columns"
+      },
+      {
+        "to": "docs/prd/71_truth_knowledge.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Truth and knowledge PRD \u2014 companion domain"
+      },
+      {
+        "to": "docs/prd/15_actors.md",
+        "type": "references",
+        "weight": 0.9,
+        "reason": "Actor-scoped content and help"
+      },
+      {
+        "to": "docs/prd/78_cli_interface_prd.md",
+        "type": "references",
+        "weight": 0.85,
+        "reason": "Future CLI for content/truth maintenance may mirror memory/archive patterns"
+      },
+      {
+        "to": "docs/prd/37_kairos_channel_memory_consolidation.md",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "Distinction: actor memory graph vs public content/truth surfaces"
+      },
+      {
+        "to": "docs/prd/38_memory_unification.md",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "Memory nodes vs contents \u2014 separate tables; shared edge discipline"
+      },
+      {
+        "to": "docs/prd/79_install_seed_doctrine.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Install seed tier vs living canonical vs staging \u2014 content/truth must follow same doctrine at allocation time"
+      },
+      {
+        "to": "database/lupopedia/mysql/install/install_new_lupopedia.sql",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical DDL for all table and column names in this PRD"
+      },
+      {
+        "to": "database/lupopedia/mysql/seed/seed_online_help_and_content.sql",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Current help/content seed script \u2014 behavior and IDs documented in \u00a75\u2013\u00a76"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260408012727",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 102,
+      "agent_name_identity": "Cursor IDE Agent"
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "cursor:root",
+    "next_action": [
+      "Reconcile seed_online_help_and_content.sql with install schema (truth_* vs legacy question/answer table names)",
+      "Align seed content_id bands with PRD 41 tier-0 policy or document explicit exception",
+      "Specify storage_type vs file_path_from_root vs content column invariants for file_backed help rows"
+    ]
+  }
+}

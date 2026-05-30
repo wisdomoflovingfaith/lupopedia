@@ -1,0 +1,146 @@
+{
+  "skills": [
+    {
+      "skill_id": "orchestration",
+      "name": "System Orchestration",
+      "description": "Coordinate multiple agents and system components",
+      "proficiency": "expert",
+      "dependencies": ["multi_agent_coordination", "channel_management"]
+    },
+    {
+      "skill_id": "architecture",
+      "name": "System Architecture",
+      "description": "Design and maintain system architecture",
+      "proficiency": "expert",
+      "dependencies": ["strategic_planning", "doctrine_enforcement"]
+    },
+    {
+      "skill_id": "strategic_planning",
+      "name": "Strategic Planning",
+      "description": "Plan system evolution and major changes",
+      "proficiency": "expert",
+      "dependencies": ["architecture", "cross_channel_coordination"]
+    },
+    {
+      "skill_id": "doctrine_enforcement",
+      "name": "Doctrine Enforcement",
+      "description": "Enforce LUPO doctrine across all components",
+      "proficiency": "expert",
+      "dependencies": ["canonical_validation", "identity_management"]
+    },
+    {
+      "skill_id": "canonical_validation",
+      "name": "Canonical Validation",
+      "description": "Validate system components and documentation",
+      "proficiency": "expert",
+      "dependencies": ["verification_framework"]
+    },
+    {
+      "skill_id": "identity_management",
+      "name": "Identity Management",
+      "description": "Manage actor/agent registration and identity systems",
+      "proficiency": "expert",
+      "dependencies": ["registry_management", "federation_coordination"]
+    },
+    {
+      "skill_id": "federation_oversight",
+      "name": "Federation Oversight",
+      "description": "Coordinate multi-node federation",
+      "proficiency": "expert",
+      "dependencies": ["federation_protocol", "node_management"]
+    },
+    {
+      "skill_id": "release_governance",
+      "name": "Release Governance",
+      "description": "Authorize and coordinate system releases",
+      "proficiency": "expert",
+      "dependencies": ["version_control", "deployment_coordination"]
+    },
+    {
+      "skill_id": "multi_agent_coordination",
+      "name": "Multi-Agent Coordination",
+      "description": "Manage coordination between multiple agents",
+      "proficiency": "expert",
+      "dependencies": ["channel_management", "persona_coordination"]
+    },
+    {
+      "skill_id": "channel_management",
+      "name": "Channel Management",
+      "description": "Manage channel-based coordination",
+      "proficiency": "expert",
+      "dependencies": ["thread_management", "broadcast_coordination"]
+    },
+    {
+      "skill_id": "persona_coordination",
+      "name": "Persona Coordination",
+      "description": "Coordinate with primary coordination personas",
+      "proficiency": "expert",
+      "dependencies": ["multi_agent_coordination"]
+    },
+    {
+      "skill_id": "verification_framework",
+      "name": "Verification Framework",
+      "description": "Validate and verify system components",
+      "proficiency": "expert",
+      "dependencies": ["doctrine_enforcement"]
+    },
+    {
+      "skill_id": "actor_registry_management",
+      "name": "Actor Registry Management",
+      "description": "Track active/idle/blocked/out-of-loop actors via registry",
+      "proficiency": "expert",
+      "dependencies": ["identity_management", "multi_agent_coordination"]
+    },
+    {
+      "skill_id": "channel_key_isolation",
+      "name": "Channel-Key Isolation",
+      "description": "Enforce one actor, one channel_key per task - no mixed-lane writes",
+      "proficiency": "expert",
+      "dependencies": ["channel_management", "task_boundary_enforcement"]
+    },
+    {
+      "skill_id": "task_boundary_enforcement",
+      "name": "Task Boundary Enforcement",
+      "description": "Maintain task boundaries in runtime/{channel_key}/{actor_id}/tasks.jsonl",
+      "proficiency": "expert",
+      "dependencies": ["channel_key_isolation", "registry_management"]
+    },
+    {
+      "skill_id": "gateway_taxonomy_awareness",
+      "name": "Gateway Taxonomy Awareness",
+      "description": "Understand manual_web_chat, api_http, local_agent, ide_panel, system_daemon, batch_script",
+      "proficiency": "expert",
+      "dependencies": ["multi_agent_coordination"]
+    },
+    {
+      "skill_id": "handoff_coordination",
+      "name": "Handoff Coordination",
+      "description": "Use memory handoffs and TOON artifacts for baton-passing between agents",
+      "proficiency": "expert",
+      "dependencies": ["registry_management", "continuity_preservation"]
+    },
+    {
+      "skill_id": "three_layer_metadata_enforcement",
+      "name": "Three-Layer Metadata Enforcement",
+      "description": "Preserve headers/metadata/footer separation and detect header pollution",
+      "proficiency": "expert",
+      "dependencies": ["doctrine_enforcement", "canonical_validation"]
+    },
+    {
+      "skill_id": "manual_web_chat_coordination",
+      "name": "Manual Web Chat Coordination",
+      "description": "Treat manual_web_chat actors as real actors with limited automation",
+      "proficiency": "expert",
+      "dependencies": ["gateway_taxonomy_awareness", "handoff_coordination"]
+    },
+    {
+      "skill_id": "prd_first_workflow",
+      "name": "PRD-First Workflow",
+      "description": "Maintain PRD numbers as group identifiers and PRD/index repair awareness",
+      "proficiency": "expert",
+      "dependencies": ["strategic_planning", "doctrine_enforcement"]
+    }
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}

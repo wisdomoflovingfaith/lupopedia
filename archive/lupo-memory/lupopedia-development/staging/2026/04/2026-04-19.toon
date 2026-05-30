@@ -1,0 +1,20 @@
+{
+    "type": "staging_memory",
+    "channel_key": "lupopedia-development",
+    "thread_slug": "2026-04-19",
+    "trust_tier": "staging",
+    "when_updated": 20260419023345,
+    "source_actor_id": 15,
+    "patterns": [
+        {
+            "pattern_id": "task_assignment:10000:1:14d5b402",
+            "pattern_type": "task_assignment",
+            "ts": 20260419023345,
+            "from_actor_id": 10000,
+            "to_actor_id": 1,
+            "summary": "test",
+            "occurrence_count": 1,
+            "promotion_candidate": false
+        }
+    ]
+}

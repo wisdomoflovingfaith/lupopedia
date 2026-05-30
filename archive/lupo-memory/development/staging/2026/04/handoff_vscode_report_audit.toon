@@ -1,0 +1,124 @@
+{
+  "handoff_id": "vscode_report_audit_20260416",
+  "agent_from": "gemini",
+  "agent_to": null,
+  "actor_id_from": null,
+  "actor_id_to": null,
+  "status": "completed",
+  "created_utc": "20260416225334",
+  "expires_utc": null,
+  "funding_sensitive": true,
+
+  "task_focus": "Artifact integrity audit and header verification for REPORT_EMAIL_TO_HELEN_2026_04_16.md (executive weekly report, funding-sensitive deliverable)",
+
+  "summary": "Full artifact integrity pass completed on REPORT_EMAIL_TO_HELEN_2026_04_16.md. All 22 header fields verified. All memory toon outbound edges (9 total) resolve to on-disk artifacts. Evidence index and transcript thread verified. Two artifacts updated: transcript appended with audit entry, memory toon footer updated with verified timestamp. Report is operationally valid, continuous, and traceable. One non-blocking semantic classification note recorded.",
+
+  "work_accomplished": [
+    "Read and verified REPORT_EMAIL_TO_HELEN_2026_04_16.md (15 sections, 22-field header)",
+    "Verified all 22 header fields against PRD 16 v4.1.2 canonical requirements",
+    "Verified memory_toon exists and resolves: lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+    "Verified transcript_jsonl thread exists: lupo-channels/0/development/weekly_report_helen_20260416.jsonl/ (transcript.jsonl + THREAD_MANIFEST.md)",
+    "Verified all 9 outbound edges in memory toon resolve to on-disk artifacts",
+    "Verified evidence index: lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+    "Verified all secondary references in evidence index (HERMES doctrine, PRD 82, mockup_try2.htm, agent_poll_tasks.php, tasks/complete.php, DMV captain log, open_questions.md)",
+    "Verified artifact_type=documentation / artifact_kind=guide is valid per PRD 16 ARTIFACT_TYPE_ALLOWED_KINDS",
+    "Verified report content accuracy against antigravity_handoff.toon, cursor_handoff.toon, handoff_claude.toon",
+    "Appended Gemini audit entry to transcript.jsonl (ts: 20260416225334)",
+    "Updated memory toon footer: last_verified=20260416225334, prior cursor verification preserved"
+  ],
+
+  "files_reviewed": [
+    "REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+    "lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+    "lupo-memory/development/canonical/1026/04/weekly-report-evidence-20260416.toon",
+    "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/transcript.jsonl",
+    "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/THREAD_MANIFEST.md",
+    "lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+    "lupo-memory/development/staging/2026/04/antigravity_handoff.toon",
+    "lupo-memory/development/staging/2026/04/cursor_handoff.toon",
+    "lupo-memory/development/staging/2026/04/handoff_claude.toon",
+    "lupo-docs/doctrine/TRANSLATION_MODEL.md (via seed paths)",
+    "lupo-docs/prd/16_lupopedia_headers.md (artifact_kind validation)",
+    "lupo-scripts/lib/header_spec_v3_1.py (ARTIFACT_TYPE_ALLOWED_KINDS)"
+  ],
+
+  "files_updated": [
+    {
+      "path": "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/transcript.jsonl",
+      "change": "Appended Gemini artifact integrity audit entry (ts 20260416225334) documenting full verification results"
+    },
+    {
+      "path": "lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+      "change": "Updated footer.last_verified to 20260416225334, last_verified_by to gemini_artifact_integrity_audit. Prior cursor verification preserved in prior_verification block."
+    }
+  ],
+
+  "verification_results": {
+    "header_field_count": 22,
+    "header_valid": true,
+    "header_issues": "none",
+    "memory_toon": {
+      "path": "lupo-memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+      "exists": true,
+      "outbound_edges": 9,
+      "all_edges_resolve": true
+    },
+    "transcript_thread": {
+      "path": "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/",
+      "transcript_exists": true,
+      "manifest_exists": true,
+      "entries_after_audit": 2
+    },
+    "evidence_index": {
+      "path": "lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+      "exists": true,
+      "sections": 6,
+      "all_referenced_artifacts_exist": true
+    },
+    "artifact_chain_continuous": true,
+    "content_verified_against_handoffs": true,
+    "content_sections_verified": [
+      "continuity (database-backed primary, limited degraded mode, not file-based fallback)",
+      "fall-forward design (baseline first, capability-proven upgrade)",
+      "memory integrity (staging vs approved, no silent overwrite)",
+      "agent handoff (operational proof, multi-agent chain documented)",
+      "translation layer (10 concept seeds, TRANSLATION_MODEL.md)",
+      "company reality (2-person LLC, November 2025)",
+      "budget transition ($300/mo April-May, $50/mo June target, framed as maturity)"
+    ]
+  },
+
+  "unresolved_issues": [
+    {
+      "issue": "Semantic classification: artifact_type=documentation / artifact_kind=guide vs artifact_type=status / artifact_kind=report",
+      "severity": "non-blocking",
+      "blocking": false,
+      "details": "The current classification (documentation/guide) is technically valid per PRD 16 ARTIFACT_TYPE_ALLOWED_KINDS. The more semantically precise classification for an executive status report would be artifact_type=status / artifact_kind=report, also valid per PRD 16. The linter applied documentation/guide intentionally. Captain may prefer status/report for cleaner graph semantics. No validator errors are raised by the current value.",
+      "requires_captain_decision": true
+    }
+  ],
+
+  "report_operational_status": {
+    "is_valid": true,
+    "is_traceable": true,
+    "is_continuous": true,
+    "ready_for_delivery": true,
+    "funding_sensitive_note": "This report is the primary executive deliverable for the week ending 2026-04-16. Artifact integrity (header, memory toon, transcript, evidence index) is part of the deliverable, not optional metadata. All chains are unbroken."
+  },
+
+  "next_steps": [
+    "Captain: decide artifact_type=documentation/guide vs status/report (non-blocking, both valid, semantic preference only)",
+    "Captain or orchestrator: deliver REPORT_EMAIL_TO_HELEN_2026_04_16.md to Helen",
+    "All agents: OQ-58 (task model unification lupo_tasks vs lupo_dialog_pending_tasks) remains open — next engineering session should address",
+    "THOTH: promotion automation from staging to canonical for this week's handoff toons is still on roadmap"
+  ],
+
+  "handoff_chain_this_week": [
+    "gemini_handoff.toon (buffer architecture, doctrine alignment)",
+    "antigravity_handoff.toon (translation channel, 10 concept seeds)",
+    "cursor_handoff.toon (HERMES wiring, management crisis, report verification)",
+    "handoff_claude.toon (Claude Code task queue for report finalization)",
+    "claude_handoff.toon (Claude Code report completion)",
+    "handoff_vscode_report_audit.toon (this file — Gemini artifact integrity audit)"
+  ]
+}

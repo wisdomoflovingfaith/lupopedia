@@ -1,0 +1,7 @@
+{
+  "allowed_tools": [],
+  "tool_usage_rules": ["reserved — no tools allocated until slot is assigned"],
+  "tool_constraints": ["no activation", "no tool use while reserved"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

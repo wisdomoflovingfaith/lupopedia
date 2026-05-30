@@ -1,0 +1,57 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_routing_decisions
+fields:
+- '`routing_decision_id` bigint NOT NULL'
+- '`actor_id` bigint NOT NULL'
+- '`thread_id` bigint NOT NULL'
+- '`task_id` bigint'
+- '`routing_strategy` varchar(64) NOT NULL'
+- '`candidate_users_json` text NOT NULL'
+- '`selected_auth_user_id` bigint NOT NULL'
+- '`fallback_index` int NOT NULL DEFAULT 0'
+- '`decision_reason` text'
+- '`decision_status` varchar(32) NOT NULL'
+- '`trigger_type` varchar(64) NOT NULL'
+- '`created_ymdhis` bigint NOT NULL'
+- '`completed_ymdhis` bigint DEFAULT 0'
+- '`idempotency_key` varchar(40)'
+indexes:
+- index_name: lupo_routing_decisions_unq_idempotency
+  columns:
+  - idempotency_key
+  is_unique: true
+  index_type: BTREE
+- index_name: lupo_routing_decisions_idx_loop_break
+  columns:
+  - actor_id
+  - thread_id
+  - trigger_type
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_routing_decisions_idx_thread_created
+  columns:
+  - thread_id
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_routing_decisions_idx_selected_status
+  columns:
+  - selected_auth_user_id
+  - decision_status
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: routing_decision_id
+  expected_name: routing_decision_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

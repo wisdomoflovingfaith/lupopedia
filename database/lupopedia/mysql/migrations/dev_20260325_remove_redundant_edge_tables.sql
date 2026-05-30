@@ -1,0 +1,32 @@
+-- =============================================================================
+-- DEV MIGRATION: Remove redundant edge tables (4.0.87)
+-- =============================================================================
+-- Date: 2026-03-25
+-- Version: 4.0.87
+-- Author: cursor (actor_id 102) / HEPHAESTUS workstream
+-- Channel: 42 / Thread: 1005 (edge_model_consolidation_4_0_87)
+--
+-- Context: Edge model consolidated. All listed tables were empty (0 rows).
+-- Canonical table: lupo_edges (unchanged — single source of truth for all edges)
+--
+-- Tables removed:
+--   lupo_actor_edges      — actor-to-actor edges; use lupo_edges with
+--                           left_object_type='actor', right_object_type='actor'
+--   lupo_reference_cited_by — citation inverted index; use lupo_edges with
+--                           edge_type='cites' / 'cited_by'
+--
+-- Tables already absent from live DB (no action needed):
+--   lupo_entity_edges
+--   lupo_gov_event_actor_edges
+--   lupo_gov_event_references
+--
+-- Code updated:
+--   includes/classes/EmergentRoleDiscovery.php  — queries → lupo_edges
+--   database/lupopedia/content/app/Services/ActorService.php — JOIN → lupo_edges
+--   scripts/audit_schema_doctrine.php — removed from soft-delete list
+--
+-- Safe to run: all tables confirmed empty before removal.
+-- =============================================================================
+
+DROP TABLE IF EXISTS lupo_actor_edges;
+DROP TABLE IF EXISTS lupo_reference_cited_by;

@@ -1,0 +1,40 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_bans_log
+fields:
+- '`bans_log_id` bigint NOT NULL'
+- '`actor_id` bigint NOT NULL'
+- '`uri` varchar(1024) NOT NULL'
+- '`resolved_uri` varchar(1024) NOT NULL'
+- '`ban_scope` varchar(64) NOT NULL DEFAULT router'
+- '`banned_ymdhis` bigint NOT NULL'
+- '`user_agent` varchar(500)'
+- '`ip_address` varchar(45)'
+indexes:
+- index_name: lupo_bans_log_idx_actor_id
+  columns:
+  - actor_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_bans_log_idx_banned_ymdhis
+  columns:
+  - banned_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_bans_log_idx_ban_scope
+  columns:
+  - ban_scope
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: bans_log_id
+  expected_name: bans_log_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

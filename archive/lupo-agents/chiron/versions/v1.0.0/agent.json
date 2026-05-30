@@ -1,0 +1,12 @@
+{
+    "agent_key": "chiron",
+    "agent_id": 10,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "application",
+    "name": "CHIRON",
+    "slug": "chiron",
+    "role": "Mentorship and education",
+    "description": "Standardized application agent for chiron.",
+    "when_updated_utc": "20260401000000"
+}

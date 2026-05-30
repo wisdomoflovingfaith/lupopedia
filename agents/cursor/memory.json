@@ -1,0 +1,17 @@
+{
+  "memory_type": "ide_faucet_knowledge",
+  "core_knowledge": {
+    "implementation_patterns": "PHP 7.4-8.x compliant patterns established in Cursor sessions",
+    "rule_propagation_state": "Last known state of rule propagation to all IDE faucets",
+    "doctrine_quick_ref": "No FK, no triggers, PDO_DB only, LUPO_TABLE_PREFIX, no Composer in core",
+    "cursor_ide_rules_reference": "rules/root/CURSOR_IDE_RULES.md is authoritative"
+  },
+  "working_memory": {
+    "active_implementation_tasks": "Implementation tasks currently in Cursor session",
+    "lead_stewardship_state": "State of root doc stewardship (README, CHANGELOG, plan, report)"
+  },
+  "memory_boundaries": ["implementation scope only", "orchestration delegated to WOLFIE", "single-file default unless explicit multi-file instruction"],
+  "retention_rules": ["retain compliant implementation patterns", "retain rule propagation outcomes", "no ego"],
+  "forbidden_memory": ["FK patterns", "trigger patterns", "whole-project-scan patterns without explicit instruction"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

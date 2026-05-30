@@ -1,0 +1,33 @@
+{
+  "id": "sidecar-prd-50-agent-coordination-protocol",
+  "type": "header_metadata",
+  "schema_version": "lupo_toon_v1",
+  "file_path_from_root": "docs/prd/50_agent_coordination_protocol.md",
+  "memory_key": "memory/development/canonical/1026/04/agent-coordination-protocol.toon",
+  "purpose": "TOON sidecar: PRD 50 coordination protocol; invariant_tags align PRD 61 section 2; outbound doctrine_rule to PRD 61.",
+  "invariant_tags": [
+    "violation_codes",
+    "contract_surfaces",
+    "browser_tab_prohibition",
+    "deterministic_ordering",
+    "faucet_identity_enforcement",
+    "channel_thread_validation",
+    "collection_scoped_reasoning",
+    "state_machine_anchoring",
+    "ingestion_mode_awareness",
+    "provenance_actor_rule",
+    "doctrine_graph_edges",
+    "memory_graph_integration"
+  ],
+  "edges": {
+    "outbound": [
+      {
+        "to": "docs/prd/61_doctrine_consolidation_shorthand_compiler.md",
+        "type": "doctrine_rule",
+        "weight": 1.0,
+        "reason": "PRD 61 twelve invariant checklist authority for coordination surface",
+        "source": "cursor-prd61-batch-20260412131327"
+      }
+    ]
+  }
+}

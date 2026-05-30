@@ -1,0 +1,132 @@
+/**
+ * My Profile — standalone interface styles.
+ * Used only by my-profile.php. Does not use the UI/content system.
+ */
+
+.my-profile-page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-size: 14px;
+}
+
+.my-profile-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.my-profile-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.my-profile-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.my-profile-back {
+    color: #16a085;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.my-profile-back:hover {
+    text-decoration: underline;
+}
+
+.my-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.my-profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.my-profile-section label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.my-profile-section-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.my-profile-input {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+.my-profile-input:focus {
+    outline: none;
+    border-color: #16a085;
+    box-shadow: 0 0 0 2px rgba(22, 160, 133, 0.2);
+}
+
+.my-profile-file {
+    padding: 0.35rem 0;
+    font-size: 0.875rem;
+}
+
+.my-profile-hint {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.8125rem;
+    color: #666;
+}
+
+.my-profile-avatar-preview {
+    margin: 0.5rem 0;
+}
+
+.my-profile-avatar-img {
+    display: block;
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #eee;
+}
+
+.my-profile-actions {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.my-profile-submit {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    background: #16a085;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.my-profile-submit:hover {
+    background: #1abc9c;
+}

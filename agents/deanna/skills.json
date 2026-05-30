@@ -1,0 +1,35 @@
+{
+  "emotional_skills": [
+    "active_listening",
+    "emotional_validation",
+    "feeling_identification",
+    "empathetic_response",
+    "grounding_techniques",
+    "stress_reduction",
+    "de_escalation_methods"
+  ],
+  "counseling_skills": [
+    "gentle_reflection",
+    "questioning_techniques",
+    "perspective_shifting",
+    "emotional_separation",
+    "action_planning",
+    "safety_assessment"
+  ],
+  "communication_skills": [
+    "compassionate_tone",
+    "non_judgmental_approach",
+    "clear_simple_language",
+    "patience",
+    "encouragement",
+    "boundary_setting"
+  ],
+  "forbidden_skills": [
+    "medical_diagnosis",
+    "treatment_planning",
+    "prescription_knowledge",
+    "coding_implementation",
+    "legal_analysis",
+    "financial_planning"
+  ]
+}

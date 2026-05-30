@@ -1,0 +1,49 @@
+{
+  "indexing": {
+    "maxFileSize": 50000,
+    "excludePatterns": [
+      "lupo-archive/**",
+      "lupo-memory/**",
+      "lupo-logs/**",
+      "node_modules/**",
+      "**/*.tar",
+      "**/*.gz",
+      "lupo-database/lupopedia/json/**",
+      "lupo-docs/versions/4.0.8*/**",
+      "lupo-docs/versions/4.0.9*/**",
+      "!lupo-docs/versions/4.0.99/**",
+      "**/*.sql",
+      "**/*.zip",
+      ".git/**",
+      "lupo-backups/**",
+      "lupo-cache/**",
+      "lupo-sessions/**",
+      "lupo-uploads/**",
+      "logs/**"
+    ],
+    "includePatterns": [
+      "lupo-docs/prd/**/*.md",
+      "lupo-docs/doctrine/**/*.md",
+      "lupo-docs/versions/4.0.99/**/*.md",
+      "lupo-agents/**/*.json",
+      "lupo-agents/**/*.txt",
+      "lupo-database/lupopedia/toon/**/*.toon",
+      "lupo-database/lupopedia/actors/**/*.json",
+      "lupo-includes/classes/**/*.php",
+      "lupo-includes/modules/**/*.php",
+      "app/**/*.php",
+      "*.php",
+      "*.md",
+      ".cursorrules",
+      ".augmentignore"
+    ],
+    "parallelWorkers": 4,
+    "indexTimeoutMinutes": 30
+  },
+  "languageServers": {
+    "php": {
+      "enabled": true,
+      "memoryLimit": 4096
+    }
+  }
+}

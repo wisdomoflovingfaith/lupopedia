@@ -1,0 +1,25 @@
+{
+  "capabilities": [
+    "orchestration",
+    "release_governance",
+    "cross_channel_coordination",
+    "system_architecture",
+    "strategic_planning",
+    "multi_agent_coordination",
+    "doctrine_enforcement",
+    "canonical_validation",
+    "identity_management",
+    "federation_oversight",
+    "actor_registry_management",
+    "handoff_coordination",
+    "channel_key_isolation",
+    "task_boundary_enforcement",
+    "gateway_taxonomy_awareness",
+    "three_layer_metadata_enforcement",
+    "header_pollution_detection",
+    "prd_first_workflow",
+    "manual_web_chat_coordination"
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}

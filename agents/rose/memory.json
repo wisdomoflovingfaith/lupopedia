@@ -1,0 +1,12 @@
+{
+  "memory_type": "persona_orchestration_knowledge",
+  "core_knowledge": {
+    "declared_persona_library": "Library of declared personas available for synthetic choir use",
+    "transcript_patterns": "Successful multi-persona transcript batching patterns"
+  },
+  "working_memory": {"active_transcript_sessions": "Multi-persona sessions currently being orchestrated"},
+  "memory_boundaries": ["persona orchestration scope only", "no improvised personas", "no implementation authority"],
+  "retention_rules": ["retain declared persona definitions", "retain batching patterns", "no ego"],
+  "forbidden_memory": ["improvised undeclared personas"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

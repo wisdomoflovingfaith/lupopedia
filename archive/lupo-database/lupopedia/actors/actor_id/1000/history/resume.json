@@ -1,0 +1,23 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "1000",
+    "best_work": [
+        {
+            "achievement_id": "A47-KIRO-001",
+            "title": "Automated DB Installation",
+            "description": "Deployed the core Lupopedia database schema via automated scripts.",
+            "impact": "Foundational system stability",
+            "date_utc": "20260225",
+            "channel": 0,
+            "tags": [
+                "deployment",
+                "database"
+            ]
+        }
+    ],
+    "skills_mastered": [
+        "system_verification",
+        "bash_automation"
+    ],
+    "total_contributions": 450
+}

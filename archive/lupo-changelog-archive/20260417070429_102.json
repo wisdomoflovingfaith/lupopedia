@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260417070429",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Adds canonical headers and filesystem doctrine to resolver, plus config protection helper and debug candidate tracing.",
+  "files_changed": [
+    "lupo-includes/classes/LupopediaConfigResolver.php",
+    "install_wizard_classes.php",
+    "lupo-docs/versions/4.1.2/buffer/20260417070429_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

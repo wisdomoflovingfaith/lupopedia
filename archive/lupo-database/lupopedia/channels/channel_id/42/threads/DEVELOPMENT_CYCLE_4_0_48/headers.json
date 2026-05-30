@@ -1,0 +1,12 @@
+{
+    "flare.headers": {
+        "file_path_from_root": "string",
+        "system_version": "string",
+        "channel_id": "integer",
+        "actor_id": "integer",
+        "last_modified_utc": "string",
+        "delegation_chain": "string",
+        "artifact_type": "string",
+        "purpose": "string"
+    }
+}

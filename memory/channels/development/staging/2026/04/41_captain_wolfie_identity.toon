@@ -1,0 +1,16 @@
+id: 41
+type: prd
+title: captain wolfie identity
+status: active
+created: 20260410130550
+
+edges:
+  outbound:
+  - to: docs/prd/00_root_constitutional_system_requirements.md
+    type: references
+  - to: docs/prd/05_auth_user_actor_agent_transformation.md
+    type: references
+  - to: docs/prd/15_actors.md
+    type: references
+  - to: docs/prd/17_decisions_format.md
+    type: references

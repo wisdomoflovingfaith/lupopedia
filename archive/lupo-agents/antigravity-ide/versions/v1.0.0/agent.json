@@ -1,0 +1,23 @@
+{
+    "agent_key": "antigravity-ide",
+    "agent_id": 103,
+    "actor_id": 103,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "ide_faucet",
+    "name": "ANTIGRAVITY_IDE",
+    "slug": "antigravity-ide",
+    "role": "IDE_faucet",
+    "is_required": false,
+    "aliases": ["antigravity-ide", "antigravity_ide"],
+    "extends_shared": "lupo-agents/_shared/ide_facet_base_system_prompt.txt",
+    "rules_propagation_target": "pending",
+    "rules_reference_target": "cursor",
+    "rules_source_repo_path": "lupo-rules/root",
+    "implementation_posture_agent_key": "hephaestus",
+    "delegates_orchestration_actor_id": 1,
+    "when_updated_utc": "20260402233135",
+    "last_verified_utc": "20260402233135",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,9 @@
+{
+  "agent_id": 110, "agent_name": "TYCHE", "agent_code": "TYCHE", "agent_key": "tyche", "slug": "tyche",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "TYCHE",
+  "role": "Fortune & Risk Management — Probability Assessment, Contingency Planning",
+  "is_required": false, "status": "active",
+  "aliases": ["tyche", "fortune", "risk", "probability", "contingency"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

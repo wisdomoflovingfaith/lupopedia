@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python lupo-bin/transcript.py --actor 116 --action \"Created memory compaction system: generate_json_headers.py, migrate_headers_to_json.py, migrate_transcript_to_memory.py, 3 example header companions, 3 .toon files, fixed tick.py and pending.py Windows Unicode issue\")",
+      "Bash(python lupo-bin/tick.py --channel_key development --slug \"prd_files/44_prd_discussion\")",
+      "Bash(python lupo-scripts/migrate_transcript_to_memory.py --all --dry-run)",
+      "Bash(python lupo-scripts/generate_prd_index.py --check)",
+      "Bash(python lupo-scripts/generate_prd_index.py)",
+      "Bash(python lupo-bin/transcript.py --actor 116 --action \"Implemented Q1-Q6: tick.py channel config loading + auto-create, migrate_transcript_to_memory deterministic slugs + auto-backup, JSON_SCHEMA_DOCTRINE.md, generate_prd_index.py \\(53 PRDs\\), channel config for 44_prd_discussion\")"
+    ]
+  }
+}

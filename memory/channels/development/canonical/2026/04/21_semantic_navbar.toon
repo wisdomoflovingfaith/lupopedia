@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/21-semantic-navbar.json
+# Generated at: 2026-04-10 13:11:12 UTC
+# JSON master checksum: 68c714c5d58b255a627f4ce539891ae7
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131112,20260410131112,canonical,21,semantic-navbar,docs/prd/21_semantic_navbar.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for semantic-navbar section 1.,1. API Endpoints Used
+  2,Operational summary for semantic-navbar section 2.,2. SQL Queries Used (Backend)
+  3,Operational summary for semantic-navbar section 3.,3. Data Flow Diagram
+  4,Operational summary for semantic-navbar section 4.,4. How Each Icon Maps to DB Tables
+  5,Operational summary for semantic-navbar section 5.,"5. External Sites (e.g. https://whatever.com/page.htm)"
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_21_rule_1,1,critical,Rule 1 for PRD 21 (semantic-navbar)
+  2,prd_21_rule_2,2,high,Rule 2 for PRD 21 (semantic-navbar)
+  3,prd_21_rule_3,3,high,Rule 3 for PRD 21 (semantic-navbar)
+  4,prd_21_rule_4,4,medium,Rule 4 for PRD 21 (semantic-navbar)
+  5,prd_21_rule_5,5,critical,Rule 5 for PRD 21 (semantic-navbar)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 21.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,docs/prd/11_analytics_tracking.md,85
+  5,doctrine,outbound,supported,references,docs/prd/34_federation_node_semantic_network.md,80

@@ -1,0 +1,10 @@
+{
+  "file_id": "example2.md",
+  "file_path": "lupo-docs/headers/example2.json",
+  "last_updated": "20260409113500",
+  "memory_ref": "lupo-memory/2026/04/M-example2-20260409.toon",
+  "edges": {
+    "outbound": []
+  },
+  "tags": ["example", "draft"]
+}

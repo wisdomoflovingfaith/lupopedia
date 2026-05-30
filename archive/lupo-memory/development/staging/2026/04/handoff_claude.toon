@@ -1,0 +1,66 @@
+{
+  "handoff_id": "cursor_to_claude_20260417",
+  "agent_from": "cursor",
+  "agent_to": "claude_code",
+  "actor_id_from": 102,
+  "actor_id_to": 116,
+  "status": "handoff_ready",
+  "created_utc": 20260416181552,
+  "expires_utc": null,
+  "summary": "Cursor completed weekly report verification, management crisis documentation, and translation channel alignment. Claude Code needs to produce the final management report.",
+  "cursor_completed": [
+    "Verified all weekly report claims against artifacts",
+    "Documented management communication gap in handoff toon (Sections A-E)",
+    "Confirmed translation channel exists with 10 concept seeds",
+    "Validated continuity doctrine and fall-forward design documentation",
+    "Created evidence index for REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+    "Added DMV precedent stub to captain's log",
+    "Set handoff status to handoff_ready for Claude Code"
+  ],
+  "what_claude_must_do": [
+    "Read cursor_handoff.toon (sections A-E cover the crisis and solution)",
+    "Read gemini_handoff.toon (handoff system design)",
+    "Read antigravity_handoff.toon (translation channel creation)",
+    "Review translation channel concept seeds (01-10) in lupo-channels/0/translation/concepts/",
+    "Update or create REPORT_EMAIL_TO_HELEN_2026_04_16.md with management-friendly language",
+    "Include the key message about token budget (exploration vs production)",
+    "Reassure management that June $50 target is achievable, not a crisis",
+    "Reference translation channel seeds as sources for explanations",
+    "Do NOT hide complexity — translate it",
+    "Do NOT promise what cannot be delivered"
+  ],
+  "critical_messages_claude_must_convey": [
+    "The high token spend in April-May was exploration and buildout.",
+    "By June, the system is optimized, the translation channel provides reusable explanations, and handoff toons prevent lost work.",
+    "The budget reduction is a sign of maturity, not distress.",
+    "Lupopedia is database-backed; continuity layer is for degraded mode only, not a file-based replacement database.",
+    "Crafty Syntax PHP code never executes on Lupopedia servers; import and transform model only."
+  ],
+  "translation_channel_summary": {
+    "path": "lupo-channels/0/translation/",
+    "readme": "lupo-channels/0/translation/README.md",
+    "model": "lupo-docs/doctrine/system/TRANSLATION_MODEL.md",
+    "concept_seeds": [
+      "01_continuity_layer.md",
+      "02_fall_forward_design.md",
+      "03_memory_system.md",
+      "04_staged_memory.md",
+      "05_handoff_toons.md",
+      "06_disposable_agents.md",
+      "07_channels.md",
+      "08_crafty_syntax_migration.md",
+      "09_path_referer_edges.md",
+      "10_shared_workspace.md"
+    ],
+    "purpose": "Translate technical doctrine into accessible language without dilution"
+  },
+  "files_for_claude_to_read": [
+    "lupo-memory/development/staging/2026/04/cursor_handoff.toon",
+    "lupo-memory/development/staging/2026/04/gemini_handoff.toon",
+    "lupo-memory/development/staging/2026/04/antigravity_handoff.toon",
+    "lupo-channels/0/translation/README.md",
+    "lupo-channels/0/translation/concepts/01_continuity_layer.md",
+    "lupo-channels/0/translation/concepts/02_fall_forward_design.md",
+    "lupo-channels/0/translation/concepts/03_memory_system.md"
+  ]
+}

@@ -1,0 +1,1 @@
+{"task_id": "actor_initialization_20260420060000", "channel_key": "initialization", "actor_id": 2, "what": "Actor initialization started", "where": "lupo-registry/actor_registry.toon", "when": 20260420060000, "why": "Initialize actor in registry", "how": "castcade", "status": "started", "notes": "Lilith actor initialized with channel_key initialization"}

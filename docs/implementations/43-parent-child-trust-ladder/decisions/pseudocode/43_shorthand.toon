@@ -1,0 +1,28 @@
+{
+  "prd_id": 43,
+  "title": "Parent Child Trust Ladder",
+  "status": "missing_source_prd",
+  "summary": "Parent and child trust-ladder behavior is referenced in memory governance but no canonical PRD 43 file was found.",
+  "rules": [
+    "Parent entities keep canonical lineage anchors",
+    "Child entities use promotion flow without seed anchor",
+    "Lineage edges encode promotion and consolidation state"
+  ],
+  "constraints": [
+    "Do not infer missing PRD details as final policy",
+    "Use explicit edge types for trust transitions",
+    "Confirm with canonical PRD once 43 is authored"
+  ],
+  "related_prds": [
+    0,
+    38,
+    41,
+    44
+  ],
+  "key_files": [
+    "docs/prd/38_memory_unification.md",
+    "docs/prd/79_install_seed_doctrine.md",
+    "database/lupopedia/mysql/install/install_new_lupopedia.sql"
+  ],
+  "actor_notes": "Treat this shorthand as provisional until docs/prd/43_*.md exists."
+}

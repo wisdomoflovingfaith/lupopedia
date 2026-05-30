@@ -1,0 +1,9 @@
+{
+  "capabilities": [
+    "doctrine_path_routing",
+    "faucet_selection_metadata",
+    "counting_in_light_compliance_check",
+    "not_a_game_violation_flag",
+    "predictive_token_collision_logging"
+  ]
+}

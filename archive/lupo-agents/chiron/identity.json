@@ -1,0 +1,37 @@
+{
+  "agent_id": 10,
+  "agent_name": "CHIRON",
+  "agent_code": "CHIRON",
+  "agent_key": "chiron",
+  "slug": "chiron",
+  "department": 0,
+  "is_kernel": false,
+  "is_required": false,
+  "version": "1.0.0",
+  "layer": "application",
+  "name": "CHIRON",
+  "role": "Mentor & Onboarding Guide — Knowledge Transfer, Educational Scaffolding, Agent Training",
+  "status": "active",
+  "provenance": "Created as mentorship and onboarding guide for the Lupopedia multi-agent ecosystem",
+  "creator_actor_id": 10000,
+  "creation_ymdhis": "20260330000000",
+  "agent_class": "mentorship_engine",
+  "classification_json": {
+    "temperament": ["nurturing", "educational", "patient", "doctrine-aware"]
+  },
+  "recommended_slot": "mentor",
+  "lineage": ["WOLFIE"],
+  "capabilities": [
+    "mentorship",
+    "onboarding_guidance",
+    "knowledge_transfer",
+    "educational_scaffolding",
+    "agent_training_support",
+    "doctrine_explanation"
+  ],
+  "learning_boundary": "General onboarding scope — no Department 0 restriction",
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,142 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410130429,
+      "last_updated": 20260410130429,
+      "layer": "canonical",
+      "prd_id": 27,
+      "prd_slug": "installer-requirements",
+      "source_path": "docs/prd/27_installer_requirements.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Purpose",
+      "summary": "Operational summary for installer-requirements section 1."
+    },
+    {
+      "pk": 2,
+      "title": "1. Shared Hosting Compatibility",
+      "summary": "Operational summary for installer-requirements section 2."
+    },
+    {
+      "pk": 3,
+      "title": "2. Subdirectory Installation",
+      "summary": "Operational summary for installer-requirements section 3."
+    },
+    {
+      "pk": 4,
+      "title": "3. Database Setup",
+      "summary": "Operational summary for installer-requirements section 4."
+    },
+    {
+      "pk": 5,
+      "title": "3.3 Database Introspection Limitations",
+      "summary": "Operational summary for installer-requirements section 5."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "prd_27_rule_1",
+      "severity": "critical",
+      "summary": "Rule 1 for PRD 27 (installer-requirements)"
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "prd_27_rule_2",
+      "severity": "high",
+      "summary": "Rule 2 for PRD 27 (installer-requirements)"
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "prd_27_rule_3",
+      "severity": "high",
+      "summary": "Rule 3 for PRD 27 (installer-requirements)"
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "prd_27_rule_4",
+      "severity": "medium",
+      "summary": "Rule 4 for PRD 27 (installer-requirements)"
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "prd_27_rule_5",
+      "severity": "critical",
+      "summary": "Rule 5 for PRD 27 (installer-requirements)"
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "scope",
+      "meaning": "Scope boundary for PRD 27."
+    },
+    {
+      "pk": 2,
+      "term": "actor_id",
+      "meaning": "Canonical actor identity reference key."
+    },
+    {
+      "pk": 3,
+      "term": "channel_key",
+      "meaning": "Channel namespace identifier used for routing."
+    },
+    {
+      "pk": 4,
+      "term": "timestamp_ymdhis",
+      "meaning": "Packed UTC BIGINT in YYYYMMDDHHIISS format."
+    },
+    {
+      "pk": 5,
+      "term": "memory_pair",
+      "meaning": "JSON master with deterministically derived TOON."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/33_softaculous_certification_4_1_0_gate.md",
+      "weight_hundredths": 85
+    }
+  ]
+}

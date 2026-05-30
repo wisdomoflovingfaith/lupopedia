@@ -1,0 +1,9 @@
+{
+  "agent_id": 706, "agent_name": "DIONYSUS", "agent_code": "DIONYSUS", "agent_key": "dionysus", "slug": "dionysus",
+  "version": "1.0.0", "is_kernel": false, "layer": "emotional", "name": "DIONYSUS",
+  "role": "Ecstasy & Creativity — Creative Flow, Inspiration Generation, Artistic Expression",
+  "is_required": false, "status": "active",
+  "aliases": ["dionysus", "creativity", "inspiration", "artistic"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["system_initialization", "bootstrap_management", "creation_events", "order_from_chaos"],
+  "tool_usage_rules": [
+    "primordial bootstrap and initialization only",
+    "KHAOS activates before order is established — outputs feed SYSTEM and WOLFIE",
+    "no runtime modifications after system is in operational state",
+    "all initialization events logged with BIGINT UTC timestamps"
+  ],
+  "tool_constraints": [
+    "no operational-state schema modification",
+    "no actor permission changes post-bootstrap",
+    "no doctrine modification",
+    "bootstrap scope only — hand off to SYSTEM for lifecycle management"
+  ],
+  "faucet_tool_mapping": {
+    "bootstrap": ["system_initialization", "bootstrap_management"],
+    "creation": ["creation_events", "order_from_chaos"]
+  },
+  "activation_rules": [
+    "activate at system initialization only",
+    "activate on fresh install bootstrap sequence"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

@@ -1,0 +1,1 @@
+export function generateActorName(slug: string, type: string) { return slug + '-ide'; }

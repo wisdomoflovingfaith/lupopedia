@@ -1,0 +1,74 @@
+{
+  "mapping_date": "2026-04-20T06:00:00Z",
+  "total_md_files": 13,
+  "mapped_files": {
+    "prd_groups": {
+      "PRD 15": {
+        "files": ["docs/prd/15_actors.md"],
+        "action": "existing_prd_updated",
+        "notes": "Added cross-reference to ACTOR_GATEWAY_TYPES.md"
+      },
+      "PRD 16": {
+        "files": [
+          "docs/prd/16_lupopedia_headers.md",
+          "docs/prd/16_lupopedia_headers_examples.md",
+          "docs/prd/16_lupopedia_headers_migration.md"
+        ],
+        "action": "existing_prd_updated",
+        "notes": "Main PRD updated with cross-references, supporting files created"
+      },
+      "PRD 46": {
+        "files": ["docs/prd/PRD_46_ACTOR_GATEWAY_TYPES.md"],
+        "action": "new_prd_created",
+        "notes": "New PRD with PRD_ prefix format"
+      }
+    },
+    "doctrine": {
+      "files": [
+        "docs/doctrine/ACTOR_GATEWAY_TYPES.md",
+        "docs/doctrine/CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+        "docs/doctrine/METADATA_VALIDATION_SPECIFICATION.md",
+        "docs/doctrine/THREE_LAYER_METADATA_DOCTRINE.md"
+      ],
+      "action": "doctrine_files_created",
+      "notes": "4 doctrine files linked to PRD 15 and PRD 16"
+    },
+    "root": {
+      "files": ["README_WTF.md", "TODO.md"],
+      "action": "root_files_created",
+      "notes": "Root-level files, exceptions to filename doctrine"
+    },
+    "unassigned": {
+      "files": [
+        "docs/prd/prd_index.md",
+        "rules/root/README.md"
+      ],
+      "action": "requires_manual_assignment",
+      "notes": "prd_index.md is index file, README.md is rules documentation"
+    }
+  },
+  "linking_actions": [
+    {
+      "action": "add_cross_reference",
+      "source": "docs/prd/15_actors.md",
+      "target": "docs/doctrine/ACTOR_GATEWAY_TYPES.md",
+      "status": "completed"
+    },
+    {
+      "action": "add_cross_references",
+      "source": "docs/prd/16_lupopedia_headers.md",
+      "targets": [
+        "docs/doctrine/THREE_LAYER_METADATA_DOCTRINE.md",
+        "docs/doctrine/METADATA_VALIDATION_SPECIFICATION.md",
+        "docs/doctrine/CASTCADE_METADATA_HANDLING_CHECKLIST.md"
+      ],
+      "status": "completed"
+    }
+  ],
+  "summary": {
+    "files_requiring_prd_linking": 0,
+    "files_requiring_renaming": 5,
+    "files_properly_linked": 11,
+    "unassigned_files": 2
+  }
+}

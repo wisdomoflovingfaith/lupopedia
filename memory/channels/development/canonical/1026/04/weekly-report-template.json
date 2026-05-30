@@ -1,0 +1,50 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Template prose companion",
+        "source": "weekly_report_template_memory",
+        "to": "docs/templates/WEEKLY_REPORT_TEMPLATE.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Canonical accepted example cited in template summary",
+        "source": "weekly_report_template_memory",
+        "to": "docs/versions/4.1.2/status/ACCEPTED_WEEKLY_REPORT_2026_04_16.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Append-only transcript thread",
+        "source": "weekly_report_template_memory",
+        "to": "channels/0/development/weekly-report-template.jsonl/transcript.jsonl",
+        "type": "references",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260417002719",
+    "last_verified_by": "cursor_weekly_report_template",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "weekly-report-template",
+    "default_collection_id": null,
+    "note": "Reusable weekly management report template; fill placeholders per week.",
+    "transcript_jsonl": "0/development/weekly-report-template.jsonl"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/weekly-report-template.toon",
+  "purpose": "Memory sidecar for WEEKLY_REPORT_TEMPLATE.md; points at accepted snapshot example.",
+  "source_file_path_from_root": "docs/templates/WEEKLY_REPORT_TEMPLATE.md",
+  "tags": [
+    "documentation",
+    "canonical",
+    "template",
+    "weekly_report"
+  ],
+  "type": "header_metadata"
+}

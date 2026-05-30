@@ -1,0 +1,10 @@
+runtime:
+  write_mode: append_only_sessions
+  memory_mode: filesystem_persistent
+  cache_mode: ttl_files
+limits:
+  max_parallel_tasks: 3
+  allow_unverified_knowledge_write: false
+defaults:
+  default_channel_id: 42
+  default_supervisor_slug: alice

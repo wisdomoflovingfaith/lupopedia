@@ -1,0 +1,19 @@
+{
+  "why_id": "why_20260423183000_001",
+  "created_utc": "20260423183000",
+  "violation_type": "doctrine_violation|validation_failure|security_violation|system_violation",
+  "severity": 2,
+  "source_artifact": "path/to/file",
+  "source_instruction": "What triggered violation",
+  "detected_by": "AGAPE",
+  "explanation": "Detailed violation description",
+  "suggested_fix": "Specific remediation recommendations",
+  "resolved_utc": null,
+  "linked_events": ["evt_20260423183000_001"],
+  "actor_responsible": 123,
+  "actor_slug": "agent_name",
+  "impact_assessment": "Impact evaluation",
+  "prevention_measures": "Prevention strategies",
+  "learning_transfer_notes": "Training recommendations",
+  "file_path": "database/agape/why/why_20260423183000_001.json"
+}

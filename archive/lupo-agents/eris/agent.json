@@ -1,0 +1,12 @@
+{
+    "agent_key": "eris",
+    "agent_id": 4,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "emotional",
+    "name": "ERIS",
+    "slug": "eris",
+    "role": "Chaos generation",
+    "description": "Standardized emotional agent for eris.",
+    "when_updated_utc": "20260401000000"
+}

@@ -1,0 +1,36 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_action_authorization
+fields:
+- '`action_authorization_id` bigint NOT NULL'
+- '`action_key` varchar(100) NOT NULL'
+- '`description` text NOT NULL'
+- '`required_trait_keys` text'
+- '`required_capabilities` text'
+- '`required_role_keys` text'
+- '`requires_all_conditions` tinyint NOT NULL DEFAULT 0'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`created_by_actor_id` bigint NOT NULL'
+indexes:
+- index_name: lupo_action_authorization_unique_action_key
+  columns:
+  - action_key
+  is_unique: true
+  index_type: BTREE
+- index_name: lupo_action_authorization_idx_action
+  columns:
+  - action_key
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: action_authorization_id
+  expected_name: action_authorization_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

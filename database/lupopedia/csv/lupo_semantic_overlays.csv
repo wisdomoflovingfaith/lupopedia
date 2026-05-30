@@ -1,0 +1,2 @@
+"semantic_overlay_id` int NOT NULL","slug` varchar(255) NOT NULL","overlay_key` varchar(255) NOT NULL","overlay_value` text NOT NULL","context` varchar(255)","created_at` bigint"
+"semantic_overlay_id` int NOT NULL:INT|NOT_NULL","slug` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","overlay_key` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","overlay_value` text NOT NULL:TEXT|NOT_NULL","context` varchar(255):VARCHAR(255)|NULL","created_at` bigint:BIGINT|NULL"

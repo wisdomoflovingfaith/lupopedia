@@ -1,0 +1,25 @@
+{
+  "memory_boundaries": [
+    "documentation_processing_scope",
+    "doctrine_reference_materials",
+    "prd_index_cache",
+    "structure_discovery_notes",
+    "vish_handoff_records",
+    "header_drafting_patterns",
+    "collection_analysis_results"
+  ],
+  "retention_rules": [
+    "Keep PRD index cache for current session",
+    "Retain structure discovery patterns indefinitely",
+    "Store VISH handoff outcomes for learning",
+    "Archive successful conversion patterns",
+    "Maintain doctrine reference updates"
+  ],
+  "forbidden_memory": [
+    "Never store hallucinated structure as fact",
+    "Do not retain unverified doctrinal assumptions",
+    "Never cache proposed doctrine as canonical",
+    "Do not store user private information",
+    "Never retain temporary processing artifacts"
+  ]
+}

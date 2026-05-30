@@ -1,0 +1,83 @@
+{
+  "task_name": "prd_token_governance_discovery_and_update",
+  "timestamp": "20260420074000",
+  "phase": "1 - PRD Index Analysis Complete",
+  "findings": {
+    "prd_index_loaded": true,
+    "total_prds_found": 75,
+    "matching_prds": [
+      {
+        "prd_number": 12,
+        "file": "12_api_integration.md",
+        "title": "PRD: API Tokens, Clients, Rate Limiting, Webhooks, and Integration",
+        "relevance": "HIGH - Covers API tokens, rate limiting, and basic quota management",
+        "coverage": {
+          "api_tokens": true,
+          "rate_limiting": true,
+          "quota_management": true,
+          "token_usage_tracking": false,
+          "actor_token_budgets": false,
+          "llm_usage_monitoring": false,
+          "cost_tracking": false,
+          "daily_weekly_monthly_quotas": false,
+          "soft_threshold_warnings": false,
+          "hard_stop_enforcement": false,
+          "human_only_fallback": false,
+          "token_usage_daemon": false,
+          "file_based_fallback": false,
+          "actor_level_budgets": false
+        }
+      },
+      {
+        "prd_number": 46,
+        "file": "PRD_46_ACTOR_GATEWAY_TYPES.md",
+        "title": "PRD 46 – Actor Gateway Types",
+        "relevance": "LOW - Mentions tokens only in authentication context",
+        "coverage": {
+          "api_tokens": false,
+          "rate_limiting": false,
+          "quota_management": false,
+          "token_usage_tracking": false,
+          "actor_token_budgets": false,
+          "llm_usage_monitoring": false,
+          "cost_tracking": false,
+          "daily_weekly_monthly_quotas": false,
+          "soft_threshold_warnings": false,
+          "hard_stop_enforcement": false,
+          "human_only_fallback": false,
+          "token_usage_daemon": false,
+          "file_based_fallback": false,
+          "actor_level_budgets": false
+        }
+      }
+    ],
+    "gap_analysis": {
+      "critical_gaps": [
+        "No comprehensive token usage tracking system",
+        "No actor-level token budgets",
+        "No LLM-specific usage monitoring",
+        "No cost tracking capabilities",
+        "No daily/weekly/monthly quota enforcement",
+        "No soft threshold warning system",
+        "No hard-stop enforcement mechanism",
+        "No human-only fallback mode",
+        "No token usage daemon requirements",
+        "No file-based fallback for DB offline scenarios",
+        "No metadata_json schema for token governance",
+        "No install wizard integration for token governance"
+      ],
+      "recommendation": "Create new PRD section for comprehensive token governance"
+    }
+  },
+  "decision": {
+    "target_prd": 12,
+    "action": "ADD_SECTION",
+    "rationale": "PRD 12 already covers API tokens and rate limiting, making it the logical place to add comprehensive token governance features"
+  },
+  "next_steps": {
+    "phase_2": "Generate comprehensive Token Governance v1.0 PRD section",
+    "phase_3": "Add section to PRD 12 as patch",
+    "phase_4": "Generate changelog backlog entry",
+    "phase_5": "Generate final TOON report"
+  }
+}

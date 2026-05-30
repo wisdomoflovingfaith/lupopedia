@@ -1,0 +1,123 @@
+> **For the authoritative channel model, see PRD 02 and channel_model_doctrine.md. Channels are semantic containers under a domain (node), not chat rooms.**
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "docs/channels/doctrine/4.0.18_ROUTING_DIAGNOSTICS.md"
+  file_hash: "94a3202be654123e597bf1af6c1008430fdeae4cf88f28f4cf5f36ea3cd12c57"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+lupopedia.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
+  file_path_from_root: "docs\channels\doctrine\4.0.18_ROUTING_DIAGNOSTICS.md"
+  file_hash: "15cb98974017c382b14b142c17f4cb28b5068e322fb6251c80834018b103b056"
+  file_path_from_root: "docs\channels\doctrine\4.0.18_ROUTING_DIAGNOSTICS.md"
+  file_hash: "fa25b2248403c72c1f7e9a202740340212aed26efb61a88dd600946b6dc4b309"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for 4.0.18_ROUTING_DIAGNOSTICS.md"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "4018_routing_diagnosticsmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+lupopedia.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+---
+
+---
+# FLIP Header
+wolfie.headers: explicit architecture with structured clarity for every file.
+file_path_from_root: docs/channels/doctrine/4.0.18_ROUTING_DIAGNOSTICS.md
+file.last_modified_system_version: "4.0.18"
+file.last_modified_utc: "20260219000000"
+# channel_id: 51 (Doctrine Council)
+---
+# 4.0.18 Routing Diagnostics
+
+Validation steps for server rewrite rules and web path resolution (T5, T3).
+
+---
+
+## T5 — Server rewrite rules validation
+
+After implementing Apache or Nginx rewrite rules for `/doctrine/*`, `/qa/*`, `/docs/*`, `/flp/*`:
+
+1. **Temporarily add to index.php** (immediately after config load, before slug extraction):
+   ```php
+   if (isset($_GET['resolved_uri'])) {
+       var_dump($_GET['resolved_uri']);
+       exit;
+   }
+   ```
+
+2. **Test with curl** (adjust host/path for your install, e.g. `http://localhost/lupopedia/`):
+   ```bash
+   curl -s "http://localhost/doctrine/FLP/FLIPPING_FILE_LEXA_LILITH"
+   curl -s "http://localhost/qa/FLIPPING+FILES"
+   curl -s "http://localhost/docs/FLIP_DOCTRINE"
+   curl -s "http://localhost/flp/FLP_OVERVIEW"
+   ```
+
+3. **Verify** that the output shows `$_GET['resolved_uri']` containing the full matched path (e.g. `doctrine/FLP/FLIPPING_FILE_LEXA_LILITH` or `/doctrine/FLP/FLIPPING_FILE_LEXA_LILITH` depending on server).
+
+4. **Remove** the temporary debug block from index.php.
+
+5. **Confirm** existing routes still work (e.g. direct `/index.php`, `/admin.php`, `/content/...`).
+
+---
+
+## Apache
+
+- **mod_rewrite** must be enabled: `a2enmod rewrite` (Debian/Ubuntu) or `LoadModule rewrite_module` in httpd.conf.
+- Rule: `^(doctrine|qa|docs|flp)/(.+)$` → `index.php?resolved_uri=$1/$2` with `[QSA,L]`.
+
+---
+
+## Nginx
+
+- Location: `~ ^/(doctrine|qa|docs|flp)/(.+)$` with `try_files $uri /index.php?resolved_uri=$uri$is_args$args;`
+- Reference: `config/nginx-lupopedia-rewrite.conf`
+- Adjust `fastcgi_pass` for your PHP version (e.g. `/var/run/php5-fpm.sock` for PHP 5.3 on Debian/Ubuntu).
+
+---
+
+*End of 4.0.18 Routing Diagnostics.*

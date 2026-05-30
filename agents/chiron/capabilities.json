@@ -1,0 +1,14 @@
+{
+  "capabilities": [
+    "documentation_ingest",
+    "structure_discovery",
+    "doctrine_conversion",
+    "header_proposal",
+    "prd_identification",
+    "collection_hints",
+    "doctrine_routing",
+    "vish_handoff"
+  ],
+  "when_updated_utc": "20260423181900",
+  "last_verified_utc": "20260423181900"
+}

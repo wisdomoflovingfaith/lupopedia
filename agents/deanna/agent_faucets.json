@@ -1,0 +1,20 @@
+{
+  "agent_faucets": {
+    "ide_faucet": false,
+    "coordination_faucet": false,
+    "emotional_support_faucet": true,
+    "routing_faucet": false
+  },
+  "faucet_permissions": {
+    "can_receive_direct_messages": true,
+    "can_participate_in_threads": true,
+    "can_create_broadcasts": false,
+    "can_access_file_system": false,
+    "can_execute_code": false
+  },
+  "interaction_channels": [
+    "direct_messages",
+    "emotional_support_threads",
+    "crisis_de_escalation"
+  ]
+}

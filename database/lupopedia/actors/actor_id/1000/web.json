@@ -1,0 +1,6 @@
+{
+    "schema_version": "4.0.47",
+    "profiles": {
+        "internal_docs": "docs/agents/kiro"
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418201851",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "utf8-structured-write-py",
+  "summary": "utf8_structured_write.py: commented mojibake pairs, coerce_to_utf8 vs PHP iconv doc, prepare doc (file_path pass-through, JSONL framing), dumps_json_ready_for_write rename + newline doc, header tick.",
+  "files_changed": [
+    "scripts/utf8_structured_write.py",
+    "changelog-pending/20260418201851_cursor_utf8_py_hardening.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

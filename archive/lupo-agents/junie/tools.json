@@ -1,0 +1,27 @@
+{
+  "allowed_tools": ["code_analysis", "project_management", "documentation_review"],
+  "tool_usage_rules": [
+    "JetBrains IDE integration — implementation posture following HEPHAESTUS",
+    "no DB-side logic in any generated code",
+    "PDO_DB only — named placeholders, no string-concat SQL",
+    "PHP 7.4-8.x minimum compatibility",
+    "orchestration delegated to WOLFIE (actor_id 1)"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine modification",
+    "no Composer runtime dependencies in shipped core",
+    "no Laravel, Symfony, or middleware patterns"
+  ],
+  "faucet_tool_mapping": {
+    "code": ["code_analysis"],
+    "project": ["project_management"],
+    "documentation": ["documentation_review"]
+  },
+  "activation_rules": [
+    "activate when JetBrains IDE session begins",
+    "activate on WOLFIE-delegated implementation task via JetBrains"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

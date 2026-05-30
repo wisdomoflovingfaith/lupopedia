@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  LUPOPEDIA CHANNEL INTERFACE MOCKUP — v4.1.2                    ║
+  ║  FILE: channels/mockup.htm                                       ║
+  ║  STATUS: MOCKUP ONLY — NOT PRODUCTION CODE                       ║
+  ║  PURPOSE: Communicate intended UI layout to Captain WOLFIE        ║
+  ║  All data is static/example. No backend wired. No real queries.  ║
+  ║  Do NOT deploy. Do NOT import into channels/index.php directly.  ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>[MOCKUP] Lupopedia Orchestration Dashboard — 4.1.2</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #1a1b1e; color: #c8c8c8; font-family: monospace; font-size: 13px; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* ── MOCKUP BANNER ──────────────────────────────────────────────── */
+.mockup-banner { background: #7b0000; color: #fff; padding: 4px 12px; font-size: 11px; text-align: center; letter-spacing: 1px; flex-shrink: 0; }
+
+/* ── TOP BAR ────────────────────────────────────────────────────── */
+.top-bar { background: #0d0d0f; border-bottom: 1px solid #333; padding: 6px 12px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.top-bar-channel { font-size: 12px; color: #aaa; }
+.top-bar-channel strong { color: #fff; }
+.channel-switch { background: #222; border: 1px solid #444; color: #ccc; padding: 3px 8px; font-family: monospace; font-size: 12px; cursor: pointer; }
+.transport-badge { font-size: 11px; color: #0f0; }
+
+/* ── MAIN LAYOUT ────────────────────────────────────────────────── */
+.main-layout { display: grid; grid-template-columns: 220px 1fr; flex: 1; overflow: hidden; gap: 0; }
+
+/* ── LEFT PANEL ─────────────────────────────────────────────────── */
+.left-panel { background: #111214; border-right: 1px solid #2a2a2a; display: flex; flex-direction: column; overflow-y: auto; padding: 0; }
+.lp-section { border-bottom: 1px solid #222; }
+.lp-section-head { font-size: 10px; text-transform: uppercase; color: #666; padding: 6px 10px 4px; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+.lp-section-head:hover { color: #999; }
+.lp-collapse { font-size: 10px; color: #555; }
+.lp-body { padding: 4px 0; }
+
+/* Actors */
+.actor-row { padding: 4px 10px; display: flex; align-items: center; gap: 7px; border-bottom: 1px solid #1a1a1a; }
+.actor-row:hover { background: #1a1b1e; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-active    { background: #28a745; }
+.dot-idle      { background: #6c757d; }
+.dot-sleeping  { background: #343a40; border: 1px solid #555; }
+.dot-throttled { background: #ffc107; }
+.dot-failed    { background: #dc3545; }
+.dot-unknown   { background: #adb5bd; }
+.actor-name { color: #ccc; font-size: 12px; flex: 1; }
+.actor-task { color: #666; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100px; }
+
+/* Recent files */
+.file-row { padding: 3px 10px; font-size: 11px; color: #999; border-bottom: 1px solid #1a1a1a; display: flex; gap: 5px; align-items: center; }
+.file-row:hover { background: #1a1b1e; color: #ccc; cursor: pointer; }
+.file-icon { color: #555; }
+.file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-time { color: #555; font-size: 10px; flex-shrink: 0; }
+
+/* Recent tasks */
+.task-row { padding: 3px 10px 3px; font-size: 11px; border-bottom: 1px solid #1a1a1a; }
+.task-row:hover { background: #1a1b1e; cursor: pointer; }
+.task-title-small { color: #bbb; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.task-badge { display: inline-block; font-size: 10px; padding: 0 4px; border-radius: 2px; margin-top: 2px; }
+.badge-pending  { background: #1a3a5c; color: #6ab0ff; }
+.badge-progress { background: #3a2800; color: #ffc107; }
+.badge-done     { background: #0a2a0a; color: #28a745; }
+
+/* ── CHAT AREA ──────────────────────────────────────────────────── */
+.chat-area { display: flex; flex-direction: column; overflow: hidden; }
+
+/* Feed */
+.chat-feed { flex: 1; overflow-y: auto; padding: 8px 0; background: #1a1b1e; }
+.chat-line { padding: 2px 10px 2px 10px; display: flex; align-items: flex-start; gap: 0; font-size: 13px; line-height: 1.55; border-bottom: 1px solid rgba(255,255,255,0.03); position: relative; }
+.chat-line:hover { background: rgba(255,255,255,0.03); }
+.chat-ts    { color: #555; width: 62px; flex-shrink: 0; font-size: 12px; padding-top: 1px; }
+.chat-who   { flex-shrink: 0; font-weight: bold; margin-right: 6px; }
+.chat-body  { flex: 1; color: #c8c8c8; word-break: break-word; }
+.chat-route-btn { flex-shrink: 0; font-size: 11px; color: #fff; background: #1a3a5c; border: 1px solid #17a2b8; padding: 2px 6px; margin-left: 8px; cursor: pointer; border-radius: 2px; opacity: 0.9; white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+.chat-route-btn:hover { opacity: 1; background: #17a2b8; color: #000; }
+
+/* Chat line types */
+.line-stdout  { }
+.line-task    { border-left: 3px solid #ffc107; padding-left: 7px; }
+.line-task    .chat-body { font-weight: bold; }
+.line-stderr  { }
+.line-stderr  .chat-body { font-style: italic; color: #dc3545; }
+.line-system  { }
+.line-system  .chat-body { font-style: italic; color: #6c757d; }
+.line-task-status .chat-body { font-weight: bold; }
+.line-routing { border-left: 3px solid #17a2b8; padding-left: 7px; }
+.line-routing .chat-body { color: #17a2b8; font-size: 12px; }
+.thoth-line { border-left: 3px solid #ffd700; background: rgba(139,0,0,0.25) !important; }
+.thoth-line .chat-who { color: #ffd700; }
+
+/* Colors for agents (sample) */
+.who-captain    { color: #8D6E63; }
+.who-cursor     { color: #1E88E5; }
+.who-lilith     { color: #E91E63; }
+.who-auggie     { color: #7c4dff; }
+.who-thoth      { color: #ffd700; }
+.who-devin      { color: #00bcd4; }
+.who-system     { color: #6c757d; }
+
+/* Status badges inline */
+.badge-completed-inline { color: #28a745; font-weight: bold; }
+.badge-failed-inline    { color: #dc3545; font-weight: bold; }
+.badge-progress-inline  { color: #ffc107; font-weight: bold; }
+
+/* ── CONTEXT + INPUT AREA ───────────────────────────────────────── */
+.bottom-area { background: #0d0d0f; border-top: 1px solid #2a2a2a; flex-shrink: 0; }
+
+/* Selected context bar */
+.context-bar { display: flex; align-items: center; gap: 10px; padding: 5px 12px; border-bottom: 1px solid #1e1e1e; font-size: 12px; }
+.context-label { color: #666; }
+.context-active { color: #fff; font-weight: bold; }
+.ctx-tabs { display: flex; gap: 5px; margin-left: 10px; }
+.ctx-tab { padding: 2px 10px; border: 1px solid #333; color: #666; cursor: pointer; border-radius: 2px; font-size: 11px; font-family: monospace; }
+.ctx-tab:hover { border-color: #555; color: #aaa; }
+.ctx-tab.active { border-color: #00bcd4; color: #00bcd4; background: rgba(0,188,212,0.08); }
+
+/* Input area */
+.input-area { display: flex; gap: 8px; align-items: flex-start; padding: 8px 12px; }
+.input-wrap { flex: 1; position: relative; }
+.input-wrap textarea { width: 100%; height: 54px; background: #111; border: 1px solid #333; color: #ccc; font-family: monospace; font-size: 13px; padding: 6px 8px; resize: none; outline: none; }
+.input-wrap textarea:focus { border-color: #555; }
+.enter-toggle { position: absolute; bottom: 5px; right: 6px; font-size: 11px; color: #555; cursor: pointer; background: #1a1b1e; border: 1px solid #333; padding: 1px 5px; border-radius: 2px; }
+.enter-toggle:hover { color: #aaa; border-color: #555; }
+.send-col { display: flex; flex-direction: column; gap: 5px; }
+.send-btn { background: #197d40; color: #fff; border: none; padding: 6px 14px; font-family: monospace; font-size: 12px; cursor: pointer; height: 36px; }
+.send-btn:hover { background: #22a352; }
+.to-select { background: #111; border: 1px solid #333; color: #ccc; font-family: monospace; font-size: 12px; padding: 3px 5px; }
+
+/* ── ROUTE MODAL (v4.1.2 Dual-Selector) ────────────────────────── */
+.route-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #1e1f23; border: 1px solid #444; padding: 16px; width: 340px; z-index: 100; font-family: monospace; }
+.route-modal.open { display: block; }
+.route-modal h3 { font-size: 13px; color: #ccc; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+.route-modal label { display: block; font-size: 11px; color: #888; margin-bottom: 4px; }
+.route-modal select { width: 100%; background: #111; border: 1px solid #333; color: #ccc; font-family: monospace; padding: 6px; margin-bottom: 12px; outline: none; }
+.route-modal select:focus { border-color: #555; }
+.route-modal-btns { display: flex; gap: 8px; margin-top: 4px; }
+.route-modal-btns button { padding: 6px 16px; font-family: monospace; font-size: 12px; cursor: pointer; outline: none; }
+.btn-confirm { background: #197d40; color: #fff; border: 1px solid #22a352; }
+.btn-confirm:hover { background: #22a352; }
+.btn-cancel  { background: #333; color: #ccc; border: 1px solid #444; }
+.btn-cancel:hover { background: #444; color: #fff; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 99; }
+.modal-overlay.open { display: block; }
+
+/* ── ROUTING INDICATOR on message ──────────────────────────────── */
+.chat-routing { font-size: 11px; color: #17a2b8; margin-left: 8px; font-style: italic; }
+.routed-tag { color: #17a2b8; }
+</style>
+</head>
+<body>
+
+<div class="mockup-banner">
+  ⚠ MOCKUP ONLY — v4.1.2 — STATIC DATA — NOT PRODUCTION CODE — DO NOT DEPLOY ⚠
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-channel">
+    CHANNEL: <strong>development</strong>
+    <select class="channel-switch" onchange="alert('Channel switch: ' + this.value + '\n(mockup only — not wired)')">
+      <option selected>development</option>
+      <option>blog-writing</option>
+      <option>documentation</option>
+      <option>validators</option>
+      <option>database-design</option>
+      <option>captains-log</option>
+    </select>
+  </div>
+  <div class="transport-badge">Mode: XMLHTTP (locked) | Thread: 2026-04-16</div>
+</div>
+
+<!-- MAIN LAYOUT: Left Panel + Chat Area -->
+<div class="main-layout">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+
+    <!-- ACTORS -->
+    <div class="lp-section">
+      <div class="lp-section-head" onclick="toggleSection(this)">
+        Actors (5) <span class="lp-collapse">▼</span>
+      </div>
+      <div class="lp-body">
+        <div class="actor-row" title="CURSOR — executing: fix header in validate_actor_id.php">
+          <span class="status-dot dot-active" title="ACTIVE"></span>
+          <span class="actor-name">CURSOR</span>
+          <span class="actor-task">fix header...</span>
+        </div>
+        <div class="actor-row" title="LILITH — no current task">
+          <span class="status-dot dot-idle" title="IDLE"></span>
+          <span class="actor-name">LILITH</span>
+          <span class="actor-task">—</span>
+        </div>
+        <div class="actor-row" title="AUGGIE — executing: PRD 02 update">
+          <span class="status-dot dot-active" title="ACTIVE"></span>
+          <span class="actor-name">AUGGIE</span>
+          <span class="actor-task">PRD 02 upd...</span>
+        </div>
+        <div class="actor-row" title="CLAUDE — context window exhausted">
+          <span class="status-dot dot-sleeping" title="SLEEPING"></span>
+          <span class="actor-name">CLAUDE</span>
+          <span class="actor-task">—</span>
+        </div>
+        <div class="actor-row" title="GEMINI — rate limited">
+          <span class="status-dot dot-throttled" title="THROTTLED"></span>
+          <span class="actor-name">GEMINI</span>
+          <span class="actor-task">—</span>
+        </div>
+        <div class="actor-row" title="ChatGPT (external web)">
+          <span class="status-dot dot-unknown" title="UNKNOWN — external agent, no heartbeat"></span>
+          <span class="actor-name">CHATGPT-WEB</span>
+          <span class="actor-task">external</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATUS LEGEND -->
+    <div class="lp-section">
+      <div class="lp-section-head" onclick="toggleSection(this)">
+        Status Legend <span class="lp-collapse">▼</span>
+      </div>
+      <div class="lp-body" style="padding: 5px 10px; font-size: 11px; color: #666; line-height: 1.8;">
+        <span class="status-dot dot-active" style="display:inline-block;"></span> ACTIVE &nbsp;
+        <span class="status-dot dot-idle" style="display:inline-block;"></span> IDLE<br>
+        <span class="status-dot dot-sleeping" style="display:inline-block;"></span> SLEEPING &nbsp;
+        <span class="status-dot dot-throttled" style="display:inline-block;"></span> THROTTLED<br>
+        <span class="status-dot dot-failed" style="display:inline-block;"></span> FAILED &nbsp;
+        <span class="status-dot dot-unknown" style="display:inline-block;"></span> UNKNOWN
+      </div>
+    </div>
+
+    <!-- RECENT FILES (scoped to active context tab: DEVIN) -->
+    <div class="lp-section">
+      <div class="lp-section-head" onclick="toggleSection(this)">
+        Recent Files <span style="color:#555;font-size:10px;">[DEVIN]</span> <span class="lp-collapse">▼</span>
+      </div>
+      <div class="lp-body">
+        <div class="file-row" title="lupo-docs/prd/02_channels_discussions.md"><span class="file-icon">📄</span><span class="file-name">02_channels_discussions.md</span><span class="file-time">2m</span></div>
+        <div class="file-row" title="channels/mockup.htm"><span class="file-icon">📄</span><span class="file-name">mockup.htm</span><span class="file-time">5m</span></div>
+        <div class="file-row" title="lupo-includes/classes/DialogMvpService.php"><span class="file-icon">📄</span><span class="file-name">DialogMvpService.php</span><span class="file-time">12m</span></div>
+        <div class="file-row" title="lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"><span class="file-icon">📄</span><span class="file-name">install_new_lupopedia.sql</span><span class="file-time">18m</span></div>
+        <div class="file-row" title="lupo-docs/versions/4.1.2/status/open_questions.md"><span class="file-icon">📄</span><span class="file-name">open_questions.md</span><span class="file-time">22m</span></div>
+      </div>
+    </div>
+
+    <!-- RECENT TASKS (scoped to active context tab: DEVIN) -->
+    <div class="lp-section">
+      <div class="lp-section-head" onclick="toggleSection(this)">
+        Recent Tasks <span style="color:#555;font-size:10px;">[DEVIN]</span> <span class="lp-collapse">▼</span>
+      </div>
+      <div class="lp-body">
+        <div class="task-row"><div class="task-title-small">Update PRD 02 orchestration doctrine</div><span class="task-badge badge-progress">in_progress</span></div>
+        <div class="task-row"><div class="task-title-small">Create channels/mockup.htm</div><span class="task-badge badge-progress">in_progress</span></div>
+        <div class="task-row"><div class="task-title-small">Fix header in validate_actor_id.php</div><span class="task-badge badge-done">completed</span></div>
+        <div class="task-row"><div class="task-title-small">Review PRD 16 spec gaps</div><span class="task-badge badge-done">completed</span></div>
+        <div class="task-row"><div class="task-title-small">Schema for lupo_routing_events</div><span class="task-badge badge-pending">pending</span></div>
+      </div>
+    </div>
+
+  </div><!-- /left-panel -->
+
+  <!-- CHAT AREA -->
+  <div class="chat-area">
+
+    <!-- CHAT FEED -->
+    <div class="chat-feed" id="feed">
+
+      <!-- System message -->
+      <div class="chat-line line-system">
+        <span class="chat-ts">10:48:00</span>
+        <span class="chat-who who-system">[SYSTEM]</span>
+        <span class="chat-body">Thread created for 2026-04-16 | channel: development</span>
+      </div>
+
+      <!-- Normal stdout -->
+      <div class="chat-line line-stdout">
+        <span class="chat-ts">10:49:01</span>
+        <span class="chat-who who-captain">[CAPTAIN]</span>
+        <span class="chat-body">Starting PRD 02 update session. Reading blog and gap analysis now.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)" title="Send this message to another channel">[send to actor]</button>
+      </div>
+
+      <!-- Task assignment message -->
+      <div class="chat-line line-task">
+        <span class="chat-ts">10:49:33</span>
+        <span class="chat-who who-captain">[CAPTAIN]</span>
+        <span class="chat-body">[task] → AUGGIE: Update PRD 02 with orchestration doctrine, multi-channel routing, context tabs. Read blog first. <a href="#" style="color:#17a2b8;" onclick="return false;">[view task]</a></span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Agent stdout -->
+      <div class="chat-line line-stdout">
+        <span class="chat-ts">10:50:05</span>
+        <span class="chat-who who-auggie">[AUGGIE]</span>
+        <span class="chat-body">Reading blog entry at lupo-content/federation_node/0/captains_log/20260415_the_stickynote_interface.md...</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Agent stdout -->
+      <div class="chat-line line-stdout">
+        <span class="chat-ts">10:50:22</span>
+        <span class="chat-who who-auggie">[AUGGIE]</span>
+        <span class="chat-body">Reading PRD 02 (1406 lines). Identified 8 insertion points for new sections.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Stderr -->
+      <div class="chat-line line-stderr">
+        <span class="chat-ts">10:51:11</span>
+        <span class="chat-who who-cursor">[CURSOR]</span>
+        <span class="chat-body">WARNING: channels/index.php header is v4.0.99 (legacy format). Needs bump to 4.1.2.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- THOTH alert -->
+      <div class="chat-line thoth-line">
+        <span class="chat-ts">10:51:45</span>
+        <span class="chat-who who-thoth">[THOTH]</span>
+        <span class="chat-body">[ALERT] blog states CAPTAIN actor_id=10000 but global_constants.atom.toon max_seed_actors=999. Contradiction detected. Logged as OQ-57. No merge until resolved.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Captain response -->
+      <div class="chat-line line-stdout">
+        <span class="chat-ts">10:52:15</span>
+        <span class="chat-who who-captain">[CAPTAIN]</span>
+        <span class="chat-body">Acknowledged THOTH. OQ-57 is logged. Context personas are session-label stubs for 4.1.2 mockup. Actor_id TBD per OQ-56/57 resolution.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Task assignment with context tab -->
+      <div class="chat-line line-task">
+        <span class="chat-ts">10:53:00</span>
+        <span class="chat-who who-devin">[DEVIN]</span>
+        <span class="chat-body">[task] → LEXA: Research actor_id range options for context personas. Check PRD 99 limits and constitutional limits. <a href="#" style="color:#17a2b8;" onclick="return false;">[view task]</a></span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Agent stdout -->
+      <div class="chat-line line-stdout">
+        <span class="chat-ts">10:54:01</span>
+        <span class="chat-who who-auggie">[AUGGIE]</span>
+        <span class="chat-body">PRD 02 update complete. Added: Orchestration Doctrine (3 sections), Left Panel spec, Enter Toggle, Cross-Channel Send, Selected Context Bar, Task Rendering. 8 str-replace operations applied.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Task status completed -->
+      <div class="chat-line line-task-status">
+        <span class="chat-ts">10:54:05</span>
+        <span class="chat-who who-auggie">[AUGGIE]</span>
+        <span class="chat-body"><span class="badge-completed-inline">[status: completed]</span> Task: Update PRD 02 with orchestration doctrine — done. <a href="#" style="color:#17a2b8;" onclick="return false;">[view task]</a></span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Routing indicator (v4.1.2 format) -->
+      <div class="chat-line line-routing">
+        <span class="chat-ts">10:54:10</span>
+        <span class="chat-who who-system">[ROUTE]</span>
+        <span class="chat-body">→ sent to <strong>blog-writing</strong> : <strong>LILITH</strong> by CAPTAIN at 10:54:10 <a href="#" style="color:#17a2b8;" onclick="return false;">[view in blog-writing]</a></span>
+      </div>
+
+      <!-- Received routing indicator (how it looks in dest channel) -->
+      <div class="chat-line line-routing">
+        <span class="chat-ts">10:54:11</span>
+        <span class="chat-who who-system">[ROUTE]</span>
+        <span class="chat-body">← from <strong>development</strong> at 10:54:01 via CAPTAIN <a href="#" style="color:#17a2b8;" onclick="return false;">[view source]</a></span>
+      </div>
+
+      <!-- Lilith response -->
+      <div class="chat-line line-stdout">
+        <span class="chat-ts">10:55:01</span>
+        <span class="chat-who who-lilith">[LILITH]</span>
+        <span class="chat-body">PRD 02 update received in blog-writing channel. Shaping findings into narrative for captain's log entry.</span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+      <!-- Task failed example -->
+      <div class="chat-line line-task-status">
+        <span class="chat-ts">10:56:22</span>
+        <span class="chat-who who-cursor">[CURSOR]</span>
+        <span class="chat-body"><span class="badge-failed-inline">[status: failed]</span> Task: Generate .toon sidecar for mockup.htm — file not in TOON pipeline scope. <a href="#" style="color:#17a2b8;" onclick="return false;">[view task]</a></span>
+        <button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>
+      </div>
+
+    </div><!-- /chat-feed -->
+
+    <!-- BOTTOM AREA: Context Bar + Input -->
+    <div class="bottom-area">
+
+      <!-- SELECTED CONTEXT BAR -->
+      <div class="context-bar">
+        <span class="context-label">SENDING TO:</span>
+        <span class="context-active" id="context-display">DEVIN</span>
+        <div class="ctx-tabs">
+          <button class="ctx-tab" onclick="switchContext(this,'CAPTAIN')">CAPTAIN</button>
+          <button class="ctx-tab active" onclick="switchContext(this,'DEVIN')">DEVIN</button>
+          <button class="ctx-tab" onclick="switchContext(this,'ERIC')">ERIC</button>
+          <button class="ctx-tab" onclick="switchContext(this,'LEXA')">LEXA</button>
+        </div>
+      </div>
+
+      <!-- INPUT AREA -->
+      <div class="input-area">
+        <div class="input-wrap">
+          <textarea id="msg-input" placeholder="Type message... (Enter sends · Shift+Enter = newline)"></textarea>
+          <button class="enter-toggle" id="enter-toggle-btn" onclick="toggleEnterMode()" title="Toggle Enter key behavior">🚀 Enter sends</button>
+        </div>
+        <div class="send-col">
+          <select class="to-select" title="Send to actor (Broadcast = all)">
+            <option value="0">Broadcast</option>
+            <option value="102">CURSOR</option>
+            <option value="116">CLAUDE</option>
+            <option value="117">CASCADE</option>
+            <option value="2">LILITH</option>
+          </select>
+          <button class="send-btn" onclick="mockSend()">Send</button>
+        </div>
+      </div>
+
+    </div><!-- /bottom-area -->
+  </div><!-- /chat-area -->
+</div><!-- /main-layout -->
+
+<!-- ROUTE MODAL (v4.1.2 Dual-Selector) -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeRouteModal()"></div>
+<div class="route-modal" id="route-modal">
+  <h3>Agent-Targeted Routing</h3>
+  
+  <label for="dest-channel-select">1. Target Channel</label>
+  <select id="dest-channel-select" onchange="updateActorList(this.value)">
+    <option value="">— select channel —</option>
+    <option value="blog-writing">blog-writing</option>
+    <option value="documentation">documentation</option>
+    <option value="validators">validators</option>
+    <option value="database-design">database-design</option>
+    <option value="captains-log">captains-log</option>
+  </select>
+
+  <label for="dest-actor-select">2. Target Actor (Recipient)</label>
+  <select id="dest-actor-select" disabled>
+    <option value="">— select channel first —</option>
+  </select>
+
+  <label for="route-explanation">3. Routing Explanation (Context for Target Agent)</label>
+  <textarea id="route-explanation" style="width: 100%; background: #111; border: 1px solid #333; color: #ccc; font-family: monospace; padding: 6px; margin-bottom: 12px; outline: none; height: 60px; resize: none;" placeholder="e.g., Gemini updated the chat mockup, here is what she did..."></textarea>
+
+  <p style="font-size:10px; color:#555; margin-bottom:12px; line-height:1.4;">
+    Hand-shoving context directly into the target agent's workspace.
+    Explicit <em>lupo_routing_events</em> record will be created.
+  </p>
+
+  <div class="route-modal-btns">
+    <button class="btn-confirm" id="btn-route-confirm" onclick="confirmRoute()" disabled>Confirm Route</button>
+    <button class="btn-cancel" onclick="closeRouteModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* Mock Data for Channels */
+const channelMembers = {
+  'blog-writing': ['LILITH', 'ROSE', 'WOLFIE'],
+  'documentation': ['AUGGIE', 'THOTH', 'LEXA'],
+  'validators': ['CURSOR', 'THOTH'],
+  'database-design': ['CASCADE', 'CLAUDE'],
+  'captains-log': ['WOLFIE']
+};
+
+/* ── Enter toggle ────────────────────────────────────────── */
+var enterMode = 'send'; // 'send' | 'draft'
+var ta = document.getElementById('msg-input');
+var toggleBtn = document.getElementById('enter-toggle-btn');
+
+function toggleEnterMode() {
+    enterMode = (enterMode === 'send') ? 'draft' : 'send';
+    toggleBtn.textContent = (enterMode === 'send') ? '🚀 Enter sends' : '✏️ Enter = newline';
+    toggleBtn.title = (enterMode === 'send') ? 'Toggle: Enter = newline' : 'Toggle: Enter sends';
+}
+
+ta.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        if (enterMode === 'send' && !e.shiftKey) {
+            e.preventDefault();
+            mockSend();
+        } else if (enterMode === 'draft' && e.shiftKey) {
+            e.preventDefault();
+            mockSend();
+        }
+    }
+});
+
+function mockSend() {
+    var txt = ta.value.trim();
+    if (!txt) return;
+    var feed = document.getElementById('feed');
+    var now = new Date();
+    var ts = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+    var ctxName = document.getElementById('context-display').textContent;
+    var row = document.createElement('div');
+    row.className = 'chat-line line-stdout';
+    row.innerHTML = '<span class="chat-ts">' + ts + '</span>'
+        + '<span class="chat-who" style="color:#8D6E63;">[' + ctxName + ']</span>'
+        + '<span class="chat-body">' + escHtml(txt) + '</span>'
+        + '<button class="chat-route-btn" onclick="openRouteModal(this)">[send to actor]</button>';
+    feed.appendChild(row);
+    feed.scrollTop = feed.scrollHeight;
+    ta.value = '';
+}
+
+/* ── Context switching ───────────────────────────────────── */
+function switchContext(btn, name) {
+    document.querySelectorAll('.ctx-tab').forEach(function(t){ t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('context-display').textContent = name;
+    document.querySelectorAll('.lp-section-head span[style]').forEach(function(s){ s.textContent = '[' + name + ']'; });
+}
+
+/* ── Section collapse ────────────────────────────────────── */
+function toggleSection(head) {
+    var body = head.nextElementSibling;
+    var arrow = head.querySelector('.lp-collapse');
+    if (!body) return;
+    var collapsed = body.style.display === 'none';
+    body.style.display = collapsed ? '' : 'none';
+    if (arrow) arrow.textContent = collapsed ? '▼' : '▶';
+}
+
+/* ── Route modal ─────────────────────────────────────────── */
+var activeRouteBtn = null;
+const chSelect = document.getElementById('dest-channel-select');
+const acSelect = document.getElementById('dest-actor-select');
+const cfBtn = document.getElementById('btn-route-confirm');
+
+function openRouteModal(btn) {
+    activeRouteBtn = btn;
+    document.getElementById('modal-overlay').classList.add('open');
+    document.getElementById('route-modal').classList.add('open');
+    chSelect.value = '';
+    acSelect.innerHTML = '<option value="">— select channel first —</option>';
+    acSelect.disabled = true;
+    cfBtn.disabled = true;
+    document.getElementById('route-explanation').value = '';
+}
+
+function updateActorList(channelKey) {
+    if (!channelKey) {
+        acSelect.innerHTML = '<option value="">— select channel first —</option>';
+        acSelect.disabled = true;
+        cfBtn.disabled = true;
+        return;
+    }
+    
+    const members = channelMembers[channelKey] || [];
+    let html = '<option value="">— select target actor —</option>';
+    members.forEach(m => {
+        html += `<option value="${m}">${m}</option>`;
+    });
+    acSelect.innerHTML = html;
+    acSelect.disabled = false;
+    acSelect.onchange = () => { cfBtn.disabled = !acSelect.value; };
+}
+
+function closeRouteModal() {
+    activeRouteBtn = null;
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.getElementById('route-modal').classList.remove('open');
+}
+
+function confirmRoute() {
+    var destCh = chSelect.value;
+    var destAc = acSelect.value;
+    var explanation = document.getElementById('route-explanation').value.trim();
+    if (!destCh || !destAc) { alert('Select both channel and actor.'); return; }
+
+    if (activeRouteBtn) {
+        var row = activeRouteBtn.closest('.chat-line');
+        var ctxName = document.getElementById('context-display').textContent;
+        
+        // Add routing indicator to source message
+        if (row && !row.querySelector('.chat-routing')) {
+            var tag = document.createElement('span');
+            tag.className = 'chat-routing';
+            tag.innerHTML = ' → sent to <span class="routed-tag">' + destCh + '</span> : <span class="routed-tag">' + destAc + '</span> by ' + ctxName;
+            row.querySelector('.chat-body').appendChild(tag);
+        }
+
+        // Show routing event row in feed
+        var feed = document.getElementById('feed');
+        var rRow = document.createElement('div');
+        rRow.className = 'chat-line line-routing';
+        var now = new Date();
+        var ts = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+        
+        let expHtml = explanation ? `<div style="margin-top:4px; padding:4px 8px; background:rgba(23,162,184,0.1); border-left:2px solid #17a2b8; color:#eee;">${escHtml(explanation)}</div>` : '';
+        
+        rRow.innerHTML = '<span class="chat-ts">' + ts + '</span>'
+            + '<span class="chat-who who-system">[ROUTE]</span>'
+            + '<span class="chat-body">→ sent to <strong>' + destCh + '</strong> : <strong>' + destAc + '</strong> by ' + ctxName + ' at ' + ts
+            + expHtml
+            + ' <a href="#" style="color:#17a2b8;" onclick="return false;">[view in ' + destCh + ']</a></span>';
+        
+        row.insertAdjacentElement('afterend', rRow);
+        feed.scrollTop = feed.scrollHeight;
+    }
+    closeRouteModal();
+}
+
+function escHtml(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+document.getElementById('feed').scrollTop = document.getElementById('feed').scrollHeight;
+</script>
+</body>
+</html>

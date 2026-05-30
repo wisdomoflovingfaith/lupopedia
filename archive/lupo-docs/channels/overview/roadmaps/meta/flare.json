@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\overview\\roadmaps\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\roadmaps\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\roadmaps\\TO_DO_FOR_VERSION_4_1_0.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\roadmaps\\VERSION_3_0_73_CIP_ROADMAP.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

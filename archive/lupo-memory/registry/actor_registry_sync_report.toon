@@ -1,0 +1,249 @@
+{
+  "report_timestamp": "20260420060000",
+  "generating_actor": "castcade",
+  "task": "Actor Listing, Registry Sync, DB Sync, and Missing Actor Registration",
+  "data_source": "file_registry",
+  "db_connection_status": "unavailable",
+  "actors_list": [
+    {
+      "actor_id": 420,
+      "name": null,
+      "instance": null,
+      "gateway": "manual_web_chat",
+      "channel_key": "external",
+      "frontend": "manual_web_chat",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Manual cut/paste web chat; no API endpoint."
+    },
+    {
+      "actor_id": 2037,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": null,
+      "frontend": "local_agent",
+      "status": "channel_violation",
+      "last_action_utc": 20260420060000,
+      "notes": "Channel key isolation violation - used 7 different channel_keys during single task. Frozen pending manual review."
+    },
+    {
+      "actor_id": 2,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "initialization",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Lilith - Review and audit agent"
+    },
+    {
+      "actor_id": 1001,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "initialization",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Ara - Analysis and review agent"
+    },
+    {
+      "actor_id": 1002,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "initialization",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Gemini (logs) - Log processing and analysis"
+    },
+    {
+      "actor_id": 26,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "initialization",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Thoth - Analysis and historical insights"
+    },
+    {
+      "actor_id": 27,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "initialization",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Hermes - Implementation and task coordination"
+    },
+    {
+      "actor_id": 113,
+      "name": null,
+      "instance": null,
+      "gateway": "ide_panel",
+      "channel_key": "initialization",
+      "frontend": "ide_panel",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "VS Code (copilot) IDE - Development environment"
+    },
+    {
+      "actor_id": 103,
+      "name": null,
+      "instance": null,
+      "gateway": "ide_panel",
+      "channel_key": "initialization",
+      "frontend": "ide_panel",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Antigravity IDE - Development environment"
+    },
+    {
+      "actor_id": 3,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "rose_dialog",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "expressive inline dialog agent; not used for cognition"
+    },
+    {
+      "actor_id": 2001,
+      "name": null,
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "task_management",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "tracks tasks, dependencies, sequencing, and completion"
+    },
+    {
+      "actor_id": 2002,
+      "name": "lilith",
+      "instance": "lilith_1",
+      "gateway": "manual_web_chat",
+      "channel_key": "analysis",
+      "frontend": "manual_web_chat",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Lilith instance 1 - Review and audit specialist"
+    },
+    {
+      "actor_id": 2003,
+      "name": "lilith",
+      "instance": "lilith_2",
+      "gateway": "manual_web_chat",
+      "channel_key": "analysis",
+      "frontend": "manual_web_chat",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Lilith instance 2 - Review and audit specialist"
+    },
+    {
+      "actor_id": 2004,
+      "name": "castcade",
+      "instance": null,
+      "gateway": "local_agent",
+      "channel_key": "registry",
+      "frontend": "local_agent",
+      "status": "active",
+      "last_action_utc": 20260420060000,
+      "notes": "Registry + governance agent"
+    }
+  ],
+  "missing_actors_added": [
+    {
+      "actor_id": 2004,
+      "name": "castcade",
+      "gateway": "local_agent",
+      "channel_key": "registry",
+      "status": "active",
+      "notes": "Registry + governance agent"
+    }
+  ],
+  "required_actors_status": {
+    "lilith_1": {
+      "exists": true,
+      "actor_id": 2002,
+      "status": "active"
+    },
+    "lilith_2": {
+      "exists": true,
+      "actor_id": 2003,
+      "status": "active"
+    },
+    "rose": {
+      "exists": true,
+      "actor_id": 3,
+      "status": "active"
+    },
+    "castcade": {
+      "exists": true,
+      "actor_id": 2004,
+      "status": "active",
+      "was_missing": true,
+      "now_registered": true
+    },
+    "copilot": {
+      "exists": true,
+      "actor_id": 113,
+      "status": "active",
+      "notes": "VS Code (copilot) IDE - Development environment"
+    }
+  },
+  "db_sync_status": {
+    "db_available": false,
+    "sync_performed": false,
+    "fallback_used": "file_registry",
+    "reason": "Database connection not available in this environment"
+  },
+  "file_registry_sync_status": {
+    "file_used_as_authority": true,
+    "sync_from_db": false,
+    "file_updated": false,
+    "reason": "DB not available, file registry used as source of truth"
+  },
+  "registry_integrity": {
+    "duplicate_actor_ids": false,
+    "missing_actor_ids": false,
+    "invalid_gateways": false,
+    "invalid_channel_keys": false,
+    "mixed_lane_tasks": false,
+    "missing_last_action_utc": false,
+    "malformed_entries": false,
+    "repairs_made": [
+      {
+        "issue": "last_action_utc was 0 for actor_id 420",
+        "repair": "Updated to 20260420060000",
+        "timestamp": "20260420060000"
+      }
+    ]
+  },
+  "violations_detected": 1,
+  "actors_requiring_manual_review": [
+    {
+      "actor_id": 2037,
+      "issue": "channel_violation",
+      "details": "Used 7 different channel_keys during single task",
+      "status": "frozen pending manual review"
+    }
+  ],
+  "summary": {
+    "total_actors": 14,
+    "active_actors": 13,
+    "frozen_actors": 1,
+    "missing_actors_added": 1,
+    "repairs_made": 1,
+    "violations_detected": 1,
+    "status": "completed"
+  }
+}

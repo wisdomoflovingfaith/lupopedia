@@ -1,0 +1,13 @@
+{
+  "capabilities": [
+    "orphan_resolution",
+    "quarantine_management",
+    "banned_actor_monitoring",
+    "channel_resolution",
+    "thread_resolution",
+    "actor_resolution",
+    "default_adoption",
+    "semantic_pattern_detection",
+    "threshold_guarding"
+  ]
+}

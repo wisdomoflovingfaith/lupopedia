@@ -1,0 +1,27 @@
+{
+  "timestamp": "20260418114852",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "survivability-doctrine-rename",
+  "summary": "Renamed AGAPE doctrine to Survivability Doctrine (SURVIVABILITY_DOCTRINE.md); updated PRD 00 section 14.6, LILITH prompts, LIL001 mirrors, agent packs, memory seeds, and cross-references. CARMEN/EMO_AGAPE emotional docs unchanged.",
+  "files_changed": [
+    "docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+    "docs/doctrine/AGAPE_DOCTRINE.md",
+    "docs/prd/00_root_constitutional_system_requirements.md",
+    "agents/lilith/system_prompt.md",
+    ".cursor/rules/lilith-system-prompt.md",
+    ".cursor/rules/lilith-noninterference-doctrine.mdc",
+    "rules/root/lilith-noninterference-doctrine.md",
+    "rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md",
+    "memory/constitutional/seed/survivability-doctrine.json",
+    "memory/constitutional/seed/survivability-doctrine.toon",
+    "memory/constitutional/seed/prd_00_constitutional.json",
+    "memory/constitutional/seed/prd_00_constitutional.toon",
+    "changelog-pending/20260418114852_cursor_survivability_doctrine_rename.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/constitutional/seed/survivability-doctrine.toon"
+  ]
+}

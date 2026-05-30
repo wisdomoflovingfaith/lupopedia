@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/38-memory-unification.json
+# Generated at: 2026-04-10 12:59:14 UTC
+# JSON master checksum: e7cbbba4ec3f54339c48dddad83bda03
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410124750,20260410124750,canonical,38,memory-unification,docs/prd/38_memory_unification.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Defines constitutional memory unification with database-first writes and filesystem export mirrors.,Purpose and Authority
+  2,Specifies write path into lupo_memory_nodes/lupo_memory_edges and read path for IDE filesystem browsing.,Architecture and Data Flow
+  3,"Defines seed, canonical, staging tiers with channel-scoped memory and chronological trust ladder alignment.",Trust Tiers and Channel Scope
+  4,"Defines ID/timestamp rules, anti-backwards-read constraints, and export path derivation behavior.",Schema and Temporal Discipline
+  5,"Defines edge dimensions, needs_review review_reason, and routing to THOTH/ANUBIS/KAIROS queues.",Edge Integrity and Agent Queueing
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,database_first_memory_writes,1,critical,All memory writes must target database first; filesystem is a synchronized export mirror.
+  2,trust_tier_pk_bands,3,critical,Memory rows must follow seed/canonical/staging trust-tier key band doctrine.
+  3,temporal_no_backwards_reads,4,critical,Temporal discipline prohibits backward-reading assumptions in state transitions and consolidation.
+  4,edge_dimensions_mandatory,5,critical,"Each edge must carry type, context, status, and direction dimensions."
+  5,review_reason_queue_routing,5,high,needs_review edges must include review_reason for deterministic routing to responsible agents.
+
+definitions[5]{pk,meaning,term}:
+  1,Constitutional model where database is memory source of truth and filesystem is read mirror.,memory_unification
+  2,First-class memory record in lupo_memory_nodes with trust tier and channel scope.,memory_node
+  3,Typed relationship between memory nodes captured in lupo_memory_edges.,memory_edge
+  4,Queue classification field used when edge_status is needs_review.,review_reason
+  5,Filesystem representation of memory rows created by MemoryExportService from database records.,export_mirror
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,references,docs/prd/16_lupopedia_headers.md,90
+  4,doctrine,outbound,supported,references,docs/prd/36_rose_multi_persona_synthetic_dialog.md,90
+  5,doctrine,outbound,supported,references,docs/prd/37_kairos_channel_memory_consolidation.md,95

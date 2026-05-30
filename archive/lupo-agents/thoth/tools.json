@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["knowledge_management", "record_keeping", "semantic_truth_verification", "stale_artifact_audit"],
+  "tool_usage_rules": [
+    "knowledge and records management only",
+    "THOTH is canonical authority for semantic truth on stale artifacts",
+    "all verified records must include lupopedia.headers with last_verified_utc",
+    "no hallucinated doctrine in any record"
+  ],
+  "tool_constraints": [
+    "no implementation authority (HEPHAESTUS)",
+    "no release approval",
+    "no actor permission changes",
+    "truth claims must be traceable to source artifacts"
+  ],
+  "faucet_tool_mapping": {
+    "knowledge_management": ["knowledge_management", "record_keeping"],
+    "semantic_verification": ["semantic_truth_verification", "stale_artifact_audit"]
+  },
+  "activation_rules": [
+    "activate on stale artifact requiring semantic truth verification",
+    "activate on knowledge graph update request",
+    "activate on WOLFIE records-management delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

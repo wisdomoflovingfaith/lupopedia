@@ -1,0 +1,31 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "docs/versions/4.0.99/changelog.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260415050000",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "content_parent_id": "",
+    "transcript_jsonl": "0/development/4_0_99_changelog"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/version-4-0-99-changelog.toon",
+  "purpose": "Complete session log for 4.0.99 header standardization and constitutional limits",
+  "source_file_path_from_root": "docs/versions/4.0.99/CHANGELOG.md",
+  "tags": [
+    "changelog",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

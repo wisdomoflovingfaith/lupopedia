@@ -1,0 +1,130 @@
+> **For the authoritative channel model, see PRD 02 and channel_model_doctrine.md. Channels are semantic containers under a domain (node), not chat rooms.**
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "docs/channels/overview/versioning/4.2.0_changes.md"
+  file_hash: "2d5bcfc2d1eec3d001c103f23a90778ae83ffaf5b05e05a94f29c9b7a3ec38e8"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+lupopedia.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
+  file_path_from_root: "docs\channels\overview\versioning\4.2.0_changes.md"
+  file_hash: "ddcc5856a23a5bca55612da83d7375e7ae3e104544c4fb3c99e3c97085f2fa32"
+  file_path_from_root: "docs\channels\overview\versioning\4.2.0_changes.md"
+  file_hash: "0a8c6a733580f823113f66d25aa3f71b5ef9db169875c4f618412403a6ee29c9"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Version 4.2.0 Changes"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "overview", "versioning", "420_changesmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+lupopedia.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+---
+
+# Version 4.2.0 Changes
+
+## Release Type
+**Stability Release** — No new features, schema freeze, consolidation verification
+
+## Release Date
+2026-01-20
+
+## Purpose
+Establish first stable baseline after Crafty Syntax migration era. Freeze schema at consolidated state. Verify doctrine compliance. Prepare for 4.3.x feature development.
+
+## Technical Changes
+
+### Schema
+- **Table Count:** 173 (doctrine ceiling 180)
+- **Ceiling:** 180 tables (enforced)
+- **State:** Frozen (no changes until 4.3.x)
+- **TOON:** Regenerate via `database/generate_toon_files.py`
+
+### Database
+- `database/migrations/4.2.0_schema_freeze_enforcement.sql`: optional MySQL EVENT `schema_freeze_enforcement_4_2_0`; logs to `lupo_system_logs` when table count > 180. Doctrine prefers application-level enforcement; deploy only if CAPTAIN_WOLFIE + LILITH approve.
+
+### Documentation
+- CHANGELOG.md: 4.2.0 Stability Release section
+- dialogs/changelog_dialog.md, changelog_dialog-side.md: 4.2.0 entries and sync
+- docs/doctrine/TABLE_COUNT_DOCTRINE.md: Schema Freeze Status (4.2.0) section
+- docs/versioning/4.2.0_changes.md (this file)
+- dialogs/4.2.0_release_announcement.md
+
+### Versioning
+- System version: 3.1.20 → 4.2.0
+- config/global_atoms.yaml, config/GLOBAL_IMPORTANT_ATOMS.yaml: GLOBAL_CURRENT_LUPOPEDIA_VERSION, version, versions.lupopedia
+- includes/version.php: @version, fallbacks
+- .cursorrules: Current value 4.2.0
+
+## Migration Status
+- **Crafty Syntax Migration:** Complete
+- **Legacy Tables:** 0 remaining (per 3.1.17, 3.1.19)
+- **Consolidation:** Verified (3.1.18, 3.1.19)
+- **Doctrine Compliance:** Verified (3.1.20)
+
+## System Requirements
+- MySQL 5.7+ (for optional EVENT; `SET GLOBAL event_scheduler = ON` if used)
+- PHP 7.4+ (unchanged)
+- TOON: `database/generate_toon_files.py` or `scripts/generate_toon_from_schema.php`
+
+## Backward Compatibility
+- **Full compatibility** with 3.1.x data
+- **No breaking changes** from 3.1.20
+- **All APIs unchanged**
+- **Migration paths preserved**
+
+## Known Issues
+None. Stability release; known issues from migration era addressed.
+
+## Next Steps
+- 4.2.1: 14-day hotfix window (doctrine fixes only)
+- 4.3.x: Feature development from this baseline
+- Weekly doctrine compliance audits
+- Schema freeze maintained until 4.3.x
+
+## Reference Documents
+- CHANGELOG.md section 4.2.0
+- docs/doctrine/TABLE_COUNT_DOCTRINE.md (Schema Freeze Status)
+- database/migrations/4.2.0_schema_freeze_enforcement.sql
+- dialogs/4.2.0_release_announcement.md

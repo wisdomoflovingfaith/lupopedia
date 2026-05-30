@@ -1,0 +1,80 @@
+{
+  "id": "38-memory-unification",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "lupo-docs/prd/38_memory_unification.md",
+  "channel_key": "memory",
+  "trust_tier": "canonical",
+  "purpose": "Unify memory graph with database as source of truth + filesystem export for IDE/Claude access by date",
+  "status": "draft",
+  "tags": [
+    "prd",
+    "memory",
+    "graph",
+    "constitutional",
+    "unification",
+    "edges",
+    "filesystem_export"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Constitutional anchor \u2014 \u00a73.7 Chronological Trust Ladder / \u00a75.7 unified memory graph + filesystem export mirror"
+      },
+      {
+        "to": "lupo-docs/prd/07_agents_faucets.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Removes memory.json references; replaces with unified DB graph + export mirror"
+      },
+      {
+        "to": "lupo-docs/prd/15_actors.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Actor workspace documentation updated to reference unified memory graph"
+      },
+      {
+        "to": "lupo-docs/prd/24_actor_onboarding_flow.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Actor onboarding \u2014 creates DB root node + exports to filesystem"
+      },
+      {
+        "to": "lupo-docs/prd/37_kairos_channel_memory_consolidation.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "KAIROS writes to DB; export service mirrors to filesystem"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260408111331",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 102,
+      "agent_name_identity": "Cursor IDE Agent"
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "cursor:root",
+    "next_action": [
+      "Apply amendment prose in PRD 07, 15, 24, 37, and 00 section 5.7 per sections 11.1\u201311.5",
+      "Reconcile lupo_edges vs lupo_memory_edges in dependent PRDs once graph split is finalized",
+      "Regenerate TOONs for memory_nodes and memory_edges after schema freeze",
+      "Wire actor onboarding + KAIROS to insert rows then call MemoryExportService::exportNode()",
+      "lupo-memory/ remains read-only export mirror (not source of truth)"
+    ]
+  }
+}

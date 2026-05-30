@@ -1,0 +1,16 @@
+{
+  "schema_version": "4.0.99",
+  "federation_node_id": 1,
+  "projects": [
+    {
+      "project_id": 1,
+      "project_key": "lupopedia-core",
+      "project_slug": "lupopedia-core",
+      "project_name": "Lupopedia Core Development",
+      "default_channel_id": 42,
+      "orchestrator_id": 1,
+      "status": "active"
+    }
+  ],
+  "next_id_hint": 2
+}

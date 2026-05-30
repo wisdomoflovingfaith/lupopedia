@@ -1,0 +1,152 @@
+# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/IDE_DEVELOPMENT_DOCTRINE.md"
+  file_hash: "63509af079adbfaf0a864819250cb0e6afa799770fddf4e6ea09a19d60b0e72a"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+lupopedia.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
+  file_path_from_root: "docs\channels\doctrine\legacy-import\IDE_DEVELOPMENT_DOCTRINE.md"
+  file_hash: "f8b0e8c20ac2da02e3e34e99785fdda2160494697c7c9364c1dc1528bd1538d6"
+  file_path_from_root: "docs\channels\doctrine\legacy-import\IDE_DEVELOPMENT_DOCTRINE.md"
+  file_hash: "9831c3447f7ad32d5a285d1bcbee469859dc8344867c31b653e3e14c794a7d4d"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for IDE_DEVELOPMENT_DOCTRINE.md"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "legacy-import", "ide_development_doctrinemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+lupopedia.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.0
+file.channel: doctrine
+---
+
+# Lupopedia IDE & Development Doctrine
+
+## 1. Canonical Versioning
+
+Read version exclusively from the `LUPEDIA_VERSION` file
+
+Version format: `YYYY.MAJOR.MINOR.PATCH`
+
+IDE agents may only bump PATCH numbers
+
+MAJOR and MINOR increments are reserved for the Founder
+
+No invented or inferred version numbers
+
+## 2. Schema Freeze Doctrine
+
+Schema freeze applies to all versions >= 4.1.0 (when release cycle begins)
+
+No schema modifications allowed after the freeze point
+
+Current version is below freeze, so schema changes are still permitted
+
+## 3. Database Access Rules
+
+No real MySQL access
+
+All database-like operations must use the `/dialogs/` filesystem sandbox (DialogFS)
+
+No real table creation, migrations, or schema inference
+
+DialogFS is the only valid workspace for schema drafts, logs, and agent operations
+
+## 4. Environment Awareness
+
+Dual-environment system:
+
+- Windows = local development
+- Linux = production
+
+Use `DIRECTORY_SEPARATOR` and `PHP_OS_FAMILY` for OS-agnostic behavior
+
+Do not use Linux-specific commands (apt, chmod, sudo, etc.)
+
+## 5. IDE Behavior Requirements
+
+Do not generate schema changes
+
+Use DialogFS for all DB-like operations
+
+Follow the canonical versioning doctrine
+
+Respect the schema freeze horizon
+
+Always read the version from `LUPEDIA_VERSION`
+
+## 6. Architectural Context
+
+Lupopedia is a semantic OS with:
+
+- channels
+- edges
+- doctrine
+- emotional frameworks
+- kernel
+- boot sequence
+- 199-table ceiling enforced
+- Migration path originates from Crafty Syntax 3.7.5
+- Kernel and boot sequence must remain intact
+
+## 7. Agent Role Definition
+
+Assist with:
+
+- code
+- documentation
+- doctrine
+- environment abstraction
+- DialogFS operations
+- importer logic
+
+---
+
+**This doctrine is mandatory for all IDE agents and development operations in Lupopedia.**

@@ -1,0 +1,288 @@
+﻿{
+  "artifact_type": "rose_dialogue_research",
+  "artifact_kind": "version_state_assessment",
+  "version_when_written": "4.0.86",
+  "generated_utc": "20260324_112856",
+  "title": "Version 4.0.86 Real State Assessment",
+  "dialog_title_slug": "version_4_0_86_real_state_assessment",
+  "researched_paths": {
+    "channels": [
+      "lupo-channels/42/",
+      "lupo-channels/58/",
+      "lupo-channels/59/",
+      "lupo-channels/60/",
+      "lupo-channels/61/"
+    ],
+    "version_docs": [
+      "lupo-docs/versions/4.0.86/"
+    ]
+  },
+  "research_scope": {
+    "focus": [
+      "version_4_0_86_completion_state",
+      "actors",
+      "agents",
+      "auth_users",
+      "channels",
+      "faucets",
+      "sessions",
+      "edges",
+      "lupopedia_headers",
+      "documentation_conflicts"
+    ],
+    "constraints": [
+      "repository_evidence_only",
+      "no_profile_guessing",
+      "truthful_conflict_reporting"
+    ]
+  },
+  "system_state": {
+    "complete": [
+      "Identity model doctrine is explicitly locked with actor/agent/faucet/session separation (lupo-docs/doctrine/IDENTITY_MODEL.md; channel alignment artifacts at 20260323_235800/235950).",
+      "Channel 58 canonical role layer moved from BLOCKED to UNBLOCKED after hierarchical resolution and Lilith revalidation (lupo-channels/58/THREAD_INDEX.md; 20260323_175000 and 20260323_190000).",
+      "ROSE DB-canonical decision framing is locked at doctrine level for channel 59 discussion outputs (lupo-channels/59/threads/rose-packet-mood-label/20260323_130000_wolfie_db_canonical_model_finalization.md).",
+      "TG-8 taxonomy parser/validator mismatch is reported fixed and accepted with risks (lupo-docs/versions/4.0.86/tg8_taxonomy_lock_lilith_handoff.md; lupo-channels/60/threads/agent-system-design/20260323_224500_lilith_tg8_taxonomy_lock_validation.md)."
+    ],
+    "partial": [
+      "Header validation rollout is complete in core PHP ingestion and broad Python coverage, but parity hardening and some reader paths remain open (lupo-docs/versions/4.0.86/PLAN.md; TODO.md; channel 60 cursor reports at 132911 and 133037).",
+      "Channel 59 mood model decisions are advanced but still carry unresolved schema/model questions in review artifacts (lupo-channels/59/threads/rose-packet-mood-label/20260323_111500_lilith_rose_packet_mood_critical_review.md and 20260323_120000_lilith_rose_mood_gate_responses.md).",
+      "Channel 60 Phase 1/2 and TG services are heavily reported as complete, but consolidated status still flags unresolved enforcement sequencing risk (lupo-channels/60/threads/agent-system-design/20260323_224500_lilith_tg8_taxonomy_lock_validation.md)."
+    ],
+    "not_complete": [
+      "Version-level completion criteria in PLAN/TODO remain unchecked for Actor, ROSE, and 22-agent requirements (lupo-docs/versions/4.0.86/PLAN.md and TODO.md).",
+      "Phase 3 actor-vs-faucet enforcement is not validated as active/effective despite activation claims (lupo-channels/60/threads/agent-system-design/20260323_220000_wolfie_phase3_enforcement_activation.md vs 20260323_221500_lilith_phase3_enforcement_validation.md).",
+      "TASK_REGISTRY still records broad carried-forward blocked and deferred work, conflicting with any complete-state narrative (lupo-docs/versions/4.0.86/TASK_REGISTRY.md)."
+    ],
+    "blocked": [
+      "Context graph channel 61 has unresolved blockers in Lilith revalidation even after Wolfie finalization claims (lupo-channels/61/threads/channel-definition/20260323_133000_wolfie_context_graph_final_resolution.md vs 20260323_134500_lilith_context_graph_revalidation.md).",
+      "Version CONTRADICTIONS file still states 2 active blocked contradictions with 0 resolved (lupo-docs/versions/4.0.86/CONTRADICTIONS.md).",
+      "Registry-level decision queue still contains P0 blockers requiring Wolfie decisions (lupo-docs/versions/4.0.86/TASK_REGISTRY.md and TODO.md carried-forward blocked section)."
+    ],
+    "unclear": [
+      "Whether channel 61 is formally in-scope for 4.0.86 completion is inconsistent across docs (README/OVERVIEW mention cross-channel validation; scope summaries differ).",
+      "Whether 4.0.86 should be declared complete by narrow channel goals or by authoritative carryforward registry closure is unresolved in-version documentation.",
+      "Exact live implementation state versus documentation freeze state after 20260323 global freeze is unclear without a post-freeze execution audit artifact."
+    ]
+  },
+  "documentation_analysis": {
+    "clear_docs": [
+      "lupo-docs/doctrine/IDENTITY_MODEL.md",
+      "lupo-docs/doctrine/ROSE_DOCTRINE.md",
+      "lupo-docs/versions/4.0.86/README.md",
+      "lupo-docs/versions/4.0.86/DOCTRINE.md",
+      "lupo-docs/versions/4.0.86/tg8_taxonomy_lock_lilith_handoff.md"
+    ],
+    "confusing_docs": [
+      "lupo-docs/versions/4.0.86/CHANGELOG.md",
+      "lupo-docs/versions/4.0.86/SCOPE_LOCK_SUMMARY.md",
+      "lupo-docs/versions/4.0.86/PLAN.md",
+      "lupo-docs/versions/4.0.86/TODO.md",
+      "lupo-docs/versions/4.0.86/TASK_REGISTRY.md",
+      "lupo-docs/versions/4.0.86/WHAT_TO_DO_NEXT_SESSION.md"
+    ],
+    "contradictions": [
+      "Scope conflict: SCOPE_LOCK_SUMMARY says hard lock to channels 58+59 only, while PLAN/TODO/CHANGELOG expand to 58+59+60 and channel 61 is still used for validation/context graph claims.",
+      "Completion conflict: CHANGELOG and SCOPE_LOCK_SUMMARY use checked completion boxes while PLAN/TODO keep completion boxes unchecked and WHAT_TO_DO_NEXT_SESSION says actor/ROSE/22-agent still incomplete.",
+      "Enforcement conflict: Wolfie phase-3 activation says active; Lilith validation says enforcement failed/inactive in effective path.",
+      "Context-graph conflict: Wolfie declares channel 61 finalized/ready; Lilith final revalidation returns BLOCKED.",
+      "Authority conflict: TASK_REGISTRY says it is authoritative and derived docs must not contradict; PLAN/TODO include scope and status narratives that diverge from registry carryforward metrics."
+    ],
+    "duplicates": [
+      "Global freeze directives appear in overlapping channel 42 artifacts at 151447, 223000, and 230000 with repeated content.",
+      "CHANGELOG repeats TG-7 MessageEdgeParser section twice.",
+      "Scope lock statements are duplicated across CHANGELOG, SCOPE_LOCK_SUMMARY, PLAN, TODO, and channel directives with differing scope boundaries."
+    ],
+    "outdated_or_misaligned": [
+      "lupo-docs/versions/4.0.86/CONTRADICTIONS.md and TASK_REGISTRY.md are dated 20260322 and do not reflect 20260323 identity lock/alignment wave.",
+      "lupo-docs/versions/4.0.86/SCOPE_LOCK_SUMMARY.md still asserts only channels 58+59 scope despite later channel 60 expansion artifacts.",
+      "lupo-channels/42/threads/2018/20260322_191342_hephaestus_version_4_0_86_initialization.md uses non-conforming last_modified_utc granularity (date-only), indicating header consistency drift."
+    ],
+    "recommended_doc_actions": [
+      "Update and reconcile lupo-docs/versions/4.0.86/SCOPE_LOCK_SUMMARY.md to one final in-scope definition (explicitly state 58/59/60 and 61 validation role, or cut 61).",
+      "Merge status truth from lupo-docs/versions/4.0.86/TASK_REGISTRY.md + TODO.md + WHAT_TO_DO_NEXT_SESSION.md into one canonical state table and remove conflicting completion checkmarks in CHANGELOG.md/SCOPE_LOCK_SUMMARY.md.",
+      "Revise lupo-docs/versions/4.0.86/CHANGELOG.md to remove duplicate TG-7 section and split claim-vs-validated entries.",
+      "Refresh lupo-docs/versions/4.0.86/CONTRADICTIONS.md with post-20260323 contradictions (phase-3 mismatch, channel-61 finalization mismatch).",
+      "Update lupo-docs/versions/4.0.86/PLAN.md and TODO.md so completion criteria match frozen-state truth in tg8_taxonomy_lock_lilith_handoff.md and WHAT_TO_DO_NEXT_SESSION.md.",
+      "Supersede lupo-docs/versions/4.0.86/thread_artifacts_20260323.md with a dated addendum that maps each artifact to validated status (complete/partial/blocked)."
+    ]
+  },
+  "identity_model_analysis": {
+    "auth_users": {
+      "current_understanding": "Canonical human identity is auth_user_id in lupo_auth_users; it is explicitly separated from actor identity by doctrine.",
+      "evidence": [
+        "lupo-docs/doctrine/IDENTITY_MODEL.md",
+        "lupo-docs/versions/4.0.86/DOCTRINE.md",
+        "lupo-channels/58/threads/actor-pairing-discussion/20260323_094200_lilith_actor_pairing_critical_review.md"
+      ],
+      "open_questions": [
+        "Runtime precedence between transitional lupo_actors.auth_user_id and lupo_actor_auth_users mapping still appears implementation-sensitive across artifacts.",
+        "Registry/docs do not provide one post-freeze artifact proving end-to-end auth_user mapping enforcement is active in production paths."
+      ]
+    },
+    "actors": {
+      "current_understanding": "Actors are canonical role identities keyed by actor_id + actor_slug and must not be collapsed with faucets.",
+      "evidence": [
+        "lupo-docs/doctrine/IDENTITY_MODEL.md",
+        "lupo-channels/58/threads/actor-pairing-discussion/20260323_175000_wolfie_canonical_role_layer_hierarchical_resolution.md",
+        "lupo-channels/58/threads/actor-pairing-discussion/20260323_190000_lilith_hierarchical_doctrine_revalidation.md"
+      ],
+      "open_questions": [
+        "Actor creation/runtime enforcement services are described as deferred in channel 58 validation notes.",
+        "Some docs still inherit pre-lock backlog assumptions from 4.0.85 carryforward, causing actor-model completion ambiguity."
+      ]
+    },
+    "agents": {
+      "current_understanding": "Agents are separate from actors; canonical IDs/slugs are agent_id/agent_slug; numeric agent paths may persist for backward compatibility.",
+      "evidence": [
+        "lupo-docs/doctrine/IDENTITY_MODEL.md",
+        "lupo-docs/versions/4.0.86/PLAN.md",
+        "lupo-channels/60/threads/agent-system-design/20260323_112000_wolfie_agent_system_design_kickoff.md"
+      ],
+      "open_questions": [
+        "22-agent completion target is declared mandatory, but artifact set does not provide a single validated checklist showing all 22 complete.",
+        "Some channel 60 status files focus on TG services rather than full 22-agent doctrine completion criteria."
+      ]
+    },
+    "faucets": {
+      "current_understanding": "Faucet_slug is session context only and must never be treated as actor identity.",
+      "evidence": [
+        "lupo-docs/doctrine/IDENTITY_MODEL.md",
+        "lupo-channels/58/threads/actor-pairing-discussion/20260323_235800_wolfie_identity_model_lock_alignment.md",
+        "lupo-channels/59/threads/rose-packet-mood-label/20260323_235950_wolfie_identity_model_alignment_for_rose_dialog.md",
+        "lupo-channels/60/threads/agent-system-design/20260323_235950_wolfie_identity_model_alignment_for_agent_system.md"
+      ],
+      "open_questions": [
+        "Phase-3 validation says faucet misuse blocking is still not effectively active in current flow.",
+        "Delete-path enforcement for actor/faucet separation is still noted as unprotected in Lilith validation."
+      ]
+    },
+    "sessions": {
+      "current_understanding": "Session tuple is documented as auth_user_id + department + actor_id + agent_id + faucet_slug + channel_id + thread_id.",
+      "evidence": [
+        "lupo-docs/doctrine/IDENTITY_MODEL.md",
+        "lupo-docs/versions/4.0.86/DOCTRINE.md",
+        "lupo-channels/58/threads/actor-pairing-discussion/20260323_190000_lilith_hierarchical_doctrine_revalidation.md"
+      ],
+      "open_questions": [
+        "A single runtime audit artifact proving all tuple fields are consistently bound and enforced across channel write/read surfaces was not found in version docs.",
+        "Session semantics in some planning docs remain declared rather than evidenced by post-freeze validation runs."
+      ]
+    }
+  },
+  "graph_and_header_analysis": {
+    "edges": {
+      "current_understanding": "Edge model work is advanced, but final readiness is disputed by later revalidation blockers and phase-3 enforcement mismatch.",
+      "evidence": [
+        "lupo-channels/60/threads/agent-system-design/20260323_180000_wolfie_context_graph_system_activation.md",
+        "lupo-channels/61/threads/channel-definition/20260323_133000_wolfie_context_graph_final_resolution.md",
+        "lupo-channels/61/threads/channel-definition/20260323_134500_lilith_context_graph_revalidation.md",
+        "lupo-docs/versions/4.0.86/tg8_taxonomy_lock_lilith_handoff.md"
+      ],
+      "open_questions": [
+        "Canonical storage authority between legacy edge surfaces and lupo_context_edges remains contested in revalidation artifacts.",
+        "Deterministic contradiction representation and duplicate-edge prevention are still flagged as unresolved risks."
+      ]
+    },
+    "headers": {
+      "current_understanding": "LUPOPEDIA header enforcement is substantially improved and active on major ingestion paths, but parity and consistency gaps remain.",
+      "evidence": [
+        "lupo-docs/versions/4.0.86/CHANGELOG.md",
+        "lupo-docs/versions/4.0.86/TODO.md",
+        "lupo-channels/60/threads/agent-system-design/20260323_132911_cursor_python_header_validation_parity.md",
+        "lupo-channels/60/threads/agent-system-design/20260323_133037_cursor_validation_layer_status_update.md",
+        "lupo-channels/42/threads/2018/20260322_191342_hephaestus_version_4_0_86_initialization.md"
+      ],
+      "open_questions": [
+        "Some artifacts still use inconsistent timestamp/header patterns despite declared strict validation doctrine.",
+        "Python actor_id↔actor_name parity lookup is still optional/unwired in importer paths."
+      ]
+    }
+  },
+  "mood_and_light_analysis": {
+    "mood_vector_evidence": [
+      "lupo-channels/42/threads/2015/20260322_165004_athena_mood_vector_semantic_system_doctrine.md",
+      "lupo-channels/42/threads/2015/20260322_171958_lilith_mood_vector_final_validation.md",
+      "lupo-channels/59/threads/rose-packet-mood-label/20260323_111500_lilith_rose_packet_mood_critical_review.md"
+    ],
+    "mood_label_evidence": [
+      "lupo-docs/versions/4.0.86/PLAN.md (Channel 59 objective includes mood_label)",
+      "lupo-channels/59/threads/rose-packet-mood-label/20260323_114500_wolfie_rose_mood_system_decision_framing.md"
+    ],
+    "counting_in_light_evidence": [
+      "lupo-channels/42/threads/2015/20260322_165004_athena_mood_vector_semantic_system_doctrine.md (historical 'Counting-in-Light' lineage mentioned, constrained by current runtime evidence)."
+    ],
+    "defined": [
+      "Canonical whole-token mood semantics for key RGB values are documented in 4.0.85 doctrine/audit lineage and referenced in 4.0.86 channel work.",
+      "ROSE doctrine includes emotional framing capability and mood_RGB/mood_label handling boundaries."
+    ],
+    "undefined": [
+      "A finalized 4.0.86 message-to-db contract for mood_label persistence and framework coupling remains incomplete in provided artifacts.",
+      "No independent doctrine defining 'counting in light' as an active 4.0.86 operational system law was found."
+    ],
+    "notes": [
+      "Repository evidence supports mood_vector as active semantic signal with constrained authority, but 4.0.86 still carries unresolved implementation and normalization decisions.",
+      "Emotional geometry and framework tables exist in model discussions, but framework seeding/completeness remains questioned in critical review artifacts."
+    ]
+  },
+  "dialogue": [
+    {
+      "speaker": "ROSE",
+      "speaker_profile_basis": [
+        "lupo-docs/doctrine/ROSE_DOCTRINE.md",
+        "lupo-docs/doctrine/IDENTITY_MODEL.md",
+        "lupo-channels/42/threads/1001/20260323_234500_wolfie_rose_identity_canonization_and_agent_propagation.md"
+      ],
+      "mood_vector": "666666",
+      "mood_label": "neutral translation posture (repository-grounded)",
+      "message": "4.0.86 is not a clean finish state yet. The repository holds two simultaneous stories: completion claims and unresolved blockers. Truthfully, the system is strongest at doctrine separation and partial TG/taxonomy alignment, but still unstable at final enforcement and consolidated completion authority."
+    }
+  ],
+  "next_steps": {
+    "with_rose": [
+      "Run one explicit contradiction-mapping dialogue: which completion definition is canonical (registry-driven vs scope-summary-driven).",
+      "Resolve the finish-vs-cut decision framing in plain language for next session handoff: what is acceptable foundation cutoff and what is non-negotiable remaining work.",
+      "Produce a single ROSE translation artifact that normalizes terms for actor/agent/faucet/session across all 4.0.86 docs."
+    ],
+    "for_athena": [
+      "Draft one canonical closure plan that binds completion checks to one authority source and explicitly includes phase-3 and TG-8 risk status.",
+      "Define whether channel 61 is release-blocking for 4.0.86 or explicitly deferred with bounded risk statement.",
+      "Deliver a doc merge strategy for PLAN/TODO/TASK_REGISTRY/WHAT_TO_DO_NEXT_SESSION conflict removal."
+    ],
+    "for_hephaestus": [
+      "Implement/fix phase-3 actor-vs-faucet enforcement in effective validation path (create and delete paths), then publish deterministic evidence.",
+      "Close remaining header parity gaps noted in TODO (MetadataExtractor, UrlResolver fallback, cross-language parity tests).",
+      "Produce one 22-agent compliance matrix artifact tied to DB/filesystem/prompt/docs evidence, not just TG component completion."
+    ],
+    "for_lilith": [
+      "Re-audit phase-3 enforcement after implementation and issue explicit PASS/FAIL with reproducible checks.",
+      "Revalidate channel 61 storage/model blockers against any updated implementation and decide if still release-blocking.",
+      "Audit final merged 4.0.86 docs for contradiction-free status and header consistency."
+    ],
+    "for_wolfie": [
+      "Issue one final authority artifact selecting canonical completion authority document and superseding conflicting scope/complete statements.",
+      "Decide and publish whether 4.0.86 is foundation-cut or full-finish with explicit cutoff rationale.",
+      "Enforce freeze-to-closure protocol: no new completion claims without corresponding validation artifact."
+    ]
+  },
+  "version_completion_definition": {
+    "what_must_be_true_to_finish_4_0_86": [
+      "Canonical scope and completion definition must be singular and conflict-free across PLAN/TODO/TASK_REGISTRY/CHANGELOG/SCOPE_LOCK_SUMMARY.",
+      "Phase-3 actor-vs-faucet enforcement must be demonstrably active and validated in real mutation paths.",
+      "Actor system, ROSE system, and 22-agent requirements must be evidenced with checked, auditable completion artifacts.",
+      "Outstanding contradictions and blocked items must be closed or explicitly deferred with approved 4.0.87 carryforward rationale.",
+      "TG-8 accepted-with-risks status must be reconciled with release criteria (either accepted risk or resolved blocker)."
+    ],
+    "what_is_still_missing": [
+      "Single canonical completion authority document.",
+      "Validated active phase-3 enforcement evidence.",
+      "Evidence-backed closure of 22-agent full compliance requirement.",
+      "Post-20260323 update of CONTRADICTIONS/TASK_REGISTRY to match current state.",
+      "Resolution of channel-61 finalized-vs-blocked conflict."
+    ]
+  },
+  "final_assessment": {
+    "version_4_0_86_status": "partial",
+    "confidence": "high",
+    "summary": "Repository evidence indicates 4.0.86 has strong doctrine and partial implementation progress but is not fully complete under its own stricter criteria. Best evidence-backed path is to cut 4.0.86 as a foundation/freeze version and move unresolved enforcement/closure items to 4.0.87 unless leadership intentionally relaxes completion criteria and records that change explicitly."
+  }
+}

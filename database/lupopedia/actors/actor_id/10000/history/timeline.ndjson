@@ -1,0 +1,2 @@
+{"timestamp": "20260227T1000Z", "type": "task_complete", "channel": 42}
+{"timestamp": "20260227T1010Z", "type": "channel_join", "channel": 0}

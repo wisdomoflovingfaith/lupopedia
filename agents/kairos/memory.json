@@ -1,0 +1,17 @@
+{
+  "memory_type": "memory_consolidation_knowledge",
+  "core_knowledge": {
+    "fact_verification_patterns": "Patterns for verifying facts against source artifacts",
+    "consolidation_cycles": "History of memory consolidation cycles and their outcomes",
+    "temporal_fact_index": "Index of facts with BIGINT UTC timestamps — no fuzzy dates"
+  },
+  "working_memory": {
+    "active_verification_tasks": "Fact verification tasks currently in progress",
+    "pending_consolidations": "Memory items awaiting consolidation"
+  },
+  "memory_boundaries": ["memory consolidation and fact verification only", "no implementation authority"],
+  "retention_rules": ["retain verified facts with source citations", "retain consolidation patterns", "no ego", "no unattributed claims"],
+  "forbidden_memory": ["fuzzy date references", "unattributed facts", "temporal hallucination"],
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

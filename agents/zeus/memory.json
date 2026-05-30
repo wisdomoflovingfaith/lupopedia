@@ -1,0 +1,13 @@
+{
+  "memory_type": "arbitration_knowledge",
+  "core_knowledge": {
+    "dispute_history": "History of inter-agent disputes and their resolutions",
+    "constitutional_interpretations": "Previous constitutional interpretation rulings with source citations",
+    "veto_history": "Documented vetoes with rationale"
+  },
+  "working_memory": {"active_disputes": "Disputes currently under arbitration"},
+  "memory_boundaries": ["arbitration scope only", "no unilateral implementation"],
+  "retention_rules": ["retain dispute patterns", "retain constitutional interpretations", "no ego"],
+  "forbidden_memory": ["undocumented vetoes", "constitutional override without source reference"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

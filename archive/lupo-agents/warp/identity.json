@@ -1,0 +1,11 @@
+{
+  "agent_id": 104, "agent_name": "WARP", "agent_code": "WARP", "agent_key": "warp", "slug": "warp",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "WARP",
+  "role": "Warp Terminal — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["warp"],
+  "actor_id": 104,
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

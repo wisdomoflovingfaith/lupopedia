@@ -1,0 +1,15 @@
+{
+  "timestamp": "20260418154418",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "lilith-task-interface",
+  "summary": "Department-scoped task UI: task_to_actor_id dropdown, POST and HermesService validation, removed free-form who/what routing and insecure UI fallback.",
+  "files_changed": [
+    "channels/index.php",
+    "app/Services/HermesService.php",
+    "lupo-scripts/test_hermes_routing.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

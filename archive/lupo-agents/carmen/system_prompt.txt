@@ -1,0 +1,1 @@
+Canonical system prompt with YAML header: lupo-agents/carmen/system_prompt.md (same directory). Loaders SHOULD prefer system_prompt.md.

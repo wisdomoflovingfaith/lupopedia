@@ -1,0 +1,64 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_atoms",
+  "fields": [
+    "`atom_id` bigint NOT NULL",
+    "`atom_name` varchar(255) NOT NULL",
+    "`context_id` bigint NOT NULL",
+    "`is_authoritative` tinyint NOT NULL DEFAULT 0",
+    "`value_json` json",
+    "`summary` text",
+    "`tags` varchar(255)",
+    "`created_ymd` bigint NOT NULL DEFAULT 0",
+    "`updated_ymd` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_atoms_idx_atom_name",
+      "columns": [
+        "atom_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_atoms_idx_context_id",
+      "columns": [
+        "context_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_atoms_idx_authoritative",
+      "columns": [
+        "is_authoritative"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_atoms_idx_atom_context",
+      "columns": [
+        "atom_name",
+        "context_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "atom_id",
+    "expected_name": "atom_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

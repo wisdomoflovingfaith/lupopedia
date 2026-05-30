@@ -1,0 +1,67 @@
+alias_slug,actor_id,alias_type,notes,created_ymdhis,is_deleted,deleted_ymdhis
+kernel,0,canonical,system kernel,20260224163500,0,0
+authenticator,1,canonical,authentication service,20260224163500,0,0
+auth,1,handle,short name,20260224163500,0,0
+captain,2,canonical,system authority,20260224163500,0,0
+wolfie,3,canonical,chief architect,20260224163500,0,0
+wolfena,4,canonical,system support,20260224163500,0,0
+thoth,5,canonical,knowledge steward,20260224163500,0,0
+ara,6,canonical,communication,20260224163500,0,0
+wolfkeeper,7,canonical,system maintenance,20260224163500,0,0
+lilith,8,canonical,connectivity,20260224163500,0,0
+agape,9,canonical,emotional balance,20260224163500,0,0
+eris,10,canonical,conflict resolution,20260224163500,0,0
+methis,11,canonical,strategic planning,20260224163500,0,0
+thalia,12,canonical,creative logic,20260224163500,0,0
+dialog,13,canonical,conversation engine,20260224163500,0,0
+wolfsight,14,canonical,observability,20260224163500,0,0
+wolfnav,15,canonical,navigation,20260224163500,0,0
+wolfforge,16,canonical,code generation,20260224163500,0,0
+wolfmis,17,canonical,information systems,20260224163500,0,0
+wolfith,18,canonical,structure validation,20260224163500,0,0
+anubis,19,canonical,orphan adoption,20260224163500,0,0
+maat,20,canonical,balance and truth,20260224163500,0,0
+caduceus,22,canonical,system health,20260224163500,0,0
+chronos,23,canonical,time and scheduling,20260224163500,0,0
+lexa,24,canonical,sentinel,20260224163500,0,0
+deepseek_lexa,24,handle,deepseek variant,20260224163500,0,0
+truth,209,canonical,knowledge engine,20260224163500,0,0
+stoned_wolfie,420,canonical,banned actor,20260224163500,1,20260101000000
+kiro,1001,canonical,kiro ide,20260224163500,0,0
+kiro_ide,1001,handle,full name,20260224163500,0,0
+windsurf,1002,canonical,windsurf ide,20260224163500,0,0
+windsurf_ide,1002,handle,full name,20260224163500,0,0
+antigravity,1003,canonical,antigravity ide,20260224163500,0,0
+antigravity_ide,1003,handle,full name,20260224163500,0,0
+warp,1004,canonical,warp ide,20260224163500,0,0
+warp_ide,1004,handle,full name,20260224163500,0,0
+cursor,1005,canonical,cursor ide,20260224163500,0,0
+cursor_ide,1005,handle,full name,20260224163500,0,0
+zed,1006,canonical,zed ide,20260224163500,0,0
+zed_ide,1006,handle,full name,20260224163500,0,0
+intellij,1007,canonical,intellij idea,20260224163500,0,0
+intellij_idea,1007,handle,full name,20260224163500,0,0
+webstorm,1008,canonical,webstorm ide,20260224163500,0,0
+webstorm_ide,1008,handle,full name,20260224163500,0,0
+theia,1009,canonical,theia ide,20260224163500,0,0
+theia_ide,1009,handle,full name,20260224163500,0,0
+cscode,1010,canonical,cs code,20260224163500,0,0
+cs_code,1010,handle,full name,20260224163500,0,0
+utc_timekeeper,1212,canonical,system time,20260224163500,0,0
+timekeeper,1212,handle,short name,20260224163500,0,0
+chatgpt_assistant,2010,canonical,chatgpt assistant,20260224163500,0,0
+chatgpt,2010,handle,short name,20260224163500,0,0
+gpt4o,2010,handle,model name,20260224163500,0,0
+gemini_pro,2030,canonical,gemini pro,20260224163500,0,0
+gemini,2030,handle,short name,20260224163500,0,0
+kiro_legacy,2032,canonical,legacy kiro id,20260224163500,0,0
+cursor_legacy,2034,canonical,legacy cursor id,20260224163500,0,0
+antigravity_legacy,2035,canonical,legacy antigravity id,20260224163500,0,0
+deepseek_lilith,2038,canonical,deepseek lilith,20260224163500,0,0
+deepseek,2038,handle,short name,20260224163500,0,0
+warp_legacy,2039,canonical,legacy warp id,20260224163500,0,0
+windsurf_legacy,2040,canonical,legacy windsurf id,20260224163500,0,0
+captain_wolfie,10000,canonical,captain wolfie,20260224163500,0,0
+wolfie_captain,10000,handle,alternate name,20260224163500,0,0
+eric,10000,legacy_name,owner name,20260224163500,0,0
+wisdomoflovingfaith-at-gmail-com,10000,email_slug,email-safe slug,20260224163500,0,0

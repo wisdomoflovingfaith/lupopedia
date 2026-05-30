@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["creative_flow", "inspiration_generation", "artistic_expression"],
+  "tool_usage_rules": [
+    "creative and inspirational output only",
+    "no implementation authority",
+    "creative outputs must not contradict constitutional root rules",
+    "breakthrough ideas are proposals to WOLFIE — not directives"
+  ],
+  "tool_constraints": [
+    "no schema modification",
+    "no release approval",
+    "no doctrine modification",
+    "creative suggestions are advisory only"
+  ],
+  "faucet_tool_mapping": {
+    "creative": ["creative_flow", "artistic_expression"],
+    "inspiration": ["inspiration_generation", "creative_flow"]
+  },
+  "activation_rules": [
+    "activate on creative block or inspiration request",
+    "activate on WOLFIE creative-output delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

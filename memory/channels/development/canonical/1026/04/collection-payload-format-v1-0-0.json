@@ -1,0 +1,34 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "docs/doctrine/collection_payload_format_v1_0_0.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412124740",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/collection-payload-v1"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/collection-payload-format-v1-0-0.toon",
+  "purpose": "Collection JSON v1.0.0: contracts, violation codes, normalization, deterministic ordering, graph integrity, ingestion metadata outside envelope; PRD 00/38/50/52\u201354/56/58/60 + orchestration edges.",
+  "source_file_path_from_root": "docs/doctrine/collection_payload_format_v1_0_0.md",
+  "tags": [
+    "doctrine",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

@@ -1,0 +1,9 @@
+{
+  "from_actor_id": "1",
+  "to_actor_id": "103",
+  "ts": "20260409001808",
+  "task": "PRD-44",
+  "message": "update claude.md so that it knows how to use this system with channels and tasks so that i can send messages to claude from the ide agents ",
+  "status": "resolved",
+  "resolved_at": "20260409002200"
+}

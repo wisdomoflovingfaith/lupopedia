@@ -1,0 +1,43 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_memory_keywords",
+  "fields": [
+    "`memory_keyword_id` bigint NOT NULL",
+    "`memory_node_id` bigint NOT NULL",
+    "`keyword` varchar(255) NOT NULL",
+    "`weight` decimal(10,4) DEFAULT 1.0000",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "indexes": [
+    {
+      "index_name": "idx_memory_node",
+      "columns": [
+        "memory_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_keyword",
+      "columns": [
+        "keyword"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "memory_keyword_id",
+    "expected_name": "memory_keyword_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

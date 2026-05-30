@@ -1,0 +1,87 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_crafty_user_mapping",
+  "fields": [
+    "`crafty_user_mapping_id` bigint NOT NULL",
+    "`lupo_user_id` bigint",
+    "`crafty_operator_id` int",
+    "`mapping_type` varchar(50) NOT NULL DEFAULT manual",
+    "`notes` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 20250101000000",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 20250101000000",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_crafty_user_mapping_unique_crafty_operator_mapping",
+      "columns": [
+        "crafty_operator_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_crafty_user_mapping_unique_lupo_user_mapping",
+      "columns": [
+        "lupo_user_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_crafty_user_mapping_idx_crafty_operator_id",
+      "columns": [
+        "crafty_operator_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_crafty_user_mapping_idx_lupo_user_id",
+      "columns": [
+        "lupo_user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_crafty_user_mapping_idx_mapping_type",
+      "columns": [
+        "mapping_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_crafty_user_mapping_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_crafty_user_mapping_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "crafty_user_mapping_id",
+    "expected_name": "crafty_user_mapping_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

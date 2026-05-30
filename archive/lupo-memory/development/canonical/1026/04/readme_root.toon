@@ -1,0 +1,80 @@
+{
+  "id": "readme-root",
+  "type": "header_metadata",
+  "header_format_version": 3,
+  "file_path_from_root": "README.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Constitutional compliance, Y2038-safe time model, PHP 7.4+ and 64-bit production floor — root entry for humans and all agents.",
+  "tags": ["readme", "4.0.96", "architecture", "doctrine", "workflow", "y2038", "constitution"],
+  "init": {
+    "required_reading": [
+      {"path": "lupo-docs/prd/00_root_constitutional_system_requirements.md", "reason": "MANDATORY FIRST READ — constitutional law for all agents and contributors. Overrides everything else."},
+      {"path": "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md", "reason": "Short constitutional digest (pseudo shorthand) for quick agent orientation"},
+      {"path": "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md", "reason": "4.1.0 / auto-installer gate; clarifies no Lupopedia→Lupopedia upgrades during 4.0.x"},
+      {"path": "lupo-docs/prd/27_installer_requirements.md", "reason": "Installer and 4.0.x fresh-install model"},
+      {"path": "AGENTS.md", "reason": "Canonical actor, identity-layer, and coordination rules"},
+      {"path": "ONBOARDING.md", "reason": "Operational quick-start"},
+      {"path": "lupo-rules/root/WOLFIE_DOCTRINE.md", "reason": "Engineering philosophy — read before touching any existing code"},
+      {"path": "lupo-rules/root/README.md", "reason": "Complete root rules and development constraints"},
+      {"path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", "reason": "Header/footer validation doctrine"},
+      {"path": "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md", "reason": "Canonical five-layer identity model"},
+      {"path": "lupo-docs/versions/4.0.96/README.md", "reason": "Current working version overview"},
+      {"path": "lupo-docs/versions/4.0.96/TODO.md", "reason": "Current task registry and backlog"},
+      {"path": "lupo-docs/versions/4.0.96/CHANGELOG.md", "reason": "Canonical patch-line changelog for 4.0.96"},
+      {"path": "lupo-docs/versions/4.0.95/decisions/", "reason": "Architecture decisions for the finalized 4.0.95 line (historical)"},
+      {"path": "lupo-channels/channel_index.md", "reason": "Canonical channel map and path policy"},
+      {"path": "ORGANIZATION.md", "reason": "Canonical root folder map and repository write guidance"},
+      {"path": "lupo-docs/doctrine/TICK_PY_DOCTRINE.md", "reason": "Mandatory real UTC for headers — run tick.py; never guess timestamps"},
+      {"path": "lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md", "reason": "Past-as-trust: canonical path year 1026 = 2026 minus 1000; do not treat as typo"},
+      {"path": "lupo-docs/doctrine/TRUST_LADDER_DO_NOT_FIX.txt", "reason": "Copy-paste warning block for agents and reviewers"}
+    ]
+  },
+  "edges": {
+    "outbound": [
+      {"to": "lupo-content/federation_node/0/captains_log/20260407_hello_world.md", "type": "references", "weight": 1.0, "reason": "Captain's Log Entry 001"},
+      {"to": "lupo-docs/prd/00_root_constitutional_system_requirements.md", "type": "references", "weight": 1.0, "reason": "Constitutional anchor"},
+      {"to": "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md", "type": "references", "weight": 1.0, "reason": "Constitutional shorthand digest"},
+      {"to": "AGENTS.md", "type": "aligns_with", "weight": 1.0},
+      {"to": "lupo-rules/root/WOLFIE_DOCTRINE.md", "type": "references", "weight": 1.0, "reason": "Engineering philosophy"},
+      {"to": "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md", "type": "aligns_with", "weight": 1.0},
+      {"to": "lupo-rules/root/README.md", "type": "references", "weight": 1.0, "reason": "Complete root rules"},
+      {"to": "ONBOARDING.md", "type": "references", "weight": 0.95},
+      {"to": "lupo-docs/versions/4.0.96/README.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/versions/4.0.96/TODO.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/versions/4.0.96/CHANGELOG.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/versions/4.0.95/README.md", "type": "references", "weight": 0.95},
+      {"to": "lupo-docs/versions/4.0.95/decisions/", "type": "references", "weight": 0.9},
+      {"to": "lupo-docs/versions/4.1.0/plan.md", "type": "references", "weight": 0.95},
+      {"to": "lupo-docs/versions/4.1.0/prd/README.md", "type": "references", "weight": 1.0},
+      {"to": "ORGANIZATION.md", "type": "references", "weight": 0.95},
+      {"to": "lupo-docs/prd/02_channels_discussions.md", "type": "references", "weight": 0.95},
+      {"to": "lupo-docs/doctrine/TICK_PY_DOCTRINE.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md", "type": "references", "weight": 0.95},
+      {"to": "lupo-docs/prd/27_installer_requirements.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/doctrine/VERSIONING_DOCTRINE.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/prd/40_versioning_doctrine.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md", "type": "references", "weight": 1.0, "reason": "Trust ladder / canonical year segment encoding"},
+      {"to": "lupo-docs/doctrine/TRUST_LADDER_DO_NOT_FIX.txt", "type": "references", "weight": 1.0, "reason": "Do not rewrite 1026 to 2026 in canonical paths"}
+    ]
+  },
+  "footer": {
+    "last_verified": "20260407233334",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 102,
+      "agent_name_identity": "Cursor IDE Agent (Lead Orchestration)",
+      "department_id_delta": 0
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "cursor:root",
+    "next_action": [
+      "Keep constitution + Y2038 narrative aligned with PRD 00 and install preflight",
+      "Point agents to shorthand pseudo and AGENTS.md for test commands"
+    ]
+  }
+}

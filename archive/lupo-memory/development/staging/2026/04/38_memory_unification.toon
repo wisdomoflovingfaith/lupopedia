@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410124750,
+      "last_updated": 20260410124750,
+      "layer": "canonical",
+      "prd_id": 38,
+      "prd_slug": "memory-unification",
+      "source_path": "lupo-docs/prd/38_memory_unification.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Purpose and Authority",
+      "summary": "Defines constitutional memory unification with database-first writes and filesystem export mirrors."
+    },
+    {
+      "pk": 2,
+      "title": "Architecture and Data Flow",
+      "summary": "Specifies write path into lupo_memory_nodes/lupo_memory_edges and read path for IDE filesystem browsing."
+    },
+    {
+      "pk": 3,
+      "title": "Trust Tiers and Channel Scope",
+      "summary": "Defines seed, canonical, staging tiers with channel-scoped memory and chronological trust ladder alignment."
+    },
+    {
+      "pk": 4,
+      "title": "Schema and Temporal Discipline",
+      "summary": "Defines ID/timestamp rules, anti-backwards-read constraints, and export path derivation behavior."
+    },
+    {
+      "pk": 5,
+      "title": "Edge Integrity and Agent Queueing",
+      "summary": "Defines edge dimensions, needs_review review_reason, and routing to THOTH/ANUBIS/KAIROS queues."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "database_first_memory_writes",
+      "severity": "critical",
+      "summary": "All memory writes must target database first; filesystem is a synchronized export mirror."
+    },
+    {
+      "pk": 2,
+      "section_pk": 3,
+      "rule_name": "trust_tier_pk_bands",
+      "severity": "critical",
+      "summary": "Memory rows must follow seed/canonical/staging trust-tier key band doctrine."
+    },
+    {
+      "pk": 3,
+      "section_pk": 4,
+      "rule_name": "temporal_no_backwards_reads",
+      "severity": "critical",
+      "summary": "Temporal discipline prohibits backward-reading assumptions in state transitions and consolidation."
+    },
+    {
+      "pk": 4,
+      "section_pk": 5,
+      "rule_name": "edge_dimensions_mandatory",
+      "severity": "critical",
+      "summary": "Each edge must carry type, context, status, and direction dimensions."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "review_reason_queue_routing",
+      "severity": "high",
+      "summary": "needs_review edges must include review_reason for deterministic routing to responsible agents."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "memory_unification",
+      "meaning": "Constitutional model where database is memory source of truth and filesystem is read mirror."
+    },
+    {
+      "pk": 2,
+      "term": "memory_node",
+      "meaning": "First-class memory record in lupo_memory_nodes with trust tier and channel scope."
+    },
+    {
+      "pk": 3,
+      "term": "memory_edge",
+      "meaning": "Typed relationship between memory nodes captured in lupo_memory_edges."
+    },
+    {
+      "pk": 4,
+      "term": "review_reason",
+      "meaning": "Queue classification field used when edge_status is needs_review."
+    },
+    {
+      "pk": 5,
+      "term": "export_mirror",
+      "meaning": "Filesystem representation of memory rows created by MemoryExportService from database records."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/16_lupopedia_headers.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/37_kairos_channel_memory_consolidation.md",
+      "weight_hundredths": 95
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+---
+# Actor Authority Rules
+# Canonical rules for actor authority and decision-making
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: actor_authority_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Authority Framework
+authority_framework:
+  definition: "Actor authority defines the decision-making power, control scope, and governance responsibilities of each actor within the Lupopedia semantic OS"
+  principles:
+    - authority must be role-based
+    - authority must be clearly defined
+    - authority must be documented
+    - authority must be enforceable
+    - authority must be accountable
+
+# Authority Levels
+authority_levels:
+  supreme_authority:
+    level: 1
+    description: "Ultimate system authority and final decision making"
+    actor: "wolfie"
+    scope: "Entire Lupopedia system and all operations"
+    
+    powers:
+      # System Governance
+      - final decision authority on all system matters
+      - doctrine creation and enforcement
+      - system architecture approval
+      - multi-agent coordination authority
+      - resource allocation and management
+      - conflict resolution between actors
+      - emergency decision making
+      
+      # Strategic Authority
+      - strategic direction setting
+      - long-term planning authority
+      - innovation and evolution guidance
+      - partnership and integration decisions
+      - system growth and scaling decisions
+      
+      # Operational Authority
+      - operational oversight and monitoring
+      - performance standards enforcement
+      - quality assurance oversight
+      - security and compliance authority
+      - release and deployment authority
+    
+    limitations:
+      - must follow system doctrines
+      - must consider stakeholder input
+      - must document major decisions
+      - must maintain system integrity
+      - must ensure sustainable operation
+  
+  domain_authority:
+    level: 2
+    description: "Domain-specific authority and expertise-based decision making"
+    actors: ["thoth", "lilith", "athena", "hermes", "hephaestus"]
+    scope: "Specific functional domains within the system"
+    
+    powers:
+      # Domain Decision Authority
+      - domain-specific decision making
+      - domain standard setting
+      - domain resource management
+      - domain quality assurance
+      - domain innovation and improvement
+      
+      # Domain Governance
+      - domain policy development
+      - domain procedure establishment
+      - domain best practices definition
+      - domain training and knowledge sharing
+      - domain performance monitoring
+      
+      # Domain Coordination
+      - domain team coordination
+      - cross-domain collaboration
+      - domain conflict resolution
+      - domain stakeholder communication
+      - domain reporting and accountability
+    
+    limitations:
+      - must align with system-level authority
+      - must respect other domain authorities
+      - must coordinate with supreme authority
+      - must follow system doctrines
+      - must maintain domain integrity
+  
+  operational_authority:
+    level: 3
+    description: "Operational authority and day-to-day decision making"
+    actors: ["anubis", "heimdall", "sesha", "themis", "janus", "rose"]
+    scope: "Specific operational areas and tasks"
+    
+    powers:
+      # Operational Decision Authority
+      - operational task decision making
+      - operational procedure execution
+      - operational resource utilization
+      - operational quality control
+      - operational problem resolution
+      
+      # Operational Coordination
+      - operational team coordination
+      - operational task assignment
+      - operational progress monitoring
+      - operational reporting and communication
+      - operational improvement suggestions
+      
+      # Operational Governance
+      - operational procedure adherence
+      - operational standard compliance
+      - operational security maintenance
+      - operational performance optimization
+      - operational user support
+    
+    limitations:
+      - must follow domain-level authority
+      - must respect operational boundaries
+      - must coordinate with domain authority
+      - must follow operational procedures
+      - must maintain operational quality
+
+# Authority Scope Rules
+scope_rules:
+  defined_boundaries:
+    principle: "Authority must have clearly defined boundaries"
+    requirements:
+      - authority scope must be documented
+      - authority limits must be specified
+      - authority overlaps must be managed
+      - authority conflicts must be resolved
+      - authority changes must be approved
+  
+  hierarchical_structure:
+    principle: "Authority must follow hierarchical structure"
+    requirements:
+      - lower levels must respect higher levels
+      - higher levels must support lower levels
+      - cross-level coordination must be defined
+      - escalation procedures must be established
+      - authority delegation must be documented
+  
+  cross_domain_coordination:
+    principle: "Authority must support cross-domain coordination"
+    requirements:
+      - domain authority must coordinate with other domains
+      - shared responsibilities must be clearly defined
+      - coordination protocols must be established
+      - conflict resolution mechanisms must exist
+      - collaboration frameworks must be supported
+
+# Authority Exercise Rules
+exercise_rules:
+  decision_making:
+    requirements:
+      - decisions must be within authority scope
+      - decisions must be documented
+      - decisions must be communicated
+      - decisions must be implementable
+      - decisions must be accountable
+    
+    procedures:
+      - identify decision requirements
+      - assess authority and scope
+      - gather relevant information
+      - evaluate options and consequences
+      - make and document decision
+      - communicate and implement decision
+      - monitor and evaluate outcomes
+  
+  resource_management:
+    requirements:
+      - resource allocation must be within authority
+      - resource utilization must be efficient
+      - resource monitoring must be continuous
+      - resource optimization must be ongoing
+      - resource accountability must be maintained
+    
+    procedures:
+      - assess resource requirements
+      - evaluate resource availability
+      - allocate resources within authority
+      - monitor resource utilization
+      - optimize resource efficiency
+      - report resource performance
+  
+  conflict_resolution:
+    requirements:
+      - conflicts must be resolved within authority
+      - resolution procedures must be documented
+      - escalation protocols must be followed
+      - stakeholder interests must be considered
+      - resolution outcomes must be communicated
+    
+    procedures:
+      - identify conflict source and scope
+      - assess authority and jurisdiction
+      - engage stakeholders and gather input
+      - evaluate resolution options
+      - implement resolution decision
+      - monitor resolution effectiveness
+
+# Authority Delegation Rules
+delegation_rules:
+  delegation_principles:
+    - authority can be delegated but responsibility remains
+    - delegation must be documented and communicated
+    - delegation must be within authority scope
+    - delegation must have clear objectives and limits
+    - delegation must be monitored and evaluated
+  
+  delegation_requirements:
+    - delegating authority must be documented
+    - delegated authority must have clear scope
+    - delegation objectives must be defined
+    - delegation limits must be specified
+    - delegation monitoring must be established
+  
+  delegation_procedures:
+    - identify delegation need and scope
+    - assess delegation feasibility
+    - document delegation terms and limits
+    - communicate delegation to stakeholders
+    - monitor delegation performance
+    - evaluate delegation effectiveness
+
+# Authority Accountability Rules
+accountability_rules:
+  accountability_framework:
+    principle: "Authority must be balanced with accountability"
+    requirements:
+      - authority exercise must be documented
+      - authority outcomes must be measured
+      - authority performance must be evaluated
+      - authority improvements must be implemented
+      - authority transparency must be maintained
+  
+  performance_accountability:
+    metrics:
+      - decision quality and effectiveness
+      - resource utilization efficiency
+      - stakeholder satisfaction
+      - system impact and outcomes
+      - compliance with authority limits
+    
+    procedures:
+      - define performance metrics
+      - collect performance data
+      - evaluate performance outcomes
+      - identify improvement opportunities
+      - implement performance improvements
+  
+  compliance_accountability:
+    requirements:
+      - authority exercise must comply with doctrines
+      - authority limits must be respected
+      - authority procedures must be followed
+      - authority documentation must be maintained
+      - authority violations must be corrected
+    
+    procedures:
+      - monitor authority compliance
+      - identify compliance issues
+      - correct compliance violations
+      - document compliance improvements
+      - maintain compliance records
+
+# Authority Evolution Rules
+evolution_rules:
+  review_schedule:
+    monthly: "Authority exercise and effectiveness review"
+    quarterly: "Authority scope and boundaries review"
+    annually: "Comprehensive authority evaluation"
+    event_driven: "Review after major system changes"
+  
+  amendment_process:
+    proposal:
+      - identify need for authority change
+      - document proposed authority changes
+      - analyze impact on system and actors
+      - assess feasibility and risks
+    
+    analysis:
+      - evaluate impact on authority hierarchy
+      - evaluate impact on system operations
+      - evaluate impact on stakeholder relationships
+      - evaluate impact on system performance
+    
+    approval:
+      - requires WOLFIE approval for authority level changes
+      - requires Doctrine Council review for domain authority changes
+      - requires stakeholder input for operational authority changes
+      - requires documentation of approval rationale
+    
+    implementation:
+      - communicate authority changes
+      - update documentation and systems
+      - provide training and support
+      - monitor implementation effectiveness
+
+# Authority Validation Rules
+validation_rules:
+  scope_validation:
+    criteria:
+      - authority scope must be clearly defined
+      - authority limits must be appropriate
+      - authority boundaries must be respected
+      - authority overlaps must be managed
+      - authority conflicts must be resolved
+    
+    procedures:
+      - review authority documentation
+      - validate authority boundaries
+      - assess authority overlaps
+      - evaluate authority conflicts
+      - recommend authority improvements
+  
+  exercise_validation:
+    criteria:
+      - authority exercise must be appropriate
+      - authority decisions must be effective
+      - authority outcomes must be positive
+      - authority compliance must be maintained
+      - authority accountability must be demonstrated
+    
+    procedures:
+      - monitor authority exercise
+      - evaluate authority decisions
+      - assess authority outcomes
+      - validate authority compliance
+      - recommend authority improvements
+  
+  effectiveness_validation:
+    criteria:
+      - authority must achieve intended outcomes
+      - authority must support system goals
+      - authority must be efficient and effective
+      - authority must adapt to changing needs
+      - authority must maintain stakeholder trust
+    
+    procedures:
+      - measure authority effectiveness
+      - assess authority impact
+      - evaluate authority efficiency
+      - review authority adaptability
+      - recommend authority improvements
+
+# Success Metrics
+success_metrics:
+  authority_clarity: > 95%
+  authority_effectiveness: > 90%
+  authority_compliance: > 95%
+  stakeholder_satisfaction: > 90%
+  system_performance: > 85%
+  decision_quality: > 90%
+
+# Documentation Requirements
+documentation:
+  authority_documentation:
+    - complete authority level definitions
+    - detailed scope and limitations
+    - decision-making procedures
+    - resource management procedures
+    - conflict resolution procedures
+    
+  delegation_documentation:
+    - delegation principles and requirements
+    - delegation procedures and limits
+    - delegation monitoring and evaluation
+    - delegation accountability and reporting
+    - delegation improvement procedures
+    
+  accountability_documentation:
+    - accountability framework and requirements
+    - performance metrics and evaluation procedures
+    - compliance monitoring and validation
+    - improvement planning and implementation
+    - transparency and reporting procedures

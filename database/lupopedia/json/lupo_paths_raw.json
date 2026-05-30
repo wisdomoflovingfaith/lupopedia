@@ -1,0 +1,59 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_paths_raw",
+  "fields": [
+    "`path_raw_id` bigint NOT NULL",
+    "`from_url` varchar(2000)",
+    "`to_url` varchar(2000)",
+    "`session_id` bigint",
+    "`actor_id` bigint",
+    "`referrer_url` varchar(2000)",
+    "`user_agent` varchar(500)",
+    "`ip_hash` varchar(128)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_aggregated` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_paths_raw_idx_created_agg",
+      "columns": [
+        "created_ymdhis",
+        "is_aggregated"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_paths_raw_idx_session",
+      "columns": [
+        "session_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_paths_raw_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "path_raw_id",
+    "expected_name": "path_raw_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

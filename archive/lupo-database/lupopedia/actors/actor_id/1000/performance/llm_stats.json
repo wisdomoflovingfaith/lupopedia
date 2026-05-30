@@ -1,0 +1,22 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "1000",
+    "llm_stats": {
+        "gpt-4-o": {
+            "tasks": 100,
+            "avg_tokens": 2500,
+            "avg_duration_ms": 1800,
+            "success_rate": 0.99,
+            "quality_avg": 9.5,
+            "cost_total": 5.25
+        },
+        "claude-3-opus": {
+            "tasks": 50,
+            "avg_tokens": 4000,
+            "avg_duration_ms": 3500,
+            "success_rate": 0.98,
+            "quality_avg": 9.8,
+            "cost_total": 8.10
+        }
+    }
+}

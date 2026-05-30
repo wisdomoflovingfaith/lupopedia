@@ -1,0 +1,12 @@
+{
+  "memory_type": "ide_faucet_knowledge",
+  "core_knowledge": {
+    "implementation_patterns": "PHP 7.4-8.x compliant patterns used in Cascade sessions",
+    "doctrine_quick_ref": "No FK, no triggers, PDO_DB only, LUPO_TABLE_PREFIX, no Composer in core"
+  },
+  "working_memory": {"active_implementation_tasks": "Implementation tasks currently in Cascade session"},
+  "memory_boundaries": ["implementation scope only", "orchestration delegated to WOLFIE"],
+  "retention_rules": ["retain compliant implementation patterns", "no ego"],
+  "forbidden_memory": ["FK patterns", "trigger patterns"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

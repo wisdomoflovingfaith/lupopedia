@@ -1,0 +1,2 @@
+"link_id` char(26) NOT NULL","agent_id` bigint NOT NULL","star_id` char(26) NOT NULL","intensity` decimal(3,2)","context_id` bigint","observed_ymdhis` bigint","expressed_as_rgb` char(6)"
+"link_id` char(26) NOT NULL:UNKNOWN|NOT_NULL","agent_id` bigint NOT NULL:BIGINT|NOT_NULL","star_id` char(26) NOT NULL:UNKNOWN|NOT_NULL","intensity` decimal(3,2):INT|NULL","context_id` bigint:BIGINT|NULL","observed_ymdhis` bigint:BIGINT|NULL","expressed_as_rgb` char(6):UNKNOWN|NULL"

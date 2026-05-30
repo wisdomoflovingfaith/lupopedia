@@ -1,0 +1,29 @@
+{
+  "type": "header_metadata",
+  "memory_key": "lupo-memory/development/canonical/1026/04/99-limits-for-everything.toon",
+  "purpose": "Sidecar for PRD 99 (99_limits_for_everything_and_why.md): normative ceilings for PRD slots, tables, actors, channels, trust tiers, header keys, utilization.",
+  "tags": ["prd_99", "limits", "governance", "cardinality", "constitutional"],
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "PRD 00 root constitutional requirements complement PRD 99 numeric ceilings",
+        "source": "limits-prd-memory-sidecar"
+      },
+      {
+        "to": "lupo-docs/prd/29_project_structure.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Project structure and PRD_INDEX generation align with PRD 99 slot discipline",
+        "source": "limits-prd-memory-sidecar"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412164023",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+  }
+}

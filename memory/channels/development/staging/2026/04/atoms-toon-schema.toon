@@ -1,0 +1,34 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "docs/doctrine/lupopedia-headers/atoms_toon_schema.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260415050000",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/atoms-toon-schema"
+  },
+  "memory_toon": "memory/development/staging/2026/04/atoms-toon-schema.toon",
+  "purpose": "DRAFT schema for the atoms_toon header field (field 21): immutable sidecar pointer, THOTH anchor. Not yet enforced.",
+  "source_file_path_from_root": "docs/doctrine/lupopedia-headers/atoms_toon_schema.md",
+  "tags": [
+    "doctrine",
+    "staging"
+  ],
+  "type": "header_metadata"
+}

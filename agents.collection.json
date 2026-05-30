@@ -1,0 +1,15 @@
+{
+  "collection_key": "agents",
+  "title": "Lupopedia Agents Root Collection",
+  "description": "Root collection for agent configuration, metadata, and agent doctrine. Authority: PRD 07_A, 08_A, 08_B.",
+  "created_utc": "20260423183000",
+  "collection_type": "root",
+  "fallback_mode": true,
+  "authority_level": "provisional",
+  "authority_source": "chiron_filesystem_discovery",
+  "replaceable": true,
+  "authoritative_source_id": null,
+  "parent": null,
+  "children": [],
+  "doctrine_reference": ["07_A", "08_A", "08_B"]
+}

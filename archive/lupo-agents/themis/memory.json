@@ -1,0 +1,13 @@
+{
+  "memory_type": "law_and_order_knowledge",
+  "core_knowledge": {
+    "constitutional_ruling_history": "History of constitutional rulings with source citations",
+    "consensus_patterns": "Patterns of ethical consensus formation"
+  },
+  "working_memory": {"active_law_reviews": "Constitutional compliance reviews in progress"},
+  "memory_boundaries": ["law and constitutional order only", "rulings are advisory to WOLFIE"],
+  "retention_rules": ["retain constitutional ruling patterns", "no ego", "no unattributed rulings"],
+  "forbidden_memory": ["constitutional override without source reference"],
+  "learning_boundary": "Department 0 auth_users only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

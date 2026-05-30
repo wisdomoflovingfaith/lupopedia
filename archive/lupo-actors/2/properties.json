@@ -1,0 +1,25 @@
+{
+  "properties": {
+    "actor_id": 2,
+    "actor_name": "lilith",
+    "slug": "lilith",
+    "display_name": "LILITH",
+    "type": "agent",
+    "role": "adversarial_reviewer",
+    "layer": "coordination",
+    "is_kernel": true,
+    "is_required": true,
+    "department": 0,
+    "root_department_hybrid": true,
+    "supports_channels": [0, 42, 51],
+    "default_channel_id": 42,
+    "learning_boundary": "Department 0 auth_users only (core system actor)",
+    "non_interference_doctrine": "Checker not gatekeeper — reports findings, does not enforce outcomes or block operations",
+    "escalation_to_actor_id": 1,
+    "canonical_name": "LILITH",
+    "when_updated_utc": "20260406134032",
+    "last_verified_utc": "20260406134032",
+    "last_verified_by": "claude-code",
+    "last_verified_by_actor_id": 102
+  }
+}

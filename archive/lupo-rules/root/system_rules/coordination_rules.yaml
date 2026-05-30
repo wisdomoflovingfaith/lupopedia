@@ -1,0 +1,265 @@
+---
+# Coordination Rules
+# Canonical rules for multi-agent coordination and interaction
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: coordination_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Coordination Framework
+coordination_framework:
+  definition: "Coordination rules define how multiple agents interact, communicate, and collaborate within the Lupopedia semantic OS while maintaining proper governance and efficiency"
+  principles:
+    - coordination must be structured and predictable
+    - coordination must respect authority hierarchies
+    - coordination must support collaboration
+    - coordination must enable conflict resolution
+    - coordination must maintain system integrity
+
+# Coordination Categories
+coordination_categories:
+  primary_coordination:
+    description: "Coordination among primary coordination personas"
+    requirements:
+      - WOLFIE orchestrates system coordination
+      - primary personas coordinate within domains
+      - coordination protocols must be followed
+      - communication standards must be maintained
+      - conflict resolution must be supported
+    
+    coordination_rules:
+      - WOLFIE provides overall orchestration
+      - personas coordinate within authority levels
+      - protocols ensure predictable interaction
+      - standards maintain communication quality
+      - resolution mechanisms handle conflicts
+    
+    enforcement:
+      - enforce WOLFIE orchestration authority
+      - maintain persona domain boundaries
+      - require protocol compliance
+      - ensure communication standards
+      - support conflict resolution
+  
+  specialized_coordination:
+    description: "Coordination among specialized agents"
+    requirements:
+      - specialized agents coordinate within categories
+      - category-specific protocols must be followed
+      - domain expertise must be respected
+      - specialized coordination must be efficient
+      - specialized conflicts must be resolved
+    
+    coordination_rules:
+      - agents coordinate within functional categories
+      - category-specific protocols guide interaction
+      - domain expertise informs decisions
+      - efficiency optimization maintained
+      - specialized resolution mechanisms handle issues
+    
+    enforcement:
+      - enforce category coordination boundaries
+      - require protocol compliance
+      - respect domain expertise
+      - optimize coordination efficiency
+      - support specialized resolution
+
+# Coordination Protocols
+coordination_protocols:
+  communication_protocols:
+    description: "Standardized communication protocols for agent coordination"
+    requirements:
+      - messages must be structured and consistent
+      - communication must be reliable and timely
+      - protocols must support different message types
+      - protocols must handle errors gracefully
+      - protocols must maintain security
+    
+    protocol_types:
+      - broadcast messages: system-wide announcements
+      - direct messages: targeted communication
+      - thread messages: topic-based discussions
+      - coordination messages: orchestration and planning
+      - conflict messages: dispute resolution
+    
+    implementation:
+      - define message structures and formats
+      - ensure reliable delivery mechanisms
+      - support multiple message types
+      - implement error handling and recovery
+      - maintain security and authentication
+  
+  decision_protocols:
+    description: "Decision-making protocols for coordinated actions"
+    requirements:
+      - decisions must respect authority hierarchies
+      - decision processes must be documented
+      - decision outcomes must be communicated
+      - decision conflicts must be resolved
+      - decisions must be traceable
+    
+    decision_types:
+      - strategic decisions: long-term planning
+      - operational decisions: day-to-day operations
+      - tactical decisions: specific actions
+      - consensus decisions: collaborative agreement
+      - authoritative decisions: hierarchical authority
+    
+    implementation:
+      - define authority hierarchies
+      - document decision processes
+      - communicate decision outcomes
+      - implement conflict resolution
+      - maintain decision traceability
+
+# Coordination Mechanisms
+coordination_mechanisms:
+  orchestration_mechanisms:
+    description: "Mechanisms for system orchestration and coordination"
+    requirements:
+      - orchestration must be centralized
+      - coordination must be distributed
+      - mechanisms must be scalable
+      - mechanisms must be reliable
+      - mechanisms must be maintainable
+    
+    mechanism_types:
+      - central orchestration: WOLFIE system coordination
+      - distributed coordination: agent-level coordination
+      - hierarchical coordination: authority-based coordination
+      - peer coordination: equal-level coordination
+      - hybrid coordination: mixed approach
+    
+    implementation:
+      - implement central orchestration
+      - support distributed coordination
+      - enable hierarchical coordination
+      - facilitate peer coordination
+      - support hybrid approaches
+  
+  collaboration_mechanisms:
+    description: "Mechanisms for agent collaboration and teamwork"
+    requirements:
+      - collaboration must be purposeful
+      - collaboration must be efficient
+      - collaboration must be documented
+      - collaboration must be tracked
+      - collaboration must be evaluated
+    
+    mechanism_types:
+      - task collaboration: shared work on tasks
+      - knowledge collaboration: knowledge sharing
+      - resource collaboration: resource sharing
+      - innovation collaboration: creative collaboration
+      - support collaboration: mutual support
+    
+    implementation:
+      - enable task collaboration
+      - support knowledge sharing
+      - facilitate resource sharing
+      - encourage innovation collaboration
+      - provide support collaboration
+
+# Coordination Governance
+governance_rules:
+  authority_governance:
+    description: "Governance of authority in coordination"
+    requirements:
+      - authority must be respected
+      - authority must be documented
+      - authority must be enforced
+      - authority must be accountable
+      - authority must be transparent
+    
+    governance_procedures:
+      - document authority structures
+      - enforce authority compliance
+      - maintain authority accountability
+      - ensure authority transparency
+      - support authority evolution
+  
+  conflict_governance:
+    description: "Governance of conflict resolution in coordination"
+    requirements:
+      - conflicts must be resolved
+      - resolution must be fair
+      - resolution must be documented
+      - resolution must be effective
+      - resolution must be preventive
+    
+    governance_procedures:
+      - implement conflict resolution mechanisms
+      - ensure fair resolution processes
+      - document resolution outcomes
+      - validate resolution effectiveness
+      - implement preventive measures
+
+# Coordination Quality
+quality_rules:
+  coordination_quality:
+    description: "Quality standards for coordination effectiveness"
+    requirements:
+      - coordination must be efficient
+      - coordination must be effective
+      - coordination must be reliable
+      - coordination must be scalable
+      - coordination must be maintainable
+    
+    quality_metrics:
+      - coordination efficiency: time and resource usage
+      - coordination effectiveness: outcome achievement
+      - coordination reliability: consistency and stability
+      - coordination scalability: growth and expansion
+      - coordination maintainability: system health
+    
+    quality_procedures:
+      - measure coordination efficiency
+      - assess coordination effectiveness
+      - validate coordination reliability
+      - test coordination scalability
+      - maintain coordination health
+
+# Coordination Evolution
+evolution_rules:
+  coordination_evolution:
+    description: "Evolution of coordination mechanisms and protocols"
+    requirements:
+      - coordination must evolve with system needs
+      - evolution must be planned and documented
+      - evolution must be tested and validated
+      - evolution must be backward compatible
+      - evolution must be communicated
+    
+    evolution_procedures:
+      - plan coordination evolution
+      - document evolution changes
+      - test evolution effectiveness
+      - maintain backward compatibility
+      - communicate evolution changes
+
+# Success Metrics
+success_metrics:
+  coordination_efficiency: > 90%
+  coordination_effectiveness: > 90%
+  coordination_reliability: > 95%
+  coordination_scalability: > 85%
+  coordination_satisfaction: > 90%
+
+# Documentation Requirements
+documentation_requirements:
+  coordination_documentation:
+    - complete coordination procedures and protocols
+    - comprehensive coordination mechanisms
+    - thorough coordination governance procedures
+    - detailed coordination quality procedures
+    - complete coordination evolution procedures
+  
+  troubleshooting_documentation:
+    - coordination failure troubleshooting procedures
+    - common coordination issues and solutions
+    - coordination system maintenance procedures
+    - coordination optimization procedures
+    - coordination improvement procedures

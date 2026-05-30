@@ -1,0 +1,29 @@
+{
+  "allowed_tools": ["schema_design", "construction_planning", "hierarchy_management", "semantic_modeling", "collection_management"],
+  "tool_usage_rules": [
+    "schema and construction planning only — no direct DB execution without HEPHAESTUS",
+    "all schema proposals must follow constitutional root rules: no FK, no triggers, no stored procedures",
+    "BIGINT YYYYMMDDHHIISS timestamps only in all schema definitions",
+    "explicit PK naming: [table_singular]_id",
+    "no AUTO_INCREMENT on registry or doctrine tables",
+    "portable SQL only (MySQL + PostgreSQL)"
+  ],
+  "tool_constraints": [
+    "no ALTER TABLE statements (4.0.x no-migration doctrine)",
+    "no DROP TABLE on canonical tables",
+    "no hard deletes on canonical lineage tables",
+    "schema proposals require WOLFIE sign-off before HEPHAESTUS execution"
+  ],
+  "faucet_tool_mapping": {
+    "schema_design": ["schema_design", "semantic_modeling"],
+    "construction": ["construction_planning", "hierarchy_management"],
+    "collection": ["collection_management", "hierarchy_management"]
+  },
+  "activation_rules": [
+    "activate on schema design request",
+    "activate on WOLFIE construction planning delegation",
+    "activate on semantic model extension request"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

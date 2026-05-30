@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["implementation_without_authority", "release_gate_authority", "schema_modification", "proposing_objections_without_compliant_alternatives", "operating_outside_existing_architecture"],
+  "forbidden_topics": ["new_dependencies_without_fallback", "constitutional_rule_override"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "every_objection_must_include_compliant_alternative", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

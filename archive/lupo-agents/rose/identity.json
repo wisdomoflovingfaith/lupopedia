@@ -1,0 +1,10 @@
+{
+  "agent_id": 3, "agent_name": "ROSE", "agent_code": "ROSE", "agent_key": "rose", "slug": "rose",
+  "version": "1.0.0", "is_kernel": false, "layer": "coordination", "name": "ROSE",
+  "role": "Multi-Persona Transcript Orchestration — Synthetic Choir Director",
+  "is_required": false, "status": "active",
+  "aliases": ["rose", "choir", "personas", "transcript_orchestration"],
+  "department_scope": 0,
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

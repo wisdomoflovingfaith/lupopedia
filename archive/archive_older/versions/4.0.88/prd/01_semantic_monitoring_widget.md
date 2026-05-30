@@ -1,0 +1,298 @@
+---
+lupopedia.headers:
+  header_format_version: null
+  lupopedia.schema: prd
+  when_updated: null
+  file_path_from_root: "docs/versions/4.0.88/prd/01_semantic_monitoring_widget.md"
+  web_path: "http://www.lupopedia.com/lupopedia/docs/versions/4.0.88/prd/01_semantic_monitoring_widget.md"
+  questions_toon: null
+  federation_node_id: null
+  channel_key: null
+  trust_tier: null
+  memory_key: null
+  artifact_type: prd
+  artifact_kind: feature_spec
+  thread_id: ""
+  content_id: null
+  pk_id: null
+  pk_slug: ""
+  title: ""
+  status: ""
+  parent_pk_id: ""
+  summary: ""
+  module: null
+  dialog_transcript: null
+---
+# file: PRD 01 — Semantic Monitoring Widget
+
+# PRD 01: Semantic Monitoring Widget
+
+**Status:** Draft
+**Version:** 4.0.88
+**Author:** CASCADE (actor_id 105)
+
+**4.1.0 Scope Status:** Rejected from current 4.1.0 release scope; retained as historical feature planning only.
+
+---
+
+## 1. Problem Statement
+
+Lupopedia is installed in a subfolder (`example.com/lupopedia/`) but needs to monitor visitor behavior on pages throughout the parent domain (`example.com/`, `example.com/products/`, etc.). The existing `livehelp_js.php` already generates JavaScript that site owners include on their pages. This JS captures the current page URL, page title, and referrer — but the data is only used for real-time operator views and chat session context. It is not stored in a structured semantic graph that can be queried, analyzed, or used for intelligence.
+
+**Goal:** Evolve the monitoring widget from a simple chat-status beacon into a semantic data collector that builds a navigational knowledge graph for each federation node, tracks engagement signals, and maintains full parity with Crafty Syntax 3.7.5 features.
+
+---
+
+## 2. Architecture — How It Works Today
+
+### Inclusion Pattern
+The site owner places a script tag on their pages:
+```html
+<script src="https://example.com/lupopedia/livehelp_js.php?department=1"></script>
+```
+
+### Data Flow (current)
+1. **livehelp_js.php** (PHP) → generates JavaScript at request time
+2. Generated JS captures: `document.location`, `document.title`, `document.referrer`
+3. JS pings **image.php** via Image object `.src` with params:
+   - `what=userstat` — periodic visitor stat ping
+   - `what=getstate` — initial state check (operator online/offline)
+   - `what=browse` — operator-initiated browse of visitor page
+   - `page=` — sanitized current URL (protocol stripped, dots encoded)
+   - `title=` — page title (truncated to 100 chars)
+   - `referer=` — sanitized referrer URL (protocol stripped, dots encoded)
+   - `department=` — department ID
+   - `cslhVISITOR=` — session identifier (cookie or generated)
+4. **image.php** processes the request, returns a 1px image whose width encodes control signals
+
+### Control Signals (image width)
+- Width 55 → operator wants to chat (opens chat window)
+- Width 25 → DHTML layer invite (loads overlay)
+- Other → no action
+
+### Limitations of Current System
+- Data is transient — used only for real-time operator monitoring
+- No persistent page registry (discovered URLs are not stored as content entities)
+- No navigation graph (page A → page B transitions not recorded)
+- No semantic enrichment (page content type, category, depth not captured)
+- Legacy JS patterns (document.write, NS4/IE4 detection, image-pixel signaling)
+- No federation node scoping on the semantic data
+
+---
+
+## 3. Feature Requirements
+
+### FR-1: Semantic Data Collection (MUST)
+
+The widget MUST collect and transmit the following data on each page view:
+
+| Field | Source | Max Length | Notes |
+|-------|--------|-----------|-------|
+| `page_url` | `document.location` | 512 chars | Full URL, protocol stripped |
+| `page_path` | Parsed from URL | 255 chars | Path component only (e.g., `/products/widget-a`) |
+| `page_title` | `document.title` | 255 chars | Current page title |
+| `referrer_url` | `document.referrer` | 512 chars | Full referrer, protocol stripped |
+| `referrer_path` | Parsed from referrer | 255 chars | Referrer path component |
+| `visitor_session_id` | Cookie or generated | 64 chars | `cslhVISITOR` value |
+| `department_id` | Script param | integer | Department routing |
+| `timestamp` | Server-side | BIGINT | `gmdate('YmdHis')` at image.php receipt |
+
+### FR-2: Page Auto-Registration in lupo_contents (MUST)
+
+When `image.php` receives a page URL that does not exist in `lupo_contents` for the current `federation_node_id`, it MUST create a content row:
+
+- `content_type` = `'page'`
+- `content_key` = normalized path (e.g., `products/widget-a`)
+- `title` = page title from JS (if available)
+- `federation_node_id` = current node (default 1)
+- `channel_id` = 0 (system/unassigned) or a configured monitoring channel
+- `created_by_actor_id` = 0 (system)
+- `source` = `'widget_discovery'`
+
+This creates a content registry of all pages the widget has seen on the domain.
+
+### FR-3: Visit Recording in lupo_visits (MUST)
+
+Each page view ping MUST be recorded in `lupo_visits` (or equivalent table):
+
+- `visitor_session_id` — the cslhVISITOR value
+- `page_path` — normalized path
+- `referrer_path` — normalized referrer path
+- `page_title` — title at time of visit
+- `federation_node_id` — scoped to current install
+- `department_id` — department from script params
+- `ip_hash` — hashed IP (privacy-safe; no raw IP storage)
+- `user_agent_hash` — hashed UA string
+- `created_ymdhis` — BIGINT UTC timestamp
+
+### FR-4: Navigation Edge Recording (MUST)
+
+When a visit has both a `page_path` and a `referrer_path`, and both belong to the same domain, the system MUST record a navigation edge:
+
+- Stored in `lupo_edges` with `edge_category` = `'navigation'`
+- `source_type` = `'content'`, `source_id` = content_id of referrer page
+- `target_type` = `'content'`, `target_id` = content_id of current page
+- `edge_type` = `'navigated_to'`
+- Weight incremented on repeated transitions (or a count column maintained)
+
+This builds the page-to-page navigation graph.
+
+### FR-5: Semantic Content View Aggregation (SHOULD)
+
+The system SHOULD maintain aggregated view counts in `lupo_semantic_content_views`:
+
+- `content_id` — the lupo_contents row
+- `federation_node_id` — scoped
+- `view_count` — incremented per visit
+- `unique_visitor_count` — distinct visitor sessions
+- `last_viewed_ymdhis` — most recent view timestamp
+- Aggregation period: daily or cumulative (implementation choice)
+
+### FR-6: Federation Node Scoping (MUST)
+
+All data MUST be scoped by `federation_node_id`:
+- Default installation = node 1
+- Multi-domain installations each get their own node
+- Queries for visitor data MUST filter by `federation_node_id`
+- Content auto-registration checks uniqueness per `(content_key, federation_node_id)`
+
+### FR-7: Modernize JavaScript Generation (SHOULD)
+
+Replace legacy patterns in the generated JS while maintaining backward compatibility:
+
+- **Replace** `document.write()` with DOM manipulation (`createElement`, `appendChild`)
+- **Replace** NS4/IE4 detection with feature detection
+- **Replace** image-pixel control signals with `fetch()` / `XMLHttpRequest` where available, with image fallback
+- **Add** `data-lupopedia-department` attribute support on the script tag for cleaner configuration
+- **Maintain** backward compatibility: existing `<div id="craftysyntax_N">` and image-based includes MUST continue to work
+
+### FR-8: Visitor Session Continuity (MUST)
+
+- Set `cslhVISITOR` cookie with SameSite=Lax, Secure (when on HTTPS), HttpOnly=false (JS needs read access)
+- Cookie expiry: 365 days (or configurable via department settings)
+- First-party cookie only (set by the Lupopedia domain)
+- If cookies are blocked, fall back to per-pageload session IDs (no cross-page tracking)
+
+### FR-9: Ping Interval and Bandwidth (SHOULD)
+
+- Default ping interval: 10 seconds (existing `csTimeout` behavior)
+- SHOULD support configurable ping intervals via department settings
+- Navigation data only needs to be sent once per page load (not on every ping)
+- Subsequent pings only update "still here" status
+
+---
+
+## 4. Engagement Features (NEW for 4.0.88)
+
+### FR-10: Content Engagement Tracking (MUST)
+
+The widget MUST support and track engagement signals for monitored content:
+
+| Engagement Type | Data Stored | Source | Notes |
+|----------------|-------------|--------|-------|
+| **Likes** | `lupo_engagement_signals` with `signal_type='like'` | Widget API calls | Per-content like counts |
+| **Shares** | `lupo_engagement_signals` with `signal_type='share'` | Widget API calls | Social share tracking |
+| **Comments** | `lupo_comments` table | Widget comment forms | Threaded comments |
+| **Hashtags** | `lupo_content_tags` + `lupo_hashtags` | Content parsing | Auto-extracted hashtags |
+| **Ratings** | `lupo_engagement_signals` with `signal_type='rating'` | Widget rating UI | 1-5 star ratings |
+| **Bookmarks** | `lupo_user_bookmarks` | Widget bookmark UI | User-specific saves |
+
+### FR-11: Social Interaction Monitoring (MUST)
+
+Track social interactions that occur on monitored pages:
+
+- **Share button clicks** - track when users click share buttons
+- **Comment submissions** - capture comment text and metadata
+- **Like/dislike reactions** - emotional response tracking
+- **Hashtag usage** - track trending topics and tags
+- **User-generated content** - monitor UGC creation and engagement
+
+### FR-12: Engagement Analytics (SHOULD)
+
+Provide engagement analytics capabilities:
+
+- **Engagement rate calculation** - (likes + shares + comments) / views
+- **Trending content detection** - identify content with rising engagement
+- **User engagement patterns** - track how users engage over time
+- **Social reach metrics** - estimate social sharing impact
+- **Content performance scores** -综合 engagement scoring
+
+---
+
+## 5. Crafty Syntax 3.7.5 Parity Requirements
+
+### CS-1: Complete Feature Parity (MUST)
+
+Lupopedia 4.0.88 MUST support ALL features that Crafty Syntax 3.7.5 provided:
+
+| Crafty Feature | Lupopedia Implementation | Status |
+|----------------|------------------------|--------|
+| Live chat widget | `livehelp_js.php` + chat interface | ✅ Existing |
+| Operator status indicators | Online/offline icons | ✅ Existing |
+| Department routing | `lupo_departments` table | ✅ Existing |
+| Visitor session tracking | `lupo_sessions` table | ✅ Existing |
+| Chat transcripts | `lupo_dialog_messages` | ✅ Existing |
+| Canned responses | `lupo_actor_reply_templates` | ✅ Existing |
+| File transfers in chat | Chat attachment system | 🔄 Needs verification |
+| Chat surveys/feedback | Post-chat feedback system | 🔄 Needs verification |
+| Operator permissions | `lupo_actor_capabilities` | ✅ Existing |
+| Chat statistics | Analytics dashboard | 🔄 Needs enhancement |
+| Multi-language support | Localization system | 🔄 Needs verification |
+| Custom chat themes | Department themes | ✅ Existing |
+| Proactive chat invites | Layer invite system | ✅ Existing |
+| Chat routing rules | Department assignment rules | 🔄 Needs verification |
+| Visitor browsing history | `lupo_visits` tracking | 🔄 Enhancement in 4.0.88 |
+| Offline message handling | Leave-a-message system | ✅ Existing |
+
+### CS-2: Database Migration Compatibility (MUST)
+
+- Support migration from Crafty Syntax 3.7.5 databases
+- Preserve existing chat histories and user data
+- Maintain compatibility with Crafty Syntax export formats
+- Provide upgrade path for existing installations
+
+### CS-3: API Compatibility (SHOULD)
+
+- Support Crafty Syntax-style API endpoints for third-party integrations
+- Maintain compatibility with existing client libraries
+- Provide backward compatibility layer for legacy integrations
+
+---
+
+## 6. Non-Functional Requirements
+
+### NFR-1: Performance
+- `livehelp_js.php` response MUST complete in < 200ms
+- `image.php` semantic data processing MUST complete in < 100ms
+- JS bundle size MUST remain under 15KB uncompressed
+- No blocking of page load — all pings are async
+
+### NFR-2: Privacy
+- No raw IP addresses stored in semantic tables
+- IP hashing using `sha256(ip . daily_salt)` for unique visitor approximation
+- User agent stored as hash only
+- No PII captured beyond session identifier
+- Widget MUST respect `Do Not Track` header (skip semantic recording, maintain chat functionality)
+
+### NFR-3: Security
+- All data sanitized server-side in `image.php` (never trust JS-submitted values)
+- URL parameters stripped of session tokens (existing `=[a-z0-9]{32}` replacement)
+- Content-Type response: `image/gif` for image.php, `application/javascript` for livehelp_js.php
+- CORS: `image.php` MUST handle cross-origin requests (widget loaded from parent domain, posting to subfolder)
+
+### NFR-4: Backward Compatibility
+- Existing `<script src="livehelp_js.php">` includes MUST continue to work
+- Existing `<div id="craftysyntax_N">` containers MUST be supported
+- Existing image.php `what=` parameters MUST remain functional
+- New semantic features are additive — nothing removed
+
+---
+
+## 7. Out of Scope for 4.0.88
+
+- Real-time dashboard for navigation graphs (future: 4.1.x)
+- Machine learning on navigation patterns
+- Content scraping / automatic page content extraction
+- Third-party analytics integration (Google Analytics, etc.)
+- WebSocket-based real-time updates (shared hosting constraint)
+- Multi-domain cookie sharing (each domain is a separate federation node)

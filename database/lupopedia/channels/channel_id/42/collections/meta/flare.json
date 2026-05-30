@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\actors-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\atoms-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\channels-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\collections-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\content-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\database-fallback-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\identity-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\livehelp-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\logging-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\meta-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\sessions-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": "database\\lupopedia\\channels\\channels\\42\\collections\\tasks-collection.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    }
+  ]
+}

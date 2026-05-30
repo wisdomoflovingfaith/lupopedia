@@ -1,0 +1,57 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_auth_user_departments",
+  "fields": [
+    "`auth_user_department_id` bigint NOT NULL",
+    "`auth_user_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL",
+    "`is_primary` tinyint NOT NULL DEFAULT 0",
+    "`role_key` varchar(64)",
+    "`title` varchar(64)",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_auth_user_departments_idx_auth_user",
+      "columns": [
+        "auth_user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_user_departments_idx_department",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_user_departments_idx_primary",
+      "columns": [
+        "auth_user_id",
+        "is_primary"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "auth_user_department_id",
+    "expected_name": "auth_user_department_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

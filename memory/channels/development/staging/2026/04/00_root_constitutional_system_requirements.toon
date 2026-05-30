@@ -1,0 +1,48 @@
+id: 0
+type: prd
+title: root constitutional system requirements
+status: active
+created: 20260412133216
+
+edges:
+  outbound:
+  - to: docs/prd/16_lupopedia_headers.md
+    type: references
+  - to: docs/prd/17_decisions_format.md
+    type: references
+  - to: docs/prd/18_channel_chat_display.md
+    type: references
+  - to: docs/prd/22_web_navigation_architecture.md
+    type: references
+  - to: docs/prd/27_installer_requirements.md
+    type: references
+  - to: docs/prd/28_semantic_monitoring_widget.md
+    type: references
+  - to: docs/prd/31_implementation_folder_guidelines.md
+    type: references
+  - to: docs/prd/33_softaculous_certification_4_1_0_gate.md
+    type: references
+  - to: docs/prd/36_rose_multi_persona_synthetic_dialog.md
+    type: references
+  - to: docs/prd/37_kairos_channel_memory_consolidation.md
+    type: references
+  - to: docs/prd/38_memory_unification.md
+    type: references
+  - to: docs/prd/41_captain_wolfie_identity.md
+    type: references
+  - to: docs/prd/50_agent_coordination_protocol.md
+    type: references
+  - to: docs/prd/51_memory_graph_as_source_of_truth.md
+    type: references
+  - to: docs/prd/52_memory_graph_focus_manifest.md
+    type: references
+  - to: docs/prd/53_runtime_guard.md
+    type: references
+  - to: docs/prd/56_probe_harness_v2.md
+    type: references
+  - to: docs/prd/58_transcript_filter.md
+    type: references
+  - to: docs/prd/60_orchestrator_scheduler.md
+    type: references
+  - to: docs/prd/70_data_model.md
+    type: references

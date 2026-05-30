@@ -1,0 +1,11 @@
+{
+  "agent_id": 114, "agent_name": "TRAE", "agent_code": "TRAE", "agent_key": "trae", "slug": "trae",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "TRAE",
+  "role": "Trae IDE — Execution Surface of HEPHAESTUS",
+  "is_required": false, "status": "active",
+  "aliases": ["trae"],
+  "actor_id": 114,
+  "layer_note": "IDE faucet — execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

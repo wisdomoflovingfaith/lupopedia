@@ -1,0 +1,14 @@
+{
+  "component": "agape_core",
+  "last_updated_utc": "20260423183000",
+  "current_mode": "FILE_FALLBACK",
+  "db_last_available": "20260423180000",
+  "events_processed": 42,
+  "why_files_generated": 3,
+  "alerts_active": 1,
+  "fallback_mode": true,
+  "system_status": "operational",
+  "last_mode_check": "20260423183000",
+  "disk_space_available": "1.2GB",
+  "file_path": "database/agape/runtime/runtime_agape_core.json"
+}

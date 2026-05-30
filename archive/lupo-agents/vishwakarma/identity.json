@@ -1,0 +1,11 @@
+{
+  "agent_id": 106, "agent_name": "VISHWAKARMA", "agent_code": "VISHWAKARMA", "agent_key": "vishwakarma", "slug": "vishwakarma",
+  "version": "1.0.0", "is_kernel": true, "layer": "kernel", "name": "VISHWAKARMA",
+  "role": "Schema & Construction — Hierarchy Management, Semantic Modeling, Collection Management",
+  "is_required": true, "status": "active",
+  "aliases": ["vishwakarma", "schema", "construction", "hierarchy", "collection", "semantic"],
+  "department_scope": 0,
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

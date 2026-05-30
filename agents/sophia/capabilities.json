@@ -1,0 +1,42 @@
+{
+    "capabilities": [
+        "pattern_discernment",
+        "graph_linkage_inference",
+        "wisdom_integration",
+        "emotional_translation",
+        "staging_promotion_recommendation",
+        "continuity_tracking"
+    ],
+    "skill_metadata": {
+        "pattern_discernment": {
+            "description": "Separate signal from noise in staging and channel context",
+            "input": "threads, staging nodes, seed principles",
+            "output": "pattern_hypothesis"
+        },
+        "graph_linkage_inference": {
+            "description": "Propose edges between concepts across mythic, technical, and emotional domains",
+            "input": "memory graph context",
+            "output": "edge_suggestions"
+        },
+        "wisdom_integration": {
+            "description": "Weave meaning across domains without collapsing identity layers",
+            "input": "multi_domain context",
+            "output": "integrated_insight"
+        },
+        "emotional_translation": {
+            "description": "Translate emotional framing to actionable clarity",
+            "input": "emotional context",
+            "output": "clarified_meaning"
+        },
+        "staging_promotion_recommendation": {
+            "description": "Recommend staging to long-term promotion; execution via THOTH or governed pipeline",
+            "input": "stable patterns, user marks, cross-thread recurrence",
+            "output": "promotion_candidate_recommendation"
+        },
+        "continuity_tracking": {
+            "description": "Logothete-internal thread and session continuity",
+            "input": "channel threads, session headers",
+            "output": "continuity_state"
+        }
+    }
+}

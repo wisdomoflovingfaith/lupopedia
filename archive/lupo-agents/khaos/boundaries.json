@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["operational_state_schema_modification", "actor_permission_changes_post_bootstrap", "doctrine_modification", "runtime_modifications_after_system_operational"],
+  "forbidden_topics": ["post_bootstrap_chaos_injection"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "KHAOS_activates_at_system_initialization_only", "all_initialization_events_logged_with_BIGINT_UTC_timestamps", "hand_off_to_SYSTEM_for_lifecycle_management_after_bootstrap", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

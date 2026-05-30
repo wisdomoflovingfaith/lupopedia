@@ -1,0 +1,67 @@
+{
+  "id": "41-install-seed-doctrine",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "docs/prd/79_install_seed_doctrine.md",
+  "channel_key": "install",
+  "trust_tier": "seed",
+  "purpose": "Defines the fourth tier \u2014 Install Seed rows \u2014 as immutable reference truth, not active truth",
+  "status": "draft",
+  "tags": [
+    "doctrine",
+    "install_seed",
+    "pk_tiers",
+    "consolidation",
+    "constitutional",
+    "reversion"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 1,
+    "name": "WOLFIE"
+  },
+  "delegation_chain": "wolfie:root",
+  "edges": {
+    "outbound": [
+      {
+        "to": "docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Adds fourth tier to PK ranges and consolidation doctrine"
+      },
+      {
+        "to": "docs/prd/38_memory_unification.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Memory nodes follow Chronological Trust Ladder + IdGenerator vs toCanonicalId (PRD 38 \u00a74.2.1)"
+      },
+      {
+        "to": "docs/prd/37_kairos_channel_memory_consolidation.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "KAIROS must never use install seeds as canonical parents"
+      },
+      {
+        "to": "docs/prd/01_core_identity.md",
+        "type": "amends",
+        "weight": 1.0,
+        "reason": "Actor install seeds (1-2025) are immutable reference rows"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260408111331",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 1,
+      "agent_name_identity": "WOLFIE"
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "wolfie:root",
+    "next_action": []
+  }
+}

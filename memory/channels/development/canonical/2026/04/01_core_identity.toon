@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/01-core-identity.json
+# Generated at: 2026-04-10 12:15:00 UTC
+# JSON master checksum: 23c30ce0e6c03225b9830e114c72144e
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410121233,20260410121233,canonical,1,core-identity,docs/prd/01_core_identity.md
+
+prd_sections[5]{pk,summary,title}:
+  1,"Foundational identity namespace for actors, auth users, sessions, and actor capability context.",Overview
+  2,Distinguishes immutable agent templates from runtime actor instances with context.,Two-Layer Identity Model
+  3,"Defines identity and memory-linked tables including lupo_auth_users, lupo_actors, lupo_sessions, and lupo_memory_nodes.",Table Details
+  4,"Declares actor and agent attribution dependencies into channels, agents, content, truth, and governance namespaces.",Cross-Namespace Dependencies
+  5,Defines four edge dimensions and needs_review review_reason requirements for memory graph integrity.,Memory Doctrine Addendum
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,database_constitutional_constraints,1,critical,"No foreign keys, triggers, or stored procedures; timestamps are BIGINT UTC; IDs are generated in application logic."
+  2,agents_vs_actors_separation,2,critical,Agents are immutable templates while actors are runtime contextual entities; do not conflate identity layers.
+  3,session_cleanup_soft_delete,3,high,"Expired sessions are soft-deleted by setting is_deleted, deleted_ymdhis, and updated_ymdhis."
+  4,edge_dimensions_required,5,critical,"Every memory edge requires type, context, status, and direction dimensions."
+  5,review_reason_required_when_needs_review,5,critical,"When edge_status is needs_review, review_reason must be populated."
+
+definitions[5]{pk,meaning,term}:
+  1,Immutable filesystem template under agents keyed by agent metadata.,agent
+  2,"Runtime operational identity with context, attribution, and mutable state.",actor
+  3,First-class memory entity represented in lupo_memory_nodes.,memory_node
+  4,Epistemic state for conflicting/incomplete relationships that require agent or human review.,edge_status_needs_review
+  5,Retention-safe deletion pattern using is_deleted and deleted_ymdhis fields.,soft_delete
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,references,docs/prd/15_actors.md,95
+  3,doctrine,outbound,supported,references,docs/prd/05_auth_user_actor_agent_transformation.md,95
+  4,doctrine,outbound,supported,depends_on,docs/prd/02_channels_discussions.md,85
+  5,doctrine,outbound,supported,depends_on,docs/prd/07_agents_faucets.md,85

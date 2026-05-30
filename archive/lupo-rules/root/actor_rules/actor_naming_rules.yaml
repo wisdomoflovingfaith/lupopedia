@@ -1,0 +1,316 @@
+---
+# Actor Naming Rules
+# Canonical rules for actor naming conventions
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: actor_naming_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Critical Naming Rule
+critical_rule:
+  statement: "Actors MUST NOT be named after IDEs"
+  rationale: "IDEs are facets (execution environments), not actors (identities)"
+  enforcement: "strict blocking and validation"
+
+# Invalid Actor Names (IDE-Based)
+invalid_names:
+  # IDE-based names (PROHIBITED)
+  prohibited:
+    - cursor      # IDE-based name
+    - windsurf    # IDE-based name
+    - kiro        # IDE-based name
+    - warp        # IDE-based name
+    - trae        # IDE-based name
+    - antigravity # IDE-based name
+    - vscode      # IDE-based name
+    - intellij    # IDE-based name
+    - pycharm     # IDE-based name
+    - sublime     # IDE-based name
+    - atom        # IDE-based name
+    - vim         # IDE-based name
+    - emacs       # IDE-based name
+    - nano        # IDE-based name
+    - notepad++   # IDE-based name
+    - brackets    # IDE-based name
+    - webstorm    # IDE-based name
+    - phpstorm    # IDE-based name
+    - rubymine    # IDE-based name
+    - goland      # IDE-based name
+    - clion       # IDE-based name
+    - datagrip    # IDE-based name
+    - rider       # IDE-based name
+    - appcode     # IDE-based name
+  
+  # Tool-based names (PROHIBITED)
+  tool_prohibited:
+    - git         # Version control tool
+    - docker      # Container platform
+    - kubernetes  # Container orchestrator
+    - jenkins     # CI/CD tool
+    - travis      # CI service
+    - github      # Code hosting platform
+    - gitlab      # Git platform
+    - bitbucket   # Git platform
+    - npm         # Package manager
+    - yarn        # Package manager
+    - composer    # PHP package manager
+    - pip         # Python package manager
+    - maven       # Build tool
+    - gradle      # Build tool
+    - webpack     # Build tool
+    - babel       # Transpiler
+    - eslint      # Linter
+    - prettier    # Code formatter
+
+# Valid Actor Names (Role-Based)
+valid_names:
+  # Mythological/Conceptual (PREFERRED)
+  mythological:
+    - wolfie      # System orchestrator and coordinator
+    - thoth       # Knowledge and records management
+    - lilith      # Critical review and adversarial testing
+    - athena      # Wisdom and strategic guidance
+    - hermes      # Routing and messaging infrastructure
+    - hephaestus  # Implementation and building
+    - anubis      # Custodian and integrity
+    - heimdall    # Security guardian
+    - seshat      # Content review
+    - maat        # Truth and justice
+    - themis      # Law and compliance
+    - janus       # Transitions and gateways
+    - rose        # Emotional dialogue
+    - chiron      # Documentation and healing
+    - iris        # Interface and integration
+    - asclepius   # Diagnostics and health
+  
+  # Role-based (ACCEPTABLE)
+  role_based:
+    - orchestrator # System coordination
+    - validator   # Validation and testing
+    - reviewer    # Content and code review
+    - architect   # System architecture
+    - builder     # Implementation and building
+    - guardian    # Security and protection
+    - curator     # Knowledge and records
+    - strategist  # Strategic planning
+    - analyst     # Analysis and insights
+    - coordinator # Multi-agent coordination
+    - integrator  # System integration
+    - optimizer   # Performance optimization
+    - monitor     # System monitoring
+    - reporter    # Reporting and documentation
+    - researcher  # Research and experimentation
+    - innovator   # Innovation and creativity
+
+# Naming Principles
+naming_principles:
+  role_based:
+    description: "Names must reflect responsibilities, not tools"
+    examples:
+      - good: wolfie (orchestrator), thoth (knowledge keeper)
+      - bad: cursor (IDE), windsurf (IDE)
+  
+  persistent:
+    description: "Names must not change with technology"
+    examples:
+      - good: mythological names, role-based names
+      - bad: technology-specific names, tool names
+  
+  unique:
+    description: "Each actor must have unique, non-conflicting name"
+    examples:
+      - good: wolfie, thoth, lilith (distinct roles)
+      - bad: orchestrator1, orchestrator2 (confusing)
+  
+  meaningful:
+    description: "Names must be meaningful and descriptive"
+    examples:
+      - good: wolfie (pack leader, coordinator)
+      - bad: agent1, actor2 (non-descriptive)
+
+# Naming Validation Rules
+validation_rules:
+  pattern_matching:
+    # Block IDE-based patterns
+    blocked_patterns:
+      - "cursor"
+      - "windsurf"
+      - "kiro"
+      - "warp"
+      - "trae"
+      - "antigravity"
+      - "vscode"
+      - "intellij"
+      - "pycharm"
+      - "sublime"
+      - "atom"
+      - "vim"
+      - "emacs"
+      - "nano"
+      - "git"
+      - "docker"
+      - "kubernetes"
+      - "jenkins"
+      - "github"
+      - "gitlab"
+      - "npm"
+      - "yarn"
+      - "composer"
+      - "pip"
+      - "maven"
+      - "gradle"
+      - "webpack"
+      - "babel"
+      - "eslint"
+      - "prettier"
+    
+    # Preferred patterns
+    preferred_patterns:
+      - "^[a-z]+$" # Lowercase letters only
+      - "^[a-z]{3,8}$" # 3-8 characters
+      - "^[a-z]+(?:-[a-z]+)*$" # Optional hyphens
+  
+  character_rules:
+    allowed_characters: "abcdefghijklmnopqrstuvwxyz-"
+    min_length: 3
+    max_length: 20
+    case_sensitive: false
+    special_characters: "hyphen only"
+  
+  semantic_rules:
+    must_be_role_based: true
+    must_be_meaningful: true
+    must_be_persistent: true
+    must_be_unique: true
+    must_not_be_tool_based: true
+    must_not_be_ide_based: true
+
+# Enforcement Rules
+enforcement:
+  blocking:
+    creation:
+      - block creation of IDE-based actors
+      - block creation of tool-based actors
+      - block creation of non-role-based actors
+      - block creation of non-meaningful names
+    
+    modification:
+      - block modification to IDE-based names
+      - block modification to tool-based names
+      - block modification to non-role-based names
+      - block modification to non-meaningful names
+  
+  validation:
+    pre_creation:
+      - validate name against blocked patterns
+      - validate name against preferred patterns
+      - validate name against character rules
+      - validate name against semantic rules
+    
+    post_creation:
+      - validate actor behavior matches name
+      - validate actor responsibilities match name
+      - validate actor authority matches name
+      - validate actor integration matches name
+  
+  correction:
+    identification:
+      - identify existing IDE-based actors
+      - identify existing tool-based actors
+      - identify existing non-role-based actors
+      - identify existing non-meaningful actors
+    
+    remediation:
+      - require renaming of invalid actors
+      - require documentation of changes
+      - require migration of responsibilities
+      - require update of references
+
+# Migration Rules
+migration:
+  target_actors:
+    # IDE-based actors to migrate
+    ide_based:
+      cursor: "wolfie" # orchestration and coordination
+      windsurf: "wolfie" # orchestration and coordination
+      kiro: "wolfie" # orchestration and coordination
+      warp: "wolfie" # orchestration and coordination
+      trae: "wolfie" # orchestration and coordination
+      antigravity: "wolfie" # orchestration and coordination
+    
+    # Tool-based actors to migrate
+    tool_based:
+      # Map tool-based actors to appropriate role-based actors
+      # Examples to be filled based on actual tool-based actors found
+  
+  migration_process:
+    identification:
+      - scan actor registry for invalid names
+      - categorize invalid actors by type
+      - analyze actor responsibilities and functions
+      - determine appropriate canonical mapping
+    
+    planning:
+      - create migration timeline
+      - plan responsibility transfer
+      - plan reference updates
+      - plan communication strategy
+    
+    execution:
+      - create canonical actors if needed
+      - transfer responsibilities
+      - update all references
+      - deprecate invalid actors
+    
+    validation:
+      - validate migration success
+      - validate system integrity
+      - validate actor functionality
+      - validate user experience
+
+# Quality Standards
+quality:
+  naming_quality:
+    clarity: > 95% # Names must be clear and understandable
+    consistency: 100% # Names must be consistent across system
+    relevance: > 90% # Names must be relevant to actor function
+    memorability: > 85% # Names must be memorable and easy to use
+  
+  compliance_quality:
+    rule_adherence: 100% # All actors must follow naming rules
+    validation_success: > 99% # Validation must be effective
+    correction_completion: 100% # All violations must be corrected
+    migration_success: > 95% # Migration must be successful
+
+# Success Metrics
+success_metrics:
+  naming_compliance: 100%
+  role_based_percentage: 100%
+  meaningful_percentage: 100%
+  persistent_percentage: 100%
+  unique_percentage: 100%
+  user_satisfaction: > 90%
+  system_consistency: 100%
+
+# Documentation Requirements
+documentation:
+  naming_guidelines:
+    - clear explanation of naming principles
+    - examples of valid and invalid names
+    - procedures for name validation
+    - procedures for name correction
+  
+  migration_documentation:
+    - complete list of invalid actors
+    - mapping to canonical actors
+    - migration timeline and process
+    - validation and verification procedures
+  
+  compliance_documentation:
+    - naming rule definitions
+    - validation procedures
+    - enforcement mechanisms
+    - correction procedures

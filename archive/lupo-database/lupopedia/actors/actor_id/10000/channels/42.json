@@ -1,0 +1,9 @@
+{
+    "schema_version": "4.0.47",
+    "role": "admin",
+    "join_date": "20260101",
+    "tasks_completed": 100,
+    "prefs": {
+        "log_level": "debug"
+    }
+}

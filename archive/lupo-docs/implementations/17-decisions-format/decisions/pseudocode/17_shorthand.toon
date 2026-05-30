@@ -1,0 +1,29 @@
+{
+  "prd_id": 17,
+  "title": "Decisions Format",
+  "status": "active",
+  "summary": "Defines canonical thread artifact naming and decisions/questions/answers/comments structure.",
+  "rules": [
+    "Use folder-based thread layout with per-folder THREAD_INDEX.md",
+    "Use UTC timestamped filenames with type tokens",
+    "Use pseudocode directory for constitution shorthand and design planning artifacts"
+  ],
+  "constraints": [
+    "No monolithic new decisions.md files",
+    "Pseudocode artifacts are non-runtime and must include headers",
+    "Q and A linkage should use lupopedia.edges"
+  ],
+  "related_prds": [
+    0,
+    2,
+    16,
+    29,
+    31
+  ],
+  "key_files": [
+    "lupo-docs/prd/17_decisions_format.md",
+    "lupo-docs/prd/16_lupopedia_headers.md",
+    "lupo-docs/prd/29_project_structure.md"
+  ],
+  "actor_notes": "When creating thread artifacts, enforce naming discipline first, then content structure."
+}

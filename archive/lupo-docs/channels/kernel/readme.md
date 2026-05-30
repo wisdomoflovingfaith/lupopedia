@@ -1,0 +1,101 @@
+# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/channels/kernel/README.md"
+  file_hash: "4b123742b8a44eb5ceee88fa96ed1dc3028438763ce74f2650f80929b91d2354"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+
+lupopedia.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
+  file_path_from_root: "lupo-docs\channels\kernel\README.md"
+  file_hash: "8b960afed4d7163507e4e62192a88a736fc4a6b04a34abb5b552e2ce3e829f9e"
+  file_path_from_root: "lupo-docs\channels\kernel\README.md"
+  file_hash: "9034b5800b47d2389448c42b20a7ecb459fd87091151d96b56dcd796b5248e81"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for README.md"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "kernel", "readmemd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+lupopedia.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
+header_atoms:
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - GLOBAL_CURRENT_AUTHORS
+dialog:
+  speaker: JETBRAINS
+  target: @everyone
+  message: "Created channel README for kernel documentation organization."
+tags:
+  categories: ["documentation", "index", "channels"]
+  collections: ["core-docs"]
+  channels: ["dev"]
+file:
+  title: "kernel Channel README"
+  description: "Overview for kernel channel documentation"
+  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  status: published
+  author: GLOBAL_CURRENT_AUTHORS
+---
+
+# kernel Channel README
+
+Purpose: Core runtime systems, services, components, and registries.
+
+Top-Level Contents:
+- components/
+- registries/
+- services/
+- systems/
+
+Full file list: [INDEX.md](INDEX.md)
+
+Related Channels:
+- [architecture](../architecture/README.md)
+- [schema](../schema/README.md)
+- [developer](../developer/README.md)

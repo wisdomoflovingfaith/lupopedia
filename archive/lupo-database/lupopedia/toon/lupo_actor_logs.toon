@@ -1,0 +1,22 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_actor_logs
+fields:
+- '`actor_log_id` bigint NOT NULL'
+- '`actor_id` bigint'
+- '`log_level` varchar(32)'
+- '`message` text'
+- '`created_ymdhis` bigint'
+indexes: []
+primary_key:
+  column_name: actor_log_id
+  expected_name: actor_log_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

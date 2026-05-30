@@ -1,0 +1,9 @@
+actor_id: 1
+acronym: WOLFIE
+slug: wolfie
+actor_type: orchestrator
+identity_immutable: true
+created_ymdhis: 20260323090000
+last_updated_ymdhis: 20260323090000
+version_when_written: "4.0.84"
+identity_source: database/lupopedia/actors/actor_id/registry.json

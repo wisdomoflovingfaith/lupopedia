@@ -1,0 +1,4 @@
+validator_tooling_memory[3]{pk,topic,summary}:
+  1,header_v3_requirements,Validators enforce v4.0.98 headers key order trust tier and memory key
+  2,memory_pair_workflow,JSON is master and TOON is deterministic derived output
+  3,validation_entrypoints,Use validate_memory_json_toon_pair.py and header validators in tooling flow

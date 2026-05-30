@@ -1,0 +1,10 @@
+{
+    "schema_version": "4.0.47",
+    "log_level": "debug",
+    "feature_flags": {
+        "auto_verify": true
+    },
+    "env_vars": {
+        "PATH": "/usr/local/bin"
+    }
+}

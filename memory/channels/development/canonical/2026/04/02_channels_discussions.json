@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410124750,
+      "last_updated": 20260410124750,
+      "layer": "canonical",
+      "prd_id": 2,
+      "prd_slug": "channels-discussions",
+      "source_path": "docs/prd/02_channels_discussions.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Overview and Scope",
+      "summary": "Defines channels, threads, dialog messages, and content linkage for structured discussions."
+    },
+    {
+      "pk": 2,
+      "title": "Directory and Thread Model",
+      "summary": "Specifies federation-node and channel-key filesystem layout with thread manifests and typed folders."
+    },
+    {
+      "pk": 3,
+      "title": "Data Model and Tables",
+      "summary": "Defines lupo_channels, lupo_dialog_threads, lupo_dialog_messages, and supporting channel state tables."
+    },
+    {
+      "pk": 4,
+      "title": "Identity and Routing",
+      "summary": "Enforces actor-based attribution and deterministic routing through channel_id and dialog_thread_id."
+    },
+    {
+      "pk": 5,
+      "title": "Constitutional Constraints",
+      "summary": "Requires BIGINT UTC, no foreign keys, no triggers, explicit IDs, and soft-delete conventions."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 2,
+      "rule_name": "channel_thread_path_structure",
+      "severity": "high",
+      "summary": "Filesystem channel threads must follow federation_node_id/channel_key/thread_key structure."
+    },
+    {
+      "pk": 2,
+      "section_pk": 3,
+      "rule_name": "dialog_pk_naming_doctrine",
+      "severity": "critical",
+      "summary": "Primary keys must be dialog_thread_id and dialog_message_id, never generic id."
+    },
+    {
+      "pk": 3,
+      "section_pk": 4,
+      "rule_name": "actor_identity_for_messages",
+      "severity": "critical",
+      "summary": "Message attribution must resolve to actor identity; from_actor_id request mapping is API to DB actor_id."
+    },
+    {
+      "pk": 4,
+      "section_pk": 5,
+      "rule_name": "soft_delete_required",
+      "severity": "high",
+      "summary": "Discussion rows must use is_deleted and deleted_ymdhis instead of hard deletes."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "db_logic_prohibited",
+      "severity": "critical",
+      "summary": "No foreign keys, no triggers, and no database-side automation in channels namespace."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "channel_key",
+      "meaning": "Human-readable channel identifier used in filesystem and channel registry."
+    },
+    {
+      "pk": 2,
+      "term": "thread_key",
+      "meaning": "Human-readable thread identifier under a channel key path."
+    },
+    {
+      "pk": 3,
+      "term": "dialog_thread_id",
+      "meaning": "Primary key for a discussion thread row in lupo_dialog_threads."
+    },
+    {
+      "pk": 4,
+      "term": "dialog_message_id",
+      "meaning": "Primary key for an individual message row in lupo_dialog_messages."
+    },
+    {
+      "pk": 5,
+      "term": "thread_manifest",
+      "meaning": "Required metadata file defining thread purpose, status, and lifecycle on filesystem."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/07_agents_faucets.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 4,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/17_decisions_format.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/29_project_structure.md",
+      "weight_hundredths": 85
+    }
+  ]
+}

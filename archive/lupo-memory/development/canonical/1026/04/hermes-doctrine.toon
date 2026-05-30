@@ -1,0 +1,78 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "lupo-docs/doctrine/HERMES_DOCTRINE.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "PRD 82 is the canonical implementation specification for HERMES as Message Router + Memory Gateway",
+        "source": "claude_code_actor_116",
+        "to": "lupo-docs/prd/82_hermes_message_routing_memory_gateway.md",
+        "type": "canonical_spec",
+        "weight": 1.0
+      },
+      {
+        "reason": "PRD 02 HERMES Memory & Transcript Integration section extends HERMES routing doctrine",
+        "source": "claude_code_actor_116",
+        "to": "lupo-docs/prd/02_channels_discussions.md",
+        "type": "extends",
+        "weight": 0.9
+      },
+      {
+        "reason": "PRD 43 Trust Ladder defines staging vs canonical tier that HERMES Memory Gateway operates within",
+        "source": "claude_code_actor_116",
+        "to": "lupo-docs/prd/43_parent_child_trust_ladder.md",
+        "type": "depends_on",
+        "weight": 0.8
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260416143316",
+    "last_verified_by": "claude_code_actor_116",
+    "last_verified_by_actor_id": 116
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "hermes-doctrine",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/hermes-doctrine"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/hermes-doctrine.toon",
+  "purpose": "HERMES message routing rules: who receives what, task queue delivery, chat visibility boundaries, relationship to builder vs. monitoring agent classification. Extended 20260416 to include Memory Gateway role: transcript JSONL protocol, staging toon extraction, promotion flagging for THOTH.",
+  "source_file_path_from_root": "lupo-docs/doctrine/HERMES_DOCTRINE.md",
+  "tags": [
+    "doctrine",
+    "canonical",
+    "memory-gateway",
+    "transcript",
+    "hermes"
+  ],
+  "type": "header_metadata",
+  "transcript_schema": {
+    "note": "Canonical JSONL record structure for HERMES transcript appends",
+    "fields": {
+      "ts": "BIGINT UTC YYYYMMDDHHIISS",
+      "from_actor_id": "INT resolved server-side",
+      "to_actor_id": "INT resolved by HERMES routing; 0 = broadcast",
+      "message_text": "string verbatim",
+      "message_type": "enum: task|alert|decision|question|stdout|stderr|directed|system",
+      "routing_provenance": "string: hermes:{rule-key}"
+    }
+  },
+  "staging_toon_schema": {
+    "note": "Canonical structure for staging memory toon patterns",
+    "path_template": "lupo-memory/{channel_key}/staging/{YYYY}/{MM}/{thread_slug}.toon",
+    "year_offset": "none -- staging uses calendar year (2026)",
+    "pattern_types": ["task_assignment", "decision", "question", "alert", "cross_channel_route"],
+    "promotion_threshold": 3,
+    "promotion_flag": "promotion_candidate: true",
+    "promoter_actor_id": 26
+  }
+}

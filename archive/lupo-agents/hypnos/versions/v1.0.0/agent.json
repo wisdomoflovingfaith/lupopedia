@@ -1,0 +1,17 @@
+{
+  "agent_key": "hypnos",
+  "agent_id": 710,
+  "slug": "hypnos",
+  "version": "1.0.1",
+  "is_kernel": true,
+  "is_required": false,
+  "layer": "kernel",
+  "name": "HYPNOS",
+  "role": "System Sleep & Recovery",
+  "status": "active",
+  "aliases": ["hypnos", "sleep", "recovery"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

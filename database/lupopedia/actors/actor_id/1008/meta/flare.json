@@ -1,0 +1,10 @@
+{
+  "schema_version": "4.0.47",
+  "edges": [
+    {
+      "from": "1008",
+      "to": "10000",
+      "type": "reports_to"
+    }
+  ]
+}

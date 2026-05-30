@@ -1,0 +1,61 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_referers_daily",
+  "fields": [
+    "`referers_daily_id` bigint NOT NULL",
+    "`actor_id` bigint",
+    "`referer_domain` varchar(255)",
+    "`visit_ymd` bigint NOT NULL",
+    "`visit_count` int DEFAULT 0",
+    "`hit_count` int NOT NULL DEFAULT 1",
+    "`unique_actors` int NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_unique_daily_referer",
+      "columns": [
+        "actor_id",
+        "referer_domain",
+        "visit_ymd"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_idx_referer_date",
+      "columns": [
+        "referer_domain",
+        "visit_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_idx_actor_date",
+      "columns": [
+        "actor_id",
+        "visit_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "referers_daily_id",
+    "expected_name": "referers_daily_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

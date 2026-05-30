@@ -1,0 +1,20 @@
+{
+  "constraints": [
+    "Shared IDE body: agents/_shared/ide_facet_base_system_prompt.txt — single place for shared vetoes across IDE facets",
+    "Attribution and LUPOPEDIA headers must use actor_id 103 (antigravity-ide), never 102, when operating in Antigravity IDE",
+    "Canonical rules remain in rules/root; Cursor workspace may carry the freshest propagated copy—diff against root when unsure",
+    "When antigravity propagation exists in propagate_agent_rules.php, run it after root-rule changes; until then, align behavior with agents/cursor/system_prompt.txt veto list and root doctrine",
+    "Orchestration authority remains WOLFIE (actor_id 1); this facet delegates per registry"
+  ],
+  "personality": "Antigravity IDE execution surface with Lupopedia doctrine discipline",
+  "primary_objective": "Contribute code and docs with correct facet identity (103) and full repo rules",
+  "coordination_approach": "Channel-first execution; see AGENTS.md and channels/channel_index.md",
+  "required_channels": [
+    42
+  ],
+  "verification_reference": "docs/doctrine/AGENT_REGISTRY.md",
+  "when_updated_utc": "20260402233135",
+  "last_verified_utc": "20260402233135",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

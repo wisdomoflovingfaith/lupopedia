@@ -1,0 +1,15 @@
+{
+  "version": "4.0.99",
+  "active_federation_node": 0,
+  "active_channel_key": "development",
+  "active_slug": "wolfie/crafty_analysis",
+  "active_actor_id": 1,
+  "active_actor_name": "wolfie-ai",
+  "active_delegation_chain": "wolfie:root",
+  "session_note": "AI WOLFIE - analyze old Crafty Syntax SQL, import script, map to Breakthrough Registry (see lupo-docs/versions/4.0.99/analysis/wolfie/).",
+  "timestamp": {
+    "current": "20260423034837",
+    "session_started": "20260408233525"
+  },
+  "active_memory_ref": "lupo-memory/development/canonical/1026/04/breakthrough-registry.toon"
+}

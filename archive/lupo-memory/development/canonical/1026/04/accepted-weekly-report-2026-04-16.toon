@@ -1,0 +1,122 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Accepted immutable snapshot (status path)",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-docs/versions/4.1.2/status/ACCEPTED_WEEKLY_REPORT_2026_04_16.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Original submitted working copy at acceptance (unchanged)",
+        "source": "accepted_weekly_report_memory",
+        "to": "REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Artifact audit index for this report week",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-docs/versions/4.1.2/status/weekly_report_evidence_index_20260416.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Translation rules governing executive-facing seeds",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-docs/doctrine/system/TRANSLATION_MODEL.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Normative continuity wording cited in report",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-docs/doctrine/CONTINUITY_LAYER_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Staging handoff — translation channel and OQ work",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-memory/development/staging/2026/04/antigravity_handoff.toon",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "reason": "Staging handoff — HERMES wiring and management crisis context",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-memory/development/staging/2026/04/cursor_handoff.toon",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "reason": "Staging handoff — Claude Code queue",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-memory/development/staging/2026/04/handoff_claude.toon",
+        "type": "references",
+        "weight": 0.9
+      },
+      {
+        "reason": "Hermes doctrine cited in shipped work",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-docs/doctrine/HERMES_DOCTRINE.md",
+        "type": "references",
+        "weight": 0.8
+      },
+      {
+        "reason": "PRD 82 cited in shipped work",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-docs/prd/82_hermes_message_routing_memory_gateway.md",
+        "type": "references",
+        "weight": 0.8
+      },
+      {
+        "reason": "Header atoms sidecar (same bind as working report week)",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Machine inventory JSONL: paths, exists, byte sizes for management audit",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-channels/0/development/weekly_report_helen_20260416.jsonl/report_helen_20260416_related_files.jsonl",
+        "type": "references",
+        "weight": 1.0
+      },
+      {
+        "reason": "Evidence index transcript thread (pairs weekly-report-evidence memory)",
+        "source": "accepted_weekly_report_memory",
+        "to": "lupo-channels/0/development/weekly-report-evidence-20260416/transcript.jsonl",
+        "type": "references",
+        "weight": 0.95
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260417002719",
+    "last_verified_by": "cursor_accepted_weekly_report_snapshot",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "atoms_toon": "lupo-memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "accepted-weekly-report-2026-04-16",
+    "default_collection_id": null,
+    "memory_toon": "lupo-memory/development/canonical/1026/04/accepted-weekly-report-2026-04-16.toon",
+    "transcript_jsonl": "0/development/weekly_report_helen_20260416.jsonl"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/accepted-weekly-report-2026-04-16.toon",
+  "purpose": "Accepted weekly report reference artifact (immutable baseline). Same body as REPORT_EMAIL_TO_HELEN_2026_04_16.md at management acceptance; do not rewrite.",
+  "source_file_path_from_root": "lupo-docs/versions/4.1.2/status/ACCEPTED_WEEKLY_REPORT_2026_04_16.md",
+  "tags": [
+    "documentation",
+    "canonical",
+    "weekly_report",
+    "accepted_reference",
+    "status"
+  ],
+  "type": "header_metadata"
+}

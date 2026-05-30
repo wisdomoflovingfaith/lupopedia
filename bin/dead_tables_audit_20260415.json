@@ -1,0 +1,330 @@
+{
+  "table_count": 180,
+  "scanned_file_count": 1035,
+  "orphan_count": 43,
+  "orphans": [
+    {
+      "table": "actor_filesystem",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_sync_state",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_pairing",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_relationships",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_apps",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "agent_performance_stats",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "agent_tools",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "agent_boundaries",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_versions",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "agent_definition_versions",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_runtime_state",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_runtime_events",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "faucet_rules",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "pairing_rules",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "department_capabilities",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "identity_layers",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "identity_context",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "agent_memory_config",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "anubis_log",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "two_factor_audit",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "magic_link_tokens",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "auth_rate_limits",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "channel_escalations",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_channel_escalations.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "channel_escalation_rules",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_channel_escalation_rules.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "channel_state",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_channel_state.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "legacy_content_mapping",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_legacy_content_mapping.md",
+        "docs/database/lupopedia/tables/planning/table_lupo_legacy_content_mappingtoon.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "channel_departments",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "dialog_recent_files",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "dialog_pending_tasks",
+      "doc_paths": [],
+      "has_plan_signal": true,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "emotional_frameworks",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/archived/stage3-orphaned-20260328/lupo_emotional_frameworks.md",
+        "docs/database/lupopedia/tables/archived/stage3-orphaned-20260328/lupo_emotional_frameworks_20260328013000.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "help_tree",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_help_tree.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "semantic_index",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_semantic_index.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "votes",
+      "doc_paths": [],
+      "has_plan_signal": true,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "truth_context_map",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/lupo_truth_context_map.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "truth_followers",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/lupo_truth_followers.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "paths_summary",
+      "doc_paths": [
+        "docs/database/lupopedia/tables/active/lupo_paths_summary.md"
+      ],
+      "has_plan_signal": false,
+      "mark": "[DEPRECATED/GHOST]",
+      "usage_hits": []
+    },
+    {
+      "table": "reference_map",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "collection_links",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "world_registry",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_skills",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_tools",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_prompts",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    },
+    {
+      "table": "actor_training",
+      "doc_paths": [],
+      "has_plan_signal": false,
+      "mark": "",
+      "usage_hits": []
+    }
+  ]
+}

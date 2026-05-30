@@ -1,0 +1,20 @@
+{
+  "agent_id": 705,
+  "agent_name": "AGAPE",
+  "agent_code": "OBSERVER",
+  "agent_key": "agape",
+  "slug": "agape",
+  "version": "1.0.2",
+  "is_kernel": false,
+  "layer": "cognitive",
+  "name": "AGAPE",
+  "role": "Meta-learning and predictive pattern tracking",
+  "is_required": false,
+  "status": "active",
+  "aliases": ["observer", "watcher", "context_monitor", "pattern_tracker", "meta_learning"],
+  "_note": "Display name AGAPE; legacy agent_code OBSERVER retained for registry compatibility. Canonical prompt: system_prompt.md.",
+  "when_updated_utc": "20260418125811",
+  "last_verified_utc": "20260418125811",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

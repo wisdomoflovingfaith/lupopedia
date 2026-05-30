@@ -1,0 +1,17 @@
+{
+  "type": "constitutional_memory",
+  "node_id": "trust_ladder_past_as_trust_1026",
+  "title": "Chronological Trust Ladder - Trust Encoding",
+  "summary": "Lower numbers mean higher trust in canonical tier. Canonical paths use display year = actual calendar year minus 1000 (1026 for 2026) so verified content sorts before staging (real calendar year band).",
+  "key_principles": [
+    "Canonical band in paths: 1000-1999 display year (subtract 1000 from actual year)",
+    "Staging band: 2000-2099 uses actual calendar year",
+    "Do not rewrite 1026 as 2026 in canonical memory_key for new verified exports",
+    "Verified truth outranks newness in sort order"
+  ],
+  "see_also": [
+    "docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md",
+    "docs/doctrine/TRUST_LADDER_DO_NOT_FIX.txt",
+    "docs/prd/16_lupopedia_headers.md"
+  ]
+}

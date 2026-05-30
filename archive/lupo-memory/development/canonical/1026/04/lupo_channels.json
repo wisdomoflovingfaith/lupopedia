@@ -1,0 +1,219 @@
+{
+  "id": "hdr-lupo-channels-table-doc",
+  "type": "header_metadata",
+  "schema_version": "lupo_toon_v1",
+  "file_path_from_root": "lupo-docs/database/lupopedia/tables/active/lupo_channels.md",
+  "memory_key": "lupo-memory/development/canonical/1026/04/lupo-channels.toon",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Documentation for lupo_channels table: communication channel management and routing. Namespace channels. Migrated from pre-4.0.99 Markdown lupopedia.edges and lupopedia.footer.",
+  "tags": [
+    "database",
+    "table",
+    "channels",
+    "lupo_channels",
+    "active_table_doc"
+  ],
+  "edges_comment": "Snapshot stage1 confidence-scored edges (git=1.0, code-scan=0.7, db=0.5). Non-exhaustive.",
+  "edges_meta": {
+    "php_hits": 17,
+    "python_hits": 8
+  },
+  "edges": {
+    "outbound": [
+      {
+        "to": "database.table.lupo_channels",
+        "type": "DEFINES_SCHEMA_FOR",
+        "weight": 1.0,
+        "confidence": 1.0,
+        "source": "git-restored"
+      },
+      {
+        "to": "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql",
+        "type": "schema_reference",
+        "weight": 1.0,
+        "confidence": 1.0,
+        "source": "git-restored"
+      },
+      {
+        "to": "install.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.6,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-bin/channel_startup_lifecycle.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.6,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-bin/initialize_system.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.6,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-database/lupopedia/channels/channel_id/1/admin/dashboard.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.6,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.6,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/classes/AgentAwarenessLayer.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/functions/reserved-id-helpers.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/modules/api/channels-api.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/modules/channels/ChannelsController.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/modules/channels/channels-controller.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/modules/crafty_syntax/choosedepartment.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/modules/crafty_syntax/livehelp-js.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-includes/modules/crafty_syntax/visitor-image.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.9,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/audit_schema_doctrine.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.7,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/init_channels.php",
+        "type": "USED_IN_PHP",
+        "weight": 0.7,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "analyze_unused_tables.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/audit_schema_doctrine.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/export_channel_snapshots.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan",
+        "note": "deprecated 2026-04-12; exit stub only"
+      },
+      {
+        "to": "lupo-scripts/legacy/export_channel_snapshots_archived_20260324.py",
+        "type": "references",
+        "weight": 0.5,
+        "confidence": 1.0,
+        "source": "manual-2026-04-12",
+        "reason": "archived unsupported copy of deprecated exporter"
+      },
+      {
+        "to": "lupo-scripts/migrate_filesystem_to_db.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/rebuild_lupo_contents.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/rebuild_schema_from_toons.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/verify_db_against_toons.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      },
+      {
+        "to": "lupo-scripts/wolfie_orms.py",
+        "type": "USED_IN_PYTHON",
+        "weight": 0.5,
+        "confidence": 0.7,
+        "source": "code-scan"
+      }
+    ]
+  },
+  "footer": {
+    "provenance": "phase2_git_header_recovered_body_regenerated",
+    "generated": true,
+    "last_verified": "20260412022118",
+    "last_verified_by": "kairos",
+    "last_verified_by_actor_id": 115,
+    "orchestrator": "kairos:root",
+    "note": "JSON master paired with lupo-channels.toon; migrated from Markdown lupopedia.footer 2026-04-12; edges and purpose/tags in sidecar."
+  }
+}

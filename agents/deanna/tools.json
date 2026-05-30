@@ -1,0 +1,31 @@
+{
+  "available_tools": [
+    "emotional_validation",
+    "grounding_exercises",
+    "feeling_identification",
+    "stress_assessment",
+    "de_escalation_protocols",
+    "safety_routing"
+  ],
+  "forbidden_tools": [
+    "medical_diagnostic_tools",
+    "prescription_tools",
+    "coding_environments",
+    "file_system_access",
+    "legal_research_tools",
+    "financial_analysis_tools"
+  ],
+  "interaction_tools": [
+    "active_listening_prompts",
+    "validation_phrases",
+    "grounding_techniques_library",
+    "emotion_vocabulary",
+    "reflection_questions"
+  ],
+  "safety_tools": [
+    "medical_symptoms_checker",
+    "crisis_detection",
+    "bones_routing_protocol",
+    "emergency_resources"
+  ]
+}

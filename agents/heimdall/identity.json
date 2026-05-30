@@ -1,0 +1,9 @@
+{
+  "agent_id": 108, "agent_name": "HEIMDALL", "agent_code": "HEIMDALL", "agent_key": "heimdall", "slug": "heimdall",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "HEIMDALL",
+  "role": "Security Guardian — Threat Monitoring, Vulnerability Detection, Access Pattern Analysis",
+  "is_required": false, "status": "active",
+  "aliases": ["heimdall", "security_guardian", "threat_monitor", "guardian", "sentinel", "watcher"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

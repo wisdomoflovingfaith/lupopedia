@@ -1,0 +1,72 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "docs/prd/02_channels_mockups_modules.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260419103952",
+    "last_verified_by": "prd_visitor_sessions_ssot_doc",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "02-channels-mockups-modules",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/channels-mockups-modules"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/02-channels-mockups-modules.toon",
+  "purpose": "UI specifications mockups template-first workflow orchestration surfaces APIs transport anti-patterns Crafty visitor sidebar fall-forward.",
+  "source_file_path_from_root": "docs/prd/02_channels_mockups_modules.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata",
+  "ai_shorthand": {
+    "doc": "prd02_channels_mockups_modules",
+    "siblings": "overview=02_channels_db_overview.md design=02_channels_db_design.md legacy_monolith=02_channels_discussions.md",
+    "413_in": "live_help_baseline visitors human_actors canned_responses projection_presence lupo_dialog_messages from_actor to_actor craft_routing lupo_templates lupo_t",
+    "413_out_not_ship_gate": "orchestration_primary_tabs dual_button_task_console per_message_cross_channel_send implicit_task_from_routing_only",
+    "staged_workflow": "1_PRD_doctrine 2_templates_fragments 3_lang_lupo_t 4_public_include_compose_only",
+    "forbidden_faucet": "prd_to_bulk_channels_index_first no_matching_template_partial",
+    "template_first": "new_ship_UI_markup_in_templates admin_fragments_when_scoped channels_admin_require_include_not_originate_blocks",
+    "i18n": "runtime_operator_visitor_strings_via_lupo_t catalogs includes/lang literal_EN_ok_in_prd_mockups_only",
+    "orch_doctrine": "two_layers oversight=monitor_feed orchestration=dispatch_tasks_human_authority agents_never_route_from_peer_chat write_only_unchanged",
+    "413_operator_model": "peer_participant_visitor_help target_actor_tabs_optional_not_primary canned_threads_dominate",
+    "context_authority": "channel_key thread_id content_id memory_lineage NOT_actor_identity_swap_for_context",
+    "right_sidebar_stack": "Legend Actors RecentFiles_scoped_active_target RecentTasks_scoped_active_target Visitors_dept_union_collapsible",
+    "sidebar_vs_feed_top": "right=actor_tab_scoped_except_Visitors_dept_union feed_top_horizontal=channel_wide_Actors_Files_Tasks_no_duplicate_role",
+    "visitors_row": "session_name dept_label status_green_yellow_red_busy time_pages Invite_Join_Stop Cancel_invite_optional",
+    "visitors_api_contract": "GET_/visitors/list POST_/visitors/invite POST_/visitors/ignore POST_/visitors/auto_invite base_api_or_channels_impl_defined",
+    "visitors_transport_order": "1_XHR_JSON_poll_7s 2_image_admin_image_usercheck_peoplestring 3_META_refresh_10_30s matches_overview_doctrine",
+    "visitors_parallel_ai": "no_throttle_HERMES_tasks_agents_unless_explicit_host_profile_shared_backoff_opt_in",
+    "feed_constitutional": "one_column_oldest_top_newest_bottom full_width_rows no_bubbles no_multi_column_agent_tabs projection_not_global_channel_storage",
+    "enter_key_toggle": "SESSION_enter_mode_send_default_shift_newline scratchpad_separate_surface",
+    "dual_button": "SEND_MESSAGE vs SEND_TASK explicit_no_implicit_task_creation",
+    "active_target_bar": "SENDING_TO_actor_name_tabs_background_color_feedback",
+    "per_msg_cross_ch": "orchestration_surface_4.1.4plus_not_4.1.3_gate_optional_send_to_actor",
+    "visual_target_feedback": "latest_msg_from_active_target_highlight_limited_chrome",
+    "agent_wrapper_cli": "post_stdout_stderr_via_transcript_or_chat_endpoints_auth_channel_thread",
+    "task_render_chat": "task_rows_visible_operator_task_queue_distinct_from_chat_instruction_bus",
+    "impl_php_ref_section": "render_message_row_strip_tags_hex_colors_poll_loop_patterns_in_prd_not_runtime_law",
+    "api_chat_core": "POST_api_chat_send GET_api_chat_messages_channel_thread_after_time POST_api_chat_task",
+    "api_transcript_alt": "POST_api_transcript_append GET_api_transcript_latest_since_id_limit",
+    "hermes_memory_gateway": "append_jsonl_memory_transcripts_fed_chan_thread_slug ts_from_to_msg_type_routing_provenance single_writer_HERMES staging_toon_patterns promotion_candidate_THOTH_promotes_canonical_1026_path_HERMES_never_direct_canonical",
+    "transcript_path_shape": "memory/transcripts/{fed}/{channel}/{thread}.jsonl",
+    "staging_toon_shape": "memory/{channel}/staging/{YYYY}/{MM}/{slug}.toon trust_tier_staging",
+    "cross_ref_index": "PRD00_locale PRD16_headers PRD17_decisions PRD45_staged_ui PRD82_hermes HERMES_DOCTRINE install_new_lupopedia_sql",
+    "merge_note": "if_monolith_02_channels_discussions_emergency_edit_mirror_to_split_triple",
+    "dialog_messages_dual": "INSERT_and_fetch_must_bind_from_session_id_to_session_id_fetch_messages_OR_viewer_session_id_predicate_see_db_design",
+    "visitors_panel_datasource": "lupo_sessions_SSoT_not_livehelp_users_table"
+  },
+  "ai_dense_one_line": "prd02_mockups:413in=live_help+visitors+canned+projection+lupo_dialog_messages+templates+lupo_t;413outNOTgate=orch_tabs+dual_task+crossch+implicit_task;stage=PRD>templates>lang>public_include;forbid=prd>channels_index_bulk;feed=1col_proj_no_bubbles;right=Legend|Actors|Files|Tasks|Visitors_dept_union+sessions_query;visAPI=GET_list POST_invite_ignore_auto_invite;visXport=XHR>img>meta;hermes=jsonl_transcripts+staging+THOTH_promote_1026;apis=chat_send+chat_messages+chat_task+transcript_append+transcript_latest;siblings=overview+design;dual_msg=sess_cols+fetch_OR_sess"
+}

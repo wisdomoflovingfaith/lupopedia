@@ -1,0 +1,8 @@
+# Python dependencies for Lupopedia migration scripts
+# Install with: pip install -r requirements.txt
+
+# MySQL database driver
+pymysql==1.1.0
+
+# PRD shorthand generator (generate_prd_shorthands.py) and other YAML header tooling
+PyYAML>=6.0

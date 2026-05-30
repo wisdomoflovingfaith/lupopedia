@@ -1,0 +1,65 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_api_clients",
+  "fields": [
+    "`api_client_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`client_key` varchar(255) NOT NULL",
+    "`client_secret` varchar(255) NOT NULL",
+    "`client_name` varchar(150) NOT NULL",
+    "`client_description` text",
+    "`scopes` text",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`expires_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_api_clients_uq_client_key",
+      "columns": [
+        "client_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_clients_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_clients_idx_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_clients_idx_expires",
+      "columns": [
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "api_client_id",
+    "expected_name": "api_client_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

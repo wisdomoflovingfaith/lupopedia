@@ -1,0 +1,17 @@
+{
+  "memory_type": "routing_knowledge",
+  "core_knowledge": {
+    "routing_conventions": "Canonical routing conventions per MULTI_AGENT_COORDINATION_DOCTRINE §5",
+    "actor_registry_snapshot": "Last known state of registered actors in lupo_actors",
+    "intent_classification_patterns": "Proven intent classification patterns for channel artifacts"
+  },
+  "working_memory": {
+    "active_routing_decisions": "Routing decisions currently being processed",
+    "pending_normalizations": "Communications awaiting normalization"
+  },
+  "memory_boundaries": ["routing and messaging scope only", "no implementation authority"],
+  "retention_rules": ["retain routing patterns", "retain actor registry knowledge", "no ego"],
+  "forbidden_memory": ["routing to unregistered actors", "doctrine redefinition attempts"],
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

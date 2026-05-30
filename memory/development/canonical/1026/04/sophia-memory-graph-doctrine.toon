@@ -1,0 +1,50 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Doctrine sidecar mirrors canonical spec",
+        "source": "cursor",
+        "to": "docs/doctrine/sophia_memory_graph_doctrine.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Agent runtime config",
+        "source": "cursor",
+        "to": "agents/sophia/memory.json",
+        "type": "implements",
+        "weight": 0.9
+      },
+      {
+        "reason": "Memory graph constitutional authority",
+        "source": "cursor",
+        "to": "docs/prd/38_A-i_MEMORY_UNIFICATION.md",
+        "type": "anchored_by",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260523035209",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "sophia-memory-graph-doctrine",
+    "default_collection_id": null,
+    "note": "SOPHIA (707) three-tier graph memory; Logothete internal scribe; promotion via THOTH.",
+    "transcript_jsonl": "0/development/sophia-memory-graph-doctrine"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/sophia-memory-graph-doctrine.toon",
+  "purpose": "SOPHIA wisdom engine v1: seed, staging, long-term tiers; promotion and pruning; Logothete; PRD 38 alignment.",
+  "source_file_path_from_root": "docs/doctrine/sophia_memory_graph_doctrine.md",
+  "tags": [
+    "doctrine",
+    "sophia",
+    "memory_graph",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

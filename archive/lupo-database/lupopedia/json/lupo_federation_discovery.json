@@ -1,0 +1,49 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_federation_discovery",
+  "fields": [
+    "`federation_discovery_id` bigint NOT NULL",
+    "`domain` varchar(255) NOT NULL",
+    "`install_url` varchar(500)",
+    "`is_lupopedia` tinyint NOT NULL DEFAULT 0",
+    "`last_seen_ymdhis` bigint",
+    "`first_seen_ymdhis` bigint",
+    "`hashtag_count` bigint",
+    "`question_count` bigint",
+    "`atom_count` bigint",
+    "`context_count` bigint",
+    "`collection_count` bigint",
+    "`keywords` varchar(500)",
+    "`description` text",
+    "`import_hashtags` tinyint NOT NULL DEFAULT 0",
+    "`import_questions` tinyint NOT NULL DEFAULT 0",
+    "`import_atoms` tinyint NOT NULL DEFAULT 0",
+    "`import_collections` tinyint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_federation_discovery_idx_domain",
+      "columns": [
+        "domain"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "federation_discovery_id",
+    "expected_name": "federation_discovery_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

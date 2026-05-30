@@ -1,0 +1,128 @@
+{
+  "0": {
+    "name": "System Kernel",
+    "description": "Kernel, bootstrapping, and system-level coordination.",
+    "type": "kernel",
+    "created_ymdhis": "20240101000000"
+  },
+  "1": {
+    "name": "Admin and Operations",
+    "description": "Administrative operations, system management, and control workflows.",
+    "type": "operations",
+    "created_ymdhis": "20240101000000"
+  },
+  "7": {
+    "name": "Channel 7 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "11": {
+    "name": "Channel 11 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "17": {
+    "name": "Channel 17 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "23": {
+    "name": "Channel 23 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "31": {
+    "name": "Channel 31 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "36": {
+    "name": "Channel 36 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "42": {
+    "name": "Crafty Syntax / Lupopedia Development",
+    "description": "Development, migrations, and agent coordination.",
+    "type": "development",
+    "created_ymdhis": "20240101000000"
+  },
+  "51": {
+    "name": "Channel 51 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "58": {
+    "name": "Canonical Role Layer",
+    "description": "Actor model and role-layer doctrine implementation stream.",
+    "type": "doctrine",
+    "created_ymdhis": "20260323000000"
+  },
+  "59": {
+    "name": "ROSE and Dialog System",
+    "description": "ROSE/dialog model and mood-system implementation stream.",
+    "type": "doctrine",
+    "created_ymdhis": "20260323000000"
+  },
+  "60": {
+    "name": "Agent System Design",
+    "description": "Agent-system structure, requirements, and import-pipeline stream.",
+    "type": "development",
+    "created_ymdhis": "20260323000000"
+  },
+  "61": {
+    "name": "Context Graph Architecture",
+    "description": "Context graph and edge architecture implementation stream.",
+    "type": "architecture",
+    "created_ymdhis": "20260323000000"
+  },
+  "62": {
+    "name": "Lupo Folder Organization and Documentation Accuracy",
+    "description": "Organization of * directories, deprecated artifact cleanup, and docs accuracy reconciliation for current version.",
+    "type": "governance",
+    "created_ymdhis": "20260324145135"
+  },
+  "63": {
+    "name": "Database Documentation",
+    "description": "Database table documentation, TOON/json alignment, edge documentation, and markdown cleanup.",
+    "type": "documentation",
+    "created_ymdhis": "20260324150100"
+  },
+  "64": {
+    "name": "Edge Generation Governance",
+    "description": "Edge creation/inference/update governance and lupopedia.edges generation rules.",
+    "type": "governance",
+    "created_ymdhis": "20260324150200"
+  },
+  "66": {
+    "name": "Channel 66 Production",
+    "description": "Production/ingestion stream and channel-66 operational workflows.",
+    "type": "production",
+    "created_ymdhis": "20240101000000"
+  },
+  "88": {
+    "name": "Channel 88 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "420": {
+    "name": "Channel 420 Workspace",
+    "description": "Active workspace channel registered from channel directory inventory.",
+    "type": "workspace",
+    "created_ymdhis": "20240101000000"
+  },
+  "666": {
+    "name": "ANUBIS Quarantine",
+    "description": "Banned, rejected, or malformed message isolation.",
+    "type": "quarantine",
+    "created_ymdhis": "20240101000000"
+  }
+}

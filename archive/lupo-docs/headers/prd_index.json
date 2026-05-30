@@ -1,0 +1,24 @@
+{
+  "file_id": "PRD_INDEX.md",
+  "file_path": "lupo-docs/prd/PRD_INDEX.md",
+  "last_updated": "20260409113315",
+  "memory_ref": "lupo-memory/2026/04/M-prd-index-20260409.toon",
+  "edges": {
+    "outbound": [
+      {"to": "lupo-docs/prd/README.md", "type": "references", "weight": 1.0},
+      {"to": "lupo-docs/prd/00_root_constitutional_system_requirements.md", "type": "references", "weight": 1.0}
+    ]
+  },
+  "tags": ["tag-prd", "tag-index", "tag-documentation", "tag-requirements", "draft"],
+  "prd_id": null,
+  "prd_slug": "PRD_INDEX",
+  "status": "active",
+  "schema_version": "header_json_v1",
+  "footer": {
+    "last_verified": "20260409113315",
+    "verified_by": {
+      "actor_id": 116,
+      "agent_name_identity": "Claude Code"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+id: 54
+type: prd
+title: actor compliance
+status: active
+created: 20260412131327
+
+edges:
+  outbound:
+  - to: docs/prd/00_root_constitutional_system_requirements.md
+    type: references
+  - to: docs/prd/38_memory_unification.md
+    type: references
+  - to: docs/prd/50_agent_coordination_protocol.md
+    type: references
+  - to: docs/prd/52_memory_graph_focus_manifest.md
+    type: references
+  - to: docs/prd/53_runtime_guard.md
+    type: references
+  - to: docs/prd/56_probe_harness_v2.md
+    type: references
+  - to: docs/prd/58_transcript_filter.md
+    type: references
+  - to: docs/prd/60_orchestrator_scheduler.md
+    type: references
+  - to: docs/prd/61_doctrine_consolidation_shorthand_compiler.md
+    type: references

@@ -1,0 +1,103 @@
+{
+  "id": "15-actors",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "lupo-docs/prd/15_actors.md",
+  "channel_key": "actors",
+  "trust_tier": "canonical",
+  "purpose": "Actor identity; actors belong to departments (not users); act-as; workspace; visitor chat support via PRD 05",
+  "status": "draft",
+  "tags": [
+    "prd",
+    "actors",
+    "agents",
+    "identity",
+    "department",
+    "personalization"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 2,
+    "name": "LILITH"
+  },
+  "delegation_chain": "lilith:audit",
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Constitutional anchor"
+      },
+      {
+        "to": "lupo-docs/prd/79_install_seed_doctrine.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Install seed vs IdGenerator staging vs toCanonicalId living canonical \u2014 \u00a72\u2013\u00a73"
+      },
+      {
+        "to": "lupo-docs/prd/01_core_identity.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Actor tables defined in core_identity"
+      },
+      {
+        "to": "lupo-docs/prd/07_agents_faucets.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Actors extend agents"
+      },
+      {
+        "to": "lupo-docs/prd/74_governance_rules.md",
+        "type": "references",
+        "weight": 0.8,
+        "reason": "Department permissions"
+      },
+      {
+        "to": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Department-first act-as; auth_user \u2194 actor bindings"
+      },
+      {
+        "to": "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical approved join model; actors belong to departments"
+      },
+      {
+        "to": "lupo-docs/prd/25_departments_system.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Root hybrids and lupo_actor_departments"
+      },
+      {
+        "to": "lupo-docs/prd/18_channel_chat_display.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "LILITH-approved: lupo_actors drives chat strip; from_actor_id"
+      },
+      {
+        "to": "README.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Root README \u00a73 \u2014 three-layer actor model onboarding mirror (4.0.96+)"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260408014411",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 2,
+      "agent_name_identity": "LILITH"
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "lilith:audit",
+    "next_action": []
+  }
+}

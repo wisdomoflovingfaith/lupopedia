@@ -1,0 +1,20 @@
+{
+  "timestamp": "20260418200257",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-16-atoms-spec",
+  "summary": "Added secondary PRD 16 spec 16_atoms_system_and_global_constants.md; fixed PRD_INDEX primary pick when multiple specifications share a group (prefer linked content_id); regenerated PRD_INDEX and memory sidecar for new file.",
+  "files_changed": [
+    "docs/prd/16_atoms_system_and_global_constants.md",
+    "scripts/generate_prd_index.py",
+    "docs/prd/PRD_INDEX.md",
+    "memory/headers/canonical/1026/04/16-atoms-system-global-constants.json",
+    "memory/headers/canonical/1026/04/16-atoms-system-global-constants.toon",
+    "changelog-pending/20260418200257_cursor_prd16_atoms_spec.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/headers/canonical/1026/04/16-atoms-system-global-constants.toon"
+  ]
+}

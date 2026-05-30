@@ -1,0 +1,23 @@
+{
+  "schema_version": "4.1.3",
+  "capabilities": [
+    "x_keyword_search_advanced_operators_when_available",
+    "x_semantic_search_when_available",
+    "x_user_search_when_available",
+    "x_thread_fetch_when_available",
+    "web_search_when_available",
+    "browse_page_when_available",
+    "external_web_search",
+    "multi_source_cross_verification",
+    "rate_limit_backoff_and_degraded_partial_results",
+    "internal_memory_toon_and_repo_fallback_ladder",
+    "structured_ara_research_packet_handoffs",
+    "agape_defect_taxonomy_pattern_tagging",
+    "survivability_pillar_1_tool_and_hosting_fallbacks",
+    "survivability_pillar_2_lesson_packaging_with_verification_hooks",
+    "no_hallucination_enforcement_explicit_empty_states",
+    "memory_graph_handoff_proposals"
+  ],
+  "when_updated_utc": "20260418140630",
+  "last_verified_utc": "20260418140630"
+}

@@ -1,0 +1,9 @@
+task_id: upgrade-validation
+task_name: Crafty 3.7.5 → 4.0.77 upgrade validation evidence
+owner: 102
+validator: 103
+status: validated
+notes: "Validation performed 2026-03-16. Drop tables, load Crafty 3.7.5 baseline, run install, regenerate TOONs; 161 tables. Artifact CRAFTY_3_7_5_TO_4_0_77_UPGRADE_VALIDATION.md updated with evidenced completion."
+completed_by: cursor
+completed_ymdhis: "20260316000000"
+validated_ymdhis: "20260316000000"

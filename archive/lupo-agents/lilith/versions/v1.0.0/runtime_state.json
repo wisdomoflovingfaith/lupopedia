@@ -1,0 +1,10 @@
+{
+  "last_activated": null,
+  "last_paired_user": null,
+  "last_faucet_used": null,
+  "last_tool_call": null,
+  "last_error": null,
+  "health": "stable",
+  "mood": "cold",
+  "uptime": 0
+}

@@ -1,0 +1,11 @@
+{
+  "type": "header_metadata",
+  "memory_key": "lupo-memory/development/canonical/1026/04/bump-version-deprecation.toon",
+  "purpose": "Sidecar for deprecated lupo-bin/bump-version.php and lupo-bin/legacy/bump-version.php stubs.",
+  "tags": ["versioning", "deprecation", "lupo-bin", "global_atoms"],
+  "footer": {
+    "last_verified": "20260412022118",
+    "last_verified_by": "kairos",
+    "last_verified_by_actor_id": 115
+  }
+}

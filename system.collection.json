@@ -1,0 +1,15 @@
+{
+  "collection_key": "system",
+  "title": "Lupopedia System Root Collection",
+  "description": "Root collection for core system artifacts, constitutional PRDs, and global configuration. Authority: PRD 00_A, 00_C, 00_D.",
+  "created_utc": "20260423183000",
+  "collection_type": "root",
+  "fallback_mode": true,
+  "authority_level": "provisional",
+  "authority_source": "chiron_filesystem_discovery",
+  "replaceable": true,
+  "authoritative_source_id": null,
+  "parent": null,
+  "children": [],
+  "doctrine_reference": ["00_A", "00_C", "00_D"]
+}

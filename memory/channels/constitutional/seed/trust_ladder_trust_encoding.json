@@ -1,0 +1,15 @@
+{
+  "trust_ladder_rules": [
+    {
+      "rule_id": "TRUST_LADDER_001",
+      "rule_name": "Trust Encoding - Lower Display Year Means Higher Trust (Canonical)",
+      "normative_text": "Canonical or verified filesystem memory paths SHOULD use the display year segment (actual_calendar_year minus 1000) under .../canonical/ so trusted material sorts before staging. Staging paths use the actual calendar year segment. Application logic and PK bands follow CHRONOLOGICAL_TRUST_LADDER doctrine.",
+      "do_not_fix_warning": "1026 is not a calendar typo for 2026 in canonical tier encoding. Do not mass-replace 1026 with 2026 in canonical memory_key paths for new verified content.",
+      "violation_consequence": "Canonical content could sort after staging or confuse trust tier, breaking ladder semantics.",
+      "see_also": [
+        "docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md",
+        "docs/doctrine/TRUST_LADDER_DO_NOT_FIX.txt"
+      ]
+    }
+  ]
+}

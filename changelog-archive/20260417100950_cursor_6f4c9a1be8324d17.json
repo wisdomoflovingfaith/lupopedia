@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417100950",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "validator-doctrine-wording-pass",
+  "summary": "Updated validator summary/docstring wording to reflect canonical synchronous ANUBIS baseline and clarified content_id shape-only validation scope.",
+  "files_changed": [
+    "scripts/validate_lupopedia_headers_universal.py",
+    "docs/versions/4.1.2/buffer/20260417100950_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

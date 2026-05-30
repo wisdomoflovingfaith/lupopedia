@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\overview\\thread-summary\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\thread-summary\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\thread-summary\\thread_summary_dialog.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\overview\\thread-summary\\VERSION_3.0.66_THREAD_SUMMARY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

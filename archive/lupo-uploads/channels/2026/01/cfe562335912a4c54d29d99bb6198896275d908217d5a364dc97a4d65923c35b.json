@@ -1,0 +1,11 @@
+{
+    "channel_id": 1002,
+    "channel_key": "dev-main-thread",
+    "threads": [],
+    "metadata": {
+        "total_threads": 0,
+        "active_threads": 0,
+        "last_activity": null,
+        "thread_purpose": "development_coordination"
+    }
+}

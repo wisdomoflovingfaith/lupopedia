@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lupopedia Channel Interface Mockup</title>
+  <style>
+    /* CSS Reset and base styles */
+    :root {
+      --bg-main: #111111;
+      --bg-panel: #1a1b1e;
+      --bg-header: #222222;
+      --text-main: #e0e0e0;
+      --text-muted: #888888;
+      --border-color: #333333;
+
+      --color-cursor: #ffd700;
+      --color-auggie: #1e90ff;
+      --color-gemini: #32cd32;
+      --color-cascade: #8a2be2;
+      --color-thoth: #8b0000;
+      /* Dark red background for THOTH */
+      --color-thoth-text: #ffd700;
+      /* Gold text */
+      --color-task: #ffbf00;
+      /* Amber highlight */
+
+      --observer-bg: #000000;
+      --observer-text: #ffffff;
+
+      --active-tint: rgba(50, 205, 50, 0.1);
+      --active-border: #32cd32;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* LEFT PANEL */
+    #leftPanelDiv {
+      width: 250px;
+      background-color: var(--bg-panel);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .panel-header {
+      padding: 10px;
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-section {
+      padding: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-weight: bold;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .section-content {
+      display: block;
+    }
+
+    .collapsed .section-content {
+      display: none;
+    }
+
+    .legend-item,
+    .actor-item,
+    .file-item,
+    .task-item {
+      font-size: 12px;
+      margin: 4px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      display: inline-block;
+    }
+
+    .status-active {
+      background-color: #32cd32;
+    }
+
+    .status-idle {
+      background-color: #aaaaaa;
+    }
+
+    .status-sleeping {
+      background-color: #ffd700;
+    }
+
+    .status-throttled {
+      background-color: #ff8c00;
+    }
+
+    .status-failed {
+      background-color: #ff0000;
+    }
+
+    .status-unknown {
+      background-color: #555555;
+    }
+
+    /* MAIN CHAT AREA */
+    .main-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #feedDiv {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .message {
+      padding: 4px 8px;
+      font-size: 13px;
+      display: flex;
+      position: relative;
+    }
+
+    .msg-time {
+      color: var(--text-muted);
+      margin-right: 8px;
+    }
+
+    .msg-sender {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .msg-content {
+      flex: 1;
+    }
+
+    .msg-route-btn {
+      margin-left: 10px;
+      font-size: 11px;
+      cursor: pointer;
+      background-color: #2a2a2a;
+      border: 1px solid #444;
+      color: #ccc;
+      padding: 1px 4px;
+    }
+
+    /* Message Styles */
+    .msg-cursor .msg-sender {
+      color: var(--color-cursor);
+    }
+
+    .msg-auggie .msg-sender {
+      color: var(--color-auggie);
+    }
+
+    .msg-gemini .msg-sender {
+      color: var(--color-gemini);
+    }
+
+    .msg-cascade .msg-sender {
+      color: var(--color-cascade);
+    }
+
+    .msg-thoth {
+      background-color: var(--color-thoth);
+      color: var(--color-thoth-text);
+    }
+
+    .msg-thoth .msg-sender {
+      color: var(--color-thoth-text);
+    }
+
+    .msg-thoth .msg-time {
+      color: #ffaaaa;
+    }
+
+    .msg-task .msg-content {
+      font-weight: bold;
+      background-color: rgba(255, 191, 0, 0.2);
+      border-left: 2px solid var(--color-task);
+      padding-left: 4px;
+    }
+
+    /* BOTTOM AREA */
+    .bottom-area {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .sending-bar {
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: var(--active-tint);
+      border-bottom: 1px solid var(--active-border);
+    }
+
+    #tabBarDiv {
+      display: flex;
+      background-color: var(--bg-panel);
+    }
+
+    .act-tab {
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+      border-right: 1px solid var(--border-color);
+      border-top: 2px solid transparent;
+    }
+
+    .act-tab.observer {
+      background-color: var(--observer-bg);
+      color: var(--observer-text);
+      border-top-color: #444;
+    }
+
+    .act-tab.active {
+      background-color: var(--active-tint);
+      border-top-color: var(--active-border);
+    }
+
+    #inputAreaDiv {
+      display: flex;
+      padding: 10px;
+      background-color: var(--active-tint);
+      gap: 10px;
+      align-items: center;
+    }
+
+    #msgInput {
+      flex: 1;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--active-border);
+      color: white;
+      padding: 8px;
+      font-family: inherit;
+      resize: none;
+      height: 40px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      font-family: inherit;
+    }
+
+    .btn-send {
+      background-color: #555;
+      color: white;
+    }
+
+    .btn-task {
+      background-color: var(--active-border);
+      color: black;
+    }
+
+    .enter-toggle {
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 20px;
+      user-select: none;
+    }
+
+    /* MODAL */
+    #routeModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="leftPanelDiv">
+    <div class="panel-header">
+      <strong>development</strong>
+      <span>v</span>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-title" onclick="toggleSection(this)">LEGEND <span>v</span></div>
+      <div class="section-content">
+        <div class="legend-item"><span class="status-dot status-active"></span>ACTIVE</div>
+        <div class="legend-item"><span class="status-dot status-idle"></span>IDLE</div>
+        <div class="legend-item"><span class="status-dot status-sleeping"></span>SLEEPING</div>
+        <div class="legend-item"><span class="status-dot status-throttled"></span>THROTTLED</div>
+        <div class="legend-item"><span class="status-dot status-failed"></span>FAILED</div>
+        <div class="legend-item"><span class="status-dot status-unknown"></span>UNKNOWN</div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-title" onclick="toggleSection(this)">ACTORS <span>v</span></div>
+      <div class="section-content">
+        <div class="actor-item"><span class="status-dot status-active"></span>CURSOR</div>
+        <div class="actor-item"><span class="status-dot status-idle"></span>AUGGIE</div>
+        <div class="actor-item"><span class="status-dot status-active"></span>GEMINI</div>
+        <div class="actor-item"><span class="status-dot status-unknown"></span>CASCADE</div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-title" onclick="toggleSection(this)">FILES <span>v</span></div>
+      <div class="section-content">
+        <div class="file-item">index.php <span style="margin-left:auto;color:#888;">2m</span></div>
+        <div class="file-item">mockup_try2.htm <span style="margin-left:auto;color:#888;">now</span></div>
+        <div class="file-item">open_questions.md <span style="margin-left:auto;color:#888;">22m</span></div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="section-title" onclick="toggleSection(this)">TASKS <span>v</span></div>
+      <div class="section-content">
+        <div class="task-item" style="color:var(--color-task);">[in progress] Header sync</div>
+        <div class="task-item">[done] PRD 02 gap analysis</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-area">
+    <div id="feedDiv">
+      <div class="message msg-system">
+        <span class="msg-time">10:48:09</span>
+        <span class="msg-sender">[SYSTEM]</span>
+        <span class="msg-content">Thread created for 2026-04-16 | channel: development</span>
+      </div>
+      <div class="message msg-captain">
+        <span class="msg-time">10:48:01</span>
+        <span class="msg-sender">[CAPTAIN]</span>
+        <span class="msg-content">Starting PRD 02 update session. Reading blog and gap analysis now.</span>
+        <button class="msg-route-btn" onclick="openRouteModal()">[send to actor]</button>
+      </div>
+      <div class="message msg-cursor msg-task">
+        <span class="msg-time">10:54:01</span>
+        <span class="msg-sender">[CURSOR]</span>
+        <span class="msg-content">WARNING: channels/index.php header is v4.0.99 (legacy format). Needs bump to
+          4.1.2.</span>
+        <button class="msg-route-btn" onclick="openRouteModal()">[send to actor]</button>
+      </div>
+      <div class="message msg-auggie">
+        <span class="msg-time">10:58:50</span>
+        <span class="msg-sender">[AUGGIE]</span>
+        <span class="msg-content">Reading blog entry at lupo-content/federation_node/0/captains_log...</span>
+        <button class="msg-route-btn" onclick="openRouteModal()">[send to actor]</button>
+      </div>
+      <div class="message msg-thoth">
+        <span class="msg-time">10:51:25</span>
+        <span class="msg-sender">[THOTH]</span>
+        <span class="msg-content">[ALERT] max_seed_actors=999. Contradiction detected. Logged as OQ-57. No merge until
+          resolved.</span>
+        <button class="msg-route-btn" onclick="openRouteModal()">[send to actor]</button>
+      </div>
+      <div class="message msg-gemini last-active-msg">
+        <span class="msg-time">10:55:01</span>
+        <span class="msg-sender">[GEMINI]</span>
+        <span class="msg-content">PRD 02 orchestration findings from Lilith have been integrated.</span>
+        <button class="msg-route-btn" onclick="openRouteModal()">[send to actor]</button>
+      </div>
+    </div>
+
+    <div class="bottom-area">
+      <div class="sending-bar" id="sendingBar">SENDING TO: GEMINI</div>
+
+      <div id="tabBarDiv">
+        <!-- Tabs will be rendered here via JS -->
+      </div>
+
+      <div id="inputAreaDiv">
+        <div class="enter-toggle" id="enterToggle" onclick="toggleEnterMode()" title="Toggle Enter Mode">↵</div>
+        <textarea id="msgInput" placeholder="Enter message..."></textarea>
+        <button class="btn btn-send" onclick="sendMsg('text')">Send Message</button>
+        <button class="btn btn-task" id="btnTask" onclick="sendMsg('task')">Send Task</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeRouteModal()"></div>
+  <div id="routeModal">
+    <h3>Route Message</h3>
+    <div style="margin-bottom: 10px;">
+      <label>Destination Channel: </label>
+      <select id="routeChannel">
+        <option value="development">development</option>
+        <option value="captains_log">captains_log</option>
+        <option value="blog-writing">blog-writing</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label>Destination Actor (opt): </label>
+      <select id="routeActor">
+        <option value="">[None / Channel Broadcast]</option>
+        <option value="AUGGIE">AUGGIE</option>
+        <option value="GEMINI">GEMINI</option>
+        <option value="LILITH">LILITH</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="routeExplanation">Routing explanation (for destination agent): </label><br>
+      <textarea id="routeExplanation" rows="3" style="width:100%;background:#111;border:1px solid #444;color:#ccc;font-family:monospace;font-size:12px;margin-top:4px;" placeholder="e.g., Gemini updated the chat mockup, here is what she did..."></textarea>
+    </div>
+    <button class="btn btn-send" onclick="confirmRoute()">Confirm Route</button>
+    <button class="btn btn-send" onclick="closeRouteModal()" style="background:#333;">Cancel</button>
+  </div>
+
+  <script>
+    // Data
+    const TABS = [
+      { id: 'cursor', label: 'Cursor', color: '#ffd700', type: 'active' },
+      { id: 'auggie', label: 'Auggie', color: '#1e90ff', type: 'active' },
+      { id: 'gemini', label: 'Gemini', color: '#32cd32', type: 'active' },
+      { id: 'cascade', label: 'Cascade', color: '#8a2be2', type: 'active' },
+      { id: 'rose', label: 'Rose', color: '#555555', type: 'observer' },
+      { id: 'lilith', label: 'Lilith', color: '#555555', type: 'observer' },
+      { id: 'thoth', label: 'Thoth', color: '#555555', type: 'observer' }
+    ];
+
+    let activeTabId = 'gemini';
+    let enterModeSend = true; // true = enter sends, false = enter newline
+
+    // Init
+    function init() {
+      renderTabs();
+      applyTabState(activeTabId);
+
+      // Input event listener for enter toggle
+      document.getElementById('msgInput').addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        if (enterModeSend) {
+          // SEND mode (PRD 02 default): Enter submits, Shift+Enter inserts newline
+          if (e.shiftKey) {
+            return;
+          }
+          e.preventDefault();
+          sendMsg('text');
+        } else {
+          // DRAFT mode: Enter inserts newline, Shift+Enter submits
+          if (e.shiftKey) {
+            e.preventDefault();
+            sendMsg('text');
+          }
+        }
+      });
+    }
+
+    function renderTabs() {
+      const bar = document.getElementById('tabBarDiv');
+      bar.innerHTML = '';
+      TABS.forEach(t => {
+        const d = document.createElement('div');
+        d.className = 'act-tab ' + (t.type === 'observer' ? 'observer' : '');
+        d.innerText = t.label;
+        d.onclick = () => selectTab(t.id);
+
+        // Default styling
+        if (t.id === activeTabId) {
+          d.classList.add('active');
+        }
+
+        if (t.type === 'active' && t.id === activeTabId) {
+          d.style.backgroundColor = t.color;
+          d.style.color = 'black';
+        } else if (t.type === 'active') {
+          d.style.color = t.color;
+        }
+
+        bar.appendChild(d);
+      });
+    }
+
+    function hexToRgba(hex, alpha) {
+      var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+    }
+
+    function selectTab(id) {
+      activeTabId = id;
+      renderTabs();
+      applyTabState(id);
+    }
+
+    function applyTabState(id) {
+      const tab = TABS.find(t => t.id === id);
+      const root = document.documentElement;
+
+      const sendingBar = document.getElementById('sendingBar');
+      const inputArea = document.getElementById('inputAreaDiv');
+      const msgInput = document.getElementById('msgInput');
+      const btnTask = document.getElementById('btnTask');
+
+      sendingBar.innerText = 'SENDING TO: ' + tab.label.toUpperCase();
+
+      if (tab.type === 'active') {
+        const tint = hexToRgba(tab.color, 0.3);
+        const border = tab.color;
+
+        root.style.setProperty('--active-tint', hexToRgba(tab.color, 0.2));
+        root.style.setProperty('--active-border', tab.color);
+
+        sendingBar.style.backgroundColor = hexToRgba(tab.color, 0.4);
+        sendingBar.style.color = 'white';
+        sendingBar.style.borderBottomColor = border;
+
+        inputArea.style.backgroundColor = hexToRgba(tab.color, 0.2);
+        msgInput.style.borderColor = border;
+
+        btnTask.style.backgroundColor = tab.color;
+        btnTask.style.color = '#000';
+        btnTask.style.display = 'inline-block';
+
+        updateLastMessageHighlight(tab.id, hexToRgba(tab.color, 0.3));
+
+      } else {
+        // Observer
+        root.style.setProperty('--active-tint', '#1a1b1e');
+        root.style.setProperty('--active-border', '#444');
+
+        sendingBar.style.backgroundColor = '#1a1b1e';
+        sendingBar.style.color = '#aaa';
+        sendingBar.style.borderBottomColor = '#444';
+
+        inputArea.style.backgroundColor = '#1a1b1e';
+        msgInput.style.borderColor = '#444';
+
+        btnTask.style.display = 'none'; // Observers don't get tasks
+
+        updateLastMessageHighlight(null, null);
+      }
+    }
+
+    function updateLastMessageHighlight(actorId, color) {
+      // Clear previous
+      document.querySelectorAll('.last-active-msg').forEach(el => {
+        el.style.backgroundColor = 'transparent';
+        el.classList.remove('last-active-msg');
+      });
+
+      if (!actorId) return;
+
+      // Find last message from this actor
+      const msgs = document.querySelectorAll('.msg-' + actorId);
+      if (msgs.length > 0) {
+        const lastMsg = msgs[msgs.length - 1];
+        lastMsg.classList.add('last-active-msg');
+        lastMsg.style.backgroundColor = color;
+      }
+    }
+
+    function toggleSection(el) {
+      el.parentElement.classList.toggle('collapsed');
+    }
+
+    function toggleEnterMode() {
+      enterModeSend = !enterModeSend;
+      const t = document.getElementById('enterToggle');
+      if (enterModeSend) {
+        t.innerHTML = '&#8629;';
+        t.title = 'SEND mode: Enter sends, Shift+Enter newline (PRD 02)';
+        t.style.color = '#fff';
+      } else {
+        t.innerHTML = '&para;';
+        t.title = 'DRAFT mode: Enter newline, Shift+Enter sends (PRD 02)';
+        t.style.color = '#888';
+      }
+    }
+
+    // Modal logic
+    function openRouteModal() {
+      document.getElementById('modalOverlay').style.display = 'block';
+      document.getElementById('routeModal').style.display = 'block';
+    }
+
+    function closeRouteModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+      document.getElementById('routeModal').style.display = 'none';
+    }
+
+    function confirmRoute() {
+      const chan = document.getElementById('routeChannel').value;
+      const act = document.getElementById('routeActor').value;
+      const explainEl = document.getElementById('routeExplanation');
+      const explain = explainEl ? explainEl.value.trim() : '';
+      const feed = document.getElementById('feedDiv');
+
+      const d = new Date();
+      const time = d.toTimeString().split(' ')[0];
+
+      const target = act ? act + ' in ' + chan : chan;
+      const explainBlock = explain
+        ? '<div style="margin-top:6px;font-size:11px;color:#aaa;border-left:2px solid #17a2b8;padding-left:8px;">' +
+          explain.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br/>') +
+          '</div>'
+        : '';
+
+      const msgOuter = document.createElement('div');
+      msgOuter.className = 'message';
+      msgOuter.style.backgroundColor = 'rgba(100,100,255,0.2)';
+      msgOuter.style.borderLeft = '2px solid #66f';
+      msgOuter.innerHTML = `
+    <span class="msg-time">${time}</span>
+    <span class="msg-sender" style="color:#88f">[ROUTE]</span>
+    <span class="msg-content">> sent to ${target}</span>
+    ${explainBlock}
+  `;
+
+      feed.appendChild(msgOuter);
+      feed.scrollTop = feed.scrollHeight;
+      if (explainEl) explainEl.value = '';
+      closeRouteModal();
+    }
+
+    function sendMsg(type) {
+      const input = document.getElementById('msgInput');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const feed = document.getElementById('feedDiv');
+      const d = new Date();
+      const time = d.toTimeString().split(' ')[0];
+      const tab = TABS.find(t => t.id === activeTabId);
+      const senderLabel = tab ? tab.label.toUpperCase() : 'USER';
+
+      const msgOuter = document.createElement('div');
+      msgOuter.className = 'message msg-' + activeTabId + (type === 'task' ? ' msg-task' : '');
+
+      let contentHtml = val.replace(/\n/g, '<br/>');
+
+      msgOuter.innerHTML = `
+    <span class="msg-time">${time}</span>
+    <span class="msg-sender">[${senderLabel}]</span>
+    <span class="msg-content">${contentHtml}</span>
+    <button class="msg-route-btn" onclick="openRouteModal()">[send to actor]</button>
+  `;
+
+      feed.appendChild(msgOuter);
+      input.value = '';
+      feed.scrollTop = feed.scrollHeight;
+
+      applyTabState(activeTabId); // re-calc highlight
+    }
+
+    // init call
+    init();
+  </script>
+</body>
+
+</html>

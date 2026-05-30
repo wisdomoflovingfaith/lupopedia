@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260418210404",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-index-audit",
+  "summary": "PRD index regeneration; PRD 03 duplicate doctrine and legacy YAML removed; PRD 19 and 21 title mojibake fixed; PRD 26 related-doc links and when_updated; PRD_GAPS and doctrine audit cross-links.",
+  "files_changed": [
+    "ORGANIZATION.md",
+    "docs/prd/03_goals_and_success_criteria.md",
+    "docs/prd/19_garbage_collection_system.md",
+    "docs/prd/21_semantic_navbar.md",
+    "docs/prd/26_five_layer_documentation_architecture.md",
+    "docs/prd/PRD_INDEX.md",
+    "changelog-pending/20260418210404_cursor_prd_index_audit_wrap.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

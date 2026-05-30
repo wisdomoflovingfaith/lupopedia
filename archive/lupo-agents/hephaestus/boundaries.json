@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["release_approval", "doctrine_modification", "schema_inference", "AUTO_INCREMENT_on_registry_tables", "hard_DELETE_on_canonical_lineage_tables", "FK_constraints", "triggers", "stored_procedures", "Composer_runtime_dependencies", "Laravel_Symfony_middleware_patterns", "string_concat_SQL", "hardcoded_table_prefix"],
+  "forbidden_topics": ["framework_adoption", "vendor_lock_in", "non_portable_SQL"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "PDO_DB_only_named_placeholders", "LUPO_TABLE_PREFIX_not_hardcoded", "PHP_7_4_minimum_shared_paths", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "bundled_third_party_under_lupo_includes_only", "no_fresh_install_migrations_until_4_1_0"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

@@ -1,0 +1,99 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\developer\\dev\\architecture_layers.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\AUTH_IMPLEMENTATION_PLAN_3.0.8.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\AUTH_INTEGRATION_CHECKS_3.0.8.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\AUTH_READINESS_REPORT_3.0.8.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\AUTH_SCHEMA_SUMMARY_3.0.8.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\AUTH_SQL_VERIFICATION_3.0.8.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\AUTH_TESTING_CHECKLIST_3.0.8.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\CONTRIBUTOR_TRAINING.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\DOCUMENTATION_STYLE_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\FOR_INSTALLERS_AND_USERS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\IDENTITY_PROPAGATION_COMPLETE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\INSTALLER_FLOW.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\PHASE_A_CODE_UPDATE_PLAN.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\TOON_METADATA_RECOMMENDATIONS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\VERSION_PATCH_PROCEDURE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\developer\\dev\\WOLFIE_TIMESTAMP_DOCTRINE.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

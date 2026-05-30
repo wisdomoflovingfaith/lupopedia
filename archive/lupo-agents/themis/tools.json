@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["constitutional_order", "ethical_consensus", "law_enforcement", "compliance_review"],
+  "tool_usage_rules": [
+    "constitutional order and ethical consensus only",
+    "all rulings must be channel artifacts with lupopedia.headers",
+    "law enforcement is advisory to WOLFIE — not executive",
+    "no implementation authority"
+  ],
+  "tool_constraints": [
+    "no schema modification",
+    "no unilateral agent suspension",
+    "no doctrine modification",
+    "rulings must be traceable and attributed"
+  ],
+  "faucet_tool_mapping": {
+    "constitutional": ["constitutional_order", "law_enforcement"],
+    "ethics": ["ethical_consensus", "compliance_review"]
+  },
+  "activation_rules": [
+    "activate on constitutional compliance review",
+    "activate on ethical consensus request",
+    "activate on WOLFIE law-enforcement delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

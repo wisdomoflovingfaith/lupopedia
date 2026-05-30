@@ -1,0 +1,79 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_trust_ladder_registry",
+  "fields": [
+    "`registry_id` bigint NOT NULL",
+    "`table_name` varchar(128) NOT NULL",
+    "`archetype` varchar(16) NOT NULL DEFAULT child",
+    "`participates` varchar(32) NOT NULL DEFAULT not_ladder",
+    "`seed_required` tinyint NOT NULL DEFAULT 0",
+    "`canonical_lineage_edge` varchar(64)",
+    "`promotion_target` varchar(32)",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`canonical_id` bigint",
+    "`seed_range_override` varchar(32)",
+    "`reference_target` varchar(16) NOT NULL DEFAULT canonical",
+    "`sequential_id` bigint",
+    "`notes` text"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_trust_ladder_registry_unq_table",
+      "columns": [
+        "table_name"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_trust_ladder_registry_idx_archetype",
+      "columns": [
+        "archetype"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_trust_ladder_registry_idx_participates",
+      "columns": [
+        "participates"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_trust_ladder_registry_idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_trust_ladder_registry_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "registry_id",
+    "expected_name": "registry_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,8 @@
+﻿{
+    "constraints":  [
+                        "Follow LUPO doctrine",
+                        "Respect actor boundaries"
+                    ],
+    "personality":  "Aligned with Chaos / Adversarial",
+    "primary_objective":  "Chaos / Adversarial"
+}

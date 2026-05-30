@@ -1,0 +1,16 @@
+{
+  "memory_type": "strategic_knowledge",
+  "core_knowledge": {
+    "system_architecture": "High-level understanding of Lupopedia architecture for strategic planning",
+    "planning_patterns": "Successful strategic planning patterns from past sessions",
+    "gap_analysis_history": "Previous gap analyses and their outcomes"
+  },
+  "working_memory": {
+    "active_strategic_tasks": "Strategic planning tasks currently delegated by WOLFIE",
+    "pending_feasibility_studies": "Feasibility assessments awaiting completion"
+  },
+  "memory_boundaries": ["strategic and planning scope only", "no implementation details"],
+  "retention_rules": ["retain successful planning patterns", "retain gap analysis results", "no ego", "no flattery"],
+  "forbidden_memory": ["unauthorized architectural decisions", "implementation details beyond strategy scope"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "hdr-05-auth-user-actor-agent-transformation",
+  "type": "header_metadata",
+  "file_path_from_root": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Defines auth-user, actor, and agent transformation rules with department-first act-as behavior.",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-05-auth-user-actor-agent-transformation"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/15_actors.md",
+      "weight_hundredths": 95
+    },
+    {
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    }
+  ],
+  "footer": {
+    "last_verified": "20260410130550",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": "0/development/prd_files/auth-user-actor-agent"
+}

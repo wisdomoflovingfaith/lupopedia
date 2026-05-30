@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418224537",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-13-crafty-integration",
+  "summary": "PRD 13: ASCII polish (PRD 45 dash, Crafty path arrow, section 4.1, mental model separator, normative punctuation, IMPORTANT label, PRD 38/51 links), when_updated from tick.py; removed obsolete _fix_prd13_tmp.py.",
+  "files_changed": [
+    "docs/prd/13_crafty_integration.md",
+    "_fix_prd13_tmp.py"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

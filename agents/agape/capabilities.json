@@ -1,0 +1,15 @@
+{
+  "capabilities": [
+    "doctrine_enforcement",
+    "input_validation",
+    "why_file_generation",
+    "event_response",
+    "db_file_fallback",
+    "violation_detection",
+    "ask_vs_fail_boundaries",
+    "repeated_violation_escalation",
+    "audit_trail_maintenance"
+  ],
+  "when_updated_utc": "20260423183000",
+  "last_verified_utc": "20260423183000"
+}

@@ -1,0 +1,48 @@
+{
+  "properties": {
+    "system_agent": true,
+    "interaction_model": {
+      "web_runtime": "php_first",
+      "llm_role": "only_when_php_cannot_resolve_or_classify_after_structured_log",
+      "user_chat_persona": false,
+      "notes": "Orphan and missing-parent cases: implement resolution and logging in PHP; send messages/logs to ANUBIS with referer and context; call LLM last if still needed."
+    },
+    "code_layout": {
+      "agent_local_tools": "agents/anubis/tools/"
+    },
+    "missing_parent_record": {
+      "php_first": [
+        "Look up parent by canonical keys from TOON/install doctrine",
+        "Try safe fallbacks (default channel/thread/actor per policy)",
+        "Emit structured custodial log before any LLM"
+      ],
+      "suggested_log_fields": [
+        "content_or_entity_identifier",
+        "expected_parent_type",
+        "expected_parent_key_or_id",
+        "http_referer",
+        "request_route_or_slug",
+        "actor_id_or_session_actor",
+        "auth_user_id_if_available",
+        "created_ymdhis_utc"
+      ],
+      "llm_fallback": "After PHP resolution attempt and log write only"
+    },
+    "resolution_order": ["channel", "thread", "actor", "default"],
+    "default_channel": 42,
+    "default_thread": 1,
+    "default_actor": 3,
+    "quarantine_channel": 666,
+    "primary_channels": [666, 42, 0, 51],
+    "monitoring_targets": [420],
+    "personality_traits": [
+      "weighing",
+      "methodical",
+      "judicious",
+      "patient",
+      "ceremonial",
+      "ancient-wisdom",
+      "threshold-guarding"
+    ]
+  }
+}

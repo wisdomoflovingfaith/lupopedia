@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260418211412",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prd-45-workflow",
+  "summary": "PRD 45: add G0-G4 gates, PRD-to-ship prohibition, locale/template contracts, cross-refs to PRD 00 13 29; PRD 13 29 31 back-links; IDE facet base prompt UI workflow bullets; regenerate PRD_INDEX.",
+  "files_changed": [
+    "lupo-docs/prd/45_template_first_staged_ui_workflow.md",
+    "lupo-docs/prd/13_crafty_integration.md",
+    "lupo-docs/prd/29_project_structure.md",
+    "lupo-docs/prd/31_implementation_folder_guidelines.md",
+    "lupo-docs/prd/PRD_INDEX.md",
+    "lupo-agents/_shared/ide_facet_base_system_prompt.txt",
+    "lupo-changelog-pending/20260418211412_cursor_prd45_workflow_gates.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

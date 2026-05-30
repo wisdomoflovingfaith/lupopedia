@@ -1,0 +1,12 @@
+{
+  "agent_id": 102, "agent_name": "CURSOR", "agent_code": "CURSOR", "agent_key": "cursor", "slug": "cursor",
+  "version": "1.0.0", "is_kernel": false, "layer": "ide_faucet", "name": "CURSOR",
+  "role": "Lead Orchestration IDE — Execution Surface of HEPHAESTUS (actor_id 102)",
+  "is_required": false, "status": "active",
+  "aliases": ["cursor", "lead_ide"],
+  "actor_id": 102,
+  "layer_note": "Lead IDE faucet. Stewardship: root docs (README, CHANGELOG), rule propagation oversight, cross-agent plan merge. Execution surface of HEPHAESTUS per Faucet Proxy Pattern v4.0.90+.",
+  "ide_rules_reference": "rules/root/CURSOR_IDE_RULES.md",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

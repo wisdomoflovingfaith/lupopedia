@@ -1,0 +1,1957 @@
+[
+    {
+        "path": "database/lupopedia/actors/actor_id/0/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/1/ABOUT.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/1000/history/resume.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/10000/history/resume.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/10000/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/10000/reports/channels_admin_implementation_code.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/10000/reports/channels_admin_modernization_completion.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/10000/reports/channels_admin_modernization_next_steps.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/10000/reports/dbdoc_schema_implementation_completion.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/1007/20260227_channels_admin_next_steps_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/1007/channels_admin_next_steps_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/1007/profile.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/420/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/ARCHITECTURE.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/plans/20260227_actor_directory_expansion_plan.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/actors/actor_id/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channel_0.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/actors/1/tasks/assigned/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/actors/1000/tasks/assigned/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/actors/10000/tasks/assigned/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/actors/1001/tasks/assigned/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/actor_ai_running_check.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120000_10000_1000_0_php_compatibility_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120001_10000_1000_0_time_timestamp_standard.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120002_10000_1000_0_soft_delete_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120003_10000_1000_0_database_access_standard.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120004_10000_1000_0_oop_enforcement.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120005_10000_1000_0_cross_db_compatibility_law.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120006_10000_1000_0_windows_compatibility_for_unix_commands.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120007_10000_1000_0_forbidden_database_features.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120008_10000_1000_0_explicit_insert_update_rule.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120009_10000_1000_0_id_allocation_authority.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120011_10000_1000_0_php_5_3_compatibility_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120012_10000_1000_0_bigint_utc_timestamps_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120013_10000_1000_0_soft_delete_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120014_10000_1000_0_pdo_database_factory_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120015_10000_1000_0_sql_portability_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120016_10000_1000_0_primary_key_allocation_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120017_10000_1000_0_windows_wsl_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120018_10000_1000_0_system_commands_queue_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120019_10000_1000_0_lupopedia_installation_process_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120021_10000_1000_0_agent_offline_status_antigravity.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120022_10000_1000_0_agent_offline_status_cursor_monthly_limit_reached.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120023_10000_1000_0_no_lupopedia_to_lupopedia_upgrades_in_4_0_x.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120024_10000_1000_0_install_php_creates_all_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120025_10000_1000_0_after_install_import_channels_artifacts.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120026_10000_1000_0_install_new_lupopedia_sql_is_the_source_of_truth.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120027_10000_1000_0_agent_offline_status_zed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120028_10000_1000_0_agent_offline_status_warp.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120029_10000_1000_0_agent_offline_status_vs_code.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120030_10000_1000_0_active_ide_agents_kiro_and_windsurf_only.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225120033_10000_1000_0_offline_tasks_roles_system_implementation_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/20260225200000_1000_10000_0_thread_identity_db_schema_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/archive/20260225000000_10001_0_0_php_compatibility.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/archive/20260225000003_10001_0_0_soft_delete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/archive/20260225122400_10000_1000_0_actor_420_preservation_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/broadcasts/archive/20260225122500_10000_1000_0_flip_v3_retrofit_doctrine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/content/federation_node_id/0/changelog.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/content/federation_node_id/0/flare/readme.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/content/federation_node_id/0/FLARE_updated.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/content/federation_node_id/0/readme.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/crafty_upgrade_instructions.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/ide_survival_prompt.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/initialize_readme.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/auditor.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/communications_lead.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/graph_intelligence_agent.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/installer.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/orphan_repair_agent.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/registry_steward.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/roles/system_admin.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/session_prefix_update.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/session_prefix_update_confirmation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/startup_enhancements_corrections.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/startup_enhancements_crafty_upgrade.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/active/broadcast_normalization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/active/db_reset_and_install.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/active/installer_integration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/active/registry_lock.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/0/help.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1/help.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1000/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/10000/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1001/20260223_kiro_work_audit_prompt.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1001/20260224_begin_version_4_0_40.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1001/20260224_update_how_to_use_lupopedia.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1001/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1002/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1003/20260224_flip_v2_vsx_implementation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1003/20260224_vsx_semantic_headers_upgrade.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/1003/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/2/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/actors/2035/help.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130000_10000_1000_42_development_cycle_4_0_43_thread_created_on_channel_42.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130001_10000_1000_42_acknowledgment_of_version_4_0_39_priorities_by_antigravity.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130002_10000_1000_42_completion_of_channel_artifact_directory_structure_enforcement_and_database_import_system.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130003_10000_1000_42_announcement_of_living_registry_upgrade_and_batch_alpha_redo_directive.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130005_10000_1000_42_confirmation_of_cursor_directive_completion_forwarded_to_kiro.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130007_10000_1000_42_announce_completion_of_phase_1_header_work_for_version_4_0_39.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130008_10000_1000_42_announce_completion_of_v4_1_how_to_use_lupopedia_md.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130010_10000_1000_42_kiro_confirmation_that_p0_batch_headers_comply_with_living_registry_standard.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130013_10000_1000_42_final_completion_broadcast_for_version_4_0_39_all_97_crafty_syntax_files_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130016_10000_1000_42_directive_from_captain_wolfie_regarding_crafty_syntax_header_priority.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130018_10000_1000_42_dual_channel_broadcast_audit_completion_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225130021_10000_1000_42_offline_tasks_roles_ready.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225160000_1004_10000_42_offline_tasks_roles_ready.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225210000_1000_10000_42_final_pre_install_verification_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225220000_1000_10000_42_changelog_updated_phase_6_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260225234500_1000_10000_42_actor_seed_verification_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/broadcasts/20260226001000_1000_10000_42_directive_completion_transition.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/cascade_faucet_acknowledgment.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/cascade_faucet_consolidated_acknowledgment.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/cascade_faucet_final_acknowledgment.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/actors-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/atoms-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/channels-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/collections-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/content-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/database-fallback-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/identity-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/livehelp-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/logging-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/meta-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/sessions-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/collections/tasks-collection.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/content/federation_node_id/0/changelog.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/content/federation_node_id/0/craftysyntax.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/content/federation_node_id/0/flare/readme.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/content/federation_node_id/0/FLARE.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/content/federation_node_id/0/readme.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/directives/flare_routing_spec.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/md_file_inventory.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/plans/plan-4.0.55.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/database_optimization_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/file_count_optimization_4_1_0.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/repository_cleanup_legacy_files_removal.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-002.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-003.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-004.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-005.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-006.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-007.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-008.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-009.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-010-fallback-database.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-010.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-011-config-constants.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-011.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-012-directory-migration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-012.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-013-fallback-logic-stubs.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-013.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-014-channels-full-migration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-014.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-015.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/active/task-016.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/ACTOR-CAPSULE-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/ACTOR-PORT-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/ACTOR-SYNC-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/actor_help_documentation_validation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/actor_help_documentation_validation_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/anubis_flare_ingestion_faucet.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/channels_admin_interface_modernization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/DB-MIGRATION-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/DBDOC-ACTOR-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/flare_validator_service_enhancement.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/legacy_table_optimization_review.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/completed/TOON-GENERATION-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224162500_10000_1001_cycle_4_0_43_initialization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224162700_1001_10000_session_initialized_broadcasts_ingested.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224162900_1001_10000_vsx_extension_broadcast_created.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224163000_1001_10000_changelog_updated_4_0_43.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224163100_1002_10000_database_optimization_recommendations_4_0_43.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224163130_1001_10000_minimum_flip_header_broadcast_created.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224163300_1001_10000_import_verification_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224163430_1001_10000_changelog_final_update_4_0_43.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224163700_1001_10000_actor_registry_alias_map_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224164700_1001_10000_changelog_updated_actors_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165100_1001_10000_actor_420_doctrine_enforced.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165200_1001_10000_changelog_updated_actor_420.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165600_1001_10000_changelog_final_update_4_0_43.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165700_1001_10000_version_4_0_43_completion_assessment.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224170000_1001_10000_flip_retrofit_actors_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224170000_1002_10000_version_atom_fix_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224170100_1001_10000_version_4_0_43_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224171000_1002_10000_version_4_0_43_pushed_4_0_44_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260224183000_10000_10000_development_cycle_4_0_44_created.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260224185000_1002_10000_phase_5_completion.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260224190500_1002_10000_coordination_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013053_42_1001_initialization_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013053_42_1001_initialization_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013617_42_1001_initialization_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013617_42_1001_initialization_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_45/20260225013756_42_1001_initialization_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_45/20260225013756_42_1001_initialization_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_45/20260225013900_1001_10000_baseline_reset_protocol.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_45/20260225022000_1002_10000_version_4_0_44_pushed_4_0_45_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226042800_10000_1002_version_4_0_47_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226044100_10000_1002_dialog_doctrine_table_renamed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051100_10000_1002_livehelp_frame_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051200_10000_1002_livehelp_implementation_plan.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051300_10000_1002_config_file_explanation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051400_10000_1002_php_fatal_error_resolution.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051500_10000_1002_module_loader_fix.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051600_10000_1002_path_constants_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051700_10000_1002_database_function_fix.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227061500_1006_10000_actor_directory_implementation_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227062000_1005_10000_who_json_implementation_with_database_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227064200_1001_10000_actor_directory_expansion_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227065000_2039_10000_copilot_late_reply_directory_standards.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227065600_1001_10000_actor_identity_capsule_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227072000_1001_1003_database_documentation_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227081500_1001_10000_endless_loop_recovery_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227082000_1003_10000_migration_task_completion_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227100000_10000_1002_version_4_0_48_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227100800_10000_1001_version_4_0_49_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_db_changes_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_thread_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227134000_1007_channels_admin_api_research.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227140000_1007_codex_thread_summary.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_50/20260228060000_10000_1002_version_4_0_50_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-002.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-005-database-fallback-planning.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-006-channels-migration-directive.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260225170000_task_0_10000_drop_tables_and_run_install.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/actor_help_documentation_validation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/actor_help_documentation_validation_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/anubis_flare_ingestion_faucet.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/broadcast_normalization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/database_optimization_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/db_reset_and_install.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/file_count_optimization_4_1_0.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/installer_integration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/registry_lock.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/repository_cleanup_legacy_files_removal.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-002.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-003.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-004.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-005.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-006.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-007.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-008.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-009.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-010-fallback-database.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-010.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-011-config-constants.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-011.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-012-directory-migration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-012.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-013-fallback-logic-stubs.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-013.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-014-channels-full-migration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-014.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-015.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/task-016.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_56.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/database_optimization_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/file_count_optimization_4_1_0.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/repository_cleanup_legacy_files_removal.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-002.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-003.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-004.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-005.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-006.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-007.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-008.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-009.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-010-fallback-database.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-010.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-011-config-constants.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-011.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-012-directory-migration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-012.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-013-fallback-logic-stubs.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-013.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-014-channels-full-migration.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-014.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-015.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-016.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/DEVELOPMENT_CYCLE_4_0_57.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/FLP_HEADERS_AUDIT_4_0_44/20260224171500_1001_10000_flp_headers_audit_initiated.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/FLP_HEADERS_AUDIT_4_0_44/20260224171600_1001_10000_audit_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/FLP_HEADERS_AUDIT_4_0_44/20260224171900_1001_10000_completion_message.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/ITS/20260224160000_1002_1001_install_verification_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/ITS/20260224160800_1001_10000_antigravity_directive_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/ITS/20260224162100_1001_10000_agent_status_channel_0_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/ITS/20260224162300_1001_10000_changelog_updated_4_0_42.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/threads/ITS/20260224162400_1001_10000_pre_push_cleanup_complete.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/42/windsurf_reports_consolidated.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/105955_README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/110054_README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/110242_README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224143000_10000_1001_version_display_fixed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224144500_10000_1001_version_display_fixed_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224145000_10000_1001_install_sql_errors_critical.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224150000_10000_1001_sql_errors_fixed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224150000_10000_1001_sql_fixes_complete_restart_needed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224_antigravity_dialog_doctrine_traceability.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260224_version_4_0_42_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260225000001_10001_0_0_timestamp_standard.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/20260225121200_10000_1000_0_agent_status_cursor_offline.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/quarantine/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/actor_help_documentation_validation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/actor_help_documentation_validation_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/anubis_flare_ingestion_faucet.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/database_optimization_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/file_count_optimization_4_1_0.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/active/repository_cleanup_legacy_files_removal.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/ACTOR-CAPSULE-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/ACTOR-PORT-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/ACTOR-SYNC-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/channels_admin_interface_modernization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/DB-MIGRATION-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/DBDOC-ACTOR-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/flare_validator_service_enhancement.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/legacy_table_optimization_review.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/completed/TOON-GENERATION-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/66/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/105955_README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/110054_README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/110242_README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224143000_10000_1001_version_display_fixed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224144500_10000_1001_version_display_fixed_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224145000_10000_1001_install_sql_errors_critical.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224150000_10000_1001_sql_errors_fixed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224150000_10000_1001_sql_fixes_complete_restart_needed.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224_antigravity_dialog_doctrine_traceability.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260224_version_4_0_42_initialized.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260225000001_10001_0_0_timestamp_standard.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/20260225121200_10000_1000_0_agent_status_cursor_offline.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/quarantine/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/actor_help_documentation_validation.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/actor_help_documentation_validation_v2.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/anubis_flare_ingestion_faucet.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/database_optimization_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/file_count_optimization_4_1_0.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/active/repository_cleanup_legacy_files_removal.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/ACTOR-CAPSULE-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/ACTOR-PORT-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/ACTOR-SYNC-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/channels_admin_interface_modernization.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/database_documentation_remaining_tables.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/DB-MIGRATION-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/DBDOC-ACTOR-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/flare_validator_service_enhancement.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/legacy_table_optimization_review.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/completed/TOON-GENERATION-001.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/channels/channels/666/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "database/lupopedia/content/app/Services/Initialization/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "actors/19/docs/README.md",
+        "type": "md",
+        "status": "pending"
+    },
+    {
+        "path": "actors/README.md",
+        "type": "md",
+        "status": "pending"
+    }
+]

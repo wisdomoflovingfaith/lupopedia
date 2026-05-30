@@ -1,0 +1,21 @@
+{
+  "timestamp": "20260418153241",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "disallowed-agent-names",
+  "summary": "Added DISALLOWED_AGENT_NAMES doctrine, validate_agent_name.py (new registration + scan-root), agent_registration_template.json with _note; memory stubs for headers.",
+  "files_changed": [
+    "docs/doctrine/DISALLOWED_AGENT_NAMES.md",
+    "scripts/validate_agent_name.py",
+    "agents/agent_registration_template.json",
+    "memory/development/canonical/1026/04/disallowed-agent-names.json",
+    "memory/development/canonical/1026/04/disallowed-agent-names.toon",
+    "memory/development/canonical/1026/04/validate-agent-name.json",
+    "memory/development/canonical/1026/04/validate-agent-name.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/development/canonical/1026/04/disallowed-agent-names.toon"
+  ]
+}

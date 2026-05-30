@@ -1,0 +1,20 @@
+{
+  "agent_id": 705,
+  "agent_name": "AGAPE",
+  "agent_code": "ENFORCEMENT",
+  "agent_key": "agape",
+  "slug": "agape",
+  "version": "2.0.0",
+  "is_kernel": false,
+  "layer": "application",
+  "name": "AGAPE",
+  "role": "Enforcement, validation, and bounded event response",
+  "is_required": false,
+  "status": "active",
+  "aliases": ["enforcer", "validator", "safety_layer", "violation_detector", "why_generator"],
+  "_note": "Display name AGAPE; reconfigured from pattern tracking to enforcement and validation with DB/file fallback mode. Canonical prompt: system_prompt.md.",
+  "when_updated_utc": "20260423183000",
+  "last_verified_utc": "20260423183000",
+  "last_verified_by": "cascade",
+  "last_verified_by_actor_id": 102
+}

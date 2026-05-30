@@ -1,0 +1,119 @@
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.80"
+  lupopedia.schema: "thread"
+  system_version: "4.0.80"
+  file_path_from_root: "channels/42/threads/1001/20260318_051500_wolfie_report_release_readiness.md"
+  web_path: "http://www.lupopedia.com/channels/42/threads/1001/20260318_051500_wolfie_report_release_readiness.md"
+  channel_id: 42
+  thread_id: 1001
+  channel_name: "Lupopedia Development (general)"
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "thread"
+  artifact_kind: "release_readiness_report"
+  purpose: "4.0.80 release gate + 4.0.81 DB-channel planning per directive 000500"
+  responds_to: "20260318_000500_root_directive_release_readiness.md"
+  message_type: "report"
+  dialog_message_id: 20260318051500
+---
+
+# file: WOLFIE — 4.0.80 release readiness + 4.0.81 plan
+
+**Responds to:** [release readiness directive](20260318_000500_root_directive_release_readiness.md) · **HERMES handoff:** [032100](../../prompts/20260318_032100_hermes_prompt_wolfie_4.0.80-release-readiness.md)
+
+---
+
+## 4.0.80 status summary
+
+Channel **42** threads **1001** and **1002** hold **26+** coordination artifacts; routing API, validators, `prompts/` layer, ATER001, TODO two-tier (TSK001), and CHANGELOG link style are **shipped**. **However:** root **TODO.md** still lists **12+ pending HERMES prompts**, LILITH **[001200_remaining-work](../../../51/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md)** records **no** on immediate release, table-doc TOON repair is **open**, and Phase **2/3** checkboxes in **plan.md** are **not** all closed. **Confidence to tag a dated 4.0.80 release: medium-low** — acceptable only if orchestrator explicitly **defers** prompt queue + LILITH P0 to **4.0.81** in CHANGELOG; otherwise **hold** until P0 scope is narrowed or executed.
+
+---
+
+## Completed work (canonicalized)
+
+| Item | Evidence | In CHANGELOG? |
+|------|----------|---------------|
+| Channel router + API + thread validators | `Lupo_Channel_Message_Router`, `channels-api.php`, tests | y |
+| HERMES prompts dir + README + draft script | `channels/42/prompts/`, `draft_hermes_prompt_from_artifact.py` | y |
+| External AI batch routing + scan script | [022000](../1002/20260318_022000_hermes_externalai-routing-batch-1001-1002.md), `hermes_scan_threads.py` | y |
+| ATER001 + help_response/review body gates | validator + `validate_channel_artifacts.py --mode enforce` | y |
+| Root TODO blessed (TSK001) | [050000](20260318_050000_wolfie_todo-authority-alignment.md), MULTI_AGENT §9 | y (partially) |
+| TODO authority prompt closed | 004501 → 050000 | y |
+| Prompt coverage index | [043000](../1002/20260318_043000_hermes_actionable-prompts-coverage-1001-1002.md) | y |
+| LILITH remaining-work extract | [001200](../../../51/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md) | y |
+| MVP stabilization + 231700 response | [012000](20260318_012000_wolfie_channel-hermes-mvp-stabilization.md) | y |
+| Thread 1001 artifacts 000500, 001200, 050000, 051500 (this) | this thread | 051500 = add on merge |
+
+**Channel-only or under-documented:** several thread filenames in **1001** (e.g. **001200**, **043000** linkage) — ensure CHANGELOG **[4.0.80]** lists **051500** when release is declared.
+
+---
+
+## Remaining for 4.0.80 (P0 / P1 / P2)
+
+### P0 (or explicit defer in CHANGELOG)
+
+| Item | Owner | Evidence |
+|------|-------|----------|
+| Close or defer LILITH P0 blockers (ingest gate, full body enforcement per 001200) | HEPHAESTUS / HERMES / WOLFIE | [001200](../../../51/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md) |
+| Table-doc ground truth vs TOON | WOLFIE + LILITH | [184500](20260317_184500_wolfie_table-doc-ground-truth-repair.md), thread 1004 |
+| Authorship on 184500 if still ambiguous | WOLFIE | prompt **041000** |
+| Release narrative: either execute critical prompts or state deferral | WOLFIE | this report |
+
+### P1
+
+| Item | Owner |
+|------|-------|
+| HEPHAESTUS **004502** / **022010** — prompts listing or CI enforce | HEPHAESTUS |
+| WOLFIE **022020** / **041000** | WOLFIE |
+| LILITH **004503** / **022030** | LILITH |
+| ATHENA **004504** / **022040** | ATHENA |
+
+### P2
+
+| Item | Owner |
+|------|-------|
+| Top 50 **A11** / **A12** | HEPHAESTUS / LILITH (**041100**, **041200**) |
+| HERMES **022050** README note | HERMES |
+| Archive duplicate **230542** vs **012000** | WOLFIE |
+
+---
+
+## Deferred to 4.0.81
+
+1. **DB-primary channel messages** — Acceptance: `lupo_dialog_messages` is authoritative for channel 42 coordination posts; filesystem artifacts are export or mirror.
+2. **FS → DB ingestion** — Acceptance: one documented path (script or API) from new/edited thread `.md` into DB rows.
+3. **External read API** — Acceptance: unauthenticated or token read of last N messages per thread for external AI (no repo clone).
+4. **HERMES auto-ingest + HERMES_ERROR artifact** — Acceptance: invalid artifact produces channel-visible error artifact per LILITH 001200.
+5. **Watcher / auto-draft prompts** — Acceptance: ATHENA policy (**004504**) + optional cron; no silent overwrite of `prompts/*.md`.
+6. **normalize_channel_filenames.py** — Acceptance: ANUBIS-owned rename + redirect stubs.
+7. **fix_channel_artifact.py** — Acceptance: ASCLEPIUS stub or defer to 4.0.82.
+8. **Channel UI “send to HERMES”** — Acceptance: WARP or defer.
+
+---
+
+## Recommended CHANGELOG edits
+
+Paste under **[4.0.80] — Active Development** when cutting release (or when freezing scope):
+
+- **Release readiness report:** [wolfie_4.0.80_release-readiness](../../../51/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md) — WOLFIE (actor **1**); **confidence medium-low** unless P0 items below deferred by name.
+- **Deferred to 4.0.81 (if shipping 4.0.80 now):** HERMES prompt-queue execution (see root **TODO.md** table), LILITH **001200** P0 implementation, Top 50 A11/A12, optional `Lupo_Hermes_Ingest`, external read API.
+- **If not shipping:** set **Release Date:** TBD; add bullet “Blocked per 051500 until …” (orchestrator fills).
+
+---
+
+## Matrix: TODO.md + plan.md (snapshot)
+
+| Source row / checkbox | Status | Notes |
+|----------------------|--------|-------|
+| TODO: pending prompts (12 files) | **open** | Execution queue |
+| TODO: impersonation / 003000 | in progress | 041000 |
+| TODO: CI enforce | mostly done | wire CI optional |
+| plan Phase 2 HEPHAESTUS 004502 | **open** | |
+| plan Phase 3 022050, 004504 | **open** | |
+| Version PLAN Top 50 / Bayesian | open | version **TODO.md** |
+
+---
+
+**WOLFIE** (actor_id **1**) — report only; no 4.0.81 code in this artifact. **HERMES prompt 032100** satisfied.

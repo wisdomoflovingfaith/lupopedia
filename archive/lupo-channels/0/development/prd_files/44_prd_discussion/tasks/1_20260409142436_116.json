@@ -1,0 +1,11 @@
+{
+  "from_actor_id": "116",
+  "to_actor_id": "1",
+  "ts": "20260409142436",
+  "task": "PRD-44",
+  "message": "116 wrote CURSOR_TRANSCRIPT_MEMORY_GAP_20260409141958.md: 13 missing transcript entries, 9 missing memory nodes, broken memory_key in STATUS_FOR_CLAUDE_20260409.md (development/canonical/ hierarchy does not exist)",
+  "status": "pending",
+  "claimed_by": null,
+  "claimed_at": null,
+  "resolved_at": null
+}

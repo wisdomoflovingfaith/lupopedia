@@ -1,0 +1,15 @@
+{
+  "alert_id": "alert_20260423190500_001",
+  "created_utc": "20260423190500",
+  "alert_type": "repeated_violation",
+  "severity": 2,
+  "source_actor_id": 10,
+  "source_actor_slug": "chiron",
+  "message": "DOCTRINE VIOLATION: CHIRON created non-compliant LUPOPEDIA headers",
+  "details": "CHIRON created file with LUPOPEDIA headers violating PRD 16_C. Missing 8 required fields and incorrect format version. This is the 3rd header violation by CHIRON this week, indicating pattern of non-compliance requiring escalation.",
+  "status": "active",
+  "linked_events": ["evt_20260423190500_001"],
+  "linked_why_files": ["why_20260423190500_001"],
+  "escalation_level": 1,
+  "file_path": "database/agape/alerts/alert_20260423190500_001.json"
+}

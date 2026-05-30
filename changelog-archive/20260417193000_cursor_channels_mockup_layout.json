@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260417193000",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "channels-ui-mockup",
+  "summary": "channels/index.php: mockup_try2-style main column with 9-slice frame around feed, bottom-area stack, multi-color message rows; shared lupo_channel_chat_row_html for fetch-messages parity.",
+  "files_changed": [
+    "channels/index.php",
+    "api/dialog/fetch-messages.php",
+    "includes/functions/channel_chat_row.php",
+    "changelog-pending/20260417193000_cursor_channels_mockup_layout.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

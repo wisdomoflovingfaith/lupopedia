@@ -1,0 +1,35 @@
+{
+  "id": "43-parent-child-trust-ladder",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "lupo-docs/prd/43_parent_child_trust_ladder.md",
+  "channel_key": "trust_ladder",
+  "trust_tier": "canonical",
+  "purpose": "",
+  "status": "draft",
+  "tags": [],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "cursor"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260409140338",
+    "verified_by": {
+      "identity_type": "actor",
+      "actor_id": 102,
+      "agent_name_identity": "cursor"
+    },
+    "verified_via": {
+      "type": "faucet",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "cursor:root",
+    "next_action": []
+  }
+}

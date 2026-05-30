@@ -1,0 +1,24 @@
+{
+  "timestamp": "20260418120117",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "survivability-doctrine",
+  "summary": "Survivability Doctrine: added Pillar 2 Learning Transfer (section 7), two-pillar scope, LILITH review item 4; LILITH system prompt section 8 and ladder item 6 updated; memory TOONs regenerated.",
+  "files_changed": [
+    "docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+    "agents/lilith/system_prompt.md",
+    ".cursor/rules/lilith-system-prompt.md",
+    "memory/constitutional/seed/survivability-doctrine.json",
+    "memory/constitutional/seed/survivability-doctrine.toon",
+    "memory/development/canonical/1026/04/lilith-system-prompt.json",
+    "memory/development/canonical/1026/04/lilith-system-prompt.toon",
+    "memory/development/canonical/1026/04/lilith-cursor-system-prompt.json",
+    "memory/development/canonical/1026/04/lilith-cursor-system-prompt.toon",
+    "changelog-pending/20260418120117_cursor_learning_transfer_pillar.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/constitutional/seed/survivability-doctrine.toon"
+  ]
+}

@@ -1,0 +1,362 @@
+[
+  {
+    "channel_key": "root",
+    "what": "Created TODO task list",
+    "where": "TODO.md",
+    "when": 20260420060000,
+    "why": "Track session tasks and progress",
+    "how": "manual",
+    "who": 2037,
+    "notes": "Root-level task tracking file"
+  },
+  {
+    "channel_key": "root",
+    "what": "Created README debug file",
+    "where": "README_WTF.md",
+    "when": 20260420060000,
+    "why": "Debug repository state and structure",
+    "how": "manual",
+    "who": 2037,
+    "notes": "Temporary debugging documentation"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Created PRD 16 header examples",
+    "where": "lupo-docs/prd/16_lupopedia_headers_examples.md",
+    "when": 20260420060000,
+    "why": "Provide examples for PRD 16 implementations",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Supporting documentation for PRD 16 group"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Created PRD 16 migration guide",
+    "where": "lupo-docs/prd/16_lupopedia_headers_migration.md",
+    "when": 20260420060000,
+    "why": "Migration guide for PRD 16 header updates",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Supporting documentation for PRD 16 group"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created three-layer metadata doctrine",
+    "where": "lupo-docs/doctrine/THREE_LAYER_METADATA_DOCTRINE.md",
+    "when": 20260420060000,
+    "why": "Define three-layer metadata architecture",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 16 headers"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created metadata validation specification",
+    "where": "lupo-docs/doctrine/METADATA_VALIDATION_SPECIFICATION.md",
+    "when": 20260420060000,
+    "why": "Define metadata validation rules",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 16 headers"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created Castcade metadata checklist",
+    "where": "lupo-docs/doctrine/CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+    "when": 20260420060000,
+    "why": "Operational checklist for metadata handling",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 16 headers"
+  },
+  {
+    "channel_key": "rules",
+    "what": "Updated rules README",
+    "where": "lupo-rules/root/README.md",
+    "when": 20260420060000,
+    "why": "Update rules documentation index",
+    "how": "manual",
+    "who": 2037,
+    "notes": "Cleaned up orchestrator references"
+  },
+  {
+    "channel_key": "registry",
+    "what": "Created actor registry TOON",
+    "where": "lupo-registry/actor_registry.toon",
+    "when": 20260420060000,
+    "why": "Registry of actor definitions",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Actor configuration tracking"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Created actor registry updater",
+    "where": "lupo-scripts/update_actor_registry.py",
+    "when": 20260420060000,
+    "why": "Automate actor registry updates",
+    "how": "py program",
+    "who": 2037,
+    "notes": "Python automation script"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created actor gateway types doctrine",
+    "where": "lupo-docs/doctrine/ACTOR_GATEWAY_TYPES.md",
+    "when": 20260420060000,
+    "why": "Define actor gateway specifications",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 15 and PRD 46"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Created PRD 46 - Actor Gateway Types",
+    "where": "lupo-docs/prd/PRD_46_ACTOR_GATEWAY_TYPES.md",
+    "when": 20260420060000,
+    "why": "Define actor gateway types PRD",
+    "how": "ai",
+    "who": 2037,
+    "notes": "New PRD with PRD_ prefix format"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Created filename violation scanner",
+    "where": "lupo-scripts/scan_filename_violations.py",
+    "when": 20260420060000,
+    "why": "Scan repository for filename violations",
+    "how": "py program",
+    "who": 2037,
+    "notes": "First version of violation scanner"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Created Lupopedia violation scanner",
+    "where": "lupo-scripts/scan_lupopedia_violations.py",
+    "when": 20260420060000,
+    "why": "Focused scanner for Lupopedia directories",
+    "how": "py program",
+    "who": 2037,
+    "notes": "Improved scanner with TOON output"
+  },
+  {
+    "channel_key": "root",
+    "what": "Created filename violations report",
+    "where": "filename_violations_report.txt",
+    "when": 20260420060000,
+    "why": "Report of filename violations",
+    "how": "py program",
+    "who": 2037,
+    "notes": "Raw output from violation scanner"
+  },
+  {
+    "channel_key": "root",
+    "what": "Created Lupopedia violations report",
+    "where": "lupo_filename_violations_report.txt",
+    "when": 20260420060000,
+    "why": "Lupopedia-specific violation report",
+    "how": "py program",
+    "who": 2037,
+    "notes": "Filtered violation report"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created filename doctrine enforcement report",
+    "where": "lupo-memory/doctrine/canonical/filename-doctrine-enforcement-report.toon",
+    "when": 20260420060000,
+    "why": "Comprehensive violation report with migration plan",
+    "how": "py program",
+    "who": 2037,
+    "notes": "8,175 violations identified"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Fixed PRD index maker script",
+    "where": "lupo-scripts/generate_prd_index.py",
+    "when": 20260420060000,
+    "why": "Fix regex pattern for PRD_XX_ format",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Added support for PRD_XX_ filename format"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Updated PRD index",
+    "where": "lupo-docs/prd/prd_index.md",
+    "when": 20260420060000,
+    "why": "Regenerate index with correct PRD 46 and 98 entries",
+    "how": "py program",
+    "who": 2037,
+    "notes": "All 75 PRDs now correctly indexed including PRD 46 and PRD 98"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created filename normalization report",
+    "where": "lupo-memory/doctrine/canonical/filename-normalization-session-2026-04-20.toon",
+    "when": 20260420060000,
+    "why": "Document filename violations found during session",
+    "how": "ai",
+    "who": 2037,
+    "notes": "7 violations identified, 5 require renaming, 2 are exceptions"
+  },
+  {
+    "channel_key": "development",
+    "what": "Added ACTOR_GATEWAY_TYPES reference to PRD 15",
+    "where": "lupo-docs/prd/15_actors.md",
+    "when": 20260420060000,
+    "why": "Connect doctrine file to appropriate PRD group",
+    "how": "manual",
+    "who": 2037,
+    "notes": "Added reference in cross-references section"
+  },
+  {
+    "channel_key": "development",
+    "what": "Added metadata doctrine references to PRD 16",
+    "where": "lupo-docs/prd/16_lupopedia_headers.md",
+    "when": 20260420060000,
+    "why": "Connect metadata doctrine files to appropriate PRD group",
+    "how": "manual",
+    "who": 2037,
+    "notes": "Added new cross-references section with 3 metadata doctrine files"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created ACTOR_GATEWAY_TYPES doctrine",
+    "where": "lupo-docs/doctrine/ACTOR_GATEWAY_TYPES.md",
+    "when": 20260420060000,
+    "why": "Define actor gateway types and specifications",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 46 and PRD 15"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created CASTCADE metadata handling checklist",
+    "where": "lupo-docs/doctrine/CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+    "when": 20260420060000,
+    "why": "Operational checklist for Castcade metadata handling",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 16"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created METADATA_VALIDATION_SPECIFICATION",
+    "where": "lupo-docs/doctrine/METADATA_VALIDATION_SPECIFICATION.md",
+    "when": 20260420060000,
+    "why": "Define metadata validation rules and specifications",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 16"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created THREE_LAYER_METADATA_DOCTRINE",
+    "where": "lupo-docs/doctrine/THREE_LAYER_METADATA_DOCTRINE.md",
+    "when": 20260420060000,
+    "why": "Define three-layer metadata architecture",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Related to PRD 16"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Created PRD 46 - Actor Gateway Types",
+    "where": "lupo-docs/prd/PRD_46_ACTOR_GATEWAY_TYPES.md",
+    "when": 20260420060000,
+    "why": "Define actor gateway types and specifications",
+    "how": "ai",
+    "who": 2037,
+    "notes": "New PRD in proper format with PRD_ prefix"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Created 16_lupopedia_headers_examples",
+    "where": "lupo-docs/prd/16_lupopedia_headers_examples.md",
+    "when": 20260420060000,
+    "why": "Provide examples for PRD 16 header implementations",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Supporting file for PRD 16 group"
+  },
+  {
+    "channel_key": "prd",
+    "what": "Created 16_lupopedia_headers_migration",
+    "where": "lupo-docs/prd/16_lupopedia_headers_migration.md",
+    "when": 20260420060000,
+    "why": "Migration guide for PRD 16 header updates",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Supporting file for PRD 16 group"
+  },
+  {
+    "channel_key": "registry",
+    "what": "Created actor registry TOON",
+    "where": "lupo-registry/actor_registry.toon",
+    "when": 20260420060000,
+    "why": "Registry of actor definitions and configurations",
+    "how": "ai",
+    "who": 2037,
+    "notes": "Actor registry for system tracking"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Updated lupo-rules README.md",
+    "where": "lupo-rules/root/README.md",
+    "when": 20260420060000,
+    "why": "Update rules documentation and index",
+    "how": "manual",
+    "who": 2037,
+    "notes": "Removed misplaced orchestrator references"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Created update_actor_registry.py script",
+    "where": "lupo-scripts/update_actor_registry.py",
+    "when": 20260420060000,
+    "why": "Automate actor registry updates",
+    "how": "py program",
+    "who": 2037,
+    "notes": "Python script for registry maintenance"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Created scan_filename_violations.py script",
+    "where": "lupo-scripts/scan_filename_violations.py",
+    "when": 20260420060000,
+    "why": "Scan repository for filename violations",
+    "how": "py program",
+    "who": 2037,
+    "notes": "First version of filename violation scanner"
+  },
+  {
+    "channel_key": "tools",
+    "what": "Created scan_lupopedia_violations.py script",
+    "where": "lupo-scripts/scan_lupopedia_violations.py",
+    "when": 20260420060000,
+    "why": "Focused scanner for Lupopedia directories",
+    "how": "py program",
+    "who": 2037,
+    "notes": "Improved scanner with TOON report generation"
+  },
+  {
+    "channel_key": "doctrine",
+    "what": "Created filename doctrine enforcement report",
+    "where": "lupo-memory/doctrine/canonical/filename-doctrine-enforcement-report.toon",
+    "when": 20260420060000,
+    "why": "Comprehensive report of filename violations",
+    "how": "py program",
+    "who": 2037,
+    "notes": "8,175 violations identified with migration plan"
+  },
+  {
+    "channel_key": "registry",
+    "what": "channel_key violation",
+    "where": "lupo-memory/registry/recent_file_changes.toon",
+    "when": 20260420060000,
+    "why": "actor attempted mid-task lane switch",
+    "how": "ai",
+    "who": 2037,
+    "notes": "lane switch blocked - actor used 7 different channel_keys"
+  }
+]

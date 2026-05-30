@@ -1,0 +1,31 @@
+{
+  "timestamp": "20260418134838",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "ara-agent-pack",
+  "summary": "Added ARA agent pack (712): system_prompt.md, agent/identity/properties/capabilities, v1.0.0 copies; README; AGAPE_DEFECT_TAXONOMY emission row for ARA; memory TOON pair.",
+  "files_changed": [
+    "agents/ara/system_prompt.md",
+    "agents/ara/system_prompt.txt",
+    "agents/ara/agent.json",
+    "agents/ara/identity.json",
+    "agents/ara/properties.json",
+    "agents/ara/capabilities.json",
+    "agents/ara/versions/v1.0.0/agent.json",
+    "agents/ara/versions/v1.0.0/properties.json",
+    "agents/ara/versions/v1.0.0/capabilities.json",
+    "agents/README.md",
+    "docs/doctrine/AGAPE_DEFECT_TAXONOMY.md",
+    "memory/development/canonical/1026/04/ara-system-prompt.json",
+    "memory/development/canonical/1026/04/ara-system-prompt.toon",
+    "memory/constitutional/seed/agape-defect-taxonomy.json",
+    "memory/constitutional/seed/agape-defect-taxonomy.toon"
+  ],
+  "open_questions": [
+    "Confirm lupo_agents row and registry actor for ara / agent_id 712 before runtime wiring."
+  ],
+  "handoff_to": "lilith",
+  "related_toons": [
+    "memory/development/canonical/1026/04/ara-system-prompt.toon"
+  ]
+}

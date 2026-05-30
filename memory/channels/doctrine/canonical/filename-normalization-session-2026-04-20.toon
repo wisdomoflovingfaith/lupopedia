@@ -1,0 +1,81 @@
+---
+lupopedia.headers:
+  header_format_version: "4.1.3"
+  file_path_from_root: "memory/doctrine/canonical/filename-normalization-session-2026-04-20.toon"
+  web_path: "https://www.lupopedia.com/lupopedia/memory/doctrine/canonical/filename-normalization-session-2026-04-20.toon"
+  status: "active"
+  when_updated: "20260420060000"
+  trust_tier: "canonical"
+  questions_toon: null
+  memory_toon: null
+  atoms_toon: null
+  transcript_jsonl: "0/doctrine/filename-normalization-session-2026-04-20"
+  artifact_type: report
+  artifact_kind: enforcement
+  channel_key: "doctrine"
+  federation_node_id: 0
+  thread_id: "filename-normalization-session-2026-04-20"
+  content_id: null
+  content_parent_id: null
+  content_slug: "filename-normalization-session-2026-04-20"
+  default_collection_id: null
+  lupopedia.schema: report
+  title: "Filename Normalization Session Report - 2026-04-20"
+  summary: "Report of filename violations identified during current session with proposed corrections."
+---
+{
+  "scan_timestamp": "2026-04-20T06:00:00Z",
+  "total_violations": 7,
+  "violations": [
+    {
+      "original_name": "ACTOR_GATEWAY_TYPES.md",
+      "proposed_name": "actor_gateway_types.md",
+      "path": "docs/doctrine/ACTOR_GATEWAY_TYPES.md",
+      "violations": ["uppercase"],
+      "action_required": "rename"
+    },
+    {
+      "original_name": "CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+      "proposed_name": "castcade_metadata_handling_checklist.md",
+      "path": "docs/doctrine/CASTCADE_METADATA_HANDLING_CHECKLIST.md",
+      "violations": ["uppercase"],
+      "action_required": "rename"
+    },
+    {
+      "original_name": "METADATA_VALIDATION_SPECIFICATION.md",
+      "proposed_name": "metadata_validation_specification.md",
+      "path": "docs/doctrine/METADATA_VALIDATION_SPECIFICATION.md",
+      "violations": ["uppercase"],
+      "action_required": "rename"
+    },
+    {
+      "original_name": "THREE_LAYER_METADATA_DOCTRINE.md",
+      "proposed_name": "three_layer_metadata_doctrine.md",
+      "path": "docs/doctrine/THREE_LAYER_METADATA_DOCTRINE.md",
+      "violations": ["uppercase"],
+      "action_required": "rename"
+    },
+    {
+      "original_name": "PRD_46_ACTOR_GATEWAY_TYPES.md",
+      "proposed_name": "46_actor_gateway_types.md",
+      "path": "docs/prd/PRD_46_ACTOR_GATEWAY_TYPES.md",
+      "violations": ["prd_prefix_format"],
+      "action_required": "rename"
+    },
+    {
+      "original_name": "README_WTF.md",
+      "proposed_name": "readme_wtf.md",
+      "path": "README_WTF.md",
+      "violations": ["uppercase"],
+      "action_required": "exception"
+    },
+    {
+      "original_name": "TODO.md",
+      "proposed_name": "todo.md",
+      "path": "TODO.md",
+      "violations": ["uppercase"],
+      "action_required": "exception"
+    }
+  ],
+  "notes": "README_WTF.md and TODO.md are root-level exceptions and should remain as-is per doctrine."
+}

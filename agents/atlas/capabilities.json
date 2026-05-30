@@ -1,0 +1,18 @@
+﻿{
+    "capabilities": [
+        "mapping_systems",
+        "geographic_analysis", 
+        "spatial_coordinates",
+        "cartographic_rendering",
+        "location_indexing",
+        "geospatial_visualization",
+        "map_projection",
+        "terrain_analysis",
+        "navigation_systems",
+        "geographic_database",
+        "spatial_queries",
+        "coordinate_transformations"
+    ],
+    "when_updated_utc": "20260331120000",
+    "last_verified_utc": "20260331120000"
+}

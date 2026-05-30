@@ -1,0 +1,57 @@
+{
+  "artifact_binding": {
+    "artifact_kind": "report",
+    "artifact_type": "status",
+    "lupopedia_schema": "status"
+  },
+  "atom_type": "weekly_report_header_bind",
+  "atom_version": "1.0.0",
+  "bind_actor_id": 102,
+  "bind_ymdhis": 20260416231438,
+  "constants": {
+    "header_fields": {
+      "count": 22,
+      "order": [
+        "header_format_version",
+        "file_path_from_root",
+        "web_path",
+        "status",
+        "when_updated",
+        "trust_tier",
+        "questions_toon",
+        "memory_toon",
+        "atoms_toon",
+        "transcript_jsonl",
+        "artifact_type",
+        "artifact_kind",
+        "channel_key",
+        "federation_node_id",
+        "thread_id",
+        "content_id",
+        "content_parent_id",
+        "content_slug",
+        "default_collection_id",
+        "lupopedia.schema",
+        "title",
+        "summary"
+      ]
+    },
+    "trust_tiers": {
+      "archive": 3,
+      "canonical": 1,
+      "seed": 0,
+      "staging": 2
+    }
+  },
+  "description": "Immutable bind for REPORT_EMAIL_TO_HELEN_2026_04_16: transcript_jsonl, memory_toon, and atoms_toon resolve to on-disk artifacts under channels and memory.",
+  "header_pointers": {
+    "atoms_toon": "memory/atoms/1026/04/weekly_report_helen_20260416.atoms.toon",
+    "memory_toon": "memory/development/canonical/1026/04/weekly_report_helen_20260416.toon",
+    "transcript_jsonl": "0/development/weekly_report_helen_20260416.jsonl"
+  },
+  "report_file_path_from_root": "REPORT_EMAIL_TO_HELEN_2026_04_16.md",
+  "week_ymd_boundary": {
+    "end": "20260416",
+    "start": "20260410"
+  }
+}

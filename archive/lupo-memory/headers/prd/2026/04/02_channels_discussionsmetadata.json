@@ -1,0 +1,30 @@
+{
+  "id": "hdr-02-channels-discussions",
+  "type": "header_metadata",
+  "file_path_from_root": "lupo-docs/prd/02_channels_discussions.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "Defines channels, threads, dialog messages, and structured discussion data model and directory semantics.",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-02-channels-discussions"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [],
+  "footer": {
+    "last_verified": "20260410130550",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": "0/development/prd_files/02_channels_discussions"
+}

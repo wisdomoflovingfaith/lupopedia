@@ -1,0 +1,125 @@
+{
+  "id": "36-rose-dialog",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md",
+  "channel_key": "rose",
+  "trust_tier": "canonical",
+  "purpose": "Define ROSE as Director of the synthetic choir: PHP-first batching (default every 10 organic messages), bounded LLM voicing for operator-selected personas, lupo_dialog_messages + metadata_json, KAIROS handoff; constitution \u00a75.10.3 (LIL001, PRD 32)",
+  "status": "draft",
+  "tags": [
+    "prd",
+    "rose",
+    "dialog",
+    "channels",
+    "multi_persona",
+    "synthetic_voice"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "cursor"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Constitutional anchor; identity and DB rules"
+      },
+      {
+        "to": "lupo-docs/prd/02_channels_discussions.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Channel and thread semantics"
+      },
+      {
+        "to": "lupo-docs/prd/07_agents_faucets.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "ROSE as lupo_agents row; internal vs selectable agents"
+      },
+      {
+        "to": "lupo-docs/prd/18_channel_chat_display.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Transcript rendering; actor_id primary attribution"
+      },
+      {
+        "to": "lupo-docs/prd/32_actor_authority_agent_roles.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Persona roles; COUNTERMEASURE analysis-only path"
+      },
+      {
+        "to": "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Actor-first transcript model"
+      },
+      {
+        "to": "lupo-rules/root/lilith-noninterference-doctrine.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Synthetic LILITH-voiced lines must not impersonate organic review"
+      },
+      {
+        "to": "lupo-database/lupopedia/actors/registry.json",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Canonical actor_id for each voiced persona"
+      },
+      {
+        "to": "lupo-database/lupopedia/json/lupo_dialog_messages.json",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Message row shape (from_actor_id, metadata_json, message_type)"
+      },
+      {
+        "to": "lupo-docs/prd/37_kairos_channel_memory_consolidation.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "KAIROS ingest after ROSE coordination summary"
+      },
+      {
+        "to": "app/Services/Kairos/KairosConsolidationService.php",
+        "type": "implements",
+        "weight": 1.0,
+        "reason": "recordObservation handoff from PHP after ROSE batch"
+      },
+      {
+        "to": "lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/README.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Implementation mirror (status, decisions)"
+      },
+      {
+        "to": "lupo-docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Survivability cooperation metric in metadata_json \u2014 PRD 00 \u00a714.6"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260404174956",
+    "verified_by": {
+      "identity_type": "agent",
+      "actor_id": 102,
+      "agent_name_identity": "Cursor IDE Agent"
+    },
+    "verified_via": {
+      "type": "direct",
+      "faucet_slug": "cursor"
+    },
+    "orchestrator": "cursor:root",
+    "next_action": [
+      "Implement RoseDialogService.php (Phase B): per-thread organic counter, default trigger every 10 messages, rose_visibility + 2000-char enforcement",
+      "PRD 18: mandatory synthetic badge when metadata_json.rose_synthesis (organic same actor: no badge)",
+      "Wire KAIROS: post-batch summary \u2192 KairosConsolidationService::recordObservation (PRD 37)"
+    ]
+  }
+}

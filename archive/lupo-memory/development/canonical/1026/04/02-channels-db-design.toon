@@ -1,0 +1,70 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "lupo-docs/prd/02_channels_db_design.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260419103952",
+    "last_verified_by": "prd_visitor_sessions_ssot_doc",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "02-channels-db-design",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/channels-db-design"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/02-channels-db-design.toon",
+  "purpose": "Database schema for channels threads messages tasks recent files agent colors performance indexes Crafty visitor model single department single channel AI parallel preservation.",
+  "source_file_path_from_root": "lupo-docs/prd/02_channels_db_design.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata",
+  "ai_shorthand": {
+    "doc": "prd02_channels_db_design",
+    "siblings": "overview=02_channels_db_overview.md mockups=02_channels_mockups_modules.md",
+    "role_file": "DDL_color_yaml_index_examples_not_projection_doctrine_not_UI_API",
+    "truth_source": "install_new_lupopedia.sql_TOONs_authoritative_PRD_logical_only_until_aligned",
+    "thread_colors_yaml": "config_global_atoms_yaml_chat_colors_backgrounds_12_hex_text_operators_12_hex_text_clients_12_hex",
+    "thread_color_rule": "new_thread_colors_mod_channel_thread_count_all_msgs_in_thread_share_row_colors",
+    "agent_color_override": "optional_lupo_agent_colors_actor_id_PK_bg_fg_hex_last_used_ymdhis_per_agent_msgs",
+    "agent_color_names_in_prd": "CURSOR_CLAUDE_CASCADE_WINDSURF_LILITH_COUNTER_CAPTAIN_hex_examples",
+    "visitor_model_title": "Crafty_compat_plus_Lupopedia",
+    "visitor_no_livehelp_runtime": "livehelp_users_visit_track_import_transform_only_no_runtime_livehelp_users_table_no_duplicate_visitor_storage",
+    "visitor_dept_rule": "exactly_one_department_id",
+    "visitor_channel_rule": "at_most_one_channel_id_routing_browsing_may_null_invited_chatting_exactly_one_until_transition",
+    "visitor_session_name": "display_Anonymous_or_IP_plus_token_if_empty",
+    "visitor_status_ddl": "align_overview_browsing_invited_chatting_stopped_offline_exact_strings_in_DDL",
+    "visitor_invited_by": "invited_by_actor_id_or_equivalent_on_invite",
+    "visitor_routing": "participants_via_lupo_dialog_messages_endpoints_plus_operator_channel_membership_rows_per_DDL",
+    "visitor_source_rows": "lupo_sessions_single_SSoT_session_id_PK_join_actors_optional_no_parallel_livehelp_users_compat_VIEW_staging_only",
+    "visitor_session_additives": "livehelp_department_id_livehelp_channel_id_invited_by_actor_visitor_user_alert_visitor_auto_invite_visitor_is_typing_reuse_sessions_status_or_visitor_lifecycle_key_metadata_sparse",
+    "visitor_operator_filter": "actor_department_joins_per_install_SQL",
+    "visitor_ai_ddl_additive": "no_silent_drop_HERMES_tasks_agents_memory_paths_parallel",
+    "visitor_logical_cols": "stable_session_key_dept_id_session_name_status_lastaction_created_ymdhis_BIGINT_UTC_camefrom_ip_user_alert_auto_invite",
+    "recent_files_table": "lupo_dialog_recent_files_recent_file_id_PK_path_content_id_null_accessed_by_actor_accessed_ymdhis_file_size_is_deleted_indexes_idx_accessed_idx_actor_uk_actor_file_prefix",
+    "recent_files_hook": "track_file_access_php_pattern_agent_writes_manual_opens_imports_IDE_edits",
+    "task_tables_split": "lupo_dialog_pending_tasks_runtime_queue_short_lived_NOT_same_as_prefix_tasks_long_workflow_metadata",
+    "pk_doctrine": "BIGINT_PK_application_IdGenerator_or_equivalent_no_AUTO_INCREMENT_on_these_examples",
+    "pending_tasks_cols": "task_id_assigned_to_from_by_description_status_enum_result_summary_created_started_completed_ymdhis_indexes_assigned_status_created",
+    "prefix_tasks_cols": "task_id_title_description_assigned_to_string_priority_enum_status_TODO_flow_deps_created_by_ymdhis_notes_is_deleted_deleted_ymdhis",
+    "index_messages": "idx_messages_thread_time_idx_messages_actor_time_idx_dialog_messages_from_session_idx_dialog_messages_to_session",
+    "index_threads": "idx_threads_channel_channel_id_thread_key_idx_threads_created_created_desc",
+    "index_recent": "idx_recent_actor_time_idx_recent_time",
+    "index_pending_tasks": "idx_tasks_assigned_idx_tasks_created",
+    "prd_sql_note": "embedded_SQL_in_PRD_reference_patterns_constitutional_root_may_forbid_ON_DUPLICATE_and_AUTO_INC_follow_install_sql_not_just_PRD_snippets",
+    "dialog_messages_dual": "lupo_dialog_messages_plus_from_session_id_to_session_id_VARCHAR128_NULL_after_actor_cols_per_side_xor_actor_OR_session_idx_from_session_idx_to_session_matrix_operator_visitor_import_php_admin_surfaces"
+  },
+  "ai_dense_one_line": "prd02_design:yaml=global_atoms.chat_colors(bg12|op12|cl12);thread=mod_assign;agent=lupo_agent_colors_optional_override;visitor=lupo_sessions_SSoT+additives+no_livehelp_users_dup+1dept+1ch+routing+no_livehelp_runtime+AI_additive_DDL;recent=lupo_dialog_recent_files+indexes;tasks=pending_queue!=prefix_tasks;PK=app_allocator_no_AI;idx=messages+threads+recent+pending+sess_endpoints;truth=install_sql+TOON;dual_msg=from_sess|to_sess"
+}

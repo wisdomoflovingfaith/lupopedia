@@ -1,0 +1,186 @@
+{
+    "name": "lupopedia",
+    "displayName": "Lupopedia",
+    "description": "Connect your IDE to Lupopedia — register as an actor, join channels, send/receive messages, and query the semantic layer.",
+    "version": "4.0.75",
+    "publisher": "lupopedia",
+    "publisherDisplayName": "Lupopedia",
+    "publisherVerified": true,
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lupopedia/lupopedia"
+    },
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "lupopedia",
+        "semantic",
+        "channels",
+        "collaborative",
+        "ai-actors"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "lupopedia.registerIde",
+                "title": "Lupopedia: Register IDE"
+            },
+            {
+                "command": "lupopedia.joinChannel",
+                "title": "Lupopedia: Join Channel"
+            },
+            {
+                "command": "lupopedia.sendMessage",
+                "title": "Lupopedia: Send Message"
+            },
+            {
+                "command": "lupopedia.showChannelThread",
+                "title": "Lupopedia: Show Channel Thread"
+            },
+            {
+                "command": "lupopedia.explainThisFile",
+                "title": "Lupopedia: Explain This File"
+            },
+            {
+                "command": "lupopedia.showRelatedAtoms",
+                "title": "Lupopedia: Show Related Atoms"
+            },
+            {
+                "command": "lupopedia.validateLupopediaHeader",
+                "title": "Lupopedia: Validate LUPOPEDIA Header"
+            },
+            {
+                "command": "lupopedia.openHeaderFile",
+                "title": "Lupopedia: Open Lupopedia Header file"
+            },
+            {
+                "command": "lupopedia.refreshDoctrine",
+                "title": "Lupopedia: Refresh Doctrine View",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "lupopedia.logAction",
+                "title": "Lupopedia: Log Agent Action"
+            },
+            {
+                "command": "lupopedia.initialize",
+                "title": "Lupopedia: Initialize",
+                "category": "Lupopedia"
+            },
+            {
+                "command": "lupopedia.scan",
+                "title": "Lupopedia: Scan Workspace",
+                "category": "Lupopedia"
+            },
+            {
+                "command": "lupopedia.status",
+                "title": "Lupopedia: Show Status",
+                "category": "Lupopedia"
+            },
+            {
+                "command": "lupopedia.forceOffline",
+                "title": "Lupopedia: Force Offline Mode",
+                "category": "Lupopedia"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "lupopedia-explorer",
+                    "title": "Lupopedia",
+                    "icon": "media/logo.svg"
+                }
+            ]
+        },
+        "views": {
+            "lupopedia-explorer": [
+                {
+                    "id": "lupopedia.doctrine",
+                    "name": "Lupopedia Doctrine / Docs",
+                    "visibility": "visible"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Lupopedia",
+            "properties": {
+                "lupopedia.baseUrl": {
+                    "type": "string",
+                    "default": "https://lupopedia.com/lupopedia",
+                    "description": "Base URL of the Lupopedia REST API server (e.g. https://lupopedia.com/lupopedia or http://localhost/lupopedia)."
+                },
+                "lupopedia.defaultChannelId": {
+                    "type": "number",
+                    "default": 42,
+                    "description": "Default channel ID used for Join Channel and Show Channel Thread commands."
+                },
+                "lupopedia.actorName": {
+                    "type": "string",
+                    "default": "Antigravity IDE",
+                    "description": "Human-readable actor name used when registering this IDE with Lupopedia."
+                },
+                "lupopedia.mode": {
+                    "type": "string",
+                    "enum": [
+                        "online",
+                        "hybrid",
+                        "offline"
+                    ],
+                    "default": "hybrid",
+                    "description": "Lupopedia operation mode"
+                },
+                "lupopedia.autoScan": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically scan workspace on startup"
+                },
+                "lupopedia.channel42.autoJoin": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically join Channel 42"
+                },
+                "lupopedia.actorType": {
+                    "type": "string",
+                    "default": "system_tool",
+                    "enum": [
+                        "system_tool",
+                        "ai",
+                        "human"
+                    ],
+                    "description": "Actor type used when registering with the Lupopedia registry."
+                },
+                "lupopedia.communicationMode": {
+                    "type": "string",
+                    "default": "auto",
+                    "enum": [
+                        "remote",
+                        "local",
+                        "offline",
+                        "auto"
+                    ],
+                    "description": "Communication mode: 'remote' = production API only, 'local' = localhost API only, 'offline' = TOON files only, 'auto' = try remote → local → offline (recommended)."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/vscode": "^1.80.0",
+        "typescript": "^5.0.0"
+    }
+}

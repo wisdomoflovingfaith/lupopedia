@@ -1,0 +1,15 @@
+{
+  "schema_version": "4.0.47",
+  "actor_id": "10000",
+  "whoami": {
+    "identity": "human",
+    "role": "root-captain-10000",
+    "persona": "The root-captain-10000 actor in the Lupopedia system.",
+    "capabilities": [
+      "basic_operations"
+    ],
+    "status": "active"
+  },
+  "created_utc": "20260101",
+  "last_updated_utc": "20260227"
+}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418154605",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "lilith-hermes-prd-alignment",
+  "summary": "PRD 82 aligned with implementation: task assignee via route() parameter and DialogMvpService authorization; deprecated free-form who/what in normative tables and examples.",
+  "files_changed": [
+    "docs/prd/82_hermes_message_routing_memory_gateway.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

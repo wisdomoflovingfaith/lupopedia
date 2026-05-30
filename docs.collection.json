@@ -1,0 +1,15 @@
+{
+  "collection_key": "docs",
+  "title": "Lupopedia Documentation Root Collection",
+  "description": "Root collection for all documentation, PRDs, guides, and doctrine files. Authority: PRD 26_A, 16_C.",
+  "created_utc": "20260423183000",
+  "collection_type": "root",
+  "fallback_mode": true,
+  "authority_level": "provisional",
+  "authority_source": "chiron_filesystem_discovery",
+  "replaceable": true,
+  "authoritative_source_id": null,
+  "parent": null,
+  "children": [],
+  "doctrine_reference": ["26_A", "16_C"]
+}

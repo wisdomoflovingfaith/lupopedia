@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418202017",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "generate-json-headers",
+  "summary": "generate_json_headers: require utf8_structured_write import (exit 1); json.dumps try/except; 256KB soft warn; YAML parse warn; split_frontmatter scan to EOF; draft tag only when no tags/status; UTF-8 decode error on TOON read.",
+  "files_changed": [
+    "lupo-scripts/generate_json_headers.py",
+    "lupo-changelog-pending/20260418202017_cursor_generate_json_headers.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

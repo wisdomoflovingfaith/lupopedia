@@ -1,0 +1,20 @@
+preflight_memory_orphans_prd — baseline (Pattern #6 / ANUBIS)
+
+packed_utc_anchor: 20260411154001
+scan_root_repo_relative: docs/prd
+command: python scripts/detect_memory_graph_orphans.py --under docs/prd --json
+exit_code: 1 (actionable: header memory_key vs lupo_memory_nodes mismatch)
+
+summary:
+  files_with_declared_memory_key_scanned: 112
+  db_status_missing_node: 112
+  db_status_ok: 0
+  db_status_soft_deleted_only: 0
+  active_nodes_missing_mirror_file: 0
+
+notes:
+  - Baseline reflects current DB: no matching lupo_memory_nodes rows for these header keys (expected before graph-first backfill).
+  - 55 rows show memory_key "null" in JSON: YAML memory_key: null in file is captured as the string null by the scanner regex; treat as "no key" in human review until the script skips YAML null explicitly.
+  - Subtrees under docs/prd/decisions/ are included (recursive walk).
+
+artifact: preflight_memory_orphans_prd_20260411154001.json (machine-readable full report)

@@ -1,0 +1,135 @@
+> **For the authoritative channel model, see PRD 02 and channel_model_doctrine.md. Channels are semantic containers under a domain (node), not chat rooms.**
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "docs/channels/doctrine/CSLH-URL-Semantics.md"
+  file_hash: "ce0108867965b3c02f0e08b324fc8c7c4df0ed6af6b3edf1c38199eb092ad011"
+  last_updated_utc: "20260228155738"
+  system_version: "4.0.51"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: "1002:10000"
+  artifact_type: "documentation"
+  artifact_kind: "documentation"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.51"]
+  tags: ["documentation", "flare_applied"]
+  lupo_agent: "windsurf"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+
+lupopedia.footer:
+  last_verified: "20260228155738"
+  last_verified_by: "windsurf"
+---
+
+# LUPOPEDIA HEADERS (replaces FLARE)
+
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  lupopedia.edges: []
+  file_path_from_root: "docs\channels\doctrine\CSLH-URL-Semantics.md"
+  file_hash: "9b33540158bc15cb575c35e2a374ad54200312253a61c79afbe9dd735a9ce75c"
+  file_path_from_root: "docs\channels\doctrine\CSLH-URL-Semantics.md"
+  file_hash: "23c4b33ec1920e8e999015bfee13d31eaea19babdb188b89857d58b5ed9619d6"
+  last_updated_utc: "20260228"
+  system_version: "4.0.50"
+  channel_id: 1
+  actor_id: 1002
+  delegation_chain: null
+  artifact_type: "guide"
+  artifact_kind: "documentation"
+  purpose: "Documentation for CSLH-URL-Semantics.md"
+  mood_vector: "4169E1"
+  traits: ["flare", "indexed", "v4.0.50"]
+  tags: ["docs", "channels", "doctrine", "cslh-url-semanticsmd"]
+  lupo_agent: "windsurf"
+
+  needs_review: ["delegation_chain"]
+  system_version: "4.0.50"
+  last_updated_utc: "20260228"
+lupopedia.footer:
+  last_verified: "20260228"
+  last_verified_by: "windsurf"
+    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+---
+
+---
+wolfie.headers: explicit architecture with structured clarity for every file.
+file.last_modified_system_version: 3.0.18
+header_atoms:
+  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  - GLOBAL_CURRENT_AUTHORS
+dialog:
+  speaker: KIRO
+  target: @everyone
+  message: "Added WOLFIE headers to CSLH-URL-Semantics.md. Phase 2 documentation consistency audit correction."
+  mood: "00FF00"
+tags:
+  categories: ["documentation", "doctrine", "crafty-syntax", "url-semantics"]
+  collections: ["core-docs", "doctrine"]
+  channels: ["dev", "public"]
+file:
+  title: "Crafty Syntax URL Semantics Doctrine"
+  description: "Canonical rules for Crafty Syntax URL semantics: URLs are web-facing slugs exactly as seen in the browser address bar, not filesystem paths"
+  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
+  status: published
+  author: GLOBAL_CURRENT_AUTHORS
+---
+
+# Crafty Syntax URL Semantics Doctrine
+
+## Core Principle
+Crafty Syntax does NOT store filesystem paths. It stores the exact web-facing URL as seen in the browser address bar at the time of the visit.
+
+Examples:
+- http://lupopedia.com/what_was_crafty_syntax.php
+- https://wordpress.com/reader/blogs/10822809/posts/54283
+- http://collaborativepages.com
+
+These values are:
+- semantic identifiers
+- opaque slugs
+- NOT file paths
+- NOT internal routes
+- NOT guaranteed to correspond to any file on disk
+
+## Migration Rule
+During migration into Lupopedia:
+- pageurl â†’ slug (stored exactly as-is)
+- NEVER attempt to resolve to a filesystem path
+- NEVER rewrite or normalize the URL
+- NEVER treat it as a file reference
+
+## Recno Resolution
+Tables like livehelp_paths_monthly use recnos that map back to pageurl.
+Migration must:
+- JOIN recno â†’ pageurl
+- store the slug
+- set content_id = 0 (slug resolution happens later in Lupopedia logic)
+
+## Purpose
+This preserves Crafty Syntax's original meaning:
+A map of how humans navigated the web, not how files were arranged on disk.
+
+---
+
+## Related Documentation
+
+- [CSLH-Historical-Context.md](../history/CSLH-Historical-Context.md) - Crafty Syntax history and architectural relevance
+- [Lupopedia-Reference-Layer-Doctrine.md](Lupopedia-Reference-Layer-Doctrine.md) - Lupopedia as semantic reference layer
+- [URL_ROUTING_DOCTRINE.md](URL_ROUTING_DOCTRINE.md) - HTTP URL routing doctrine
+- [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](SUBDIRECTORY_INSTALLATION_DOCTRINE.md) - Path handling and installation rules
+
+---
+
+**This doctrine is absolute and binding for all Crafty Syntax URL handling.**

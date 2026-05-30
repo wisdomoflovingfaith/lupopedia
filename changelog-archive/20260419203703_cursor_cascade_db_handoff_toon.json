@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260419203703",
+  "agent_id": "cursor",
+  "channel": "database",
+  "thread": "cascade-handoff",
+  "summary": "Created TOON_DB_HANDOFF_FOR_CASCADE.md under docs/agents/cascade/handoff with PRD 16 header and memory sidecar for Cascade/Windsurf database facet bootstrap.",
+  "files_changed": [
+    "docs/agents/cascade/handoff/TOON_DB_HANDOFF_FOR_CASCADE.md",
+    "memory/database/canonical/1026/04/cascade-windsurf-db-handoff.json",
+    "memory/database/canonical/1026/04/cascade-windsurf-db-handoff.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": "cascade",
+  "related_toons": [
+    "memory/database/canonical/1026/04/cascade-windsurf-db-handoff.toon"
+  ]
+}

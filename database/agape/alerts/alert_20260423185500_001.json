@@ -1,0 +1,15 @@
+{
+  "alert_id": "alert_20260423185500_001",
+  "created_utc": "20260423185500",
+  "alert_type": "system_boundary",
+  "severity": 1,
+  "source_actor_id": 705,
+  "source_actor_slug": "agape",
+  "message": "Disk space quota warning in file fallback mode - 850MB remaining",
+  "details": "AGAPE operating in file fallback mode has detected disk space usage approaching quota threshold. Current available space (850MB) is below 1GB warning level. System can continue operations but requires attention to prevent service interruption.",
+  "status": "active",
+  "linked_events": ["evt_20260423185500_001"],
+  "linked_why_files": ["why_20260423185500_001"],
+  "escalation_level": 0,
+  "file_path": "database/agape/alerts/alert_20260423185500_001.json"
+}

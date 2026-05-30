@@ -1,0 +1,33 @@
+# Generated from: C:/ServBay/www/servbay/lupopedia/lupo-memory/development/canonical/2026/04/74-governance-rules.json
+# Generated at: 2026-04-10 13:04:30 UTC
+# JSON master checksum: 49380bdb897a3fa7b433ee948209f73f
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410130429,20260410130429,canonical,74,governance-rules,lupo-docs/prd/74_governance_rules.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for governance-rules section 1.,Overview
+  2,Operational summary for governance-rules section 2.,Tables in This Namespace
+  3,Operational summary for governance-rules section 3.,Table Details
+  4,Operational summary for governance-rules section 4.,ANUBIS Governance Tables
+  5,Operational summary for governance-rules section 5.,Governance Agents
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_08_rule_1,1,critical,Rule 1 for PRD 08 (governance-rules)
+  2,prd_08_rule_2,2,high,Rule 2 for PRD 08 (governance-rules)
+  3,prd_08_rule_3,3,high,Rule 3 for PRD 08 (governance-rules)
+  4,prd_08_rule_4,4,medium,Rule 4 for PRD 08 (governance-rules)
+  5,prd_08_rule_5,5,critical,Rule 5 for PRD 08 (governance-rules)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 08.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[4]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,lupo-docs/prd/14_system_operations.md,85

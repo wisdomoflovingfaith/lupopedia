@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "memory_consolidation": {
+      "max_observations_per_pass": 100,
+      "consolidation_threshold": 2,
+      "canonical_promotion_enabled": true,
+      "contradiction_detection_enabled": true
+    },
+    "rate_limits": {
+      "tick_interval_seconds": 90,
+      "max_observations_per_actor": 1000
+    },
+    "retention": {
+      "observation_days": 30,
+      "consolidated_days": 365
+    }
+  }
+}

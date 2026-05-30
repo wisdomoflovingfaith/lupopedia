@@ -1,0 +1,11 @@
+{
+  "toon_version": "1.0",
+  "node_id": "chapter_43_ara_agent_rebuild",
+  "content_slug": "chapter_43_ara_agent_rebuild",
+  "created_utc": 20260418135144,
+  "summary": "Technical review of the ARA agent rebuild, documenting its configuration as a non-emotional agent bound by the 666666 output for the Counting in Light metric.",
+  "edges": [
+    { "edge_type": "requires", "target": "prd_58_transcript_filter" },
+    { "edge_type": "requires", "target": "prd_56_probe_harness_v2" }
+  ]
+}

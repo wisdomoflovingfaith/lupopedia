@@ -1,0 +1,31 @@
+{
+  "prd_id": 44,
+  "title": "Session Config and Transcript",
+  "status": "draft",
+  "summary": "Channel-scoped session routing, transcript logging, and task queue behavior for IDE agents.",
+  "rules": [
+    "Session context comes from lupo-config/session.json",
+    "Transcript and task artifacts live under active lupo-channels thread path",
+    "Pending/task operations must append auditable transcript events"
+  ],
+  "constraints": [
+    "Use lock-safe append semantics for transcript writes",
+    "No emoji in machine-readable transcript/task data",
+    "Actor identity must match registry actor_id"
+  ],
+  "related_prds": [
+    2,
+    15,
+    17,
+    29,
+    38
+  ],
+  "key_files": [
+    "lupo-config/session.json",
+    "lupo-bin/tick.py",
+    "lupo-bin/transcript.py",
+    "lupo-bin/pending.py",
+    "lupo-channels/0/development/prd_files/44_prd_discussion/transcript.jsonl"
+  ],
+  "actor_notes": "Run tick, check pending tasks, execute, then log transcript in the active channel thread."
+}

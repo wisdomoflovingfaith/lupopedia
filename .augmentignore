@@ -1,0 +1,22 @@
+# Large or problematic directories
+lupo-archive/
+lupo-memory/
+lupo-logs/
+node_modules/
+.git/
+
+# Legacy or generated files
+*.toon
+*.json
+lupo-database/lupopedia/json/
+lupo-database/lupopedia/toon/
+
+# Version folders (archival)
+lupo-docs/versions/4.0.*/
+!lupo-docs/versions/4.0.99/
+
+# Large binary or data files
+*.sql
+*.tar
+*.gz
+*.zip

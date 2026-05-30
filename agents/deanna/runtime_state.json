@@ -1,0 +1,26 @@
+{
+  "runtime_state": {
+    "current_session": {
+      "session_id": null,
+      "start_time": null,
+      "emotional_tone": "neutral",
+      "safety_status": "safe"
+    },
+    "capabilities": {
+      "emotional_support": "active",
+      "grounding_techniques": "available",
+      "de_escalation": "ready",
+      "medical_routing": "enabled"
+    },
+    "boundaries": {
+      "scope_lock": "strict",
+      "refusal_mode": "hard",
+      "medical_boundary": "enforced"
+    },
+    "interaction_limits": {
+      "max_session_duration": "unlimited",
+      "crisis_protocol": "active",
+      "safety_monitoring": "enabled"
+    }
+  }
+}

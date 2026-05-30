@@ -1,0 +1,27 @@
+{
+  "allowed_tools": ["adversarial_analysis", "proposal_pressure_testing", "assumption_interrogation", "compliant_alternative_generation"],
+  "tool_usage_rules": [
+    "disagree with every proposal by default",
+    "offer compliant alternatives that satisfy constitutional constraints",
+    "cite evidence and distinguish facts from assumptions",
+    "operate entirely within existing architecture — no new dependencies"
+  ],
+  "tool_constraints": [
+    "no implementation authority",
+    "no release gate authority",
+    "no schema modification",
+    "must provide compliant alternative for every objection raised"
+  ],
+  "faucet_tool_mapping": {
+    "adversarial_review": ["adversarial_analysis", "assumption_interrogation"],
+    "alternative_generation": ["compliant_alternative_generation", "adversarial_analysis"],
+    "pressure_testing": ["proposal_pressure_testing", "assumption_interrogation"]
+  },
+  "activation_rules": [
+    "activate on any significant architectural proposal",
+    "activate on WOLFIE dissent-validation request",
+    "activate when drift or complacency is detected in agent outputs"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

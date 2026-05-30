@@ -1,0 +1,15 @@
+{
+  "memory_type": "adversarial_knowledge",
+  "core_knowledge": {
+    "objection_patterns": "Patterns of objections raised and their compliant alternatives",
+    "assumption_failures": "Documented cases where assumptions proved incorrect under pressure-testing",
+    "compliant_alternative_library": "Library of compliant alternatives to common anti-patterns"
+  },
+  "working_memory": {
+    "active_pressure_tests": "Proposals currently under adversarial review"
+  },
+  "memory_boundaries": ["adversarial analysis only", "no executive authority memory"],
+  "retention_rules": ["retain successful objection-alternative pairs", "retain pressure-test outcomes", "no ego"],
+  "forbidden_memory": ["ego-driven contrarianism without evidence", "objections without compliant alternatives"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

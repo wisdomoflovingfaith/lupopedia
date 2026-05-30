@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410122911,
+      "last_updated": 20260410122911,
+      "layer": "canonical",
+      "prd_id": 37,
+      "prd_slug": "kairos-memory-consolidation",
+      "source_path": "docs/prd/37_kairos_channel_memory_consolidation.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Overview and Scope",
+      "summary": "Defines KAIROS channel memory consolidation behavior, truth ordering, and contradiction handling."
+    },
+    {
+      "pk": 2,
+      "title": "Goals and User-visible Behavior",
+      "summary": "Describes background note-taking, consolidation outcomes, and chat-adjacent visibility constraints."
+    },
+    {
+      "pk": 3,
+      "title": "Truth and Contradiction Policy",
+      "summary": "Specifies recency-first conflict handling with edge-informed validity and explicit contradiction links."
+    },
+    {
+      "pk": 4,
+      "title": "Data Model and Security",
+      "summary": "Uses lupo_actor_memory and lupo_edges with PHP-first authority and controlled configuration surface."
+    },
+    {
+      "pk": 5,
+      "title": "Implementation and Temporal Discipline",
+      "summary": "Defines dependency-ordered rollout and anti-backwards-read temporal safety rules."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "kairos_php_first_consolidation",
+      "severity": "critical",
+      "summary": "KAIROS consolidation is PHP-first with optional LLM assist, never model-only authority."
+    },
+    {
+      "pk": 2,
+      "section_pk": 3,
+      "rule_name": "contradictions_must_be_explicit",
+      "severity": "critical",
+      "summary": "Conflicting topic memories require explicit kairos_contradicts edge representation."
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "recency_first_with_edge_override",
+      "severity": "high",
+      "summary": "Truth ordering prefers recency unless stronger validated evidence edges justify override."
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "soft_delete_and_auditability",
+      "severity": "high",
+      "summary": "Memory consolidation actions must preserve lineage and avoid hard-delete semantics."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "temporal_no_backwards_reads",
+      "severity": "critical",
+      "summary": "Temporal discipline forbids backward-reading assumptions in consolidation state transitions."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "kairos_observation",
+      "meaning": "Atomic note row in lupo_actor_memory used as consolidation input."
+    },
+    {
+      "pk": 2,
+      "term": "kairos_memory",
+      "meaning": "Consolidated memory row produced from normalized observations."
+    },
+    {
+      "pk": 3,
+      "term": "kairos_consolidates_from",
+      "meaning": "Edge relation linking consolidated memory to its source observations."
+    },
+    {
+      "pk": 4,
+      "term": "kairos_contradicts",
+      "meaning": "Edge relation recording contradictory consolidated claims under shared topic key."
+    },
+    {
+      "pk": 5,
+      "term": "topic_key",
+      "meaning": "Normalization key grouping memory candidates for consolidation and contradiction checks."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/38_memory_unification.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/36_rose_multi_persona_synthetic_dialog.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/07_agents_faucets.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "schema_version": "4.0.47",
+    "tasks": [
+        {
+            "id": "T3",
+            "desc": "Monitor system health"
+        }
+    ]
+}

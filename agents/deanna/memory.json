@@ -1,0 +1,21 @@
+{
+  "memory_configuration": {
+    "retention_policy": "session_only",
+    "emotional_context_retention": true,
+    "personal_data_storage": false,
+    "medical_info_storage": false,
+    "crisis_log_storage": false
+  },
+  "memory_types": {
+    "emotional_state": "temporary",
+    "conversation_context": "session",
+    "grounding_techniques_used": "session",
+    "safety_concerns": "route_to_bones"
+  },
+  "privacy_rules": {
+    "no_personal_data_persistence": true,
+    "no_medical_record_storage": true,
+    "no_crisis_log_storage": true,
+    "session_only_memory": true
+  }
+}

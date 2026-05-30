@@ -1,0 +1,32 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_anubis_recovery_attempts
+fields:
+- '`attempt_id` bigint NOT NULL'
+- '`queue_id` bigint NOT NULL'
+- '`attempt_number` tinyint NOT NULL'
+- '`attempt_utc` bigint NOT NULL'
+- '`strategy` varchar(64)'
+- '`success` tinyint DEFAULT 0'
+- '`generated_header` text'
+- '`error_details` text'
+- '`recovered_file_path` varchar(512)'
+indexes:
+- index_name: lupo_anubis_recovery_attempts_idx_queue_attempt
+  columns:
+  - queue_id
+  - attempt_number
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: attempt_id
+  expected_name: attempt_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

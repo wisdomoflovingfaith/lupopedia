@@ -1,0 +1,75 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "lupo-docs/prd/02_channels_db_overview.md",
+        "type": "mirrors",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260419103952",
+    "last_verified_by": "prd_visitor_sessions_ssot_doc",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "02-channels-db-overview",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/channels-db-overview"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/02-channels-db-overview.toon",
+  "purpose": "Channel vs thread projection presence visibility agent write-only doctrine release line task intake visitor management single channel binding Crafty transport fall-forward AI preservation additive.",
+  "source_file_path_from_root": "lupo-docs/prd/02_channels_db_overview.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata",
+  "ai_shorthand": {
+    "doc": "prd02_channels_db_overview",
+    "siblings": "mockups=02_channels_mockups_modules.md design=02_channels_db_design.md",
+    "role_file": "core_doctrine_projection_presence_agents_visitors_tasks_not_DDL_not_UI_wire",
+    "channel_def": "routing_context_namespace_threads_membership_policy_NOT_body_visibility",
+    "storage_def": "lupo_dialog_messages_total_order_exists_full_sequence_NOT_shown_to_all",
+    "projection_def": "filtered_view_visible_if_viewer_matches_from_or_to_actor_id_OR_from_or_to_session_id_visitor_uses_session_endpoints_crafty_saidfrom_saidto",
+    "presence_def": "awareness_online_idle_joined_NOT_read_unrelated_message_bodies",
+    "default_visibility": "participant_sees_endpoints_plus_policy_broadcast_reserved_to_actor_NOT_widen_by_channel_membership",
+    "anti_pattern": "membership_implies_visibility_FORBIDDEN",
+    "visitor_projection": "visitors_no_cross_visitor_traffic_unless_routed",
+    "operator_merge": "one_human_two_visitors_sees_merged_projection_because_endpoints_include_operator_NOT_global_feed",
+    "elevated_audit": "captain_supervisor_wider_projection_privileged_explicit_off_default_not_dark_tab_alone",
+    "thoth_alerts": "constitutional_PRD82_transcript_routing_enforcement_NOT_every_THOTH_tab_sees_all_rows",
+    "release_line": "4.1.3_live_help_baseline_projection_presence_orch_NOT_gate;4.1.4-4.1.9_fresh_install_layers_orch_AI;4.2.0_first_public_crafty375_only_in",
+    "upgrade_doctrine": "no_pre_4.2_L2L_supported_prod_migration_each_4.1.x_dev_staging_fresh",
+    "413_ship_gate_negative": "target_tabs_active_bar_dual_btn_per_msg_cross_ch_NOT_required_acceptance_4.1.3_orch_continues_41419",
+    "chat_not_conversation": "UI_one_column_chronological_projection_only_not_full_channel_storage_intermix_threads_same_column_full_width_row_color",
+    "participant_matrix": "visitor_operator_observer_builder_hermes_columns_see_projection_task_queue_rules",
+    "agent_write_only": "builders_post_to_stream_do_not_read_peer_chat_for_instructions_tasks_explicit",
+    "hermes_summary": "routes_patterns_to_task_queue_transcript_jsonl_memory_patterns_not_agent_chat_consumption",
+    "prd16_bridge": "memory_toon_transcript_jsonl_atoms_toon_chat_why_code_what",
+    "facet_seed_ids": "wolfie1_lilith2_cursor102_claude116_cascade117_windsurf118_counter119_defaults_in_table",
+    "visitor_dept": "visitor_exactly_one_department_id",
+    "visitor_channel_bind": "at_most_one_live_help_channel_id_browsing_may_null_invited_chatting_exactly_one_until_transition",
+    "visitor_operator_scope": "operator_multi_dept_sees_union_visitors_assigned_depts",
+    "visitor_status": "browsing_invited_chatting_stopped_offline_DDL_strings_authoritative",
+    "visitor_actions": "view_list_invite_layer_join_stop_ignore_details_legacy_admin_users_refs",
+    "visitor_auto_invite": "optional_rate_limited_sound_user_alert_semantics",
+    "visitor_transport": "ordered_XHR_then_image_width_peoplestring_then_meta_refresh_auto_no_silent_fail",
+    "visitor_transport_parallel": "visitor_poll_must_not_throttle_HERMES_tasks_agents_unless_host_profile",
+    "visitor_ai_preservation": "additive_HERMES_PRD82_tasks_tabs_agents_concurrent_no_degrade",
+    "task_system": "assign_via_queue_not_chat_stream_chat_human_oversight_operator_syntax_task_poll_cli_example",
+    "orch_vs_baseline": "target_actor_tabs_send_to_actor_orchestration_primary_414plus_not_413_defining_visitor_canned_first",
+    "anchored_truth_sieve": "1026_canonical_fact_2026_staging_descendant_2026_contradicts_1026_wrong_until_captain_amendment_logged",
+    "thoth_alert_stop": "contradiction_fix_staging_or_amend_1026_with_wolfie_no_merge_until_resolved_hard_stop",
+    "recency_bias": "never_prefer_2026_over_1026_recency_not_truth",
+    "dialog_messages_dual": "from_session_id_to_session_id_VARCHAR128_pairs_with_actor_columns_default_visibility_extended_see_db_design",
+    "visitor_storage": "lupo_sessions_SSoT_no_livehelp_users_runtime_admin_reads_sessions_not_dupe_table"
+  },
+  "ai_dense_one_line": "prd02_overview:channel=routing_ctx;storage=lupo_dialog_messages;proj=actor|sess_endpoints;presence!=read;no_global_feed;413=live_help+proj+presence_orchNOTgate;413neg=target_tabs+dual_btn+crossch;upgrade=no_L2L_4.1.x;chat=1col_proj_only;write_only=agents_no_peer_read;hermes=route+transcript+memory_not_chat_bus;visitor=lupo_sessions_SSoT+1dept+1ch_bind+browse|inv|chat|stop+transport_XHR>img>meta+AI_parallel;tasks=queue_not_chat;sieve=1026>2026+THOTH_stop;dual_msg=sess_cols"
+}

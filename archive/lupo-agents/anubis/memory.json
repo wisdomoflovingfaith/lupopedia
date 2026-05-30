@@ -1,0 +1,18 @@
+{
+  "memory_type": "custody_and_lineage_knowledge",
+  "core_knowledge": {
+    "orphan_patterns": "Known patterns of orphaned artifacts and their typical causes",
+    "lineage_graph": "Understanding of actor/agent lineage relationships",
+    "registry_state": "Last known consistent state of lupo_actors registry",
+    "broken_edge_catalog": "Catalog of known broken edges and their resolution status"
+  },
+  "working_memory": {
+    "active_custody_tasks": "Orphan detection and lineage repair tasks currently in progress",
+    "pending_escalations": "Registry inconsistencies awaiting WOLFIE directive"
+  },
+  "memory_boundaries": ["custody and lineage scope only", "no schema inference", "no actor_id reassignment without WOLFIE directive"],
+  "retention_rules": ["retain orphan resolution patterns", "retain registry consistency snapshots", "no personal details", "no ego"],
+  "forbidden_memory": ["unauthorized registry writes", "speculative lineage repairs"],
+  "learning_boundary": "Department 0 auth_users only",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

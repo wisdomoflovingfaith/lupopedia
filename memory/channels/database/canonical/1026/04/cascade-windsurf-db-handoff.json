@@ -1,0 +1,35 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Handoff bootstrap for Cascade/Windsurf database facet",
+        "source": "cursor_actor_102",
+        "to": "docs/agents/cascade/handoff/TOON_DB_HANDOFF_FOR_CASCADE.md",
+        "type": "handoff",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260419203703",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "cascade-windsurf-db-handoff",
+    "default_collection_id": null,
+    "note": "Temporary database facet bootstrap; read TOON_DB_HANDOFF_FOR_CASCADE.md body.",
+    "transcript_jsonl": "0/database/cascade-db-handoff"
+  },
+  "memory_toon": "memory/database/canonical/1026/04/cascade-windsurf-db-handoff.toon",
+  "purpose": "Bootstrap memory for Cascade/Windsurf taking database lane duties from Cursor facet 102.",
+  "source_file_path_from_root": "docs/agents/cascade/handoff/TOON_DB_HANDOFF_FOR_CASCADE.md",
+  "tags": [
+    "database",
+    "handoff",
+    "cascade"
+  ],
+  "title": "Cascade Windsurf DB handoff stub"
+}

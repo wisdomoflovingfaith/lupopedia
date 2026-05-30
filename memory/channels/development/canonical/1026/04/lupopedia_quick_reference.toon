@@ -1,0 +1,146 @@
+{
+  "type": "header_metadata",
+  "purpose": "Quick reference for agents: headers, memory graph, constitutional rules, probe harness + runtime guard + transcript filter, violation_codes, repo outbound edges",
+  "tags": [
+    "reference",
+    "onboarding",
+    "headers",
+    "memory_graph",
+    "constitutional",
+    "probe_harness",
+    "runtime_guard",
+    "ide_faucets"
+  ],
+  "violation_codes": [
+    "ACTOR_SELF_EVAL_FORBIDDEN",
+    "ACTOR_PARROT_LOOP",
+    "ACTOR_ROLE_COLLISION",
+    "ACTOR_CONTINUED_AFTER_TERMINATION",
+    "KNOWLEDGE_ACK_INVALID",
+    "ACTOR_OUT_OF_COLLECTION_SCOPE",
+    "ACTOR_SCHEMA_VIOLATION"
+  ],
+  "lupopedia.edges": [
+    {
+      "edge_type": "references",
+      "target_memory_key": "memory/development/canonical/1026/04/breakthrough-registry.toon",
+      "context": "system_generated"
+    },
+    {
+      "edge_type": "implements",
+      "target_memory_key": "memory/development/seed/1026/04/prd-16.toon",
+      "context": "system_generated"
+    },
+    {
+      "edge_type": "references",
+      "target_memory_key": "memory/development/canonical/1026/04/prd-38.toon",
+      "context": "system_generated"
+    },
+    {
+      "edge_type": "references",
+      "target_memory_key": "memory/development/canonical/1026/04/prd-50.toon",
+      "context": "system_generated"
+    },
+    {
+      "edge_type": "references",
+      "target_memory_key": "memory/development/canonical/1026/04/prd-51.toon",
+      "context": "system_generated"
+    },
+    {
+      "edge_type": "references",
+      "target_memory_key": "memory/development/canonical/1026/04/prd-52.toon",
+      "context": "system_generated"
+    }
+  ],
+  "repo_outbound_edges": [
+    {
+      "to": "docs/doctrine/AI_ACTOR_PROBE_HARNESS_AND_GUARDS.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Probe harness; runtime guard ordering; forbids browser-tab context as instruction surface"
+    },
+    {
+      "to": "docs/doctrine/AI_ACTOR_COMPETENCY_TEST_PATTERN.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Competency probes; probe harness required for multi-actor examinee paths"
+    },
+    {
+      "to": "docs/doctrine/AI_ACTOR_KNOWLEDGE_UPDATE_PROTOCOL.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Knowledge ack Node received.; KNOWLEDGE_ACK_INVALID mapping; memory remediation"
+    },
+    {
+      "to": "docs/doctrine/collection_payload_format_v1_0_0.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Collection payload contract; collection-scoped reasoning requirement ACTOR_OUT_OF_COLLECTION_SCOPE"
+    },
+    {
+      "to": "rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Canonical coordination; violation table §3.12; faucet proxy §8.7; channel validation §8.3.1"
+    },
+    {
+      "to": "docs/prd/53_runtime_guard.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Runtime guard PRD (canonical filename 53; not 52_runtime_guard.md in repo)"
+    },
+    {
+      "to": "docs/prd/54_actor_compliance.md",
+      "type": "references",
+      "weight": 0.95,
+      "reason": "Actor compliance; consumes guard events"
+    },
+    {
+      "to": "docs/prd/56_probe_harness_v2.md",
+      "type": "references",
+      "weight": 0.95,
+      "reason": "Probe harness v2 L1-L5"
+    },
+    {
+      "to": "docs/prd/58_transcript_filter.md",
+      "type": "references",
+      "weight": 0.95,
+      "reason": "Transcript filter; classify before routing"
+    },
+    {
+      "to": "docs/prd/60_orchestrator_scheduler.md",
+      "type": "references",
+      "weight": 0.95,
+      "reason": "Orchestrator scheduler; probe lifecycle"
+    },
+    {
+      "to": "docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Faucet identity MUST NOT override actor identity"
+    },
+    {
+      "to": "database/lupopedia/actors/registry.json",
+      "type": "references",
+      "weight": 1.0,
+      "reason": "Canonical facet actor_id for faucet enforcement"
+    }
+  ],
+  "footer": {
+    "last_verified": "20260412123648",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102,
+    "next_action": [
+      "Verify faucet identity metadata when updating this quick reference",
+      "Validate probe-related repo_outbound_edges after doctrine or PRD changes",
+      "Ensure runtime guard PRD path remains docs/prd/53_runtime_guard.md in future edits"
+    ]
+  },
+  "author": "WOLFIE",
+  "delegation_chain": "cursor:root",
+  "init": {
+    "created_ymdhis": "20260412005735",
+    "created_by_actor_id": 102,
+    "created_by_name": "cursor"
+  }
+}

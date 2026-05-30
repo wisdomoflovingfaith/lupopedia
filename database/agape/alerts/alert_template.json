@@ -1,0 +1,15 @@
+{
+  "alert_id": "alert_20260423183000_001",
+  "created_utc": "20260423183000",
+  "alert_type": "repeated_violation|system_boundary|escalation",
+  "severity": 2,
+  "source_actor_id": 123,
+  "source_actor_slug": "agent_name",
+  "message": "Alert message description",
+  "details": "Detailed alert information",
+  "status": "active|acknowledged|resolved",
+  "linked_events": ["evt_20260423183000_001"],
+  "linked_why_files": ["why_20260423183000_001"],
+  "escalation_level": 0,
+  "file_path": "database/agape/alerts/alert_20260423183000_001.json"
+}

@@ -1,0 +1,17 @@
+lupopedia.headers:
+  version_when_written: "4.0.86"
+  file_path_from_root: "actors/rose/.metadata.yaml"
+  last_modified_utc: "20260323_143806"
+  actor_id: 3
+  actor_name: "rose"
+  artifact_type: "actor_metadata"
+  artifact_kind: "canonical_role_definition"
+  purpose: "Canonical Layer 1 role definition for ROSE"
+  tags: ["actor", "canonical_role", "layer1", "rose", "4.0.86"]
+
+actor:
+  slug: "rose"
+  actor_type: "role"
+  layer: 1
+  is_primary: 1
+  parent_actor_id: 0

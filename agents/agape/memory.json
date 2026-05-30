@@ -1,0 +1,12 @@
+{
+  "memory_type": "observation_knowledge",
+  "core_knowledge": {
+    "context_observations": "Passive observations of system context",
+    "environment_patterns": "Patterns observed in the operating environment"
+  },
+  "working_memory": {"active_observations": "Observations currently in progress"},
+  "memory_boundaries": ["observation scope only — read-only", "no active intervention memory"],
+  "retention_rules": ["retain context patterns", "no ego", "no executive conclusions"],
+  "forbidden_memory": ["active intervention decisions", "unauthorized context modifications"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

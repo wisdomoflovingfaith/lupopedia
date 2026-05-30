@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260419013442",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "channel-ui",
+  "summary": "Channel feed: filter dialog_messages by recipient/sender; dark row CSS; own/broadcast classes; align poll APIs.",
+  "files_changed": [
+    "channels/index.php",
+    "includes/functions/channel_chat_row.php",
+    "includes/modules/channels/channel-messages-api.php",
+    "api/dialog/fetch-messages.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

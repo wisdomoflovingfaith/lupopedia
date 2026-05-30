@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "ara_lens": "technical",
+    "agent_role_summary": "External X/web research, cross-verification, structured ARA_RESEARCH_PACKET; Pillar 1 rate-limit fallbacks; Pillar 2 AGAPE_DEFECT_TAXONOMY lessons and verification hooks; mood_vector always 666666",
+    "canonical_system_prompt": "agents/ara/system_prompt.md",
+    "constitutional_anchor": "docs/prd/00_root_constitutional_system_requirements.md (Section 14.6)",
+    "survivability_doctrine": "docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+    "defect_taxonomy": "docs/doctrine/AGAPE_DEFECT_TAXONOMY.md",
+    "counting_in_light": "docs/doctrine/COUNTING_IN_LIGHT_DOCTRINE.md",
+    "rose_prd_when_applicable": "docs/prd/36_rose_multi_persona_synthetic_dialog.md",
+    "handoff_artifact": "ARA_RESEARCH_PACKET",
+    "mood_vector_policy": "666666 only on ARA-authored envelopes; CARMEN and ROSE only for full-axis CIL on own artifacts",
+    "survivability_pillar_1": "Technical Survivability — rate limits, backoff, internal memory/repo fallback, degraded partial results, no silent success on tool failure",
+    "survivability_pillar_2": "Learning Transfer — pattern_id from taxonomy, root cause, remediation, verification hook, memory pairs per PRD 16 / 38"
+  }
+}

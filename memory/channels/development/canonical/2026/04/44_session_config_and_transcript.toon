@@ -1,0 +1,32 @@
+# Generated from: memory/development/canonical/2026/04/44-session-config-and-transcript.json
+# Generated at: 2026-04-10 13:11:15 UTC
+# JSON master checksum: 717cb0a7d14f168f191da097936d9ecd
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131115,20260410131115,canonical,44,session-config-and-transcript,docs/prd/44_session_config_and_transcript.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for session-config-and-transcript section 1.,Session Configuration
+  2,Operational summary for session-config-and-transcript section 2.,Thread Directory Structure
+  3,Operational summary for session-config-and-transcript section 3.,Section 3
+  4,Operational summary for session-config-and-transcript section 4.,Section 4
+  5,Operational summary for session-config-and-transcript section 5.,Section 5
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_44_rule_1,1,critical,Rule 1 for PRD 44 (session-config-and-transcript)
+  2,prd_44_rule_2,2,high,Rule 2 for PRD 44 (session-config-and-transcript)
+  3,prd_44_rule_3,3,high,Rule 3 for PRD 44 (session-config-and-transcript)
+  4,prd_44_rule_4,4,medium,Rule 4 for PRD 44 (session-config-and-transcript)
+  5,prd_44_rule_5,5,critical,Rule 5 for PRD 44 (session-config-and-transcript)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 44.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[3]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,90

@@ -1,0 +1,21 @@
+{
+  "type": "agent_memory",
+  "agent_id": "cursor",
+  "channel": "captains_log",
+  "thread": "the-memory-problem-and-handoffs",
+  "trust_tier": "staging",
+  "status": "completed",
+  "start_time": "20260416180254",
+  "task": "Add Lupopedia headers to 20260417_the_memory_problem_and_handoffs.md and validate.",
+  "end_time": "20260416180344",
+  "notes": "Added canonical header and generated strict memory pair from header.",
+  "summary": "Prepended Lupopedia header block to the captains log file and generated canonical memory json/toon sidecars.",
+  "files_changed": [
+    "lupo-content/federation_node/0/captains_log/20260417_the_memory_problem_and_handoffs.md",
+    "lupo-memory/captains_log/canonical/1026/04/the-memory-problem-and-handoffs.json",
+    "lupo-memory/captains_log/canonical/1026/04/the-memory-problem-and-handoffs.toon",
+    "lupo-memory/captains_log/staging/2026/04/the-memory-problem-and-handoffs.toon"
+  ],
+  "handoff_from": null,
+  "handoff_to": null
+}

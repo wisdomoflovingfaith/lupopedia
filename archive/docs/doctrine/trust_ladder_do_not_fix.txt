@@ -1,0 +1,20 @@
+================================================================================
+CHRONOLOGICAL TRUST LADDER - DO NOT "FIX" 1026 TO 2026
+================================================================================
+
+Lower path/PK band numbers mean higher trust for canonical tier encoding.
+Canonical display year = calendar year minus 1000 (e.g. 2026 -> 1026).
+Staging uses the real calendar year segment (e.g. 2026).
+
+This keeps verified truth sorting BEFORE unverified drafts in listings and
+aligned PK bands. It is constitutional doctrine, not a typo.
+
+Full specification:
+  docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md
+
+PRD 16 (memory_key year segment, strict validator):
+  docs/prd/16_lupopedia_headers.md  (section 8.1)
+
+Copy this block into generated docs or agent handoffs when 1026 appears.
+
+================================================================================

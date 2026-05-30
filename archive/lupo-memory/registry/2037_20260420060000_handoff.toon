@@ -1,0 +1,24 @@
+{
+  "handoff_timestamp": "2026-04-20T06:00:00Z",
+  "actor_id": 2037,
+  "violation_type": "channel_key_isolation_breach",
+  "status": "channel_violation",
+  "task": "filename_doctrine_followup",
+  "channel_keys_used": ["root", "prd", "doctrine", "rules", "registry", "tools", "development"],
+  "violation_count": 7,
+  "channels_sequence": [
+    "root -> prd -> doctrine -> rules -> registry -> tools -> doctrine -> prd -> root -> tools -> doctrine -> development -> development -> doctrine -> doctrine -> prd -> registry -> doctrine -> tools -> tools -> tools -> prd -> prd -> prd -> registry -> doctrine -> tools -> tools -> tools"
+  ],
+  "corrective_actions": {
+    "task_frozen": true,
+    "actor_reset": true,
+    "handoff_created": true,
+    "registry_updated": true
+  },
+  "reset_parameters": {
+    "task": "",
+    "status": "awaiting_new_task",
+    "channel_key": null
+  },
+  "notes": "Actor attempted to switch lanes mid-task multiple times. This violates channel key isolation rule. All 35 entries in recent file changes registry show channel switching behavior."
+}

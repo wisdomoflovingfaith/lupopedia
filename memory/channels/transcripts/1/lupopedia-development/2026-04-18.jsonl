@@ -1,0 +1,2 @@
+{"ts":20260418163602,"from_actor_id":10000,"to_actor_id":1,"message_text":"[task] fds","message_type":"task","routing_provenance":"hermes:task-router"}
+{"ts":20260418163614,"from_actor_id":10000,"to_actor_id":116,"message_text":"test","message_type":"stdout","routing_provenance":"hermes:stdout-ui"}

@@ -1,0 +1,43 @@
+{
+  "id": "00_constitution_shorthand",
+  "type": "shorthand",
+  "ts": "20260409130423.000",
+  "status": "draft",
+  "content": {
+    "prd_id": 0,
+    "title": "Root Constitutional Requirements",
+    "summary": "Constitutional guardrails for schema, runtime, identity, and machine-readable data hygiene.",
+    "constitutional_rules": [
+      "No foreign keys",
+      "No database logic",
+      "No frameworks or middleware",
+      "No emoji in machine-readable data",
+      "No UNIX timestamps in canonical fields",
+      "No AUTO_INCREMENT for reserved-id tables",
+      "No UUIDs for canonical IDs",
+      "No Redis session dependency"
+    ],
+    "shorthand_index": [
+      {
+        "prd": 16,
+        "file": "docs/implementations/16_lupopedia_headers/decisions/pseudocode/16_shorthand.toon"
+      },
+      {
+        "prd": 17,
+        "file": "docs/implementations/17_decisions_format/decisions/pseudocode/17_shorthand.toon"
+      },
+      {
+        "prd": 38,
+        "file": "docs/implementations/38_memory_unification/decisions/pseudocode/38_shorthand.toon"
+      },
+      {
+        "prd": 43,
+        "file": "docs/implementations/43_parent_child_trust_ladder/decisions/pseudocode/43_shorthand.toon"
+      },
+      {
+        "prd": 44,
+        "file": "docs/implementations/44_session_config_and_transcript/decisions/pseudocode/44_shorthand.toon"
+      }
+    ]
+  }
+}

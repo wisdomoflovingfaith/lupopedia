@@ -1,0 +1,58 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_channel_typing_previews",
+  "fields": [
+    "`channel_typing_preview_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`dialog_thread_id` bigint NOT NULL",
+    "`from_actor_id` bigint NOT NULL DEFAULT 0",
+    "`actor_name` varchar(255) NOT NULL",
+    "`preview_text` varchar(1000) NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_channel_typing_uq_channel_thread",
+      "columns": [
+        "channel_id",
+        "dialog_thread_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_typing_idx_channel_updated",
+      "columns": [
+        "channel_id",
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_typing_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "channel_typing_preview_id",
+    "expected_name": "channel_typing_preview_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

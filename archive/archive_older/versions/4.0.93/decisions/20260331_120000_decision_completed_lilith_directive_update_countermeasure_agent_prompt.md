@@ -1,0 +1,52 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  when_updated: "20260331120000"
+  file_path_from_root: "docs/versions/4.0.93/decisions/20260331_120000_DECISION_completed_LILITH_Directive_Update_COUNTERMEASURE_Agent_Prompt.md"
+  web_path: "http://www.lupopedia.com/lupopedia/docs/versions/4.0.93/decisions/20260331_120000_DECISION_completed_LILITH_Directive_Update_COUNTERMEASURE_Agent_Prompt.md"
+  questions_toon: null
+  federation_node_id: 0
+  channel_key: null
+  trust_tier: null
+  memory_key: null
+  artifact_type: doctrine
+  artifact_kind: decisions
+  thread_id: "D-18"
+  content_id: null
+  pk_id: null
+  pk_slug: ""
+  title: ""
+  status: ""
+  parent_pk_id: ""
+  summary: ""
+  module: null
+  dialog_transcript: null
+---
+# D-18: LILITH Directive: Update COUNTERMEASURE Agent Prompt
+
+## Type
+**Decision**
+
+## Status
+**Completed**
+
+## Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+## Date
+2026-03-31
+
+### Context
+COUNTERMEASURE agent v1.0.0 was proposing architectural redesigns without authorization and lacking evidence citation for claims.
+
+### Decision
+Add operational constraints, evidence citation requirements, hallucination prevention, and scope limitations to keep agent within adversarial review scope.
+
+### Consequences
+- COUNTERMEASURE now operates within strict constitutional boundaries
+- Evidence-based critique with line number citations
+- Fact/assumption distinction prevents hallucinated issues
+- Clear escalation rules for constitutional and architectural matters
+
+---

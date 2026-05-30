@@ -1,0 +1,8 @@
+# Hand-maintained TOON sidecar for docs/architecture/federation.md
+# Federation node semantics (0 / 1 / 2+); aligns with PRD 34 and install DDL.
+
+toon.version: "1.0.0"
+artifact:
+  path_from_lupopedia_root: "docs/architecture/federation.md"
+  purpose: "Memory graph anchor for federation architecture specification v1.0"
+  related_prd: "docs/prd/34_A-i_FEDERATION_NODE_SEMANTIC_NETWORK.md"

@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\dialogs\\architecture\\CHANNEL_DIALOG_AGENT_WORKFLOWS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\architecture\\CHANNEL_DIALOG_SCHEMA_REVIEW.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\architecture\\DIALOGS_AND_CHANNELS.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\architecture\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\architecture\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

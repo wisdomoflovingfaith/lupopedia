@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417094411",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Aligns canonical install SQL memory_nodes and memory_edges schema with live database by adding channel_key columns and channel key indexes.",
+  "files_changed": [
+    "database/lupopedia/mysql/install/install_new_lupopedia.sql"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

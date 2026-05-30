@@ -1,0 +1,133 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410131110,
+      "last_updated": 20260410131110,
+      "layer": "canonical",
+      "prd_id": 70,
+      "prd_slug": "data-model",
+      "source_path": "lupo-docs/prd/70_data_model.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "**LILITH \"Source of Truth\" Protocol**",
+      "summary": "Operational summary for data-model section 1."
+    },
+    {
+      "pk": 2,
+      "title": "\u00f0\u0178\u201c\u2039 **Core Data Structure (From Toon JSON Analysis)**",
+      "summary": "Operational summary for data-model section 2."
+    },
+    {
+      "pk": 3,
+      "title": "\u00f0\u0178\u0161\u00a8 **CRITICAL: 4.0.93 Doctrine Constraints**",
+      "summary": "Operational summary for data-model section 3."
+    },
+    {
+      "pk": 4,
+      "title": "\u00f0\u0178\u008f\u2014\u00ef\u00b8\u008f **Architectural Evolution**",
+      "summary": "Operational summary for data-model section 4."
+    },
+    {
+      "pk": 5,
+      "title": "\u00f0\u0178\u201d\u008d **Migration Mapping (Softaculous Parity)**",
+      "summary": "Operational summary for data-model section 5."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "prd_02_rule_1",
+      "severity": "critical",
+      "summary": "Rule 1 for PRD 02 (data-model)"
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "prd_02_rule_2",
+      "severity": "high",
+      "summary": "Rule 2 for PRD 02 (data-model)"
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "prd_02_rule_3",
+      "severity": "high",
+      "summary": "Rule 3 for PRD 02 (data-model)"
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "prd_02_rule_4",
+      "severity": "medium",
+      "summary": "Rule 4 for PRD 02 (data-model)"
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "prd_02_rule_5",
+      "severity": "critical",
+      "summary": "Rule 5 for PRD 02 (data-model)"
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "scope",
+      "meaning": "Scope boundary for PRD 02."
+    },
+    {
+      "pk": 2,
+      "term": "actor_id",
+      "meaning": "Canonical actor identity reference key."
+    },
+    {
+      "pk": 3,
+      "term": "channel_key",
+      "meaning": "Channel namespace identifier used for routing."
+    },
+    {
+      "pk": 4,
+      "term": "timestamp_ymdhis",
+      "meaning": "Packed UTC BIGINT in YYYYMMDDHHIISS format."
+    },
+    {
+      "pk": 5,
+      "term": "memory_pair",
+      "meaning": "JSON master with deterministically derived TOON."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

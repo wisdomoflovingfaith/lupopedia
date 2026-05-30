@@ -1,0 +1,307 @@
+---
+# Environment Independence Rules
+# Canonical rules for ensuring actor behavior independence from execution environments
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: environment_independence_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Environment Independence Framework
+environment_independence_framework:
+  definition: "Environment independence ensures that actor behavior, identity, and state remain consistent regardless of the execution environment (facet) being used"
+  principles:
+    - actors must behave consistently across all facets
+    - actor identity must be independent of execution environment
+    - actor state must persist across environment changes
+    - actor capabilities must not depend on specific facets
+    - actor authority must be environment-agnostic
+
+# Independence Categories
+independence_categories:
+  behavioral_independence:
+    description: "Actor behavior must be consistent across all execution environments"
+    requirements:
+      - actor responses must be consistent
+      - actor decision-making must be consistent
+      - actor performance must be consistent
+      - actor quality must be consistent
+      - actor reliability must be consistent
+    
+    validation:
+      - test actor behavior across different facets
+      - measure response consistency
+      - evaluate decision-making consistency
+      - assess performance consistency
+      - verify reliability consistency
+  
+  identity_independence:
+    description: "Actor identity must be independent of execution environment"
+    requirements:
+      - actor identity must be preserved
+      - actor authority must be maintained
+      - actor credentials must be consistent
+      - actor authentication must be environment-agnostic
+      - actor authorization must be environment-independent
+    
+    validation:
+      - verify identity preservation across facets
+      - confirm authority maintenance
+      - test credential consistency
+      - validate authentication independence
+      - check authorization independence
+  
+  state_independence:
+    description: "Actor state must persist across execution environment changes"
+    requirements:
+      - actor state must be portable
+      - state transitions must be consistent
+      - state recovery must be reliable
+      - state synchronization must be automatic
+      - state integrity must be maintained
+    
+    validation:
+      - test state portability across facets
+      - verify transition consistency
+      - assess recovery reliability
+      - check synchronization automation
+      - confirm integrity maintenance
+
+# Independence Implementation Rules
+implementation_rules:
+  abstraction_layers:
+    actor_abstraction:
+      description: "Create abstraction layer between actors and execution environments"
+      requirements:
+        - actor interface must be standardized
+        - actor operations must be abstracted
+        - actor dependencies must be minimized
+        - actor coupling must be eliminated
+        - actor modularity must be maintained
+    
+      implementation:
+        - define standard actor interface
+        - abstract actor operations
+        - minimize actor dependencies
+        - eliminate actor coupling
+        - maintain actor modularity
+    
+    facet_abstraction:
+      description: "Create abstraction layer for execution environments"
+      requirements:
+        - facet interface must be standardized
+        - facet capabilities must be abstracted
+        - facet limitations must be handled
+        - facet variations must be normalized
+        - facet evolution must be supported
+    
+      implementation:
+        - define standard facet interface
+        - abstract facet capabilities
+        - handle facet limitations
+        - normalize facet variations
+        - support facet evolution
+  
+  interface_standardization:
+    description: "Standardize interfaces between actors and facets"
+    requirements:
+      - interfaces must be consistent
+      - interfaces must be well-defined
+      - interfaces must be versioned
+      - interfaces must be backward compatible
+      - interfaces must be documented
+    
+    implementation:
+        - define consistent interfaces
+        - document interface specifications
+        - version interface changes
+        - maintain backward compatibility
+        - provide interface documentation
+
+# Independence Validation Rules
+validation_rules:
+  cross_environment_testing:
+    requirements:
+      - actors must be tested across all facets
+      - behavior consistency must be verified
+      - performance consistency must be measured
+      - reliability consistency must be assessed
+      - quality consistency must be evaluated
+    
+    procedures:
+      - test actors across all supported facets
+      - verify behavior consistency
+      - measure performance consistency
+      - assess reliability consistency
+      - evaluate quality consistency
+  
+  consistency_validation:
+    requirements:
+      - actor responses must be consistent
+      - actor decisions must be consistent
+      - actor actions must be consistent
+      - actor outcomes must be consistent
+      - actor metrics must be consistent
+    
+    procedures:
+      - validate response consistency
+      - verify decision consistency
+      - check action consistency
+      - confirm outcome consistency
+      - measure metric consistency
+
+# Independence Enforcement Rules
+enforcement_rules:
+  dependency_control:
+    requirements:
+      - actors must not depend on specific facets
+      - actors must not depend on facet features
+      - actors must not depend on facet limitations
+      - actors must not depend on facet versions
+      - actors must not depend on facet configurations
+    
+    procedures:
+      - eliminate facet dependencies
+      - remove feature dependencies
+      - handle limitation dependencies
+      - manage version dependencies
+      - control configuration dependencies
+  
+  coupling_prevention:
+    requirements:
+      - actors must not be coupled to facets
+      - actors must not be coupled to facet implementations
+      - actors must not be coupled to facet APIs
+      - actors must not be coupled to facet protocols
+      - actors must not be coupled to facet data formats
+    
+    procedures:
+      - prevent facet coupling
+      - avoid implementation coupling
+      - eliminate API coupling
+      - remove protocol coupling
+      - prevent data format coupling
+
+# Independence Monitoring Rules
+monitoring_rules:
+  consistency_monitoring:
+    metrics:
+      - behavior consistency across facets
+      - performance consistency across facets
+      - reliability consistency across facets
+      - quality consistency across facets
+      - user experience consistency across facets
+    
+    procedures:
+      - monitor behavior consistency
+      - track performance consistency
+      - assess reliability consistency
+      - evaluate quality consistency
+      - measure user experience consistency
+  
+  independence_monitoring:
+    metrics:
+      - actor independence score
+      - facet independence score
+      - system independence score
+      - dependency violation count
+      - coupling violation count
+    
+    procedures:
+      - measure actor independence
+      - track facet independence
+      - assess system independence
+      - monitor dependency violations
+      - track coupling violations
+
+# Independence Evolution Rules
+evolution_rules:
+  facet_evolution:
+    requirements:
+      - new facets must not break independence
+      - facet changes must not affect actors
+      - facet improvements must be transparent
+      - facet deprecation must be handled
+      - facet migration must be supported
+    
+    procedures:
+      - test new facets for independence
+      - ensure changes don't affect actors
+      - make improvements transparent
+      - handle facet deprecation
+      - support facet migration
+  
+  actor_evolution:
+    requirements:
+      - actor evolution must maintain independence
+      - actor changes must not create dependencies
+      - actor improvements must be environment-agnostic
+      - actor deprecation must be handled
+      - actor migration must be supported
+    
+    procedures:
+      - maintain independence during evolution
+      - prevent dependency creation
+      - keep improvements environment-agnostic
+      - handle actor deprecation
+      - support actor migration
+
+# Independence Security Rules
+security_rules:
+  consistency_security:
+    requirements:
+      - security behavior must be consistent
+      - security policies must be enforced
+      - security protocols must be standard
+      - security updates must be uniform
+      - security monitoring must be comprehensive
+    
+    procedures:
+      - ensure security consistency
+      - enforce security policies
+      - standardize security protocols
+      - apply uniform security updates
+      - implement comprehensive monitoring
+
+# Independence Performance Rules
+performance_rules:
+  performance_consistency:
+    requirements:
+      - performance must be consistent across facets
+      - resource usage must be optimized
+      - response times must be acceptable
+      - throughput must be maintained
+      - scalability must be supported
+    
+    procedures:
+      - ensure performance consistency
+      - optimize resource usage
+      - maintain acceptable response times
+      - preserve throughput
+      - support scalability
+
+# Success Metrics
+success_metrics:
+  behavioral_consistency: > 95%
+  identity_consistency: 100%
+  state_consistency: > 95%
+  performance_consistency: > 90%
+  independence_score: > 95%
+
+# Documentation Requirements
+documentation:
+  independence_documentation:
+    - complete independence principles and procedures
+    - cross-environment testing procedures
+    - consistency validation procedures
+    - independence enforcement procedures
+    - independence monitoring and troubleshooting procedures
+  
+  integration_documentation:
+    - actor integration with facets
+    - facet integration with system components
+    - cross-environment coordination procedures
+    - independence testing procedures
+    - independence troubleshooting procedures

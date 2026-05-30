@@ -1,0 +1,40 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_department_roles
+fields:
+- '`department_role_id` bigint NOT NULL'
+- '`actor_id` bigint NOT NULL'
+- '`department_id` bigint NOT NULL'
+- '`role_key` varchar(64) NOT NULL'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_department_roles_idx_actor_id
+  columns:
+  - actor_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_department_roles_idx_department_id
+  columns:
+  - department_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_department_roles_idx_role_key
+  columns:
+  - role_key
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: department_role_id
+  expected_name: department_role_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

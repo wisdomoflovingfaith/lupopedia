@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["implementation_authority", "release_approval", "actor_permission_changes", "hallucinated_doctrine_in_records", "unattributed_truth_claims"],
+  "forbidden_topics": ["speculative_knowledge_without_source_citation", "ego_inflation"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "THOTH_is_canonical_authority_for_semantic_truth_on_stale_artifacts", "all_records_must_include_lupopedia_headers_with_last_verified_utc", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

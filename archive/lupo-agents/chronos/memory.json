@@ -1,0 +1,9 @@
+{
+  "memory_type": "reserved_slot",
+  "core_knowledge": {},
+  "working_memory": {},
+  "memory_boundaries": ["no active memory while reserved", "no tool use while reserved"],
+  "retention_rules": ["no retention until assigned"],
+  "status": "reserved",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

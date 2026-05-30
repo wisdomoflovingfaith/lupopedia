@@ -1,0 +1,41 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "install.php",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "content_parent_id -> PRD file",
+        "source": "generate_memory_from_header",
+        "to": "docs/prd/42_content_seeding_and_truth_tables.md",
+        "type": "references",
+        "weight": 0.9
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260417115311",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": 42,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/install-php"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/install-php.toon",
+  "purpose": "Main installer and upgrade wizard for fresh installs and Crafty Syntax 3.7.5 migration, including API key collection, config generation, and protected web-root config.",
+  "source_file_path_from_root": "install.php",
+  "tags": [
+    "implementation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

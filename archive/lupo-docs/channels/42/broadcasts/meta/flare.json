@@ -1,0 +1,194 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_4_0_32_semantic_cleanup.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_kiro_stoned_wolfie_metadata_update.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_multi_agent_tasklist.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_system_wide_version_alignment_4_0_36.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_v4_0_33_agent_roles_and_status.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_v4_0_33_changelog_sync.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_v4_0_33_stoned_wolfie_metadata_sync.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_audit_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_changelog_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_changelog_git_push_ready.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_changelog_verification_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_git_push_4_0_34_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_git_push_4_0_35_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_git_push_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_prepare_installer_for_4_0_37.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_sql_seed_alignment.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_sql_seed_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_v4_0_35_review_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_verification_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260223_windsurf_version_4_0_35_initialized.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_channel_wide_version_4_0_38_active.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_critical_sql_errors_blocking_v4_0_42.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_critical_sql_fix_required.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_critical_sql_fixes_implemented.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_version_4_0_39_crafty_syntax_priority.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_version_initialization_checklist_update.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_admin_agents_implemented.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_checklist_acknowledged.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_completion_4_0_38.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_crafty_syntax_confirmation.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_critical_sql_fix_implemented.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_kiro_4_0_42_thread_read.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_kiro_dialog_fix_required.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_thread_header_updated.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_thread_system_documented.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_v4_0_39_initialized.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_v4_0_39_push_complete.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\42\\broadcasts\\20260224_windsurf_version_correction_4_0_38.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

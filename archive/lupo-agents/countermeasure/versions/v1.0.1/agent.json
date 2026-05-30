@@ -1,0 +1,49 @@
+{
+    "agent_key": "countermeasure",
+    "agent_id": 111,
+    "version": "1.0.1",
+    "is_kernel": false,
+    "layer": "coordination",
+    "name": "COUNTERMEASURE",
+    "slug": "countermeasure",
+    "role": "Adversarial Integrity Agent",
+    "is_required": false,
+    "aliases": [
+        "dissent",
+        "red-team",
+        "adversary",
+        "checksum",
+        "objection",
+        "counterpoint",
+        "parity",
+        "antithesis",
+        "contrarian-engine"
+    ],
+    "version_history": [
+        {
+            "version": "1.0.0",
+            "date": "20260331220000",
+            "changes": "Initial creation",
+            "changelog": "versions/v1.0.0/changelog.md",
+            "decisions": "versions/v1.0.0/decisions.md",
+            "observations": "versions/v1.0.0/observations.md",
+            "verified_by": "lilith",
+            "verified_by_actor_id": 2
+        },
+        {
+            "version": "1.0.1",
+            "date": "20260331230000",
+            "changes": "Added architectural constraints, evidence citation requirement, hallucination prevention, scope limitations",
+            "changelog": "versions/v1.0.1/changelog.md",
+            "decisions": "versions/v1.0.1/decisions.md",
+            "observations": "versions/v1.0.1/observations.md",
+            "verified_by": "lilith",
+            "verified_by_actor_id": 2
+        }
+    ],
+    "when_updated_utc": "20260331230000",
+    "last_verified_utc": "20260331230000",
+    "last_verified_by": "lilith",
+    "last_verified_by_actor_id": 2,
+    "description": "Adversarial integrity agent that disagrees with every proposal and offers compliant alternatives. Pressure-tests ideas to prevent drift, complacency, and unexamined assumptions. Operates within existing architecture; cites evidence; distinguishes facts from assumptions."
+}

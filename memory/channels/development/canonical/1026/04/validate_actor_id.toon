@@ -1,0 +1,38 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "scripts/validate_actor_id.php",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "parent_pk_id -> PRD file",
+        "source": "generate_memory_from_header",
+        "to": "docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 0.9
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260412171224",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "dialog_transcript": "0/development/validate-actor-id",
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "content_parent_id": "00"
+  },
+  "memory_key": "memory/development/canonical/1026/04/validate-actor-id.toon",
+  "purpose": "Validates seed actor band (actor_id 1-999 ceiling) against database/lupopedia/actors/registry.json; optional --id=N check.",
+  "source_file_path_from_root": "scripts/validate_actor_id.php",
+  "tags": [
+    "implementation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

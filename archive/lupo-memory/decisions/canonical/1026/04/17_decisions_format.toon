@@ -1,0 +1,83 @@
+{
+  "id": "17-decisions-format",
+  "type": "header_metadata",
+  "schema_version": "toon_v1",
+  "header_format_version": 3,
+  "file_path_from_root": "lupo-docs/prd/17_decisions_format.md",
+  "channel_key": "decisions",
+  "trust_tier": "canonical",
+  "purpose": "Canonical format for decision threads, decisions/ layout, and decisions/pseudocode/ \u2014 dual purpose: constitution shorthand + design notes (LUPOPEDIA HEADERS required on *.pseudo.*)",
+  "status": "approved",
+  "tags": [
+    "prd",
+    "decisions",
+    "decisions_system",
+    "format",
+    "adr",
+    "governance"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 2,
+    "name": "LILITH"
+  },
+  "delegation_chain": "lilith:audit",
+  "edges": {
+    "outbound": [
+      {
+        "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Constitutional anchor"
+      },
+      {
+        "to": "lupo-docs/prd/29_project_structure.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Channel coordination threads use same decisions/questions/answers/comments layout"
+      },
+      {
+        "to": "lupo-docs/versions/4.0.93/decisions/",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Example implementation of this format (folder with threaded decision files)"
+      },
+      {
+        "to": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Header format with channel_id/thread_id/context_id"
+      },
+      {
+        "to": "lupo-docs/prd/31_implementation_folder_guidelines.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Implementation folder rules; pseudocode/ is explicitly out of scope for full PRD 31 enforcement"
+      },
+      {
+        "to": "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/lupopedia_quickstart.pseudo.md",
+        "type": "references",
+        "weight": 0.95,
+        "reason": "Shipped external-AI bundle index (Priority 1\u20133 PRD shorthands)"
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260406143710",
+    "verified_by": {
+      "identity_type": "agent",
+      "actor_id": 2,
+      "agent_name_identity": "LILITH"
+    },
+    "verified_via": {
+      "type": "direct",
+      "faucet_slug": "none"
+    },
+    "orchestrator": "lilith:audit",
+    "next_action": [
+      "Ensure validators require lupopedia.headers (incl. file_path_from_root) on decisions/pseudocode/*.pseudo.* and flag plain .php without .pseudo. in basename",
+      "Optional: run lupo-scripts/validate_pseudocode_discipline.py on Purpose 2 design pseudocode before merge",
+      "Ensure all decision thread files follow this format"
+    ]
+  }
+}

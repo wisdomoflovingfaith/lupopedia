@@ -1,0 +1,20 @@
+id: 52
+type: prd
+title: memory graph focus manifest
+status: active
+created: 20260412001055
+
+edges:
+  outbound:
+  - to: docs/prd/00_root_constitutional_system_requirements.md
+    type: references
+  - to: docs/prd/16_lupopedia_headers.md
+    type: references
+  - to: docs/prd/28_semantic_monitoring_widget.md
+    type: references
+  - to: docs/prd/38_memory_unification.md
+    type: references
+  - to: docs/prd/50_agent_coordination_protocol.md
+    type: references
+  - to: docs/prd/51_memory_graph_as_source_of_truth.md
+    type: references

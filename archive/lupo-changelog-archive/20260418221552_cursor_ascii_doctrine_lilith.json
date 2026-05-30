@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260418221552",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "lilith-directive-ascii",
+  "summary": "Added LILITH ASCII-only doctrine to AGENTS.md, ORGANIZATION.md encoding section, and lupo-agents/_shared/ide_facet_base_system_prompt.txt; ASCII-normalized shared IDE prompt; AGENTS header thread_id null.",
+  "files_changed": [
+    "AGENTS.md",
+    "ORGANIZATION.md",
+    "lupo-agents/_shared/ide_facet_base_system_prompt.txt",
+    "lupo-changelog-pending/20260418221552_cursor_ascii_doctrine_lilith.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

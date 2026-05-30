@@ -1,0 +1,32 @@
+# Generated from: lupo-memory/development/canonical/2026/04/43-parent-child-trust-ladder.json
+# Generated at: 2026-04-10 13:11:15 UTC
+# JSON master checksum: 913e462648569011d0a1edf00360bd99
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131115,20260410131115,canonical,43,parent-child-trust-ladder,lupo-docs/prd/43_parent_child_trust_ladder.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for parent-child-trust-ladder section 1.,Purpose
+  2,Operational summary for parent-child-trust-ladder section 2.,Memory scope for parent/child
+  3,Operational summary for parent-child-trust-ladder section 3.,Status
+  4,Operational summary for parent-child-trust-ladder section 4.,Section 4
+  5,Operational summary for parent-child-trust-ladder section 5.,Section 5
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_43_rule_1,1,critical,Rule 1 for PRD 43 (parent-child-trust-ladder)
+  2,prd_43_rule_2,2,high,Rule 2 for PRD 43 (parent-child-trust-ladder)
+  3,prd_43_rule_3,3,high,Rule 3 for PRD 43 (parent-child-trust-ladder)
+  4,prd_43_rule_4,4,medium,Rule 4 for PRD 43 (parent-child-trust-ladder)
+  5,prd_43_rule_5,5,critical,Rule 5 for PRD 43 (parent-child-trust-ladder)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 43.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[3]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,90

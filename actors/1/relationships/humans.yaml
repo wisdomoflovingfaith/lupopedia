@@ -1,0 +1,9 @@
+humans:
+  - human_slug: ERIC
+    full_name: eric robin gerdes
+    actor_id: 1000
+    role: supervisor
+    supervision_level: direct
+    allowed_focuses:
+      - architecture_review
+      - doctrine_alignment

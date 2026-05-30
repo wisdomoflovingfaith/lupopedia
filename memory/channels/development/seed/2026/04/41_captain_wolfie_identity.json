@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410124750,
+      "last_updated": 20260410124750,
+      "layer": "seed",
+      "prd_id": 41,
+      "prd_slug": "captain-wolfie-identity",
+      "source_path": "docs/prd/41_captain_wolfie_identity.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Identity Overview",
+      "summary": "Defines Actor 1 as Captain WOLFIE and anchors role expectations in constitutional engineering."
+    },
+    {
+      "pk": 2,
+      "title": "Purpose and Authority",
+      "summary": "Sets orchestrator responsibilities, multi-agent coordination expectations, and constitutional enforcement posture."
+    },
+    {
+      "pk": 3,
+      "title": "Department and Learning Boundaries",
+      "summary": "Defines Department 0 constraints and cross-department learning limits for core/system actors."
+    },
+    {
+      "pk": 4,
+      "title": "Operational Boundaries",
+      "summary": "Rejects vibe programming and enforces deterministic, explicit architecture decisions."
+    },
+    {
+      "pk": 5,
+      "title": "Cross-PRD Alignment",
+      "summary": "Aligns identity doctrine with PRD 00, PRD 05, PRD 15, and PRD 17."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "actor_one_identity_fixed",
+      "severity": "critical",
+      "summary": "Actor 1 identity is fixed as Captain WOLFIE and must not drift across orchestration surfaces."
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "constitutional_enforcement_required",
+      "severity": "critical",
+      "summary": "Actor 1 must enforce constitutional rules in architecture and multi-agent coordination decisions."
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "department_zero_learning_guardrail",
+      "severity": "high",
+      "summary": "Core/system actor learning is constrained to Department 0 unless explicitly defined otherwise."
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "no_vibe_programming",
+      "severity": "critical",
+      "summary": "Operational posture forbids vibe-driven or framework-default reasoning in core decisions."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "cross_prd_consistency",
+      "severity": "high",
+      "summary": "PRD 41 behavior must remain consistent with PRD 00, PRD 05, PRD 15, and PRD 17."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "captain_wolfie",
+      "meaning": "Actor 1 identity representing constitutional orchestration authority."
+    },
+    {
+      "pk": 2,
+      "term": "department_zero",
+      "meaning": "Root real-programmers context for deterministic engineering standards."
+    },
+    {
+      "pk": 3,
+      "term": "constitutional_engineering",
+      "meaning": "Design discipline prioritizing explicit logic, fallback safety, and doctrine compliance."
+    },
+    {
+      "pk": 4,
+      "term": "multi_agent_orchestration",
+      "meaning": "Coordinated execution model where actor responsibilities remain explicit and non-overlapping."
+    },
+    {
+      "pk": 5,
+      "term": "identity_guardrail",
+      "meaning": "Constraint ensuring actor identity permanence while allowing state evolution."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/05_auth_user_actor_agent_transformation.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/15_actors.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/17_decisions_format.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/38_memory_unification.md",
+      "weight_hundredths": 85
+    }
+  ]
+}

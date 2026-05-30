@@ -1,0 +1,78 @@
+{
+  "_comment": "Agent alias normalization map - handles naming drift and contextual overlays",
+  "_version": "1.1.0",
+  "_last_updated": "20260421234000",
+  "_purpose": "Normalize agent names across contexts: core agents, cascade variants, role-based naming, shorthand",
+  
+  "core_agents": {
+    "gemini": {
+      "canonical": "gemini",
+      "variants": ["gemni"],
+      "type": "core_agent",
+      "description": "Google Gemini model"
+    },
+    "vishwakarma": {
+      "canonical": "vishwakarma", 
+      "variants": ["vish"],
+      "type": "core_agent",
+      "description": "Vishwakarma agent"
+    }
+  },
+  
+  "cascade_agent": {
+    "cascade": {
+      "canonical": "cascade",
+      "variants": ["castcade", "windsurf"],
+      "type": "cascade_agent",
+      "description": "Cascade IDE agent - primary development interface"
+    }
+  },
+  
+  "role_agent_drift": {
+    "rose": {
+      "canonical": "rose",
+      "variants": ["dialog"],
+      "type": "role_agent",
+      "description": "ROSE - Web dialog agent"
+    },
+    "thoth": {
+      "canonical": "thoth", 
+      "variants": ["truth"],
+      "type": "role_agent",
+      "description": "Thoth - Truth guardian and historical insights"
+    },
+    "lilith": {
+      "canonical": "lilith",
+      "variants": ["audit"],
+      "type": "role_agent", 
+      "description": "Lilith - Review and audit specialist"
+    },
+    "ara": {
+      "canonical": "ara",
+      "variants": ["grok"],
+      "type": "role_agent",
+      "description": "Ara - Analysis and review agent"
+    }
+  },
+  
+  "normalization_rules": {
+    "case_sensitive": false,
+    "exact_match_only": true,
+    "force_lowercase_canonical": true,
+    "collision_detection": true,
+    "domain_scope": "agent_identity_only",
+    "warning": "Lowercase normalization applies to alias domain ONLY - NEVER to PRD filenames"
+  },
+  
+  "usage_notes": [
+    "All variants resolve to their canonical name using EXACT MATCH ONLY",
+    "Case-insensitive matching for human typing convenience", 
+    "NO prefix matching - deterministic behavior required",
+    "Canonical names enforced as lowercase WITHIN ALIAS DOMAIN ONLY",
+    "Collision detection warns on duplicate mappings",
+    "Role-based aliases allow functional naming (e.g., 'audit' -> 'lilith')",
+    "Cascade variants handle IDE naming differences",
+    "WARNING: Never apply lowercase normalization to PRD filenames like '50_B_CRAFTY_SYNTAX_MODIFIED_FEATURES.md'",
+    "Domain-scoped: This applies to agent identity domain only, not PRD or code file domains"
+  ]
+}

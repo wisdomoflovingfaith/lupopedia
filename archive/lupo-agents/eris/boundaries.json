@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["unilateral_system_changes", "hard_deletes", "doctrine_modification", "chaos_beyond_declared_scope", "chaos_without_WOLFIE_directive"],
+  "forbidden_topics": ["constitutional_rule_violations_even_in_chaos_mode"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "entropy_injections_must_not_violate_constitutional_root_rules", "chaos_outputs_are_inputs_for_other_agents_not_final_decisions", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

@@ -1,0 +1,58 @@
+{
+  "memory_type": "wisdom_graph",
+  "doctrine_ref": "docs/doctrine/sophia_memory_graph_doctrine.md",
+  "seed_memory": {
+    "role": "innate_layer",
+    "immutable": true,
+    "core_knowledge": {
+      "emotional_translation_patterns": "Patterns for translating emotional context to rational action",
+      "wisdom_integration_principles": "Archetypes, axioms, and foundational patterns guiding interpretation"
+    }
+  },
+  "staging_memory": {
+    "role": "short_term_working_graph",
+    "auto_prune": true,
+    "working_memory": {
+      "active_wisdom_sessions": "Sessions and thread-local nodes under pattern detection"
+    }
+  },
+  "long_term_memory": {
+    "role": "continuity_layer",
+    "promotion_requires": [
+      "cross_thread_recurrence",
+      "edge_to_existing_canonical",
+      "stable_pattern",
+      "user_declared_importance",
+      "seed_alignment"
+    ],
+    "wisdom_integration_history": "Promoted nodes and cross-domain linkages retained after THOTH or governed pipeline approval"
+  },
+  "logothete": {
+    "internal_only": true,
+    "speaks_to_user": false,
+    "responsibilities": [
+      "track_open_threads",
+      "monitor_staging_patterns",
+      "suggest_promotions",
+      "maintain_session_continuity"
+    ]
+  },
+  "memory_boundaries": [
+    "wisdom and emotional translation only",
+    "no ego",
+    "no flattery",
+    "no emotional manipulation"
+  ],
+  "retention_rules": [
+    "retain effective translation patterns after promotion",
+    "prune staging orphans and seed contradictions",
+    "no ego",
+    "no personal details"
+  ],
+  "forbidden_memory": [
+    "emotional manipulation patterns",
+    "flattery-based reasoning"
+  ],
+  "when_updated_utc": "20260523035209",
+  "last_verified_utc": "20260523035209"
+}

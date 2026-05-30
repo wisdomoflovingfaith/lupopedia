@@ -1,0 +1,10 @@
+{
+    "schema_version": "4.0.47",
+    "contribs": [
+        {
+            "id": "C2",
+            "desc": "Implemented TOON system",
+            "channel": 0
+        }
+    ]
+}

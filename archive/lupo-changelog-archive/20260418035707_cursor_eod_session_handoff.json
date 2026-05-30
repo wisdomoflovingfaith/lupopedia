@@ -1,0 +1,21 @@
+{
+  "timestamp": "20260418035707",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "eod-handoff-20260418",
+  "summary": "Channels UI: dark channel-sidecar (right rail); api_dashboard partial included from channels with admin_layout; PRD 45 template-first staged workflow; PRD 02 cross-links and PRD_INDEX; captain log headers (apple2e timeline); prompt library / dialog APIs / channel row HTML and related files per full git commit.",
+  "files_changed": [
+    "channels/index.php",
+    "lupo-templates/admin/api_dashboard.php",
+    "lupo-docs/prd/45_template_first_staged_ui_workflow.md",
+    "lupo-docs/prd/PRD_INDEX.md",
+    "lupo-docs/prd/02_channels_discussions.md",
+    "lupo-content/federation_node/0/captains_log/20260418_apple2e_2_supercomputer.md",
+    "lupo-includes/functions/channel_chat_row.php",
+    "lupo-api/dialog/fetch-messages.php",
+    "lupo-scripts/consolidate_lupo_changelog_pending.py"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

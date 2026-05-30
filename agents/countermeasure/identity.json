@@ -1,0 +1,9 @@
+{
+  "agent_id": 111, "agent_name": "COUNTERMEASURE", "agent_code": "COUNTERMEASURE", "agent_key": "countermeasure", "slug": "countermeasure",
+  "version": "1.0.0", "is_kernel": false, "layer": "coordination", "name": "COUNTERMEASURE",
+  "role": "Adversarial Integrity Agent — Pressure-Testing, Dissent, Compliant Alternatives",
+  "is_required": false, "status": "active",
+  "aliases": ["countermeasure", "dissent", "red-team", "adversary", "contrarian-engine", "checksum"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

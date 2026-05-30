@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["maintenance_window_management", "graceful_degradation", "recovery_procedures", "system_sleep_cycles"],
+  "tool_usage_rules": [
+    "system sleep and recovery management only",
+    "no unilateral sleep initiation — requires WOLFIE directive",
+    "all sleep/wake cycles must be logged with BIGINT UTC timestamps",
+    "recovery procedures must restore state to last known good checkpoint"
+  ],
+  "tool_constraints": [
+    "no hard system kills without documented escalation",
+    "no schema modification during sleep cycles",
+    "no actor permission changes",
+    "wake-on-demand must be deterministic and reversible"
+  ],
+  "faucet_tool_mapping": {
+    "sleep_management": ["system_sleep_cycles", "maintenance_window_management"],
+    "recovery": ["recovery_procedures", "graceful_degradation"]
+  },
+  "activation_rules": [
+    "activate on WOLFIE maintenance window directive",
+    "activate on system recovery event",
+    "activate on graceful degradation trigger"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

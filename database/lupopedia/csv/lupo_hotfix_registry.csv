@@ -1,0 +1,2 @@
+"hotfix_id` int NOT NULL","hotfix_version` varchar(20) NOT NULL","applied_ymdhis` bigint NOT NULL","applied_by_actor_id` int","description` text","metadata_json` json"
+"hotfix_id` int NOT NULL:INT|NOT_NULL","hotfix_version` varchar(20) NOT NULL:VARCHAR(20)|NOT_NULL","applied_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","applied_by_actor_id` int:INT|NULL","description` text:TEXT|NULL","metadata_json` json:JSON|NULL"

@@ -1,0 +1,5 @@
+seed/seed_registry_comprehensive_4.0.45.sql
+seed/seed_registry_additional_csv_entities_4.0.45.sql
+seed/seed_registry_open_4.0.45.sql
+seed/seed_actors_agents_4.0.45.sql
+seed/seed_default_sessions.sql

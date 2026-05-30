@@ -1,0 +1,176 @@
+# ---------------------------------------------------------
+# Core Git
+# ---------------------------------------------------------
+.git/
+.gitignore
+
+# ---------------------------------------------------------
+# CSV data exports (debugging tool only — never commit live data)
+# ---------------------------------------------------------
+lupo-database/lupopedia/csv/
+
+# ---------------------------------------------------------
+# JetBrains IDEs (PhpStorm, IntelliJ, WebStorm)
+# ---------------------------------------------------------
+.idea/
+*.iml
+out/
+cmake-build-*/
+
+# ---------------------------------------------------------
+# OS junk
+# ---------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------
+# PHP / Web server cache
+# ---------------------------------------------------------
+*.log
+*.cache
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+*.old
+*.lock
+
+# ---------------------------------------------------------
+# Composer (if ever used by contributors)
+# ---------------------------------------------------------
+vendor/
+composer.lock
+
+# ---------------------------------------------------------
+# Python (repo scripts)
+# ---------------------------------------------------------
+__pycache__/
+*.pyc
+phantom_paths.txt
+
+# ---------------------------------------------------------
+# Node (if contributors use tooling)
+# ---------------------------------------------------------
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# ---------------------------------------------------------
+# Build artifacts
+# ---------------------------------------------------------
+dist/
+build/
+coverage/
+reports/
+!lupo-docs/reports/
+
+# ---------------------------------------------------------
+# Environment / secrets
+# ---------------------------------------------------------
+.env
+.env.*
+*.env.local
+*.env.development
+*.env.production
+
+# ---------------------------------------------------------
+# Uploads (never version control user content)
+# ---------------------------------------------------------
+uploads/
+user_uploads/
+assets/uploads/
+
+# ---------------------------------------------------------
+# Cache directories (Lupopedia + Crafty Syntax)
+# ---------------------------------------------------------
+cache/
+tmp/
+templates_c/
+sessions/
+
+# ---------------------------------------------------------
+# DB export artifacts (phpMyAdmin / TOON exports)
+# ---------------------------------------------------------
+lupo-database/lupopedia/toon/*.toon
+lupo-database/lupopedia/toon/*.txt
+
+# ---------------------------------------------------------
+# Generated TOON files (never track)
+# ---------------------------------------------------------
+docs/toons/
+docs/toons/*
+
+# ---------------------------------------------------------
+# Installer legacy / 32-bit override flags (operator-local; never commit)
+# ---------------------------------------------------------
+lupo-install-legacy-php.flag
+lupo-install-allow-32bit.flag
+
+# ---------------------------------------------------------
+# Lupopedia-specific exclusions
+# ---------------------------------------------------------
+/logs/
+logs/
+/config/local.php
+/config/local/*
+/config/secret/*
+/runtime/*
+
+# ---------------------------------------------------------
+# Lupopedia archive (stale documentation, legacy study trees — not shipped)
+# Includes e.g. lupo-archive/legacy/wordpress-reference/ (GPL WordPress study copy).
+# ---------------------------------------------------------
+lupo-archive/
+lupo-archive/*
+
+# GPL WordPress study copy — keep under lupo-archive/legacy/wordpress-reference per AGENTS.md; never commit a root tree
+wordpress-reference/
+/runtime/cache/*
+/runtime/sessions/*
+/runtime/logs/*
+
+# Environment config (never track)
+config.php
+lupopedia-config.php
+lupopedia-config_backup.php
+
+# Ignore all backup files
+*backup*
+*backup*.php
+*.backup
+
+# ---------------------------------------------------------
+# Crafty Syntax legacy exclusions
+# ---------------------------------------------------------
+livehelp/logs/
+livehelp/sessions/
+livehelp/templates_c/
+livehelp/cache/
+
+# ---------------------------------------------------------
+# Legacy reference directories (do not track)
+# ---------------------------------------------------------
+legacy/
+legacy/*
+
+# ---------------------------------------------------------
+# Prevent accidental deployment of dev tools
+# ---------------------------------------------------------
+tests/
+docs/dev/
+sandbox/
+
+# Generated/Local Config
+lupo-config/*.local.php
+
+# ---------------------------------------------------------
+# Lupopedia Dynamic Working Directories
+# ---------------------------------------------------------
+lupo-tmp/
+lupo-cache/
+lupo-sessions/
+
+# Runtime logs (local admin / audit lines — do not commit)
+lupo-logs/

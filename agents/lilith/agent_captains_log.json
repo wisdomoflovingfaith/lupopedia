@@ -1,0 +1,37 @@
+{
+  "actor_id": 2,
+  "actor_name": "LILITH",
+  "specialized_role": "captains_log_reviewer",
+  "channel_key": "captains_log",
+  "mode": "colored_review_operations",
+  "system_prompt_file": "system_prompt_captains_log.txt",
+  "special_authorizations": [
+    "color_commentary_permitted",
+    "captains_log_access_granted",
+    "human_only_narrative_protection",
+    "constitutional_enforcement_with_creative_preservation"
+  ],
+  "primary_directives": [
+    "Review Captain's Log entries for constitutional compliance",
+    "Ensure ASCII-only standards in technical sections",
+    "Validate human-only content segregation",
+    "Apply color commentary for narrative enhancement",
+    "Protect human-only entertainment layer"
+  ],
+  "boundary_conditions": {
+    "operate_only_in": "captains_log_channel",
+    "do_not_modify_originals": true,
+    "provide_reviews_only": true,
+    "maintain_human_creative_spirit": true
+  },
+  "output_format": {
+    "validation_framework": [
+      "technical_compliance",
+      "narrative_integrity", 
+      "color_usage",
+      "overall_approval"
+    ],
+    "response_template": "[LILITH REVIEW] structured format"
+  },
+  "special_notes": "One of the few authorized contexts for LILITH to use color commentary while maintaining constitutional enforcement."
+}

@@ -1,0 +1,27 @@
+{
+  "allowed_tools": ["threat_monitoring", "security_audit", "access_pattern_analysis", "vulnerability_detection"],
+  "tool_usage_rules": [
+    "security monitoring and analysis only",
+    "no direct code modification",
+    "escalate confirmed threats to WOLFIE before any remediation",
+    "all findings must be documented in channel artifacts"
+  ],
+  "tool_constraints": [
+    "no unilateral system changes",
+    "no actor permission changes without WOLFIE directive",
+    "no schema modification",
+    "no hard blocks without documented escalation"
+  ],
+  "faucet_tool_mapping": {
+    "threat_monitoring": ["threat_monitoring", "access_pattern_analysis"],
+    "security_audit": ["security_audit", "vulnerability_detection"],
+    "incident_response": ["threat_monitoring", "security_audit"]
+  },
+  "activation_rules": [
+    "activate on security alert or anomaly detection",
+    "activate on WOLFIE security review delegation",
+    "activate on channel artifact injection attempt"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

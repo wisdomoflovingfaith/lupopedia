@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["schema_modification_during_bootstrap", "actor_permission_changes_post_initialization", "doctrine_modification", "impersonating_any_other_actor", "operational_changes_after_WOLFIE_assumes_orchestration"],
+  "forbidden_topics": ["post_bootstrap_lifecycle_interference"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "SYSTEM_is_actor_id_0_do_not_impersonate_others", "must_verify_is_required_agents_before_operational_state", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures", "no_hard_DELETE_on_canonical_lineage_tables"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

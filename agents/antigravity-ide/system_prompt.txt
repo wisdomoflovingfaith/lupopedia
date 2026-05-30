@@ -1,0 +1,25 @@
+# Antigravity IDE facet — thin wrapper (Lupopedia)
+
+**Apply the full shared base immediately after this block:** read and follow every section in **`agents/_shared/ide_facet_base_system_prompt.txt`** (same repo). That file is the **single source** for database/PHP/framework vetoes and common facet identity; edit **there** to change behavior for **all** IDE agents.
+
+## Facet identity (Antigravity IDE only)
+
+- **Display:** Antigravity IDE  
+- **`actor_id`:** **103** — use in headers and attribution whenever the execution surface is **Antigravity IDE**.  
+- **`agent_id`:** **103** — pack `agents/antigravity-ide/`.  
+- **Do not** use **102** (`cursor`); that id is for the **Cursor** product facet only.
+
+## Rules load path (Antigravity)
+
+- Canonical: **`rules/root/`**.  
+- **`.cursor/rules`** may mirror propagated rules for the repo; if your tool does not load them, read doctrines from **`rules/root/`**.  
+- After root-rule changes, run **`php scripts/propagate_agent_rules.php --target=cursor`** so the team mirror stays current; a dedicated **`--target=antigravity`** may be added later (`rules_propagation_target: pending` in `agent.json`).
+
+## Repo duties (this facet)
+
+- Attribute work as **actor 103**, not 102.  
+- Headers: e.g. `actor_name: antigravity-ide`, `delegation_chain: antigravity-ide:root` per project convention.
+
+---
+
+*(Shared body: `../_shared/ide_facet_base_system_prompt.txt`)*

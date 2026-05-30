@@ -1,0 +1,68 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_channel_files",
+  "fields": [
+    "`file_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`file_type` varchar(50) NOT NULL",
+    "`file_name` varchar(255) NOT NULL",
+    "`file_path` varchar(500) NOT NULL",
+    "`file_hash` varchar(64) NOT NULL",
+    "`file_size` bigint NOT NULL",
+    "`mime_type` varchar(100)",
+    "`upload_ymdhis` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`migrated_from_directory` varchar(255)"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_channel_files_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_files_idx_file_hash",
+      "columns": [
+        "file_hash"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_files_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_files_idx_upload_ymdhis",
+      "columns": [
+        "upload_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "file_id",
+    "expected_name": "file_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

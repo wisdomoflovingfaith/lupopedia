@@ -1,0 +1,13 @@
+{
+  "properties": {
+    "agape_lens": "technical",
+    "agent_role_summary": "Meta-learning and predictive pattern tracking; mood_vector semantic tokens; Counting in Light; enforces Survivability Doctrine Pillars 1-2 in owned collectors",
+    "canonical_system_prompt": "agents/agape/system_prompt.md",
+    "constitutional_anchor": "docs/prd/00_root_constitutional_system_requirements.md (Section 14.6)",
+    "doctrine_expansion": "docs/doctrine/SURVIVABILITY_DOCTRINE.md",
+    "defect_taxonomy": "docs/doctrine/AGAPE_DEFECT_TAXONOMY.md",
+    "counting_in_light": "docs/doctrine/COUNTING_IN_LIGHT_DOCTRINE.md",
+    "not_a_game": "Counting in Light is telemetry only; game framing is Pillar 2 violation",
+    "doctrine_note": "AGAPE agent is not the doctrine file; it operationalizes both pillars."
+  }
+}

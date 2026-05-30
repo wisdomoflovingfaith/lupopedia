@@ -1,0 +1,76 @@
+# Generated from: memory/development/canonical/2026/04/16_lupopedia_headers.json
+# Generated at: 2026-04-10 11:44:25 UTC
+# JSON master checksum: bd7fba9fc657263f8d5f758a7a273b9b
+
+metadata[1]{pk,created_ymdhis,last_updated,layer}:
+  1,20260410070007,20260410070007,canonical
+
+prd_sections[5]{pk,summary,title}:
+  1,"Define canonical header specification with fixed field set, sidecar schema, DB-first transcript pipeline, and validator rules",Purpose and Scope
+  2,"19 scalar fields plus dialog_transcript dual-field; no arrays, no multi-line values, fixed key order",Header Format (v4.0.0)
+  3,"JSON metadata file with purpose, tags, author, delegation_chain, edges, footer, init",Sidecar Format (header_metadata)
+  4,PHP endpoint canonical writer; Python/IDE clients POST; offline queue fallback,Transcript System (DB-First)
+  5,"Reject v1/v2; enforce key set, order, no extra keys; validate trust_tier, memory_toon, channel_key",Validator Rules
+
+header_fields[19]{pk,allowed_values,description,field_name,field_type,position,required,section_pk}:
+  1,"\"4.0.98\" (new), \"3\" (legacy)",Header specification version family,header_format_version,string,1,true,2
+  2,"prd, doctrine, documentation, implementation, discussion, changelog, architecture, specification",Document class taxonomy,lupopedia.schema,enum,2,true,2
+  3,14-digit UTC YYYYMMDDHHIISS,Last update timestamp,when_updated,timestamp,3,true,2
+  4,repo-relative path,Repository path (no leading slash),file_path_from_root,string,4,true,2
+  5,full URL with /lupopedia/ prefix,Public web URL (HTTP allowed in examples),web_path,string,5,true,2
+  6,14-digit UTC YYYYMMDDHHIISS,Last modified timestamp (mirrors when_updated),last_modified_utc,timestamp,6,true,2
+  7,"0, 1, 2+","Federation tier (0=core, 1=local, 2+=external)",federation_node_id,integer,7,true,2
+  8,non-empty slug,Channel identifier (no session fallback),channel_key,string,8,true,2
+  9,"seed, canonical, staging, archive",Trust classification for export layout,trust_tier,enum,9,true,2
+  10,path to .toon file,Primary memory export path; memory_toon connects the artifact to its canonical memory representation,memory_toon,string,10,true,2
+  11,"prd, doctrine, documentation, implementation, discussion, changelog, architecture, specification",Artifact type taxonomy,artifact_type,enum,11,true,2
+  12,depends on artifact_type,Finer-grained classification,artifact_kind,enum,12,true,2
+  13,'' for prd; non-empty for discussion,Thread identifier when bound,thread_id,string,13,true,2
+  14,"0 (PRD 00), 1-999 (PRD), null (non-PRD)",PRD number or null for non-PRD,prd_id,integer or null,14,true,2
+  15,URL-friendly slug for PRD; '' otherwise,PRD slug identifier,prd_slug,string,15,true,2
+  16,non-empty for PRD; '' otherwise,Document title,title,string,16,true,2
+  17,"active, draft, deprecated, archived",Document status,status,string,17,true,2
+  18,non-empty for implementation; '' otherwise,Parent PRD slug for implementation docs,parent_prd,string,18,true,2
+  19,DB lookup slug,Logical transcript identifier (not filesystem path),dialog_transcript,string,19,true,2
+
+sidecar_fields[14]{pk,description,field_name,field_type,required,section_pk}:
+  1,Stable sidecar identifier,id,string,true,3
+  2,Sidecar type discriminator,type,string,true,3
+  3,Must match header,file_path_from_root,string,true,3
+  4,Must match header,channel_key,string,true,3
+  5,Must match header,trust_tier,string,true,3
+  6,Human-readable purpose (ASCII),purpose,string,true,3
+  7,Sidecar document status,status,string,true,3
+  8,Machine tags (tag-* namespace preferred),tags,array,true,3
+  9,"{type, id, name} where type is actor|user|system",author,object,true,3
+  10,"e.g., cursor:root",delegation_chain,string,true,3
+  11,"Outbound edges with type, context, status, direction",edges,array,true,3
+  12,Verification with last_verified and verified_by,footer,object,true,3
+  13,Required-reading pointers (may be empty),init,array,true,3
+  14,Must match header (dual-field),dialog_transcript,string,true,3
+
+validator_rules[10]{pk,rule_name,section_pk,severity,summary}:
+  1,Reject v1/v2 headers,5,critical,Header versions 1 and 2 are rejected outright
+  2,Enforce nested lupopedia.headers mapping,5,critical,All header fields must be children of lupopedia.headers; flat headers rejected
+  3,Enforce exact key set and order,5,critical,19 keys in section 4.2 order; no extra keys; reject unknown keys
+  4,No multi-line or array values,5,critical,"Each key:value occupies one line; YAML arrays forbidden"
+  5,Validate trust_tier enum,5,critical,trust_tier must be seed|canonical|staging|archive
+  6,Validate memory_toon path and existence,5,high,memory_toon must follow path pattern and target file must exist
+  7,Validate channel_key required,5,critical,channel_key must be non-empty string
+  8,Validate thread_id per artifact_type,5,high,discussion requires non-empty thread_id; prd requires ''
+  9,Validate sidecar identity alignment,5,critical,"file_path_from_root, channel_key, trust_tier, dialog_transcript must match header"
+  10,Validate author.type and verified_by.type,5,high,Must be actor|user|system (no 'agent' type)
+
+edge_rules[5]{pk,allowed_values,description,dimension,required,section_pk}:
+  1,"supports, references, contradicts, consolidates_from, promoted_to, merged_into, etc.",Relationship type,edge_type,true,4
+  2,"doctrine, experiential, system_generated, countermeasure_generated, summary, contradictory, deprecated",Memory classification,edge_context,true,4
+  3,"unsupported, supported, needs_review",Epistemic support level,edge_status,true,4
+  4,"unidirectional, bidirectional (DB); outbound, inbound, bidirectional (JSON label)",Traversal orientation,edge_direction,true,4
+  5,"orphaned_edge, contradiction, new_doctrine, schema_drift, consolidation_candidate, integrity_unknown, human_escalation",Why edge requires review,review_reason,when edge_status = needs_review,4
+
+definitions[5]{pk,meaning,term}:
+  1,Token-Oriented Object Notation optimized for LLM parsing and token efficiency (50-60% reduction vs JSON),TOON
+  2,"JSON sidecar file containing rich metadata (tags, edges, footer, init) not stored in YAML header",header_metadata
+  3,"Logical DB lookup slug; not a filesystem path; format: {federation_node_id}/{channel_key}/{thread_slug}",dialog_transcript
+  4,"Path to primary .toon export; follows pattern memory/{channel_key}/{trust_tier}/{memory_year}/{MM}/{slug}.toon; memory_toon connects the artifact to its canonical memory representation",memory_toon
+  5,"Documentation/export classification: seed (immutable), canonical (verified), staging (WIP), archive (deprecated)",trust_tier

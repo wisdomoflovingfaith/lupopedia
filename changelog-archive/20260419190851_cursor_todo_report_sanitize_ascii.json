@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260419190851",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "4-1-3-docs",
+  "summary": "TODO Layer A cites scripts/sanitize_ascii.py --fix; Helen report ties Thursday cadence, Next Dependencies, and status tables to that ASCII audit path.",
+  "files_changed": [
+    "docs/versions/4.1.3/TODO.md",
+    "docs/versions/4.1.3/REPORT_EMAIL_TO_HELEN_2026_04_23.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

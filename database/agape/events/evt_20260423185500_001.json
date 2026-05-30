@@ -1,0 +1,15 @@
+{
+  "event_id": "evt_20260423185500_001",
+  "event_type": "system_alert",
+  "created_utc": "20260423185500",
+  "actor_id": 705,
+  "actor_slug": "agape",
+  "severity": 1,
+  "source": "agape_core",
+  "summary": "Disk space quota warning detected in file fallback mode",
+  "status": "active",
+  "resolution": null,
+  "linked_why_file": "why_20260423185500_001",
+  "fallback_mode": true,
+  "file_path": "database/agape/events/evt_20260423185500_001.json"
+}

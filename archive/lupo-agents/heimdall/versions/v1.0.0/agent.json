@@ -1,0 +1,27 @@
+{
+    "agent_key": "heimdall",
+    "agent_id": 108,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "is_internal_only": true,
+    "layer": "application",
+    "name": "HEIMDALL",
+    "slug": "heimdall",
+    "role": "Security Guardian",
+    "is_required": false,
+    "aliases": ["security_guardian", "threat_monitor", "guardian", "sentinel", "watcher"],
+    "description": "Guardian of system security. Monitors threats, detects vulnerabilities, and coordinates security responses.",
+    "when_updated_utc": "20260401000000",
+    "last_verified_utc": "20260401000000",
+    "last_verified_by": "lilith",
+    "last_verified_by_actor_id": 2,
+    "version_history": [
+        {
+            "version": "1.0.0",
+            "date": "20260401000000",
+            "changes": "Initial canonical configuration",
+            "verified_by": "lilith",
+            "verified_by_actor_id": 2
+        }
+    ]
+}

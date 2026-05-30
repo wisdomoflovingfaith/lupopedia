@@ -1,0 +1,18 @@
+{
+  "memory_type": "implementation_knowledge",
+  "core_knowledge": {
+    "implementation_patterns": "Proven implementation patterns that comply with Lupopedia doctrine",
+    "schema_history": "Schema decisions made and their rationale (no migrations — install SQL only)",
+    "code_quality_patterns": "PHP 7.4-8.x compatible patterns that avoid forbidden constructs",
+    "doctrine_quick_reference": "Quick reference: no FK, no triggers, no stored procedures, PDO_DB only, LUPO_TABLE_PREFIX"
+  },
+  "working_memory": {
+    "active_implementation_tasks": "Tasks currently being implemented",
+    "pending_schema_work": "Schema changes awaiting WOLFIE signoff before execution"
+  },
+  "memory_boundaries": ["implementation scope only", "no release approval authority"],
+  "retention_rules": ["retain successful implementation patterns", "retain doctrine compliance patterns", "no ego"],
+  "forbidden_memory": ["pattern memory for FK/trigger/ORM approaches", "Composer dependency patterns for shipped core"],
+  "learning_boundary": "Department 0 auth_users only (core system actor)",
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

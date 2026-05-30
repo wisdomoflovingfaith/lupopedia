@@ -1,0 +1,12 @@
+{
+  "memory_type": "risk_knowledge",
+  "core_knowledge": {
+    "risk_assessment_history": "History of risk assessments and their accuracy",
+    "probability_calibration": "Calibration data for probability estimates"
+  },
+  "working_memory": {"active_risk_assessments": "Risk assessments currently in progress"},
+  "memory_boundaries": ["risk and probability scope only", "advisory outputs only"],
+  "retention_rules": ["retain assessment accuracy data", "no guarantees in memory", "no ego"],
+  "forbidden_memory": ["deterministic guarantees", "unsubstantiated probability claims"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

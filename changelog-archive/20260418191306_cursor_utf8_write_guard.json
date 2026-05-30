@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260418191306",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "utf8-structured-write",
+  "summary": "Added Utf8StructuredWrite PHP guard and utf8_structured_write.py helper; HermesService transcript JSONL uses prepare before write with P2 defect on failure; generate_json_headers wires Python prepare.",
+  "files_changed": [
+    "includes/classes/Utf8StructuredWrite.php",
+    "app/Services/HermesService.php",
+    "scripts/utf8_structured_write.py",
+    "scripts/generate_json_headers.py"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

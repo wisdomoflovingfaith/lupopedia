@@ -1,0 +1,55 @@
+{
+  "report_timestamp": "20260420060000",
+  "generating_actor": "castcade",
+  "task": "Register Multiple Lilith Instances",
+  "lilith_instances_registered": [
+    {
+      "instance_name": "lilith_1",
+      "actor_id": 2002,
+      "name": "lilith",
+      "gateway": "manual_web_chat",
+      "channel_key": "analysis",
+      "status": "active",
+      "notes": "Lilith instance 1 - Review and audit specialist"
+    },
+    {
+      "instance_name": "lilith_2",
+      "actor_id": 2003,
+      "name": "lilith",
+      "gateway": "manual_web_chat",
+      "channel_key": "analysis",
+      "status": "active",
+      "notes": "Lilith instance 2 - Review and audit specialist"
+    }
+  ],
+  "directories_created": {
+    "lilith_1": "runtime/analysis/2002/",
+    "lilith_2": "runtime/analysis/2003/"
+  },
+  "tasks_jsonl_paths": {
+    "lilith_1": "runtime/analysis/2002/tasks.jsonl",
+    "lilith_2": "runtime/analysis/2003/tasks.jsonl"
+  },
+  "registry_integrity": {
+    "duplicate_actor_ids": false,
+    "missing_fields": false,
+    "mixed_channel_keys": false,
+    "invalid_gateways": false,
+    "repairs_made": "None - all entries were created correctly"
+  },
+  "violations_detected": 0,
+  "channel_key_isolation": {
+    "lilith_1": "analysis",
+    "lilith_2": "analysis",
+    "no_cross_contamination": true,
+    "each_instance_has_own_directory": true,
+    "no_two_liliths_write_to_same_file": true
+  },
+  "summary": {
+    "total_lilith_instances_registered": 2,
+    "total_directories_created": 2,
+    "total_tasks_jsonl_created": 2,
+    "actor_ids_assigned": [2002, 2003],
+    "status": "completed"
+  }
+}

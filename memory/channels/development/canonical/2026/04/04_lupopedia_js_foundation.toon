@@ -1,0 +1,32 @@
+# Generated from: memory/development/canonical/2026/04/04-lupopedia-js-foundation.json
+# Generated at: 2026-04-10 13:11:10 UTC
+# JSON master checksum: 7d908244ca9628b1220b42c15f619a70
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131110,20260410131110,canonical,4,lupopedia-js-foundation,docs/prd/04_lupopedia_js_foundation.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for lupopedia-js-foundation section 1.,"ðŸš¨ **LILITH \"Source of Truth\" Protocol**"
+  2,Operational summary for lupopedia-js-foundation section 2.,ðŸ“‹ **JS Event Architecture (From Migration Mapping)**
+  3,Operational summary for lupopedia-js-foundation section 3.,ðŸš¨ **Softaculous Compliance Requirements**
+  4,Operational summary for lupopedia-js-foundation section 4.,ðŸ” **Migration Mapping Reference**
+  5,Operational summary for lupopedia-js-foundation section 5.,"Contextâ€‘Typed, Statusâ€‘Aware, Directional Edged Memory Doctrine (4.0.96)"
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_04_rule_1,1,critical,Rule 1 for PRD 04 (lupopedia-js-foundation)
+  2,prd_04_rule_2,2,high,Rule 2 for PRD 04 (lupopedia-js-foundation)
+  3,prd_04_rule_3,3,high,Rule 3 for PRD 04 (lupopedia-js-foundation)
+  4,prd_04_rule_4,4,medium,Rule 4 for PRD 04 (lupopedia-js-foundation)
+  5,prd_04_rule_5,5,critical,Rule 5 for PRD 04 (lupopedia-js-foundation)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 04.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[3]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,90

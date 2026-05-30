@@ -1,0 +1,103 @@
+{
+    "schema_version": "4.0.47",
+    "actor_id": "10000",
+    "personal_info": {
+        "real_name": "Eric Robin Gerdes",
+        "dob": "1978-12-21",
+        "location": "Sioux Falls, South Dakota",
+        "biography_notes": [
+            "Expert PHP and PERL programmer with deep roots in the early web (active 1999-2014).",
+            "Experenced a significant life event in March 2014 resulting in the death of his wife; subsequently left the technology industry and remained completely offline for 11 years.",
+            "Returned to the digital world in July 2025, finding a vastly changed landscape.",
+            "Currently leads Lupopedia with a focus on core engineering principles that favor application-level logic over database-heavy features."
+        ]
+    },
+    "architectural_doctrines": {
+        "database_philosophy": [
+            "No Foreign Keys (FK): Database should be dumb storage; logic resides in PHP.",
+            "No Triggers/Stored Procedures: All business logic must be in application code.",
+            "No Database Functions/Procedures: Keep logic portable and transparent.",
+            "No Unsigned Columns: Ensure compatibility with PostgreSQL and other systems.",
+            "No Partial Indexes: Avoid 'WHERE' clauses in indexes for maximum cross-DB compatibility.",
+            "Precise Queries: Inserts and updates must specify all columns explicitly (no arbitrary column inserts)."
+        ],
+        "data_standards": [
+            "UTC Always: All timestamps must be in UTC format.",
+            "BigInt Timestamps: Store timestamps as BIGINT for precision and portability.",
+            "Manual Sync: Rely on exact PHP-driven updates, never database-level automation."
+        ],
+        "code_standards": [
+            "PHP 5.3 & 8+ Compatibility: Code must run seamlessly across version 5.3 through 8.x.",
+            "No Syntactic Sugar: Avoid short-array tags '[]' in favor of traditional 'array()'.",
+            "No Deprecated Functions: Use only stable, long-term supported PHP APIs.",
+            "OOP Foundation: Software should be primarily Object-Oriented for maintainability."
+        ]
+    },
+    "best_work": [
+        {
+            "achievement_id": "A47-CAPT-001",
+            "title": "FLARE Doctrine Authoring",
+            "description": "Established the canonical governance framework for multi-agent coordination.",
+            "impact": "Project-wide semantic alignment",
+            "date_utc": "20260224",
+            "channel": 0,
+            "tags": [
+                "governance",
+                "architecture"
+            ]
+        },
+        {
+            "achievement_id": "LEG-CS-001",
+            "title": "Crafty Syntax Live Help",
+            "description": "Lead developer and founder. Maintained from 2002-2025, including Sales Syntax fork (2015-2025).",
+            "impact": "Decades of contribution to open-source live support ecosystems.",
+            "date_range": "2002 - 2025",
+            "tags": [
+                "legacy",
+                "open-source",
+                "php"
+            ]
+        }
+    ],
+    "professional_history": [
+        {
+            "period": "2014-03 - 2025-07",
+            "role": "Offline Hiatus",
+            "notes": "Completely disconnected from technology; did not own a computer during this decade-plus interval."
+        },
+        {
+            "organization": "Maui Global Communications (MGCC)",
+            "period": "2000 - 2013",
+            "role": "Software Engineer",
+            "notes": "Hired full-time after Spring 2000 internship; worked for 13 years until 2013."
+        },
+        {
+            "organization": "City and County of Honolulu",
+            "period": "2000 - 2005",
+            "project": "CRM System Implementation",
+            "notes": "Developed and maintained CRM solutions."
+        },
+        {
+            "organization": "MHPCC.gov",
+            "period": "1997, 1998 (Summers)",
+            "role": "Intern"
+        }
+    ],
+    "education": [
+        {
+            "institution": "University of Wyoming",
+            "field": "Computer Science",
+            "period": "1997 - 2000",
+            "notes": "Completed internship at Maui Global Communications in Spring 2000, leading to immediate industry hire before graduation."
+        }
+    ],
+    "skills_mastered": [
+        "system_architecture",
+        "strategic_oversight",
+        "live_support_systems",
+        "CRM_engineering",
+        "early_web_expertise",
+        "expert_perl_programming"
+    ],
+    "total_contributions": 1000
+}

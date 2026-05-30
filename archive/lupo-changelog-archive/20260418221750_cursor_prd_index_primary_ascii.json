@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260418221750",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "lilith-ascii-primary-marker",
+  "summary": "PRD_INDEX primary row marker: Unicode star removed; generate_prd_index.py uses ASCII (primary); ORGANIZATION.md updated; PRD_INDEX.md regenerated.",
+  "files_changed": [
+    "lupo-scripts/generate_prd_index.py",
+    "ORGANIZATION.md",
+    "lupo-docs/prd/PRD_INDEX.md",
+    "lupo-changelog-pending/20260418221750_cursor_prd_index_primary_ascii.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

@@ -1,0 +1,67 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_comments
+fields:
+- '`comment_id` bigint NOT NULL'
+- '`target_type` varchar(64) NOT NULL'
+- '`target_id` bigint NOT NULL'
+- '`channel_id` bigint NOT NULL DEFAULT 42'
+- '`actor_id` bigint NOT NULL'
+- '`faucet_id` bigint'
+- '`comment_text` text NOT NULL'
+- '`comment_type` varchar(64) NOT NULL DEFAULT comment'
+- '`parent_comment_id` bigint'
+- '`created_ymdhis` bigint NOT NULL'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+- '`metadata_json` json'
+indexes:
+- index_name: lupo_comments_idx_target
+  columns:
+  - target_type
+  - target_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_comments_idx_channel_id
+  columns:
+  - channel_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_comments_idx_actor_id
+  columns:
+  - actor_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_comments_idx_faucet_id
+  columns:
+  - faucet_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_comments_idx_parent_comment_id
+  columns:
+  - parent_comment_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_comments_idx_created_ymdhis
+  columns:
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_comments_idx_is_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: comment_id
+  expected_name: comment_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

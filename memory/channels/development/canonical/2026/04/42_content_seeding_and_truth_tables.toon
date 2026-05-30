@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/42-content-seeding-and-truth-tables.json
+# Generated at: 2026-04-10 13:11:14 UTC
+# JSON master checksum: 47fd44859b9fce1b27ed2255fed9bbde
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131114,20260410131114,canonical,42,content-seeding-and-truth-tables,docs/prd/42_content_seeding_and_truth_tables.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for content-seeding-and-truth-tables section 1.,1. Purpose
+  2,Operational summary for content-seeding-and-truth-tables section 2.,2. Normative schema source
+  3,Operational summary for content-seeding-and-truth-tables section 3.,3. Involved tables (from `install_new_lupopedia.sql`)
+  4,Operational summary for content-seeding-and-truth-tables section 4.,4. PK tier rules for content and truth
+  5,Operational summary for content-seeding-and-truth-tables section 5.,5. Seeding rules (`seed_online_help_and_content.sql`)
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_42_rule_1,1,critical,Rule 1 for PRD 42 (content-seeding-and-truth-tables)
+  2,prd_42_rule_2,2,high,Rule 2 for PRD 42 (content-seeding-and-truth-tables)
+  3,prd_42_rule_3,3,high,Rule 3 for PRD 42 (content-seeding-and-truth-tables)
+  4,prd_42_rule_4,4,medium,Rule 4 for PRD 42 (content-seeding-and-truth-tables)
+  5,prd_42_rule_5,5,critical,Rule 5 for PRD 42 (content-seeding-and-truth-tables)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 42.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,docs/prd/03_goals_and_success_criteria.md,85
+  5,doctrine,outbound,supported,references,docs/prd/14_system_operations.md,80

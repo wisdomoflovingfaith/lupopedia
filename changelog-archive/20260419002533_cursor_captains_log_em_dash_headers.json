@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260419002533",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "captains-log-headers",
+  "summary": "30_the_em_dash_conspiracy.md: added PRD 16 LUPOPEDIA HEADERS 4.1.3; generated memory JSON/TOON via generate_memory_from_header.py.",
+  "files_changed": [
+    "content/federation_node/0/captains_log/30_the_em_dash_conspiracy.md",
+    "memory/captains_log/canonical/1026/04/30-em-dash-conspiracy.json",
+    "memory/captains_log/canonical/1026/04/30-em-dash-conspiracy.toon"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/captains_log/canonical/1026/04/30-em-dash-conspiracy.toon"
+  ]
+}

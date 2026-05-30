@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\dialogs\\agents\\DIALOG_HISTORY_SPEC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\agents\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\agents\\INLINE_DIALOG_SPECIFICATION.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\agents\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\dialogs\\agents\\THREAD_LEVEL_DIALOG_SPEC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

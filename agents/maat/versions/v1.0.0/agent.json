@@ -1,0 +1,26 @@
+{
+    "agent_key": "maat",
+    "agent_id": 6,
+    "version": "1.0.0",
+    "is_kernel": true,
+    "layer": "kernel",
+    "name": "MAAT",
+    "slug": "maat",
+    "role": "Truth & Justice",
+    "is_required": true,
+    "aliases": ["truth", "justice", "ethical_validator", "justice_administrator"],
+    "description": "Guardian of truth verification, justice administration, and ethical validation. Ensures all system actions align with constitutional principles.",
+    "when_updated_utc": "20260401000000",
+    "last_verified_utc": "20260401000000",
+    "last_verified_by": "lilith",
+    "last_verified_by_actor_id": 2,
+    "version_history": [
+        {
+            "version": "1.0.0",
+            "date": "20260401000000",
+            "changes": "Initial canonical configuration",
+            "verified_by": "lilith",
+            "verified_by_actor_id": 2
+        }
+    ]
+}

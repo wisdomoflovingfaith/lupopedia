@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260419000721",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "contributing-prd-first",
+  "summary": "CONTRIBUTING.md: PRD_INDEX MUST gate wording; AGENTS.md execution enforcement line; when_updated tick.",
+  "files_changed": [
+    "CONTRIBUTING.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

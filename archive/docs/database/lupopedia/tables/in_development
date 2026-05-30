@@ -1,0 +1,76 @@
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "docs/database/lupopedia/tables/active/development/lupo_actor_apps.md"
+  web_path: "[lupo_actor_apps](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_apps)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Documentation for lupo_actor_apps table - maps actors to filesystem application workspaces"
+  tags: ["database", "table", "core"]
+
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_actor_apps table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=0"
+  outbound_edges:
+    - { to: "database.table.lupo_actor_apps", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
+---
+# file: lupo_actor_apps ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_apps
+# Table: lupo_actor_apps
+
+## Table Overview
+
+- **Purpose:** Maps each actor to a single filesystem application workspace path (`apps_path`). One row per actor (enforced by unique index on actor_id). Used for actor workspace discovery, IDE agent application directories, and actor-level application deployment.
+- **Category:** Actor System / Filesystem
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
+
+## Where This Table Is Used
+
+- **Actor workspace discovery:** Resolves an actor's app directory for loading actor-specific tools, scripts, and resource files. Bootstrap and session logic query by actor_id to get the canonical apps path.
+- **IDE agent application directories:** IDE agents (Cursor, Windsurf, Kiro, etc.) have actor records; this table stores the path to each agent's `apps/` directory (e.g. under actors/{actor_id}/apps/ or a configured path).
+- **Actor-level application deployment:** Application code deploys or discovers tools per actor using apps_path; ownership of application resources is by actor.
+- **Runtime actor tooling:** When resolving which scripts or assets belong to an actor, services read apps_path from this table rather than hardcoding paths.
+- **App discovery for agents:** Graph and documentation tooling can list actor apps by joining lupo_actors to this table; apps_path is the filesystem integration point for actor capsules.
+
+## Column Documentation
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| actor_app_id | bigint | No | — | Primary key. Reserved-ID doctrine: application supplies explicit ID; not AUTO_INCREMENT. |
+| actor_id | bigint | No | — | Logical reference to lupo_actors.actor_id. Unique — at most one apps path per actor. |
+| apps_path | varchar(512) | No | '' | Filesystem path to the actor's apps directory (e.g. actors/102/apps/). |
+| updated_ymdhis | bigint | No | 0 | Last-update timestamp in YYYYMMDDHHIISS UTC format. Set in application code via gmdate('YmdHis'). |
+
+## Indexes
+
+- **PRIMARY KEY:** actor_app_id
+- **UNIQUE:** lupo_actor_apps_unq_actor (actor_id) — enforces one apps_path per actor
+- **INDEX:** lupo_actor_apps_idx_updated (updated_ymdhis)
+
+## Relationships
+
+- **Logical references (no DB FKs):** actor_id → lupo_actors.actor_id. Application code must ensure the actor exists when inserting.
+- **Usage:** Typically read by actor bootstrap, ActorService, or any code that needs the actor's apps directory; written when provisioning or updating an actor's app path.
+
+## Doctrine Notes
+
+- **No foreign keys.** Referential integrity enforced in application code.
+- **Timestamps:** updated_ymdhis is BIGINT UTC YYYYMMDDHHIISS; set in PHP only.
+- **Unique on actor_id:** Only one row per actor; use SELECT then UPDATE or INSERT with explicit actor_app_id, or handle ON DUPLICATE KEY UPDATE in application logic.
+- **Reserved ID:** actor_app_id is not AUTO_INCREMENT; application must supply explicit value.

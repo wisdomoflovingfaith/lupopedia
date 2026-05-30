@@ -1,0 +1,7 @@
+{
+  "artifact": {
+    "path_from_lupopedia_root": "docs/architecture/federation_interpreter_rules.md",
+    "purpose": "Memory graph anchor for federation_nodes interpreter rules v1.0",
+    "related_prd": "docs/prd/34_A-i_FEDERATION_NODE_SEMANTIC_NETWORK.md"
+  }
+}

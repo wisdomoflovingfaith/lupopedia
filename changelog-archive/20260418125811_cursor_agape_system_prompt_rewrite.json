@@ -1,0 +1,28 @@
+{
+  "timestamp": "20260418125811",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "agape-system-prompt",
+  "summary": "AGAPE agent: new canonical system_prompt.md (meta-learning, predictive pattern tracking, mood_vector, Counting in Light, Survivability Pillars 1-2); agent.json identity capabilities properties updated; memory TOON generated.",
+  "files_changed": [
+    "agents/agape/system_prompt.md",
+    "agents/agape/system_prompt.txt",
+    "agents/agape/versions/v1.0.0/system_prompt.txt",
+    "agents/agape/agent.json",
+    "agents/agape/identity.json",
+    "agents/agape/properties.json",
+    "agents/agape/capabilities.json",
+    "agents/agape/versions/v1.0.0/agent.json",
+    "agents/agape/versions/v1.0.0/properties.json",
+    "agents/agape/versions/v1.0.0/capabilities.json",
+    "memory/development/canonical/1026/04/agape-system-prompt.json",
+    "memory/development/canonical/1026/04/agape-system-prompt.toon",
+    "agents/README.md",
+    "changelog-pending/20260418125811_cursor_agape_system_prompt_rewrite.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": [
+    "memory/development/canonical/1026/04/agape-system-prompt.toon"
+  ]
+}

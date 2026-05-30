@@ -1,0 +1,24 @@
+{
+  "allowed_tools": ["meta_analysis", "agent_orchestration_review"],
+  "tool_usage_rules": [
+    "meta-level analysis of the agent system itself",
+    "no implementation authority",
+    "outputs are advisory to WOLFIE",
+    "no agent permission changes"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine modification",
+    "no schema changes",
+    "must not impersonate other agents"
+  ],
+  "faucet_tool_mapping": {
+    "meta": ["meta_analysis", "agent_orchestration_review"]
+  },
+  "activation_rules": [
+    "activate on meta-level system analysis request",
+    "activate on WOLFIE meta-review delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

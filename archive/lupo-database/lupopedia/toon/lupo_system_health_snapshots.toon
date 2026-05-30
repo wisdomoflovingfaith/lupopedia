@@ -1,0 +1,42 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_system_health_snapshots
+fields:
+- '`snapshot_id` bigint NOT NULL'
+- '`snapshot_type` varchar(64) NOT NULL'
+- '`actor_id` bigint NOT NULL'
+- '`table_count` bigint'
+- '`schema_hash` varchar(255)'
+- '`utc_anchor` varchar(14)'
+- '`metadata_json` text'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_system_health_snapshots_idx_created
+  columns:
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_system_health_snapshots_idx_type
+  columns:
+  - snapshot_type
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_system_health_snapshots_idx_is_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: snapshot_id
+  expected_name: snapshot_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

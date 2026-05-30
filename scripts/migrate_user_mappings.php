@@ -1,0 +1,284 @@
+<?php
+/**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "scripts/migrate_user_mappings.php"
+  questions_toon: null
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
+lupopedia.headers:
+  when_updated: "20260324175617"
+  file_path_from_root: "scripts/migrate_user_mappings.php"
+  questions_toon: null
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175617"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
+ * User Mapping Script (DEPRECATED: operator-based migration).
+ *
+ * Legacy operator table has been removed. All auth uses lupo_auth_users and roles.
+ * This script now uses lupo_auth_users only; getCraftyOperators() returns empty.
+ * Run for compatibility only; no operator mappings are created.
+ */
+
+require_once __DIR__ . '/../config/database.php';
+
+class UserMappingMigrator
+{
+    private $db;
+    private $dryRun;
+    
+    public function __construct($dryRun = true)
+    {
+        $this->dryRun = $dryRun;
+        $this->db = $this->connectDatabase();
+    }
+    
+    /**
+     * Run the migration process
+     */
+    public function migrate()
+    {
+        echo "=== User Mapping Migration ===\n";
+        echo "Mode: " . ($this->dryRun ? "DRY RUN" : "LIVE") . "\n\n";
+        
+        try {
+            // Step 1: Get all Lupopedia users
+            $lupoUsers = $this->getLupopediaUsers();
+            echo "Found " . count($lupoUsers) . " Lupopedia users\n";
+            
+            // Step 2: Get all Crafty Syntax operators
+            $craftyOperators = $this->getCraftyOperators();
+            echo "Found " . count($craftyOperators) . " Crafty Syntax operators\n";
+            
+            // Step 3: Find potential matches by email
+            $matches = $this->findEmailMatches($lupoUsers, $craftyOperators);
+            echo "Found " . count($matches) . " potential email matches\n\n";
+            
+            // Step 4: Check existing mappings
+            $existingMappings = $this->getExistingMappings();
+            echo "Existing mappings: " . count($existingMappings) . "\n\n";
+            
+            // Step 5: Create new mappings for unmatched matches
+            $newMappings = $this->createMappings($matches, $existingMappings);
+            
+            // Step 6: Update users table with crafty_operator_id
+            $this->updateUsersTable($newMappings);
+            
+            // Step 7: Generate report
+            $this->generateReport($newMappings);
+            
+        } catch (Exception $e) {
+            echo "ERROR: " . $e->getMessage() . "\n";
+            echo "Stack trace:\n" . $e->getTraceAsString() . "\n";
+        }
+    }
+    
+    /**
+     * Connect to database
+     */
+    private function connectDatabase()
+    {
+        try {
+            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ];
+            
+            return new PDO($dsn, DB_USER, DB_PASS, $options);
+        } catch (PDOException $e) {
+            throw new Exception("Database connection failed: " . $e->getMessage());
+        }
+    }
+    
+    /**
+     * Get Lupopedia users from lupo_auth_users (no legacy users table).
+     */
+    private function getLupopediaUsers()
+    {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'auth_users';
+        $stmt = $this->db->query("SELECT auth_user_id AS id, email, display_name AS name, username FROM " . $tbl . " WHERE is_active = 1 AND (is_deleted = 0 OR is_deleted IS NULL) ORDER BY email");
+        return $stmt->fetchAll();
+    }
+    
+    /**
+     * Legacy: Crafty Syntax operators table removed. Returns empty.
+     */
+    private function getCraftyOperators()
+    {
+        return [];
+    }
+    
+    /**
+     * Find email matches between users and operators
+     */
+    private function findEmailMatches($lupoUsers, $craftyOperators)
+    {
+        $matches = [];
+        
+        foreach ($lupoUsers as $lupoUser) {
+            $lupoEmail = strtolower(trim($lupoUser['email']));
+            
+            foreach ($craftyOperators as $operator) {
+                $craftyEmail = strtolower(trim($operator['email']));
+                
+                if ($lupoEmail === $craftyEmail) {
+                    $matches[] = [
+                        'lupo_user_id' => $lupoUser['id'],
+                        'crafty_operator_id' => $operator['operatorid'],
+                        'lupo_email' => $lupoUser['email'],
+                        'crafty_email' => $operator['email'],
+                        'lupo_name' => $lupoUser['name'] ?? $lupoUser['username'],
+                        'crafty_name' => $operator['operatorname'],
+                        'match_type' => 'email_exact'
+                    ];
+                    break; // Stop after first match
+                }
+            }
+        }
+        
+        return $matches;
+    }
+    
+    /**
+     * Get existing mappings
+     */
+    private function getExistingMappings()
+    {
+        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $tbl = $prefix . 'crafty_user_mapping';
+        $stmt = $this->db->query("SELECT lupo_user_id, crafty_operator_id FROM " . $tbl);
+        $existing = [];
+        
+        while ($row = $stmt->fetch()) {
+            $key = $row['lupo_user_id'] . '_' . $row['crafty_operator_id'];
+            $existing[$key] = true;
+        }
+        
+        return $existing;
+    }
+    
+    /**
+     * Create new mappings for unmatched matches
+     */
+    private function createMappings($matches, $existingMappings)
+    {
+        $newMappings = [];
+        
+        foreach ($matches as $match) {
+            $key = $match['lupo_user_id'] . '_' . $match['crafty_operator_id'];
+            
+            if (!isset($existingMappings[$key])) {
+                $newMappings[] = $match;
+            }
+        }
+        
+        if (!$this->dryRun && !empty($newMappings)) {
+            $now = (int) gmdate('YmdHis');
+            $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $tbl = $prefix . 'crafty_user_mapping';
+            $stmt = $this->db->prepare("
+                INSERT INTO " . $tbl . "
+                (lupo_user_id, crafty_operator_id, mapping_type, notes, created_at, updated_at)
+                VALUES (?, ?, 'auto', 'Auto-generated by migration script', ?, ?)
+            ");
+            foreach ($newMappings as $mapping) {
+                $stmt->execute([
+                    $mapping['lupo_user_id'],
+                    $mapping['crafty_operator_id'] ?? null,
+                    $now,
+                    $now
+                ]);
+            }
+        }
+        
+        return $newMappings;
+    }
+    
+    /**
+     * No-op: users table no longer has crafty_operator_id; role-based auth only.
+     */
+    private function updateUsersTable($newMappings)
+    {
+        // Legacy operator ID column removed from users/lupo_auth_users.
+    }
+    
+    /**
+     * Generate migration report
+     */
+    private function generateReport($newMappings)
+    {
+        echo "\n=== MIGRATION REPORT ===\n";
+        echo "New mappings created: " . count($newMappings) . "\n\n";
+        
+        if (!empty($newMappings)) {
+            echo "New Mappings:\n";
+            echo str_repeat("-", 80) . "\n";
+            printf("%-10s %-30s %-30s %-15s\n", "Lupo ID", "Lupopedia User", "Crafty Operator", "Match Type");
+            echo str_repeat("-", 80) . "\n";
+            
+            foreach ($newMappings as $mapping) {
+                printf("%-10d %-30s %-30s %-15s\n", 
+                    $mapping['lupo_user_id'],
+                    substr($mapping['lupo_email'], 0, 30),
+                    substr($mapping['crafty_email'], 0, 30),
+                    $mapping['match_type']
+                );
+            }
+        }
+        
+        echo "\n=== NEXT STEPS ===\n";
+        echo "1. Review the mappings above\n";
+        echo "2. Run with --execute flag to apply changes\n";
+        echo "3. Verify mappings in admin console\n";
+        echo "4. Test unified authentication\n";
+    }
+}
+
+// Command line interface
+if (php_sapi_name() === 'cli') {
+    $options = getopt('', ['execute', 'dry-run', 'help']);
+    
+    if (isset($options['help'])) {
+        echo "User Mapping Migration Script\n\n";
+        echo "Usage: php migrate_user_mappings.php [options]\n\n";
+        echo "Options:\n";
+        echo "  --execute    Execute the migration (default: dry run)\n";
+        echo "  --dry-run    Show what would be done without executing\n";
+        echo "  --help        Show this help message\n\n";
+        echo "Examples:\n";
+        echo "  php migrate_user_mappings.php --dry-run\n";
+        echo "  php migrate_user_mappings.php --execute\n";
+        exit(0);
+    }
+    
+    $dryRun = !isset($options['execute']);
+    $migrator = new UserMappingMigrator($dryRun);
+    $migrator->migrate();
+} else {
+    echo "This script must be run from the command line.\n";
+    echo "Use --help for usage information.\n";
+    exit(1);
+}
+?>

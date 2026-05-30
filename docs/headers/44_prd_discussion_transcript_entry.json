@@ -1,0 +1,22 @@
+{
+  "file_id": "transcript_entry_20260409001808",
+  "file_path": "channels/0/development/prd_files/44_prd_discussion/transcript.jsonl",
+  "entry_ts": "20260409001808.000",
+  "last_updated": "20260409113315",
+  "memory_ref": "memory/2026/04/M-transcript-44-20260409001808.toon",
+  "edges": {
+    "outbound": [
+      {"to": "channels/0/development/prd_files/44_prd_discussion/", "type": "belongs_to", "weight": 1.0}
+    ]
+  },
+  "tags": ["transcript", "channel-44", "task", "draft"],
+  "actor_id": 1,
+  "schema_version": "header_json_v1",
+  "footer": {
+    "last_verified": "20260409113315",
+    "verified_by": {
+      "actor_id": 116,
+      "agent_name_identity": "Claude Code"
+    }
+  }
+}

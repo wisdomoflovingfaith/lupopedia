@@ -1,0 +1,11 @@
+{
+  "type": "header_metadata",
+  "memory_key": "lupo-memory/development/canonical/1026/04/generate-headers-deprecated.toon",
+  "purpose": "Sidecar for deprecated lupo-scripts/generate_headers.py (Wolfie v4.2 DB→file stub).",
+  "tags": ["deprecation", "headers", "prd-16", "lupo-scripts"],
+  "footer": {
+    "last_verified": "20260412022118",
+    "last_verified_by": "kairos",
+    "last_verified_by_actor_id": 115
+  }
+}

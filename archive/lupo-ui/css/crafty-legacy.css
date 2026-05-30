@@ -1,0 +1,47 @@
+/* 2004-era Glass Bubble Reflection */
+.lupo-bubble {
+    position: relative;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 4px; /* High-density spacing */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+
+.lupo-bubble::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%; /* Reflection covers top half */
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+}
+
+/* Specific styling for Elevated Truth (PRD Section 3) */
+.lupo-bubble.context-elevated {
+    border: 3px double #FFD700;
+    background-color: #FFFDF0; /* Subtle warm paper tone */
+}
+/* Crafty Legacy CSS + Unified Stream Gold Border */
+.message-preview {
+    padding: 8px 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.gold-border {
+    border: 2px solid #FFD700 !important;
+    box-shadow: 0 0 8px #FFD70044;
+}
+.truth-candidate {
+    background: #fffbe6;
+}

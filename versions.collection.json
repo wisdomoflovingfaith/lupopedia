@@ -1,0 +1,15 @@
+{
+  "collection_key": "versions",
+  "title": "Lupopedia Versions Root Collection",
+  "description": "Root collection for versioned changelogs, release notes, and version-specific documentation. Authority: PRD 40_A.",
+  "created_utc": "20260423183000",
+  "collection_type": "root",
+  "fallback_mode": true,
+  "authority_level": "provisional",
+  "authority_source": "chiron_filesystem_discovery",
+  "replaceable": true,
+  "authoritative_source_id": null,
+  "parent": null,
+  "children": [],
+  "doctrine_reference": ["40_A"]
+}

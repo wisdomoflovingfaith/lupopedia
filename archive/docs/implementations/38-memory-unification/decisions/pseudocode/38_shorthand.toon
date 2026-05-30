@@ -1,0 +1,31 @@
+{
+  "prd_id": 38,
+  "title": "Memory Unification",
+  "status": "draft",
+  "summary": "Memory writes go to DB first; filesystem is read-only mirror via export service.",
+  "rules": [
+    "Database is source of truth for memory nodes and edges",
+    "Filesystem mirror is generated from DB",
+    "Graph traversal authority is DB-backed"
+  ],
+  "constraints": [
+    "No direct filesystem writes in canonical flow",
+    "Use MemoryExportService for mirror output",
+    "Keep compatibility with PHP 7.4 runtime and legacy-safe source patterns"
+  ],
+  "related_prds": [
+    0,
+    24,
+    37,
+    41,
+    44
+  ],
+  "key_files": [
+    "includes/classes/MemoryExportService.php",
+    "includes/classes/MemoryGraph.php",
+    "scripts/migrate_transcript_to_memory.py",
+    "scripts/lib/db_memory_writer.py",
+    "bin/export.php"
+  ],
+  "actor_notes": "IDE agents should load memory context through memory.php and avoid bypassing DB write path."
+}

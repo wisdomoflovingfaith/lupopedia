@@ -1,0 +1,30 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_analytics_campaign_vars",
+  "fields": [
+    "`campaign_var_id` bigint NOT NULL",
+    "`period` varchar(64) NOT NULL",
+    "`date_ymd` bigint",
+    "`yearmonth` int",
+    "`year` int",
+    "`campaign_key` varchar(255) NOT NULL",
+    "`campaign_value` varchar(500)",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "campaign_var_id",
+    "expected_name": "campaign_var_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

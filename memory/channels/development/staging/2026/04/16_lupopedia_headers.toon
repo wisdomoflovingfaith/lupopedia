@@ -1,0 +1,697 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "prd_version": "4.0.0",
+      "header_format_version": "4.0.98",
+      "created_ymdhis": "20260410070007",
+      "last_updated": "20260410191115",
+      "layer": "canonical",
+      "source_prd": "docs/prd/16_lupopedia_headers.md",
+      "cross_references": [
+        { "prd_id": 26, "relationship": "Five-layer documentation / actor types" },
+        { "prd_id": 38, "relationship": "Memory graph storage and traversal" },
+        { "prd_id": 44, "relationship": "Transcript / discussion (slug examples)" }
+      ]
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Purpose and Scope",
+      "summary": "Define canonical header specification with fixed field set, sidecar schema, DB-first transcript pipeline, and validator rules"
+    },
+    {
+      "pk": 2,
+      "title": "Header Format (v4.0.0)",
+      "summary": "20 scalar keys under lupopedia.headers (PRD 16 section 4.2 order); dialog_transcript dual-field with sidecar; no arrays or multi-line values in header"
+    },
+    {
+      "pk": 3,
+      "title": "Sidecar Format (header_metadata)",
+      "summary": "JSON metadata file with purpose, tags, author, delegation_chain, edges, footer, init"
+    },
+    {
+      "pk": 4,
+      "title": "Transcript System (DB-First)",
+      "summary": "PHP endpoint canonical writer; Python/IDE clients POST; offline queue fallback"
+    },
+    {
+      "pk": 5,
+      "title": "Validator Rules",
+      "summary": "Reject v1/v2; enforce 25-line envelope; key set, order, HDR_* codes per section 19.3"
+    },
+    {
+      "pk": 6,
+      "title": "Edge Specification",
+      "summary": "Required edge dimensions; review_reason when edge_status is needs_review (PRD 16 section 11)"
+    }
+  ],
+  "header_fields": [
+    {
+      "pk": 1,
+      "section_pk": 2,
+      "position": 1,
+      "field_name": "header_format_version",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": ["3", "4.0.96", "4.0.97", "4.0.98"],
+      "allowed_values_note": "Legacy integer 3; new files use 4.0.x string patch family",
+      "description": "Header specification version family (YAML string or legacy 3)"
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "position": 2,
+      "field_name": "lupopedia.schema",
+      "field_type": "enum",
+      "required": true,
+      "allowed_values": [
+        "prd",
+        "doctrine",
+        "documentation",
+        "implementation",
+        "discussion",
+        "changelog",
+        "architecture",
+        "specification"
+      ],
+      "description": "Document class taxonomy (closed enum)"
+    },
+    {
+      "pk": 3,
+      "section_pk": 2,
+      "position": 3,
+      "field_name": "when_updated",
+      "field_type": "timestamp",
+      "required": true,
+      "allowed_values": "14-digit UTC string YYYYMMDDHHIISS",
+      "description": "Last update timestamp (UTC packed string)"
+    },
+    {
+      "pk": 4,
+      "section_pk": 2,
+      "position": 4,
+      "field_name": "file_path_from_root",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "repo-relative POSIX path",
+      "description": "Repository path (forward slashes; no leading slash)"
+    },
+    {
+      "pk": 5,
+      "section_pk": 2,
+      "position": 5,
+      "field_name": "web_path",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "absolute URL or internal path per federation_node_id rules",
+      "description": "Canonical web path / URL"
+    },
+    {
+      "pk": 6,
+      "section_pk": 2,
+      "position": 6,
+      "field_name": "last_modified_utc",
+      "field_type": "timestamp",
+      "required": true,
+      "allowed_values": "14-digit UTC string YYYYMMDDHHIISS",
+      "description": "Last modified timestamp (typically matches when_updated for new writes)"
+    },
+    {
+      "pk": 7,
+      "section_pk": 2,
+      "position": 7,
+      "field_name": "federation_node_id",
+      "field_type": "integer",
+      "required": true,
+      "allowed_values": "non-negative integer; 0=core documentation default, 1=local node, 2+=external/research",
+      "description": "Federation scope (PRD 16 section 8)"
+    },
+    {
+      "pk": 8,
+      "section_pk": 2,
+      "position": 8,
+      "field_name": "channel_key",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "non-empty slug",
+      "description": "Channel identifier; no silent fallback from session.json or IDE (PRD 16 section 7)"
+    },
+    {
+      "pk": 9,
+      "section_pk": 2,
+      "position": 9,
+      "field_name": "trust_tier",
+      "field_type": "enum",
+      "required": true,
+      "allowed_values": ["seed", "canonical", "staging", "archive"],
+      "description": "Trust classification for memory_toon path layout"
+    },
+    {
+      "pk": 10,
+      "section_pk": 2,
+      "position": 10,
+      "field_name": "memory_toon",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "path ending in .toon",
+      "description": "Primary memory export path; MUST end with .toon (HDR_MEMORY_TOON_SUFFIX); memory_toon connects the artifact to its canonical memory representation"
+    },
+    {
+      "pk": 11,
+      "section_pk": 2,
+      "position": 11,
+      "field_name": "artifact_type",
+      "field_type": "enum",
+      "required": true,
+      "allowed_values": [
+        "prd",
+        "doctrine",
+        "documentation",
+        "implementation",
+        "discussion",
+        "changelog",
+        "architecture",
+        "specification"
+      ],
+      "description": "Artifact type taxonomy"
+    },
+    {
+      "pk": 12,
+      "section_pk": 2,
+      "position": 12,
+      "field_name": "artifact_kind",
+      "field_type": "enum",
+      "required": true,
+      "allowed_values": "cross-field set per artifact_type (PRD 16 cross-field table)",
+      "description": "Finer-grained classification within artifact_type"
+    },
+    {
+      "pk": 13,
+      "section_pk": 2,
+      "position": 13,
+      "field_name": "thread_id",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "empty for prd; non-empty for discussion when bound",
+      "description": "Thread identifier; PRDs MUST use '' and route via dialog_transcript only (section 4.2.1)"
+    },
+    {
+      "pk": 14,
+      "section_pk": 2,
+      "position": 14,
+      "field_name": "content_id",
+      "field_type": "integer_or_null",
+      "required": true,
+      "allowed_values": "null until imported; integer BIGINT when linked to lupo_contents.content_id",
+      "description": "Content row id; null means not imported; empty string invalid"
+    },
+    {
+      "pk": 15,
+      "section_pk": 2,
+      "position": 15,
+      "field_name": "prd_id",
+      "field_type": "integer_or_null",
+      "required": true,
+      "allowed_values": "null (non-PRD); 0 (PRD 00 constitutional root only); 1-999 (standard PRDs)",
+      "description": "Numeric PRD id or null for non-PRD artifacts"
+    },
+    {
+      "pk": 16,
+      "section_pk": 2,
+      "position": 16,
+      "field_name": "prd_slug",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "URL-friendly slug for prd; '' otherwise",
+      "description": "PRD slug identifier"
+    },
+    {
+      "pk": 17,
+      "section_pk": 2,
+      "position": 17,
+      "field_name": "title",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "non-empty for prd; '' when allowed by cross-field rules",
+      "description": "Document title"
+    },
+    {
+      "pk": 18,
+      "section_pk": 2,
+      "position": 18,
+      "field_name": "status",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "active, draft, deprecated, archived, complete, etc. per deployment",
+      "description": "Document or workflow status"
+    },
+    {
+      "pk": 19,
+      "section_pk": 2,
+      "position": 19,
+      "field_name": "parent_prd",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "non-empty for implementation; '' otherwise",
+      "description": "Parent PRD reference for implementation artifacts"
+    },
+    {
+      "pk": 20,
+      "section_pk": 2,
+      "position": 20,
+      "field_name": "dialog_transcript",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": "non-empty DB lookup slug {federation_node_id}/{channel_key}/{thread_slug}",
+      "description": "Logical transcript identifier; not a filesystem path; must match sidecar (dual-field)"
+    }
+  ],
+  "sidecar_fields": [
+    {
+      "pk": 1,
+      "section_pk": 3,
+      "field_name": "id",
+      "field_type": "string",
+      "required": true,
+      "description": "Stable sidecar identifier"
+    },
+    {
+      "pk": 2,
+      "section_pk": 3,
+      "field_name": "type",
+      "field_type": "string",
+      "required": true,
+      "allowed_values": ["header_metadata"],
+      "description": "Sidecar type discriminator"
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "field_name": "file_path_from_root",
+      "field_type": "string",
+      "required": true,
+      "description": "Must match header"
+    },
+    {
+      "pk": 4,
+      "section_pk": 3,
+      "field_name": "channel_key",
+      "field_type": "string",
+      "required": true,
+      "description": "Must match header"
+    },
+    {
+      "pk": 5,
+      "section_pk": 3,
+      "field_name": "trust_tier",
+      "field_type": "string",
+      "required": true,
+      "description": "Must match header"
+    },
+    {
+      "pk": 6,
+      "section_pk": 3,
+      "field_name": "purpose",
+      "field_type": "string",
+      "required": true,
+      "description": "Human-readable purpose (ASCII)"
+    },
+    {
+      "pk": 7,
+      "section_pk": 3,
+      "field_name": "status",
+      "field_type": "string",
+      "required": true,
+      "description": "Sidecar document status"
+    },
+    {
+      "pk": 8,
+      "section_pk": 3,
+      "field_name": "tags",
+      "field_type": "array",
+      "required": true,
+      "description": "Machine tags (tag-* namespace preferred)"
+    },
+    {
+      "pk": 9,
+      "section_pk": 3,
+      "field_name": "author",
+      "field_type": "object",
+      "required": true,
+      "validation_codes": ["SIDECAR_AUTHOR_TYPE"],
+      "description": "{type, id, name} where type is actor|user|system"
+    },
+    {
+      "pk": 10,
+      "section_pk": 3,
+      "field_name": "delegation_chain",
+      "field_type": "string",
+      "required": true,
+      "description": "e.g., cursor:root"
+    },
+    {
+      "pk": 11,
+      "section_pk": 3,
+      "field_name": "edges",
+      "field_type": "array",
+      "required": true,
+      "validation_codes": ["EDGE_NEEDS_REVIEW"],
+      "description": "Outbound edges; review_reason required when edge_status is needs_review"
+    },
+    {
+      "pk": 12,
+      "section_pk": 3,
+      "field_name": "footer",
+      "field_type": "object",
+      "required": true,
+      "validation_codes": ["SIDECAR_VERIFIER_TYPE"],
+      "description": "Verification with last_verified and verified_by"
+    },
+    {
+      "pk": 13,
+      "section_pk": 3,
+      "field_name": "init",
+      "field_type": "array",
+      "required": true,
+      "description": "Required-reading pointers (may be empty)"
+    },
+    {
+      "pk": 14,
+      "section_pk": 3,
+      "field_name": "dialog_transcript",
+      "field_type": "string",
+      "required": true,
+      "validation_codes": ["HDR_DUAL_MISMATCH"],
+      "description": "Must match header byte-for-byte (dual-field)"
+    }
+  ],
+  "validator_rules": [
+    {
+      "pk": 1,
+      "section_pk": 5,
+      "error_code": "HDR_VERSION_LEGACY",
+      "rule_name": "Reject v1/v2 headers",
+      "severity": "critical",
+      "summary": "Header versions 1 and 2 are rejected outright"
+    },
+    {
+      "pk": 2,
+      "section_pk": 5,
+      "error_code": null,
+      "rule_name": "Enforce nested lupopedia.headers mapping",
+      "severity": "critical",
+      "summary": "All header fields must be children of lupopedia.headers; flat headers rejected (validator emits envelope/line-count errors)"
+    },
+    {
+      "pk": 3,
+      "section_pk": 5,
+      "error_code": "HDR_KEY_ORDER",
+      "rule_name": "Enforce exact key set and order",
+      "severity": "critical",
+      "summary": "20 keys in section 4.2 order; HDR_MISSING_KEY / HDR_EXTRA_KEY when violated"
+    },
+    {
+      "pk": 4,
+      "section_pk": 5,
+      "error_code": "HDR_MULTILINE",
+      "rule_name": "No multi-line or array values",
+      "severity": "critical",
+      "summary": "Each key:value occupies one line; YAML arrays forbidden (HDR_ARRAY)"
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "error_code": "HDR_LINE_COUNT",
+      "rule_name": "25-line Markdown/Python envelope",
+      "severity": "critical",
+      "summary": "Exactly 25 header lines before body; HDR_MISSING_BLANK_LINE, HDR_MISSING_CLOSE, HDR_CONTENT_TOO_EARLY as applicable"
+    },
+    {
+      "pk": 6,
+      "section_pk": 5,
+      "error_code": "HDR_MULTIPLE_HEADERS",
+      "rule_name": "Single leading block",
+      "severity": "critical",
+      "summary": "Reject duplicate consecutive lupopedia.headers YAML blocks at file start"
+    },
+    {
+      "pk": 7,
+      "section_pk": 5,
+      "error_code": "HDR_NOT_AT_TOP",
+      "rule_name": "Header at line 1",
+      "severity": "critical",
+      "summary": "No bytes before opening delimiter (Markdown) or format-defined position"
+    },
+    {
+      "pk": 8,
+      "section_pk": 5,
+      "error_code": "HDR_VERSION_FIELD_REMOVED",
+      "rule_name": "Reject legacy version key",
+      "severity": "high",
+      "summary": "Obsolete version under lupopedia.headers forbidden; use header_format_version"
+    },
+    {
+      "pk": 9,
+      "section_pk": 5,
+      "error_code": "HDR_TRUST_TIER_INVALID",
+      "rule_name": "Validate trust_tier enum",
+      "severity": "critical",
+      "summary": "trust_tier must be seed|canonical|staging|archive"
+    },
+    {
+      "pk": 10,
+      "section_pk": 5,
+      "error_code": "HDR_MEMORY_TOON_SUFFIX",
+      "rule_name": "Validate memory_toon shape",
+      "severity": "critical",
+      "summary": "memory_toon required non-empty; must end with .toon (on-disk existence is separate tooling)"
+    },
+    {
+      "pk": 11,
+      "section_pk": 5,
+      "error_code": null,
+      "rule_name": "channel_key explicit (no session fallback)",
+      "severity": "critical",
+      "summary": "channel_key required non-empty; transcript writes must not silently infer channel from session.json or IDE (PRD 16 section 7)"
+    },
+    {
+      "pk": 12,
+      "section_pk": 5,
+      "error_code": null,
+      "rule_name": "Validate thread_id per artifact_type",
+      "severity": "high",
+      "summary": "discussion requires non-empty thread_id; prd requires ''"
+    },
+    {
+      "pk": 13,
+      "section_pk": 5,
+      "error_code": "HDR_DUAL_MISMATCH",
+      "rule_name": "Sidecar identity and dual-field alignment",
+      "severity": "critical",
+      "summary": "file_path_from_root, channel_key, trust_tier, dialog_transcript must match header"
+    },
+    {
+      "pk": 14,
+      "section_pk": 5,
+      "error_code": "SIDECAR_AUTHOR_TYPE",
+      "rule_name": "Validate author.type and verified_by.type",
+      "severity": "high",
+      "summary": "Must be actor|user|system (no separate agent type)"
+    },
+    {
+      "pk": 15,
+      "section_pk": 5,
+      "error_code": "HDR_SCHEMA_VALUE",
+      "rule_name": "lupopedia.schema closed enum",
+      "severity": "critical",
+      "summary": "Reject unknown lupopedia.schema values"
+    },
+    {
+      "pk": 16,
+      "section_pk": 5,
+      "error_code": "HDR_SCHEMA_ARTIFACT_MISMATCH",
+      "rule_name": "Optional schema vs artifact_type equality",
+      "severity": "high",
+      "summary": "Where policy enables, lupopedia.schema must equal artifact_type"
+    },
+    {
+      "pk": 17,
+      "section_pk": 5,
+      "error_code": "HDR_VERSION_FAMILY",
+      "rule_name": "header_format_version family",
+      "severity": "critical",
+      "summary": "Must be legacy 3 or 4.0.x string per validator"
+    },
+    {
+      "pk": 18,
+      "section_pk": 5,
+      "error_code": "EDGE_NEEDS_REVIEW",
+      "rule_name": "Edge review_reason when needs_review",
+      "severity": "high",
+      "summary": "Sidecar edges with needs_review require closed-set review_reason"
+    }
+  ],
+  "edge_rules": [
+    {
+      "pk": 1,
+      "section_pk": 6,
+      "prd_section_reference": "PRD 16 section 11.1",
+      "dimension": "edge_type",
+      "required": true,
+      "allowed_values": "supports, references, contradicts, consolidates_from, promoted_to, merged_into, etc.",
+      "description": "Relationship type"
+    },
+    {
+      "pk": 2,
+      "section_pk": 6,
+      "prd_section_reference": "PRD 16 section 11.1",
+      "dimension": "edge_context",
+      "required": true,
+      "allowed_values": "doctrine, experiential, system_generated, countermeasure_generated, summary, contradictory, deprecated",
+      "description": "Memory classification"
+    },
+    {
+      "pk": 3,
+      "section_pk": 6,
+      "prd_section_reference": "PRD 16 section 11.2",
+      "dimension": "edge_status",
+      "required": true,
+      "allowed_values": ["unsupported", "supported", "needs_review"],
+      "description": "Epistemic support level"
+    },
+    {
+      "pk": 4,
+      "section_pk": 6,
+      "prd_section_reference": "PRD 16 section 11.1",
+      "dimension": "edge_direction",
+      "required": true,
+      "allowed_values": "unidirectional, bidirectional (DB); outbound, inbound, bidirectional (JSON label)",
+      "description": "Traversal orientation"
+    },
+    {
+      "pk": 5,
+      "section_pk": 6,
+      "prd_section_reference": "PRD 16 section 11.3",
+      "dimension": "review_reason",
+      "required": "when edge_status = needs_review",
+      "allowed_values": [
+        "orphaned_edge",
+        "contradiction",
+        "new_doctrine",
+        "schema_drift",
+        "consolidation_candidate",
+        "integrity_unknown",
+        "human_escalation"
+      ],
+      "description": "Why edge requires review; closed enum"
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "TOON",
+      "meaning": "Token-Oriented Object Notation optimized for LLM parsing and token efficiency (50-60% reduction vs JSON)"
+    },
+    {
+      "pk": 2,
+      "term": "header_metadata",
+      "meaning": "JSON sidecar at memory/headers/{artifact_type}/{YYYY}/{MM}/{stem}.metadata.json (derived path; PRD 16 section 5.2.1)"
+    },
+    {
+      "pk": 3,
+      "term": "dialog_transcript",
+      "meaning": "Logical DB lookup slug; not a filesystem path; format: {federation_node_id}/{channel_key}/{thread_slug}"
+    },
+    {
+      "pk": 4,
+      "term": "memory_toon",
+      "meaning": "Path to primary .toon export; pattern memory/{channel_key}/{trust_tier}/{memory_year}/{MM}/{slug}.toon (memory_year per section 8.1); memory_toon connects the artifact to its canonical memory representation"
+    },
+    {
+      "pk": 5,
+      "term": "trust_tier",
+      "meaning": "Documentation/export classification: seed (immutable), canonical (verified), staging (WIP), archive (deprecated)"
+    },
+    {
+      "pk": 6,
+      "term": "content_id",
+      "meaning": "Integer reference to lupo_contents.content_id when imported; YAML null means not yet linked; empty string invalid"
+    },
+    {
+      "pk": 7,
+      "term": "memory_year",
+      "meaning": "Year path segment: calendar_year minus 1000 for verified canonical exports (e.g. 1026 for 2026); real calendar year for unverified paths (PRD 16 section 8.1)"
+    },
+    {
+      "pk": 8,
+      "term": "review_reason",
+      "meaning": "Required when edge_status is needs_review; closed escalation enum (PRD 16 section 11.3)"
+    }
+  ],
+  "tooling": [
+    {
+      "tool": "scripts/add_lupopedia_header_to_file.py",
+      "purpose": "Prepend or create 4.0.x envelope",
+      "related_codes": ["HDR_LINE_COUNT", "HDR_MISSING_KEY"]
+    },
+    {
+      "tool": "scripts/fix_double_headers.py",
+      "purpose": "Merge duplicate leading YAML blocks",
+      "related_codes": ["HDR_MULTIPLE_HEADERS"]
+    },
+    {
+      "tool": "scripts/validate_lupopedia_headers_universal.py",
+      "purpose": "Canonical header + sidecar validation",
+      "related_codes": ["HDR_*", "SIDECAR_*"]
+    },
+    {
+      "tool": "scripts/batch_validate_prd_headers.py",
+      "purpose": "Batch Markdown runs of universal validator",
+      "related_codes": ["HDR_*"]
+    },
+    {
+      "tool": "scripts/validate_memory_json_toon_pair.py",
+      "purpose": "JSON/TOON basename pairing for memory masters",
+      "related_codes": []
+    }
+  ],
+  "error_codes": [
+    { "code": "HDR_MISSING_KEY", "severity": "critical", "description": "Required section 4.2 key absent under lupopedia.headers" },
+    { "code": "HDR_LINE_COUNT", "severity": "critical", "description": "Header envelope or inner key block line count wrong" },
+    { "code": "HDR_MULTIPLE_HEADERS", "severity": "critical", "description": "More than one leading lupopedia.headers block" },
+    { "code": "HDR_NOT_AT_TOP", "severity": "critical", "description": "Content before header start" },
+    { "code": "HDR_DUAL_MISMATCH", "severity": "critical", "description": "dialog_transcript differs between header and sidecar" },
+    { "code": "SIDECAR_NOT_FOUND", "severity": "warning", "description": "Derived header_metadata JSON missing in strict mode" }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "constitutional_anchor",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "specifies",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "docs/doctrine/LUPOPEDIA_HEADERS/MEMORY_FILE_SCHEMA.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

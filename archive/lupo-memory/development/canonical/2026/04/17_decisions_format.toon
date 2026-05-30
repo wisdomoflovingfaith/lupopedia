@@ -1,0 +1,34 @@
+# Generated from: lupo-memory/development/canonical/2026/04/17-decisions-format.json
+# Generated at: 2026-04-10 13:04:30 UTC
+# JSON master checksum: 0c18015d36bed5879631080f7c4bb941
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410130429,20260410130429,canonical,17,decisions-format,lupo-docs/prd/17_decisions_format.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for decisions-format section 1.,Overview
+  2,Operational summary for decisions-format section 2.,Pseudocode Directory â€” Dual Constitutional Purposes
+  3,Operational summary for decisions-format section 3.,Thread filename pattern (authoritative)
+  4,Operational summary for decisions-format section 4.,"LILITH Analysis: Separating Decisions, Questions, Answers, Comments"
+  5,Operational summary for decisions-format section 5.,"LILITH Analysis: Using `lupopedia.edges` to Link Questions to Answers"
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_17_rule_1,1,critical,Rule 1 for PRD 17 (decisions-format)
+  2,prd_17_rule_2,2,high,Rule 2 for PRD 17 (decisions-format)
+  3,prd_17_rule_3,3,high,Rule 3 for PRD 17 (decisions-format)
+  4,prd_17_rule_4,4,medium,Rule 4 for PRD 17 (decisions-format)
+  5,prd_17_rule_5,5,critical,Rule 5 for PRD 17 (decisions-format)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 17.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,lupo-docs/prd/02_channels_discussions.md,85
+  5,doctrine,outbound,supported,references,lupo-docs/prd/05_auth_user_actor_agent_transformation.md,80

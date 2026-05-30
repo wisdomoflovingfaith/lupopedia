@@ -1,0 +1,1 @@
+<?php  	?><script> window.location='admin.php'; </script><a href="admin.php">this page has been moved to here</a> 

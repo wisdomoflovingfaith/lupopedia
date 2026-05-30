@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260418172738",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "4-1-3-todo",
+  "summary": "Added UI and data model decisions section to docs/versions/4.1.3/todo.md (actor live help baseline, canned vs saved_prompt, terminology, mode separation).",
+  "files_changed": [
+    "docs/versions/4.1.3/todo.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

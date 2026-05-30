@@ -1,0 +1,5 @@
+# One numeric thread_id per line. V-PROJECT-002-MIX downgrades to WARN for these dirs.
+# Historical multi-task threads (WOLFIE-waived per ATHENA spec §6).
+1001
+1002
+1011

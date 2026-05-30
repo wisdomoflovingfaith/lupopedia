@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417072637",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "install-wizard-header-exact-block",
+  "summary": "Applied the exact requested header block to install_wizard_classes and kept the filesystem doctrine comment unchanged.",
+  "files_changed": [
+    "install_wizard_classes.php",
+    "docs/versions/4.1.2/buffer/20260417072637_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

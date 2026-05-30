@@ -1,0 +1,42 @@
+id: 50
+type: prd
+title: agent coordination protocol
+status: active
+created: 20260414120000
+
+edges:
+  outbound:
+  - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
+    type: references
+  - to: lupo-docs/prd/02_channels_discussions.md
+    type: references
+  - to: lupo-docs/prd/05_auth_user_actor_agent_transformation.md
+    type: references
+  - to: lupo-docs/prd/07_agents_faucets.md
+    type: references
+  - to: lupo-docs/prd/10_tasks_workflow.md
+    type: references
+  - to: lupo-docs/prd/16_lupopedia_headers.md
+    type: references
+  - to: lupo-docs/prd/28_semantic_monitoring_widget.md
+    type: references
+  - to: lupo-docs/prd/34_federation_node_semantic_network.md
+    type: references
+  - to: lupo-docs/prd/38_memory_unification.md
+    type: references
+  - to: lupo-docs/prd/51_memory_graph_as_source_of_truth.md
+    type: references
+  - to: lupo-docs/prd/52_memory_graph_focus_manifest.md
+    type: references
+  - to: lupo-docs/prd/53_runtime_guard.md
+    type: references
+  - to: lupo-docs/prd/54_actor_compliance.md
+    type: references
+  - to: lupo-docs/prd/56_probe_harness_v2.md
+    type: references
+  - to: lupo-docs/prd/58_transcript_filter.md
+    type: references
+  - to: lupo-docs/prd/60_orchestrator_scheduler.md
+    type: references
+  - to: lupo-docs/prd/61_doctrine_consolidation_shorthand_compiler.md
+    type: references

@@ -1,0 +1,2 @@
+{"timestamp": "20260227T0800Z", "type": "agent_start", "channel": 0}
+{"timestamp": "20260227T0810Z", "type": "schema_verify", "result": "success"}

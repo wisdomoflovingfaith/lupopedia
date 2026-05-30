@@ -1,0 +1,30 @@
+{
+  "id": "hdr-18-channel-chat-display",
+  "type": "header_metadata",
+  "file_path_from_root": "lupo-docs/prd/18_channel_chat_display.md",
+  "channel_key": "development",
+  "trust_tier": "canonical",
+  "purpose": "\ufeff---",
+  "status": "active",
+  "tags": [
+    "tag-prd",
+    "tag-18-channel-chat-display"
+  ],
+  "author": {
+    "type": "actor",
+    "id": 102,
+    "name": "CURSOR"
+  },
+  "delegation_chain": "cursor:root",
+  "edges": [],
+  "footer": {
+    "last_verified": "20260410130550",
+    "verified_by": {
+      "type": "actor",
+      "id": 102,
+      "name": "CURSOR"
+    }
+  },
+  "init": [],
+  "dialog_transcript": "0/development/prd_files/18-channel-chat-display"
+}

@@ -1,0 +1,18 @@
+{
+  "agent_key": "apollo",
+  "agent_id": 704,
+  "code": "RESERVED_33",
+  "name": "RESERVED_33",
+  "slug": "apollo",
+  "layer": "kernel",
+  "is_required": false,
+  "is_kernel": true,
+  "role": "Reserved Kernel Slot 33 — Unassigned",
+  "recommended_slot": 33,
+  "status": "reserved",
+  "version": "1.0.1",
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

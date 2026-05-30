@@ -1,0 +1,59 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_agent_capabilities
+fields:
+- '`agent_capability_id` bigint NOT NULL'
+- '`agent_id` bigint NOT NULL'
+- '`capability_key` varchar(100) NOT NULL'
+- '`capability_category` varchar(64)'
+- '`capability_description` text'
+- '`is_out_of_scope` tinyint NOT NULL DEFAULT 0'
+- '`out_of_scope_owner` varchar(100)'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_agent_capabilities_unq
+  columns:
+  - agent_id
+  - capability_key
+  is_unique: true
+  index_type: BTREE
+- index_name: lupo_agent_capabilities_idx_agent
+  columns:
+  - agent_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_capabilities_idx_key
+  columns:
+  - capability_key
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_capabilities_idx_category
+  columns:
+  - capability_category
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_capabilities_idx_scope
+  columns:
+  - is_out_of_scope
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_agent_capabilities_idx_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: agent_capability_id
+  expected_name: agent_capability_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

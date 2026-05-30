@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "file": ".kiro\\specs\\color-protocol-integration\\design.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": ".kiro\\specs\\color-protocol-integration\\requirements.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": ".kiro\\specs\\color-protocol-integration\\tasks.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    }
+  ]
+}

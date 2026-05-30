@@ -1,0 +1,6 @@
+"actor_department_id` bigint NOT NULL","actor_id` bigint NOT NULL","department_id` bigint NOT NULL","title` varchar(64)","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL","is_deleted` tinyint NOT NULL DEFAULT 0","deleted_ymdhis` bigint"
+"actor_department_id` bigint NOT NULL:BIGINT|NOT_NULL","actor_id` bigint NOT NULL:BIGINT|NOT_NULL","department_id` bigint NOT NULL:BIGINT|NOT_NULL","title` varchar(64):VARCHAR(64)|NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL","is_deleted` tinyint NOT NULL DEFAULT 0:INT|NOT_NULL|DEFAULT:0","deleted_ymdhis` bigint:BIGINT|NULL"
+1,10001,1,,20260220133937,20260220133937,0,
+2,12150,1,,20260220133937,20260220133937,0,
+3,12150,0,"System Administrator",20260220133938,20260220133938,0,
+4,10000,0,"System Administrator",20260220134028,20260220134028,0,

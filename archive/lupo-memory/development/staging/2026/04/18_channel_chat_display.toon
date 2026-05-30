@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410130429,
+      "last_updated": 20260410130429,
+      "layer": "canonical",
+      "prd_id": 18,
+      "prd_slug": "channel-chat-display",
+      "source_path": "lupo-docs/prd/18_channel_chat_display.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Overview",
+      "summary": "Operational summary for channel-chat-display section 1."
+    },
+    {
+      "pk": 2,
+      "title": "Legacy Reference: Crafty Syntax Chat Display",
+      "summary": "Operational summary for channel-chat-display section 2."
+    },
+    {
+      "pk": 3,
+      "title": "Modern Architecture",
+      "summary": "Operational summary for channel-chat-display section 3."
+    },
+    {
+      "pk": 4,
+      "title": "UI Specifications",
+      "summary": "Operational summary for channel-chat-display section 4."
+    },
+    {
+      "pk": 5,
+      "title": "Message Display",
+      "summary": "Operational summary for channel-chat-display section 5."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 1,
+      "rule_name": "prd_18_rule_1",
+      "severity": "critical",
+      "summary": "Rule 1 for PRD 18 (channel-chat-display)"
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "prd_18_rule_2",
+      "severity": "high",
+      "summary": "Rule 2 for PRD 18 (channel-chat-display)"
+    },
+    {
+      "pk": 3,
+      "section_pk": 3,
+      "rule_name": "prd_18_rule_3",
+      "severity": "high",
+      "summary": "Rule 3 for PRD 18 (channel-chat-display)"
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "prd_18_rule_4",
+      "severity": "medium",
+      "summary": "Rule 4 for PRD 18 (channel-chat-display)"
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "prd_18_rule_5",
+      "severity": "critical",
+      "summary": "Rule 5 for PRD 18 (channel-chat-display)"
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "scope",
+      "meaning": "Scope boundary for PRD 18."
+    },
+    {
+      "pk": 2,
+      "term": "actor_id",
+      "meaning": "Canonical actor identity reference key."
+    },
+    {
+      "pk": 3,
+      "term": "channel_key",
+      "meaning": "Channel namespace identifier used for routing."
+    },
+    {
+      "pk": 4,
+      "term": "timestamp_ymdhis",
+      "meaning": "Packed UTC BIGINT in YYYYMMDDHHIISS format."
+    },
+    {
+      "pk": 5,
+      "term": "memory_pair",
+      "meaning": "JSON master with deterministically derived TOON."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/02_channels_discussions.md",
+      "weight_hundredths": 85
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+      "weight_hundredths": 80
+    }
+  ]
+}

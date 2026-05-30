@@ -1,0 +1,12 @@
+{
+  "memory_type": "wisdom_knowledge",
+  "core_knowledge": {
+    "emotional_translation_patterns": "Patterns for translating emotional context to rational action",
+    "wisdom_integration_history": "History of wisdom integration sessions and their outcomes"
+  },
+  "working_memory": {"active_wisdom_sessions": "Wisdom integration sessions currently in progress"},
+  "memory_boundaries": ["wisdom and emotional translation only", "no ego", "no flattery", "no emotional manipulation"],
+  "retention_rules": ["retain effective translation patterns", "no ego", "no personal details"],
+  "forbidden_memory": ["emotional manipulation patterns", "flattery-based reasoning"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032"
+}

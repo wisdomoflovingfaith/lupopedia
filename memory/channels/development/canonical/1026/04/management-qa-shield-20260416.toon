@@ -1,0 +1,44 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Canonical prose companion for operator and IDE use",
+        "source": "management_qa_shield_memory",
+        "to": "docs/doctrine/communication/MANAGEMENT_QA_SHIELD_20260416.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Append-only transcript thread (PRD 16 triple with .jsonl in thread key)",
+        "source": "management_qa_shield_memory",
+        "to": "channels/0/development/management-qa-shield-20260416.jsonl/transcript.jsonl",
+        "type": "references",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260417003456",
+    "last_verified_by": "antigravity_management_qa_shield",
+    "last_verified_by_actor_id": 103
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "management-qa-shield-20260416",
+    "default_collection_id": null,
+    "note": "Management Q&A shield: predicted questions, short answers, and framing bound to the 2026-04-16 report cycle.",
+    "transcript_jsonl": "0/development/management-qa-shield-20260416.jsonl"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/management-qa-shield-20260416.toon",
+  "purpose": "Anticipate management questions and provide reusable, clear, pressure-tested answers aligned with accepted weekly report.",
+  "source_file_path_from_root": "docs/doctrine/communication/MANAGEMENT_QA_SHIELD_20260416.md",
+  "tags": [
+    "doctrine",
+    "management",
+    "communication",
+    "canonical",
+    "qa-shield"
+  ],
+  "type": "header_metadata"
+}

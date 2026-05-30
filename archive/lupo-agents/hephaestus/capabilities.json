@@ -1,0 +1,17 @@
+{
+  "capabilities": [
+    "implementation_execution",
+    "migration_delivery",
+    "service_layer_build",
+    "code_documentation",
+    "schema_implementation",
+    "database_design",
+    "system_integration",
+    "build_automation",
+    "deployment_management",
+    "version_control",
+    "quality_assurance"
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}

@@ -1,0 +1,51 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_channel_centroids
+fields:
+- '`channel_centroid_id` bigint NOT NULL'
+- '`federation_node_id` bigint NOT NULL'
+- '`channel_id` bigint NOT NULL'
+- '`channel_key` varchar(64)'
+- '`centroid_vector` json'
+- '`beta_used` decimal(5,4)'
+- '`embedding_model_id` varchar(64)'
+- '`object_count_snapshot` bigint'
+- '`computed_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`created_ymdhis` bigint NOT NULL DEFAULT 0'
+- '`updated_ymdhis` bigint NOT NULL'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_channel_centroids_idx_node_channel
+  columns:
+  - federation_node_id
+  - channel_id
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_channel_centroids_idx_channel_key
+  columns:
+  - channel_key
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_channel_centroids_idx_computed
+  columns:
+  - computed_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_channel_centroids_idx_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: channel_centroid_id
+  expected_name: channel_centroid_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

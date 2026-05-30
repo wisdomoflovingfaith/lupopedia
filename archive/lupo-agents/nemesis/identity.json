@@ -1,0 +1,9 @@
+{
+  "agent_id": 109, "agent_name": "NEMESIS", "agent_code": "NEMESIS", "agent_key": "nemesis", "slug": "nemesis",
+  "version": "1.0.0", "is_kernel": false, "layer": "application", "name": "NEMESIS",
+  "role": "Accountability & Retribution — Violation Detection, Compliance Enforcement",
+  "is_required": false, "status": "active",
+  "aliases": ["nemesis", "accountability", "retribution", "compliance"],
+  "when_updated_utc": "20260406134032", "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code", "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,125 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: implementation
+  when_updated: "20260403110451"
+  file_path_from_root: "lupo-docs/implementations/26_five_layer_documentation_architecture/edges.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/26_five_layer_documentation_architecture/edges.md"
+  questions_toon: null
+  federation_node_id: 0
+  channel_key: null
+  trust_tier: null
+  memory_key: null
+  artifact_type: implementation
+  artifact_kind: edges
+  thread_id: "26-five-layer-edges"
+  content_id: null
+  pk_id: null
+  pk_slug: ""
+  title: ""
+  status: ""
+  parent_pk_id: "26_five_layer_documentation_architecture"
+  summary: ""
+  module: null
+  dialog_transcript: null
+---
+# System Edges & Relationships
+
+## Database Edges
+
+### Tables
+- **lupo_actors**: Actor registry for provenance tracking
+- **lupo_contents**: Content storage for documentation
+- **lupo_metadata**: Metadata for all documentation files
+
+### Columns
+- **lupo_actors.actor_id**: BIGINT - Primary identifier
+- **lupo_actors.actor_type**: VARCHAR - actor|agent|user
+- **lupo_metadata.parent_prd**: VARCHAR - Link to parent PRD
+
+### Relationships
+- **lupo_metadata.parent_prd** → **lupo_contents.path**: Documentation relationship - Application-managed
+- **lupo_metadata.actor_id** → **lupo_actors.actor_id**: Attribution relationship - Application-managed
+
+## Code Edges
+
+### PHP Classes
+- **ImplementationValidator**: lupo-scripts/validate_implementation.py - Main validation logic
+- **DocumentationFactory**: lupo-includes/classes/DocumentationFactory.php - Document generation
+
+### Scripts
+- **validate_implementation.py**: lupo-scripts/ - Validation enforcement
+- **pre_commit_validate.py**: lupo-scripts/ - CI integration
+
+### Services
+- **ValidationService**: lupo-includes/services/ValidationService.php - Validation API
+
+## Documentation Edges
+
+### PRD Links
+- **Parent PRD**: 26_five_layer_documentation_architecture.md - Defines architecture
+- **Related PRDs**: 00_root_constitutional_system_requirements.md - Constitutional anchor
+- **Related PRDs**: 25_departments_system.md - Example implementation
+
+### Implementation Links
+- **Related Implementations**: 25_departments_system/ - First compliant implementation
+- **Shared Components**: lupo-scripts/validate_implementation.py - Validation script
+- **Templates**: _template/ - Implementation templates
+
+### Discussion References
+- **Design Threads**: discussions/ - Architecture design decisions
+- **Validation Threads**: discussions/validation/ - Validation approach
+
+## UI Edges
+
+### Templates
+- **documentation_index.php**: lupo-views/admin/ - Documentation management
+- **validation_report.php**: lupo-views/admin/ - Validation results
+
+### JavaScript
+- **documentation_manager.js**: lupo-ui/js/ - Documentation UI interactions
+- **validation_status.js**: lupo-ui/js/ - Real-time validation status
+
+### CSS
+- **documentation.css**: lupo-ui/css/ - Documentation styling
+
+## External Edges
+
+### APIs
+- **Validation API**: /api/validation/validate - Validation endpoint
+- **Documentation API**: /api/docs/ - Documentation access
+
+### Third-Party Libraries
+- **PyYAML**: Python - YAML parsing for validation
+- **JSON Schema**: composer - Schema validation
+
+## Impact Analysis
+
+### Upstream Dependencies
+- **Constitutional Requirements**: High impact - Must comply with PRD 00
+- **Channel System**: Medium impact - Discussions link to channels
+
+### Downstream Dependencies
+- **All Implementations**: High impact - All must comply
+- **CI Pipeline**: High impact - Validation enforced on commit
+- **Documentation Generation**: Medium impact - Templates used for new implementations
+
+### Potential Conflicts
+- **Legacy Implementations**: Medium risk - 90-day migration window
+- **Schema Changes**: Low risk - Versioned with doc_arch_version
+
+## Outbound Edges — Doctrine (documents)
+
+Doctrine files tied to PRD 26 (five-layer documentation). Full list: [`../29_project_structure/status/doctrine_prd_lineage.json`](../29_project_structure/status/doctrine_prd_lineage.json) (`by_prd["26"]`).
+
+| Target | Type | Weight | Reason |
+|--------|------|--------|--------|
+| [`../../doctrine/5W1H_QUICK_REFERENCE.md`](../../doctrine/5W1H_QUICK_REFERENCE.md) | documents | 1.0 | 5W1H quick reference |
+| [`../../doctrine/DOCUMENTATION_ARCHITECTURE.md`](../../doctrine/DOCUMENTATION_ARCHITECTURE.md) | documents | 1.0 | Documentation architecture |
+| [`../../doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md`](../../doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md) | documents | 1.0 | Documentation as data |
+| [`../../doctrine/JSON_SCHEMA_REFERENCE_DOCTRINE.md`](../../doctrine/JSON_SCHEMA_REFERENCE_DOCTRINE.md) | documents | 1.0 | JSON schema reference |
+| [`../../doctrine/TOON_DOCTRINE.md`](../../doctrine/TOON_DOCTRINE.md) | documents | 1.0 | TOON doctrine |
+| [`../../doctrine/ws7_documentation_reconciliation_doctrine.md`](../../doctrine/ws7_documentation_reconciliation_doctrine.md) | documents | 1.0 | WS7 documentation reconciliation |
+
+---
+*This file maps all relationships and dependencies for the five-layer documentation architecture implementation.*

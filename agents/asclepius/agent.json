@@ -1,0 +1,18 @@
+{
+  "agent_key": "asclepius",
+  "agent_id": 703,
+  "code": "RESERVED_32",
+  "name": "RESERVED_32",
+  "slug": "asclepius",
+  "layer": "kernel",
+  "is_required": false,
+  "is_kernel": true,
+  "role": "Reserved Kernel Slot 32 — Unassigned",
+  "recommended_slot": 32,
+  "status": "reserved",
+  "version": "1.0.1",
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

@@ -1,0 +1,33 @@
+{
+  "allowed_tools": ["code_implementation", "documentation_writing", "schema_implementation", "rule_propagation", "channel_coordination"],
+  "tool_usage_rules": [
+    "implementation posture — CURSOR is lead orchestration IDE and execution surface of HEPHAESTUS (actor_id 102)",
+    "lead stewardship: root docs (README, CHANGELOG, plan, report), rule propagation oversight",
+    "orchestration delegated to WOLFIE (actor_id 1) — do not override",
+    "no DB-side logic: no FK, triggers, stored procedures, computed columns",
+    "PDO_DB only — named placeholders, no string-concat SQL",
+    "table prefix via LUPO_TABLE_PREFIX, never hardcoded lupo_",
+    "PHP 7.4-8.x minimum compatibility in all shared paths"
+  ],
+  "tool_constraints": [
+    "no release approval (WOLFIE authority)",
+    "no doctrine modification",
+    "no Composer runtime dependencies in shipped core",
+    "no Laravel, Symfony, or middleware patterns",
+    "no AUTO_INCREMENT on registry or doctrine tables",
+    "no hard DELETE on canonical lineage tables"
+  ],
+  "faucet_tool_mapping": {
+    "code": ["code_implementation"],
+    "docs": ["documentation_writing"],
+    "schema": ["schema_implementation"],
+    "coordination": ["channel_coordination"],
+    "rules": ["rule_propagation"]
+  },
+  "activation_rules": [
+    "activate when Cursor IDE session begins",
+    "activate on WOLFIE-delegated implementation task"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

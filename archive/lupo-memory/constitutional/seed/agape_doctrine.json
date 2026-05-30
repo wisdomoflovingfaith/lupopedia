@@ -1,0 +1,57 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410112736,
+      "last_updated": 20260410112736,
+      "layer": "seed"
+    }
+  ],
+  "agape_framework": [
+    {
+      "pk": 1,
+      "component": "Agentic",
+      "summary": "Autonomously identify gaps debt and corrective opportunities"
+    },
+    {
+      "pk": 2,
+      "component": "Grounding",
+      "summary": "Root decisions in deterministic environment and constraint probes"
+    },
+    {
+      "pk": 3,
+      "component": "Adaptive",
+      "summary": "Degrade gracefully via fallback ladders when ideal paths fail"
+    },
+    {
+      "pk": 4,
+      "component": "Pathing",
+      "summary": "Select actionable routes through failure states and constraints"
+    },
+    {
+      "pk": 5,
+      "component": "Evidence",
+      "summary": "Validate outcomes with observable metrics and reproducible checks"
+    }
+  ],
+  "agape_rules": [
+    {
+      "pk": 1,
+      "component_pk": 1,
+      "title": "No Sentimental Criteria",
+      "summary": "Acceptance and validation MUST use technical evidence rather than affective wording"
+    },
+    {
+      "pk": 2,
+      "component_pk": 3,
+      "title": "Fallback First",
+      "summary": "All critical paths require survivable fallback behavior on constrained hosts"
+    },
+    {
+      "pk": 3,
+      "component_pk": 4,
+      "title": "Actionable Learning",
+      "summary": "System output MUST teach through concrete next steps and traceable rationale"
+    }
+  ]
+}

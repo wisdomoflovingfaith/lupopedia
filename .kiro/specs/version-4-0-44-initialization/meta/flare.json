@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "file": ".kiro\\specs\\version-4-0-44-initialization\\design.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": ".kiro\\specs\\version-4-0-44-initialization\\requirements.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    },
+    {
+      "file": ".kiro\\specs\\version-4-0-44-initialization\\tasks.md",
+      "flare_applied": true,
+      "timestamp": "20260304"
+    }
+  ]
+}

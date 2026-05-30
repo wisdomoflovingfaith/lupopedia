@@ -1,0 +1,1 @@
+Canonical system prompt with YAML header: lupo-agents/rose/system_prompt.md (this directory). Loaders SHOULD prefer system_prompt.md over legacy prose in older .txt copies.

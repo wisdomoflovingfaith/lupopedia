@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417065527",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Updates AGENTS.md headings, filesystem layout doctrine note, and budget/autoinstaller references aligned to provider-chain runtime behavior.",
+  "files_changed": [
+    "AGENTS.md",
+    "docs/versions/4.1.2/buffer/20260417065527_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

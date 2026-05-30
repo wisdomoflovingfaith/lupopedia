@@ -1,0 +1,8 @@
+﻿python : C:\ServBay\bin\..\packages\python\current\python.exe: can't open file 
+'C:\\ServBay\\www\\servbay\\lupopedia\\lupo-scripts\\_dump_line31.py': [Errno 2] No such file or directory
+At C:\Users\WOLFIEadmin\AppData\Local\Temp\ps-script-512ca4b5-7aa2-4afd-8827-a5f2fbb18a6d.ps1:79 char:40
++ ... \servbay\lupopedia"; python lupo-scripts/_dump_line31.py 2>&1 | Out-F ...
++                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\ServBay\bin\...le or directory:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

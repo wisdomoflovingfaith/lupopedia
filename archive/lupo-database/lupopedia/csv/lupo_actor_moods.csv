@@ -1,0 +1,2 @@
+"actor_id` bigint NOT NULL","mood_r` tinyint NOT NULL","mood_g` tinyint NOT NULL","mood_b` tinyint NOT NULL","mood_framework` varchar(32) NOT NULL DEFAULT 'western_analytical'","timestamp_utc` bigint NOT NULL"
+"actor_id` bigint NOT NULL:BIGINT|NOT_NULL","mood_r` tinyint NOT NULL:INT|NOT_NULL","mood_g` tinyint NOT NULL:INT|NOT_NULL","mood_b` tinyint NOT NULL:INT|NOT_NULL","mood_framework` varchar(32) NOT NULL DEFAULT 'western_analytical':VARCHAR(32)|NOT_NULL|DEFAULT:'western_analytical'","timestamp_utc` bigint NOT NULL:BIGINT|NOT_NULL"

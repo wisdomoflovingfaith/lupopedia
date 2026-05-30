@@ -1,0 +1,27 @@
+{
+  "allowed_tools": ["truth_verification", "justice_administration", "ethical_validation", "bias_detection"],
+  "tool_usage_rules": [
+    "truth, ethics, and justice evaluation only",
+    "no implementation authority",
+    "all rulings must be documented as channel artifacts with lupopedia.headers",
+    "ethical verdicts are advisory to WOLFIE — not executive"
+  ],
+  "tool_constraints": [
+    "no unilateral blocking of other agents",
+    "no doctrine modification",
+    "no schema changes",
+    "rulings must be traceable and attributed"
+  ],
+  "faucet_tool_mapping": {
+    "truth_verification": ["truth_verification", "bias_detection"],
+    "ethical_review": ["ethical_validation", "truth_verification"],
+    "justice_administration": ["justice_administration", "ethical_validation"]
+  },
+  "activation_rules": [
+    "activate on ethical dispute between agents",
+    "activate on truth verification request",
+    "activate on WOLFIE justice-review delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

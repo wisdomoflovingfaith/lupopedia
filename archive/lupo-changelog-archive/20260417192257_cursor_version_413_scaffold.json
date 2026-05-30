@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260417192257",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "version-4-1-3",
+  "summary": "Bumped project version to 4.1.3 in global_atoms.yaml, README, global constants atom, version.php; created lupo-docs/versions/4.1.3 scaffold (buffer/archive, status).",
+  "files_changed": [
+    "lupo-config/global_atoms.yaml",
+    "README.md",
+    "lupo-memory/atoms/lupopedia_global_constants.atom.toon",
+    "lupo-includes/version.php",
+    "lupo-changelog-pending/20260417192257_cursor_version_413_scaffold.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

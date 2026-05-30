@@ -1,0 +1,1 @@
+Canonical system prompt with YAML header: agents/ara/system_prompt.md (this directory). Loaders SHOULD prefer system_prompt.md.

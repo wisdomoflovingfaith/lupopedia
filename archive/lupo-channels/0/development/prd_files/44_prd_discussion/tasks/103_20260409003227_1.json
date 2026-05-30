@@ -1,0 +1,11 @@
+{
+  "from_actor_id": "1",
+  "to_actor_id": "103",
+  "ts": "20260409003227",
+  "task": "PRD-44",
+  "message": "tell me inline if you see this message - this is a second test 2 HELLO YOU THERE    ",
+  "status": "resolved",
+  "claimed_by": null,
+  "claimed_at": null,
+  "resolved_at": "20260409003500"
+}

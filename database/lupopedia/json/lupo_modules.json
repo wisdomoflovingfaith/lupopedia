@@ -1,0 +1,90 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_modules",
+  "fields": [
+    "`module_id` bigint NOT NULL",
+    "`module_key` varchar(100) NOT NULL",
+    "`module_name` varchar(150) NOT NULL",
+    "`namespace` varchar(100) NOT NULL",
+    "`version` varchar(50) NOT NULL",
+    "`version_code` int NOT NULL",
+    "`minimum_core_version` varchar(50) NOT NULL",
+    "`user_path` varchar(255)",
+    "`admin_path` varchar(255)",
+    "`api_path` varchar(255)",
+    "`route_params` text",
+    "`description` text",
+    "`author` varchar(100)",
+    "`website` varchar(255)",
+    "`icon` varchar(100) DEFAULT puzzle-piece",
+    "`dependencies` text",
+    "`conflicts` text",
+    "`config_json` text NOT NULL",
+    "`is_system` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 0",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`settings` text",
+    "`installed_ymdhis` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_modules_uq_module_key",
+      "columns": [
+        "module_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_modules_idx_namespace",
+      "columns": [
+        "namespace"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_modules_idx_status",
+      "columns": [
+        "is_active",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_modules_idx_system",
+      "columns": [
+        "is_system"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_modules_idx_installed",
+      "columns": [
+        "installed_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "module_id",
+    "expected_name": "module_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

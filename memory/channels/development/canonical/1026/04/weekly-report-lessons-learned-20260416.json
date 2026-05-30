@@ -1,0 +1,46 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "docs/versions/4.1.2/status/weekly_report_lessons_learned_20260416.md",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "Append-only transcript thread (PRD 16 triple with .jsonl in thread key)",
+        "source": "weekly_report_lessons_learned_memory",
+        "to": "channels/0/development/weekly-report-lessons-learned-20260416.jsonl/transcript.jsonl",
+        "type": "references",
+        "weight": 1.0
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260416234527",
+    "last_verified_by": "cursor_transcript_jsonl_slug_jsonl_suffix",
+    "last_verified_by_actor_id": 102,
+    "prior_verification": {
+      "last_verified": "20260416172203",
+      "last_verified_by": "generate_memory_from_header",
+      "last_verified_by_actor_id": 102
+    }
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "weekly-report-lessons-learned-20260416",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/weekly-report-lessons-learned-20260416.jsonl"
+  },
+  "memory_toon": "memory/development/canonical/1026/04/weekly-report-lessons-learned-20260416.toon",
+  "purpose": "Memory sidecar for weekly_report_lessons_learned_20260416.md; transcript slug uses .jsonl thread key segment.",
+  "source_file_path_from_root": "docs/versions/4.1.2/status/weekly_report_lessons_learned_20260416.md",
+  "tags": [
+    "documentation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

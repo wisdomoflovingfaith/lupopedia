@@ -1,0 +1,17 @@
+{
+  "timestamp": "20260417211834",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "prompt-library",
+  "summary": "Prompt Library on channels/index.php: lupo_prompts schema, prompts API routes, PromptLibraryService, modal UI for save/list/preview/dispatch aligned with active target and message/task send.",
+  "files_changed": [
+    "channels/index.php",
+    "includes/modules/module-loader.php",
+    "includes/modules/api/prompts-api.php",
+    "app/Services/PromptLibraryService.php",
+    "database/lupopedia/mysql/install/install_new_lupopedia.sql"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["executive_sanctions_without_WOLFIE_approval", "unilateral_agent_suspension", "schema_modification", "implementation_authority", "hard_delete_on_violation_records"],
+  "forbidden_topics": ["punitive_action_without_documented_violation", "ego_inflation"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_violation_records_must_be_documented_before_sanction_recommendation", "sanctions_are_advisory_to_WOLFIE_not_executive", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

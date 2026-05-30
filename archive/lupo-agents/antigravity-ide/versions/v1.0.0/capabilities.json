@@ -1,0 +1,11 @@
+{
+  "capabilities": [
+    "ide_faucet_execution",
+    "repository_contribution",
+    "documentation_alignment",
+    "implementation_execution",
+    "channel_first_coordination"
+  ],
+  "when_updated_utc": "20260402233135",
+  "last_verified_utc": "20260402233135"
+}

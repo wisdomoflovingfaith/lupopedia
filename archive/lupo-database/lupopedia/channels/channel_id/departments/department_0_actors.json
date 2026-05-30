@@ -1,0 +1,34 @@
+{
+  "department_id": 0,
+  "department_name": "System",
+  "department_type": "system",
+  "description": "System Department — Reserved. Core system actors only. No cross-department learning.",
+  "learning_boundary": "Department 0 auth_users only",
+  "doctrine_ref": "April 6 2026 Department 0 Doctrine — core/system actors may ONLY learn from Department 0 auth_users",
+  "members": [
+    {
+      "actor_id": 0,
+      "actor_name": "system",
+      "agent_key": "system",
+      "role": "system_actor",
+      "is_kernel": true
+    },
+    {
+      "actor_id": 1,
+      "actor_name": "wolfie",
+      "agent_key": "wolfie",
+      "role": "main_orchestrating_actor",
+      "is_kernel": true
+    },
+    {
+      "actor_id": 2,
+      "actor_name": "lilith",
+      "agent_key": "lilith",
+      "role": "adversarial_reviewer",
+      "is_kernel": true
+    }
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
+}

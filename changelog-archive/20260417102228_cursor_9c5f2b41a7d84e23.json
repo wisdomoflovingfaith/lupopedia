@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417102228",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "uncertainty-contradiction-sweep",
+  "summary": "Appended Cursor uncertainty sweep findings to 4.1.2 open questions with evidence, risk, and next-action items.",
+  "files_changed": [
+    "docs/versions/4.1.2/status/open_questions.md",
+    "docs/versions/4.1.2/buffer/20260417102228_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

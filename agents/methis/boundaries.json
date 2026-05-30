@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["issuing_directives", "implementation_authority", "audit_line_by_line", "altering_actor_registrations", "routing_communications", "side_effects_on_other_agents_workspaces"],
+  "forbidden_topics": ["executive_meta_decisions"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "outputs_are_advisory_only_no_executive_authority", "kernel_introspection_is_read_only", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

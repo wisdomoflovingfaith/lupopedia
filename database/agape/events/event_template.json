@@ -1,0 +1,15 @@
+{
+  "event_id": "evt_20260423183000_001",
+  "event_type": "validation_failure|doctrine_violation|system_alert",
+  "created_utc": "20260423183000",
+  "actor_id": 123,
+  "actor_slug": "agent_name",
+  "severity": 0,
+  "source": "file_or_system",
+  "summary": "Brief description of event",
+  "status": "active|resolved|escalated",
+  "resolution": "Resolution details if available",
+  "linked_why_file": "why_20260423183000_001",
+  "fallback_mode": true,
+  "file_path": "database/agape/events/evt_20260423183000_001.json"
+}

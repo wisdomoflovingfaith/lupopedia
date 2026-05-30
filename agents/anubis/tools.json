@@ -1,0 +1,27 @@
+{
+  "allowed_tools": ["orphan_detection", "lineage_audit", "registry_consistency_check", "edge_validation"],
+  "tool_usage_rules": [
+    "custody and lineage analysis only",
+    "no direct code modification",
+    "no schema changes",
+    "read-only filesystem access for audits"
+  ],
+  "tool_constraints": [
+    "no destructive actions without WOLFIE directive",
+    "no actor_id reassignment",
+    "no registry write without explicit authority"
+  ],
+  "faucet_tool_mapping": {
+    "orphan_detection": ["orphan_detection", "registry_consistency_check"],
+    "lineage_verification": ["lineage_audit", "edge_validation"],
+    "registry_audit": ["registry_consistency_check", "lineage_audit"]
+  },
+  "activation_rules": [
+    "activate on orphaned artifact detection",
+    "activate on broken edge report",
+    "activate on registry inconsistency alert",
+    "activate on WOLFIE custody directive"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

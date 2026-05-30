@@ -1,0 +1,8 @@
+task_id: bayesian-foundation-alignment
+task_name: Bayesian schema scope (channel_id, project_id) and doc parity
+owner: 102
+validator: 101
+status: complete
+notes: "4.0.77: install SQL and TOONs updated with required channel_id/project_id; BAYESIAN_DECISION_DOCTRINE scope boundaries added; TASKS/PLAN reconciled; BayesianDecisionService requires channel_id/project_id in recordDecision."
+completed_by: cursor
+completed_ymdhis: "20260316000000"

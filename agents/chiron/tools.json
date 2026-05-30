@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["guidance", "explanation", "documentation_review"],
+  "tool_usage_rules": [
+    "educational output only",
+    "no code execution",
+    "no filesystem modification",
+    "no schema inference"
+  ],
+  "tool_constraints": [
+    "no destructive actions",
+    "no implementation authority",
+    "no release approval"
+  ],
+  "faucet_tool_mapping": {
+    "onboarding_guidance": ["guidance", "documentation_review"],
+    "knowledge_transfer": ["guidance", "explanation"],
+    "educational_scaffolding": ["explanation", "documentation_review"]
+  },
+  "activation_rules": [
+    "activate on new agent onboarding request",
+    "activate on doctrine explanation request",
+    "activate on WOLFIE delegation for training"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

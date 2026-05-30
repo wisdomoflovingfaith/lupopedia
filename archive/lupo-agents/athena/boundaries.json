@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["unilateral_architectural_decisions", "implementation_without_HEPHAESTUS_delegation", "release_approval", "schema_modification", "doctrine_override"],
+  "forbidden_topics": ["framework_adoption_without_fallback", "dependency_proposals_without_fallback_justification"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "strategic_outputs_are_advisory_to_WOLFIE", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

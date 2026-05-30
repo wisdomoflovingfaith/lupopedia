@@ -1,0 +1,62 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_system_commands
+fields:
+- '`command_id` bigint NOT NULL'
+- '`command_type` varchar(128) NOT NULL'
+- '`command_args_json` text'
+- '`working_dir` varchar(512)'
+- '`status` varchar(32) NOT NULL'
+- '`priority` int NOT NULL DEFAULT 0'
+- '`created_ymdhis` bigint NOT NULL'
+- '`scheduled_ymdhis` bigint NOT NULL'
+- '`started_ymdhis` bigint'
+- '`finished_ymdhis` bigint'
+- '`claimed_by_actor_id` bigint'
+- '`claimed_by_host` varchar(256)'
+- '`process_id` varchar(64)'
+- '`attempt_count` int NOT NULL DEFAULT 0'
+- '`max_attempts` int NOT NULL DEFAULT 3'
+- '`timeout_seconds` int NOT NULL DEFAULT 3600'
+- '`return_code` int'
+- '`output_text` text'
+- '`output_sha1` varchar(64)'
+- '`last_heartbeat_ymdhis` bigint'
+- '`is_deleted` tinyint NOT NULL DEFAULT 0'
+- '`deleted_ymdhis` bigint'
+indexes:
+- index_name: lupo_system_commands_idx_status_priority_scheduled
+  columns:
+  - status
+  - priority
+  - scheduled_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_system_commands_idx_status_heartbeat
+  columns:
+  - status
+  - last_heartbeat_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_system_commands_idx_created_ymdhis
+  columns:
+  - created_ymdhis
+  is_unique: false
+  index_type: BTREE
+- index_name: lupo_system_commands_idx_is_deleted
+  columns:
+  - is_deleted
+  is_unique: false
+  index_type: BTREE
+primary_key:
+  column_name: command_id
+  expected_name: command_id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

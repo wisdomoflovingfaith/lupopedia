@@ -1,0 +1,469 @@
+/**
+ * Admin scroll chrome + intro (7 nav chips → bloom → top row → parchment frame).
+ * Intro overlay: light blue wash. Chips: 80×60, images/navbackground.png, no border, gap 0 when docked.
+ * Vanilla CSS only — no external animation libraries.
+ *
+ * Scroll-frame images (42px-tall rows / caps): place PNGs in images/ at repo root.
+ * Paths below are relative to this file (includes/css/) → ../../images/
+ *
+ *   s1a.png — top row, left cap     .admin-scroll-row--top .admin-scroll-cap--l
+ *   s2a.png — top row, center band  .admin-scroll-row--top .admin-scroll-center
+ *   s3a.png — top row, right cap    .admin-scroll-row--top .admin-scroll-cap--r
+ *   s4a.png — mid row, left cap     .admin-scroll-row--mid .admin-scroll-cap--l
+ *   s5a.png — mid row, center       .admin-scroll-row--mid .admin-scroll-center
+ *   s6a.png — mid row, right cap    .admin-scroll-row--mid .admin-scroll-cap--r
+ *   s7a.png — bottom row, left cap  .admin-scroll-row--bottom .admin-scroll-cap--l
+ *   s8a.png — bottom row, center    .admin-scroll-row--bottom .admin-scroll-center
+ *   s9a.png — bottom row, right cap .admin-scroll-row--bottom .admin-scroll-cap--r
+ * Alternate set (Content): s1b.png … s9b.png — same layout; gated by data-admin-scroll-skin="b".
+ *
+ * Top/bottom parchment caps use height: var(--admin-scroll-edge) (42px). Nav bar uses chip height (60px).
+ * Liquid 9-slice: corners no-repeat; top/bottom centers repeat-x; mid side rails repeat-y; mid center repeat.
+ * PNG layers use background-size: auto (natural tile size, no axis stretch). Solid background-color fills gaps.
+ * Content section (admin ?section=artifacts): #admin-app[data-admin-scroll-skin="b"] uses s1b–s9b.
+ * To swap art only: edit the scroll tile sections below (a = default, b = Content).
+ *
+ * Frame PNGs are hand-built (e.g. GIMP); pixel grid and seams are intentional.
+ * Do not "help" with background-size: cover, contain, or forced axis scaling,
+ *   or with auto-centering that stretches tiles.
+ * Default stack assumptions (hero image, one giant bitmap) do not apply here;
+ *   this is a liquid 9-slice frame, not a photo crop.
+ */
+
+:root {
+    /* Top nav + intro animation chips (rectangles, shared art) */
+    --admin-nav-chip-w: 80px;
+    --admin-nav-chip-h: 60px;
+    --admin-nav-h: var(--admin-nav-chip-h);
+    --admin-scroll-edge: 42px;
+    --admin-parchment-mid: #e8dcc8;
+    --admin-parchment-side: #c4a574;
+    --admin-parchment-border: #5c4033;
+}
+
+.admin-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* ---- Intro overlay (fixed; above everything) ---- */
+#admin-intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200000;
+    background: radial-gradient(circle at 50% 35%, #e3f4fc 0%, #b8dff7 50%, #9fd4ef 100%);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.45s ease-out;
+}
+
+#admin-intro-overlay.admin-intro--hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.admin-intro-sq {
+    position: fixed;
+    width: var(--admin-nav-chip-w);
+    height: var(--admin-nav-chip-h);
+    left: 50%;
+    top: 50%;
+    margin-left: calc(var(--admin-nav-chip-w) * -0.5);
+    margin-top: calc(var(--admin-nav-chip-h) * -0.5);
+    box-sizing: border-box;
+    border: none;
+    background-color: #7eb8d6;
+    background-image: url('../../images/navbackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #ffffcc;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 1;
+    pointer-events: auto;
+    will-change: transform, left, top, margin;
+}
+
+.admin-intro-sq span {
+    pointer-events: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 72px;
+    white-space: nowrap;
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: center;
+    color: #ffffcc;
+}
+
+.admin-intro-sq:visited {
+    color: #ffffcc;
+}
+
+.admin-intro-sq:hover {
+    color: #ffffcc;
+}
+
+.admin-intro-sq.is-placeholder {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* Stacked start: slight z offset (top of stack = last child) */
+#admin-intro-overlay .admin-intro-sq:nth-child(1) { z-index: 1; }
+#admin-intro-overlay .admin-intro-sq:nth-child(2) { z-index: 2; }
+#admin-intro-overlay .admin-intro-sq:nth-child(3) { z-index: 3; }
+#admin-intro-overlay .admin-intro-sq:nth-child(4) { z-index: 4; }
+#admin-intro-overlay .admin-intro-sq:nth-child(5) { z-index: 5; }
+#admin-intro-overlay .admin-intro-sq:nth-child(6) { z-index: 6; }
+#admin-intro-overlay .admin-intro-sq:nth-child(7) { z-index: 7; }
+
+/* ---- Scroll shell (below intro) ---- */
+#admin-scroll-shell {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+.admin-app--shell-ready #admin-scroll-shell {
+    opacity: 1;
+}
+
+.admin-nav-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: var(--admin-nav-h);
+    flex-shrink: 0;
+    background: #2d3748;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.admin-nav-lead,
+.admin-nav-tail {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.admin-nav-lead {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Fixed slot for brand mark (matches nav row height). */
+.admin-nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: var(--admin-nav-h);
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.admin-nav-logo img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.admin-nav-squares {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    flex-shrink: 0;
+}
+
+.admin-nav-tail {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.admin-nav-actor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px 14px;
+    font-size: 0.8rem;
+    color: #e2e8f0;
+    padding-left: 8px;
+}
+
+.admin-nav-actor-text {
+    white-space: nowrap;
+    max-width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-nav-actor-text strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.admin-nav-actor-link {
+    color: #63b3ed;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.admin-nav-actor-link:hover {
+    color: #90cdf4;
+    text-decoration: underline;
+}
+
+.admin-nav-row .admin-nav-sq {
+    width: var(--admin-nav-chip-w);
+    height: var(--admin-nav-chip-h);
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0;
+    background-color: #7eb8d6;
+    background-image: url('../../images/navbackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #ffffcc;
+    font-weight: 700;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    padding: 2px;
+    line-height: 1.1;
+    overflow: hidden;
+}
+
+.admin-nav-row .admin-nav-sq span {
+    color: #ffffcc;
+}
+
+.admin-nav-row .admin-nav-sq:visited {
+    color: #ffffcc;
+}
+
+.admin-nav-row .admin-nav-sq:hover {
+    filter: brightness(1.08);
+    color: #ffffcc;
+}
+
+.admin-nav-row .admin-nav-sq.is-placeholder {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.admin-scroll-frame {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    height: calc(100vh - var(--admin-nav-h));
+    background: #2c2419;
+}
+
+.admin-scroll-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-shrink: 0;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.admin-scroll-row--top,
+.admin-scroll-row--bottom {
+    height: var(--admin-scroll-edge);
+}
+
+.admin-scroll-row--mid {
+    height: 0;
+    min-height: 0;
+    overflow: hidden;
+    transition: height 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mid band = 100vh - nav - top cap - bottom cap (all use 42px vars) */
+.admin-app--mid-expanded .admin-scroll-row--mid {
+    height: calc(100vh - var(--admin-nav-h) - (2 * var(--admin-scroll-edge)));
+    min-height: 120px;
+}
+
+.admin-scroll-cap {
+    width: var(--admin-scroll-edge);
+    flex-shrink: 0;
+    background-color: var(--admin-parchment-side);
+    background-repeat: repeat;
+    background-size: auto;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-scroll-center {
+    flex: 1;
+    min-width: 0;
+    background-color: var(--admin-parchment-mid);
+    background-repeat: repeat;
+    background-size: auto;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ---- Scroll frame tiles (s1a–s9a) — liquid 9-slice; PNG at intrinsic size, no stretch ---- */
+.admin-scroll-row--top .admin-scroll-cap--l {
+    background-image: url('../../images/s1a.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: auto;
+}
+.admin-scroll-row--top .admin-scroll-center {
+    background-image: url('../../images/s2a.png');
+    background-repeat: repeat-x;
+    background-position: top left;
+    background-size: auto;
+}
+.admin-scroll-row--top .admin-scroll-cap--r {
+    background-image: url('../../images/s3a.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: auto;
+}
+
+.admin-scroll-row--mid .admin-scroll-cap--l {
+    background-image: url('../../images/s4a.png');
+    background-repeat: repeat-y;
+    background-position: left top;
+    background-size: auto;
+}
+.admin-scroll-row--mid .admin-scroll-center {
+    background-image: url('../../images/s5a.png');
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: auto;
+}
+.admin-scroll-row--mid .admin-scroll-cap--r {
+    background-image: url('../../images/s6a.png');
+    background-repeat: repeat-y;
+    background-position: right top;
+    background-size: auto;
+}
+
+.admin-scroll-row--bottom .admin-scroll-cap--l {
+    background-image: url('../../images/s7a.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: auto;
+}
+.admin-scroll-row--bottom .admin-scroll-center {
+    background-image: url('../../images/s8a.png');
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    background-size: auto;
+}
+.admin-scroll-row--bottom .admin-scroll-cap--r {
+    background-image: url('../../images/s9a.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: auto;
+}
+
+/* ---- Scroll frame tiles (s1b–s9b) — Content / section=artifacts; PNG swap only ---- */
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--top .admin-scroll-cap--l {
+    background-image: url('../../images/s1b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--top .admin-scroll-center {
+    background-image: url('../../images/s2b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--top .admin-scroll-cap--r {
+    background-image: url('../../images/s3b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--mid .admin-scroll-cap--l {
+    background-image: url('../../images/s4b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--mid .admin-scroll-center {
+    background-image: url('../../images/s5b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--mid .admin-scroll-cap--r {
+    background-image: url('../../images/s6b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--bottom .admin-scroll-cap--l {
+    background-image: url('../../images/s7b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--bottom .admin-scroll-center {
+    background-image: url('../../images/s8b.png');
+}
+#admin-app[data-admin-scroll-skin="b"] .admin-scroll-row--bottom .admin-scroll-cap--r {
+    background-image: url('../../images/s9b.png');
+}
+
+/* Existing admin body inside scroll center */
+#admin-scroll-shell .admin-body {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+}
+
+#admin-scroll-shell .admin-sidebar {
+    box-shadow: none;
+}
+
+#admin-scroll-shell .admin-main {
+    background: transparent;
+}
+
+/* Legacy header/nav hidden when scroll shell is primary */
+.admin-app--scroll-mode .basic-header-graphic,
+.admin-app--scroll-mode .basic-nav {
+    display: none !important;
+}
+
+.admin-app--scroll-mode .basic-footer {
+    flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #admin-intro-overlay,
+    #admin-scroll-shell,
+    .admin-scroll-row--mid {
+        transition: none !important;
+    }
+    .admin-intro-sq {
+        transition: none !important;
+    }
+}

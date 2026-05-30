@@ -1,0 +1,21 @@
+{
+  "id": "M-prd-index-20260409",
+  "type": "index_memory",
+  "ts": "20260409113315.000",
+  "actor_id": 116,
+  "summary": "JSON header companion created for PRD_INDEX.md — memory compaction bootstrap",
+  "edges": [
+    {"to": "FILE:PRD_INDEX.md", "type": "modifies", "weight": 1.0},
+    {"to": "docs/prd/README.md", "type": "references", "weight": 1.0},
+    {"to": "docs/prd/00_root_constitutional_system_requirements.md", "type": "references", "weight": 1.0}
+  ],
+  "content": {
+    "prd_slug": "PRD_INDEX",
+    "action": "json_header_companion_created",
+    "header_schema_version": "header_json_v1",
+    "outbound_edge_count": 2,
+    "status": "draft"
+  },
+  "schema_version": "toon_v1",
+  "status": "draft"
+}

@@ -1,0 +1,11 @@
+{
+  "from_actor_id": "1",
+  "to_actor_id": "102",
+  "ts": "20260409123342",
+  "task": "MEMORY-DB-FALLBACK-FILESYSTEM",
+  "message": "Implement database fallback to filesystem for DBMemoryWriter, add --no-fallback to migrate_transcript_to_memory.py, no backfill.",
+  "status": "resolved",
+  "claimed_by": null,
+  "claimed_at": null,
+  "resolved_at": "20260409123530"
+}

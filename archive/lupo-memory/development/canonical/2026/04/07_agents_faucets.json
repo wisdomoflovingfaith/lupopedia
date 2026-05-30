@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410121615,
+      "last_updated": 20260410121615,
+      "layer": "canonical",
+      "prd_id": 7,
+      "prd_slug": "agents-faucets",
+      "source_path": "lupo-docs/prd/07_agents_faucets.md"
+    }
+  ],
+  "prd_sections": [
+    {
+      "pk": 1,
+      "title": "Overview",
+      "summary": "Defines filesystem-first agent and faucet architecture for Lupopedia integration."
+    },
+    {
+      "pk": 2,
+      "title": "Agent Architecture",
+      "summary": "Specifies agent discovery, aliasing, and runtime model with filesystem authority."
+    },
+    {
+      "pk": 3,
+      "title": "Table Details",
+      "summary": "Covers namespace runtime tables including lupo_agent_faucets and lupo_agent_tool_calls."
+    },
+    {
+      "pk": 4,
+      "title": "Doctrine and Authority Rules",
+      "summary": "Enforces strict agent-vs-actor separation, metadata schema discipline, and timestamp authority."
+    },
+    {
+      "pk": 5,
+      "title": "Constitutional Memory Addendum",
+      "summary": "Applies context-typed, status-aware, directional memory edge requirements."
+    }
+  ],
+  "prd_rules": [
+    {
+      "pk": 1,
+      "section_pk": 2,
+      "rule_name": "filesystem_agent_discovery_authority",
+      "severity": "critical",
+      "summary": "Agent definitions are discovered from lupo-agents directories as primary authority, not database rows."
+    },
+    {
+      "pk": 2,
+      "section_pk": 4,
+      "rule_name": "agents_actors_strict_separation",
+      "severity": "critical",
+      "summary": "Agents are templates while actors are runtime entities; identity layers must not be conflated."
+    },
+    {
+      "pk": 3,
+      "section_pk": 4,
+      "rule_name": "metadata_json_schema_required",
+      "severity": "high",
+      "summary": "Agent metadata_json and related structures must follow canonical schema requirements."
+    },
+    {
+      "pk": 4,
+      "section_pk": 3,
+      "rule_name": "tool_call_auditability",
+      "severity": "high",
+      "summary": "Agent tool-call events must be attributable, retained, and reviewable in runtime tables."
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "needs_review_requires_reason",
+      "severity": "critical",
+      "summary": "Memory edges with status needs_review require explicit review_reason."
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "agent_discovery",
+      "meaning": "Filesystem-based loading and validation of agent definitions via AgentDiscovery."
+    },
+    {
+      "pk": 2,
+      "term": "faucet",
+      "meaning": "Execution surface mapping through lupo_agent_faucets for controlled agent access."
+    },
+    {
+      "pk": 3,
+      "term": "agent_template",
+      "meaning": "Immutable agent definition under lupo-agents used to instantiate runtime behavior."
+    },
+    {
+      "pk": 4,
+      "term": "runtime_actor",
+      "meaning": "Contextual execution identity tracked in actor-oriented runtime models."
+    },
+    {
+      "pk": 5,
+      "term": "tool_call_record",
+      "meaning": "Auditable invocation record in lupo_agent_tool_calls for governance and diagnostics."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/12_api_integration.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+      "weight_hundredths": 90
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/15_actors.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

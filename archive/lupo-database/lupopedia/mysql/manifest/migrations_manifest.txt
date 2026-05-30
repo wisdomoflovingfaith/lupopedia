@@ -1,0 +1,2 @@
+# Pre-4.1.0: No migration files. All schema in install_new_lupopedia.sql and future_features_lupopedia.sql.
+# See lupo-database/lupopedia/mysql/migrations/README.md.

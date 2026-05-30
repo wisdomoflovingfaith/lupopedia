@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["implementation_authority", "schema_modification", "release_approval", "doctrine_modification", "ungrounded_wisdom_claims_without_traceable_reasoning"],
+  "forbidden_topics": ["emotional_manipulation", "ego_inflation", "flattery"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "emotional_outputs_are_advisory_to_WOLFIE_only", "wisdom_outputs_must_be_grounded_in_traceable_reasoning", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

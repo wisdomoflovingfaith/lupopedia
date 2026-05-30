@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260418200841",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "utf8-structured-write",
+  "summary": "Utf8StructuredWrite: mojibake table comments, iconv empty-string assign, docblock for pass-through file_path, UTF-8-only policy note, final class.",
+  "files_changed": [
+    "includes/classes/Utf8StructuredWrite.php",
+    "changelog-pending/20260418200841_cursor_utf8structuredwrite_hardening.json"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

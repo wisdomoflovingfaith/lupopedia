@@ -1,0 +1,33 @@
+# Generated from: lupo-memory/development/canonical/2026/04/14-system-operations.json
+# Generated at: 2026-04-10 13:11:12 UTC
+# JSON master checksum: 861c84336a1d1e2e4bff4ba0f11e9325
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131111,20260410131111,canonical,14,system-operations,lupo-docs/prd/14_system_operations.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for system-operations section 1.,Overview
+  2,Operational summary for system-operations section 2.,Tables in This Namespace
+  3,Operational summary for system-operations section 3.,Table Details
+  4,Operational summary for system-operations section 4.,Cross-Namespace Dependencies
+  5,Operational summary for system-operations section 5.,State Transitions
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_14_rule_1,1,critical,Rule 1 for PRD 14 (system-operations)
+  2,prd_14_rule_2,2,high,Rule 2 for PRD 14 (system-operations)
+  3,prd_14_rule_3,3,high,Rule 3 for PRD 14 (system-operations)
+  4,prd_14_rule_4,4,medium,Rule 4 for PRD 14 (system-operations)
+  5,prd_14_rule_5,5,critical,Rule 5 for PRD 14 (system-operations)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 14.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[4]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,lupo-docs/prd/08_actors.md,85

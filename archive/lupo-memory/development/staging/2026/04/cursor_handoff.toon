@@ -1,0 +1,37 @@
+{
+  "handoff": {
+    "actor_id": 102,
+    "actor_name": "cursor",
+    "status": "handoff_ready",
+    "started_utc": "20260417073758",
+    "end_time_utc": "20260417073758",
+    "handoff_to": "antigravity-ide",
+    "handoff_to_actor_id": 103,
+    "objective": "Persist accurate current-state handoff for header standardization work and route primary header maintenance to Antigravity IDE.",
+    "completed": [
+      "Standardized and refreshed header blocks in lupo-includes/bootstrap.php with PHP # grid format and doctrine comment preservation.",
+      "Standardized and refreshed header blocks in lupopedia-config-sample.php with PHP # grid format and legacy-path note updates.",
+      "Standardized and refreshed header blocks in install_wizard_classes.php with PHP # grid format and modern deny-rule fallback guidance.",
+      "Standardized and refreshed header blocks in install.php with PHP # grid format and filesystem doctrine preservation."
+    ],
+    "remaining": [
+      "Primary header maintenance and consistency cleanup should continue under Antigravity IDE (actor_id 103).",
+      "Cursor is currently rate-limited for high-volume header churn and should avoid additional header-fix loops in this session."
+    ],
+    "rate_limit_note": "Cursor experienced repeated rate-limit pressure while handling bulk header normalization directives; route sustained header work to actor_id 103.",
+    "open_or_partially_edited_files": [
+      "lupo-includes/bootstrap.php",
+      "lupopedia-config-sample.php",
+      "install_wizard_classes.php",
+      "install.php",
+      "app/Services/ApiProviderChainService.php",
+      "lupo-includes/classes/LupopediaConfigResolver.php",
+      "AGENTS.md",
+      "lupo-docs/doctrine/CHANGELOG_BUFFER_ARCHITECTURE.md"
+    ],
+    "files_changed": [
+      "lupo-memory/development/staging/2026/04/cursor_handoff.toon"
+    ],
+    "notes": "Primary header work has been intentionally handed off to Antigravity IDE (103). Cursor can take non-header tasks or wait for new instructions."
+  }
+}

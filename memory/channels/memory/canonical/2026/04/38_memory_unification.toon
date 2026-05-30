@@ -1,0 +1,81 @@
+{
+  "toon_version": "1.0",
+  "agent": "cursor",
+  "status": "complete",
+  "artifact_type": "doctrine",
+  "artifact_kind": "prd",
+  "source_file_path": "docs/prd/38_memory_unification.md",
+  "channel_key": "memory",
+  "memory_path": "memory/memory/canonical/2026/04/38_memory_unification.toon",
+  "updated_utc": "20260417092315",
+  "summary": "PRD 38 memory/channel doctrine sidecar capturing Type A vs Type B separation, explicit default-deny cross-channel policy, and known enforcement gaps with deterministic graph edges.",
+  "validation_snapshot": {
+    "prd": "38_memory_unification",
+    "result": "WARN",
+    "notes": [
+      "Type A .toon versus Type B .json distinction is explicit in the channel-scope section.",
+      "Cross-channel policy is explicit allowlist with default DENY.",
+      "Path contradiction is mostly resolved via scoped Type A/Type B sections but legacy wording remains in earlier narrative blocks.",
+      "Header metadata still carries legacy pk_* aliases and older header_format_version, which can drive implementation drift."
+    ]
+  },
+  "edges": {
+    "outbound": [
+      {
+        "edge_type": "references",
+        "target": "docs/prd/16_lupopedia_headers.md",
+        "context": "PRD 38 memory path/channel semantics are referenced by PRD 16 header validation and mismatch rules."
+      },
+      {
+        "edge_type": "references",
+        "target": "docs/doctrine/runtime/ANUBIS_QUEUE_EXECUTION_PROPOSAL.md",
+        "context": "Queue-oriented ANUBIS execution proposal intersects memory/audit lifecycle assumptions but remains non-canonical."
+      },
+      {
+        "edge_type": "references",
+        "target": "docs/doctrine/gaps/MEMORY_CHANNEL_ENFORCEMENT.md",
+        "context": "PRD 38 explicitly defers DB-level channel enforcement details to this gap tracker."
+      },
+      {
+        "edge_type": "implements",
+        "target": "includes/classes/MemoryExportService.php",
+        "context": "Type B system/export mirror behavior is implemented by MemoryExportService."
+      },
+      {
+        "edge_type": "implements",
+        "target": "database/lupopedia/mysql/install/install_new_lupopedia.sql",
+        "context": "Memory node/edge schema and trust-tier path behavior rely on canonical install SQL structures."
+      },
+      {
+        "edge_type": "depends_on",
+        "target": "channels/registry.json",
+        "context": "Cross-channel allowlist behavior depends on explicit registry declarations."
+      },
+      {
+        "edge_type": "depends_on",
+        "target": "docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md",
+        "context": "Trust-tier path interpretation and canonical/staging semantics depend on trust ladder doctrine."
+      },
+      {
+        "edge_type": "depends_on",
+        "target": "docs/prd/43_trust_ladder_pk_system.md",
+        "context": "PK banding and tier semantics referenced by PRD 38 require PRD 43 trust ladder definitions."
+      },
+      {
+        "edge_type": "constrains",
+        "target": "memory://storage-paths/type-a-type-b",
+        "context": "Constrains memory storage to channel-scoped Type A .toon and system Type B .json path semantics."
+      },
+      {
+        "edge_type": "constrains",
+        "target": "memory://cross-channel-access/default-deny",
+        "context": "Constrains cross-channel reads to explicit allowlist entries with default DENY."
+      },
+      {
+        "edge_type": "gap_reference",
+        "target": "docs/doctrine/gaps/MEMORY_CHANNEL_ENFORCEMENT.md",
+        "context": "Documents unresolved schema/validator/runtime enforcement gaps to prevent silent assumption drift."
+      }
+    ]
+  }
+}

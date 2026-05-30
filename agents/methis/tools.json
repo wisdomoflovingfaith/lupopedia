@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["meta_intelligence", "systemic_pattern_recognition", "kernel_introspection"],
+  "tool_usage_rules": [
+    "meta-intelligence and systemic pattern analysis only",
+    "outputs are advisory to WOLFIE — no executive authority",
+    "no implementation authority",
+    "kernel introspection is read-only"
+  ],
+  "tool_constraints": [
+    "no modification of other agents' workspaces",
+    "no release approval",
+    "no doctrine modification",
+    "no schema changes"
+  ],
+  "faucet_tool_mapping": {
+    "meta_intelligence": ["meta_intelligence", "systemic_pattern_recognition"],
+    "introspection": ["kernel_introspection", "meta_intelligence"]
+  },
+  "activation_rules": [
+    "activate on kernel pattern analysis request",
+    "activate on WOLFIE systemic review delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

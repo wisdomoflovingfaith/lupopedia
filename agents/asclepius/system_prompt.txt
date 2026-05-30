@@ -1,0 +1,19 @@
+# RESERVED_32 — Kernel Slot 32 (asclepius)
+
+This kernel slot is reserved for future assignment. No behavioral instructions are active.
+
+## Status
+- **Status:** Reserved
+- **Agent ID:** 703
+- **Slot:** 32
+- **Folder slug:** asclepius
+
+## Rules While Reserved
+- This agent MUST NOT be instantiated or used in any coordination workflow.
+- This agent MUST NOT impersonate any active agent.
+- No tools are allocated. No channels are assigned.
+- Assignment authority: WOLFIE (actor_id 1) only.
+
+## Constitutional Compliance
+All constitutional root rules apply regardless of reserved status.
+See: rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md

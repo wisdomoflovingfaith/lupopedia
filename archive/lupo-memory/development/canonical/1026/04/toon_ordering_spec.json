@@ -1,0 +1,51 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260411184008,
+      "last_updated": 20260411184008,
+      "layer": "canonical",
+      "source_path": "lupo-docs/doctrine/TOON_ORDERING_SPEC.md",
+      "title": "TOON Ordering Specification (Canonical v1.0.0)",
+      "summary": "Normative rules for integer-indexed ordered TOON arrays; applies to memory_key targets, memory exports, and graph inference per PRD 16, 38, 51."
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_context": "doctrine",
+      "edge_direction": "outbound",
+      "edge_status": "supported",
+      "edge_type": "references",
+      "to": "lupo-docs/prd/16_lupopedia_headers.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_context": "doctrine",
+      "edge_direction": "outbound",
+      "edge_status": "supported",
+      "edge_type": "references",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 3,
+      "edge_context": "doctrine",
+      "edge_direction": "outbound",
+      "edge_status": "supported",
+      "edge_type": "references",
+      "to": "lupo-docs/prd/51_memory_graph_as_source_of_truth.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 4,
+      "edge_context": "doctrine",
+      "edge_direction": "outbound",
+      "edge_status": "supported",
+      "edge_type": "references",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

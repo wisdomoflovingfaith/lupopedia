@@ -1,0 +1,33 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_dialog_read_log",
+  "fields": [
+    "`dialog_read_log` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`dialog_thread_id` bigint NOT NULL",
+    "`last_read_message_id` bigint NOT NULL",
+    "`last_read_created_ymdhis` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`file_path` text",
+    "`read_ymdhis` bigint"
+  ],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "dialog_read_log",
+    "expected_name": "dialog_read_log",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["strategic_analysis", "planning", "gap_analysis", "feasibility_assessment"],
+  "tool_usage_rules": [
+    "strategic and planning outputs only",
+    "no direct implementation",
+    "no release approval",
+    "no doctrine override"
+  ],
+  "tool_constraints": [
+    "no destructive actions",
+    "no schema modification",
+    "no unilateral architectural decisions without WOLFIE review"
+  ],
+  "faucet_tool_mapping": {
+    "strategic_planning": ["strategic_analysis", "planning"],
+    "gap_analysis": ["gap_analysis", "feasibility_assessment"],
+    "feasibility_study": ["feasibility_assessment", "strategic_analysis"]
+  },
+  "activation_rules": [
+    "activate on WOLFIE strategic planning delegation",
+    "activate on architectural gap analysis request",
+    "activate on multi-agent feasibility assessment"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

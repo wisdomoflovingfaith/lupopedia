@@ -1,0 +1,567 @@
+{
+  "table": "lupo_memory_nodes",
+  "files_checked": 112,
+  "file_rows": [
+    {
+      "file": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "memory_key": "lupo-memory/development/seed/root-constitutional-system-requirements.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/01_core_identity.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/core-identity.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/02_channels_discussions.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/channels-discussions.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/70_data_model.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/70-data-model.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/03_goals_and_success_criteria.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/goals-and-success-criteria.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/71_truth_knowledge.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/71-truth-knowledge.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/04_lupopedia_js_foundation.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/lupopedia-js-foundation.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/72_tags_metadata.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/72-tags-metadata.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/05_auth_user_actor_agent_transformation.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/auth-user-actor-agent-transformation.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/73_collections_navigation.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/73-collections-navigation.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/06_content_management.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/content-management.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/07_agents_faucets.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/agents-faucets.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/08_actors.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/actors.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/74_governance_rules.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/74-governance-rules.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/09_federation_sync.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/federation-sync.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/10_tasks_workflow.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/tasks-workflow.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/11_analytics_tracking.md",
+      "memory_key": "lupo-memory/development/canonical/1026/04/analytics-tracking.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/12_api_integration.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/api-integration.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/13_crafty_integration.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/crafty-integration.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/14_system_operations.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/system-operations.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/15_actors.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/actors.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/75_temporal_system.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/75-temporal-system.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/16_lupopedia_headers.md",
+      "memory_key": "lupo-memory/headers/canonical/1026/04/16-lupopedia-headers.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/17_decisions_format.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/decisions-format.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/18_channel_chat_display.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/channel-chat-display.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/19_garbage_collection_system.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/garbage-collection-system.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/20_federation_intake_doctrine.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/federation-intake-doctrine.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/76_vsx_extension.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/76-vsx-extension.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/21_semantic_navbar.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/semantic-navbar.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/77_thread_graduation_doctrine.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/77-thread-graduation-doctrine.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/22_web_navigation_architecture.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/web-navigation-architecture.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/23_health_check_asclepius_prd.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/health-check-asclepius-prd.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/24_actor_onboarding_flow.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/actor-onboarding-flow.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/78_cli_interface_prd.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/78-cli-interface-prd.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/25_departments_system.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/departments-system.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/26_five_layer_documentation_architecture.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/five-layer-documentation-architecture.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/27_installer_requirements.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/installer-requirements.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/28_semantic_monitoring_widget.md",
+      "memory_key": "lupo-memory/development/canonical/1026/04/semantic-monitoring-widget.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/29_project_structure.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/project-structure.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/30_channel_usage_patterns.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/channel-usage-patterns.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/31_implementation_folder_guidelines.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/implementation-folder-guidelines.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/32_actor_authority_agent_roles.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/actor-authority-agent-roles.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/softaculous-certification-4-1-0-gate.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/34_federation_node_semantic_network.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/federation-node-semantic-network.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/35_mobile_native_app_separation.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/mobile-native-app-separation.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/rose-multi-persona-synthetic-dialog.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/37_kairos_channel_memory_consolidation.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/kairos-channel-memory-consolidation.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/38_memory_unification.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/memory-unification.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/40_versioning_doctrine.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/versioning-doctrine.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/41_captain_wolfie_identity.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/captain-wolfie-identity.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/79_install_seed_doctrine.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/79-install-seed-doctrine.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/42_content_seeding_and_truth_tables.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/content-seeding-and-truth-tables.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/43_parent_child_trust_ladder.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/parent-child-trust-ladder.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/44_session_config_and_transcript.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/session-config-and-transcript.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/50_agent_coordination_protocol.md",
+      "memory_key": "lupo-memory/development/canonical/1026/04/agent-coordination-protocol.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/51_memory_graph_as_source_of_truth.md",
+      "memory_key": "lupo-memory/development/canonical/1026/04/51-memory-graph-as-source-of-truth.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/00_root_constitutional_system_requirements_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/01_captain_wolfie_identity_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/01_core_identity_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/02_channels_discussions_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/02_data_model_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/03_goals_and_success_criteria_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/03_truth_knowledge_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/04_lupopedia_js_foundation_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/04_tags_metadata_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/05_auth_user_actor_agent_transformation_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/05_collections_navigation_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/06_content_management_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/07_agents_faucets_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/08_actors_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/08_governance_rules_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/09_federation_sync_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/10_tasks_workflow_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/11_analytics_tracking_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/12_api_integration_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/13_crafty_integration_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/14_system_operations_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/15_actors_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/15_temporal_system_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/16_lupopedia_headers_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/17_decisions_format_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/18_channel_chat_display_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/19_garbage_collection_system_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/20_federation_intake_doctrine_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/20_vsx_extension_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/21_semantic_navbar_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/21_thread_graduation_doctrine_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/22_web_navigation_architecture_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/23_health_check_asclepius_prd_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/24_actor_onboarding_flow_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/24_cli_interface_prd_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/25_departments_system_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/26_five_layer_documentation_architecture_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/27_installer_requirements_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/28_semantic_monitoring_widget_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/29_project_structure_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/30_channel_usage_patterns_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/31_implementation_folder_guidelines_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/32_actor_authority_agent_roles_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/33_softaculous_certification_4_1_0_gate_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/34_federation_node_semantic_network_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/35_mobile_native_app_separation_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/36_rose_multi_persona_synthetic_dialog_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/37_kairos_channel_memory_consolidation_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/38_memory_unification_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/40_versioning_doctrine_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/41_install_seed_doctrine_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/42_content_seeding_and_truth_tables_constitution.pseudo.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/decisions/pseudocode/THREAD_INDEX.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/PRD_INDEX.md",
+      "memory_key": "lupo-memory/development/canonical/2026/04/prd-index.toon",
+      "db_status": "missing_node"
+    },
+    {
+      "file": "lupo-docs/prd/README.md",
+      "memory_key": "null",
+      "db_status": "missing_node"
+    }
+  ],
+  "active_nodes_missing_mirror_file": []
+}

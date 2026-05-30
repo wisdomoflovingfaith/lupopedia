@@ -1,0 +1,1 @@
+export function getPairedActor() { return 1000; }

@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260419190254",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "4-1-3-planning",
+  "summary": "TODO.md: replaced calendar plan with A-E dependency chain + F deferred; header when_updated tick UTC.",
+  "files_changed": [
+    "lupo-docs/versions/4.1.3/TODO.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

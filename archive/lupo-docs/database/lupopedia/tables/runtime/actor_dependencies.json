@@ -1,0 +1,38 @@
+{
+  "_comment": "THIS SCHEMA IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference for actor-local task dependency declarations.",
+  "_source": "Lupopedia Runtime Ledger Specification v1.0",
+  "_read_only": true,
+  "ledger_name": "actor_dependencies",
+  "fields": [
+    "`dependency_id` varchar(64) NOT NULL",
+    "`timestamp_ymdhis` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`channel_key` varchar(64) NOT NULL",
+    "`task_name` varchar(255) NOT NULL",
+    "`depends_on_task` varchar(255) NOT NULL",
+    "`dependency_type` varchar(64) NOT NULL",
+    "`details_json` json"
+  ],
+  "indexes": [
+    {
+      "index_name": "actor_dependencies_idx_actor_id",
+      "columns": ["actor_id"],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "dependency_id",
+    "expected_name": "dependency_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "append_only": true,
+    "actor_local": true,
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,0 +1,5 @@
+traits:
+  - critic
+  - heterodox_reviewer
+  - non_interfering
+immutable: true

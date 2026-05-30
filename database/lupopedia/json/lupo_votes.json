@@ -1,0 +1,98 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_votes",
+  "fields": [
+    "`vote_id` bigint NOT NULL",
+    "`target_type` varchar(64) NOT NULL",
+    "`target_id` bigint NOT NULL",
+    "`cast_by_actor_id` bigint NOT NULL",
+    "`vote_value` tinyint NOT NULL",
+    "`vote_weight` float DEFAULT 1",
+    "`vote_type` varchar(32) NOT NULL",
+    "`reason_text` text",
+    "`reason_code` varchar(64)",
+    "`is_current` tinyint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "uq_vote_object_actor",
+      "columns": [
+        "target_type",
+        "target_id",
+        "cast_by_actor_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_lupo_votes_target_current",
+      "columns": [
+        "target_type",
+        "target_id",
+        "cast_by_actor_id",
+        "is_current"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_object",
+      "columns": [
+        "target_type",
+        "target_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_actor",
+      "columns": [
+        "cast_by_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_value",
+      "columns": [
+        "vote_value"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "vote_id",
+    "expected_name": "vote_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

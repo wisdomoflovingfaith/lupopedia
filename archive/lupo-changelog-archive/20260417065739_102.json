@@ -1,0 +1,14 @@
+{
+  "timestamp": "20260417065739",
+  "agent_id": "cursor",
+  "channel": "development",
+  "thread": "",
+  "summary": "Refreshes bootstrap header and adds filesystem/session/provider-chain wiring updates aligned with installer and spend-tracking doctrine.",
+  "files_changed": [
+    "lupo-includes/bootstrap.php",
+    "lupo-docs/versions/4.1.2/buffer/20260417065739_102.md"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

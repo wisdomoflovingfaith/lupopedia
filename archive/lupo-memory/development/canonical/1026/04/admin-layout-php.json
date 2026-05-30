@@ -1,0 +1,41 @@
+{
+  "edges": {
+    "outbound": [
+      {
+        "reason": "Sidecar generated from file header (generate_memory_from_header.py)",
+        "source": "generate_memory_from_header",
+        "to": "lupo-includes/themes/default/layouts/admin_layout.php",
+        "type": "mirrors",
+        "weight": 1.0
+      },
+      {
+        "reason": "content_parent_id -> PRD file",
+        "source": "generate_memory_from_header",
+        "to": "lupo-docs/prd/29_project_structure.md",
+        "type": "references",
+        "weight": 0.9
+      }
+    ]
+  },
+  "footer": {
+    "last_verified": "20260418035748",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": 29,
+    "content_slug": "admin-layout-php",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/admin-layout-php"
+  },
+  "memory_toon": "lupo-memory/development/canonical/1026/04/admin-layout-php.toon",
+  "purpose": "Admin page layout with scroll chrome, intro squares, user dropdown, actor switcher; UNTRUSTED GET for section.",
+  "source_file_path_from_root": "lupo-includes/themes/default/layouts/admin_layout.php",
+  "tags": [
+    "implementation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

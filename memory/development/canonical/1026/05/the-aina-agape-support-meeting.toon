@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260514173335",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/the-aina-agape-support-meeting"
+  },
+  "memory_toon": "memory/development/canonical/1026/05/the-aina-agape-support-meeting.toon",
+  "purpose": "Twelve dependency-ordered commitments linking auth_user, agent, actor, Aina, PRD 57 AGAPE, and PRD 98_A WHY files; repair doctrine, not a meeting script.",
+  "source_file_path_from_root": "THE_AINA_AGAPE_SUPPORT_MEETING.md",
+  "tags": [
+    "doctrine",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

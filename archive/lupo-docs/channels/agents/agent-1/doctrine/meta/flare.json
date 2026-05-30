@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\CHANNEL_IDENTITY_BLOCK.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\CHANNEL_INITIALIZATION_PROTOCOL.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\CHANNEL_MANIFEST_SPEC.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\INDEX.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\README.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\WOLFIE_EMOTIONAL_GEOMETRY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\WOLFIE_ROUTING_PRINCIPLES.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\channels\\agents\\agent-1\\doctrine\\WOLFIE_UTC_AUTHORITY.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

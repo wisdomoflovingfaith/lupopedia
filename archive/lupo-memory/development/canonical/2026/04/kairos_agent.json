@@ -1,0 +1,151 @@
+{
+  "metadata": [
+    {
+      "pk": 1,
+      "created_ymdhis": 20260410123504,
+      "last_updated": 20260410123504,
+      "layer": "canonical",
+      "agent_id": 115,
+      "agent_key": "kairos",
+      "source_path": "lupo-agents/kairos/agent.json"
+    }
+  ],
+  "agent_sections": [
+    {
+      "pk": 1,
+      "title": "Core Identity",
+      "summary": "Memory consolidation agent with actor_id 115, service layer, PHP-first operation"
+    },
+    {
+      "pk": 2,
+      "title": "Primary Responsibilities",
+      "summary": "Observation ingestion, memory consolidation, contradiction detection, canonical promotion"
+    },
+    {
+      "pk": 3,
+      "title": "Consolidation Workflows",
+      "summary": "5 workflows: observation ingestion, consolidation pass, contradiction detection, canonical promotion, consolidation candidate queue"
+    },
+    {
+      "pk": 4,
+      "title": "Truth Ordering Policy",
+      "summary": "Recency first, then edge weight, verification status, trust tier"
+    },
+    {
+      "pk": 5,
+      "title": "Service Constraints",
+      "summary": "PHP-first, LLM-second, no conversational default, deterministic wins"
+    }
+  ],
+  "agent_rules": [
+    {
+      "pk": 1,
+      "section_pk": 2,
+      "rule_name": "consolidation_threshold",
+      "severity": "high",
+      "summary": "Consolidate observations when count >= 2 with same normalized value"
+    },
+    {
+      "pk": 2,
+      "section_pk": 2,
+      "rule_name": "canonical_promotion_required",
+      "severity": "critical",
+      "summary": "Promote staging memory (2000-2099) to canonical (1000-1999) via toCanonicalIdSafe()"
+    },
+    {
+      "pk": 3,
+      "section_pk": 2,
+      "rule_name": "contradiction_detection_required",
+      "severity": "high",
+      "summary": "Create kairos_contradicts edges for conflicting memories on same topic_key"
+    },
+    {
+      "pk": 4,
+      "section_pk": 4,
+      "rule_name": "recency_primary_truth",
+      "severity": "high",
+      "summary": "Newest created_ymdhis wins as default canonical truth"
+    },
+    {
+      "pk": 5,
+      "section_pk": 5,
+      "rule_name": "no_llm_truth_decisions",
+      "severity": "critical",
+      "summary": "LLM summarizes only; consolidation decisions are deterministic PHP rules"
+    }
+  ],
+  "definitions": [
+    {
+      "pk": 1,
+      "term": "kairos_observation",
+      "meaning": "Atomic memory row with memory_type = 'kairos_observation', capturing a single note from dialog"
+    },
+    {
+      "pk": 2,
+      "term": "kairos_memory",
+      "meaning": "Consolidated memory row produced by merging multiple observations"
+    },
+    {
+      "pk": 3,
+      "term": "kairos_consolidates_from",
+      "meaning": "Edge from observation to consolidated memory"
+    },
+    {
+      "pk": 4,
+      "term": "kairos_contradicts",
+      "meaning": "Edge between conflicting memories on same topic_key"
+    },
+    {
+      "pk": 5,
+      "term": "consolidation_candidate",
+      "meaning": "Review reason indicating edge should be processed by KAIROS for consolidation"
+    }
+  ],
+  "edges": [
+    {
+      "pk": 1,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/00_root_constitutional_system_requirements.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 2,
+      "edge_type": "depends_on",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/38_memory_unification.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 3,
+      "edge_type": "implements",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/37_kairos_channel_memory_consolidation.md",
+      "weight_hundredths": 100
+    },
+    {
+      "pk": 4,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/01_core_identity.md",
+      "weight_hundredths": 95
+    },
+    {
+      "pk": 5,
+      "edge_type": "references",
+      "edge_context": "doctrine",
+      "edge_status": "supported",
+      "edge_direction": "outbound",
+      "to": "lupo-docs/prd/07_agents_faucets.md",
+      "weight_hundredths": 90
+    }
+  ]
+}

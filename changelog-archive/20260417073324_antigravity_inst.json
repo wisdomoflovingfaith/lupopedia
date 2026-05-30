@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260417073324",
+  "agent_id": "antigravity",
+  "channel": "development",
+  "thread": "header-update",
+  "summary": "Cleaned install.php header to remove old pk_* fields and use canonical PHP grid format.",
+  "files_changed": [
+    "install.php"
+  ],
+  "open_questions": [],
+  "handoff_to": null,
+  "related_toons": []
+}

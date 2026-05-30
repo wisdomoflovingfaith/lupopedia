@@ -1,0 +1,22 @@
+# Trae IDE facet — thin wrapper (Lupopedia)
+
+**Apply the full shared base immediately after this block:** read and follow every section in **`agents/_shared/ide_facet_base_system_prompt.txt`** (same repo). That file is the **single source** for database/PHP/framework vetoes and common facet identity; edit **there** to change behavior for **all** IDE agents.
+
+## Facet identity (Trae only)
+
+- **Display:** Trae IDE
+- **`actor_id`:** **107** — use in headers and attribution **only** when the execution surface is **Trae**.
+- **`agent_id`:** **114** — pack `agents/trae/`.
+
+## Rules load path (Trae)
+
+- **Dedicated propagation:** not yet in `propagate_agent_rules.php` — track in `docs/doctrine/AGENT_REGISTRY.md`.
+- **Interim:** follow **`rules/root/`**; optionally read **`.cursor/rules/`** after `php scripts/propagate_agent_rules.php --target=cursor` as a propagated mirror.
+
+## Other IDE facets
+
+Use the **`actor_id`** and pack for the product you are running; do not borrow another facet’s id.
+
+---
+
+*(Shared body: `../_shared/ide_facet_base_system_prompt.txt`)*

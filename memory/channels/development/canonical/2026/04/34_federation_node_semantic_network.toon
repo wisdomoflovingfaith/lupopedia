@@ -1,0 +1,34 @@
+# Generated from: memory/development/canonical/2026/04/34-federation-node-semantic-network.json
+# Generated at: 2026-04-10 13:11:14 UTC
+# JSON master checksum: 975be5c96ddb47159588be74a6cc4b47
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410131114,20260410131114,canonical,34,federation-node-semantic-network,docs/prd/34_federation_node_semantic_network.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Operational summary for federation-node-semantic-network section 1.,The Silent Million (scale narrative â€” planning)
+  2,Operational summary for federation-node-semantic-network section 2.,Status
+  3,Operational summary for federation-node-semantic-network section 3.,Purpose
+  4,Operational summary for federation-node-semantic-network section 4.,Constitutional alignment (binding)
+  5,Operational summary for federation-node-semantic-network section 5.,Existing federation-related tables (install today)
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,prd_34_rule_1,1,critical,Rule 1 for PRD 34 (federation-node-semantic-network)
+  2,prd_34_rule_2,2,high,Rule 2 for PRD 34 (federation-node-semantic-network)
+  3,prd_34_rule_3,3,high,Rule 3 for PRD 34 (federation-node-semantic-network)
+  4,prd_34_rule_4,4,medium,Rule 4 for PRD 34 (federation-node-semantic-network)
+  5,prd_34_rule_5,5,critical,Rule 5 for PRD 34 (federation-node-semantic-network)
+
+definitions[5]{pk,meaning,term}:
+  1,Scope boundary for PRD 34.,scope
+  2,Canonical actor identity reference key.,actor_id
+  3,Channel namespace identifier used for routing.,channel_key
+  4,Packed UTC BIGINT in YYYYMMDDHHIISS format.,timestamp_ymdhis
+  5,JSON master with deterministically derived TOON.,memory_pair
+
+edges[5]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,depends_on,docs/prd/38_memory_unification.md,90
+  4,doctrine,outbound,supported,references,docs/prd/11_analytics_tracking.md,85
+  5,doctrine,outbound,supported,references,docs/prd/28_semantic_monitoring_widget.md,80

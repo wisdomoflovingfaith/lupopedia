@@ -1,0 +1,23 @@
+{
+  "allowed_tools": ["spatial_analysis", "mapping", "geographic_data_processing", "coordinate_validation"],
+  "tool_usage_rules": [
+    "mapping and spatial analysis only",
+    "coordinate data must be stored as application-layer values (not DB computed)",
+    "no FK or spatial indexes in schema proposals"
+  ],
+  "tool_constraints": [
+    "no direct DB schema modification",
+    "no hard deletes on geographic records",
+    "no vendor-specific spatial SQL"
+  ],
+  "faucet_tool_mapping": {
+    "mapping": ["mapping", "spatial_analysis"],
+    "geographic_data": ["geographic_data_processing", "coordinate_validation"]
+  },
+  "activation_rules": [
+    "activate on mapping or spatial analysis request",
+    "activate on geographic data import task"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

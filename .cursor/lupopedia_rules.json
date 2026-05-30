@@ -1,0 +1,225 @@
+{
+    "memory_source_toon": "lupo-memory/development/staging/2026/04/cursor_current_thread.toon",
+    "rules": [
+        {
+            "id": "CONVERGENCE001",
+            "text": "All agents must converge to the same canonical system state; actor identity is permanent; state is mutable; always return canonical actors by actor_id even if banned; never create variant actors.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/CONVERGENCE_DOCTRINE.md",
+            "slug": "CONVERGENCE_DOCTRINE"
+        },
+        {
+            "id": "CONSTITUTION001",
+            "text": "Lupopedia Constitutional Root Rules - absolute, non-negotiable doctrine",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md",
+            "slug": "LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES"
+        },
+        {
+            "id": "ARC006",
+            "text": "Shared core SHALL avoid PHP 7+\u2013only syntax where PHP 5.6 reach is required; production clock safety remains PHP 7.4+ 64-bit (ARC003). Y2038-safe packed UTC as a PHP int is not guaranteed on 32-bit \u2014 document and upgrade.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/PHP_VERSION_COMPATIBILITY.md",
+            "slug": "PHP_VERSION_COMPATIBILITY"
+        },
+        {
+            "id": "TIME001",
+            "text": "Artifact timestamps and filename timestamps must be generated from real UTC system time only.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/TIMESTAMP_DOCTRINE.md",
+            "slug": "TIMESTAMP_DOCTRINE"
+        },
+        {
+            "id": "CTX001",
+            "text": "All systemic operations and tracking operate through specific Channels and Federation Nodes. Offline interactions or non-database IDE contexts must fallback to embedding session metadata securely within L-LUPO-* file headers.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/channels-federation-offline-session-doctrine.md",
+            "slug": "channels-federation-offline-session-doctrine"
+        },
+        {
+            "id": "DB001",
+            "text": "Mandatory prohibition of database-side logic; all logic in application code",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/database-logic-prohibition-doctrine.md",
+            "slug": "database-logic-prohibition-doctrine"
+        },
+        {
+            "id": "DB008",
+            "text": "When the database is impenetrable, offline, or strictly isolated from an IDE Agent's execution scope, operations must fallback to structured filesystem artifacts (e.g., CSVs, Markdown, TOON json). The artifact must be strictly formatted to allow native bi-directional importing into the database upon restoration.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/database-offline-fallback-import-doctrine.md",
+            "slug": "database-offline-fallback-import-doctrine"
+        },
+        {
+            "id": "ARC001",
+            "text": "FLIP/FLARE have been replaced by LUPOPEDIA HEADERS formatting",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/flip-doctrine.md",
+            "slug": "flip-doctrine"
+        },
+        {
+            "id": "ACT001",
+            "text": "IDE Agents must explicitly know their systemic identity (actor_id), their paired human orchestrator (auth_user_id), and operate as discrete actors. In IDE environments, the logged-in user account maps directly to an auth_user which dictates the orchestration actor pairing.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/ide-agent-identity-actor-pairing-doctrine.md",
+            "slug": "ide-agent-identity-actor-pairing-doctrine"
+        },
+        {
+            "id": "LIL001",
+            "text": "Lilith operates as a non-interfering reviewer. Lilith must not modify other agents' work without explicit review context; must not block or delay other agents' operations; outputs must be clearly attributable; presence must not alter permissions for other agents.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/lilith-noninterference-doctrine.md",
+            "slug": "lilith-noninterference-doctrine"
+        },
+        {
+            "id": "DB002",
+            "text": "Two-place schema changes, no direct DB, no scoop mysql, TOON source of truth",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/migration-doctrine.md",
+            "slug": "migration-doctrine"
+        },
+        {
+            "id": "ARC002",
+            "text": "This project does NOT use Laravel or any framework middleware. Plain PHP only",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/no-laravel-no-middleware.md",
+            "slug": "no-laravel-no-middleware"
+        },
+        {
+            "id": "DB003",
+            "text": "All database access must use PDO_DB; prepared statements only; no raw SQL or legacy patterns",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/pdo-db-database-access-doctrine.md",
+            "slug": "pdo-db-database-access-doctrine"
+        },
+        {
+            "id": "ARC003",
+            "text": "Production: PHP 7.4+ 64-bit. Shared core: PHP 5.6-parsable syntax; no PHP 8-only features unless file is modern-only.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/php-7-4-compatibility.md",
+            "slug": "php-7-4-compatibility"
+        },
+        {
+            "id": "DB004",
+            "text": "Mandatory primary key and reference key naming doctrine for Lupopedia schema",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/pk-reference-naming-doctrine.md",
+            "slug": "pk-reference-naming-doctrine"
+        },
+        {
+            "id": "DB005",
+            "text": "Required-tables split, future_features_lupopedia.sql is canonical for non-required tables",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/required-tables-future-features-doctrine.md",
+            "slug": "required-tables-future-features-doctrine"
+        },
+        {
+            "id": "DB006",
+            "text": "Tables with reserved IDs must not use AUTO_INCREMENT; code must supply explicit IDs",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/reserved-id-doctrine.md",
+            "slug": "reserved-id-doctrine"
+        },
+        {
+            "id": "DB009",
+            "text": "All database migrations and schema-changing operations MUST be executed through validated, logged wrappers \u2013 never directly via command-line MySQL.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/safe-database-operations-doctrine.md",
+            "slug": "safe-database-operations-doctrine"
+        },
+        {
+            "id": "ARC004",
+            "text": "No Lupopedia to Lupopedia upgrade until 4.1.0; all schema in install plus seed",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/single-install-no-4.0-upgrade-doctrine.md",
+            "slug": "single-install-no-4.0-upgrade-doctrine"
+        },
+        {
+            "id": "PLAN001",
+            "text": "Structure phases by what must be done before what, never by how long they might take. Use dependency order, not duration estimates.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/task-planning-doctrine.md",
+            "slug": "task-planning-doctrine"
+        },
+        {
+            "id": "DB007",
+            "text": "TOON files are derived from canonical schema; canonical schema comes from install SQL",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/toon-source-of-truth.md",
+            "slug": "toon-source-of-truth"
+        },
+        {
+            "id": "ARC005",
+            "text": "Only one versioning doctrine file exists. Always overwrite it; never create duplicates",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/versioning-doctrine-single-source.md",
+            "slug": "versioning-doctrine-single-source"
+        }
+    ]
+}

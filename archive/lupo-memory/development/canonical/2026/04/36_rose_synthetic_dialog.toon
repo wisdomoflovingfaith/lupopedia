@@ -1,0 +1,35 @@
+# Generated from: lupo-memory/development/canonical/2026/04/36-rose-synthetic-dialog.json
+# Generated at: 2026-04-10 12:21:37 UTC
+# JSON master checksum: 6669a3af7c8164c3a8336bf5c4327083
+
+metadata[1]{pk,created_ymdhis,last_updated,layer,prd_id,prd_slug,source_path}:
+  1,20260410122107,20260410122107,canonical,36,rose-synthetic-dialog,lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md
+
+prd_sections[5]{pk,summary,title}:
+  1,Defines ROSE as orchestration service that voices canonical personas with explicit synthetic provenance.,Overview and Mental Model
+  2,"Specifies trigger rules, persona selection, metadata keys, rendering cues, and visibility controls.",Goals and User-visible Behavior
+  3,Uses lupo_dialog_messages with from_actor_id as voiced persona and metadata_json for rose_synthesis provenance.,Data Model and Security
+  4,Requires post-batch consolidation handoff and enforces rate/length safety constraints.,KAIROS Handoff and Safety Limits
+  5,Defines dependency-ordered rollout and authoritative references across PRDs and doctrines.,Implementation Phases and References
+
+prd_rules[5]{pk,rule_name,section_pk,severity,summary}:
+  1,rose_is_orchestrator_not_speaker,1,critical,"ROSE coordinates synthetic insertion; transcript from_actor_id must always be voiced persona, never ROSE stand-in."
+  2,synthetic_provenance_required,2,critical,Every synthetic message row must include metadata_json.rose_synthesis and related provenance fields.
+  3,server_side_authority_only,3,critical,Synthetic insertion is server-controlled; client must not arbitrarily set from_actor_id for persona spoofing.
+  4,kairos_post_batch_handoff,4,high,"After each ROSE batch, PHP should pass coordination summary to KairosConsolidationService recordObservation."
+  5,message_length_and_rate_limits,4,high,Synthetic message text length and batch rate limits must be bounded by explicit product constraints.
+
+definitions[5]{pk,meaning,term}:
+  1,Boolean metadata flag indicating message was synthesized by ROSE orchestration.,rose_synthesis
+  2,Multi-persona injected dialog sequence voiced as distinct canonical actors.,synthetic_choir
+  3,Canonical actor identity assigned to from_actor_id for each synthetic line.,voiced_persona
+  4,Visibility control metadata value such as actor_only or visitor_visible.,rose_visibility
+  5,Shared identifier grouping synthetic messages produced in one orchestration turn.,rose_batch_id
+
+edges[6]{pk,edge_context,edge_direction,edge_status,edge_type,to,weight_hundredths}:
+  1,doctrine,outbound,supported,references,lupo-docs/prd/00_root_constitutional_system_requirements.md,100
+  2,doctrine,outbound,supported,depends_on,lupo-docs/prd/01_core_identity.md,95
+  3,doctrine,outbound,supported,references,lupo-docs/prd/07_agents_faucets.md,90
+  4,doctrine,outbound,supported,references,lupo-docs/prd/15_actors.md,90
+  5,doctrine,outbound,supported,depends_on,lupo-docs/prd/38_memory_unification.md,95
+  6,doctrine,outbound,supported,references,lupo-docs/prd/37_kairos_channel_memory_consolidation.md,90

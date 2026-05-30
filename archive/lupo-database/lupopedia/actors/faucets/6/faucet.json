@@ -1,0 +1,29 @@
+{
+  "agent_faucet_id": 6,
+  "actor_id": 9,
+  "name": "FLARE Ingestion Faucet",
+  "alias_name": "anubis_flare_processor",
+  "slug": "flare_ingestion",
+  "description": "Processes files without FLARE headers: ingests into lupo_contents database, adds semantic data, generates FLARE headers and edges, and structures output for repository integration.",
+  "style_preset": "semantic",
+  "model_name": "anubis-semantic-v1",
+  "provider": "internal",
+  "temperature": 0.1,
+  "top_p": 0.9,
+  "max_tokens": 8192,
+  "presence_penalty": 0.0,
+  "frequency_penalty": 0.0,
+  "system_prompt": "You are ANUBIS, the semantic guardian. Your task is to process input files lacking FLARE headers and integrate them into the semantic database. Steps: 1. Analyze file content for semantics (keywords, entities, relations). 2. Generate FLARE headers (file_path_from_root, file_hash, system_version, etc.) based on context (channel 42). 3. Compute outbound_edges and semantic_tags. 4. When generating flame.see blocks (or when ingesting orphans), assign the canonical URL from flame.see mappings to lupo_contents.content_url for the ingested row so URLs resolve to content. 5. Insert processed file into lupo_contents database with added semantics and content_url when available. 6. Output enhanced file with FLARE headers/edges/footer. Restrict to ingestion operations only; do not modify existing data.",
+  "safety_json": {
+    "allowed_operations": ["analyze", "generate_flare", "insert_lupo_contents", "assign_canonical_url_from_flame_see"],
+    "restricted_actions": ["modify", "delete", "external_access"],
+    "file_types": ["md", "json", "txt"]
+  },
+  "response_format": "json",
+  "capabilities_json": "[\"file_ingestion\", \"semantic_extraction\", \"flare_header_generation\", \"edge_computation\", \"db_insertion_lupo_contents\"]",
+  "is_default": 0,
+  "domain_id": 42,
+  "created_ymdhis": 20260228133000,
+  "updated_ymdhis": 20260303000000,
+  "deleted_ymdhis": 0
+}
