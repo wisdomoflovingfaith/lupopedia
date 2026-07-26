@@ -24,4 +24,5 @@ lupopedia.headers:
 
 | Artifact | Summary |
 |----------|---------|
+| [20260726_143018_cursor_what_is_context_blindness_status.md](20260726_143018_cursor_what_is_context_blindness_status.md) | Cursor what_is_lupopedia work report; multi-IDE roster unknown; no channel/thread binding; WHY ownership for CONTEXT_BINDING_MISSING |
 | [STATUS_INSTALL_WIZARD_AND_FRESH_INSTALL_20260408043450.md](STATUS_INSTALL_WIZARD_AND_FRESH_INSTALL_20260408043450.md) | Installer changes (SHOW/`tableExists`, no `information_schema`, PDO opts, prefix SQL, chmod, PRD 00); **fresh install safe** after drop tables + remove `lupopedia-config.php` + `install.php` |

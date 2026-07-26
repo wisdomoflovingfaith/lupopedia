@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: AGENTS.md
   web_path: https://www.lupopedia.com/lupopedia/AGENTS.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260726142446'
   trust_tier: canonical
   questions_toon: null
   memory_toon: lupo-memory/development/canonical/1026/04/agents-md.toon
@@ -21,6 +21,16 @@ lupopedia.headers:
   summary: 'Guide for IDE faucets and agents: ASCII-only doctrine (LILITH); teach-do-not-only-tell persistence (LILITH_TEACH_DONT_ONLY_TELL.md); probe harness + runtime guard; violation codes; coordination personas; LUPOPEDIA HEADERS; channel literacy. v4.1.4 includes JSON changelog buffer mandate (lupo-changelog-pending/, lupo-changelog-archive/).'
 ---
 # AGENTS.md
+
+## WHAT IS LUPOPEDIA -- HARD GATE (Constitutional)
+
+Before answering **"what is Lupopedia"** (or equivalent onboarding / identity questions), agents MUST load the canonical root explanation:
+
+```text
+@@ load: path=what_is_lupopedia.md, trust_tier=canonical @@
+```
+
+File: [`what_is_lupopedia.md`](what_is_lupopedia.md). Do not invent a competing definition from chat, Captain's Log alone, or stale overviews. This gate exists to prevent five different answers from five different AIs.
 
 ## ASCII-ONLY DOCTRINE (LILITH / constitutional)
 [PRD-FIRST DOCTRINE (Constitutional)]
@@ -412,6 +422,8 @@ The **Cursor** facet is the **named** lead orchestration surface in this guide f
 ---
 
 ## What This Project Is
+
+**Canonical:** [`what_is_lupopedia.md`](what_is_lupopedia.md) -- load before answering what Lupopedia is.
 
 Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 -- a PHP live-chat system rebuilt as a "Semantic OS." **Actors** are the orchestration identities; they coordinate through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces (IDEs such as Cursor, Windsurf, Warp) registered as **facet** identities with **actor_id** in the registry--not primary personas, but used for attribution. It adds a unified actor model, semantic content graph, and doctrine-driven architecture on top of the original live-chat features. The only supported upgrade path is Crafty Syntax 3.7.5 -> Lupopedia 4.0.x. There are zero external installations; the sole instance is the developer's local environment on Windows/ServBay.
 

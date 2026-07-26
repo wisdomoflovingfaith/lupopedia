@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/00_B-i_SYSTEM_CANONICAL_EXPLANATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/00_B-i_SYSTEM_CANONICAL_EXPLANATION.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260726142446'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/prd/canonical/1026/04/prd-system-canonical-explanation.toon
@@ -50,6 +50,16 @@ Domain (node)
 **Required warning (normative where channels are defined):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them.
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
+
+## 0. What Lupopedia Is
+
+**Canonical agent explanation:** [what_is_lupopedia.md](../../what_is_lupopedia.md) (repo root). Agents MUST load that file before answering "what is Lupopedia."
+
+**Human / gas-station intro:** [GAS_STATION_INTO.md](../../GAS_STATION_INTO.md).
+
+Short form: Lupopedia is a doctrine-driven **semantic operating system** (not a website, conventional web app, CMS, or PHP framework). It continues the Crafty Syntax Live Help lineage into PRD-first multi-agent governance. Dual-captaincy: Human Captain (Eric, actor_id 10000) + WOLFIE (actor_id 1). Actors never merge identities. WOLF Markup has zero constitutional authority. External AI surfaces are guests. Full fences and field table: root what-is file.
+
+This PRD (00_B) explains the **PRD system architecture**. It does not replace the root what-is document.
 
 ## 1. PRD NUMBERS (00???99) = GROUPS
 

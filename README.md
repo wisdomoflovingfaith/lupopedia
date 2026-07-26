@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: README.md
   web_path: https://www.lupopedia.com/lupopedia/README.md
   status: active
-  when_updated: "20260523044938"
+  when_updated: "20260726142446"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/04/readme-root.toon
@@ -94,13 +94,16 @@ This HARD GATE is constitutional. It ensures AGAPE (and all agents) never act wi
 
 ## 1. What Is Lupopedia?
 
+**Canonical agent explanation (load first):** [what_is_lupopedia.md](what_is_lupopedia.md)
+
 Lupopedia is a **doctrine-driven semantic operating system** and multi-agent platform that evolves the **Crafty Syntax 3.7.5** lineage into a constitutional architecture for modern orchestration, truth management, and channel-based collaboration.
 
 **Channel meaning (normative):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them. Hierarchy: domain (node), then channel, then thread (artifacts such as messages, memory, atoms, and PRDs). Full model: [PRD 02_B](docs/prd/02_B-i_CHANNELS_DB_OVERVIEW.md) and [PRD 02_C](docs/prd/02_C-i_CHANNELS_DISCUSSIONS.md).
 
 It is built as a shared-hosting-compatible system with deterministic behavior, explicit identity boundaries, and file-backed operational continuity. PRDs and doctrine serve as the implementation authority.
 
-**See also:** [Captain's Log Entry 001](docs/captains_log/why_lupopedia.md)
+**See also:** [GAS_STATION_INTO.md](GAS_STATION_INTO.md)  
+**See also:** [Captain's Log Entry 001](docs/captains_log/why_lupopedia.md)  
 **See also:** [hawaiian semantics](docs/captains_log/the_accidental_penicillin.md)
 
 

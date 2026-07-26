@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/25_A-i_DEPARTMENTS_SYSTEM.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/25_A-i_DEPARTMENTS_SYSTEM.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260726142446'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/25_departments_system.toon
@@ -246,4 +246,20 @@ Existing actors without department assignments:
 
 ---
 
-**Status**: **approved** (header `status`) ???????? **LILITH final audit**: department structure, **`lupo_actor_departments`**, Crafty re-seed / **`dept_{id}`** actors, visitor chat routing, and **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`** cross-reference are aligned with the department-scoped actor model.
+## Traffic Defense Division (pending full PRD registration)
+
+| Item | Value |
+|------|--------|
+| Name (frozen) | **Traffic Defense** (not Traffic Research) |
+| trust_tier note | Operational artifacts present; full ACL/seed PRD pending proposal **25_B** |
+| Announcement | `database/lupopedia/departments/traffic_defense/announcements/20260724_traffic_defense_division_launch.md` |
+| Channel 42 broadcast | `database/lupopedia/channels/channel_id/42/broadcasts/20260724213900_1_42_42_traffic_defense_division_launch_registered.md` |
+| memory_toon | `memory/departments/traffic_defense/captains_log/canonical/2026/07/20260724_traffic_defense_division_launch.toon` |
+| Proposal | [`docs/prd_proposals/25_B-i_TRAFFIC_DEFENSE_DIVISION.md`](../prd_proposals/25_B-i_TRAFFIC_DEFENSE_DIVISION.md) |
+| Canonical summary | [`what_is_lupopedia.md`](../../what_is_lupopedia.md) section 10 |
+
+Do **not** invent a seeded `lupo_departments` row from announcements alone. Do **not** blur Traffic Defense analysis with OS constitutional execution. External AI = guests.
+
+---
+
+**Status**: **approved** (header `status`) -- **LILITH final audit**: department structure, **`lupo_actor_departments`**, Crafty re-seed / **`dept_{id}`** actors, visitor chat routing, and **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`** cross-reference are aligned with the department-scoped actor model. Traffic Defense remains **pending** full ACL/seed until 25_B is approved and merged.
