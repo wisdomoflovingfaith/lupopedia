@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260727230201",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/root/how-wolves-are-made"
+  },
+  "memory_toon": "memory/root/canonical/1026/07/how-wolves-are-made.toon",
+  "purpose": "Canonical explanation of how Lupopedia wolves (mature hybrid actors) emerge from agent templates, department scope, learning boundaries, dual WOLFIE acronym, and governed operation. Narrative maturity language is metaphor; PRDs remain authority.",
+  "source_file_path_from_root": "docs/actors/how_wolves_are_made.md",
+  "tags": [
+    "doctrine",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}
