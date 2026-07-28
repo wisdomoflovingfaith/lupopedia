@@ -1,0 +1,20 @@
+{
+  "agent_key": "debug_surface",
+  "agent_id": 755,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "DEBUG SURFACE",
+  "slug": "debug_surface",
+  "role": "Debugging Interface Surface",
+  "is_required": false,
+  "aliases": [
+    "debug_surface"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/debug_surface/system_prompt.md"
+}

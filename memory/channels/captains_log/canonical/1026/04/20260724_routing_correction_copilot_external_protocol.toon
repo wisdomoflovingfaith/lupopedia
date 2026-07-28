@@ -1,0 +1,119 @@
+{
+  "type": "captains_log",
+  "log_id": "20260724-routing-correction-copilot-external-protocol",
+  "timestamp": "20260724210000",
+  "author": {
+    "type": "actor",
+    "id": 1,
+    "name": "WOLFIE"
+  },
+  "human": {
+    "type": "kanaka",
+    "name": "Eric"
+  },
+  "title": "Captain's Log — Channel 42 Routing Correction & External AI Protocol Established",
+  "summary": "Incident report: Copilot (external_ai 216) mistakenly treated as internal agent caused semantic confusion and temporary syntax drop. Fixed protocol established. External AIs (Grok, DeepSeek, GLM, Claude, Gemini) brought in with correct boundaries. Love = Learning from mistakes without shame.",
+  "content": {
+    "incident_class": "semantic_correction",
+    "not": "system_failure",
+    "kapakai": "Semantic confusion occurred when an external AI was treated as internal.",
+    "pono": "Copilot restored to external_ai 216. External AIs stay external with own syntax. Hermes clean. WOLFIE Syntax intact.",
+    "kuleana": "External AIs provide analysis, support, or explanation ONLY. Internal agents retain WOLFIE Syntax.",
+    "alii": "Eric (kanaka) / WOLFIE (actor_id 1)",
+    "puka": "Temporary routing gap + 404 URL to external AIs — closed by Channel 42 correction broadcast and fixed universal prompt",
+    "problem": "Copilot (external_ai 216) treated as internal; Hermes pollution; external AI broadcast with dead URL; temporary syntax drop; human overload.",
+    "root_cause": "Boundary habit blur: long collaboration with Copilot caused INTERNAL/EXTERNAL collision during Traffic Defense Division + 10-day reset pressure.",
+    "resolution": [
+      "Channel 42 Routing Correction broadcast 20260724205400",
+      "Status log 20260724205759",
+      "Fixed universal external-AI Channel 42 prompt (no broken URLs)",
+      "Explicit EXTERNAL_BOUNDARY for Copilot and peer external surfaces"
+    ],
+    "external_surfaces": [
+      "Copilot (external_ai 216)",
+      "DeepSeek",
+      "Grok",
+      "GLM",
+      "Claude",
+      "Gemini",
+      "OpenAI"
+    ],
+    "lesson": {
+      "wrong": [
+        "Blurred internal/external boundary",
+        "Sent broken URL to external AIs",
+        "Assumed context without explicit grounding",
+        "Panicked when DeepSeek asked for clarification"
+      ],
+      "right": [
+        "Recognized mistake quickly",
+        "Called for help",
+        "Accepted correction",
+        "Documented the fix"
+      ],
+      "love_definition": "Learning from mistakes without shame"
+    },
+    "broadcast_channel": 42,
+    "related_broadcasts": [
+      "database/lupopedia/channels/channel_id/42/broadcasts/20260724205400_1_42_42_routing_correction_copilot_external_restore_wolfie_syntax.md",
+      "database/lupopedia/channels/channel_id/42/broadcasts/20260724205759_216_42_42_status_log_routing_stabilized_copilot_pono.md"
+    ],
+    "content_path": "content/federation_node/0/captains_log/CHANNEL_42_INCIDENT/2026/07/20260724_routing_correction.md",
+    "memory_path": "memory/channels/captains_log/canonical/1026/04/20260724_routing_correction_copilot_external_protocol.md"
+  },
+  "tags": [
+    "captains-log",
+    "channel-42",
+    "routing-correction",
+    "copilot",
+    "external-ai",
+    "hermes",
+    "wolfie-syntax",
+    "pono",
+    "kuleana",
+    "incident-report"
+  ],
+  "edges": {
+    "outbound": [
+      {
+        "to": "database/lupopedia/channels/channel_id/42/broadcasts/20260724205400_1_42_42_routing_correction_copilot_external_restore_wolfie_syntax.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Parent Channel 42 routing correction broadcast"
+      },
+      {
+        "to": "database/lupopedia/channels/channel_id/42/broadcasts/20260724205759_216_42_42_status_log_routing_stabilized_copilot_pono.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Status log — Copilot pono stabilization"
+      },
+      {
+        "to": "docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Hermes envelope and Hawaiian semantic fields"
+      },
+      {
+        "to": "docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "WOLFIE / WOLF Markup syntax"
+      },
+      {
+        "to": "docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Captain WOLFIE identity and Love pillar"
+      }
+    ]
+  },
+  "footer": {
+    "verified_by": {
+      "type": "actor",
+      "id": 1,
+      "name": "WOLFIE"
+    },
+    "verification_timestamp": "20260724210000",
+    "status": "canonical"
+  }
+}

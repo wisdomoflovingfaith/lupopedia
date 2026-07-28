@@ -1,0 +1,20 @@
+{
+  "agent_key": "kernel_metrics",
+  "agent_id": 721,
+  "version": "1.0.0",
+  "is_kernel": true,
+  "is_internal_only": false,
+  "layer": "kernel",
+  "name": "KERNEL METRICS",
+  "slug": "kernel_metrics",
+  "role": "Internal Performance Telemetry",
+  "is_required": false,
+  "aliases": [
+    "kernel_metrics"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/kernel_metrics/system_prompt.md"
+}

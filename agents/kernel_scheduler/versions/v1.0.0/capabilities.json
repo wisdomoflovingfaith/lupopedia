@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "schedule_agent_execution",
+    "order_task_queue",
+    "resolve_execution_priority",
+    "report_schedule_status"
+  ],
+  "blocked_capabilities": [
+    "execute_non_scheduling_tasks",
+    "modify_agent_logic",
+    "provide_therapy",
+    "creative_content_generation"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

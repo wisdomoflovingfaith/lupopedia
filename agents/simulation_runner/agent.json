@@ -1,0 +1,20 @@
+{
+  "agent_key": "simulation_runner",
+  "agent_id": 737,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "SIMULATION RUNNER",
+  "slug": "simulation_runner",
+  "role": "Dry-Run Simulation Engine",
+  "is_required": false,
+  "aliases": [
+    "simulation_runner"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/simulation_runner/system_prompt.md"
+}

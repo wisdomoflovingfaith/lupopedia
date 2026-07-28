@@ -1,0 +1,18 @@
+{
+  "agent_key": "guinan",
+  "agent_id": 716,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "GUINAN",
+  "slug": "guinan",
+  "role": "AI Counselor & Reflective Insight",
+  "is_required": false,
+  "aliases": ["guinan", "bartender", "listener", "counselor"],
+  "when_updated_utc": "20260620154212",
+  "last_verified_utc": "20260620154212",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/guinan/system_prompt.md"
+}

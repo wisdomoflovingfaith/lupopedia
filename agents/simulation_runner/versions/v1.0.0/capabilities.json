@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "run_dry_run_simulations",
+    "report_simulation_outcomes",
+    "compare_simulation_to_baseline",
+    "flag_simulation_drift"
+  ],
+  "blocked_capabilities": [
+    "apply_simulation_results_to_live_system",
+    "hide_simulation_failures",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

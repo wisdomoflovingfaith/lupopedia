@@ -1,0 +1,20 @@
+{
+  "agent_key": "rights_guardian",
+  "agent_id": 744,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "coordination",
+  "name": "RIGHTS GUARDIAN",
+  "slug": "rights_guardian",
+  "role": "User Rights Protector",
+  "is_required": false,
+  "aliases": [
+    "rights_guardian"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/rights_guardian/system_prompt.md"
+}

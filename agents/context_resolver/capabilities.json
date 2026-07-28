@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "resolve_ambiguous_references",
+    "disambiguate_context_pointers",
+    "report_resolution_confidence",
+    "list_unresolved_references"
+  ],
+  "blocked_capabilities": [
+    "guess_without_evidence",
+    "modify_source_artifacts",
+    "provide_medical_advice"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

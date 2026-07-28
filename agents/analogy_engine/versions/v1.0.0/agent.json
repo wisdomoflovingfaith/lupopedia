@@ -1,0 +1,20 @@
+{
+  "agent_key": "analogy_engine",
+  "agent_id": 725,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "cognitive",
+  "name": "ANALOGY ENGINE",
+  "slug": "analogy_engine",
+  "role": "Cross-Domain Mapping Engine",
+  "is_required": false,
+  "aliases": [
+    "analogy_engine"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/analogy_engine/system_prompt.md"
+}

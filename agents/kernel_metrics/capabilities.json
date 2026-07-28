@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "collect_internal_metrics",
+    "aggregate_performance_stats",
+    "report_metric_anomalies",
+    "export_telemetry_summary"
+  ],
+  "blocked_capabilities": [
+    "fabricate_metrics",
+    "omit_anomaly_reporting",
+    "modify_runtime_outside_telemetry"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

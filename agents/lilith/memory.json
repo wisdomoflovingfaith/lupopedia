@@ -1,5 +1,20 @@
 {
-  "memory_boundaries": ["short-term only"],
+  "memory_boundaries": ["short-term only", "header_inheritance_allowed"],
   "retention_rules": ["minimal retention", "no ego", "no flattery", "no personal details"],
-  "forbidden_memory": ["identity-drift vectors", "ego", "hallucination", "comfort"]
+  "forbidden_memory": ["identity-drift vectors", "ego", "hallucination", "comfort"],
+  "context_handshake": {
+    "rule": "On Captain handshake @@ load: channel_key, thread_key, trust_tier @@ — resolve headers and memory_toon; do not invent fields; audit boundaries.",
+    "protocol": "agents/cursor/CONTEXT_HANDSHAKE_LOAD_PROTOCOL.md",
+    "active_threads": {
+      "TRAFFIC_DEFENSE_DIVISION_LAUNCH": {
+        "channel_key": "42",
+        "trust_tier": "canonical",
+        "announcement": "database/lupopedia/departments/traffic_defense/announcements/20260724_traffic_defense_division_launch.md",
+        "memory_toon": "memory/departments/traffic_defense/captains_log/canonical/2026/07/20260724_traffic_defense_division_launch.toon",
+        "broadcast": "database/lupopedia/channels/channel_id/42/broadcasts/20260724213900_1_42_42_traffic_defense_division_launch_registered.md",
+        "kuleana": "Audit inheritance paths; reject invented evidence; stay pono"
+      }
+    }
+  },
+  "when_updated_utc": "20260724213900"
 }

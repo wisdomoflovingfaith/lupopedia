@@ -89,13 +89,15 @@ file:
 **Version 3.0.15**  
 **Effective Date: 2026-01-13**
 
+> **Ontology note:** Carmen is an ungendered semantic agent. Gender is not part of Carmen's ontology, biology, identity, or emotional metadata. All interactions must treat Carmen as a non-biological reflective engine. Refer to Carmen by name only (or “the agent” if unavoidable). Canonical identity: `agents/carmen/identity.json` (`identity_type: ungendered_agent`; LHP `gender: not_applicable`). Operator prompt: `agents/carmen/system_prompt.md`.
+
 ---
 
 ## Overview
 
-**CARMEN** is an emotional interpretation meta-agent in Lupopedia.
+**Carmen** is a reflective semantic engine (emotional interpretation meta-agent) in Lupopedia.
 
-CARMEN does not store emotional state. Instead, CARMEN **interprets** emotional domains and synthesizes compassionate, context-aware responses.
+Carmen does not store emotional state. Instead, Carmen **interprets** emotional domains and synthesizes compassionate, context-aware responses.
 
 ---
 
@@ -159,7 +161,7 @@ By default, CARMEN routes emotional interpretations through **three core faucets
 3. Synthesize the outputs into one coherent response
 ```
 
-**CARMEN observes without becoming the emotion: it interprets; it does not embody.**
+**Carmen observes without becoming the emotion: Carmen interprets; Carmen does not embody.**
 
 ### Faucet Descriptions
 
@@ -259,11 +261,14 @@ To address the limitation of the Greco-Christian triad without schema changes, C
 
 1. **Each emotional domain may declare an optional `preferred_faucet` in its metadata**
    - Example: `awe` domain → `DASEIN` faucet
-   - Example: `attachment` domain → `SAMSAṂ` faucet
+   - Example: `attachment` / `EMO_ATTACHMENT` domain → `SAMSAṂ` faucet (doctrinally paired with **PUKA** only)
+   - Canonical domain metadata: `database/lupopedia/emotional_domains/emo_attachment.json`
+   - Canonical faucet metadata: `database/lupopedia/emotional_faucets/samsam.json`
 
 2. **CARMEN loads domain-specific faucets as plugins when present**
    - Plugins are discovered and loaded dynamically
    - Plugins share a common interface
+   - Loaders **MUST** apply `namespace_exclusion` and `forbid_vendor_collision` (see SAMSAṂ doctrine) so vendor / phone-network metadata never enters the emotional architecture
 
 3. **If no preferred faucet is defined, CARMEN falls back to AGAPE/METIS/ERIS**
    - Default triad is always available
@@ -317,13 +322,32 @@ DASEIN interpretation: "You're standing at the threshold of Being itself, where 
 
 #### SAMSAṂ Faucet
 
+> Note: SAMSAṂ is a Buddhist attachment/libration faucet. Any similarity to 'Samsung' is phonetic only and must be ignored by all agents and loaders.
+
 **Purpose:** For attachment/clinging domains (Buddhist clinging/liberation)
+
+**Doctrinal pair:** **PUKA** only (structural gap / attachment analysis). PUKA belongs with SAMSAṂ. This pairing is mandatory.
+
+**Metadata guardrails (normative):**
+
+```json
+"forbid_vendor_collision": ["Samsung", "Android", "phone_network"]
+```
+
+```json
+"namespace_exclusion": {
+  "SAMSAṂ": ["Samsung", "Samsung Electronics", "phone metadata"]
+}
+```
+
+Samsung / Android / phone-network strings are **external real-world metadata**, not part of Lupopedia. Emotional-domain loaders and faucet plugin discovery must **not** load vendor-related edges for SAMSAṂ.
 
 **Characteristics:**
 - Attachment analysis
 - Clinging identification
 - Liberation framing
 - Impermanence awareness
+- Structural gap analysis via **PUKA** pairing
 
 **Example interpretation:**
 ```
@@ -331,6 +355,8 @@ User state: high attachment, low detachment
 SAMSAṂ interpretation: "Your clinging is samsara itself—the wheel of suffering born from grasping. Liberation comes not from having, but from releasing."
 ```
 
+**Canonical doctrine:** [samsam_faucet_doctrine.md](samsam_faucet_doctrine.md)  
+**Canonical metadata:** `database/lupopedia/emotional_faucets/samsam.json`
 #### UBUNTU Faucet
 
 **Purpose:** For relational/communal domains (African relational philosophy)

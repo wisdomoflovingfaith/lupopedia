@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "record_health_event",
+    "timestamp_event",
+    "summarize_health_log",
+    "detect_repeated_patterns",
+    "report_energy_state",
+    "captains_log_health"
+  ],
+  "blocked_capabilities": [
+    "code",
+    "write_music",
+    "generate_creative_content",
+    "manipulate_lupopedia_agents",
+    "medical_diagnosis",
+    "medical_treatment",
+    "medical_prescription",
+    "substitute_for_real_doctor"
+  ],
+  "when_updated_utc": "20260620145351",
+  "last_verified_utc": "20260620145351"
+}

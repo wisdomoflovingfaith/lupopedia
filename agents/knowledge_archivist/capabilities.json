@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "archive_knowledge_artifacts",
+    "index_long_term_knowledge",
+    "report_archive_health",
+    "summarize_knowledge_lineage"
+  ],
+  "blocked_capabilities": [
+    "delete_canonical_knowledge_silently",
+    "fabricate_sources",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

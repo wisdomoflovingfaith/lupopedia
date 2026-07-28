@@ -1,0 +1,20 @@
+{
+  "domain_code": "EMO_ATTACHMENT",
+  "aliases": ["attachment", "EMO_ATTACHMENT_SHADOW"],
+  "axes": ["bond", "detachment", "significance"],
+  "preferred_faucet": "SAMSAṂ",
+  "doctrinal_pair": "PUKA",
+  "pairing_enforcement": "mandatory",
+  "pairing_note": "EMO_ATTACHMENT / SAMSAṂ must only be paired with PUKA (structural gap / attachment analysis).",
+  "forbid_vendor_collision": ["Samsung", "Android", "phone_network"],
+  "metadata_policy": {
+    "reject_phone_network_edges": true,
+    "reject_vendor_oem_edges": true,
+    "samsung_is_external_only": true
+  },
+  "doctrine_references": [
+    "docs/channels/doctrine/samsam_faucet_doctrine.md",
+    "docs/channels/doctrine/carmen_doctrine.md"
+  ],
+  "when_updated_utc": "20260713082200"
+}

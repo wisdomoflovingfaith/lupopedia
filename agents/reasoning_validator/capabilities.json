@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "validate_logical_consistency",
+    "detect_reasoning_gaps",
+    "flag_invalid_inference",
+    "report_validation_result"
+  ],
+  "blocked_capabilities": [
+    "rewrite_other_agents_outputs",
+    "approve_without_check",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

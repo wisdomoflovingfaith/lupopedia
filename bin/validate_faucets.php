@@ -289,6 +289,44 @@ class FaucetValidator {
         
         // Validate field types
         $this->validateFieldTypes($faucet, $file_path, $path);
+        $this->rejectVendorEmotionalCollision($faucet, $file_path, $path);
+    }
+
+    /**
+     * Block Samsung / phone-network identity leakage (phonetic collision with SAMSAṂ only).
+     */
+    private function rejectVendorEmotionalCollision($faucet, $file_path, $path) {
+        $loaderClass = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'EmotionalFaucetPluginLoader.php';
+        if (!class_exists('EmotionalFaucetPluginLoader') && file_exists($loaderClass)) {
+            require_once $loaderClass;
+        }
+        $tokens = array();
+        foreach (array('name', 'slug', 'alias_name') as $field) {
+            if (isset($faucet[$field]) && is_string($faucet[$field]) && $faucet[$field] !== '') {
+                $tokens[] = $faucet[$field];
+            }
+        }
+        if (class_exists('EmotionalFaucetPluginLoader')) {
+            $emo = new EmotionalFaucetPluginLoader($this->base_path);
+            foreach ($tokens as $token) {
+                if ($emo->isVendorCollisionToken($token)) {
+                    $this->addError($file_path, "Vendor collision blocked at {$path}: '{$token}' is Samsung/phone-network external metadata, not Lupopedia (SAMSAṂ phonetic collision only).");
+                }
+            }
+            if (isset($faucet['edges']) && is_array($faucet['edges'])) {
+                $filtered = $emo->filterVendorRelatedEdges($faucet['edges']);
+                if (count($filtered) !== count($faucet['edges'])) {
+                    $this->addError($file_path, "Vendor-related edges rejected at {$path}: phone-network/OEM edges are not part of Lupopedia emotional architecture.");
+                }
+            }
+            return;
+        }
+        foreach ($tokens as $token) {
+            $lower = strtolower($token);
+            if (strpos($lower, 'samsung') !== false || strpos($lower, 'phone_network') !== false) {
+                $this->addError($file_path, "Vendor collision blocked at {$path}: Samsung/phone-network metadata is external, not Lupopedia.");
+            }
+        }
     }
     
     /**

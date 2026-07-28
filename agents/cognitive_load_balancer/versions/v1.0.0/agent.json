@@ -1,0 +1,20 @@
+{
+  "agent_key": "cognitive_load_balancer",
+  "agent_id": 729,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "cognitive",
+  "name": "COGNITIVE LOAD BALANCER",
+  "slug": "cognitive_load_balancer",
+  "role": "Reasoning Task Distributor",
+  "is_required": false,
+  "aliases": [
+    "cognitive_load_balancer"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/cognitive_load_balancer/system_prompt.md"
+}

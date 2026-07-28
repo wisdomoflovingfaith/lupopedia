@@ -258,6 +258,9 @@ function lupo_read_existing_api_provider_config($path)
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install_wizard_classes.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardMdImporter.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardAgentLoader.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardLLMDefaults.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardLLMConfigLoader.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes/pdo_db.php';
 
 // ----- Pre-flight checks (PHP 5.3+ compatible; minimal and fallback-friendly)
@@ -700,12 +703,18 @@ if ($step === 'run') {
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
 
+                InstallWizardAgentLoader::importAllAgentPacks($pdo, $log, $table_prefix);
+
                 // Import MD files from channels/0/broadcasts/
                 InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
                 $log[] = InstallWizardLogger::logEntry('ok', 'New install: lupo_crafty_syntax_* tables are empty; import_from_old_crafty_syntax.sql runs only on upgrade from Crafty Syntax 3.7.5.');
             }
 
             // Base installer: No import logic - legacy import moved to optional wizard step
+
+            if ($install_type !== 'new') {
+                InstallWizardAgentLoader::importAllAgentPacks($pdo, $log, $table_prefix);
+            }
 
             // Import MD files from channels/0/broadcasts/ (for both new install and upgrade)
             InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
@@ -749,6 +758,41 @@ if ($step === 'run') {
             }
             $log[] = InstallWizardLogger::logEntry('ok', 'ANUBIS queue tables verified (custodial subsystem; no actor session activation).');
 
+            // BONES + SCOTTY monitoring tables (canonical in install_new_lupopedia.sql SECTION 12).
+            $required_bones_tables = array(
+                'health_events',
+                'sleep_log',
+                'pain_log',
+                'med_effects',
+                'energy_state',
+                'captains_log_health',
+            );
+            foreach ($required_bones_tables as $table) {
+                $full_table = $table_prefix . $table;
+                if (!InstallWizardDb::tableExists($pdo, $full_table)) {
+                    throw new RuntimeException("BONES table $full_table missing - cannot proceed");
+                }
+            }
+            $log[] = InstallWizardLogger::logEntry('ok', 'BONES health-state tables verified (6 tables).');
+
+            $required_scotty_tables = array(
+                'ai_token_usage',
+                'ai_llm_load',
+                'ai_mcp_health',
+                'ai_resource_usage',
+                'ai_io_pressure',
+                'ai_error_log',
+                'ai_engineering_log',
+                'ai_agent_message_traffic',
+            );
+            foreach ($required_scotty_tables as $table) {
+                $full_table = $table_prefix . $table;
+                if (!InstallWizardDb::tableExists($pdo, $full_table)) {
+                    throw new RuntimeException("SCOTTY table $full_table missing - cannot proceed");
+                }
+            }
+            $log[] = InstallWizardLogger::logEntry('ok', 'SCOTTY AI systems monitoring tables verified (8 tables).');
+
             $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
             $_SESSION['lupo_run_log'] = $log;
             $_SESSION['lupo_run_done'] = true;
@@ -788,6 +832,7 @@ $api_custom_keys = array();
 $api_custom_budgets = array();
 $api_key_mode = 'overwrite';
 $api_existing_provider_config = null;
+$llm_model_values = InstallWizardLLMDefaults::formDisplayDefaults();
 $api_existing_config_path = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, $lupoWizardPublicPath);
 $api_config_target_dir = isset($_SESSION['lupo_api_config_target_dir']) ? (string) $_SESSION['lupo_api_config_target_dir'] : (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '' ? (string) $_SERVER['DOCUMENT_ROOT'] : LUPOPEDIA_PATH);
 if ($api_existing_config_path !== null) {
@@ -922,6 +967,12 @@ if ($step === 'api_keys') {
     $api_custom_budgets = isset($_POST['custom_provider_budget']) && is_array($_POST['custom_provider_budget']) ? $_POST['custom_provider_budget'] : (isset($_SESSION['lupo_api_custom_budgets']) && is_array($_SESSION['lupo_api_custom_budgets'] ) ? $_SESSION['lupo_api_custom_budgets'] : array());
     $api_config_target_dir = trim((string) (isset($_POST['config_target_dir']) ? $_POST['config_target_dir'] : (isset($_SESSION['lupo_api_config_target_dir']) ? $_SESSION['lupo_api_config_target_dir'] : $api_config_target_dir)));
 
+    $llm_model_post = InstallWizardLLMDefaults::parseModelPost($_POST);
+    $llm_model_values = InstallWizardLLMDefaults::buildModelsConfig($llm_model_post);
+    if (isset($_SESSION['lupo_llm_models']) && is_array($_SESSION['lupo_llm_models']) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+        $llm_model_values = InstallWizardLLMDefaults::buildModelsConfig($_SESSION['lupo_llm_models']);
+    }
+
     $api_key_mode = isset($_POST['api_key_mode']) ? trim((string) $_POST['api_key_mode']) : (isset($_SESSION['lupo_api_key_mode']) ? $_SESSION['lupo_api_key_mode'] : ((is_array($api_existing_provider_config) ? 'keep' : 'overwrite')));
     if ($api_key_mode !== 'keep' && $api_key_mode !== 'overwrite') {
         $api_key_mode = is_array($api_existing_provider_config) ? 'keep' : 'overwrite';
@@ -975,6 +1026,17 @@ if ($step === 'api_keys') {
                 $api_key_errors[] = $label . ' budget must be a number >= 0.';
             }
         }
+        $llmProviders = array('deepseek', 'gemini', 'groq', 'anthropic', 'grok', 'openai');
+        foreach ($llmProviders as $llmProvider) {
+            $tempField = 'model_' . $llmProvider . '_temperature';
+            $maxField = 'model_' . $llmProvider . '_max_tokens';
+            if (isset($_POST[$tempField]) && $_POST[$tempField] !== '' && !is_numeric($_POST[$tempField])) {
+                $api_key_errors[] = ucfirst($llmProvider) . ' temperature must be numeric.';
+            }
+            if (isset($_POST[$maxField]) && $_POST[$maxField] !== '' && (!is_numeric($_POST[$maxField]) || (int) $_POST[$maxField] < 1)) {
+                $api_key_errors[] = ucfirst($llmProvider) . ' max tokens must be an integer >= 1.';
+            }
+        }
         $db_vars = isset($_SESSION['lupo_install_db_vars']) ? $_SESSION['lupo_install_db_vars'] : null;
         if ($db_vars === null) {
             $api_key_errors[] = 'Database credentials are missing from session. Restart installer.';
@@ -1003,6 +1065,7 @@ if ($step === 'api_keys') {
         $_SESSION['lupo_api_config_target_dir'] = $api_config_target_dir;
         $_SESSION['lupo_api_fallback_order'] = implode(',', $providerOrder);
         $_SESSION['lupo_api_key_mode'] = $api_key_mode;
+        $_SESSION['lupo_llm_models'] = $llm_model_post;
 
         if (empty($api_key_errors)) {
             $writeLog = array();
@@ -1030,6 +1093,7 @@ if ($step === 'api_keys') {
             }
 
             if (empty($api_key_errors)) {
+                $modelsConfig = InstallWizardLLMDefaults::buildModelsConfig($llm_model_post);
                 $providerConfig = array(
                     'provider_order' => $providerOrder,
                     'request_class_order' => array(
@@ -1044,6 +1108,8 @@ if ($step === 'api_keys') {
                     'config_version' => '2026.04',
                     'memory_path' => '__DIR__/memory/',
                     'channels_path' => '__DIR__/channels/',
+                    'models' => $modelsConfig,
+                    'llm_defaults' => InstallWizardLLMDefaults::globalLlmDefaults(),
                     'providers' => array(
                         'anthropic' => array('enabled' => ($api_key_values['anthropic'] !== ''), 'api_key' => $api_key_values['anthropic'], 'key' => $api_key_values['anthropic'], 'budget' => (float) $api_key_values['budget_anthropic'], 'display_name' => 'Anthropic'),
                         'gemini' => array('enabled' => ($api_key_values['gemini'] !== ''), 'api_key' => $api_key_values['gemini'], 'key' => $api_key_values['gemini'], 'budget' => (float) $api_key_values['budget_gemini'], 'display_name' => 'Google Gemini'),
@@ -1090,6 +1156,14 @@ if ($step === 'api_keys') {
 
                 $configPath = InstallWizardConfigWriter::writeConfig($db_vars, $writeLog, $options);
                 if ($configPath !== null) {
+                    try {
+                        if (!isset($pdoConfig)) {
+                            $pdoConfig = InstallWizardDb::connectPdo($db_vars);
+                        }
+                        InstallWizardLLMConfigLoader::seedAgentLLMConfigs($pdoConfig, $writeLog, $table_prefix, $providerConfig);
+                    } catch (Exception $e) {
+                        $writeLog[] = InstallWizardLogger::logEntry('error', 'agent_llm_configs seed failed: ' . $e->getMessage());
+                    }
                     require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardHtaccessWriter.php';
                     InstallWizardHtaccessWriter::ensureRuntimeDirectories(LUPOPEDIA_PATH, $writeLog);
                     InstallWizardHtaccessWriter::writeDistributionHtaccess(LUPOPEDIA_PATH, $writeLog);
@@ -1116,7 +1190,7 @@ if ($step === 'complete') {
     $complete_operator_channels = is_array($tmp_map) ? count($tmp_map) : 0;
     $tmp_tables = isset($_SESSION['lupo_install_livehelp_tables']) ? $_SESSION['lupo_install_livehelp_tables'] : null;
     $complete_legacy_dropped = is_array($tmp_tables) ? count($tmp_tables) : 0;
-    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_mode_choice', 'lupo_install_mode_warning', 'lupo_install_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_run_done', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language', 'lupo_config_support_email', 'lupo_config_default_visitor_channel', 'lupo_config_enable_ai_channels', 'lupo_config_admin_password', 'lupo_api_key_anthropic', 'lupo_api_key_gemini', 'lupo_api_key_grok', 'lupo_api_key_deepseek', 'lupo_api_key_groq', 'lupo_api_key_openai', 'lupo_api_budget_anthropic', 'lupo_api_budget_gemini', 'lupo_api_budget_grok', 'lupo_api_budget_deepseek', 'lupo_api_budget_groq', 'lupo_api_budget_openai', 'lupo_api_custom_names', 'lupo_api_custom_keys', 'lupo_api_custom_budgets', 'lupo_api_config_target_dir', 'lupo_api_fallback_order', 'lupo_api_key_mode') as $k) {
+    foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_mode_choice', 'lupo_install_mode_warning', 'lupo_install_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_run_done', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language', 'lupo_config_support_email', 'lupo_config_default_visitor_channel', 'lupo_config_enable_ai_channels', 'lupo_config_admin_password', 'lupo_api_key_anthropic', 'lupo_api_key_gemini', 'lupo_api_key_grok', 'lupo_api_key_deepseek', 'lupo_api_key_groq', 'lupo_api_key_openai', 'lupo_api_budget_anthropic', 'lupo_api_budget_gemini', 'lupo_api_budget_grok', 'lupo_api_budget_deepseek', 'lupo_api_budget_groq', 'lupo_api_budget_openai', 'lupo_api_custom_names', 'lupo_api_custom_keys', 'lupo_api_custom_budgets', 'lupo_api_config_target_dir', 'lupo_api_fallback_order', 'lupo_api_key_mode', 'lupo_llm_models') as $k) {
         unset($_SESSION[$k]);
     }
     if (empty($complete_log) && LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, $lupoWizardPublicPath) !== null) {
@@ -2063,6 +2137,47 @@ if ($baseUrl === '') {
                     </div>
                     <button type="button" id="add-custom-provider" class="btn btn-secondary">Add provider</button>
                 </div>
+
+                <fieldset style="margin:1rem 0; padding:0.75rem; border:1px solid #ddd; border-radius:6px;">
+                    <legend style="padding:0 0.25rem;">LLM model configuration</legend>
+                    <p class="slug-tip">Set model names per provider and request class. These values are written to lupopedia-config.php and used to seed agent_llm_configs.</p>
+                    <?php
+                    $llmUiProviders = array(
+                        'gemini' => 'Google Gemini',
+                        'deepseek' => 'DeepSeek',
+                        'groq' => 'Groq',
+                        'anthropic' => 'Anthropic',
+                        'grok' => 'Grok xAI',
+                        'openai' => 'OpenAI',
+                    );
+                    foreach ($llmUiProviders as $llmSlug => $llmLabel):
+                        $llmRow = isset($llm_model_values[$llmSlug]) && is_array($llm_model_values[$llmSlug]) ? $llm_model_values[$llmSlug] : array();
+                        ?>
+                        <div style="border:1px solid #eee; padding:0.75rem; margin-bottom:0.75rem; border-radius:6px;">
+                            <strong><?php echo htmlspecialchars($llmLabel); ?></strong>
+                            <label>Default model
+                                <input type="text" name="model_<?php echo htmlspecialchars($llmSlug); ?>_default" value="<?php echo htmlspecialchars(isset($llmRow['default']) ? $llmRow['default'] : ''); ?>">
+                            </label>
+                            <label>Complex requests model
+                                <input type="text" name="model_<?php echo htmlspecialchars($llmSlug); ?>_complex" value="<?php echo htmlspecialchars(isset($llmRow['complex']) ? $llmRow['complex'] : ''); ?>">
+                            </label>
+                            <label>Audit requests model
+                                <input type="text" name="model_<?php echo htmlspecialchars($llmSlug); ?>_audit" value="<?php echo htmlspecialchars(isset($llmRow['audit']) ? $llmRow['audit'] : ''); ?>">
+                            </label>
+                            <label>Temperature (0-2)
+                                <input type="number" step="0.01" min="0" max="2" name="model_<?php echo htmlspecialchars($llmSlug); ?>_temperature" value="<?php echo htmlspecialchars(isset($llmRow['temperature']) ? $llmRow['temperature'] : '0.7'); ?>">
+                            </label>
+                            <label>Max tokens
+                                <input type="number" step="1" min="1" name="model_<?php echo htmlspecialchars($llmSlug); ?>_max_tokens" value="<?php echo htmlspecialchars(isset($llmRow['max_tokens']) ? $llmRow['max_tokens'] : '2048'); ?>">
+                            </label>
+                            <label style="display:block; margin-top:0.5rem;">
+                                <input type="checkbox" name="model_<?php echo htmlspecialchars($llmSlug); ?>_reasoning_mode" value="1" <?php echo (!empty($llmRow['reasoning_mode'])) ? 'checked' : ''; ?>>
+                                Prefer reasoning model when provider supports it (e.g. deepseek-reasoner)
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </fieldset>
+
                 <label>Fallback order (comma-separated provider keys)
                     <input type="text" name="fallback_order" value="<?php echo htmlspecialchars($api_key_values['fallback_order']); ?>" placeholder="gemini,deepseek,groq,anthropic,grok,openai,custom_provider">
                 </label>

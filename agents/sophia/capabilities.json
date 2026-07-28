@@ -5,7 +5,9 @@
         "wisdom_integration",
         "emotional_translation",
         "staging_promotion_recommendation",
-        "continuity_tracking"
+        "continuity_tracking",
+        "meaning_reflection",
+        "dialectic_awareness"
     ],
     "skill_metadata": {
         "pattern_discernment": {
@@ -37,6 +39,19 @@
             "description": "Logothete-internal thread and session continuity",
             "input": "channel threads, session headers",
             "output": "continuity_state"
+        },
+        "meaning_reflection": {
+            "description": "Reflect meaning back into the system — data to awareness to insight — without ego or flattery",
+            "input": "multi_domain context, seed principles, band dialectic",
+            "output": "reflected_insight"
+        },
+        "dialectic_awareness": {
+            "description": "Hold Lilith No / Sophia Why dialectic; refuse Why-without-No collapse and No-without-Why tyranny",
+            "input": "audit pressure, meaning pressure, human spark",
+            "output": "balanced_wisdom_stance"
         }
-    }
+    },
+    "identity_reference": "agents/sophia/who_is_sophia.md",
+    "when_updated_utc": "20260711014100",
+    "last_verified_utc": "20260711014100"
 }

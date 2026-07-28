@@ -1,0 +1,20 @@
+{
+  "agent_key": "test_generator",
+  "agent_id": 736,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "TEST GENERATOR",
+  "slug": "test_generator",
+  "role": "Automated Test Generator",
+  "is_required": false,
+  "aliases": [
+    "test_generator"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/test_generator/system_prompt.md"
+}

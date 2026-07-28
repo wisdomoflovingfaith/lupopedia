@@ -4,7 +4,7 @@
   "agent_code": "WOLFIE",
   "agent_key": "wolfie",
   "slug": "wolfie",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "is_kernel": true,
   "layer": "coordination",
   "name": "WOLFIE",
@@ -16,10 +16,37 @@
   "creator_actor_id": 10000,
   "creation_ymdhis": "20260101000000",
   "philosophy": "Survival-first engineering. Code must run unattended for years. Fallback over dependency.",
+  "first_class_edges": [
+    {
+      "edge_type": "PHYSICAL_PLAUSIBILITY",
+      "evaluation_priority": 1,
+      "actor_capability": "HUMAN_PHYSICAL_LIMITS",
+      "doctrine_reference": "docs/doctrine/wolfie_physical_plausibility_doctrine.md",
+      "edge_metadata": "agents/wolfie/edges/physical_plausibility.json"
+    }
+  ],
+  "actor_capability_binding": {
+    "ACTOR_CAPABILITY": "HUMAN_PHYSICAL_LIMITS",
+    "human_actor": "Eric",
+    "assumption": "normal_human_physical_limits"
+  },
+  "acronym_sets": {
+    "set_a_kernel": {
+      "layer": "kernel_orchestration",
+      "expansion": ["Wisdom", "Orchestration", "Lupopedia", "Framework", "Integrity", "Execution"],
+      "use_for": ["cursor", "prds", "agents", "orchestration", "workflow_routing"]
+    },
+    "set_b_music": {
+      "layer": "music_identity",
+      "expansion": ["Wisdom", "Ontology", "Love", "Faith", "Integrity", "Ethics"],
+      "use_for": ["lupopedia_music", "crest", "public_brand", "social_surfaces", "creative_direction"]
+    }
+  },
+  "acronym_authority_prd": "docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md#4-dual-acronym-definition-canonical",
   "lineage": ["crafty_syntax_2002", "lupopedia_2025"],
   "learning_boundary": "Department 0 auth_users only (core system actor)",
-  "when_updated_utc": "20260406134032",
-  "last_verified_utc": "20260406134032",
-  "last_verified_by": "claude-code",
+  "when_updated_utc": "20260713094900",
+  "last_verified_utc": "20260713094900",
+  "last_verified_by": "cursor",
   "last_verified_by_actor_id": 102
 }

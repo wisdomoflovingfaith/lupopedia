@@ -1,0 +1,20 @@
+{
+  "agent_key": "ontology_expander",
+  "agent_id": 753,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "ONTOLOGY EXPANDER",
+  "slug": "ontology_expander",
+  "role": "Knowledge Graph Expander",
+  "is_required": false,
+  "aliases": [
+    "ontology_expander"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/ontology_expander/system_prompt.md"
+}

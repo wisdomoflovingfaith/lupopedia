@@ -2,10 +2,11 @@
 
 /**
  * Agent Discovery System
- * 
+ *
  * Discovers and loads all agents from the agents/ directory structure.
+ * System prompts load from system_prompt.md first, then system_prompt.txt fallback.
  * This replaces the database-driven agent system with a filesystem-based approach.
- * 
+ *
  * @author Lupopedia Agent System
  * @version 1.0.0
  */
@@ -72,7 +73,10 @@ class AgentDiscovery {
         // Load additional files if they exist
         $config['capabilities'] = self::loadAgentFile($agentDir, 'capabilities.json');
         $config['properties'] = self::loadAgentFile($agentDir, 'properties.json');
-        $config['system_prompt'] = self::loadAgentFile($agentDir, 'system_prompt.txt');
+        $config['system_prompt'] = self::loadAgentFile($agentDir, 'system_prompt.md');
+        if ($config['system_prompt'] === null) {
+            $config['system_prompt'] = self::loadAgentFile($agentDir, 'system_prompt.txt');
+        }
         
         return $config;
     }

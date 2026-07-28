@@ -1,0 +1,20 @@
+{
+  "agent_key": "visualization_surface",
+  "agent_id": 756,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "VISUALIZATION SURFACE",
+  "slug": "visualization_surface",
+  "role": "Graph and Visualization Layer",
+  "is_required": false,
+  "aliases": [
+    "visualization_surface"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/visualization_surface/system_prompt.md"
+}

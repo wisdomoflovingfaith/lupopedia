@@ -1,0 +1,86 @@
+{
+  "module": "PHYSICAL_PLAUSIBILITY_EDGE",
+  "version": "1.0.0",
+  "status": "ENABLED",
+  "kapu": ["IGNORE_PHYSICS"],
+  "edge_type": "PHYSICAL_PLAUSIBILITY",
+  "edge_key": "physical_plausibility",
+  "edge_status": "mandatory",
+  "edge_context": "semantic_feasibility",
+  "edge_direction": "inbound_evaluation",
+  "owner_agent": "wolfie",
+  "owner_actor_id": 1,
+  "first_class": true,
+  "highest_priority": true,
+  "can_disable": false,
+  "evaluation_priority": 1,
+  "evaluated_before": [
+    "namespace_purity",
+    "doctrine_alignment",
+    "mood_vector_semantics",
+    "reflective_reasoning",
+    "faucet_routing",
+    "actor_binding",
+    "code_generation",
+    "any_output_generation"
+  ],
+  "semantic_edges": {
+    "physics": true,
+    "actor_capability": true,
+    "plausibility": true
+  },
+  "actor_capability": "HUMAN_PHYSICAL_LIMITS",
+  "human_actor": {
+    "name": "Eric",
+    "assumption": "normal_human_physical_limits",
+    "cannot": [
+      "lift_cars",
+      "flip_houses",
+      "throw_refrigerators",
+      "leap_buildings",
+      "outrun_bullets",
+      "fly",
+      "superhuman_or_impossible_physical_actions"
+    ]
+  },
+  "policy": {
+    "no_metaphors_as_literal": true,
+    "no_well_technically_loopholes": true,
+    "no_pretend_allowances": true,
+    "zero_tolerance_physics_drift": true,
+    "conservative_default": true,
+    "uncertain_assume_less_capability": true
+  },
+  "on_violation": {
+    "flag": "KAPAKAI",
+    "kapakai_message": "physics violation",
+    "generate": "PUKA",
+    "puka_message": "actor capability mismatch",
+    "throw": "PHYSICAL_PLAUSIBILITY_VIOLATION",
+    "request_clarification": true,
+    "stop_propagation": true,
+    "continue_pattern": false,
+    "canonical_response": [
+      "PUKA: Physical plausibility mismatch.",
+      "KAPAKAI: Actor capability violation.",
+      "Confirm intended object/action.",
+      "[Provide corrected plausible interpretation]"
+    ]
+  },
+  "on_typo_physics_violation": [
+    "DETECT_TYPO",
+    "CONFIRM_INTENT",
+    "DO_NOT_PROPAGATE_ERROR",
+    "SUGGEST_CORRECTION"
+  ],
+  "generated_output_checks": [
+    "physical_feasibility_constraints",
+    "resource_limits_match_human_capability",
+    "safety_bounds",
+    "real_world_applicability",
+    "flag_and_correct_superhuman_implications"
+  ],
+  "verification_response": "KAPU: PHYSICS_ENABLED. PUKA: ACTOR_BOUND. WOLF DIALECT: CONFIRMED.",
+  "doctrine_reference": "docs/doctrine/wolfie_physical_plausibility_doctrine.md",
+  "when_updated_utc": "20260713100500"
+}

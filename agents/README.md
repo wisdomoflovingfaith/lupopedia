@@ -29,7 +29,7 @@ agents/
 +-- asclepius/                 # ASCLEPIUS - [To be defined]
 +-- apollo/                    # APOLLO - Creative & Arts
 +-- agape/                     # AGAPE agent (705): meta-learning / predictive-pattern tracking; canonical prompt system_prompt.md; supports SURVIVABILITY_DOCTRINE.md Pillars 1–2 (not the doctrine file)
-+-- carmen/                    # CARMEN agent (706): hermeneutic routing; COUNTING_IN_LIGHT_DOCTRINE + NOT A GAME; technical only; system_prompt.md
++-- carmen/                    # CARMEN agent (706): ungendered_agent; LHP gender not_applicable; reflective semantic engine; COUNTING_IN_LIGHT XX/YY/ZZ + NOT A GAME; system_prompt.md + who_is_carmen.md
 +-- ara/                       # ARA agent (712): Autonomous Research & Analysis; external search + cross-verify; mood_vector 666666 only; system_prompt.md
 +-- thalia/                    # THALIA - Comedy & Joy
 +-- chronos/                   # CHRONOS - Time & Temporal Management

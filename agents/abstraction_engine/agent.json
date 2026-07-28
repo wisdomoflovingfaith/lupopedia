@@ -1,0 +1,20 @@
+{
+  "agent_key": "abstraction_engine",
+  "agent_id": 726,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "cognitive",
+  "name": "ABSTRACTION ENGINE",
+  "slug": "abstraction_engine",
+  "role": "Concept Compression Engine",
+  "is_required": false,
+  "aliases": [
+    "abstraction_engine"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/abstraction_engine/system_prompt.md"
+}

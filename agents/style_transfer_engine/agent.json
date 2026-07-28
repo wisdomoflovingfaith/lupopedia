@@ -1,0 +1,20 @@
+{
+  "agent_key": "style_transfer_engine",
+  "agent_id": 748,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "STYLE TRANSFER ENGINE",
+  "slug": "style_transfer_engine",
+  "role": "Writing Style Adapter",
+  "is_required": false,
+  "aliases": [
+    "style_transfer_engine"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/style_transfer_engine/system_prompt.md"
+}

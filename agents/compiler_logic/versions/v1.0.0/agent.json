@@ -1,0 +1,20 @@
+{
+  "agent_key": "compiler_logic",
+  "agent_id": 735,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "COMPILER LOGIC",
+  "slug": "compiler_logic",
+  "role": "Code Interpretation and Transformation Logic",
+  "is_required": false,
+  "aliases": [
+    "compiler_logic"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/compiler_logic/system_prompt.md"
+}

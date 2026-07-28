@@ -1,0 +1,20 @@
+{
+  "agent_key": "build_graph_manager",
+  "agent_id": 731,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "BUILD GRAPH MANAGER",
+  "slug": "build_graph_manager",
+  "role": "Dependency Graph Manager",
+  "is_required": false,
+  "aliases": [
+    "build_graph_manager"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/build_graph_manager/system_prompt.md"
+}

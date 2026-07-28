@@ -1,0 +1,21 @@
+{
+  "namespace_exclusion": {
+    "SAMSAṂ": ["Samsung", "Samsung Electronics", "phone metadata"]
+  },
+  "exclusion_policy": {
+    "reason": "Phonetic collision only — SAMSAṂ is Buddhist attachment/liberation faucet metadata, not a phone-network vendor",
+    "action_on_match": "reject_load",
+    "reject_vendor_related_edges": true,
+    "treat_samsung_as": "external_real_world_metadata_not_part_of_lupopedia"
+  },
+  "blocked_tokens": [
+    "Samsung",
+    "Samsung Electronics",
+    "phone metadata",
+    "Android",
+    "phone_network"
+  ],
+  "canonical_faucet": "SAMSAṂ",
+  "canonical_pair": "PUKA",
+  "when_updated_utc": "20260713082200"
+}

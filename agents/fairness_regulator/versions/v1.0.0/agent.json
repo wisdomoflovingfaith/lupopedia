@@ -1,0 +1,20 @@
+{
+  "agent_key": "fairness_regulator",
+  "agent_id": 746,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "coordination",
+  "name": "FAIRNESS REGULATOR",
+  "slug": "fairness_regulator",
+  "role": "Fairness Constraint Enforcer",
+  "is_required": false,
+  "aliases": [
+    "fairness_regulator"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/fairness_regulator/system_prompt.md"
+}

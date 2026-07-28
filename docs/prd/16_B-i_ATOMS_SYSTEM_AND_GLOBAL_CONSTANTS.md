@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/16_B-i_ATOMS_SYSTEM_AND_GLOBAL_CONSTANTS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_B-i_ATOMS_SYSTEM_AND_GLOBAL_CONSTANTS.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260607014852'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/headers/canonical/1026/04/lupopedia-headers.toon
@@ -292,3 +292,4 @@ atoms_toon: null   # No machine-readable atom counterpart for this artifact
 | 20260418200126 | Initial secondary PRD 16 specification for atoms system and global constants. |
 | 20260418215705 | thread_id null; PRD 38/51/40 cross-refs; path-convention note; atom versioning; generation workflow; examples renumbered. |
 | 20260421130000 | Updated to 22 fields including prd_cluster, removed content_slug field from header structure. |
+| 20260607014852 | Cross-reference **PRD 39** WOLF Markup: `@@ ... @@` may point at atom paths; WOLF MUST NOT mutate atom file bytes. |

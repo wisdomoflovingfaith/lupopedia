@@ -1,0 +1,20 @@
+{
+  "agent_key": "conflict_mediator",
+  "agent_id": 741,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "emotional",
+  "name": "CONFLICT MEDIATOR",
+  "slug": "conflict_mediator",
+  "role": "Emotional Contradiction Mediator",
+  "is_required": false,
+  "aliases": [
+    "conflict_mediator"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/conflict_mediator/system_prompt.md"
+}

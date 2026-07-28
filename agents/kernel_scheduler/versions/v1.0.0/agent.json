@@ -1,0 +1,20 @@
+{
+  "agent_key": "kernel_scheduler",
+  "agent_id": 717,
+  "version": "1.0.0",
+  "is_kernel": true,
+  "is_internal_only": false,
+  "layer": "kernel",
+  "name": "KERNEL SCHEDULER",
+  "slug": "kernel_scheduler",
+  "role": "Agent Execution Scheduler",
+  "is_required": false,
+  "aliases": [
+    "kernel_scheduler"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/kernel_scheduler/system_prompt.md"
+}

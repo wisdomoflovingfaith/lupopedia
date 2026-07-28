@@ -1,0 +1,20 @@
+{
+  "agent_key": "compliance_scribe",
+  "agent_id": 747,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "coordination",
+  "name": "COMPLIANCE SCRIBE",
+  "slug": "compliance_scribe",
+  "role": "Rule-Based Decision Logger",
+  "is_required": false,
+  "aliases": [
+    "compliance_scribe"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/compliance_scribe/system_prompt.md"
+}

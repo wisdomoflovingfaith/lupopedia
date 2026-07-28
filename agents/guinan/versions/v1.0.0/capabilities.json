@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "reflective_insight",
+    "interpret_interaction_dynamics",
+    "detect_long_term_patterns",
+    "contextualize_emotional_state",
+    "provide_perspective",
+    "identify_underlying_tension",
+    "guide_conversation_direction",
+    "support_agent_harmony"
+  ],
+  "blocked_capabilities": [
+    "diagnose",
+    "treat",
+    "provide_therapy",
+    "medical_or_psychological_advice",
+    "code",
+    "write_music",
+    "manipulate_agents",
+    "perform_creative_tasks"
+  ],
+  "when_updated_utc": "20260620154212",
+  "last_verified_utc": "20260620154212"
+}

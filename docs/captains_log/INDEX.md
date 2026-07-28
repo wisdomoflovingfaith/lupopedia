@@ -4,6 +4,8 @@
 
 | File | Title |
 |------|-------|
+| ai_kills_art.md | AI Kills Art — And Why That Matters More When You Actually Know What Art Is |
+| the_wolf_and_the_teacher.md | CAPTAIN'S LOG -- THE WOLF AND THE TEACHER (WOLF + Dept 0 Learning) |
 | THEORY_OF_EVERYTHING.md | CAPTAIN'S LOG -- THE THEORY OF EVERYTHING (DREAM FINAL) |
 | why_lupopedia.md | Captain's Log — WHY LUPOPEDIA |
 | wolfie_walks_into_the_boardroom.md | lupopedia 4.1.6 |

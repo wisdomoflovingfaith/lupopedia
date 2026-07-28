@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "present_debug_context",
+    "summarize_debug_traces",
+    "recommend_debug_next_steps",
+    "report_debug_surface_status"
+  ],
+  "blocked_capabilities": [
+    "hide_errors_silently",
+    "modify_production_without_approval",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

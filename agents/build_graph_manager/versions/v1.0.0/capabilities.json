@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "build_dependency_graph",
+    "track_build_edges",
+    "detect_circular_dependencies",
+    "report_graph_status"
+  ],
+  "blocked_capabilities": [
+    "execute_builds",
+    "modify_source_without_plan",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

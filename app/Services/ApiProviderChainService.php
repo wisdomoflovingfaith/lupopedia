@@ -175,6 +175,210 @@ class ApiProviderChainService
         return null;
     }
 
+    /**
+     * Full models map from runtime config (per provider, per request class).
+     *
+     * @return array
+     */
+    public function getModelsConfig()
+    {
+        if (isset($this->runtimeConfig['models']) && is_array($this->runtimeConfig['models'])) {
+            return $this->runtimeConfig['models'];
+        }
+        return array();
+    }
+
+    /**
+     * Resolve model name for a provider and request class.
+     *
+     * @param string $provider
+     * @param string $requestClass default|complex|audit
+     * @return string
+     */
+    public function getModelForProvider($provider, $requestClass)
+    {
+        $providerKey = is_string($provider) ? strtolower(trim($provider)) : '';
+        $classKey = is_string($requestClass) && $requestClass !== '' ? strtolower(trim($requestClass)) : 'default';
+        $models = $this->getModelsConfig();
+
+        if ($providerKey !== '' && isset($models[$providerKey]) && is_array($models[$providerKey])) {
+            $providerModels = $models[$providerKey];
+            if (isset($providerModels[$classKey]) && trim((string) $providerModels[$classKey]) !== '') {
+                return trim((string) $providerModels[$classKey]);
+            }
+            if (isset($providerModels['default']) && trim((string) $providerModels['default']) !== '') {
+                return trim((string) $providerModels['default']);
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * Ordered provider/model pairs for a request class with fallback chain.
+     *
+     * @param string $requestClass
+     * @return array list of array(provider, model)
+     */
+    public function resolveModelChain($requestClass)
+    {
+        $classKey = is_string($requestClass) && $requestClass !== '' ? $requestClass : 'default';
+        $order = $this->getProviderOrder($classKey);
+        $chain = array();
+        $count = count($order);
+        $index = 0;
+
+        while ($index < $count) {
+            $provider = $order[$index];
+            if ($this->providerIsEnabled($provider) && $this->providerHasKey($provider)) {
+                $model = $this->getModelForProvider($provider, $classKey);
+                $chain[] = array(
+                    'provider' => $provider,
+                    'model' => $model,
+                );
+            }
+            $index++;
+        }
+
+        return $chain;
+    }
+
+    /**
+     * Provider capabilities when a native adapter exists.
+     *
+     * @param string $provider
+     * @return array
+     */
+    public function getProviderCapabilities($provider)
+    {
+        $instance = $this->getProviderInstance($provider);
+        if ($instance !== null && method_exists($instance, 'getCapabilities')) {
+            return $instance->getCapabilities();
+        }
+
+        $providerKey = is_string($provider) ? strtolower(trim($provider)) : '';
+        return array(
+            'provider' => $providerKey,
+            'models' => array(),
+            'default_model' => $this->getModelForProvider($providerKey, 'default'),
+            'complex_model' => $this->getModelForProvider($providerKey, 'complex'),
+            'audit_model' => $this->getModelForProvider($providerKey, 'audit'),
+        );
+    }
+
+    /**
+     * Instantiate a registered LLM provider adapter.
+     *
+     * @param string $provider
+     * @return object|null
+     */
+    public function getProviderInstance($provider)
+    {
+        $this->ensureLlmBootstrap();
+        $providerKey = is_string($provider) ? strtolower(trim($provider)) : '';
+        if ($providerKey === '' || !isset($this->runtimeConfig['providers'][$providerKey])) {
+            return null;
+        }
+
+        $providerConfig = $this->runtimeConfig['providers'][$providerKey];
+        $modelsConfig = array();
+        if (isset($this->runtimeConfig['models'][$providerKey]) && is_array($this->runtimeConfig['models'][$providerKey])) {
+            $modelsConfig = $this->runtimeConfig['models'][$providerKey];
+        }
+
+        if (class_exists('LLMProviderFactory')) {
+            return LLMProviderFactory::create($providerKey, $providerConfig, $modelsConfig);
+        }
+
+        return null;
+    }
+
+    /**
+     * Send via provider chain with per-model fallback.
+     *
+     * @param array $messages
+     * @param array $options request_class, temperature, max_tokens, etc.
+     * @return array LLMResponse->toArray() shape plus attempt_log
+     */
+    public function sendWithModelFallback($messages, $options = array())
+    {
+        $requestClass = isset($options['request_class']) ? (string) $options['request_class'] : 'default';
+        if ($requestClass === '') {
+            $requestClass = 'default';
+        }
+
+        $chain = $this->resolveModelChain($requestClass);
+        $attemptLog = array();
+        $lastResponse = null;
+        $attemptedProviders = array();
+        $count = count($chain);
+        $index = 0;
+
+        while ($index < $count) {
+            $entry = $chain[$index];
+            $provider = isset($entry['provider']) ? $entry['provider'] : '';
+            $model = isset($entry['model']) ? $entry['model'] : '';
+            if ($provider === '') {
+                $index++;
+                continue;
+            }
+
+            $attemptedProviders[] = $provider;
+            $instance = $this->getProviderInstance($provider);
+            if ($instance === null || !method_exists($instance, 'send')) {
+                $attemptLog[] = $this->buildAttemptRecord($provider, 'skip', 'no_native_adapter', 0);
+                $index++;
+                continue;
+            }
+
+            $sendOptions = is_array($options) ? $options : array();
+            $sendOptions['request_class'] = $requestClass;
+            if ($model !== '') {
+                $sendOptions['model'] = $model;
+            }
+
+            $response = $instance->send($messages, $sendOptions);
+            if (is_object($response) && method_exists($response, 'toArray')) {
+                $responseArray = $response->toArray();
+            } else {
+                $responseArray = array('success' => false, 'error_message' => 'Invalid provider response');
+            }
+
+            $lastResponse = $responseArray;
+            $statusCode = isset($responseArray['status_code']) ? (int) $responseArray['status_code'] : 0;
+            if (!empty($responseArray['success'])) {
+                $attemptLog[] = $this->buildAttemptRecord($provider, 'ok', 'success', $statusCode);
+                $responseArray['attempt_log'] = $attemptLog;
+                return $responseArray;
+            }
+
+            $reason = isset($responseArray['error_message']) ? (string) $responseArray['error_message'] : 'provider_error';
+            $attemptLog[] = $this->buildAttemptRecord($provider, 'fail', $reason, $statusCode);
+
+            $nextProvider = $this->getNextProvider($attemptedProviders, $requestClass, array(
+                'status_code' => $statusCode,
+                'error_code' => $statusCode === 429 ? 'rate_limited' : 'provider_error',
+            ), 0.0);
+
+            if ($nextProvider === null) {
+                break;
+            }
+
+            $index++;
+        }
+
+        if ($lastResponse === null) {
+            $lastResponse = array(
+                'success' => false,
+                'error_message' => 'No LLM provider available for request class ' . $requestClass,
+                'provider' => '',
+                'model' => '',
+            );
+        }
+        $lastResponse['attempt_log'] = $attemptLog;
+        return $lastResponse;
+    }
+
     public function getProviderApiKey($provider)
     {
         $providerKey = is_string($provider) ? strtolower($provider) : '';
@@ -249,6 +453,12 @@ class ApiProviderChainService
             'config_version' => '2026.04',
             'memory_path' => null,
             'channels_path' => null,
+            'models' => $this->buildDefaultModelsConfig(),
+            'llm_defaults' => array(
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
             'providers' => array(
                 'gemini' => array(
                     'enabled' => true,
@@ -353,6 +563,17 @@ class ApiProviderChainService
             $normalized['premium_providers'] = array('openai', 'anthropic');
         }
         $normalized['premium_providers'] = $this->normalizeProviderOrder($normalized['premium_providers'], $normalized['providers'], false);
+
+        if (!isset($normalized['models']) || !is_array($normalized['models'])) {
+            $normalized['models'] = $this->buildDefaultModelsConfig();
+        }
+        if (!isset($normalized['llm_defaults']) || !is_array($normalized['llm_defaults'])) {
+            $normalized['llm_defaults'] = array(
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            );
+        }
 
         if (!isset($normalized['monthly_budget_cap_usd'])) {
             $normalized['monthly_budget_cap_usd'] = 45.0;
@@ -834,5 +1055,70 @@ class ApiProviderChainService
         }
 
         return substr($raw, 0, 4) . '...' . substr($raw, $length - 4, 4);
+    }
+
+    private function buildDefaultModelsConfig()
+    {
+        return array(
+            'deepseek' => array(
+                'default' => 'deepseek-chat',
+                'complex' => 'deepseek-reasoner',
+                'audit' => 'deepseek-reasoner',
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
+            'gemini' => array(
+                'default' => 'gemini-2.0-flash',
+                'complex' => 'gemini-2.0-flash',
+                'audit' => 'gemini-2.0-flash',
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
+            'groq' => array(
+                'default' => 'llama-3.3-70b-versatile',
+                'complex' => 'llama-3.3-70b-versatile',
+                'audit' => 'llama-3.3-70b-versatile',
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
+            'anthropic' => array(
+                'default' => 'claude-3-5-sonnet-20241022',
+                'complex' => 'claude-3-5-sonnet-20241022',
+                'audit' => 'claude-3-5-sonnet-20241022',
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
+            'grok' => array(
+                'default' => 'grok-beta',
+                'complex' => 'grok-beta',
+                'audit' => 'grok-beta',
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
+            'openai' => array(
+                'default' => 'gpt-4o-mini',
+                'complex' => 'gpt-4o',
+                'audit' => 'gpt-4o',
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
+        );
+    }
+
+    private function ensureLlmBootstrap()
+    {
+        if (class_exists('LLMProviderFactory')) {
+            return;
+        }
+        $factoryPath = $this->appBasePath . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'LLM' . DIRECTORY_SEPARATOR . 'LLMProviderFactory.php';
+        if (@is_file($factoryPath)) {
+            require_once $factoryPath;
+        }
     }
 }

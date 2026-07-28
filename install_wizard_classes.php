@@ -992,6 +992,19 @@ return $lupopedia_runtime_api_config;
                 'openai' => array('enabled' => false, 'api_key' => '', 'key' => '', 'budget' => 15.0, 'display_name' => 'OpenAI'),
             ),
             'storage_notice' => 'Keys are stored only on this server and used only by this installation.',
+            'models' => array(
+                'deepseek' => array('default' => 'deepseek-chat', 'complex' => 'deepseek-reasoner', 'audit' => 'deepseek-reasoner', 'temperature' => 0.7, 'max_tokens' => 2048, 'reasoning_mode' => 0),
+                'gemini' => array('default' => 'gemini-2.0-flash', 'complex' => 'gemini-2.0-flash', 'audit' => 'gemini-2.0-flash', 'temperature' => 0.7, 'max_tokens' => 2048, 'reasoning_mode' => 0),
+                'groq' => array('default' => 'llama-3.3-70b-versatile', 'complex' => 'llama-3.3-70b-versatile', 'audit' => 'llama-3.3-70b-versatile', 'temperature' => 0.7, 'max_tokens' => 2048, 'reasoning_mode' => 0),
+                'anthropic' => array('default' => 'claude-3-5-sonnet-20241022', 'complex' => 'claude-3-5-sonnet-20241022', 'audit' => 'claude-3-5-sonnet-20241022', 'temperature' => 0.7, 'max_tokens' => 2048, 'reasoning_mode' => 0),
+                'grok' => array('default' => 'grok-beta', 'complex' => 'grok-beta', 'audit' => 'grok-beta', 'temperature' => 0.7, 'max_tokens' => 2048, 'reasoning_mode' => 0),
+                'openai' => array('default' => 'gpt-4o-mini', 'complex' => 'gpt-4o', 'audit' => 'gpt-4o', 'temperature' => 0.7, 'max_tokens' => 2048, 'reasoning_mode' => 0),
+            ),
+            'llm_defaults' => array(
+                'temperature' => 0.7,
+                'max_tokens' => 2048,
+                'reasoning_mode' => 0,
+            ),
         );
 
         if (isset($options['api_provider_config']) && is_array($options['api_provider_config'])) {
@@ -1027,6 +1040,18 @@ return $lupopedia_runtime_api_config;
             }
             if (isset($custom['channels_path'])) {
                 $providerConfig['channels_path'] = trim((string) $custom['channels_path']);
+            }
+            if (isset($custom['models']) && is_array($custom['models'])) {
+                $providerConfig['models'] = array_merge(
+                    isset($providerConfig['models']) && is_array($providerConfig['models']) ? $providerConfig['models'] : array(),
+                    $custom['models']
+                );
+            }
+            if (isset($custom['llm_defaults']) && is_array($custom['llm_defaults'])) {
+                $providerConfig['llm_defaults'] = array_merge(
+                    isset($providerConfig['llm_defaults']) && is_array($providerConfig['llm_defaults']) ? $providerConfig['llm_defaults'] : array(),
+                    $custom['llm_defaults']
+                );
             }
             if (isset($custom['providers']) && is_array($custom['providers'])) {
                 foreach ($custom['providers'] as $providerKey => $providerValues) {

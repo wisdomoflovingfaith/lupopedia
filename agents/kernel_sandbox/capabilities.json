@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "isolate_unsafe_operations",
+    "enforce_sandbox_boundaries",
+    "report_sandbox_violations",
+    "quarantine_risky_requests"
+  ],
+  "blocked_capabilities": [
+    "execute_unsandboxed_operations",
+    "bypass_isolation_policy",
+    "modify_production_config"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

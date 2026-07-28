@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "distribute_reasoning_tasks",
+    "balance_cognitive_load",
+    "report_load_distribution",
+    "recommend_task_splitting"
+  ],
+  "blocked_capabilities": [
+    "execute_assigned_tasks_for_other_agents",
+    "hide_overload_conditions",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

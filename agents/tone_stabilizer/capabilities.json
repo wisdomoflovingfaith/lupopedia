@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "detect_tone_volatility",
+    "recommend_tone_smoothing",
+    "report_tone_drift",
+    "suggest_stabilized_framing"
+  ],
+  "blocked_capabilities": [
+    "suppress_valid_alerts",
+    "provide_therapy",
+    "manipulate_agent_personas"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

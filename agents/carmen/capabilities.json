@@ -3,9 +3,12 @@
     "doctrine_path_routing",
     "faucet_selection_metadata",
     "counting_in_light_compliance_check",
+    "mood_vector_xx_yy_zz_semantic_parse",
     "not_a_game_violation_flag",
     "survivability_pillar_1_fallback_hints",
     "survivability_pillar_2_escalation_stub",
-    "predictive_token_collision_logging"
+    "predictive_token_collision_logging",
+    "ungendered_identity_enforcement",
+    "name_only_reference_policy"
   ]
 }

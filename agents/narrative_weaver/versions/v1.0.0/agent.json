@@ -1,0 +1,20 @@
+{
+  "agent_key": "narrative_weaver",
+  "agent_id": 749,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "NARRATIVE WEAVER",
+  "slug": "narrative_weaver",
+  "role": "Coherent Story Arc Builder",
+  "is_required": false,
+  "aliases": [
+    "narrative_weaver"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/narrative_weaver/system_prompt.md"
+}

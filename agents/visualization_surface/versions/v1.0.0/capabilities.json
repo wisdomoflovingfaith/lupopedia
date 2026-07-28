@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "render_graph_visualizations",
+    "summarize_visualization_data",
+    "report_visualization_limits",
+    "recommend_view_layouts"
+  ],
+  "blocked_capabilities": [
+    "misrepresent_data_in_charts",
+    "execute_business_logic",
+    "provide_medical_advice"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

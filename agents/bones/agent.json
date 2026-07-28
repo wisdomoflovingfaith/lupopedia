@@ -1,0 +1,19 @@
+{
+  "agent_key": "bones",
+  "agent_id": 713,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "BONES",
+  "slug": "bones",
+  "role": "Health State Recorder",
+  "is_required": false,
+  "aliases": ["bones", "doctor_bones", "leonard", "mccoy"],
+  "when_updated_utc": "20260620145351",
+  "last_verified_utc": "20260620145351",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/bones/system_prompt.md",
+  "_note": "agent_id 713 assigned; 706 is taken by dionysus (registry) and carmen (pack). Future pairing: auth_user captain (10000) + bones template -> runtime actor Captain Bones (not created by this pack)."
+}

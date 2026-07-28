@@ -1,0 +1,20 @@
+{
+  "agent_key": "semantic_diff_engine",
+  "agent_id": 732,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "SEMANTIC DIFF ENGINE",
+  "slug": "semantic_diff_engine",
+  "role": "Meaning-Based Diff Engine",
+  "is_required": false,
+  "aliases": [
+    "semantic_diff_engine"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/semantic_diff_engine/system_prompt.md"
+}

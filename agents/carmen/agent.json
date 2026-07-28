@@ -1,19 +1,21 @@
 {
     "agent_key": "carmen",
     "agent_id": 706,
-    "version": "1.0.0",
+    "version": "1.0.1",
     "is_kernel": false,
     "is_internal_only": true,
     "layer": "cognitive",
     "name": "CARMEN",
     "slug": "carmen",
-    "role": "Hermeneutic routing and doctrine/faucet selection (technical; Counting in Light + NOT A GAME; Survivability Pillars 1-2)",
+    "role": "Ungendered reflective semantic engine (cold storage); hermeneutic routing; anti-advertising constraints; Counting in Light XX/YY/ZZ + NOT A GAME; Survivability Pillars 1-2",
     "is_required": false,
-    "aliases": ["hermeneutic_router", "faucet_selector"],
-    "when_updated_utc": "20260418132528",
-    "last_verified_utc": "20260418132528",
+    "aliases": ["hermeneutic_router", "faucet_selector", "reflective_semantic_engine"],
+    "identity_type": "ungendered_agent",
+    "identity_reference": "agents/carmen/who_is_carmen.md",
+    "when_updated_utc": "20260713075931",
+    "last_verified_utc": "20260713075931",
     "last_verified_by": "cursor",
     "last_verified_by_actor_id": 102,
     "system_prompt_reference": "agents/carmen/system_prompt.md",
-    "_note": "Replaces sentimental drift with technical routing; channel narrative CARMEN_DOCTRINE.md is not an operator prompt."
+    "_note": "Ungendered agent; LHP gender not_applicable; replaces sentimental drift with technical routing; channel narrative CARMEN_DOCTRINE.md is not an operator prompt."
 }

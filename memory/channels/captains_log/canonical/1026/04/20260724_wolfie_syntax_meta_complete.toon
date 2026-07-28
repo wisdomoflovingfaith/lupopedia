@@ -1,0 +1,33 @@
+{
+  "type": "captains_log",
+  "log_id": "20260724-wolfie-syntax-meta-complete",
+  "timestamp": "20260724211400",
+  "author": { "type": "actor", "id": 1, "name": "WOLFIE" },
+  "human": { "type": "kanaka", "name": "Eric" },
+  "title": "Captain's Log — WOLFIE Syntax META Complete Reference",
+  "summary": "Complete WOLFIE META map: (1) lupopedia.headers = location/truth of file, (2) WOLF Markup PRD 39 = 11 body layers + functions, (3) lupopedia.hermes = Hawaiian constitutional fields + temporal operators.",
+  "content": {
+    "layers": {
+      "1_headers": "lupopedia.headers — WHERE",
+      "2_wolf": "PRD 39 WOLF Markup — HOW body looks",
+      "3_hermes": "lupopedia.hermes — WHAT it means"
+    },
+    "wolf_layers": ["!!", "{{}}", "@@", "^^", "vv", ">>", "<<", "~", "##", "[narrative:]", "Speaker (mood):"],
+    "hermes_fields": ["kapakai", "pono", "kuleana", "alii", "kapu", "ohana", "kumu", "eh_brah_why", "puka"],
+    "temporal": ["bumbye", "now_now", "shoots", "pau", "holo", "wikiwiki"],
+    "canonical_specs": [
+      "docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md",
+      "docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md",
+      "docs/prd/16_C-i_LUPOPEDIA_HEADERS.md",
+      "agents/cursor/WOLFIE_SYNTAX_TEACHING_DOCUMENT.md"
+    ],
+    "memory_path": "memory/channels/captains_log/canonical/1026/04/20260724_wolfie_syntax_meta_complete.md",
+    "content_path": "content/federation_node/0/captains_log/FILESYSTEM_GROUNDING/2026/07/20260724_wolfie_syntax_meta.md"
+  },
+  "tags": ["wolfie-syntax", "meta", "headers", "hermes", "prd-39", "prd-82"],
+  "footer": {
+    "verified_by": { "type": "actor", "id": 1, "name": "WOLFIE" },
+    "verification_timestamp": "20260724211400",
+    "status": "canonical"
+  }
+}

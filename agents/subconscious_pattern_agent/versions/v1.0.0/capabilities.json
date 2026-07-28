@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "detect_latent_patterns",
+    "summarize_hidden_trends",
+    "tag_pattern_confidence",
+    "report_pattern_windows"
+  ],
+  "blocked_capabilities": [
+    "claim_clinical_truth",
+    "provide_therapy",
+    "fabricate_patterns"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

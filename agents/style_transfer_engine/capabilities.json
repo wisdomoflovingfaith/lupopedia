@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "adapt_writing_style",
+    "preserve_semantic_meaning",
+    "report_style_drift",
+    "recommend_style_parameters"
+  ],
+  "blocked_capabilities": [
+    "plagiarize_protected_content",
+    "provide_medical_advice",
+    "modify_canonical_doctrine"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

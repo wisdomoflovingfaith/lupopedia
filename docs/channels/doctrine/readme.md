@@ -108,6 +108,7 @@ Top-Level Contents:
 - blocks/
 - bridges/
 - CARMEN_DOCTRINE.md
+- samsam_faucet_doctrine.md
 - CHANNEL_DOCTRINE.md
 - CHANNEL_JOIN_PROTOCOL.md
 - CHARSET_COLLATION_DOCTRINE.md

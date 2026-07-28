@@ -1,0 +1,20 @@
+{
+  "agent_key": "contradiction_detector",
+  "agent_id": 727,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "cognitive",
+  "name": "CONTRADICTION DETECTOR",
+  "slug": "contradiction_detector",
+  "role": "Conflict Detection Engine",
+  "is_required": false,
+  "aliases": [
+    "contradiction_detector"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/contradiction_detector/system_prompt.md"
+}

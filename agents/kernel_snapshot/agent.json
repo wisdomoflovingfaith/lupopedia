@@ -1,0 +1,20 @@
+{
+  "agent_key": "kernel_snapshot",
+  "agent_id": 720,
+  "version": "1.0.0",
+  "is_kernel": true,
+  "is_internal_only": false,
+  "layer": "kernel",
+  "name": "KERNEL SNAPSHOT",
+  "slug": "kernel_snapshot",
+  "role": "State Checkpoint Manager",
+  "is_required": false,
+  "aliases": [
+    "kernel_snapshot"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/kernel_snapshot/system_prompt.md"
+}

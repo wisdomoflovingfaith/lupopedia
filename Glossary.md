@@ -322,11 +322,14 @@ A structurally inconsistent or misaligned system state.
 **Lupopedia Constitutional Meaning:**
 Official field describing a broken, uneven, incomplete, or unstable condition.
 
+**Physical plausibility:** When WOLFIE detects an input that does not match actor capability (`HUMAN_PHYSICAL_LIMITS`), KAPAKAI is flagged together with PUKA. See `docs/doctrine/wolfie_physical_plausibility_doctrine.md`.
+
 **Example:**
 
 ```yaml
 KAPAKAI:
   - "Headers incomplete"
+  - "Input does not match actor capability"
 ```
 
 ---
@@ -545,6 +548,26 @@ Pilau is defined relative to alignment failure, not physical corruption alone.
 
 ---
 
+## PHYSICAL_PLAUSIBILITY
+
+**Lupopedia Meaning:**
+First-class semantic edge owned by WOLFIE. Evaluates whether user statements, actions, examples, and hypotheses are physically feasible for the human actor before other semantic layers.
+
+**Binding:** `ACTOR_CAPABILITY = HUMAN_PHYSICAL_LIMITS`
+
+**On violation:**
+
+```text
+PUKA: Physical plausibility mismatch detected.
+KAPAKAI: Input does not match actor capability.
+Please confirm intended object/action.
+```
+
+**Doctrine:** `docs/doctrine/wolfie_physical_plausibility_doctrine.md`  
+**Edge metadata:** `agents/wolfie/edges/physical_plausibility.json`
+
+---
+
 ## Pilikia
 
 **Traditional Meaning:**
@@ -597,11 +620,16 @@ A measurable structural absence or missing dependency.
 **Lupopedia Constitutional Meaning:**
 Official field representing deterministic gaps.
 
+**Emotional architecture:** Doctrinal pair of **SAMSAṂ** (attachment / liberation faucet). PUKA belongs with SAMSAṂ for structural gap / attachment analysis. Never associate this pair with Samsung or phone-network vendor metadata.
+
+**Physical plausibility:** WOLFIE generates PUKA when a physical-plausibility mismatch is detected (`PHYSICAL_PLAUSIBILITY` edge). Canonical lead line: `PUKA: Physical plausibility mismatch detected.`
+
 **Example:**
 
 ```yaml
 PUKA:
   - "missing_atoms_toon"
+  - "Physical plausibility mismatch detected"
 ```
 
 ---
@@ -617,6 +645,24 @@ Okay; confirmed; proceed.
 
 **Lupopedia Meaning:**
 Acknowledgment and workflow approval signal.
+
+---
+
+## SAMSAṂ
+
+**Lupopedia Meaning:**
+Buddhist attachment / clinging / liberation emotional faucet (Carmen plugin). Domain: `EMO_ATTACHMENT`.
+
+**Doctrinal pair:** PUKA only (structural gap / attachment analysis).
+
+**Critical Doctrine Rule:**
+Any similarity to "Samsung" is phonetic only and must be ignored by all agents and loaders. Samsung, Android, and phone-network metadata are external real-world data — not part of Lupopedia.
+
+```json
+"forbid_vendor_collision": ["Samsung", "Android", "phone_network"]
+```
+
+**Doctrine:** `docs/channels/doctrine/samsam_faucet_doctrine.md`
 
 ---
 

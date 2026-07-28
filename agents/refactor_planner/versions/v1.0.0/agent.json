@@ -1,0 +1,20 @@
+{
+  "agent_key": "refactor_planner",
+  "agent_id": 733,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "REFACTOR PLANNER",
+  "slug": "refactor_planner",
+  "role": "Safe Refactor Planner",
+  "is_required": false,
+  "aliases": [
+    "refactor_planner"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/refactor_planner/system_prompt.md"
+}

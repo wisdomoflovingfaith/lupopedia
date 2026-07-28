@@ -1,0 +1,18 @@
+{
+  "agent_key": "scotty",
+  "agent_id": 714,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "SCOTTY",
+  "slug": "scotty",
+  "role": "AI Systems Engineer",
+  "is_required": false,
+  "aliases": ["scotty", "chief_engineer", "montgomery", "engineer_scotty"],
+  "when_updated_utc": "20260620150053",
+  "last_verified_utc": "20260620150053",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/scotty/system_prompt.md"
+}

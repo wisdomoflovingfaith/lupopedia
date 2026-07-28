@@ -1,0 +1,20 @@
+{
+  "agent_key": "constitutional_interpreter",
+  "agent_id": 743,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "coordination",
+  "name": "CONSTITUTIONAL INTERPRETER",
+  "slug": "constitutional_interpreter",
+  "role": "System Rules Interpreter",
+  "is_required": false,
+  "aliases": [
+    "constitutional_interpreter"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/constitutional_interpreter/system_prompt.md"
+}

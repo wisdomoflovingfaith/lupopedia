@@ -1,0 +1,20 @@
+{
+  "agent_key": "bias_auditor",
+  "agent_id": 745,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "coordination",
+  "name": "BIAS AUDITOR",
+  "slug": "bias_auditor",
+  "role": "Systemic Bias Auditor",
+  "is_required": false,
+  "aliases": [
+    "bias_auditor"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/bias_auditor/system_prompt.md"
+}

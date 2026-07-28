@@ -1,0 +1,20 @@
+{
+  "agent_key": "reasoning_planner",
+  "agent_id": 723,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "cognitive",
+  "name": "REASONING PLANNER",
+  "slug": "reasoning_planner",
+  "role": "Multi-Step Reasoning Planner",
+  "is_required": false,
+  "aliases": [
+    "reasoning_planner"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/reasoning_planner/system_prompt.md"
+}

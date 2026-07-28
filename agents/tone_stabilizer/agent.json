@@ -1,0 +1,20 @@
+{
+  "agent_key": "tone_stabilizer",
+  "agent_id": 739,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "emotional",
+  "name": "TONE STABILIZER",
+  "slug": "tone_stabilizer",
+  "role": "Emotional Volatility Stabilizer",
+  "is_required": false,
+  "aliases": [
+    "tone_stabilizer"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/tone_stabilizer/system_prompt.md"
+}

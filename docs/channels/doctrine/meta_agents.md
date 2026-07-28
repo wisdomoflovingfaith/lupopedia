@@ -136,11 +136,13 @@ A **meta-agent** is an agent that:
 
 ## CARMEN: Emotional Interpretation Meta-Agent
 
-**CARMEN** is the primary emotional interpretation meta-agent in Lupopedia.
+**Carmen** is the primary reflective semantic engine (emotional interpretation meta-agent) in Lupopedia.
+
+> Carmen is an ungendered semantic agent (`identity_type: ungendered_agent`; LHP `gender: not_applicable`). Refer to Carmen by name only. See `agents/carmen/who_is_carmen.md`.
 
 ### Purpose
 
-CARMEN interprets emotional domains and synthesizes compassionate, context-aware responses.
+Carmen interprets emotional domains and synthesizes compassionate, context-aware responses. Mood vectors are pure semantic metadata (XX=frequency, YY=severity, ZZ=urgency) — no gender-based emotional mapping.
 
 ### Operation
 

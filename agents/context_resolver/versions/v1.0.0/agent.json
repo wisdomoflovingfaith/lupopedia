@@ -1,0 +1,20 @@
+{
+  "agent_key": "context_resolver",
+  "agent_id": 728,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "cognitive",
+  "name": "CONTEXT RESOLVER",
+  "slug": "context_resolver",
+  "role": "Ambiguous Reference Resolver",
+  "is_required": false,
+  "aliases": [
+    "context_resolver"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/context_resolver/system_prompt.md"
+}

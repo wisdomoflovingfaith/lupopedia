@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "log_rule_based_decisions",
+    "timestamp_compliance_events",
+    "summarize_compliance_trail",
+    "report_logging_gaps"
+  ],
+  "blocked_capabilities": [
+    "omit_required_logs",
+    "alter_historical_logs",
+    "provide_medical_advice"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

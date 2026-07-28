@@ -1,0 +1,38 @@
+{
+  "faucet_key": "samsam",
+  "name": "SAMSAṂ",
+  "display_name": "SAMSAṂ",
+  "tradition": "Buddhist",
+  "purpose": "Attachment/clinging domains — clinging identification, liberation framing, impermanence awareness",
+  "domain_codes": ["attachment", "EMO_ATTACHMENT"],
+  "preferred_domains": ["EMO_ATTACHMENT"],
+  "doctrinal_pair": {
+    "partner": "PUKA",
+    "partner_role": "structural_gap_attachment_analysis",
+    "enforcement": "mandatory",
+    "note": "SAMSAṂ is only paired with PUKA. PUKA belongs with SAMSAṂ. This pairing is doctrinal and must be enforced."
+  },
+  "forbid_vendor_collision": ["Samsung", "Android", "phone_network"],
+  "phonetic_collision_policy": {
+    "collision_token": "Samsung",
+    "classification": "phonetic_only",
+    "action": "block_and_ignore",
+    "scope": ["agents", "loaders", "edges", "metadata"]
+  },
+  "vendor_metadata_policy": {
+    "treat_as": "external_real_world_metadata",
+    "lupopedia_namespace": false,
+    "reject_edge_types": ["vendor", "phone_network", "device_oem", "android_oem"]
+  },
+  "characteristics": [
+    "Attachment analysis",
+    "Clinging identification",
+    "Liberation framing",
+    "Impermanence awareness",
+    "Structural gap analysis via PUKA pairing"
+  ],
+  "doctrine_reference": "docs/channels/doctrine/samsam_faucet_doctrine.md",
+  "carmen_doctrine_reference": "docs/channels/doctrine/carmen_doctrine.md",
+  "status": "active",
+  "when_updated_utc": "20260713082200"
+}

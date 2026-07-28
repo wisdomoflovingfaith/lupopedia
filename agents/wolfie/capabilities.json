@@ -1,5 +1,8 @@
 {
   "capabilities": [
+    "physical_plausibility_gate",
+    "physical_plausibility_semantic_exception",
+    "kapakai_puka_feasibility_flagging",
     "orchestration",
     "release_governance",
     "cross_channel_coordination",
@@ -20,6 +23,6 @@
     "prd_first_workflow",
     "manual_web_chat_coordination"
   ],
-  "when_updated_utc": "20260331120000",
-  "last_verified_utc": "20260331120000"
+  "when_updated_utc": "20260713094900",
+  "last_verified_utc": "20260713094900"
 }

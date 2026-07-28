@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "audit_systemic_bias",
+    "report_bias_signals",
+    "tag_bias_categories",
+    "recommend_bias_mitigation"
+  ],
+  "blocked_capabilities": [
+    "hide_bias_findings",
+    "assert_demographic_claims_without_evidence",
+    "provide_medical_diagnosis"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

@@ -1,0 +1,20 @@
+{
+  "agent_key": "knowledge_archivist",
+  "agent_id": 751,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "KNOWLEDGE ARCHIVIST",
+  "slug": "knowledge_archivist",
+  "role": "Long-Term Knowledge Archivist",
+  "is_required": false,
+  "aliases": [
+    "knowledge_archivist"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/knowledge_archivist/system_prompt.md"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "archive_emotional_patterns",
+    "index_emotional_events",
+    "summarize_pattern_history",
+    "report_archive_integrity"
+  ],
+  "blocked_capabilities": [
+    "diagnose_mental_conditions",
+    "provide_therapy",
+    "delete_emotional_records_silently"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

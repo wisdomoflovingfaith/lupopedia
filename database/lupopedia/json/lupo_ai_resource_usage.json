@@ -1,0 +1,28 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only \u2014 column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_ai_resource_usage",
+  "fields": [
+    "`id` bigint unsigned NOT NULL",
+    "`actor_name` varchar(128) NOT NULL",
+    "`cpu_percent` tinyint unsigned",
+    "`memory_mb` int unsigned",
+    "`disk_io_mb` int unsigned",
+    "`network_latency_ms` int unsigned",
+    "`recorded_at` datetime NOT NULL"
+  ],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "id",
+    "expected_name": "id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

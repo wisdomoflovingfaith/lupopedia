@@ -1,0 +1,20 @@
+{
+  "agent_key": "persona_harmonizer",
+  "agent_id": 740,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "emotional",
+  "name": "PERSONA HARMONIZER",
+  "slug": "persona_harmonizer",
+  "role": "Multi-Persona Output Aligner",
+  "is_required": false,
+  "aliases": [
+    "persona_harmonizer"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/persona_harmonizer/system_prompt.md"
+}

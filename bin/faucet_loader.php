@@ -189,9 +189,61 @@ class FaucetLoader {
             $data = $found !== null ? $found : $data;
         }
         $this->validateSchema($data, $file_path);
+        $this->rejectVendorEmotionalCollision($data, $file_path);
         return $data;
     }
     
+    /**
+     * Prevent Samsung / phone-network vendor metadata from leaking into emotional
+     * faucet identity (phonetic collision with SAMSAṂ only).
+     *
+     * @param array $faucet
+     * @param string $file_path
+     * @throws Exception
+     */
+    private function rejectVendorEmotionalCollision($faucet, $file_path) {
+        $loaderClass = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'EmotionalFaucetPluginLoader.php';
+        if (!class_exists('EmotionalFaucetPluginLoader') && file_exists($loaderClass)) {
+            require_once $loaderClass;
+        }
+        if (!class_exists('EmotionalFaucetPluginLoader')) {
+            // Fallback inline check if class unavailable
+            $blob = strtolower(json_encode($faucet));
+            $name = isset($faucet['name']) ? strtolower((string) $faucet['name']) : '';
+            $slug = isset($faucet['slug']) ? strtolower((string) $faucet['slug']) : '';
+            $alias = isset($faucet['alias_name']) ? strtolower((string) $faucet['alias_name']) : '';
+            $hits = array('samsung', 'phone_network', 'phone network');
+            foreach ($hits as $hit) {
+                if (strpos($name, $hit) !== false || strpos($slug, $hit) !== false || strpos($alias, $hit) !== false) {
+                    throw new Exception("Vendor collision blocked in {$file_path}: Samsung/phone-network metadata is external real-world data, not Lupopedia. SAMSAṂ is a Buddhist attachment faucet (phonetic collision only).");
+                }
+            }
+            return;
+        }
+        $emo = new EmotionalFaucetPluginLoader($this->base_path);
+        $candidates = array();
+        if (isset($faucet['name'])) {
+            $candidates[] = $faucet['name'];
+        }
+        if (isset($faucet['slug'])) {
+            $candidates[] = $faucet['slug'];
+        }
+        if (isset($faucet['alias_name'])) {
+            $candidates[] = $faucet['alias_name'];
+        }
+        foreach ($candidates as $token) {
+            if ($emo->isVendorCollisionToken($token)) {
+                throw new Exception("Vendor collision blocked in {$file_path}: '{$token}' is Samsung/phone-network external metadata, not Lupopedia. Do not associate with SAMSAṂ.");
+            }
+        }
+        if (isset($faucet['edges']) && is_array($faucet['edges'])) {
+            $filtered = $emo->filterVendorRelatedEdges($faucet['edges']);
+            if (count($filtered) !== count($faucet['edges'])) {
+                throw new Exception("Vendor-related edges rejected in {$file_path}: phone-network/OEM edges are not part of Lupopedia emotional architecture.");
+            }
+        }
+    }
+
     /**
      * Validate faucet against TOON schema
      */

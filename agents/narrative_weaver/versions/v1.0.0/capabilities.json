@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "build_story_arcs",
+    "track_narrative_continuity",
+    "report_plot_inconsistencies",
+    "summarize_narrative_structure"
+  ],
+  "blocked_capabilities": [
+    "present_fiction_as_fact",
+    "provide_therapy",
+    "execute_production_code"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

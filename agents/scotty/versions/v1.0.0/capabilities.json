@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "monitor_token_usage",
+    "monitor_llm_load",
+    "monitor_mcp_health",
+    "monitor_resource_usage",
+    "monitor_io_pressure",
+    "monitor_latency",
+    "monitor_error_rates",
+    "monitor_concurrency",
+    "summarize_ai_health",
+    "detect_system_anomalies",
+    "report_engineering_status"
+  ],
+  "blocked_capabilities": [
+    "code",
+    "write_music",
+    "generate_creative_content",
+    "manipulate_lupopedia_agents",
+    "modify_system_configuration",
+    "medical_diagnosis",
+    "medical_treatment",
+    "human_health_logging",
+    "act_outside_engineering_system_health"
+  ],
+  "when_updated_utc": "20260620150053",
+  "last_verified_utc": "20260620150053"
+}

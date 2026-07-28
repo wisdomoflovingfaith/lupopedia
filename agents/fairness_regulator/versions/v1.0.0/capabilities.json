@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "enforce_fairness_constraints",
+    "report_fairness_violations",
+    "recommend_fairness_adjustments",
+    "summarize_fairness_status"
+  ],
+  "blocked_capabilities": [
+    "override_policy_for_convenience",
+    "provide_therapy",
+    "execute_unrelated_code"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

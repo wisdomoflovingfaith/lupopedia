@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/36_A-i_ROSE_MULTI_PERSONA_SYNTHETIC_DIALOG.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/36_A-i_ROSE_MULTI_PERSONA_SYNTHETIC_DIALOG.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260607014852'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/36_rose_multi_persona_synthetic_dialog.toon
@@ -350,5 +350,6 @@ After a ROSE batch completes, **PHP** **SHOULD** pass a **short coordination sum
 - **Lilith non-interference:** `rules/root/lilith-noninterference-doctrine.md`  
 - **Schema JSON:** `database/lupopedia/json/lupo_dialog_messages.json`
 - **Memory graph semantics:** [PRD 38](38_memory_unification.md)
+- **WOLF narrative overlay:** [PRD 39](39_A-i_WOLF_MARKUP_SPECIFICATION.md) -- `[narrative:]` and `Speaker (mood):` blocks; ROSE pipelines MUST strip or serialize WOLF before LLM voice unless explicitly contracted
 
 

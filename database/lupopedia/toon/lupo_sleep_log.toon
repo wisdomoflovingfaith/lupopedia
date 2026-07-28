@@ -1,0 +1,22 @@
+_comment: THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
+_purpose: "Schema reference only \u2014 column names, types, indexes. Contains NO\
+  \ data."
+_source: Generated from live database by generate_toon_files.py
+_read_only: true
+table_name: lupo_sleep_log
+fields:
+- '`id` bigint unsigned NOT NULL'
+- '`sleep_start` datetime NOT NULL'
+- '`sleep_end` datetime'
+- '`sleep_quality` tinyint unsigned'
+- '`notes` text'
+indexes: []
+primary_key:
+  column_name: id
+  expected_name: id
+  is_correct: true
+  needs_rename: false
+doctrine_metadata:
+  no_foreign_keys: true
+  no_triggers: true
+relationships: []

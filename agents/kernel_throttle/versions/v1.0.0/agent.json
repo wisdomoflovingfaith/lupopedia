@@ -1,0 +1,20 @@
+{
+  "agent_key": "kernel_throttle",
+  "agent_id": 722,
+  "version": "1.0.0",
+  "is_kernel": true,
+  "is_internal_only": false,
+  "layer": "kernel",
+  "name": "KERNEL THROTTLE",
+  "slug": "kernel_throttle",
+  "role": "Load Shedding and Rate Limiter",
+  "is_required": false,
+  "aliases": [
+    "kernel_throttle"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/kernel_throttle/system_prompt.md"
+}

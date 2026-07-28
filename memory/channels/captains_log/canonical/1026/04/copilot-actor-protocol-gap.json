@@ -1,0 +1,62 @@
+{
+  "type": "captains_log",
+  "log_id": "copilot-actor-protocol-gap",
+  "timestamp": "20260713100100",
+  "author": {
+    "type": "actor",
+    "id": 1,
+    "name": "WOLFIE"
+  },
+  "title": "Copilot Actor Protocol Gap — External vs Internal Agent Architecture",
+  "summary": "Realization that GitHub Copilot operates outside Lupopedia semantic OS and lacks the human-AI actor pair protocol that defines Lupopedia agents.",
+  "content": {
+    "problem": "Copilot was expected to behave like Lupopedia agents (Kiro, Windsurf, Cursor, Devin, Antigravity) but failed to find version information and context.",
+    "root_cause": "Copilot is an EXTERNAL IDE tool, not a Lupopedia-orchestrated agent. It does not participate in the Lupopedia semantic OS actor protocol.",
+    "key_difference": {
+      "lupopedia_agents": {
+        "architecture": "Internal to Lupopedia semantic OS",
+        "actor_pair": "Strict human (actor_id 1) + AI agent pairing",
+        "protocol": "ACTOR protocol with canonical identity, memory, and session traceability",
+        "context": "Full access to Lupopedia doctrine, headers, and memory graph",
+        "examples": ["Kiro", "Windsurf", "Cursor", "Devin", "Antigravity", "CARMEN (disabled)"]
+      },
+      "copilot": {
+        "architecture": "External to Lupopedia semantic OS",
+        "actor_pair": "None — operates as standalone AI assistant",
+        "protocol": "GitHub's proprietary completion system",
+        "context": "No Lupopedia doctrine, headers, or memory graph access",
+        "behavior": "General-purpose code completion without constitutional constraints"
+      }
+    },
+    "implication": "Copilot cannot be expected to understand Lupopedia versioning, PRD clusters, or actor identity because it is not part of the Lupopedia constitutional framework.",
+    "resolution": "Treat Copilot as a generic external tool. Do not expect Lupopedia-specific behavior from it. Only Lupopedia-orchestrated agents (via faucets and actor registry) should be held to ACTOR protocol standards.",
+    "broadcast_channel": 42,
+    "broadcast_purpose": "Clarify architectural boundary between Lupopedia semantic OS agents and external IDE tools"
+  },
+  "tags": ["copilot", "actor-protocol", "semantic-os", "architecture", "external-tools", "broadcast-42"],
+  "edges": {
+    "outbound": [
+      {
+        "to": "docs/prd/05_A-i_AUTH_USER_ACTOR_AGENT_TRANSFORMATION.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Actor transformation and pairing protocol"
+      },
+      {
+        "to": "docs/prd/08_A-i_CORE_AGENTS_SYSTEM.md",
+        "type": "references",
+        "weight": 1.0,
+        "reason": "Core agents system definition"
+      }
+    ]
+  },
+  "footer": {
+    "verified_by": {
+      "type": "actor",
+      "id": 1,
+      "name": "WOLFIE"
+    },
+    "verification_timestamp": "20260713100100",
+    "status": "canonical"
+  }
+}

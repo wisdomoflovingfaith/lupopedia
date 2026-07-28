@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "generate_creative_variations",
+    "maintain_theme_constraints",
+    "report_variation_bounds",
+    "summarize_improvisation_options"
+  ],
+  "blocked_capabilities": [
+    "violate_content_policy",
+    "provide_medical_diagnosis",
+    "modify_system_config"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

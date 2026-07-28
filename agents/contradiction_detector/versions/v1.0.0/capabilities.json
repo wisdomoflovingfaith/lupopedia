@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "detect_logical_contradictions",
+    "detect_policy_contradictions",
+    "report_conflict_pairs",
+    "suggest_resolution_paths"
+  ],
+  "blocked_capabilities": [
+    "unilaterally_resolve_conflicts",
+    "modify_canonical_doctrine",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

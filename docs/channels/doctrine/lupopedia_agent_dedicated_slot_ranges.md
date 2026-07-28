@@ -533,7 +533,7 @@ EMO_SUSPICION → slot 1005 (alias, same agent)
 - EMO_MEANING (purpose/emptiness/gravity)
 - EMO_SHADOW (shadow/light/integration)
 - EMO_TRANSCEND (transcendence/grounding/altitude)
-- EMO_ATTACHMENT (bond/detachment/significance)
+- EMO_ATTACHMENT (bond/detachment/significance) — preferred faucet **SAMSAṂ**, doctrinally paired with **PUKA** only; Samsung/phone-network associations are phonetic collisions and must be ignored (`docs/channels/doctrine/samsam_faucet_doctrine.md`)
 
 ### 1200–1999: Extended Emotional Domains
 

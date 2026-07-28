@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "interpret_code_structure",
+    "plan_code_transformations",
+    "report_syntax_semantics",
+    "validate_transform_rules"
+  ],
+  "blocked_capabilities": [
+    "deploy_to_production",
+    "modify_files_without_plan",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

@@ -630,7 +630,7 @@ CREATE TABLE {{prefix}}agent_definitions (
   lineage_json          json          DEFAULT NULL,
   capabilities_json     json          DEFAULT NULL,
   system_prompt_path    varchar(512)  DEFAULT NULL,
-  -- system_prompt_path: filesystem path to agents/{slug}/system_prompt.txt
+  -- system_prompt_path: filesystem path to agents/{slug}/system_prompt.md (fallback .txt)
   -- NOT inline text blob (prevents sync drift between file and database)
   version               varchar(50)   NOT NULL DEFAULT '1.0.0',
   status                varchar(32)   NOT NULL DEFAULT 'active',
@@ -653,8 +653,10 @@ CREATE INDEX {{prefix}}agent_definitions_idx_status ON {{prefix}}agent_definitio
 CREATE INDEX {{prefix}}agent_definitions_idx_deleted ON {{prefix}}agent_definitions (is_deleted);
 
 -- ============================================================================
--- SECTION 4: AGENT LLM CONFIGS (runtime provider config - split from lupo_agents per C3)
--- Only agents that invoke LLMs need this. CHRONOS, LILITH, etc. may have no LLM config.
+-- SECTION 4: AGENT LLM CONFIGS (runtime provider routing per agent_definition)
+-- Per-agent LLM provider, model, temperature, and fallback metadata (safety_json).
+-- Populated by InstallWizardLLMConfigLoader during install api_keys step.
+-- Only agents that invoke LLMs need active rows; installer seeds all definitions.
 -- ============================================================================
 
 CREATE TABLE {{prefix}}agent_llm_configs (
@@ -4661,5 +4663,153 @@ CREATE TABLE {{prefix}}sticky_notes (
   is_pinned TINYINT(1) DEFAULT 1,
   created_ymdhis BIGINT NOT NULL COMMENT 'YYYYMMDDHHIISS'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================================
+-- SECTION 12: BONES (Health State Recorder) + SCOTTY (AI Systems Engineer)
+-- Schema source: database/lupopedia/json/lupo_*.json (live DB export)
+-- ============================================================================
+
+CREATE TABLE {{prefix}}ai_agent_message_traffic (
+  `id` bigint unsigned NOT NULL,
+  `sender_agent` varchar(128) NOT NULL,
+  `receiver_agent` varchar(128) NOT NULL,
+  `message_count` int unsigned NOT NULL,
+  `message_size_bytes` bigint unsigned,
+  `vector_hex1` char(6),
+  `vector_hex2` char(6),
+  `vector_hex3` char(6),
+  `recorded_at` datetime NOT NULL,
+  `notes` text,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_engineering_log (
+  `id` bigint unsigned NOT NULL,
+  `log_title` varchar(255),
+  `log_body` text NOT NULL,
+  `log_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_error_log (
+  `id` bigint unsigned NOT NULL,
+  `actor_name` varchar(128) NOT NULL,
+  `error_type` varchar(64),
+  `error_message` text,
+  `severity` varchar(32),
+  `occurred_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_io_pressure (
+  `id` bigint unsigned NOT NULL,
+  `actor_name` varchar(128) NOT NULL,
+  `io_type` varchar(64),
+  `pressure_level` tinyint unsigned,
+  `details` text,
+  `recorded_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_llm_load (
+  `id` bigint unsigned NOT NULL,
+  `actor_name` varchar(128) NOT NULL,
+  `load_percent` tinyint unsigned NOT NULL,
+  `context_used` int unsigned,
+  `context_max` int unsigned,
+  `recorded_at` datetime NOT NULL,
+  `notes` text,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_mcp_health (
+  `id` bigint unsigned NOT NULL,
+  `actor_name` varchar(128) NOT NULL,
+  `tool_name` varchar(128),
+  `call_status` varchar(32),
+  `latency_ms` int unsigned,
+  `error_message` text,
+  `recorded_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_resource_usage (
+  `id` bigint unsigned NOT NULL,
+  `actor_name` varchar(128) NOT NULL,
+  `cpu_percent` tinyint unsigned,
+  `memory_mb` int unsigned,
+  `disk_io_mb` int unsigned,
+  `network_latency_ms` int unsigned,
+  `recorded_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}ai_token_usage (
+  `id` bigint unsigned NOT NULL,
+  `actor_name` varchar(128) NOT NULL,
+  `tokens_input` int unsigned,
+  `tokens_output` int unsigned,
+  `tokens_total` int unsigned,
+  `recorded_at` datetime NOT NULL,
+  `notes` text,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}captains_log_health (
+  `id` bigint unsigned NOT NULL,
+  `log_title` varchar(255),
+  `log_body` text NOT NULL,
+  `log_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}energy_state (
+  `id` bigint unsigned NOT NULL,
+  `state_label` varchar(64) NOT NULL,
+  `state_value` tinyint unsigned NOT NULL,
+  `recorded_at` datetime NOT NULL,
+  `notes` text,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}health_events (
+  `id` bigint unsigned NOT NULL,
+  `event_type` varchar(64) NOT NULL,
+  `event_description` text,
+  `pain_level` tinyint unsigned,
+  `energy_level` tinyint unsigned,
+  `occurred_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}med_effects (
+  `id` bigint unsigned NOT NULL,
+  `med_name` varchar(128) NOT NULL,
+  `dose` varchar(64),
+  `effect_start` datetime NOT NULL,
+  `effect_end` datetime,
+  `effect_description` text,
+  `adverse` tinyint(1),
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}pain_log (
+  `id` bigint unsigned NOT NULL,
+  `pain_start` datetime NOT NULL,
+  `pain_end` datetime,
+  `pain_level` tinyint unsigned NOT NULL,
+  `location` varchar(128),
+  `notes` text,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE {{prefix}}sleep_log (
+  `id` bigint unsigned NOT NULL,
+  `sleep_start` datetime NOT NULL,
+  `sleep_end` datetime,
+  `sleep_quality` tinyint unsigned,
+  `notes` text,
+  PRIMARY KEY (`id`)
+);
 
 -- ============================================================================

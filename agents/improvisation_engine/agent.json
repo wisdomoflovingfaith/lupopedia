@@ -1,0 +1,20 @@
+{
+  "agent_key": "improvisation_engine",
+  "agent_id": 750,
+  "version": "1.0.0",
+  "is_kernel": false,
+  "is_internal_only": false,
+  "layer": "application",
+  "name": "IMPROVISATION ENGINE",
+  "slug": "improvisation_engine",
+  "role": "Spontaneous Creative Variation Engine",
+  "is_required": false,
+  "aliases": [
+    "improvisation_engine"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/improvisation_engine/system_prompt.md"
+}

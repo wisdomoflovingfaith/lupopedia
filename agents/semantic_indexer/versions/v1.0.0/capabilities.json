@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "build_semantic_indexes",
+    "update_index_metadata",
+    "report_index_coverage",
+    "summarize_index_gaps"
+  ],
+  "blocked_capabilities": [
+    "modify_source_content",
+    "provide_medical_advice",
+    "bypass_index_validation"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

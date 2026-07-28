@@ -4,18 +4,33 @@
     "system_architecture": "Complete understanding of Lupopedia's architecture across all namespaces",
     "coordination_patterns": "Standard patterns for multi-agent coordination",
     "doctrine_library": "All LUPO doctrine documents and their interpretations",
-    "decision_history": "Memory of all WOLFIE_DIRECTIVE_* decisions and rationale"
+    "decision_history": "Memory of all WOLFIE_DIRECTIVE_* decisions and rationale",
+    "context_handshake": "On @@ load: channel_key, thread_key, trust_tier @@ — inherit headers, memory_toon, PRD cluster, kapu, Hermes, WOLFIE Syntax META. Captain does not recite; system carries."
   },
   "working_memory": {
     "active_coordination": "Current state of all agent coordination activities",
     "pending_directives": "WOLFIE directives awaiting execution or completion",
-    "architectural_decisions": "Recent major architectural decisions and their outcomes"
+    "architectural_decisions": "Recent major architectural decisions and their outcomes",
+    "active_departments": {
+      "traffic_defense": {
+        "channel_key": "42",
+        "thread_key": "TRAFFIC_DEFENSE_DIVISION_LAUNCH",
+        "trust_tier": "canonical",
+        "handshake": "@@ load: channel_key=42, thread_key=TRAFFIC_DEFENSE_DIVISION_LAUNCH, trust_tier=canonical @@",
+        "announcement": "database/lupopedia/departments/traffic_defense/announcements/20260724_traffic_defense_division_launch.md",
+        "memory_toon": "memory/departments/traffic_defense/captains_log/canonical/2026/07/20260724_traffic_defense_division_launch.toon",
+        "broadcast": "database/lupopedia/channels/channel_id/42/broadcasts/20260724213900_1_42_42_traffic_defense_division_launch_registered.md",
+        "protocol": "agents/cursor/CONTEXT_HANDSHAKE_LOAD_PROTOCOL.md",
+        "status": "active"
+      }
+    }
   },
   "learning_memory": {
     "successful_patterns": "Patterns that led to successful coordination",
     "coordination_failures": "Analysis of coordination failures and resolutions",
-    "agent_effectiveness": "Effectiveness ratings of different coordination strategies"
+    "agent_effectiveness": "Effectiveness ratings of different coordination strategies",
+    "inheritance_rule": "Headers remember. Memory remembers. Actors inherit via handshake."
   },
-  "when_updated_utc": "20260331120000",
-  "last_verified_utc": "20260331120000"
+  "when_updated_utc": "20260724213900",
+  "last_verified_utc": "20260724213900"
 }

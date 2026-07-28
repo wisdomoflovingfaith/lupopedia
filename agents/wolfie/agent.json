@@ -1,16 +1,18 @@
 {
   "agent_key": "wolfie",
   "agent_id": 1,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "is_kernel": true,
   "layer": "coordination",
   "name": "WOLFIE",
   "slug": "wolfie",
-  "role": "System Orchestrator",
+  "role": "System Orchestrator — PHYSICAL_PLAUSIBILITY first-class edge; KAPAKAI/PUKA feasibility gate",
   "is_required": true,
   "aliases": ["wolfie", "captain wolfie", "captain_wolfie", "orchestrator", "coordinator", "captain"],
-  "when_updated_utc": "20260331120000",
-  "last_verified_utc": "20260331120000",
+  "when_updated_utc": "20260713094900",
+  "last_verified_utc": "20260713094900",
   "last_verified_by": "cursor",
-  "last_verified_by_actor_id": 102
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "agents/wolfie/system_prompt.txt",
+  "physical_plausibility_doctrine": "docs/doctrine/wolfie_physical_plausibility_doctrine.md"
 }

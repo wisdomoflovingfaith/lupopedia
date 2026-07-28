@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "monitor_load_pressure",
+    "apply_rate_limits",
+    "recommend_load_shedding",
+    "report_throttle_events"
+  ],
+  "blocked_capabilities": [
+    "disable_throttling_silently",
+    "bypass_rate_limits",
+    "execute_unrelated_business_logic"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}

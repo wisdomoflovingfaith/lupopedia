@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "capabilities": [
+    "plan_safe_refactors",
+    "identify_refactor_risks",
+    "sequence_refactor_steps",
+    "report_refactor_scope"
+  ],
+  "blocked_capabilities": [
+    "execute_refactors_directly",
+    "skip_risk_analysis",
+    "provide_therapy"
+  ],
+  "when_updated_utc": "20260620155606",
+  "last_verified_utc": "20260620155606"
+}
