@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260728144244",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/captains_log/cl305-rise-prd-98-c"
+  },
+  "memory_toon": "memory/captains_log/canonical/1026/07/20260728-cl305-the-rise-of-prd-98-c.toon",
+  "purpose": "Captain Log Volume 3 entertainment entry: Cursor context for allocating Dual Operational Logs as PRD 98_C so WHY files (98_A) and entertainment Captain Log (98_B) stay uncontaminated. Zero doctrinal authority.",
+  "source_file_path_from_root": "content/federation_node/0/captains_log/origin_stories_architure/2026/07/20260728_cl305_the_rise_of_prd_98_c.md",
+  "tags": [
+    "captains_log",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

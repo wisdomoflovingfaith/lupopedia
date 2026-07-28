@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.lupopedia.com/lupopedia/src/logging/wolfie_log_schema.json",
+  "title": "Lupopedia WOLFIE Operational Log",
+  "type": "object",
+  "required": [
+    "header",
+    "type",
+    "log_id",
+    "wolfie_id",
+    "actor_id",
+    "timestamp_ymdhis",
+    "thread_id",
+    "observation",
+    "state",
+    "analysis",
+    "recommendations",
+    "alerts"
+  ],
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "PRD 16 twenty-two field Lupopedia constitutional header"
+    },
+    "type": { "const": "wolfie_log" },
+    "log_id": { "type": "string" },
+    "wolfie_id": { "type": "string", "const": "Wolfie" },
+    "actor_id": { "type": "integer", "const": 1 },
+    "timestamp_ymdhis": {
+      "type": "string",
+      "pattern": "^[0-9]{14}$",
+      "description": "Canonical packed UTC YYYYMMDDHHIISS"
+    },
+    "timestamp_iso": {
+      "type": "string",
+      "description": "Optional ISO-8601 UTC display derived from timestamp_ymdhis"
+    },
+    "thread_id": { "type": "string" },
+    "observation": { "type": "string" },
+    "state": { "type": "string" },
+    "analysis": { "type": "string" },
+    "recommendations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "alerts": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

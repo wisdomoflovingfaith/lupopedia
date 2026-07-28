@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/05_A-i_AUTH_USER_ACTOR_AGENT_TRANSFORMATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/05_A-i_AUTH_USER_ACTOR_AGENT_TRANSFORMATION.md
   status: active
-  when_updated: '20260514175543'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/05_auth_user_actor_agent_transformation.toon
@@ -113,6 +113,10 @@ Use **`lupo_auth_user_departments`** and **`lupo_actor_departments`** (not a sin
 4. **Auth users** are linked to departments via **`lupo_auth_user_departments`** (users can be in multiple departments).
 5. **Web session** chooses an allowed **`actor_id`** from the intersection of (user-s departments) and (actor-s departments), subject to **`web_restrict_act_as_creator_or_root`** and admin bypass rules in PHP.
 6. **Optional:** **`lupo_actor_auth_users`** records explicit bindings for operators imported from Crafty or created in admin.
+
+**Clarification (normative):** Web act-as eligibility is **department intersection first** (`lupo_auth_user_departments` x `lupo_actor_departments`). **`lupo_actor_auth_users` is supplementary** (explicit binding / audit / Crafty import / admin) -- it is **not** required for every department-scoped hybrid session. Confirm default pairing seed IDs against install/seed and registry before implementation; do not invent IDs from onboarding prose alone.
+
+**Actors Collection companion:** [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) (maturity language is metaphor; this PRD remains authority for the transformation chain).
 
 ## Why This Model?
 - Enables human/AI co-training, multi-user actor evolution, department-scoped access, agent autonomy, actor specialization, clean audit trails, and future multi-agent orchestration.

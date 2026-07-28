@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: what_is_lupopedia.md
   web_path: https://www.lupopedia.com/lupopedia/what_is_lupopedia.md
   status: active
-  when_updated: "20260726142446"
+  when_updated: "20260728021358"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/07/what-is-lupopedia.toon
@@ -41,7 +41,7 @@ It is the constitutional successor to **Crafty Syntax Live Help** (programming l
 
 | Role | Identity | Notes |
 |------|----------|-------|
-| Human Captain | Eric Robin Gerdes -- **actor_id 10000** | Human authority (ALII). Paired operator auth commonly **auth_user_id 10000** (seed admin). Reserved **auth_user_id 0** is constitutional root auth (PRD 01) -- **not** the same as actor_id 1. |
+| Human Captain | Eric Robin Gerdes -- **actor_id 10000** | Human authority (ALII). Paired operator auth commonly **auth_user_id 10000** (seed admin). Reserved **auth_user_id 0** is a root auth convention (not doctrine-defined in PRD 01) -- **not** the same as actor_id 1. |
 | WOLFIE | **actor_id 1** | AI System Orchestrator. Coordinates agents, doctrine, and architecture. Directed by the human; does not become the human. |
 
 **Actors never merge identities.** No variant actors (`*_banned`, `*_test`, `wolfie_human`). Identity is permanent; state is mutable (CONVERGENCE doctrine). Facets (Cursor 102, etc.) execute; they do not absorb actor_id 1 or 10000.
@@ -54,10 +54,10 @@ Normative field semantics live in **PRD 82_B** (and related Hermes docs) and **P
 
 | Field | Meaning |
 |-------|---------|
-| **OHANA** | The family of actors bound to shared truth and lineage for this work. |
-| **KAPU** | Sacred / hard boundaries that MUST NOT be crossed. |
+| **OHANA** | The family of actors bound to shared truth and lineage for this work. Members are accountable to each other and to the doctrine. |
+| **KAPU** | Sacred / hard boundaries that MUST NOT be crossed. Violation of KAPU triggers review and potential actor suspension. |
 | **KAPAKAI** | Semantic confusion or problem state requiring correction. |
-| **PUKA** | Structural gap in meaning, sequence, or architecture (deterministic gap, not vibes). |
+| **PUKA** | Structural gap in meaning, sequence, or architecture (deterministic gap, not vibes). All PUKA entries must be tracked in PRD 49 or similar gap resolution process. |
 | **PONO** | Correctness, balance, and the intended right outcome. |
 | **KULEANA** | Responsibility and role -- who must carry the work. |
 | **ALII** | Human authority (Eric). Not interchangeable with WOLFIE (actor_id 1). |
@@ -83,6 +83,11 @@ ASCII note: field token is **ALII** (ASCII). Do not use non-ASCII apostrophe for
 2. Agents and faucets advise or execute; they do **not** replace actor identity.
 3. Do not merge actor identities. Do not treat a faucet as a primary persona.
 
+**Capability boundaries:**
+- Auth user CANNOT act directly -- must delegate to actor
+- Agent CANNOT bind to auth_user_id directly
+- Faucet CANNOT become a primary persona
+
 Full model: **PRD 05**, **PRD 07**, **PRD 15**, **PRD 41**, identity-layers doctrine.
 
 ---
@@ -106,6 +111,19 @@ Full model: **PRD 05**, **PRD 07**, **PRD 15**, **PRD 41**, identity-layers doct
 
 **WOLF Markup has zero constitutional authority.** It is decorative overlay for narrative and human readability. Decoration does **not** equal runtime permission. Strip WOLF before constitutional ingest unless a tool explicitly declares WOLF-aware parsing. Public summaries MUST state this (see this file + PRD 39).
 
+**WOLF dialect basics (decorative overlay only):**
+- `@@ target @@` — Reference pointer (e.g., `@@ load: path=file.md @@`)
+- `^^ text ^^` — Elevate / emphasis
+- `~ text ~` — Draft / fuzzy (single tilde)
+- `{{ text }}` — Kinetic / motion
+- `!! text !!` — Force / urgency
+- `<< function_name(args) >>` — Function annotation (non-executable by default)
+- `Speaker (mood):` — Dialogue block with emotional shading
+- `[narrative: ...]` — Scene direction
+- `## ... ##` — Structural meta (not Markdown heading)
+
+All WOLF markers are ASCII-only. Stripping all WOLF MUST yield the same canonical text. Full spec: PRD 39.
+
 ---
 
 ## 6. Volume 1 vs Volume 2 (documented decision)
@@ -115,7 +133,7 @@ Full model: **PRD 05**, **PRD 07**, **PRD 15**, **PRD 41**, identity-layers doct
 | **Volume 1** | Architecture -- structure, rules, doctrine, PRDs, this file | Normative when backed by PRDs |
 | **Volume 2** | Emergent semantic / narrative environment -- what humans experience when the architecture is aligned; Captain's Log / Patreon storytelling | **Narrative / entertainment**; **PRD 98_B** = zero doctrinal authority |
 
-**Decision (UTC 20260726142446):** Agents MAY use Volume 1 / Volume 2 as optional human framing. Agents MUST NOT treat Volume 2 as a second constitution. Agents MUST NOT invent alternate Volume mappings. If unsure, prefer PRD text over Volume labels.
+**Decision (UTC 20260726142446):** Agents MAY use Volume 1 / Volume 2 as optional human framing. Agents MUST NOT treat Volume 2 as a second constitution. Agents MUST NOT invent alternate Volume mappings. If unsure, prefer PRD text over Volume labels. Agents that treat Volume 2 as doctrine will be flagged for KAPAKAI review.
 
 ---
 
@@ -149,7 +167,7 @@ The system does **not** "wake up." It does **not** have consciousness or literal
 
 - **Name freeze:** **Traffic Defense** only. Do **not** rename to "Traffic Research."
 - Filesystem + Channel 42 artifacts **exist** (announcement, broadcast, memory_toon, handshake).
-- **PRD 25** full ACL/seed registration is **pending**.
+- **PRD 25** full ACL/seed registration is **pending**. Target: July 30, 2026 for proposal submission. September 1, 2026 for merge.
 - Proposal: [`docs/prd_proposals/25_B-i_TRAFFIC_DEFENSE_DIVISION.md`](docs/prd_proposals/25_B-i_TRAFFIC_DEFENSE_DIVISION.md) (header `trust_tier: development`; **body authority = proposal only** until merge)
 - Do **not** invent a seeded `lupo_departments` row from this explanation alone.
 - Kapu: do not blur Traffic Defense analysis with OS constitutional execution; external AI = guests.
@@ -186,6 +204,8 @@ Paths:
 
 - [GAS_STATION_INTO.md](GAS_STATION_INTO.md)
 - [README.md](README.md) section 1
+- [docs/actors/how_wolves_are_made.md](docs/actors/how_wolves_are_made.md) -- Actors Collection: wolf maturity, training, hard-gate handshake
+- [docs/index.md](docs/index.md) -- Actors Collection index
 - [docs/prd/00_B-i_SYSTEM_CANONICAL_EXPLANATION.md](docs/prd/00_B-i_SYSTEM_CANONICAL_EXPLANATION.md)
 - [docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md](docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md)
 - [docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md](docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md)
@@ -202,3 +222,5 @@ Paths:
 ```
 
 After load, answer from this file + cited PRDs. Do not invent a fifth answer.
+
+**KAPU:** Do **not** invent `channel_key` / `thread_key` when unknown. Do **not** require LILITH to approve before every response -- LILITH is a **non-interfering** reviewer (LIL001). Lilith audits; she does not gate ordinary execution.

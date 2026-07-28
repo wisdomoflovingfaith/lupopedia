@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md
   status: active
-  when_updated: '20260726142446'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/41_captain_wolfie_identity.toon
@@ -132,7 +132,7 @@ Lupopedia is two things at once: a **semantic operating system** and a **mythic,
 | PRDs, agent registry, orchestration, validators, IDE prompts | Set A (Kernel) |
 | Lupopedia Music, crest, social posts, music identity, Captain's Log creative layer | Set B (Music / Identity) |
 
-**Clarification (pointer):** **Lupopedia Music = Set B identity layer.** It is **not** a seeded `lupo_departments` row and is **not** a department ACL unless/until a dedicated department PRD exists. Do not invent a Music department from Set B branding. Agent-facing summary: [`what_is_lupopedia.md`](../../what_is_lupopedia.md).
+**Clarification (pointer):** **Lupopedia Music = Set B identity layer.** It is **not** a seeded `lupo_departments` row and is **not** a department ACL unless/until a dedicated department PRD exists. Do not invent a Music department from Set B branding. Agent-facing summary: [`what_is_lupopedia.md`](../../what_is_lupopedia.md). Actors Collection companion (dual acronym + training): [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md).
 
 Section 6 (conduct) aligns with Set B pillars where they overlap with operator expectations. Set A governs technical orchestration behavior.
 
@@ -267,6 +267,7 @@ Identity enforcement SHOULD be referenced by **PRD 86** (header / immune system)
 | **98_A** | WHY Files (violation rationale) |
 | **98_B** | Captain's Log (personal narrative) |
 | Root what-is | [`what_is_lupopedia.md`](../../what_is_lupopedia.md) -- canonical agent explanation; Music = Set B identity layer (not department ACL) |
+| Actors Collection | [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) -- wolf maturity, Dept 0 learning, hard-gate (LIL001 non-gating) |
 
 Proposals (non-normative): `docs/prd_proposals/39_WOLF_MAINTENANCE_COMMANDMENTS.md`, `docs/prd_proposals/UNIVERSAL_PRD_ROUTING_DIRECTIVE.md`
 

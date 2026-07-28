@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.8"
+  header_format_version: "4.1.9"
   path_from_lupopedia_root: docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/82_hermes_routing_header.toon
@@ -16,9 +16,9 @@ lupopedia.headers:
   federation_node_id: 0
   thread_key: null
   lupopedia.schema: prd
-  prd_cluster: 00_A-i_16_B-i_16_C-i_82_A-i_82_B-i
+  prd_cluster: 00_A-i_16_B-i_16_C-i_41_A-i_82_A-i_82_B-i
   title: 'PRD 82_Z: HERMES Routing Header and Hawaiian Semantics'
-  summary: Canonical specification for lupopedia.hermes routing header, Hawaiian semantic fields, temporal operators, and pidgin language safety layer.
+  summary: Canonical specification for lupopedia.hermes routing header, Hawaiian semantic fields, temporal operators, and pidgin language safety layer. Added section 7 External AI Routing (EXTERNAL_BOUNDARY_EDGE).
 ---
 # PRD 82_Z: HERMES Routing Header and Hawaiian Semantics
 
@@ -45,6 +45,17 @@ Domain (node)
 **Required warning (normative where channels are defined):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them.
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
+
+### Actors Collection context vectors (not Hermes required fields)
+
+The Actors Collection handbook describes thirteen intersecting **onboarding** vectors (WHO, WHAT, WHERE, WHEN, WHY, HOW, DO, DIRECTIVES, FOCUS, DEPARTMENT, DIVISION, CHANNEL, THREAD). That grid is **Actors Collection vocabulary** ([`docs/actor_handbook.md`](../actor_handbook.md), [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md)).
+
+**Normative boundaries:**
+
+- Those thirteen vectors are **not** automatic additional required fields in every `lupopedia.hermes` envelope.
+- **DEPARTMENT** vs **DIVISION** normative home is **PRD 25** (department = formal ACL/seed when present; division = functional grouping that may exist without a seeded department).
+- This PRD remains authority for Hermes Hawaiian fields, routing envelope, and channel/thread containment.
+- A separate "Dimensional Memory System" PRD remains proposal-only until allocated via PRD 84 and approved.
 
 ## Purpose
 
@@ -646,7 +657,71 @@ kapu: "Error occurred"        # Single string, not array
 
 ---
 
-## 7. Implementation Contract
+## 7. External AI Routing (EXTERNAL_BOUNDARY_EDGE)
+
+**External AI surfaces** (Copilot, DeepSeek, Gemini, Claude, Grok, GLM, etc.) are **NOT** internal Lupopedia OS agents.
+
+### External AI Status in HERMES
+
+**External AI surfaces:**
+- Do **NOT** join the Lupopedia OS
+- Do **NOT** bind to actor_id
+- Do **NOT** receive Channel 42 broadcasts
+- Do **NOT** run WOLF dialect as a live runtime
+- MAY understand, teach, compose, and hand off WOLFIE Syntax when asked
+- Are **guests** with read-only context access
+
+### External AI HERMES Envelope Rules
+
+**When external AI surfaces generate HERMES envelopes:**
+
+- `from_actor` MUST be set to the external AI identifier (e.g., "copilot", "deepseek")
+- `to_actor` MUST be an internal agent (e.g., "wolfie", "lilith") for handoff
+- `visibility` MUST be set to "external"
+- `kapakai` MUST describe the problem or request from external context
+- `pono` MUST describe the desired outcome for internal agents to execute
+- `kuleana` MUST be assigned to an internal agent (external AI cannot execute OS tasks)
+- `alii` MUST be an internal agent (external AI has no constitutional authority)
+- `kumu` MAY cite external teaching documents (e.g., `agents/cursor/WOLFIE_SYNTAX_TEACHING_DOCUMENT.md`)
+
+### External AI Handoff Protocol
+
+**When external AI surfaces need to hand off to internal agents:**
+
+```yaml
+lupopedia.hermes:
+  from_actor: "copilot"  # External AI identifier
+  to_actor: "wolfie"     # Internal agent for execution
+  visibility: "external"
+  kapakai: "External AI cannot execute OS-level task. Context provided."
+  pono: "Internal agent executes task with provided context."
+  kuleana: "wolfie"      # Internal agent responsibility
+  alii: "wolfie"         # Internal agent authority
+  kumu: "agents/cursor/WOLFIE_SYNTAX_TEACHING_DOCUMENT.md"
+```
+
+### Semantic Collision Prevention
+
+**Internal agents MUST NOT:**
+- Route OS-level tasks to external AI surfaces
+- Treat external AI surfaces as internal actors
+- Grant external AI surfaces constitutional authority
+- Add external AI surfaces to internal agent registry vocabulary
+
+**External AI surfaces MUST NOT:**
+- Claim actor_id binding
+- Claim Channel 42 broadcast receipt
+- Claim OS execution privileges
+- Modify constitutional fields without internal agent handoff
+
+### Reference
+
+See `agents/cursor/COPILOT_EXTERNAL_BOUNDARY.md` for full external boundary protocol.
+See `agents/cursor/WOLFIE_SYNTAX_TEACHING_DOCUMENT.md` for external AI teaching document.
+
+---
+
+## 8. Implementation Contract
 
 ### HERMES Implementation Contract for Semantic Fields
 
@@ -686,6 +761,7 @@ kapu: "Error occurred"        # Single string, not array
 - **[PRD 82_E-i](docs/prd/82_E-i_HERMES_IMPLEMENTATION_CONTRACT.md)** -- PHP implementation contract
 - **[PRD 16_C-i](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md)** -- Lupopedia header implementation details
 - **[PRD 50](docs/prd/50_A-i_AGENT_COORDINATION_PROTOCOL.md)** -- Agent coordination protocol
+- **[PRD 39](docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md)** -- WOLF Markup overlay in free-text handoffs; `<< ... >>` invocations and `>> ... >>` flow tokens are not substitutes for required `lupopedia.hermes` fields
 
 ---
 

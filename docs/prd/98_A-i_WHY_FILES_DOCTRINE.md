@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/98_A-i_WHY_FILES_DOCTRINE.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/98_A-i_WHY_FILES_DOCTRINE.md
   status: active
-  when_updated: '20260514175543'
+  when_updated: '20260728131310'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/prd/canonical/1026/04/98-why-files-doctrine.toon
@@ -339,6 +339,7 @@ See PRD 57_A for the complete Self-Teaching Loop protocol.
 - **PRD 00_A ??10** - Original Reactive WHY Protocol
 - **PRD 00_C** - Constitutional system requirements
 - **PRD 86** - Immune System (optional reference for security patterns)
+- **PRD 39** - WOLF Markup overlay; validators MUST strip WOLF layers before constitutional text comparison (see PRD 39 Section 3.3)
 
 ## Section 7: WHY File Lifecycle
 
@@ -349,6 +350,8 @@ See PRD 57_A for the complete Self-Teaching Loop protocol.
 5. **Archival**: Resolved WHY files retained for pattern analysis
 
 ## Section 8: Integration with Validators
+
+WHY file bodies MAY include WOLF Markup (**PRD 39**) for human-readable incident narration. Immune-system and header validators MUST apply WOLF strip rules before comparing body text to constitutional requirements. The `~~ ... ~~` layer marks draft root-cause language until a WHY file is published.
 
 Validators MUST follow this ordered flow:
 1. **DETECT violation** - Identify validation failure
@@ -665,6 +668,22 @@ If the WHY file is invalid:
 * AGAPE MUST request clarification before proceeding
 
 No actor, agent, validator, or automation may correct a violation by editing code or files before AGAPE requirements are satisfied.
+
+---
+
+## EH_BRAH_WHY vs WHY files (clarification)
+
+- **`eh_brah_why`** (Hermes / Hawaiian field, PRD 82_B) -- deeper causal reasoning field on routed artifacts; not slogans.
+- **WHY files** (`docs/why/`, this PRD) -- formal AGAPE violation / causal-chain artifacts with technical authority when complete.
+- **`questions_toon`** in Lupopedia headers -- optional Q&A sidecar pointer; it is **not** a substitute for a WHY file when AGAPE requires one.
+
+Actors Collection companion: [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) (training / maturity language is metaphor; this PRD remains authority for WHY files).
+
+### Dual operational logs are not WHY files (PRD 98_C)
+
+Structured Captain + WOLFIE operational logs live under `docs/logs/YYYY/MM/DD/` and are specified in **[`98_C-i_DUAL_OPERATIONAL_LOGS.md`](98_C-i_DUAL_OPERATIONAL_LOGS.md)**.
+
+Do **not** store AGAPE violation causal chains in `docs/logs/`. Do **not** overwrite this PRD 98_A file with dual-log architecture. Entertainment Captain's Log remains **PRD 98_B**.
 
 ---
 

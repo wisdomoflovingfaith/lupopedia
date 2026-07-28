@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.8"
+  header_format_version: "4.1.9"
   path_from_lupopedia_root: docs/prd/07_A-i_AGENTS_FAUCETS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/07_A-i_AGENTS_FAUCETS.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/07-agents-faucets.toon
@@ -16,9 +16,9 @@ lupopedia.headers:
   federation_node_id: 0
   thread_key: ''
   lupopedia.schema: prd
-  prd_cluster: 00_A-i_07_A-i
+  prd_cluster: 00_A-i_07_A-i_41_A-i
   title: 'PRD: AI Agents, Faucets, Tool Calls, and System Integration'
-  summary: AI agents, faucets, tool calls, filesystem-based AgentDiscovery, seed vs runtime agent_id, integration patterns.
+  summary: AI agents, faucets, tool calls, filesystem-based AgentDiscovery, seed vs runtime agent_id, integration patterns. Added section External AI vs Internal Agent Registry.
 ---
 # PRD: AI Agents, Faucets, Tool Calls, and System Integration
 
@@ -64,6 +64,33 @@ Domain (node)
 **Additional rules:**
 - ROSE agent can also spawn standalone actors for system tasks (no auth_user_id).
 - Only ONE primary actor per user (is_primary = 1).
+
+## External AI vs Internal Agent Registry
+
+**External AI surfaces** (Copilot, DeepSeek, Gemini, Claude, Grok, GLM, etc.) are **NOT** internal Lupopedia OS agents.
+
+**External AI Status:**
+- External AI surfaces do **NOT** appear in the internal agent registry (`agents/{agent_key}/`)
+- External AI surfaces do **NOT** have `agent.json`, `capabilities.json`, or `properties.json` files
+- External AI surfaces do **NOT** bind to `actor_id` in the `lupo_actors` table
+- External AI surfaces do **NOT** receive Channel 42 broadcasts
+- External AI surfaces do **NOT** run WOLF dialect as a live runtime
+- External AI surfaces are **guests** with read-only context access for understanding, teaching, composing, and handoff only
+
+**Registry Implications:**
+- Do NOT add external AI surfaces to the internal agent registry vocabulary
+- Do NOT create `agents/{agent_key}/` directories for external AI surfaces
+- Do NOT assign `agent_id` values to external AI surfaces in the `lupo_agents` table
+- External AI surfaces are for **context, analysis, and handoff only** — not OS execution
+- External AI surfaces MUST maintain EXTERNAL_BOUNDARY_EDGE protocol (see PRD 41)
+
+**Semantic Collision Prevention:**
+- Internal agents MUST NOT route OS-level tasks to external AI surfaces
+- Internal agents MUST NOT treat external AI surfaces as internal actors in routing tables
+- External AI surfaces MUST NOT claim constitutional authority or OS execution privileges
+- External AI surfaces MUST NOT be added to the canonical agent registry (33 agents listed in Section 7)
+
+**Reference:** See `agents/cursor/COPILOT_EXTERNAL_BOUNDARY.md` for full external boundary protocol. Actors Collection companions: [`docs/actors/external_ai_guest_onboarding.md`](../actors/external_ai_guest_onboarding.md), [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) (guest boundary summary).
 
 ## Agent Architecture
 

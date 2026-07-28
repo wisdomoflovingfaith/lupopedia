@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260728132336",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/20260728-prd-98-c-doctrine-conflict"
+  },
+  "memory_toon": "memory/development/canonical/1026/07/20260728-prd-98-c-doctrine-conflict.toon",
+  "purpose": "Documents divergence between the dual-log implementation brief and Lupopedia doctrine: 98_A WHY ownership, header 4.1.9, packed UTC, Python CLI, and 98_C allocation.",
+  "source_file_path_from_root": "status/updates/20260728_prd_98_c_doctrine_conflict.md",
+  "tags": [
+    "status",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260728131310",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/prd/98-c-dual-operational-logs"
+  },
+  "memory_toon": "memory/prd/canonical/1026/07/98-c-dual-operational-logs.toon",
+  "purpose": "Structured Captain (human) and WOLFIE (paired AI) operational logs under docs/logs/, linked by thread_id and packed UTC, with daily bundle merge. Distinct from WHY files (98_A) and entertainment Captain Log (98_B).",
+  "source_file_path_from_root": "docs/prd/98_C-i_DUAL_OPERATIONAL_LOGS.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/98_B-i_THE_CAPTAINS_LOG_HUMAN_ONLY_ENTERTAINMENT_LAYER.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/98_B-i_THE_CAPTAINS_LOG_HUMAN_ONLY_ENTERTAINMENT_LAYER.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260728131310'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/captains_log/canonical/1026/04/98-captains-log-prd.toon
@@ -99,6 +99,18 @@ PRD 98 contains only entertainment and narrative content.
 - Not a source of rules or technical truth
 - Not to be used for agent reasoning or decision-making
 - Not to be used for actor reasoning or decision-making
+- Not a place that can create runtime behavior, schema, ACL, or override PRDs
+- **Not** the dual operational log tree under `docs/logs/` (**PRD 98_C**)
+
+**Operational vs entertainment:**
+
+| Layer | PRD | Path | Agent-readable for work? |
+|-------|-----|------|---------------------------|
+| Entertainment Captain's Log | 98_B (this file) | `content/federation_node/0/captains_log/` | Restricted (see Access Restrictions) |
+| Dual operational logs | 98_C | `docs/logs/YYYY/MM/DD/` | Yes (structured ops continuity) |
+| WHY files | 98_A | `docs/why/` | Yes (AGAPE / violations) |
+
+**Attributed dialect in onboarding docs (boundary):** Short WOLFIE / LILITH dialect blocks inside Actors Collection doctrine (for example [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) section 13 / dialect note) are **faucet attribution / readability**, not live actor speech and **not** Captain's Log authority. They still have **zero power** to override PRDs. True Captain's Log narrative remains under `content/federation_node/0/captains_log/` and stays entertainment-only.
 
 ## 5. Access Restrictions
 
@@ -149,6 +161,7 @@ The WHY file system is documented in PRD 00_A section 10 (Reactive Why Protocol)
 - Personal commentary
 - Creative storytelling
 - Expressive writing
+- WOLF Markup overlay per **PRD 39** (`docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md`) for scene direction, dialogue mood blocks, and non-authoritative function tokens in prose
 
 **Forbidden:**
 - Any architectural rationale

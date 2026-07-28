@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.lupopedia.com/lupopedia/src/logging/captain_log_schema.json",
+  "title": "Lupopedia Captain Operational Log",
+  "type": "object",
+  "required": [
+    "header",
+    "type",
+    "log_id",
+    "captain_id",
+    "actor_id",
+    "timestamp_ymdhis",
+    "thread_id",
+    "intent",
+    "context",
+    "decision",
+    "reasoning",
+    "emotional_state",
+    "next_actions"
+  ],
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "PRD 16 twenty-two field Lupopedia constitutional header"
+    },
+    "type": { "const": "captain_log" },
+    "log_id": { "type": "string" },
+    "captain_id": { "type": "string", "const": "Eric" },
+    "actor_id": { "type": "integer", "const": 10000 },
+    "timestamp_ymdhis": {
+      "type": "string",
+      "pattern": "^[0-9]{14}$",
+      "description": "Canonical packed UTC YYYYMMDDHHIISS"
+    },
+    "timestamp_iso": {
+      "type": "string",
+      "description": "Optional ISO-8601 UTC display derived from timestamp_ymdhis"
+    },
+    "thread_id": { "type": "string" },
+    "intent": { "type": "string" },
+    "context": { "type": "string" },
+    "decision": { "type": "string" },
+    "reasoning": { "type": "string" },
+    "emotional_state": { "type": "string" },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

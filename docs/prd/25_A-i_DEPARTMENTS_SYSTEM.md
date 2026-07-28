@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/25_A-i_DEPARTMENTS_SYSTEM.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/25_A-i_DEPARTMENTS_SYSTEM.md
   status: active
-  when_updated: '20260726142446'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/25_departments_system.toon
@@ -243,6 +243,24 @@ Existing actors without department assignments:
 - **Database Schema**: See `docs/implementations/25_departments_system/mapping_tables.md`
 - **Access Control**: See `docs/implementations/25_departments_system/access_control.md`
 - **IDE Protection**: See `docs/implementations/25_departments_system/ide_protection_plan.md`
+
+---
+
+## Department vs Division vs documentation collection (normative)
+
+Agents MUST distinguish these three surfaces:
+
+1. **Department** -- Formal organizational unit with PRD 25 registration / ACL / seed when present (`lupo_departments`, `lupo_actor_departments`, `lupo_auth_user_departments`).
+2. **Division** -- Functional or thematic grouping that MAY guide work and Channel 42 / filesystem announcements **without** inventing a seeded department row.
+3. **Documentation collection** -- Library under `docs/actors/` and [`docs/index.md`](../index.md) (Actors Collection). Documentation collections are **not** departments and MUST NOT be seeded as `lupo_departments` rows from onboarding prose alone.
+
+**Examples:**
+
+- **Department 0** -- Root / Real Programmers (learning boundary for core actors) -- PRD 41
+- **Traffic Defense** -- operational artifacts exist; full ACL/seed **pending** proposal 25_B (below)
+- **Actors Collection** -- documentation library; not a seeded "Actors Division" department
+
+**Actors Collection companion:** [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md).
 
 ---
 

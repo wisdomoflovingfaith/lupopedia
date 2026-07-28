@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/15_A-i_ACTORS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/15_A-i_ACTORS.md
   status: active
-  when_updated: '20260514175543'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/15_actors.toon
@@ -574,15 +574,16 @@ See also: PRD 86 Channel Boundary Rule, PRD 16_C Agent Role (Schema-Backed).
 
 ## 9. Cross-references
 
-- See also: `01_core_identity.md`, `05_auth_user_actor_agent_transformation.md`, `25_departments_system.md`, `07_agents_faucets.md`, `08_governance_rules.md`, `00_root_constitutional_system_requirements.md` ??5.6
+- See also: `01_core_identity.md`, `05_auth_user_actor_agent_transformation.md`, `25_departments_system.md`, `07_agents_faucets.md`, `08_governance_rules.md`, `00_root_constitutional_system_requirements.md`
 - Related doctrine: `ACTOR_GATEWAY_TYPES.md` - Actor gateway type definitions and specifications
+- Actors Collection companion: [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) -- "wolf" is a **maturity classification** for an actor (metaphor for governed history); this PRD remains authority for actor identity and inheritance
 - Superseded: `08_actors.md` (historical stub; use this file)
 - Related tables: `lupo_actors`, `lupo_actor_auth_users`, `lupo_actor_departments`, `lupo_auth_user_departments`, `lupo_metadata`
 
 ---
 
-**Status**: ACTIVE (4.0.x department-first act-as)  
-**Constitutional adherence**: FULL  
-**Implementation note:** `AuthSessionManager` + delegating `ActorService::getActorsUserCanActAs` ???????? keep in sync with this PRD.
+**Status**: ACTIVE (4.0.x department-first act-as)
+**Constitutional adherence**: FULL
+**Implementation note:** `AuthSessionManager` + delegating `ActorService::getActorsUserCanActAs` -- keep in sync with this PRD.
 
 

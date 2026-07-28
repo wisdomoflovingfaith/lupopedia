@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md
   status: active
-  when_updated: '20260726142446'
+  when_updated: '20260728021358'
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -38,6 +38,8 @@ lupopedia.headers:
 | HERMES routing header | **PRD 82_B** | Constitutional fields, flow operators, handoff grammar |
 | ROSE multi-persona dialog | **PRD 36** | Dialogue block and mood shading alignment |
 | WHY Files doctrine | **PRD 98_A** | Overlay-safe violation documentation |
+
+**Actors Collection companion:** [`docs/actors/how_wolves_are_made.md`](../actors/how_wolves_are_made.md) -- WOLF decoration is never permission; hard-gate KAPU restates zero constitutional authority.
 | Captain's Log | **PRD 98_B** | Primary human narrative use surface (zero doctrinal authority for log content) |
 | PRD number allocation | **PRD 84** | Group 39 allocation and cluster coordination |
 | Canonical what-is | [`what_is_lupopedia.md`](../../what_is_lupopedia.md) | Public and agent summaries MUST state WOLF has **zero constitutional authority** |

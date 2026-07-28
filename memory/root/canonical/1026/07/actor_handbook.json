@@ -13,11 +13,11 @@
     "content_slug": "",
     "default_collection_id": null,
     "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
-    "transcript_jsonl": "0/root/how-wolves-are-made"
+    "transcript_jsonl": "0/root/actor_handbook"
   },
-  "memory_toon": "memory/root/canonical/1026/07/how-wolves-are-made.toon",
-  "purpose": "Canonical explanation of how Lupopedia wolves (mature hybrid actors) emerge from agent templates, department scope, learning boundaries, dual WOLFIE acronym, and governed operation. Narrative maturity language is metaphor; PRDs remain authority.",
-  "source_file_path_from_root": "docs/actors/how_wolves_are_made.md",
+  "memory_toon": "memory/root/canonical/1026/07/actor_handbook.toon",
+  "purpose": "Everything every Lupopedia actor needs to know: channels, threads, WHO WHAT WHERE WHEN WHY HOW, headers, and edge navigation.",
+  "source_file_path_from_root": "docs/actor_handbook.md",
   "tags": [
     "doctrine",
     "canonical"

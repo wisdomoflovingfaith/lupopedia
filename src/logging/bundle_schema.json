@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.lupopedia.com/lupopedia/src/logging/bundle_schema.json",
+  "title": "Lupopedia Dual Log Daily Bundle",
+  "type": "object",
+  "required": [
+    "header",
+    "bundle_date",
+    "thread_id",
+    "captain_logs",
+    "wolfie_logs",
+    "semantic_links",
+    "summary"
+  ],
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "PRD 16 twenty-two field Lupopedia constitutional header"
+    },
+    "bundle_date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "UTC calendar date YYYY-MM-DD derived from packed timestamps"
+    },
+    "thread_id": { "type": "string" },
+    "captain_logs": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "wolfie_logs": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "semantic_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["captain_log_id", "wolfie_log_id", "relationship"],
+        "properties": {
+          "captain_log_id": { "type": "string" },
+          "wolfie_log_id": { "type": "string" },
+          "relationship": {
+            "type": "string",
+            "enum": ["supporting", "conflicting", "clarifying"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "summary": { "type": "string" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260728162222",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/16-c-header-format-4-2-0-proposal"
+  },
+  "memory_toon": "memory/development/canonical/1026/07/16-c-header-format-4-2-0-proposal.toon",
+  "purpose": "Proposal-only upgrade path for header_format_version 4.2.0: identity fields, dimensional grid coverage, constitutional sidecar, migration, and PONO checklist. Does not unfreeze 4.1.9 until Captain approval and PRD 16 update.",
+  "source_file_path_from_root": "docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_PROPOSAL.md",
+  "tags": [
+    "prd",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}
