@@ -1,0 +1,42 @@
+{
+  "header": {
+    "header_format_version": "4.1.9",
+    "path_from_lupopedia_root": "docs/logs/2026/07/28/captain_20260728131310_001.json",
+    "web_path": "https://www.lupopedia.com/lupopedia/docs/logs/2026/07/28/captain_20260728131310_001.json",
+    "status": "active",
+    "when_updated": "20260728131310",
+    "trust_tier": "canonical",
+    "questions_toon": null,
+    "memory_toon": null,
+    "atoms_toon": null,
+    "transcript_jsonl": "0/logs/dual-operational",
+    "artifact_type": "log",
+    "artifact_kind": "reference",
+    "channel_key": "logs",
+    "federation_node_id": 0,
+    "thread_key": "semantic-thread-001",
+    "lupopedia.schema": "captain_log",
+    "prd_cluster": "98_C",
+    "title": "Captain Log captain_20260728131310_001",
+    "summary": "Stand up dual operational Captain/WOLFIE logs under docs/logs/",
+    "edges_toon": null,
+    "channel_index": "lupopedia",
+    "source_timestamp": null
+  },
+  "type": "captain_log",
+  "log_id": "captain_20260728131310_001",
+  "captain_id": "Eric",
+  "actor_id": 10000,
+  "timestamp_ymdhis": "20260728131310",
+  "timestamp_iso": "2026-07-28T13:13:10Z",
+  "thread_id": "semantic-thread-001",
+  "intent": "Stand up dual operational Captain/WOLFIE logs under docs/logs/",
+  "context": "PRD cluster 98 needs a structured ops log distinct from WHY files and entertainment Captain Log",
+  "decision": "Allocate PRD 98_C; keep 98_A as WHY files; implement schemas + writers",
+  "reasoning": "Overwriting 98_A would destroy AGAPE WHY doctrine; dual logs need their own letter",
+  "emotional_state": "focused",
+  "next_actions": [
+    "Ship example bundle",
+    "Cross-link 98_A and 98_B"
+  ]
+}
