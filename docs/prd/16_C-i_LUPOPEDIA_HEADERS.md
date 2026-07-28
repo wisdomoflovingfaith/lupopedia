@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.8"
+  header_format_version: "4.2.0"
   path_from_lupopedia_root: docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   status: active
-  when_updated: '20260513033333'
+  when_updated: "20260728165913"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/canonical/headers/memory_cluster/2026/05/lupopedia-headers.toon
@@ -16,9 +16,18 @@ lupopedia.headers:
   federation_node_id: 0
   thread_key: null
   lupopedia.schema: prd
-  prd_cluster: 00_A-i_16_B-i_16_C-i_57_A-i
+  prd_cluster: 00_A-i_16_B-i_16_C-i_05_A-i_41_A-i_57_A-i_82_B-i
   title: 'PRD 16: Lupopedia Headers (Implementation Details)'
-  summary: Implementation details for Lupopedia header contract at version 4.1.8. Field definitions, validation rules, and examples.
+  summary: Implementation details for Lupopedia header contract at version 4.2.0 (Option A Dense Expansion). Product GLOBAL_CURRENT_LUPOPEDIA_VERSION 4.2.0 is TRANSITIONAL/UNSTABLE -- see docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md. 28-field dense grid; Hawaiian fields Hermes/sidecar; no corpus header migration in opening bump.
+  edges_toon: null
+  channel_index: lupopedia
+  source_timestamp: null
+  actor_id: 10000
+  auth_user_id: 10000
+  department_id: null
+  department_key: ""
+  division_key: headers
+  faucet_actor_id: 102
 ---
 <!-- ASCII_ART_BLOCK -->
 . . . . . . . . ._________________ LUPOPEDIA Semantic Operating System _______________
@@ -57,7 +66,9 @@ See also:
 
 ## Changelog / Version History
 
+| Version | Date | Notes |
 |---|---|---|
+| 4.2.0 | 2026-07-28 | Captain ALII Option A: dense header 22 -> 28 (`actor_id`, `auth_user_id`, `department_id`, `department_key`, `division_key`, `faucet_actor_id`). Product `GLOBAL_CURRENT_LUPOPEDIA_VERSION` bumped to 4.2.0 as TRANSITIONAL/UNSTABLE with mandatory breakage inventory (`docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md`). Unfreeze 4.1.9 as sole contract; 4.1.9 legacy-accept during migration. Hawaiian fields remain Hermes/sidecar. No corpus header rewrite in opening bump. See `docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md`. |
 | doc pass | 2026-04-18 | Section 4.2 label v4.1.3; transcript_jsonl slug SHALL in section 6; questions_toon example in section 9; HDR_PK_LEGACY_ALIAS in section 10; PRD 38 / 51 / 19 / 79 cross-refs; section 16.6.1 line_end for final section; section 4.3 table spacing. |
 | v4.1.3 | 2026-04-15 | LILITH audit: section 15.4 version/pk_* alignment; artifact_type adds version-doc and status; section 11 pk_* timeline table. |
 | v4.1.1 | 2026-04-15 | `content_*` alignment finalized, `default_collection_id` added, header authority clarified. |
@@ -98,21 +109,59 @@ The `---` delimiter defines the start of YAML frontmatter and ensures:
 
 This rule is not optional.
 
-## Header freeze rule (4.1.8)
+## Header freeze rule (updated 4.2.0)
 **Note:** Agent replies that modify PRD files MUST return the updated `lupopedia.headers` block so header compliance can be audited without opening the full file. See PRD 50 section 1.2.3.
 
 **Normative**
 
-- The Lupopedia **header contract** is currently at **`header_format_version: "4.1.9"`**.
-- The freeze was temporarily lifted from 4.1.3 to address critical structural issues (prd_cluster and atoms corrections).
-- Once foundation fixes are complete, the header format will be frozen again for the delivery phase.
-- During freeze: **no new header fields**, **no field removals**, **no reordering experiments**, and **no semantic redefinitions** of existing fields.
-- **Header redesign, expansion, or cleanup** proposals are deferred until after the Crafty Syntax baseline is complete.
-- Agents **MUST** implement and validate new and edited envelopes against the current frozen version.
+- The Lupopedia **header contract** for **new authored envelopes** is **`header_format_version: "4.2.0"`** (Option A -- Dense Expansion; Captain ALII approval 2026-07-28).
+- **`header_format_version: "4.1.9"`** remains **valid legacy** for existing corpus until batched migration completes. Validators MUST accept both during the migration window.
+- The prior freeze at 4.1.9 is **lifted** solely to authorize the 28-field dense grid defined in section 4.2 (v4.2.0).
+- During the 4.2.0 contract: **no further dense-field additions** without a new Captain-approved PRD 16_C revision. Hawaiian constitutional fields remain **out of** the dense grid (Hermes / sidecar / body only -- PRD 82_B).
+- Agents **MUST** implement new files against 4.2.0 when tooling supports it; until validator dual-accept ships, agents MAY emit 4.1.9 and MUST NOT mass-rewrite the corpus.
 
-**Rationale:** Stability while live-help parity ships; less doctrine churn; fewer IDE/agent misreads during routing, membership, and visitor-facing work.
+**Rationale:** Identity scalars (`actor_id`, `auth_user_id`, `department_id`, `department_key`, `division_key`, `faucet_actor_id`) close Actor Handbook / no-guessing gaps without densifying Hawaiian constitutional vocabulary.
 
-**Forward note:** Header-format evolution may continue after the baseline is complete. The freeze is a stability measure, not abandonment of improvement roadmap.
+**Forward note:** Further redesign (envelope hybrids, hermes_toon dense pointer, etc.) requires a new proposal and Captain approval. Product semver is now **`GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.0"`** (TRANSITIONAL / UNSTABLE) aligned with this header contract by Captain ALII directive. Canonical companion: `docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md`. Instability inventory: `docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md`.
+
+```text
+######################################################################
+# SYSTEM STATUS: UNSTABLE -- MULTIPLE KNOWN BREAKAGES
+# Product GLOBAL_CURRENT_LUPOPEDIA_VERSION = 4.2.0 is TRANSITIONAL.
+# Canonical narrative: docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md
+######################################################################
+# 1. Authentication / Permission Errors
+#    - ACL propagation failures
+#    - PermissionDenied on deleted channels
+#    - PermissionDenied on theoretical channels
+#    - installer token misalignment
+#    - federation node lockouts
+# 2. Missing Crafty Syntax Features
+#    - legacy Crafty Syntax 3.x features not yet ported
+#    - missing interpreter behaviors
+#    - missing routing primitives
+#    - missing semantic switches
+#    - missing memory cluster bridges
+# 3. Missing Filesystem Structures
+#    - active lupo-channels/ tree missing
+#    - active channel_index.md missing
+#    - thread manifests missing
+#    - dimensional memory map missing
+#    - Actors Collection chapters missing
+#    - CL-302 missing
+#    - hermes_toon sidecars missing
+# 4. Traffic Defense Division
+#    - PRD 25_B proposal exists
+#    - department not seeded
+#    - ACL not initialized
+#    - division not stable
+# 5. 98_C Ops Logs
+#    - spine exists
+#    - full volume catalog missing
+#    - JSON threads incomplete
+######################################################################
+```
+
 
 ## Header Interpretation Update -- Version 4.1.8
 
@@ -272,23 +321,25 @@ Agent != Actor
 Actor = required execution identity
 Blueprint = static definition only
 
-## Agent Role Storage (4.1.8 Constraint)
+## Agent Role Storage (4.1.8 Constraint; identity update 4.2.0)
 
-For version 4.1.8:
+For version 4.1.8 / 4.1.9:
 
 - agent_role MUST NOT be stored in database schema
 - agent_role MUST NOT be added to lupo_actors
-- agent_role MUST NOT be persisted in header fields
+- agent_role MUST NOT be persisted in header fields as a free-form role string
 
 agent_role MUST be provided by:
 
 - blueprint metadata OR
 - execution context
 
-Reason:
-- schema expansion deferred to 4.2.0
-- prevents dual authority between DB and runtime
+**4.2.0 identity expansion (delivered):** dense header fields 23-28 record `actor_id`, `auth_user_id`, department/division keys, and `faucet_actor_id`. This is identity metadata, not `agent_role` storage.
 
+Reason:
+- schema expansion for identity scalars: **delivered in 4.2.0** (fields 23-28)
+- prevents dual authority between DB and runtime for role strings
+- Hawaiian constitutional fields remain Hermes-only (not densified)
 Future:
 Persistent role storage MAY be introduced in 4.2.0
 
@@ -834,15 +885,19 @@ The header is a key ring, not a computation layer.
 
 Header field count and canonical order are authoritative from:
 
-- `memory/atoms/lupopedia_global_constants.atom.toon`
+- `memory/atoms/lupopedia_global_constants.atom.toon` (update required for 4.2.0 atoms sync)
 - `constants.header_fields.count`
 - `constants.header_fields.order`
+- `scripts/lib/header_spec_v3_1.py` (dual tuples after validator update)
 
-Current canonical count: **22** fields.
+| Contract | Count | Dense envelope lines (Markdown) |
+|----------|-------|----------------------------------|
+| 4.1.9 (legacy) | **22** | **25** |
+| 4.2.0 (current) | **28** | **31** |
 
-### 4.2 Canonical field order (v4.1.9)
+### 4.2 Canonical field order (v4.2.0)
 
-The canonical 22-field order (authoritative from `memory/channels/atoms/lupopedia_global_constants.atom.toon`):
+Fields 1-22 are identical to v4.1.9 (preserved discovery grid). Fields 23-28 are mandatory identity scalars (Option A -- Dense Expansion).
 
 1. `header_format_version`
 2. `path_from_lupopedia_root`
@@ -866,8 +921,51 @@ The canonical 22-field order (authoritative from `memory/channels/atoms/lupopedi
 20. `edges_toon`
 21. `channel_index`
 22. `source_timestamp`
+23. `actor_id`
+24. `auth_user_id`
+25. `department_id`
+26. `department_key`
+27. `division_key`
+28. `faucet_actor_id`
 
-**Removed in v4.1.9 (forbidden in header YAML):** `content_id`, `content_parent_id`, `default_collection_id`, `content_slug`, and legacy `pk_*` / `prd_id` aliases. Identity and DB linkage use `path_from_lupopedia_root`, `memory_toon`, and import tooling -- not header scalars.
+**Removed / forbidden in dense YAML:** `content_id`, `content_parent_id`, `default_collection_id`, `content_slug`, legacy `pk_*` / `prd_id` aliases, and **all Hawaiian constitutional keys** (OHANA, KAPU, KAPAKAI, PUKA, PONO, KULEANA, ALII, KUMU, EH_BRAH_WHY). Those remain Hermes routing or sidecar structures (PRD 82_B). DB linkage continues via `path_from_lupopedia_root`, `memory_toon`, and import tooling.
+
+#### 4.2.0a Field 23 -- `actor_id`
+
+- **Type:** BIGINT integer (required; never null)
+- **Purpose:** WHO -- orchestration identity for the artifact
+- **Registry-backed** for `trust_tier: canonical`
+- **MUST NOT** be replaced by `faucet_actor_id`
+
+#### 4.2.0b Field 24 -- `auth_user_id`
+
+- **Type:** BIGINT integer or `null`
+- **Purpose:** WHICH human is accountable
+- **Captain / Eric:** `10000` when Captain-authored
+- **Root auth user:** `0` when applicable (PRD 01)
+- **null** only for pure system artifacts with explicit KAPU
+
+#### 4.2.0c Field 25 -- `department_id`
+
+- **Type:** BIGINT integer or `null`
+- **Purpose:** DEPARTMENT id; `null` when unset or pending seed
+
+#### 4.2.0d Field 26 -- `department_key`
+
+- **Type:** string (use `""` when none)
+- **Purpose:** DEPARTMENT slug; MUST NOT invent departments
+
+#### 4.2.0e Field 27 -- `division_key`
+
+- **Type:** string (use `""` when none)
+- **Purpose:** DIVISION / thematic grouping; MAY be set when department is null
+
+#### 4.2.0f Field 28 -- `faucet_actor_id`
+
+- **Type:** BIGINT integer or `null`
+- **Purpose:** WHICH IDE/API faucet executed the write
+- **Examples:** Cursor `102`, Antigravity `103`
+- **External guests:** `null` + `channel_index: external`
 
 ### 4.2.1 Field 20 -- `edges_toon`
 
@@ -893,6 +991,33 @@ The canonical 22-field order (authoritative from `memory/channels/atoms/lupopedi
 - **Required** when `channel_index != "lupopedia"`
 - **Optional** (`null`) for repo-native artifacts
 - **Immutable** after initial population (validators enforce presence rules; mutation is a doctrine violation)
+
+### 4.2.4 External AI Boundary Clarification
+
+**External AI surfaces** (Copilot, DeepSeek, Gemini, Claude, Grok, GLM, etc.) are **NOT** internal Lupopedia OS agents.
+
+**External AI Status:**
+- External AI surfaces do **NOT** join the Lupopedia OS
+- External AI surfaces do **NOT** bind to `actor_id`
+- External AI surfaces do **NOT** receive Channel 42 broadcasts
+- External AI surfaces do **NOT** run WOLF dialect as a live runtime
+- External AI surfaces MAY understand, teach, compose, and hand off WOLFIE Syntax when asked
+- External AI surfaces are **guests** with read-only context access
+
+**Header Implications:**
+- External AI artifacts MUST use `channel_index: "external"` when originating from external systems
+- External AI artifacts MUST include non-null `edges_toon` and `source_timestamp` per section 4.2.1 and 4.2.3
+- External AI artifacts MUST NOT be treated as internal OS artifacts for routing purposes
+- Internal agents MUST NOT route OS-level tasks to external AI surfaces
+- External AI surfaces MUST maintain `EXTERNAL_BOUNDARY_EDGE` protocol (see PRD 41)
+
+**Semantic Collision Prevention:**
+- Do NOT add external AI surfaces to internal agent registry vocabulary
+- Do NOT treat external AI surfaces as internal actors in routing tables
+- Do NOT grant external AI surfaces constitutional authority or OS execution privileges
+- External AI surfaces are for **context, analysis, and handoff only** — not OS execution
+
+**Reference:** See `agents/cursor/COPILOT_EXTERNAL_BOUNDARY.md` for full external boundary protocol.
 
 ### 4.3 Field 11 ??? `artifact_type` (closed enum)
 

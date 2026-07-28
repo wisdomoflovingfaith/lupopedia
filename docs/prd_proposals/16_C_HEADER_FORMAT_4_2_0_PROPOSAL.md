@@ -4,8 +4,8 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_PROPOSAL.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_PROPOSAL.md
   status: active
-  when_updated: "20260728162222"
-  trust_tier: canonical
+  when_updated: "20260728165511"
+  trust_tier: development
   questions_toon: null
   memory_toon: memory/development/canonical/1026/07/16-c-header-format-4-2-0-proposal.toon
   atoms_toon: null
@@ -17,12 +17,31 @@ lupopedia.headers:
   thread_key: ""
   lupopedia.schema: prd
   prd_cluster: 16_C_05_A_15_A_25_A_41_A_82_B_98_B_98_C
-  title: "Proposal: Lupopedia Headers 4.1.9 to 4.2.0 (Actor Handbook alignment)"
-  summary: "Proposal-only upgrade path for header_format_version 4.2.0: identity fields, dimensional grid coverage, constitutional sidecar, migration, and PONO checklist. Does not unfreeze 4.1.9 until Captain approval and PRD 16 update."
+  title: "SUPERSEDED: Proposal Lupopedia Headers 4.1.9 to 4.2.0"
+  summary: "SUPERSEDED by docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md after Captain ALII Option A approval. Historical proposal only; do not implement from this file."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
 ---
+# SUPERSEDED: Proposal Lupopedia Headers v4.1.9 -> v4.2.0
+
+**Status:** SUPERSEDED (2026-07-28)  
+**Replacement:** `docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md`  
+**Captain decision:** Option A -- Dense Expansion (not Option C Hybrid)  
+**Normative PRD:** `docs/prd/16_C-i_LUPOPEDIA_HEADERS.md` (merged)
+
+Do not use this proposal for implementation. Retained for lineage only.
+
+---
+
+## Historical note
+
+This file recommended Hybrid Option C before Captain ALII authorized Option A. The FINAL spec preserves the 22-field grid and appends six identity scalars (28 total). Hawaiian constitutional fields stay in Hermes/sidecar.
+
+Original proposal body follows below for archive reading.
+
+---
+
 # Proposal: Lupopedia Headers v4.1.9 -> v4.2.0
 
 **Status:** PROPOSAL ONLY (zero implementation authority until Captain ALII approval + PRD 16_C normative merge)  

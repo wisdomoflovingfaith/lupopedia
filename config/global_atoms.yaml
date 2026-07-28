@@ -11,13 +11,54 @@
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.1.7"
-last_updated: "20260423"
+version: "4.2.0"
+last_updated: "20260728"
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.1.7"
-# Working on v4.1.4 — PRD system refactoring to semantic operating system with PRD#<Letter>_<NAME>.md pattern.
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.0"
+# Release class: TRANSITIONAL / UNSTABLE (Captain ALII authorized 2026-07-28).
+# Header contract companion: header_format_version "4.2.0" Option A Dense Expansion (28 fields).
+# See docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md for the full breakage inventory.
+#
+# #####################################################################
+# SYSTEM STATUS: UNSTABLE -- MULTIPLE KNOWN BREAKAGES
+# #####################################################################
+# 1. Authentication / Permission Errors
+#    - ACL propagation failures
+#    - PermissionDenied on deleted channels
+#    - PermissionDenied on theoretical channels
+#    - installer token misalignment
+#    - federation node lockouts
+# 2. Missing Crafty Syntax Features
+#    - legacy Crafty Syntax 3.x features not yet ported
+#    - missing interpreter behaviors
+#    - missing routing primitives
+#    - missing semantic switches
+#    - missing memory cluster bridges
+# 3. Missing Filesystem Structures
+#    - active lupo-channels/ tree missing
+#    - active channel_index.md missing
+#    - thread manifests missing
+#    - dimensional memory map missing
+#    - Actors Collection chapters missing
+#    - CL-302 missing
+#    - hermes_toon sidecars missing
+# 4. Traffic Defense Division
+#    - PRD 25_B proposal exists
+#    - department not seeded
+#    - ACL not initialized
+#    - division not stable
+# 5. 98_C Ops Logs
+#    - spine exists
+#    - full volume catalog missing
+#    - JSON threads incomplete
+# #####################################################################
+# DO NOT treat 4.2.0 as production-stable. Design + version bump only;
+# header corpus migration is NOT authorized by this atom bump alone.
+# #####################################################################
 GLOBAL_LUPOPEDIA_SCHEMA_VERSION: "2.0"
+GLOBAL_LUPOPEDIA_RELEASE_STABILITY: "unstable"
+GLOBAL_LUPOPEDIA_RELEASE_CLASS: "transitional"
 
 # System Configuration Atoms
 SYSTEM_DATABASE_COMPATIBILITY: ["mysql", "postgresql", "mariadb"]
@@ -70,8 +111,9 @@ timestamp:
 # Global Atoms (Single Source of Truth for WOLFIE Headers)
 
 # Current Lupopedia Version (Use this in all WOLFIE headers instead of hardcoding)
-# NOTE: Version is defined at top of file (line 23) - DO NOT DUPLICATE
-# GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.44" (see line 23)
+# NOTE: Version is defined at top of file - DO NOT DUPLICATE
+# GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.0" (see top Global Version Atoms block)
+# Release stability: unstable / transitional -- see docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md
 
 # Current Authors (Use in WOLFIE headers)
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie (lupopedia-at-gmail-com)"
