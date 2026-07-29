@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_VALIDATOR_NOTES.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_VALIDATOR_NOTES.md
   status: active
-  when_updated: "20260728165511"
+  when_updated: "20260729172525"
   trust_tier: development
   questions_toon: null
   memory_toon: memory/development/canonical/1026/07/16-c-header-format-4-2-0-validator-notes.toon
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   prd_cluster: 16_C
   title: "Validator notes -- header 4.2.0 Option A"
-  summary: "Implementation notes for header_spec and validators: dual-accept 4.1.9 and 4.2.0; 28-field order; Hawaiian densification forbidden. Code changes not required until scheduled."
+  summary: "Implementation notes for header_spec and validators: dual-accept 4.1.9 and 4.2.0; 28-field order; Hawaiian densification forbidden. Phase 1 dual-accept landed in scripts/lib/header_spec_v3_1.py and validate_lupopedia_headers_universal.py."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -31,19 +31,21 @@ lupopedia.headers:
 ---
 # Validator Notes -- Header Format 4.2.0 (Option A)
 
-**Status:** NOTES ONLY -- do not treat as a completed code change  
+**Status:** Phase 1 code dual-accept LANDED (`scripts/lib/header_spec_v3_1.py`, `scripts/validate_lupopedia_headers_universal.py`, `scripts/add_lupopedia_header_to_file.py`)  
 **Primary code target:** `scripts/lib/header_spec_v3_1.py`  
 **Consumers:** `validate_lupopedia_headers_universal.py`, header adders, pre-commit samples, atoms export  
 **Product version:** `GLOBAL_CURRENT_LUPOPEDIA_VERSION` = **4.2.0** (UNSTABLE) -- see `docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md`
 
 ---
 
-## 1. Current state (pre-code)
+## 1. Current state (post Phase 1)
 
-- `EXPECTED_HEADER_FORMAT_VERSION = "4.1.9"`
-- `V4_HEADER_KEYS_ORDERED` length **22**
-- Version check is exact-match only
-- Discovery docs still say 25-line / 22-field protocol
+- `ACCEPTED_HEADER_FORMAT_VERSIONS = frozenset(("4.1.9", "4.2.0"))`
+- `CURRENT_HEADER_FORMAT_VERSION = "4.2.0"`
+- `LEGACY_HEADER_FORMAT_VERSION = "4.1.9"`
+- `V419_HEADER_KEYS_ORDERED` length **22**; `V420_HEADER_KEYS_ORDERED` length **28**
+- Version check accepts both; `--require-current` fails 4.1.9
+- Header adder defaults to emit **4.2.0** + identity CLI flags
 
 ---
 

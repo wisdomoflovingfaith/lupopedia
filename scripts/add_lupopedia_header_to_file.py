@@ -75,10 +75,12 @@ _SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(_SCRIPTS_DIR)
 
 # Platform patch line in YAML (align with config/global_atoms.yaml when bumping).
-DEFAULT_HEADER_FORMAT_VERSION = "4.1.9"
+DEFAULT_HEADER_FORMAT_VERSION = "4.2.0"
 
 from header_spec_v3_1 import (
     V4_HEADER_KEYS_ORDERED,
+    header_keys_ordered_for_version,
+    is_current_header_format_version,
     emit_markdown_inner_from_header_dict,
     emit_python_header_block_lines_from_header_dict,
     build_edges_toon_path,
@@ -187,6 +189,12 @@ def _build_header_dict(
     source_timestamp: str = "",
     edges_toon: str = "",
     external: bool = False,
+    actor_id=None,
+    auth_user_id=None,
+    department_id=None,
+    department_key: str = "",
+    division_key: str = "",
+    faucet_actor_id=None,
 ) -> dict:
     y, m = utc[0:4], utc[4:6]
     actual_year = int(y)
@@ -239,7 +247,15 @@ def _build_header_dict(
         "channel_index": ci,
         "source_timestamp": st,
     }
-    for k in V4_HEADER_KEYS_ORDERED:
+    ordered = header_keys_ordered_for_version(header_format_version)
+    if is_current_header_format_version(header_format_version):
+        hdr["actor_id"] = actor_id if actor_id is not None else 1
+        hdr["auth_user_id"] = auth_user_id
+        hdr["department_id"] = department_id
+        hdr["department_key"] = department_key if department_key is not None else ""
+        hdr["division_key"] = division_key if division_key is not None else ""
+        hdr["faucet_actor_id"] = faucet_actor_id if faucet_actor_id is not None else 102
+    for k in ordered:
         if k not in hdr:
             hdr[k] = None
     return hdr
@@ -348,6 +364,12 @@ def main() -> int:
         default=DEFAULT_HEADER_FORMAT_VERSION,
         help='YAML header_format_version string (default: %s)' % DEFAULT_HEADER_FORMAT_VERSION,
     )
+    parser.add_argument("--actor-id", type=int, default=None, help="4.2.0 actor_id (default: 1 WOLFIE when emitting 4.2.0)")
+    parser.add_argument("--auth-user-id", type=int, default=None, help="4.2.0 auth_user_id (nullable)")
+    parser.add_argument("--department-id", type=int, default=None, help="4.2.0 department_id (nullable)")
+    parser.add_argument("--department-key", default="", help="4.2.0 department_key (default empty)")
+    parser.add_argument("--division-key", default="", help="4.2.0 division_key (default empty)")
+    parser.add_argument("--faucet-actor-id", type=int, default=None, help="4.2.0 faucet_actor_id (default: 102 CURSOR_IDE when emitting 4.2.0)")
     parser.add_argument(
         "--channel-key",
         default="development",
@@ -505,6 +527,12 @@ def main() -> int:
         source_timestamp=(args.source_timestamp or "").strip(),
         edges_toon=(args.edges_toon or "").strip(),
         external=bool(args.external),
+        actor_id=args.actor_id,
+        auth_user_id=args.auth_user_id,
+        department_id=args.department_id,
+        department_key=(args.department_key or ""),
+        division_key=(args.division_key or ""),
+        faucet_actor_id=args.faucet_actor_id,
     )
 
     if ext == ".md":

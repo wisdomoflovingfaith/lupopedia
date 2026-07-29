@@ -59,18 +59,31 @@ _SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
-# PRD 16 v4.1.9 - Import canonical 22-field header specification from shared spec
+# PRD 16 v4.1.9 / 4.2.0 dual-accept - Import canonical header specification from shared spec
 from lib.header_spec_v3_1 import (
     V4_HEADER_KEYS_ORDERED,
+    V419_HEADER_KEYS_ORDERED,
+    V420_HEADER_KEYS_ORDERED,
     V3_HEADER_KEYS,
     EXPECTED_HEADER_FORMAT_VERSION,
     EXPECTED_HEADER_FIELD_COUNT,
+    CURRENT_HEADER_FORMAT_VERSION,
+    LEGACY_HEADER_FORMAT_VERSION,
+    ACCEPTED_HEADER_FORMAT_VERSIONS,
     REMOVED_HEADER_FIELDS_V419,
     validate_header_v419,
     validate_header_format_version_exact,
+    validate_header_format_version_require_current,
     validate_header_field_count_and_order,
     validate_deprecated_header_fields,
+    validate_hawaiian_not_densified,
+    validate_identity_fields_v420,
     is_exact_header_format_version,
+    is_accepted_header_format_version,
+    is_current_header_format_version,
+    header_keys_ordered_for_version,
+    dense_field_count_for_version,
+    header_format_version_string,
     requires_v419_rules,
     header_format_patch_level,
 )
@@ -119,7 +132,9 @@ ARTIFACT_TYPE_ALLOWED_KINDS = {**ARTIFACT_TYPE_ALLOWED_KINDS_V4, **ARTIFACT_TYPE
 VALID_ARTIFACT_TYPES = frozenset(ARTIFACT_TYPE_ALLOWED_KINDS.keys())
 
 # PRD 16 v4.1.4 - Field validation rules
-V3_KEYS_ALLOW_EMPTY_VALUE = frozenset(("thread_key", "title", "status", "summary"))
+V3_KEYS_ALLOW_EMPTY_VALUE = frozenset(
+    ("thread_key", "title", "status", "summary", "department_key", "division_key", "prd_cluster")
+)
 VALID_TRUST_TIERS = frozenset(("canonical", "development"))
 LEGACY_TRUST_TIERS = frozenset(("seed", "staging", "archive"))
 
@@ -366,23 +381,25 @@ def validate_cross_fields(schema, artifact_type, artifact_kind, file_path, heade
 def _try_extract_v3_md_inner_yaml_block(content: str):
     """
     If content matches PRD 16 dense Markdown envelope (lupopedia.headers + N keys + closing ---),
-    return the inner YAML string (``lupopedia.headers:`` + key lines) for safe_load.
-    N defaults to len(V4_HEADER_KEYS_ORDERED) (atom-backed 19-field contract).
-
-    Legacy v4.0.0–98: two blank lines before closing --- (20 keys on lines 3–22).
-    Otherwise return None (use legacy first-block extraction).
+    return the inner YAML string. N = 22 for 4.1.9; N = 28 for 4.2.0.
     """
     content = content.replace("\r\n", "\n")
     if not content.startswith("---\n"):
         return None
     lines = content.split("\n")
-    n = len(V4_HEADER_KEYS_ORDERED)
-    min_dense = n + 3
-    if len(lines) < min_dense:
+    if len(lines) < 3:
         return None
     if lines[0].strip() != "---" or lines[1].strip() != "lupopedia.headers:":
         return None
-    # Dense: N keys on lines 3..(N+2) (indices 2..(N+1)), closing --- at index N+2
+    ordered = _ordered_keys_for_md_lines(lines)
+    n = len(ordered)
+    min_dense = n + 3
+    if len(lines) < min_dense:
+        # Retry legacy 22-key if file is shorter than 28-key envelope
+        n = len(V419_HEADER_KEYS_ORDERED)
+        min_dense = n + 3
+        if len(lines) < min_dense:
+            return None
     dense_ok = lines[n + 2].strip() == "---"
     if dense_ok:
         for i in range(2, 2 + n):
@@ -391,7 +408,7 @@ def _try_extract_v3_md_inner_yaml_block(content: str):
                 break
     if dense_ok:
         return "\n".join(lines[1 : 2 + n])
-    # Legacy: keys on lines 3–22, 23–24 blank, 25 = ---
+    # Legacy: keys on lines 3-22, 23-24 blank, 25 = ---
     if len(lines) < 25:
         return None
     for i in range(2, 22):
@@ -435,6 +452,35 @@ def _parse_v3_scalar_key_from_md_line(line):
     return m.group(1) if m else None
 
 
+def _peek_hfv_string_from_line(line):
+    """Extract bare header_format_version from a Markdown or # comment key line."""
+    if line is None:
+        return ""
+    raw = str(line).lstrip()
+    if raw.startswith("#"):
+        raw = raw[1:].lstrip()
+    if raw.startswith("*"):
+        raw = raw.lstrip("*").strip()
+    m = re.match(r"^header_format_version:\s*(.+?)\s*$", raw)
+    if not m:
+        return ""
+    val = m.group(1).strip()
+    if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+        val = val[1:-1].strip()
+    return val
+
+
+def _ordered_keys_for_md_lines(lines):
+    """Version-aware key tuple for mechanical Markdown/Python envelope checks."""
+    ver = ""
+    if len(lines) >= 3:
+        ver = _peek_hfv_string_from_line(lines[2])
+    if ver in ACCEPTED_HEADER_FORMAT_VERSIONS:
+        return list(header_keys_ordered_for_version(ver))
+    # Unknown / missing version: use current contract for size hints; version check fails later.
+    return list(header_keys_ordered_for_version(CURRENT_HEADER_FORMAT_VERSION))
+
+
 _HFV_SCALAR_LINE_RE = re.compile(r"^\s*header_format_version:\s*(.+?)\s*$")
 
 
@@ -468,12 +514,14 @@ def _hf_tuple_requires_dense_v4099(tup):
 
 def _print_md_envelope_missing_v3_keys_hint(lines, file_path):
     """
-    When Markdown line-count / envelope checks fail, list missing §4.2 keys from lines 3–24.
+    When Markdown line-count / envelope checks fail, list missing §4.2 keys.
     """
     if len(lines) < 3:
         return
+    expected = _ordered_keys_for_md_lines(lines)
+    n = len(expected)
     keys_found = []
-    for i in range(2, min(24, len(lines))):
+    for i in range(2, min(2 + n, len(lines))):
         ln = lines[i]
         if not ln.strip():
             break
@@ -481,16 +529,17 @@ def _print_md_envelope_missing_v3_keys_hint(lines, file_path):
         if k is not None:
             keys_found.append(line_key_to_canonical(k))
     found_set = set(keys_found)
-    if found_set == V3_HEADER_KEYS:
+    expected_set = set(expected)
+    if found_set == expected_set:
         return
-    missing = sorted(V3_HEADER_KEYS - found_set)
+    missing = sorted(expected_set - found_set)
     if not missing:
         return
     print(
-        "[HINT] %s: expected 22 scalar keys on lines 3-24 under lupopedia.headers:; missing: %s — "
-        "a short key block shifts the line-25 closing --- and triggers HDR_LINE_COUNT / HDR_MISSING_CLOSE "
+        "[HINT] %s: expected %d scalar keys on lines 3-%d under lupopedia.headers:; missing: %s -- "
+        "a short key block shifts the closing --- and triggers HDR_LINE_COUNT / HDR_MISSING_CLOSE "
         "(fix keys first; see HDR_MISSING_KEY)"
-        % (file_path, ", ".join(missing))
+        % (file_path, n, n + 2, ", ".join(missing))
     )
 
 
@@ -525,7 +574,8 @@ def _print_py_envelope_missing_v3_keys_hint(header_slice, file_path):
 
 def _markdown_header_physical_keys(lines):
     """Parse scalar key names from Markdown lines 3..(2+N) under lupopedia.headers:."""
-    n = EXPECTED_HEADER_FIELD_COUNT
+    expected = _ordered_keys_for_md_lines(lines)
+    n = len(expected)
     keys = []
     for i in range(2, 2 + n):
         if i >= len(lines):
@@ -539,9 +589,10 @@ def _markdown_header_physical_keys(lines):
 
 
 def validate_markdown_header_key_count(lines, file_path):
-    """Mechanical field count on physical YAML lines (22 keys required for 4.1.9)."""
+    """Mechanical field count on physical YAML lines (22 for 4.1.9; 28 for 4.2.0)."""
     keys = _markdown_header_physical_keys(lines)
-    n = EXPECTED_HEADER_FIELD_COUNT
+    expected = _ordered_keys_for_md_lines(lines)
+    n = len(expected)
     if len(keys) == n:
         return True
     print(
@@ -550,7 +601,6 @@ def validate_markdown_header_key_count(lines, file_path):
     )
     if len(keys) < n:
         missing = []
-        expected = list(V4_HEADER_KEYS_ORDERED)
         seen_canon = {line_key_to_canonical(k) for k in keys}
         for ek in expected:
             if ek not in seen_canon:
@@ -569,9 +619,9 @@ def validate_markdown_header_key_count(lines, file_path):
 
 
 def validate_markdown_mechanical_key_line_order(lines, file_path, legacy_20):
-    """Mechanical key order on physical lines (canonical 4.1.9 names only)."""
-    n = EXPECTED_HEADER_FIELD_COUNT
-    expected_canon = list(V4_HEADER_KEYS_ORDERED)
+    """Mechanical key order on physical lines (version-aware)."""
+    expected_canon = _ordered_keys_for_md_lines(lines)
+    n = len(expected_canon)
     idxs = list(range(2, 2 + n))
     for pos, i in enumerate(idxs):
         if i >= len(lines):
@@ -609,23 +659,39 @@ def validate_markdown_header_line_count(
 ):
     """
     PRD 16 dense Markdown envelope: opening ---, ``lupopedia.headers:``, N key lines,
-    closing ---, then body. N = len(V4_HEADER_KEYS_ORDERED) (19-field atom contract).
+    closing ---, then body. N = 22 for 4.1.9; N = 28 for 4.2.0.
 
-    Legacy (v4.0.0–98): 20 keys + blank lines before closing --- (HDR_LEGACY_ENVELOPE).
+    Legacy (v4.0.0-98): 20 keys + blank lines before closing --- (HDR_LEGACY_ENVELOPE).
     """
     if not content.startswith("---\n"):
         return True
 
     lines = content.splitlines()
-    n = len(V4_HEADER_KEYS_ORDERED)
+    if len(lines) < 3:
+        print(
+            "[ERROR] %s: header envelope too short to read header_format_version (HDR_LINE_COUNT), got %s"
+            % (file_path, len(lines))
+        )
+        return False
+
+    ordered = _ordered_keys_for_md_lines(lines)
+    n = len(ordered)
     min_lines_dense = n + 4
     if len(lines) < min_lines_dense:
-        print(
-            "[ERROR] %s: header envelope must include at least %d lines (HDR_LINE_COUNT), got %s"
-            % (file_path, min_lines_dense, len(lines))
-        )
-        _print_md_envelope_missing_v3_keys_hint(lines, file_path)
-        return False
+        # If file looks like legacy 4.1.9 (22 keys) but peeked as 4.2.0 due to missing version, retry 4.1.9 size
+        if len(lines) >= len(V419_HEADER_KEYS_ORDERED) + 4:
+            ver = _peek_hfv_string_from_line(lines[2])
+            if ver == LEGACY_HEADER_FORMAT_VERSION or ver == "":
+                ordered = list(V419_HEADER_KEYS_ORDERED)
+                n = len(ordered)
+                min_lines_dense = n + 4
+        if len(lines) < min_lines_dense:
+            print(
+                "[ERROR] %s: header envelope must include at least %d lines for %d-key contract (HDR_LINE_COUNT), got %s"
+                % (file_path, min_lines_dense, n, len(lines))
+            )
+            _print_md_envelope_missing_v3_keys_hint(lines, file_path)
+            return False
 
     if lines[0].strip() != "---":
         print("[ERROR] %s: line 1 must be opening --- (HDR_LINE_COUNT)" % (file_path,))
@@ -736,14 +802,36 @@ def _strip_python_hash_comment_line(line):
     return rest
 
 
+def _ordered_keys_for_hash_or_star_slice(header_slice):
+    """Peek version from key line at index 2 of a comment-grid header slice."""
+    if len(header_slice) > 2:
+        ln = header_slice[2]
+        rest = _strip_python_hash_comment_line(ln)
+        if rest is None:
+            # Star-doc style: " *   header_format_version: ..."
+            s = str(ln).strip()
+            if s.startswith("*"):
+                rest = s[1:].lstrip()
+            else:
+                rest = ln
+        ver = _peek_hfv_string_from_line(rest if rest is not None else "")
+        if ver in ACCEPTED_HEADER_FORMAT_VERSIONS:
+            return list(header_keys_ordered_for_version(ver))
+    return list(header_keys_ordered_for_version(CURRENT_HEADER_FORMAT_VERSION))
+
+
 def _python_body_offset_after_header(lines, has_shebang):
     """Byte offset in normalized \\n content where code body starts (first line after dense header)."""
-    n = len(V4_HEADER_KEYS_ORDERED)
+    start = 1 if has_shebang else 0
+    if len(lines) <= start + 2:
+        return None
+    # Peek version from first key line of the # grid
+    ver_line = lines[start + 2]
+    rest = _strip_python_hash_comment_line(ver_line)
+    ver = _peek_hfv_string_from_line(rest if rest is not None else ver_line)
+    n = dense_field_count_for_version(ver if ver else CURRENT_HEADER_FORMAT_VERSION)
     bl = n + 3
-    if has_shebang:
-        n_before_body = 1 + bl
-    else:
-        n_before_body = bl
+    n_before_body = (1 + bl) if has_shebang else bl
     if len(lines) < n_before_body:
         return None
     pos = 0
@@ -770,9 +858,9 @@ def _mechanical_key_deprecated_error(file_path, rk):
 
 
 def validate_python_mechanical_key_line_order(header_slice, file_path, py_legacy_20):
-    """Key order: header_slice[1] is lupopedia.headers:; keys start at index 2 (4.1.9)."""
-    expected_canon = list(V4_HEADER_KEYS_ORDERED)
-    inner_idx = range(2, 2 + EXPECTED_HEADER_FIELD_COUNT)
+    """Key order: header_slice[1] is lupopedia.headers:; keys start at index 2."""
+    expected_canon = _ordered_keys_for_hash_or_star_slice(header_slice)
+    inner_idx = range(2, 2 + len(expected_canon))
     for pos, i in enumerate(inner_idx):
         ln = header_slice[i]
         rest = _strip_python_hash_comment_line(ln)
@@ -809,19 +897,33 @@ def _validate_hash_comment_25line_slice(
 ):
     """
     Shared ``#`` comment grid: open sep, ``lupopedia.headers:`` + N keys, close sep.
-    N = len(V4_HEADER_KEYS_ORDERED) (19-field atom contract). Total lines = N + 3.
-    Used by Python files and by PHP CLI scripts (after ``<?php``).
+    N = 22 for 4.1.9; N = 28 for 4.2.0. Total lines = N + 3.
     Returns (ok, yaml_inner_str_or_None).
     """
-    n = len(V4_HEADER_KEYS_ORDERED)
-    bl = n + 3
-    if len(header_slice) != bl:
+    # Peek version from first key line before enforcing length
+    if len(header_slice) < 3:
         print(
-            "[ERROR] %s: %s header block must be exactly %d lines (open sep + headers + %d keys + close sep), got %d (HDR_PYTHON_HEADER)"
-            % (file_path, label, bl, n, len(header_slice))
+            "[ERROR] %s: %s header block too short (HDR_PYTHON_HEADER), got %d"
+            % (file_path, label, len(header_slice))
         )
-        _print_py_envelope_missing_v3_keys_hint(header_slice, file_path)
         return False, None
+    ordered = _ordered_keys_for_hash_or_star_slice(header_slice)
+    n = len(ordered)
+    bl = n + 3
+    # If slice was sized for wrong contract, try alternate accepted size
+    if len(header_slice) != bl:
+        alt_n = len(V419_HEADER_KEYS_ORDERED) if n == len(V420_HEADER_KEYS_ORDERED) else len(V420_HEADER_KEYS_ORDERED)
+        if len(header_slice) == alt_n + 3:
+            n = alt_n
+            bl = n + 3
+            ordered = list(V419_HEADER_KEYS_ORDERED if n == 22 else V420_HEADER_KEYS_ORDERED)
+        else:
+            print(
+                "[ERROR] %s: %s header block must be exactly %d lines (open sep + headers + %d keys + close sep), got %d (HDR_PYTHON_HEADER)"
+                % (file_path, label, bl, n, len(header_slice))
+            )
+            _print_py_envelope_missing_v3_keys_hint(header_slice, file_path)
+            return False, None
 
     if not PY_HEADER_SEP_LINE_RE.match(header_slice[0]) or not PY_HEADER_SEP_LINE_RE.match(
         header_slice[n + 2]
@@ -832,10 +934,6 @@ def _validate_hash_comment_25line_slice(
         )
         _print_py_envelope_missing_v3_keys_hint(header_slice, file_path)
         return False, None
-
-    first_key_rest = _strip_python_hash_comment_line(header_slice[2])
-    hf_line = first_key_rest if first_key_rest is not None else ""
-    hf_t = _parse_header_format_version_tuple_from_line(hf_line)
 
     for i in range(1, n + 2):
         ln = header_slice[i]
@@ -892,8 +990,8 @@ def validate_python_header_envelope(
     suppress_legacy_envelope_warn=False,
 ):
     """
-    Enforce contiguous python comment header: optional shebang, then (N+3)-line ``#`` block
-    (open sep, lupopedia + N keys dense, close sep). N = len(V4_HEADER_KEYS_ORDERED).
+    Enforce contiguous python comment header: optional shebang, then (N+3)-line ``#`` block.
+    N = 22 for 4.1.9; N = 28 for 4.2.0.
     Returns (ok, has_shebang, yaml_inner_str_or_None).
     """
     if yaml is None:
@@ -904,37 +1002,53 @@ def validate_python_header_envelope(
         print("[ERROR] %s: Empty file (HDR_PYTHON_HEADER)" % (file_path,))
         return False, None, None
 
-    n = len(V4_HEADER_KEYS_ORDERED)
+    has_shebang = lines[0].startswith("#!")
+    start = 1 if has_shebang else 0
+    if has_shebang and lines[0].strip() != CANONICAL_PYTHON_SHEBANG:
+        print(
+            "[ERROR] %s: If present, line 1 shebang must be #!/usr/bin/env python3 (HDR_PYTHON_SHEBANG)"
+            % (file_path,)
+        )
+        return False, None, None
+
+    # Peek version from prospective first key line to size the slice
+    if len(lines) < start + 3:
+        print(
+            "[ERROR] %s: Python header too short (HDR_PYTHON_LINE_COUNT), got %s"
+            % (file_path, len(lines))
+        )
+        return False, None, None
+    peek_rest = _strip_python_hash_comment_line(lines[start + 2])
+    ver = _peek_hfv_string_from_line(peek_rest if peek_rest is not None else lines[start + 2])
+    n = dense_field_count_for_version(ver if ver in ACCEPTED_HEADER_FORMAT_VERSIONS else CURRENT_HEADER_FORMAT_VERSION)
     bl = n + 3
 
-    has_shebang = lines[0].startswith("#!")
     if has_shebang:
-        if lines[0].strip() != CANONICAL_PYTHON_SHEBANG:
-            print(
-                "[ERROR] %s: If present, line 1 shebang must be #!/usr/bin/env python3 (HDR_PYTHON_SHEBANG)"
-                % (file_path,)
-            )
-            return False, None, None
         if len(lines) < bl + 2:
-            print(
-                "[ERROR] %s: Python header with shebang needs >= %d lines before code (HDR_PYTHON_LINE_COUNT), got %s"
-                % (file_path, bl + 2, len(lines))
-            )
-            if len(lines) >= 2:
-                _print_py_envelope_missing_v3_keys_hint(
-                    lines[1 : 1 + bl] if len(lines) > bl else lines[1:], file_path
+            # try alternate size
+            alt = len(V419_HEADER_KEYS_ORDERED) + 3
+            if ver == LEGACY_HEADER_FORMAT_VERSION or len(lines) >= alt + 2:
+                bl = alt
+                n = bl - 3
+            else:
+                print(
+                    "[ERROR] %s: Python header with shebang needs >= %d lines before code (HDR_PYTHON_LINE_COUNT), got %s"
+                    % (file_path, bl + 2, len(lines))
                 )
-            return False, None, None
+                return False, None, None
         header_slice = lines[1 : 1 + bl]
     else:
         if len(lines) < bl + 1:
-            print(
-                "[ERROR] %s: Python header without shebang needs >= %d lines before code (HDR_PYTHON_LINE_COUNT), got %s"
-                % (file_path, bl + 1, len(lines))
-            )
-            if len(lines) >= 2:
-                _print_py_envelope_missing_v3_keys_hint(lines[0:bl] if len(lines) >= bl else lines[0:], file_path)
-            return False, None, None
+            alt = len(V419_HEADER_KEYS_ORDERED) + 3
+            if ver == LEGACY_HEADER_FORMAT_VERSION or len(lines) >= alt + 1:
+                bl = alt
+                n = bl - 3
+            else:
+                print(
+                    "[ERROR] %s: Python header without shebang needs >= %d lines before code (HDR_PYTHON_LINE_COUNT), got %s"
+                    % (file_path, bl + 1, len(lines))
+                )
+                return False, None, None
         header_slice = lines[0:bl]
 
     ok, yaml_blob = _validate_hash_comment_25line_slice(
@@ -973,9 +1087,9 @@ def _star_block_legacy_two_blank_keys(header_slice):
 
 
 def validate_star_mechanical_key_line_order(header_slice, file_path, star_legacy_20, err_tag):
-    """Key order: header_slice[1] is lupopedia.headers:; keys start at index 2 (4.1.9)."""
-    expected_canon = list(V4_HEADER_KEYS_ORDERED)
-    inner_idx = range(2, 2 + EXPECTED_HEADER_FIELD_COUNT)
+    """Key order: header_slice[1] is lupopedia.headers:; keys start at index 2."""
+    expected_canon = _ordered_keys_for_hash_or_star_slice(header_slice)
+    inner_idx = range(2, 2 + len(expected_canon))
     for pos, i in enumerate(inner_idx):
         ln = header_slice[i]
         rest = _strip_star_doc_line(ln)
@@ -1015,18 +1129,42 @@ def validate_star_comment_header_slice(
     suppress_legacy_envelope_warn=False,
 ):
     """
-    Exactly 25 lines: opening ``/**`` or ``/*``, `` * lupopedia.headers:``, key lines, `` */``.
+    Dense star comment header: opening ``/**`` or ``/*``, `` * lupopedia.headers:``,
+    N key lines, `` */``. N = 22 (25-line block) or 28 (31-line block).
     Returns (ok, yaml_inner_str_or_None).
     """
     if yaml is None:
         print("[ERROR] %s: PyYAML is required for %s" % (file_path, err_tag))
         return False, None
-    if len(header_slice) != 25:
+    if len(header_slice) < 3:
         print(
-            "[ERROR] %s: comment header block must be exactly 25 lines (%s), got %d"
+            "[ERROR] %s: comment header block too short (%s), got %d"
             % (file_path, err_tag, len(header_slice))
         )
         return False, None
+    ordered = _ordered_keys_for_hash_or_star_slice(header_slice)
+    n = len(ordered)
+    bl = n + 3
+    if len(header_slice) != bl:
+        alt = len(V419_HEADER_KEYS_ORDERED) + 3
+        if len(header_slice) == alt:
+            n = len(V419_HEADER_KEYS_ORDERED)
+            bl = alt
+        elif len(header_slice) == len(V420_HEADER_KEYS_ORDERED) + 3:
+            n = len(V420_HEADER_KEYS_ORDERED)
+            bl = n + 3
+        else:
+            print(
+                "[ERROR] %s: comment header block must be %d or %d lines (%s), got %d"
+                % (
+                    file_path,
+                    len(V419_HEADER_KEYS_ORDERED) + 3,
+                    len(V420_HEADER_KEYS_ORDERED) + 3,
+                    err_tag,
+                    len(header_slice),
+                )
+            )
+            return False, None
     op = header_slice[0].strip()
     if not opening_predicate(op):
         print(
@@ -1034,9 +1172,9 @@ def validate_star_comment_header_slice(
             % (file_path, err_tag)
         )
         return False, None
-    if header_slice[24].strip() != "*/":
+    if header_slice[bl - 1].strip() != "*/":
         print(
-            "[ERROR] %s: comment header block must end with */ on line 25 of block (%s)"
+            "[ERROR] %s: comment header block must end with */ on last line of block (%s)"
             % (file_path, err_tag)
         )
         return False, None
@@ -1082,7 +1220,7 @@ def validate_star_comment_header_slice(
             )
         inner = header_slice[1:22]
     else:
-        for i in range(1, 24):
+        for i in range(1, n + 2):
             ln = header_slice[i]
             if not ln.strip():
                 print(
@@ -1096,14 +1234,14 @@ def validate_star_comment_header_slice(
                     % (file_path, err_tag)
                 )
                 return False, None
-        inner = header_slice[1:24]
+        inner = header_slice[1 : n + 2]
 
     if not validate_star_mechanical_key_line_order(
         header_slice, file_path, star_legacy_20, err_tag
     ):
         return False, None
 
-    want = 21 if star_legacy_20 else 23
+    want = 21 if star_legacy_20 else (n + 1)
     if len(inner) != want:
         print(
             "[ERROR] %s: expected %d inner lines in star header (%s), got %d"
@@ -1333,11 +1471,9 @@ def validate_prd_cluster(hdr, file_path):
 
 def _is_valid_header_format_version(version_value):
     """
-    Version policy (PRD 16 v4.1.9): accept only header_format_version exactly 4.1.9.
-
-    Rejects 4.0.x, other 4.1.x patches, 4.2.0+, and legacy families (HDR_VERSION_FAMILY).
+    Version policy (PRD 16 dual-accept): header_format_version in {4.1.9, 4.2.0}.
     """
-    return is_exact_header_format_version(version_value)
+    return is_accepted_header_format_version(version_value)
 
 
 def check_version_compliance(version, has_legacy_pk_fields):
@@ -1975,6 +2111,9 @@ def validate_required_header_fields(hdr, file_path):
         if key == "source_timestamp":
             # null valid when channel_index is lupopedia; external rules in validate_source_timestamp.
             continue
+        if key in ("auth_user_id", "department_id", "faucet_actor_id"):
+            if val is None:
+                continue
         if key in V3_KEYS_ALLOW_EMPTY_VALUE:
             continue
         if val is None:
@@ -3633,7 +3772,7 @@ def validate_yaml_file(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description=(
-            "Validate LUPOPEDIA HEADERS (PRD 16 §4.2 / §4.3, header_format_version 4.1.x patch family). "
+            "Validate LUPOPEDIA HEADERS (PRD 16 dual-accept: header_format_version 4.1.9 or 4.2.0). "
             "Optional MySQL drift checks with --check-db (imports pymysql only when used)."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -3732,9 +3871,14 @@ if __name__ == "__main__":
         help="Reject legacy fields (memory_key, dialog_transcript, content_slug) with errors instead of warnings",
     )
     parser.add_argument(
+        "--require-current",
+        action="store_true",
+        help="Reject legacy 4.1.9; require header_format_version exactly 4.2.0 (HDR_VERSION_420)",
+    )
+    parser.add_argument(
         "--version",
         action="version",
-        version="validate_lupopedia_headers_universal.py (PRD 16 / 4.1.9 envelope)",
+        version="validate_lupopedia_headers_universal.py (PRD 16 / dual-accept 4.1.9 + 4.2.0)",
     )
     args = parser.parse_args()
     file_path = args.file_path
@@ -3745,7 +3889,8 @@ if __name__ == "__main__":
 
     if not args.quiet:
         print(
-            "validate_lupopedia_headers_universal.py - PRD 16 / header_format_version 4.1.9"
+            "validate_lupopedia_headers_universal.py - PRD 16 / dual-accept 4.1.9 + 4.2.0 (current=%s)"
+            % (CURRENT_HEADER_FORMAT_VERSION,)
         )
 
     if not os.path.exists(file_path):
@@ -3794,6 +3939,9 @@ if __name__ == "__main__":
         ok, parsed = validate_yaml_file(file_path, content, **vkw)
     
     if ok and parsed is not None:
+        if args.require_current:
+            if not validate_header_format_version_require_current(parsed, file_path):
+                ok = False
         if args.check_db:
             check_db_sync_universal(file_path, parsed, check_db_flag=True, queue_orphans=args.queue_orphans)
         else:

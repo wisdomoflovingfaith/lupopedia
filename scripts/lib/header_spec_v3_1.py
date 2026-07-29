@@ -55,8 +55,8 @@ from typing import Any, Dict, FrozenSet, List, Optional, Tuple
 # Field 10 was dialog_transcript; renamed transcript_jsonl per PRD 16 v4.1.0 §4.2 field 10.
 # transcript_jsonl: DB lookup slug or null. dialog_transcript accepted as legacy alias (WARN).
 # PRD 16 / atom SSOT: memory/channels/atoms/lupopedia_global_constants.atom.toon
-# constants.header_fields.count = 22 (v4.1.9): + edges_toon, channel_index, source_timestamp.
-V4_HEADER_KEYS_ORDERED: Tuple[str, ...] = (
+# Dual-accept (4.2.0 Option A): 4.1.9 = 22 fields; 4.2.0 = 28 fields (+ identity).
+V419_HEADER_KEYS_ORDERED: Tuple[str, ...] = (
     "header_format_version",
     "path_from_lupopedia_root",
     "web_path",
@@ -81,15 +81,52 @@ V4_HEADER_KEYS_ORDERED: Tuple[str, ...] = (
     "source_timestamp",
 )
 
-# Backward-compatible name for imports (same tuple as v4.0.99)
+# Option A identity scalars (fields 23-28). Hawaiian keys MUST NOT appear here.
+V420_IDENTITY_KEYS_ORDERED: Tuple[str, ...] = (
+    "actor_id",
+    "auth_user_id",
+    "department_id",
+    "department_key",
+    "division_key",
+    "faucet_actor_id",
+)
+
+V420_HEADER_KEYS_ORDERED: Tuple[str, ...] = V419_HEADER_KEYS_ORDERED + V420_IDENTITY_KEYS_ORDERED
+
+# Default import name = current contract order (4.2.0 / 28 fields).
+V4_HEADER_KEYS_ORDERED: Tuple[str, ...] = V420_HEADER_KEYS_ORDERED
+
+# Backward-compatible name for imports
 V3_HEADER_KEYS_ORDERED: Tuple[str, ...] = V4_HEADER_KEYS_ORDERED
 
-V3_HEADER_KEYS: FrozenSet[str] = frozenset(V4_HEADER_KEYS_ORDERED)
-V4_HEADER_KEYS: FrozenSet[str] = frozenset(V4_HEADER_KEYS_ORDERED)
+V419_HEADER_KEYS: FrozenSet[str] = frozenset(V419_HEADER_KEYS_ORDERED)
+V420_HEADER_KEYS: FrozenSet[str] = frozenset(V420_HEADER_KEYS_ORDERED)
+V3_HEADER_KEYS: FrozenSet[str] = V420_HEADER_KEYS
+V4_HEADER_KEYS: FrozenSet[str] = V420_HEADER_KEYS
 
-# PRD 16 v4.1.9 — sole accepted header_format_version and field count for validators.
-EXPECTED_HEADER_FORMAT_VERSION = "4.1.9"
-EXPECTED_HEADER_FIELD_COUNT = len(V4_HEADER_KEYS_ORDERED)
+# Dual-accept versions (PRD 16_C / validator notes Phase 1).
+ACCEPTED_HEADER_FORMAT_VERSIONS: FrozenSet[str] = frozenset(("4.1.9", "4.2.0"))
+CURRENT_HEADER_FORMAT_VERSION = "4.2.0"
+LEGACY_HEADER_FORMAT_VERSION = "4.1.9"
+# Emitters / --require-current default to current; validators accept both.
+EXPECTED_HEADER_FORMAT_VERSION = CURRENT_HEADER_FORMAT_VERSION
+EXPECTED_HEADER_FIELD_COUNT = len(V420_HEADER_KEYS_ORDERED)
+LEGACY_HEADER_FIELD_COUNT = len(V419_HEADER_KEYS_ORDERED)
+
+# Dense keys forbidden under lupopedia.headers (Hermes/body only) — HDR_HAWAIIAN_DENSE
+HAWAIIAN_DENSE_FORBIDDEN_KEYS: FrozenSet[str] = frozenset(
+    (
+        "ohana",
+        "kapu",
+        "kapakai",
+        "puka",
+        "pono",
+        "kuleana",
+        "alii",
+        "kumu",
+        "eh_brah_why",
+    )
+)
 
 # PRD 16 trust_tier doctrine (current): canonical + development.
 # Legacy tiers are validator-tolerated with warnings during transition.
@@ -189,8 +226,8 @@ ATOMS_TOON_SUFFIX = ".atoms.toon"
 # hardcoding this value in new logic.
 CANONICAL_YEAR = "1026"
 
-# Deterministic emit / validation order for v4.0.99 dense envelopes.
-DETERMINISTIC_FIELD_ORDER: Tuple[str, ...] = V4_HEADER_KEYS_ORDERED
+# Deterministic emit / validation order for current dense envelopes (4.2.0).
+DETERMINISTIC_FIELD_ORDER: Tuple[str, ...] = V420_HEADER_KEYS_ORDERED
 
 # Legacy YAML key names (pre v4.0.99) → canonical names. Validators normalize before checks.
 LEGACY_HEADER_KEY_ALIASES: Dict[str, str] = LEGACY_KEYS_V4
@@ -234,28 +271,50 @@ def apply_v4099_header_defaults(hdr: dict) -> dict:
     return out
 
 
+def header_keys_ordered_for_version(version_value: Any) -> Tuple[str, ...]:
+    """Return the dense key tuple for a declared header_format_version."""
+    v = header_format_version_string(version_value)
+    if v == LEGACY_HEADER_FORMAT_VERSION:
+        return V419_HEADER_KEYS_ORDERED
+    if v == CURRENT_HEADER_FORMAT_VERSION:
+        return V420_HEADER_KEYS_ORDERED
+    # Emitters / unknown: prefer current contract.
+    return V420_HEADER_KEYS_ORDERED
+
+
+def dense_field_count_for_version(version_value: Any) -> int:
+    return len(header_keys_ordered_for_version(version_value))
+
+
+def dense_envelope_line_count_for_version(version_value: Any) -> int:
+    """Open fence + lupopedia.headers: + N keys + close fence (= N + 3)."""
+    return dense_field_count_for_version(version_value) + 3
+
+
 def normalize_header_dict_for_validation(hdr: dict):
     """
-    merge_legacy + summary/atoms_toon/memory_toon defaults, then **OrderedDict** in §4.2 canonical order.
-    Fills nullable / empty-allowed keys when absent so semantic validators match universal.py.
-    module is accepted as legacy alias for atoms_toon via LEGACY_KEYS_V4.
-    memory_key is accepted as legacy alias for memory_toon via LEGACY_KEYS_V4.
-    dialog_transcript is accepted as legacy alias for transcript_jsonl via LEGACY_KEYS_V4.
-    pk_id / pk_slug / parent_pk_id accepted as legacy aliases via LEGACY_KEYS_V4 (v4.1.1).
+    merge_legacy + defaults, then OrderedDict in version-specific §4.2 order.
     """
     from collections import OrderedDict
 
     base = apply_v4099_header_defaults(merge_legacy_header_keys(dict(hdr)))
+    ordered = header_keys_ordered_for_version(base.get("header_format_version"))
     od = OrderedDict()
-    for k in V4_HEADER_KEYS_ORDERED:
+    for k in ordered:
         if k in base:
             od[k] = base[k]
         elif k == "summary":
             od[k] = ""
-        elif k in ("atoms_toon", "memory_toon", "edges_toon", "source_timestamp"):
+        elif k in ("atoms_toon", "memory_toon", "edges_toon", "source_timestamp", "department_id"):
             od[k] = None
         elif k == "channel_index":
             od[k] = "lupopedia"
+        elif k in ("department_key", "division_key"):
+            od[k] = ""
+        elif k in ("auth_user_id", "faucet_actor_id"):
+            od[k] = None
+        elif k == "actor_id":
+            od[k] = base.get(k)
         elif k in V3_KEYS_ALLOW_EMPTY_VALUE:
             od[k] = ""
         else:
@@ -279,7 +338,8 @@ def header_format_patch_level(hdr: dict) -> int:
 
 
 def requires_v419_rules(hdr: dict) -> bool:
-    return is_exact_header_format_version(hdr.get("header_format_version"))
+    """True when header uses an accepted post-4.1.9 dense contract (4.1.9 or 4.2.0)."""
+    return is_accepted_header_format_version(hdr.get("header_format_version"))
 
 
 def header_format_version_string(version_value: Any) -> str:
@@ -292,19 +352,44 @@ def header_format_version_string(version_value: Any) -> str:
     return s
 
 
+def is_accepted_header_format_version(version_value: Any) -> bool:
+    """True when version is in ACCEPTED_HEADER_FORMAT_VERSIONS (4.1.9 or 4.2.0)."""
+    return header_format_version_string(version_value) in ACCEPTED_HEADER_FORMAT_VERSIONS
+
+
+def is_current_header_format_version(version_value: Any) -> bool:
+    return header_format_version_string(version_value) == CURRENT_HEADER_FORMAT_VERSION
+
+
+def is_legacy_header_format_version(version_value: Any) -> bool:
+    return header_format_version_string(version_value) == LEGACY_HEADER_FORMAT_VERSION
+
+
 def is_exact_header_format_version(version_value: Any) -> bool:
-    """True only when version is exactly EXPECTED_HEADER_FORMAT_VERSION (4.1.9)."""
-    return header_format_version_string(version_value) == EXPECTED_HEADER_FORMAT_VERSION
+    """Backward-compatible name: accepted dual-version check (4.1.9 or 4.2.0)."""
+    return is_accepted_header_format_version(version_value)
 
 
 def validate_header_format_version_exact(hdr: dict, file_path: str) -> bool:
-    """Reject any header_format_version other than 4.1.9 (HDR_VERSION_FAMILY)."""
+    """Accept header_format_version in ACCEPTED_HEADER_FORMAT_VERSIONS (HDR_VERSION_FAMILY)."""
     got = header_format_version_string(hdr.get("header_format_version"))
-    if got == EXPECTED_HEADER_FORMAT_VERSION:
+    if got in ACCEPTED_HEADER_FORMAT_VERSIONS:
         return True
     print(
-        "[ERROR] %s: header_format_version must be exactly %r; got %r (HDR_VERSION_FAMILY)"
-        % (file_path, EXPECTED_HEADER_FORMAT_VERSION, got or None)
+        "[ERROR] %s: header_format_version must be one of %s; got %r (HDR_VERSION_FAMILY)"
+        % (file_path, sorted(ACCEPTED_HEADER_FORMAT_VERSIONS), got or None)
+    )
+    return False
+
+
+def validate_header_format_version_require_current(hdr: dict, file_path: str) -> bool:
+    """Optional --require-current: only CURRENT_HEADER_FORMAT_VERSION (4.2.0)."""
+    got = header_format_version_string(hdr.get("header_format_version"))
+    if got == CURRENT_HEADER_FORMAT_VERSION:
+        return True
+    print(
+        "[ERROR] %s: --require-current: header_format_version must be exactly %r; got %r (HDR_VERSION_420)"
+        % (file_path, CURRENT_HEADER_FORMAT_VERSION, got or None)
     )
     return False
 
@@ -338,17 +423,19 @@ def validate_deprecated_header_fields(hdr: dict, file_path: str) -> bool:
 
 def validate_header_field_count_and_order(hdr: dict, file_path: str) -> bool:
     """
-    Enforce exactly EXPECTED_HEADER_FIELD_COUNT keys in V4_HEADER_KEYS_ORDERED order.
+    Enforce exact key count and order for the declared header_format_version
+    (22 keys for 4.1.9; 28 keys for 4.2.0).
     """
     if not isinstance(hdr, dict):
         return True
     actual_order: List[str] = list(hdr.keys())
-    expected = list(V4_HEADER_KEYS_ORDERED)
-    n = EXPECTED_HEADER_FIELD_COUNT
+    expected = list(header_keys_ordered_for_version(hdr.get("header_format_version")))
+    n = len(expected)
+    expected_set = frozenset(expected)
 
     if len(actual_order) != n:
         print(
-            "[ERROR] %s: Header field count mismatch: expected %d."
+            "[ERROR] %s: Header field count mismatch: expected %d (HDR_FIELD_COUNT)."
             % (file_path, n)
         )
         if len(actual_order) < n:
@@ -359,7 +446,7 @@ def validate_header_field_count_and_order(hdr: dict, file_path: str) -> bool:
                     % (", ".join(missing),)
                 )
         else:
-            extra = [k for k in actual_order if k not in V4_HEADER_KEYS]
+            extra = [k for k in actual_order if k not in expected_set]
             if extra:
                 print(
                     "   Unexpected field(s): %s (HDR_EXTRA_KEY)"
@@ -375,6 +462,95 @@ def validate_header_field_count_and_order(hdr: dict, file_path: str) -> bool:
         return False
 
     return True
+
+
+def _is_int_like(value: Any) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, int):
+        return True
+    s = str(value).strip()
+    if s == "":
+        return False
+    if s[0] in "+-":
+        s = s[1:]
+    return s.isdigit()
+
+
+def validate_hawaiian_not_densified(hdr: dict, file_path: str) -> bool:
+    """ERROR if Hawaiian constitutional keys appear under dense lupopedia.headers."""
+    if not isinstance(hdr, dict):
+        return True
+    ok = True
+    for field in hdr.keys():
+        if str(field).strip().lower() in HAWAIIAN_DENSE_FORBIDDEN_KEYS:
+            print(
+                "[ERROR] %s: Hawaiian key %r must not appear in dense lupopedia.headers "
+                "(Hermes/body/sidecar only) (HDR_HAWAIIAN_DENSE)"
+                % (file_path, field)
+            )
+            ok = False
+    return ok
+
+
+def validate_identity_fields_v420(hdr: dict, file_path: str) -> bool:
+    """4.2.0 identity scalars (fields 23-28). No-op for 4.1.9."""
+    if not is_current_header_format_version(hdr.get("header_format_version")):
+        return True
+    ok = True
+    actor_id = hdr.get("actor_id")
+    if actor_id is None or not _is_int_like(actor_id):
+        print(
+            "[ERROR] %s: actor_id is required and must be int-like for header 4.2.0 "
+            "(HDR_ACTOR_ID_REQUIRED)"
+            % (file_path,)
+        )
+        ok = False
+
+    for key in ("auth_user_id", "department_id", "faucet_actor_id"):
+        val = hdr.get(key)
+        if val is None:
+            continue
+        if not _is_int_like(val):
+            print(
+                "[ERROR] %s: %s must be null or int-like (HDR_IDENTITY_INT)"
+                % (file_path, key)
+            )
+            ok = False
+
+    for key in ("department_key", "division_key"):
+        val = hdr.get(key)
+        if val is None:
+            print(
+                "[ERROR] %s: %s must be a string (use \"\" when empty) (HDR_IDENTITY_STRING)"
+                % (file_path, key)
+            )
+            ok = False
+        elif not isinstance(val, str):
+            # YAML may parse bare tokens; coerce check via str is fine if not bool/list
+            if isinstance(val, (list, dict, bool)):
+                print(
+                    "[ERROR] %s: %s must be a string (HDR_IDENTITY_STRING)"
+                    % (file_path, key)
+                )
+                ok = False
+
+    faucet = hdr.get("faucet_actor_id")
+    if (
+        actor_id is not None
+        and faucet is not None
+        and _is_int_like(actor_id)
+        and _is_int_like(faucet)
+        and int(str(actor_id).strip()) == int(str(faucet).strip())
+    ):
+        print(
+            "[WARN]  %s: faucet_actor_id equals actor_id (%s); confirm intentional "
+            "(HDR_FAUCET_EQUALS_ACTOR)"
+            % (file_path, actor_id)
+        )
+    return ok
 
 
 def is_lupopedia_web_path(web_path: Any) -> bool:
@@ -590,14 +766,18 @@ def warn_source_timestamp_immutable(
 
 
 def validate_header_v419(hdr: dict, file_path: str, repo_root: Optional[str] = None) -> bool:
-    """v4.1.9 field rules (fields 20-22 and removed identity keys)."""
+    """Accepted dense contracts (4.1.9 + 4.2.0): fields 20-22, identity (4.2.0), Hawaiian ban."""
     if not requires_v419_rules(hdr):
         return True
     if not validate_header_format_version_exact(hdr, file_path):
         return False
+    if not validate_hawaiian_not_densified(hdr, file_path):
+        return False
     if not validate_header_field_count_and_order(hdr, file_path):
         return False
     if not validate_removed_header_fields_v419(hdr, file_path):
+        return False
+    if not validate_identity_fields_v420(hdr, file_path):
         return False
     if not validate_channel_index(hdr, file_path):
         return False
@@ -651,7 +831,7 @@ VALID_ARTIFACT_TYPES: FrozenSet[str] = frozenset(ARTIFACT_TYPE_ALLOWED_KINDS.key
 # - atoms_toon/memory_toon/questions_toon: null means "no sidecar pointer declared yet".
 # This split keeps unresolved identity/state explicit and avoids guessing semantics from "".
 V3_KEYS_ALLOW_EMPTY_VALUE: FrozenSet[str] = frozenset(
-    ("thread_key", "title", "status", "summary")
+    ("thread_key", "title", "status", "summary", "department_key", "division_key", "prd_cluster")
 )
 
 
@@ -708,7 +888,8 @@ def warn_trust_tier_status_mismatch(
     return None
 
 # Inner line count under opening --- (Markdown): lupopedia.headers: + N key lines (N = len(V4_HEADER_KEYS_ORDERED))
-V4_MD_INNER_LINE_COUNT = 1 + len(V4_HEADER_KEYS_ORDERED)
+V4_MD_INNER_LINE_COUNT = 1 + len(V420_HEADER_KEYS_ORDERED)
+V419_MD_INNER_LINE_COUNT = 1 + len(V419_HEADER_KEYS_ORDERED)
 
 # Legacy v3.1 / v4.0.0–98: lupopedia.headers: + 20 keys = 21 inner lines, blank 23–24, close line 25
 V3_LEGACY_MD_INNER_LINE_COUNT = 21
@@ -786,21 +967,31 @@ def emit_markdown_inner_legacy_v400_from_canonical(hdr: dict, *, header_format_v
 
 def emit_python_header_block_lines_from_header_dict(hdr: dict) -> list:
     """
-    25-line Python comment block (open fence, lupopedia.headers + 22 keys, close fence).
-    Does not include shebang.
+    Comment grid (open fence, lupopedia.headers + N keys, close fence).
+    N = 22 for 4.1.9, 28 for 4.2.0. Does not include shebang.
     """
     h = apply_v4099_header_defaults(merge_legacy_header_keys(dict(hdr)))
+    ordered = header_keys_ordered_for_version(h.get("header_format_version"))
+    # Ensure identity defaults for 4.2.0 emit
+    if is_current_header_format_version(h.get("header_format_version")):
+        if "department_key" not in h:
+            h["department_key"] = ""
+        if "division_key" not in h:
+            h["division_key"] = ""
+        for k in ("auth_user_id", "department_id", "faucet_actor_id"):
+            if k not in h:
+                h[k] = None
     lines = [
         "# ---------------------------------------------------------------------",
         "# lupopedia.headers:",
     ]
-    for k in V4_HEADER_KEYS_ORDERED:
+    for k in ordered:
         if k not in h:
             raise KeyError("emit_python_header_block_lines_from_header_dict: missing key %r" % k)
         scalar = format_yaml_header_scalar_line(k, h[k])
         lines.append("# " + scalar)
     lines.append("# ---------------------------------------------------------------------")
-    expected = 2 + len(V4_HEADER_KEYS_ORDERED) + 1
+    expected = dense_envelope_line_count_for_version(h.get("header_format_version"))
     if len(lines) != expected:
         raise ValueError("python header line count != %s" % expected)
     return lines
@@ -808,16 +999,26 @@ def emit_python_header_block_lines_from_header_dict(hdr: dict) -> list:
 
 def emit_markdown_inner_from_header_dict(hdr: dict) -> str:
     """
-    Build the 23-line inner block (lupopedia.headers: + 22 keys) from a mapping.
-    Normalizes legacy keys and applies v4.0.99 defaults for summary/module.
+    Build the inner block (lupopedia.headers: + N keys) from a mapping.
+    N = 22 for 4.1.9, 28 for 4.2.0.
     """
     h = apply_v4099_header_defaults(merge_legacy_header_keys(dict(hdr)))
+    ordered = header_keys_ordered_for_version(h.get("header_format_version"))
+    if is_current_header_format_version(h.get("header_format_version")):
+        if "department_key" not in h:
+            h["department_key"] = ""
+        if "division_key" not in h:
+            h["division_key"] = ""
+        for k in ("auth_user_id", "department_id", "faucet_actor_id"):
+            if k not in h:
+                h[k] = None
     lines = ["lupopedia.headers:"]
-    for k in V4_HEADER_KEYS_ORDERED:
+    for k in ordered:
         if k not in h:
             raise KeyError("emit_markdown_inner_from_header_dict: missing key %r" % k)
         lines.append(format_yaml_header_scalar_line(k, h[k]))
     inner = "\n".join(lines)
-    if len(inner.splitlines()) != V4_MD_INNER_LINE_COUNT:
-        raise ValueError("inner line count != %s" % V4_MD_INNER_LINE_COUNT)
+    expected_inner = 1 + len(ordered)
+    if len(inner.splitlines()) != expected_inner:
+        raise ValueError("inner line count != %s" % expected_inner)
     return inner

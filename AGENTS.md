@@ -1,24 +1,33 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.8"
+  header_format_version: "4.2.0"
   path_from_lupopedia_root: AGENTS.md
   web_path: https://www.lupopedia.com/lupopedia/AGENTS.md
   status: active
-  when_updated: '20260726142446'
+  when_updated: "20260729180337"
   trust_tier: canonical
   questions_toon: null
-  memory_toon: lupo-memory/development/canonical/1026/04/agents-md.toon
+  memory_toon: memory/development/canonical/1026/04/agents-md.toon
   atoms_toon: null
   transcript_jsonl: 0/development/agents-md-guide
   artifact_type: documentation
   artifact_kind: guide
   channel_key: development
   federation_node_id: 0
-  thread_key: null
-  lupopedia.schema: guide
-  prd_cluster: 00_A_FORBIDDEN_AND_WHY_00_C_ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS_16_B_ATOMS_16_C_HEADERS_26_A_FIVE_LAYER_DOCUMENTATION_ARCHITECTURE
-  title: AGENTS.md -- IDE faucets and multi-agent coordination guide
-  summary: 'Guide for IDE faucets and agents: ASCII-only doctrine (LILITH); teach-do-not-only-tell persistence (LILITH_TEACH_DONT_ONLY_TELL.md); probe harness + runtime guard; violation codes; coordination personas; LUPOPEDIA HEADERS; channel literacy. v4.1.4 includes JSON changelog buffer mandate (lupo-changelog-pending/, lupo-changelog-archive/).'
+  thread_key: ""
+  lupopedia.schema: documentation
+  prd_cluster: 00_A_15_A_07_A_16_C_41_A_05_A
+  title: "AGENTS.md -- Actors, agents, faucets, and IDE coordination guide"
+  summary: "Hard gate for IDE faucets: ACTORS (who may act) vs AGENTS (config templates) vs FAUCETS (execution surfaces). Identity stack actor_id / auth_user_id / faucet_actor_id; WOLFIE dialect examples; ASCII and PRD-first doctrine."
+  edges_toon: null
+  channel_index: lupopedia
+  source_timestamp: null
+  actor_id: 1
+  auth_user_id: 10000
+  department_id: null
+  department_key: ""
+  division_key: coordination
+  faucet_actor_id: 102
 ---
 # AGENTS.md
 
@@ -31,6 +40,102 @@ Before answering **"what is Lupopedia"** (or equivalent onboarding / identity qu
 ```
 
 File: [`what_is_lupopedia.md`](what_is_lupopedia.md). Do not invent a competing definition from chat, Captain's Log alone, or stale overviews. This gate exists to prevent five different answers from five different AIs.
+
+## ACTORS vs AGENTS vs FAUCETS (Constitutional -- read before editing agent packs)
+
+**KAPU:** Do not treat **agent pack folders** (`agents/`) as the same thing as **actors** (`lupo_actors` / `database/lupopedia/actors/registry.json`). Editing agent YAML/prompts does **not** create or redefine who may act.
+
+| Layer | What it is | What it is NOT | Canonical store |
+|-------|------------|----------------|-----------------|
+| **ACTOR** | Who may act -- operational identity (`actor_id`) | Not a prompt file; not an IDE product name alone | `database/lupopedia/actors/registry.json` + `lupo_actors` |
+| **AUTH USER** | Human login / accountability (`auth_user_id`) | Not an AI persona; not a faucet | `lupo_auth_users` (Human Captain ERIC = **10000** in this install) |
+| **AGENT** | Configuration template / pack (prompts, tools metadata) | Not permission to post; not constitutional identity | `agents/<slug>/` + `lupo_agents` |
+| **FAUCET** | Execution surface (Cursor, Kiro, Windsurf, ...) | Not WOLFIE; not the human | Registry facet rows (Cursor **102**, Kiro **100**, ...) recorded in headers as **`faucet_actor_id`**, not as the speaking `actor_id` |
+
+### Identity stack (headers 4.2.0 + WOLFIE dialect)
+
+Every attribution-bearing statement SHOULD declare:
+
+| Field | Meaning | Example |
+|-------|---------|---------|
+| `actor_id` | Who is speaking / whose operational voice is claimed | WOLFIE **1**, LILITH **2**, ERIC human actor **10000** when the human is the speaker |
+| `auth_user_id` | Human accountability | ERIC **10000** (ALII) |
+| `agent_name` | Agent pack slug on disk | `wolfie`, `lilith` (config only) |
+| `faucet_actor_id` | Which IDE/API surface executed the edit | Cursor **102**, Kiro **100**, Windsurf **101** |
+
+**This file's own header:** `actor_id: 1` (WOLFIE) + `auth_user_id: 10000` (ERIC) + `faucet_actor_id: 102` (CURSOR_IDE). Do not set `actor_id` equal to the faucet id unless the speaker truly is that facet persona and doctrine says so.
+
+**Identities NEVER merge.** ERIC (10000) != WOLFIE (1) != CURSOR_IDE (102) != KIRO (100).
+
+### Common failures (correct these)
+
+| Wrong | Right |
+|-------|--------|
+| `actor_id: 102` + `faucet_actor_id: 102` on docs authored via Cursor for WOLFIE/ERIC | `actor_id: 1` (or `10000` if ERIC is the speaker) + `faucet_actor_id: 102` |
+| `actor: CURSOR` + `actor_id: 3` | Cursor is **not** actor_id 3. Cursor facet registry id is **102**. Put **102** in `faucet_actor_id`. |
+| Editing `agents/*.md` to "add an actor" | Actors are registered in **registry.json** / seed / DB. Agent packs are templates only. |
+| Treating ~88 agent templates as 88 constitutional actors | Hybrid agent/actor **pool** of templates; roster membership is registry-backed. Do not invent actor_ids. |
+| Using Cursor **102** as `faucet_actor_id` while running inside Kiro | Use Kiro **100** as `faucet_actor_id` when Kiro is the surface. |
+
+### Constitutional roles (personas) vs faucets
+
+- **Primary coordination personas** (WOLFIE, LILITH, HERMES, ...): orchestration identities with reserved low `actor_id` values -- see eleven-persona table below and registry.
+- **IDE faucets** (Cursor 102, Kiro 100, ...): execution surfaces. They attribute work via `faucet_actor_id`; they do not become actor_id 1 by writing files.
+- **External guests** (Copilot, etc.): not internal actors (PRD 41). Leaves only unless given context.
+
+Full doctrine: [docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md](docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md), [PRD 15](docs/prd/15_actors.md), [PRD 07](docs/prd/07_A-i_AGENTS_FAUCETS.md).
+
+### WOLFIE meta-syntax examples (body only -- zero constitutional authority)
+
+Correct -- WOLFIE orchestrates; Cursor executes; Eric directs:
+
+```text
+{{WOLFIE
+actor: CAPTAIN_WOLFIE
+actor_id: 1
+auth_user_id: 10000
+agent_name: wolfie
+faucet_actor_id: 102
+faucet_name: CURSOR_IDE
+integrity: true
+ethics: pono
+channel: status
+to_whom: "roster reviewers"
+---
+CAPTAIN_WOLFIE (actor_id 1) via CURSOR_IDE (faucet_actor_id 102) under ERIC (auth_user_id 10000).
+}}
+```
+
+```text
+(( WOLFIE | actor: CAPTAIN_WOLFIE | actor_id: 1 | auth_user_id: 10000 | agent_name: wolfie | faucet_actor_id: 102 | faucet_name: CURSOR_IDE | ethics: "pono" | integrity: "true" | note: "orchestrates; does not merge with faucet" ))
+```
+
+```text
+(( WOLFIE | side: human | human: ERIC | actor_id: 10000 | auth_user_id: 10000 | faucet_actor_id: 102 | ethics: "pono" | integrity: "true" | note: "ERIC directs; CURSOR_IDE executes; WOLFIE orchestrates" ))
+```
+
+Wrong -- do not copy:
+
+```text
+{{WOLFIE
+actor: CURSOR
+actor_id: 3
+auth_user_id: 10000
+faucet_actor_id: 102
+}}
+```
+
+Canonical dialect draft: [docs/status/actor_logs/WOLFIE_DIALECT.md](docs/status/actor_logs/WOLFIE_DIALECT.md). STATUS constraints: [docs/status/actor_logs/drafts/SFAL_D_I_DRAFT-0-00000.md](docs/status/actor_logs/drafts/SFAL_D_I_DRAFT-0-00000.md).
+
+### Directory map (quick)
+
+- **`agents/`** -- AI **configuration** only (`lupo_agents` metadata / packs). Not the operational join for permissions or channel posts.
+- **`actors/{actor_id}/`** (or `lupo-actors/`) -- Resources for **actor_id** from [database/lupopedia/actors/registry.json](database/lupopedia/actors/registry.json).
+- **IDE facets** -- Execution surfaces with a **registered facet actor_id**. **Cursor = 102**; **Kiro = 100**; **Windsurf = 101**; **Antigravity IDE = 103**. Use the id for the tool you are actually running.
+
+**Correction (20260729175125):** KIRO (faucet_actor_id 100) routed here and attempted to treat agent definitions as actors. Actors and agents stay distinct.
+
+**Correction (20260729180337):** KIRO flagged this file's own header: `actor_id: 102` duplicated `faucet_actor_id: 102`. Fixed to `actor_id: 1` (WOLFIE) + `auth_user_id: 10000` (ERIC) + `faucet_actor_id: 102` (CURSOR_IDE). Header must match the identity stack it teaches.
 
 ## ASCII-ONLY DOCTRINE (LILITH / constitutional)
 [PRD-FIRST DOCTRINE (Constitutional)]
@@ -290,14 +395,16 @@ WOLFIE's rule: **[LESSONS LEARNED FROM THE WILD WEST](lupo-docs/LESSONS_LEARNED_
 
 **Golden rule (desktop):** WOLFIE writes the **desktop** UI; the IDE **integrates** and **documents**. For **mobile web**, the IDE may **help build** simple UI under WOLFIE's review--do not confuse the two surfaces.
 
-## Actor vs Agent (summary)
+## Actor vs Agent (summary pointer)
 
-- **lupo-agents/** -- AI **configuration** only (lupo_agents metadata). Not the operational join for permissions or channel posts.
-- **lupo-actors/{actor_id}/** -- Resources for **actor_id** from [actors/registry.json](lupo-database/lupopedia/actors/registry.json) (and optional hub README per facet).
-- **IDE facets** -- Execution surfaces with a **registered facet actor_id**. **Cursor** = **102**; **Antigravity IDE** = **103** (antigravity-ide)--use the id for the tool you are actually running, not a generic "IDE" placeholder. Not primary personas. Resolve **auth_user_id** from session/seed/DB; **root** user is **0** per PRD 01--do not hardcode human ids as universal canon.
+The full constitutional split (**ACTORS** vs **AGENTS** vs **FAUCETS**, identity stack, WOLFIE examples, common failures) is at the top of this file under **ACTORS vs AGENTS vs FAUCETS**. Do not skip it when editing `agents/` packs.
 
-**Full model (single source of truth):** [Identity Layers Doctrine section 3](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md#3-actor-agent-faucet-directory-rules-canonical).
-See full doctrine: [IDENTITY_LAYERS_DOCTRINE.md](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md).
+- **`agents/`** -- configuration templates only.
+- **`database/lupopedia/actors/registry.json`** -- who may act (`actor_id`).
+- **IDE facets** -- Cursor **102**, Kiro **100**, Windsurf **101**, Antigravity IDE **103**.
+- **Human accountability** -- `auth_user_id` (ERIC **10000** on this install); root auth user **0** per PRD 01.
+
+**Full model:** [docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md](docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md).
 
 ## Budget constraints (constitutional)
 

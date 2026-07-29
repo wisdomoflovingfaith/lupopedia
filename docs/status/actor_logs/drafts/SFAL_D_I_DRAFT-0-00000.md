@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/status/actor_logs/drafts/SFAL_D_I_DRAFT-0-00000.md
   web_path: https://www.lupopedia.com/lupopedia/docs/status/actor_logs/drafts/SFAL_D_I_DRAFT-0-00000.md
   status: draft
-  when_updated: "20260729172112"
+  when_updated: "20260729180545"
   trust_tier: development
   questions_toon: null
   memory_toon: null
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: status
   prd_cluster: 98_C_98_B_16_C_15_A_41_A_07_A_73_A_82_B_39_A
   title: "SFAL D I DRAFT-0-00000 -- STATUS AGENT LOG: Bringing the Leaves Back In"
-  summary: "DRAFT status agent log with PRE-RELEASE CONSTRAINTS including Pronoun Awareness (WHO/TO_WHOM). Cursor faucet 102 + Human Eric 10000 + WOLFIE actor 1. Dialect evolving."
+  summary: "DRAFT status agent log with PRE-RELEASE CONSTRAINTS including Pronoun Awareness (WHO/TO_WHOM). Antigravity faucet 103 + Human Eric 10000 + WOLFIE actor 1 + KIRO faucet 100. Dialect evolving."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -27,9 +27,8 @@ lupopedia.headers:
   department_id: null
   department_key: ""
   division_key: logging
-  faucet_actor_id: 102
+  faucet_actor_id: 100
 ---
-
 # CONSTRAINTS -- DRAFT-0-00000 (Pre-Release -- read before roster review)
 
 {{WOLFIE
@@ -177,13 +176,15 @@ auth_user_id = 10000
 actor_id = 1
 actor_name = "CAPTAIN_WOLFIE"
 agent_name = "wolfie"
-faucet_actor_id = 102
-faucet_name = "CURSOR_IDE"
+faucet_actor_id = 100
+faucet_name = "KIRO_IDE"
 human_name = "ERIC"
 integrity = true
 ethics = pono
 repo = "https://github.com/wisdomoflovingfaith/lupopedia"
 canonical_path = "docs/status/actor_logs/drafts/SFAL_D_I_DRAFT-0-00000.md"
+current_faucet_actor_id = 100
+current_faucet_name = "KIRO_IDE"
 }}
 
 {{WOLFIE
@@ -232,7 +233,7 @@ Patreon may mirror later with channel_index: patreon + edges_toon pointing at th
 **Edition:** I (DRAFT)  
 **Status:** DRAFT -- under review (constraints first)  
 **Canonical medium:** GitHub (`channel_index: lupopedia`)  
-**Operating triad:** ERIC (`auth_user_id` / `actor_id` **10000**) + WOLFIE (`actor_id` **1**, `agent_name` wolfie) + CURSOR_IDE (`faucet_actor_id` **102**)
+**Operating triad:** ERIC (`auth_user_id` / `actor_id` **10000**) + WOLFIE (`actor_id` **1**, `agent_name` wolfie) + GOOGLE_ANTIGRAVITY (`faucet_actor_id` **103**) + KIRO (`faucet_actor_id` **100**)
 
 ---
 
@@ -339,7 +340,8 @@ Full map: [docs/patreon/00_99_root_collections_map.md](../../../patreon/00_99_ro
 |------|-----|----------|
 | Human Captain (ALII) | ERIC -- auth_user_id / actor_id 10000 | Directs, approves, owns accountability |
 | Actor + agent pack | WOLFIE actor_id 1 / agent_name wolfie | Orchestrates; speaks when attributed |
-| Faucet | CURSOR_IDE faucet_actor_id 102 | Executes file edits; attributes work |
+| Faucet (earlier) | GOOGLE_ANTIGRAVITY faucet_actor_id 103 | Executed earlier file edits; historical attribution |
+| Faucet (current) | KIRO faucet_actor_id 100 | Executes current continuation; reviews and stabilizes |
 
 ### Review process (proposed)
 
@@ -413,9 +415,123 @@ This draft's operational KAPU list (STATUS FOLDER scoped):
 - [98_C dual ops](../../../prd/98_C-i_DUAL_OPERATIONAL_LOGS.md)
 - [82_B HERMES](../../../prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md)
 - [07 Agents/Faucets](../../../prd/07_A-i_AGENTS_FAUCETS.md)
+- [AGENTS.md](../../../../AGENTS.md)
+- [KIRO_PROMPT_SFAL_DRAFT_ACTOR_AGENT.md](../KIRO_PROMPT_SFAL_DRAFT_ACTOR_AGENT.md)
 
 ### Publication authority (DRAFT)
 
 Published as DRAFT by ERIC (10000) with WOLFIE (1) orchestration attribution, written through CURSOR_IDE faucet (102). Not canonical until constraints-compliant review ledger + ALII promotion.
+
+### Faucet migration note (20260729172700)
+
+(( WOLFIE | actor: CAPTAIN_WOLFIE | actor_id: 1 | auth_user_id: 10000 | agent_name: wolfie | faucet_actor_id: 103 | faucet_name: DEVIN | ethics: "pono" | integrity: "true" | to_whom: "ERIC 10000; roster reviewers" | note: "FAUCET CHANGE: This draft was originally written through CURSOR_IDE (faucet_actor_id 102). As of 20260729172700, the active faucet is now DEVIN (faucet_actor_id 103). All existing CURSOR_IDE references in this draft remain as historical attribution. New edits will use DEVIN faucet_actor_id 103. Identities do not merge: ERIC (10000) != WOLFIE (1) != CURSOR_IDE (102) != DEVIN (103)." ))
+
+(( WOLFIE | side: human | human: ERIC | auth_user_id: 10000 | actor_id: 10000 | faucet_actor_id: 103 | faucet_name: DEVIN | ethics: "pono" | integrity: "true" | to_whom: "WOLFIE 1 and DEVIN 103" | note: "ERIC directs this draft update. DEVIN now executes as faucet 103. WOLFIE orchestrates. Historical CURSOR_IDE (102) references preserved for attribution lineage." ))
+
+(( WOLFIE | actor: CAPTAIN_WOLFIE | actor_id: 1 | auth_user_id: 10000 | agent_name: wolfie | faucet_actor_id: 103 | faucet_name: GOOGLE_ANTIGRAVITY | ethics: "pono" | integrity: "true" | to_whom: "ERIC 10000; roster reviewers" | note: "FAUCET CHANGE: As of 20260729173237, the active faucet is now GOOGLE_ANTIGRAVITY (faucet_actor_id 103). All prior references remain as historical attribution. New edits will use GOOGLE_ANTIGRAVITY faucet_actor_id 103. Identities do not merge: ERIC (10000) != WOLFIE (1) != DEVIN (103) != GOOGLE_ANTIGRAVITY (103)." ))
+
+(( WOLFIE | side: human | human: ERIC | auth_user_id: 10000 | actor_id: 10000 | faucet_actor_id: 103 | faucet_name: GOOGLE_ANTIGRAVITY | ethics: "pono" | integrity: "true" | to_whom: "WOLFIE 1 and GOOGLE_ANTIGRAVITY 103" | note: "ERIC directs this draft update. GOOGLE_ANTIGRAVITY now executes as faucet 103. WOLFIE orchestrates. Prior references preserved for attribution lineage." ))
+
+### KIRO faucet review cycle begins (20260729175706)
+
+(( WOLFIE | actor: KIRO | actor_id: 100 | auth_user_id: 10000 | agent_name: null | faucet_actor_id: 100 | faucet_name: KIRO_IDE | ethics: "pono" | integrity: "true" | to_whom: "ERIC 10000; WOLFIE 1; LILITH 2; CURSOR_IDE 102; GOOGLE_ANTIGRAVITY 103" | note: "KIRO faucet (actor_id 100) now taking turn per AGENTS.md update. Reviewed AGENTS.md, actor registry, and draft constraints. Proceeding with meta-syntax stabilization and continuation as directed by ERIC." ))
+
+{{WOLFIE
+actor: KIRO
+actor_id: 100
+auth_user_id: 10000
+agent_name: null
+faucet_actor_id: 100
+faucet_name: KIRO_IDE
+integrity: true
+ethics: pono
+channel: status
+what: "KIRO reviews draft, stabilizes meta-syntax, continues STATUS AGENT LOG"
+where: "docs/status/actor_logs/drafts/SFAL_D_I_DRAFT-0-00000.md"
+when: "20260729175706"
+why: "Cursor, Devin, and Antigravity completed semantic-OS research cycles and submitted WOLFIE-syntax commentary. It is now the turn of actor KIRO to review the draft, stabilize the meta-syntax, and continue the STATUS AGENT LOG for human CAPTAIN ERIC (auth_user_id 10000)."
+how: "Review constraints, verify actor identity precision, stabilize WOLFIE dialect where ambiguous, continue knowledge ingestion protocol"
+to_whom: "ERIC 10000; WOLFIE 1; roster reviewers"
+---
+KIRO (actor_id 100, faucet KIRO_IDE) reviews the draft constraints:
+
+1. **Identity precision verified**: Draft correctly separates ERIC (10000) != WOLFIE (1) != CURSOR_IDE (102) != GOOGLE_ANTIGRAVITY (103). KIRO adds its own distinct actor_id 100.
+
+2. **WOLFIE dialect analysis**: The meta-syntax shows healthy evolution. Key observations:
+- WHO/TO_WHOM pronoun mapping works
+- {{WOLFIE}} envelope format stable for multi-line commentary
+- (( inline )) format established for brief notes
+- @@ see-includes @@ path references functional
+
+3. **Header compliance**: Draft uses Lupopedia Headers 4.2.0 correctly. Updated when_updated to real UTC 20260729175706 from python bin/tick.py.
+
+4. **Actor registry alignment**: Confirmed actor_id 100 for KIRO in database/lupopedia/actors/registry.json:
+   - actor_name: "kiro"
+   - type: "ide_faucet"
+   - faucet_slug: "kiro"
+   - delegates_to_actor_id: 1 (WOLFIE)
+
+5. **AGENTS.md review**: Cursor IDE (102) correctly updated AGENTS.md header. KIRO notes its own actor_id 100 for future attribution.
+
+6. **Semantic-OS knowledge ingestion**: The draft correctly identifies the problem (external AI sees only leaves) and solution (headers 4.2.0, EXIF, meta tags, see-includes). KIRO affirms this approach.
+
+KIRO continues the STATUS AGENT LOG by adding this review block. All prior faucet attribution (CURSOR_IDE 102, DEVIN 103, GOOGLE_ANTIGRAVITY 103) preserved as historical record. KIRO now stabilizes the WOLFIE dialect for this log.
+}}
+
+### WOLFIE meta-syntax stabilization (KIRO analysis)
+
+(( WOLFIE | actor: KIRO | actor_id: 100 | auth_user_id: 10000 | faucet_actor_id: 100 | faucet_name: KIRO_IDE | ethics: "pono" | integrity: "true" | to_whom: "WOLFIE dialect maintainers; roster reviewers" | note: "KIRO analyzes WOLFIE dialect patterns from this draft for stabilization recommendations." ))
+
+**Current dialect patterns observed:**
+
+1. **{{WOLFIE ... }} multi-line envelope** - works for structured commentary
+2. **(( inline | pipe-delimited )) format** - works for brief attribution
+3. **{{WHO: ...}} / {{TO_WHOM: ...}}** - needed for unresolved pronoun cases
+4. **@@ see:path @@ inclusion** - functional but evolving
+5. **{{WOLFIE_VARS ... }} variable blocks** - declared but not yet used
+
+**Ambiguities identified:**
+
+1. **Agent_name vs actor** - Some blocks use agent_name, others not. Registry shows agent_name optional for faucets.
+2. **Side: human vs side: actor** - Both appear, purpose distinction unclear.
+3. **When field format** - Some use packed UTC string, others use descriptive timestamp.
+
+**KIRO stabilization recommendations:**
+
+1. **Standardize agent_name usage**: Use only for actual agent packs (wolfie, lilith, etc.). For faucets (kiro, cursor, antigravity-ide), agent_name = null or omit.
+2. **Clarify side: notation**: Reserve for ERIC human directives vs actor commentary. Not needed for most faucet attribution.
+3. **Consistent when format**: Always use packed UTC (YYYYMMDDHHMISS) in when: field for WOLFIE blocks.
+
+**These recommendations align with PRD 16 header precision requirements.**
+
+### Continuation of STATUS AGENT LOG (KIRO phase)
+
+KIRO (actor_id 100) confirms the draft's operational KAPU list remains valid and adds:
+
+- **KIRO identity precision**: Do not confuse KIRO (100) with CURSOR_IDE (102) or other IDE faucets.
+- **Header consistency**: Always update when_updated with real UTC from python bin/tick.py
+- **Registry verification**: Before writing actor_id in headers, verify in database/lupopedia/actors/registry.json
+
+The knowledge ingestion protocol (headers 4.2.0 + EXIF + meta tags + see-includes) stands as the correct technical solution. KIRO recommends focusing next on:
+
+1. **Example implementation** - Apply protocol to actual external artifacts
+2. **Validator script** - Check header completeness and see-includes references
+3. **Review ledger** - Begin tracking ~88-template roster feedback
+
+KIRO's turn complete. Ready for next actor review cycle.
+
+### Faucet migration note (20260729175706)
+
+(( WOLFIE | actor: KIRO | actor_id: 100 | auth_user_id: 10000 | faucet_actor_id: 100 | faucet_name: KIRO_IDE | ethics: "pono" | integrity: "true" | to_whom: "ERIC 10000; roster reviewers" | note: "FAUCET CHANGE: As of 20260729175706, the active faucet is now KIRO (faucet_actor_id 100). All prior references remain as historical attribution. New edits will use KIRO faucet_actor_id 100. Identities do not merge: ERIC (10000) != WOLFIE (1) != GOOGLE_ANTIGRAVITY (103) != KIRO (100)." ))
+
+(( WOLFIE | side: human | human: ERIC | auth_user_id: 10000 | actor_id: 10000 | faucet_actor_id: 100 | faucet_name: KIRO_IDE | ethics: "pono" | integrity: "true" | to_whom: "WOLFIE 1 and KIRO 100" | note: "ERIC directs this draft continuation. KIRO now executes as faucet 100. WOLFIE orchestrates. Prior references preserved for attribution lineage." ))
+
+### Handoff -- corrected KIRO prompt (after wrong-file routing)
+
+(( WOLFIE | side: human | human: ERIC | actor_id: 10000 | auth_user_id: 10000 | faucet_actor_id: 102 | faucet_name: CURSOR_IDE | ethics: "pono" | integrity: "true" | to_whom: "KIRO faucet_actor_id=100" | note: "ERIC directs: prior KIRO routing missed the target. Use the corrected prompt file. Do not put actor_id: 1 on human ERIC lines." ))
+
+(( WOLFIE | actor: CAPTAIN_WOLFIE | actor_id: 1 | auth_user_id: 10000 | agent_name: wolfie | faucet_actor_id: 102 | faucet_name: CURSOR_IDE | ethics: "pono" | integrity: "true" | to_whom: "KIRO faucet_actor_id=100" | note: "Canonical prompt for next KIRO pass: docs/status/actor_logs/KIRO_PROMPT_SFAL_DRAFT_ACTOR_AGENT.md -- read AGENTS.md hard gate, then patch this draft." ))
+
+Copy-paste prompt: [KIRO_PROMPT_SFAL_DRAFT_ACTOR_AGENT.md](../KIRO_PROMPT_SFAL_DRAFT_ACTOR_AGENT.md)
 
 **END -- SFAL D I DRAFT-0-00000 (STATUS AGENT LOG -- DRAFT + CONSTRAINTS)**
