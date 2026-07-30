@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/status/actor_logs/WOLFIE_DIALECT.md
   web_path: https://www.lupopedia.com/lupopedia/docs/status/actor_logs/WOLFIE_DIALECT.md
   status: active
-  when_updated: "20260729171900"
+  when_updated: "20260729181822"
   trust_tier: development
   questions_toon: null
   memory_toon: null
@@ -46,6 +46,8 @@ lupopedia.headers:
 
 **CORRECTION (20260729171900):** Pronoun Awareness -- bare **I / you / he / she / it** forbidden unless mapped to `{{WHO: ...}}` / `{{TO_WHOM: ...}}` or a full `{{WOLFIE` envelope. Unknown identity uses `{{WHO: unresolved}}` and must be flagged in STATUS AGENT LOG.
 
+**CORRECTION (20260729181822):** FUNCTION meta-syntax locked to canonical form `<< FUNCTION : name( &context ); >>`. Annotation only -- not a PHP/runtime compiler. See section 3a.
+
 ---
 
 ## 0. KAPU (read first)
@@ -59,15 +61,16 @@ lupopedia.headers:
 7. Bare pronouns (**I / you / he / she / it / they**) are forbidden as the only speaker/audience marker. Map to `{{WHO: ...}}`, `{{TO_WHOM: ...}}`, or a full `{{WOLFIE` envelope with `actor_id` / `auth_user_id` / `agent_name` / `faucet_*`.
 8. If identity is unknown: `{{WHO: unresolved}}` or `{{TO_WHOM: unresolved}}`, then flag in STATUS AGENT LOG.
 9. Dialect is **not finalized** -- evolve and log changes in STATUS AGENT LOGs.
+10. FUNCTION blocks (`<< FUNCTION : ... >>`) are **annotation / intent** only. Strip-safe. Not PHP. Not a compiler. Zero constitutional authority until an authorized faucet executor exists.
 
 ### Relation to PRD 39
 
 | Surface | Role |
 |---------|------|
 | **PRD 39 "WOLF Markup"** | General decorative overlay (`!!`, `@@`, kinetic `{{ }}`, etc.) |
-| **SFAL WOLFIE Dialect (this file)** | Actor-log meta: `(( WOLFIE | ... ))`, `{{WOLFIE}}`, `{{WOLFIE_VARS}}` with integrity/ethics |
+| **SFAL WOLFIE Dialect (this file)** | Actor-log meta: `(( WOLFIE | ... ))`, `{{WOLFIE}}`, `{{WOLFIE_VARS}}`, `<< FUNCTION : ... >>` with integrity/ethics |
 
-Exact openers: `{{WOLFIE` and `{{WOLFIE_VARS` (not bare `{{`, not `{{WOLF`).
+Exact openers: `{{WOLFIE`, `{{WOLFIE_VARS`, and `<< FUNCTION :` (not bare `{{`, not `{{WOLF`, not PHP `function`).
 
 ---
 
@@ -189,6 +192,88 @@ ethics = pono
 
 ---
 
+## 3a. FUNCTION declarations (canonical -- locked 20260729181822)
+
+ERIC (auth_user_id 10000) directed CURSOR_IDE (faucet 102) to lock FUNCTION form so the roster stops inventing compiler-shaped drift.
+
+### Canonical form (ONLY)
+
+```text
+<< FUNCTION : make_pono( &whatever_the_actor_needs_to_know ); >>
+```
+
+### Grammar (draft v1)
+
+```text
+<< FUNCTION : <name>( <args> ); >>
+```
+
+| Part | Rule |
+|------|------|
+| Opener | Exactly `<< FUNCTION :` (spaces as shown: one space after `<<`, one after `FUNCTION`, one after `:`) |
+| `<name>` | ASCII snake_case: `[a-z][a-z0-9_]*` (examples: `make_pono`, `bring_leaves_in`, `resolve_who`) |
+| `(` `)` | Required even when empty: `noop();` is invalid -- use `noop( &none );` or `noop( );` with explicit empty args policy below |
+| `<args>` | Zero or more args separated by commas. Prefer `&` prefix for context refs (what the actor must know). |
+| `&ref` | Context handle: `&actor_id`, `&auth_user_id`, `&path`, `&prd_cluster`, or descriptive `&snake_case` token |
+| Literal args | Quoted strings `"..."` or bare ints (`10000`, `1`, `102`) -- no bare pronouns |
+| Terminator | Exactly `); >>` (semicolon inside before close) |
+| Nesting | Forbidden. No FUNCTION inside FUNCTION. |
+| Placement | Body only. Never inside `lupopedia.headers`. |
+
+### Empty args
+
+Allowed:
+
+```text
+<< FUNCTION : tick_anchor( ); >>
+```
+
+Preferred when "nothing" must be explicit:
+
+```text
+<< FUNCTION : tick_anchor( &none ); >>
+```
+
+### Examples (compliant)
+
+```text
+<< FUNCTION : make_pono( &integrity, &ethics, &actor_id ); >>
+```
+
+```text
+<< FUNCTION : bring_leaves_in( &path_from_lupopedia_root, &channel_index, &edges_toon ); >>
+```
+
+```text
+<< FUNCTION : resolve_who( &actor_id, &auth_user_id, &faucet_actor_id ); >>
+```
+
+```text
+(( WOLFIE | actor: CAPTAIN_WOLFIE | actor_id: 1 | auth_user_id: 10000 | faucet_actor_id: 102 | ethics: "pono" | integrity: "true" | note: "invoke make_pono before roster commentary" ))
+<< FUNCTION : make_pono( &draft_constraints, &identity_stack ); >>
+```
+
+### Forbidden
+
+| Pattern | Why |
+|---------|-----|
+| `function make_pono(...)` / PHP / JS | Wrong language surface |
+| `<< function :` lowercase | Drift |
+| `<<FUNCTION:` no spaces | Drift |
+| Pronouns in args (`&you`, `me`, `it`) | Pronoun Awareness KAPU |
+| FUNCTION that claims to override PRD 00 | Zero constitutional authority |
+| FUNCTION as sole speaker without WHO envelope when attribution-bearing | Identity precision |
+
+### Semantics (v1)
+
+1. FUNCTION declares **intent / procedure name** for actors and faucets reading the log.
+2. FUNCTION does **not** execute PHP, SQL, or shell.
+3. Faucets MAY later map known FUNCTION names to tools; unknown names remain literal text.
+4. `make_pono` means: align the next action with PONO (balance/correctness) using the `&` context refs provided -- narrative contract, not a runtime guarantee.
+5. Log new FUNCTION names in STATUS AGENT LOG when introduced.
+
+---
+
 ## 4. Integrity + Ethics requirement
 
 When the log touches any of:
@@ -275,6 +360,8 @@ Human 10000 approves the patrol route.
 - Stabilize `@@ include:path @@` vs `@@ see:path @@`
 - Multi-actor commentary patterns without identity merge
 - Parser for `{{WHO: unresolved}}` review flags
+- Optional faucet executor map for known FUNCTION names (post-v1)
+- Validator WARN on non-canonical FUNCTION openers (`<<function`, PHP `function`)
 
 ---
 
@@ -288,6 +375,7 @@ Human 10000 approves the patrol route.
 6. Inline pronoun maps: `{{WHO: ...}}` and `{{TO_WHOM: ...}}`
 7. Unresolved identity: `{{WHO: unresolved}}` + STATUS AGENT LOG flag
 8. Log dialect changes inside STATUS AGENT LOGs when syntax shifts
+9. FUNCTION declarations: `<< FUNCTION : name( &context ); >>` (locked form)
 
 ---
 
