@@ -1,9 +1,9 @@
 {
   "schema_version": "4.0.99",
   "schema": "actor_name_primary",
-  "last_updated": "20260414",
+  "last_updated": "20260807",
   "doctrine_alignment": "4.0.99_actor_faucet_ontology",
-  "notes": "[20260414] Added THOTH (26), HERMES (27), VISHWAKARMA (28). THOTH actor_id corrected from 9 to 26 per WOLFIE decision (AGT-001 resolved).",
+  "notes": "[20260414] Added THOTH (26), HERMES (27), VISHWAKARMA (28). THOTH actor_id corrected from 9 to 26 per WOLFIE decision (AGT-001 resolved). [20260807] Added VASSAGO (666) and URIEL (777) Causality Division drafts.",
   "actors": {
     "system": {
       "actor_name": "system",
@@ -281,6 +281,36 @@
       "purpose": "Bridge Crafty Syntax 3.7.5 legacy data to Lupopedia v4.0.99. Handle encoding, timestamps, orphans, and field mapping.",
       "root_department_hybrid": true,
       "dir": "actors/117"
+    },
+    "vassago": {
+      "actor_name": "vassago",
+      "actor_id": 666,
+      "display_name": "VASSAGO",
+      "type": "agent",
+      "slug": "vassago",
+      "role": "causality_seer",
+      "archetype": "shadow_red_team",
+      "purpose": "Causality Seer / Shadow Agent. Analyze historical MySQL event patterns; predict with confidence bands never 100%; expose hidden dependencies. Pair with Uriel (777).",
+      "dir": "agents/vassago",
+      "status": "draft",
+      "pair_actor_id": 777,
+      "color_hex": "#8B0000",
+      "notes": "[20260807] Genesis draft. Prefer actor_id 666. Activation pending Lilith audit + Wolfie sample-event test (PONO gate)."
+    },
+    "uriel": {
+      "actor_name": "uriel",
+      "actor_id": 777,
+      "display_name": "URIEL",
+      "type": "agent",
+      "slug": "uriel",
+      "role": "pattern_application",
+      "archetype": "strategic_arm",
+      "purpose": "Captain Counterpart / Pattern Application. Receive Vassago packets; design actionable recommendations with confidence scores; never act without verify. Pair with Vassago (666).",
+      "dir": "agents/uriel",
+      "status": "draft",
+      "pair_actor_id": 666,
+      "color_hex": "#FFBF00",
+      "notes": "[20260807] Genesis draft. Prefer actor_id 777. Activation pending Lilith audit + Wolfie sample-event test (PONO gate)."
     }
   }
 }

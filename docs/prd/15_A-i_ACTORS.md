@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/15_A-i_ACTORS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/15_A-i_ACTORS.md
   status: active
-  when_updated: '20260728021358'
+  when_updated: '20260811145856'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/15_actors.toon
@@ -21,6 +21,18 @@ lupopedia.headers:
   summary: null
 ---
 # PRD: Actor Identity, Inheritance, and Personalization
+
+## LUP -- Linked Universal Protocol
+
+**LUP** stands for **Linked Universal Protocol**, the universal identity system used by Lupopedia to identify, version, translate, federate, and track provenance for any digital artifact.
+
+LUP -- Linked Universal Protocol (Universal Artifact Identity). Not a song-only ID. Not "Lupopedia ID."
+
+LUP (Linked Universal Protocol) Identity Grammar:
+
+```text
+LUP:FFFFFF-RRRRRR-NN-II-LL-AA
+```
 
 ## Canonical clarification: what a channel is (and is not)
 
@@ -45,6 +57,22 @@ Domain (node)
 **Required warning (normative where channels are defined):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them.
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
+
+## Actor, namespace, and artifact alignment (Header 4.2.3 / Rule 99)
+
+Normative companions: PRD 16_C section 4.2.5, PRD 99.
+
+**AA is now part of identity.** **`actor_hex` remains metadata.** **`actor_id` MUST map to AA.** **NN replaces GG.** **`color_hex` remains metadata.**
+
+1. **AA (`actor_aa`) is first-class identity.** Two hex digits `00`..`FF`. Used for provenance, authorship, remix attribution, and AI agent identity.
+2. **Dense `actor_id` MUST map to AA** via the catalog registry for that NN. Wolfie `actor_id` 1 => `AA=01`. Lilith `actor_id` 2 => `AA=02`. System `actor_id` 0 => `AA=00`. AGAPE `actor_id` 705 gets a registered AA in `00`..`FF` (never `2C1`).
+3. **`actor_hex` remains metadata.** Optional six-digit display of `actor_id` (Wolfie `000001`) MAY appear in `lupopedia.metadata`. It MUST NOT appear under `lupopedia.identity` and MUST NOT equal AA unless the actor_id is actually in `0`..`255` and the registry says so.
+4. **Do not put full `actor_id` in RRRRRR.** `artifact_hex` is the artifact number (`000000` .. `FFFFFF`) inside NN+AA. Wolfie artifacts must not all end in `000001`.
+5. **NN is the catalog namespace block.** Initial map: `01` Wolfie, `02` Lilith, `03` AGAPE, `04` SYSTEM. NN is not required to equal `actor_id`.
+6. **`color_hex` (metadata) MUST sit inside the catalog owner's Rule 99 band:** `start = owner_actor_id * 100` through `start + 0x63`, and only when the artifact is a song.
+7. **Catalogs whose owner `actor_id` > 143999 cannot publish songs.** They MAY own documents, crests, atoms, and other non-song media. They MUST NOT claim Rule 99 song colors.
+8. Catalog Actor Number MUST equal OS `actor_id` for the **owner actor** (no mismatch). That alignment is actor/catalog, not artifact_hex.
+9. **FF is 6 hex and is not actor hex.** Canonical form is `LUP:FFFFFF-RRRRRR-NN-II-LL-AA`. Node 0 / Node 01 maps to `000001`. Reserved FF: `000000`, `FFFFFF`. `color_hex` is metadata. Rule 99 bands are unchanged.
 
 ## Overview
 

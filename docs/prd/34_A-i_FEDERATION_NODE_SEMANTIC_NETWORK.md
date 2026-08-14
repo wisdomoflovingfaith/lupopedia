@@ -58,6 +58,8 @@ Domain (node)
 
 **DRAFT - not implemented.** Do not add federation runtime behavior, sync, or new tables to **`install_new_lupopedia.sql`** until this PRD is reviewed and approved. **4.0.x** remains single-install focused (Crafty import, one node correct). Federation **logic** is explicitly **post-stabilization** unless a narrow exception is ratified here.
 
+**Related (Rule 99 music / catalog federation math):** Node 0 root registry, Node 1+ sovereign catalogs, 144000 Actors x 100 HEX per Node -- see [PRD 99 RULE 99.FEDERATION](99_A-i_LIMITS_FOR_EVERYTHING_AND_WHY.md) and bullet companions under [docs/prd/federation/](federation/readme.md). PRD 34 remains the semantic-network / discovery PRD; Rule 99 owns song ID + color-range federation ceilings.
+
 ## Purpose
 
 Specify how Lupopedia **installs** (federation nodes) **discover** each other, establish **trust**, propagate **reputation**, and exchange **semantic** data - without violating constitutional database rules. Align **-context-** language with the **edge graph** (`lupo_edges` and related tables already in install).

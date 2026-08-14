@@ -28,7 +28,7 @@ lupopedia.headers:
 
 ### For changes at version 4.0.85 and above
 
-- **Current version changelog**: [`lupo-docs/versions/4.1.4/CHANGELOG.md`](lupo-docs/versions/4.1.4/CHANGELOG.md)
+- **Current version changelog**: [`docs/versions/4.2.11/changelog.md`](docs/versions/4.2.11/changelog.md)
 - **Structured metadata** (PLAN, TODO, TASK_REGISTRY, and so on): inside the same **`lupo-docs/versions/<version>/`** tree
 
 ### For changes before 4.0.85

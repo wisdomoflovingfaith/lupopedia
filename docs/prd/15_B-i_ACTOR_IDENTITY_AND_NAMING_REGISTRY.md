@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
   header_format_version: "4.1.8"
-  path_from_lupopedia_root: docs/prd/15_B_ACTOR_IDENTITY_AND_NAMING_REGISTRY.md
-  web_path: https://www.lupopedia.com/lupopedia/docs/prd/15_B_ACTOR_IDENTITY_AND_NAMING_REGISTRY.md
+  path_from_lupopedia_root: docs/prd/15_B-i_ACTOR_IDENTITY_AND_NAMING_REGISTRY.md
+  web_path: https://www.lupopedia.com/lupopedia/docs/prd/15_B-i_ACTOR_IDENTITY_AND_NAMING_REGISTRY.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260801010640'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/prd/canonical/1026/04/15-b-actor-identity-naming-registry.toon
@@ -17,10 +17,10 @@ lupopedia.headers:
   thread_key: null
   lupopedia.schema: prd
   prd_cluster: 15_B_00_A-i_15_B-i
-  title: 'PRD 15_Z: Actor Identity & Naming Registry'
+  title: 'PRD 15_B: Actor Identity and Naming Registry'
   summary: Defines actor naming rules, registry structure, typo protection, unknown actor handling, and canonical resolution tooling.
 ---
-# PRD 15_Z: Actor Identity & Naming Registry
+# PRD 15_B: Actor Identity and Naming Registry
 
 ## Canonical clarification: what a channel is (and is not)
 

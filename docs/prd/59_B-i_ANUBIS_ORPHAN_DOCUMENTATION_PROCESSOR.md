@@ -17,11 +17,11 @@ lupopedia.headers:
   thread_key: null
   lupopedia.schema: prd
   prd_cluster: 00_A-i_16_C-i_57_A-i_98_A-i_59_A-i_59_B-i
-  title: 'PRD 59_Z: ANUBIS Orphan Documentation Processor'
+  title: 'PRD 59_B: ANUBIS Orphan Documentation Processor'
   summary: ANUBIS processes orphan documentation from lupo_anubis_queue, converts files to Lupopedia constitutional structure, and logs processing to lupo_anubis_processing_log. Actor_id 9, agent_id 9.
 ---
 
-# PRD 59_Z: ANUBIS Orphan Documentation Processor
+# PRD 59_B: ANUBIS Orphan Documentation Processor
 
 ## Canonical clarification: what a channel is (and is not)
 

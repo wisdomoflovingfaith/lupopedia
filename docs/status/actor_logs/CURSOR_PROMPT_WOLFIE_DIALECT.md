@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/status/actor_logs/CURSOR_PROMPT_WOLFIE_DIALECT.md
   web_path: https://www.lupopedia.com/lupopedia/docs/status/actor_logs/CURSOR_PROMPT_WOLFIE_DIALECT.md
   status: active
-  when_updated: "20260729134317"
+  when_updated: "20260801102812"
   trust_tier: development
   questions_toon: null
   memory_toon: null
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   prd_cluster: 98_C_39_A_16_C
   title: "Cursor prompt -- enforce WOLFIE Dialect (not WOLF)"
-  summary: "Copy-paste prompt for Cursor IDE: rename WOLF to WOLFIE in SFAL logs, require integrity and ethics fields, keep headers 4.2.0 pure."
+  summary: "Copy-paste prompt for Cursor IDE: WOLFIE dialect; external headers single-line + ;; (see WOLFIE_DIALECT 5a)."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -89,8 +89,11 @@ FORBIDDEN:
 - Nested WOLFIE blocks; HTML; Markdown headings inside WOLFIE blocks
 
 MULTI-MEDIUM:
-- GitHub canonical: channel_index lupopedia; when_updated is truth
-- Patreon/website mirrors: channel_index + edges_toon -> canonical + source_timestamp
+- GitHub canonical: channel_index lupopedia; when_updated is truth; multiline YAML headers
+- Patreon/website/internet paste: channel_index + edges_toon -> canonical + source_timestamp
+- External headers: ONE LINE only; fields separated by ;; (LOCKED practice)
+- Pipe | is WOLFIE body meta (( WOLFIE | ... )); may be guessed later as header alt -- living note in WOLFIE_DIALECT.md section 5a; do not dual-accept yet
+- See drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md for full external transport note
 
 IF YOU FIND "WOLF" DIALECT ARTIFACTS UNDER docs/status/actor_logs/:
 - Rename/replace to WOLFIE

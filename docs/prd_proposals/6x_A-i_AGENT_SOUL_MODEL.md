@@ -1,27 +1,29 @@
 ---
 lupopedia.headers:
   header_format_version: "4.1.8"
-  path_from_lupopedia_root: docs/prd/6x_A-i_AGENT_SOUL_MODEL.md
-  web_path: https://www.lupopedia.com/lupopedia/docs/prd/6x_A-i_AGENT_SOUL_MODEL.md
+  path_from_lupopedia_root: docs/prd_proposals/6x_A-i_AGENT_SOUL_MODEL.md
+  web_path: https://www.lupopedia.com/lupopedia/docs/prd_proposals/6x_A-i_AGENT_SOUL_MODEL.md
   status: draft
-  when_updated: '20260513033046'
+  when_updated: '20260801010640'
   trust_tier: experimental
   questions_toon: null
   memory_toon: null
   atoms_toon: null
   transcript_jsonl: null
-  artifact_type: prd
+  artifact_type: proposal
   artifact_kind: specification
   channel_key: development
   federation_node_id: 0
   thread_key: null
-  lupopedia.schema: prd
-  prd_cluster: 57_A-i_6x_A-i
-  title: PRD 6x — Agent Soul Model
-  summary: Defines optional AGAPE, PONO, KAPU, KULEANA, and 1/137 soul-layer meaning for agents; optional filenames align PRD 07. KAPAKAI is not a soul file here.
+  lupopedia.schema: proposal
+  prd_cluster: 57_A-i
+  title: PRD proposal 6x -- Agent Soul Model (awaiting PRD 84 NN allocation)
+  summary: Defines optional AGAPE, PONO, KAPU, KULEANA, and 1/137 soul-layer meaning for agents; optional filenames align PRD 07. Moved from docs/prd/ -- illegal group token 6x. KAPAKAI is not a soul file here.
 ---
 
-# PRD 6x — Agent Soul Model
+# PRD proposal 6x -- Agent Soul Model (awaiting PRD 84 NN allocation)
+
+**Supersession:** former path `docs/prd/6x_A-i_AGENT_SOUL_MODEL.md` --superseded_by--> `docs/prd_proposals/6x_A-i_AGENT_SOUL_MODEL.md`. Do not treat `6x` as an allocated PRD group.
 
 ## Canonical clarification: what a channel is (and is not)
 

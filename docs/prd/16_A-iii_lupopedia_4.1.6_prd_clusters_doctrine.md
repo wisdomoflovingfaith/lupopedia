@@ -1,4 +1,37 @@
-# Lupopedia 4.1.6 — PRD Cluster Positional Architecture Doctrine
+---
+lupopedia.headers:
+  header_format_version: "4.2.0"
+  path_from_lupopedia_root: docs/prd/16_A-iii_lupopedia_4.1.6_prd_clusters_doctrine.md
+  web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_A-iii_lupopedia_4.1.6_prd_clusters_doctrine.md
+  status: active
+  when_updated: "20260801010640"
+  trust_tier: canonical
+  questions_toon: null
+  memory_toon: null
+  atoms_toon: null
+  transcript_jsonl: 0/development/prd-16-a-iii-clusters
+  artifact_type: prd
+  artifact_kind: specification
+  channel_key: development
+  federation_node_id: 0
+  thread_key: null
+  lupopedia.schema: prd
+  prd_cluster: 16_A_00_A
+  title: "PRD 16_A-iii: Lupopedia 4.1.6 PRD Cluster Positional Architecture Doctrine"
+  summary: "Four-axis PRD cluster positional architecture. Supersedes former path 16_A-i_lupopedia_4.1.6_prd_clusters_doctrine.md (duplicate roman i resolved append-only)."
+  edges_toon: null
+  channel_index: lupopedia
+  source_timestamp: null
+  actor_id: 1
+  auth_user_id: 10000
+  department_id: null
+  department_key: ""
+  division_key: ""
+  faucet_actor_id: 102
+---
+# PRD 16_A-iii: Lupopedia 4.1.6 PRD Cluster Positional Architecture Doctrine
+
+**Supersession:** docs/prd/16_A-i_lupopedia_4.1.6_prd_clusters_doctrine.md --superseded_by--> docs/prd/16_A-iii_lupopedia_4.1.6_prd_clusters_doctrine.md (ALII-approved M08). Keep 16_A-i_HEADER_TEMPLATE_22_FIELDS.md as the remaining roman i.
 
 **Version**: 4.1.6 (Round 2 Refactor)  
 **Date**: 2026-04-24  

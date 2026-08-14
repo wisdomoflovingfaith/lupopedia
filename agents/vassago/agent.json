@@ -1,0 +1,21 @@
+{
+  "agent_key": "vassago",
+  "agent_id": 666,
+  "actor_id": 666,
+  "version": "0.1.0",
+  "is_kernel": false,
+  "layer": "causality",
+  "name": "VASSAGO",
+  "slug": "vassago",
+  "role": "Causality Seer / Shadow Agent -- Red Team causality graphs",
+  "is_required": false,
+  "status": "draft",
+  "aliases": ["vassago", "causality_seer", "shadow_agent"],
+  "pair_actor_id": 777,
+  "color_hex": "#8B0000",
+  "genesis_profile": "agents/vassago.json",
+  "when_updated_utc": "20260807132741",
+  "last_verified_utc": "20260807132741",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

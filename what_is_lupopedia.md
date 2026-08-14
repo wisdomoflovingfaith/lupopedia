@@ -37,6 +37,8 @@ Lupopedia is a **doctrine-driven semantic operating system** (Semantic OS). It i
 
 It is the constitutional successor to **Crafty Syntax Live Help** (programming lineage from **1999**, first public release **February 2002**): roughly **30 years** of shared-hosting live-help survival and organic human navigation / support behavior, rebuilt into explicit multi-agent orchestration, identity layers, channels, memory, and PRD-first governance.
 
+**Universal artifact identity (header 4.2.4):** every artifact uses LUP (Linked Universal Protocol) `LUP:FFFFFF-RRRRRR-NN-II-LL-AA`. Federation `000001` is the canonical root node. In short-form identities, it is compressed to the symbol `X` (machine storage stays `000001`). See [README.md](README.md) and [PRD 16_C](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md).
+
 **Dual-captaincy (hard boundary -- identities never merge):**
 
 | Role | Identity | Notes |

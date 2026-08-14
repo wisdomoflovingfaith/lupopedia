@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.2.0"
+  header_format_version: "4.2.11"
   path_from_lupopedia_root: docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   status: active
-  when_updated: "20260728165913"
+  when_updated: "20260814141353"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/canonical/headers/memory_cluster/2026/05/lupopedia-headers.toon
@@ -16,9 +16,9 @@ lupopedia.headers:
   federation_node_id: 0
   thread_key: null
   lupopedia.schema: prd
-  prd_cluster: 00_A-i_16_B-i_16_C-i_05_A-i_41_A-i_57_A-i_82_B-i
+  prd_cluster: 00_A-i_16_B-i_16_C-i_05_A-i_15_A-i_41_A-i_57_A-i_82_B-i_99_A-i
   title: 'PRD 16: Lupopedia Headers (Implementation Details)'
-  summary: Implementation details for Lupopedia header contract at version 4.2.0 (Option A Dense Expansion). Product GLOBAL_CURRENT_LUPOPEDIA_VERSION 4.2.0 is TRANSITIONAL/UNSTABLE -- see docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md. 28-field dense grid; Hawaiian fields Hermes/sidecar; no corpus header migration in opening bump.
+  summary: Header contract 4.2.11 federation map + LUP.KEY (ASCII dots). 4.2.3-4.2.10 were compiled outside this Cursor workspace.
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -28,6 +28,27 @@ lupopedia.headers:
   department_key: ""
   division_key: headers
   faucet_actor_id: 102
+lupopedia.identity:
+  LUPOPEDIA: PRT.LUP
+  LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+  LUP.HEX: PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.SHORT: PRT.LUP
+  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
+  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
+  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+lupopedia.map:
+  index: PRT.HEX.000001.000001.000000.EN.04020A
+  web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
+  path_from_lupopedia_root: docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
+  prd_cluster: 00_A-i_16_B-i_16_C-i_05_A-i_15_A-i_41_A-i_57_A-i_82_B-i_99_A-i
+  edges_toon: null
+  memory_toon: memory/canonical/headers/memory_cluster/2026/05/lupopedia-headers.toon
+  atoms_toon: memory/atoms/lupopedia_global_constants.atom.toon
+  transcript_jsonl: 0/headers/lupopedia-headers
+  questions_toon: null
+lupopedia.metadata:
+  media_kind: document
+  cc_by_name: "Eric Robin Gerdes"
 ---
 <!-- ASCII_ART_BLOCK -->
 . . . . . . . . ._________________ LUPOPEDIA Semantic Operating System _______________
@@ -64,10 +85,26 @@ See also:
 - PRD 86 (enforcement)
 <!-- /HUMAN_SEMANTIC -->
 
+## LUP -- Linked Universal Protocol
+
+**LUP** stands for **Linked Universal Protocol**, the universal identity system used by Lupopedia to identify, version, translate, federate, and track provenance for any digital artifact.
+
+LUP -- Linked Universal Protocol (Universal Artifact Identity). Not a song-only ID. Not "Lupopedia ID."
+
+LUP (Linked Universal Protocol) Identity Grammar:
+
+```text
+LUP:FFFFFF-RRRRRR-NN-II-LL-AA
+```
+
 ## Changelog / Version History
 
 | Version | Date | Notes |
 |---|---|---|
+| 4.2.11 | 2026-08-14 | Federation map template. Identity KEY uses ASCII dots (PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION). No middle-dot. No pipe. No hyphen in KEY. Sibling `lupopedia.map`. Dense 28-field grid unchanged. 4.2.3-4.2.10 compiled outside this Cursor workspace. |
+| 4.2.3 | 2026-08-11 | Final LUP: `LUP:FFFFFF-RRRRRR-NN-II-LL-AA`. RRRRRR is artifact identity, not color. NN replaces GG. AA first-class. Color stays metadata. Dual-accept 4.2.2 with WARN. Dense 28-field grid unchanged. LL=`ZZ` reserved for multi-language / language-agnostic artifacts (not ISO 639-1). |
+| 4.2.1 | 2026-08-11 | Captain ALII approved universal identity: sibling `lupopedia.identity` (`LUP:FF-GG-LL-II-RRRRRR`). Dense 28-field grid unchanged. **Correction:** `RRRRRR` is `artifact_hex`. Node 0 mapped to 2-digit FF `01`. Dual-accept 4.2.0 with WARN. |
+| 4.2.2 | 2026-08-11 | Option C: FF expands to 6 hex digits (`LUP:FFFFFF-GG-LL-II-RRRRRR`). Missing FF = `000001`. `FF=000000` forbidden. Zero-pad 4.2.1 two-digit FF. Dense 28-field grid unchanged. |
 | 4.2.0 | 2026-07-28 | Captain ALII Option A: dense header 22 -> 28 (`actor_id`, `auth_user_id`, `department_id`, `department_key`, `division_key`, `faucet_actor_id`). Product `GLOBAL_CURRENT_LUPOPEDIA_VERSION` bumped to 4.2.0 as TRANSITIONAL/UNSTABLE with mandatory breakage inventory (`docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md`). Unfreeze 4.1.9 as sole contract; 4.1.9 legacy-accept during migration. Hawaiian fields remain Hermes/sidecar. No corpus header rewrite in opening bump. See `docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md`. |
 | doc pass | 2026-04-18 | Section 4.2 label v4.1.3; transcript_jsonl slug SHALL in section 6; questions_toon example in section 9; HDR_PK_LEGACY_ALIAS in section 10; PRD 38 / 51 / 19 / 79 cross-refs; section 16.6.1 line_end for final section; section 4.3 table spacing. |
 | v4.1.3 | 2026-04-15 | LILITH audit: section 15.4 version/pk_* alignment; artifact_type adds version-doc and status; section 11 pk_* timeline table. |
@@ -109,25 +146,30 @@ The `---` delimiter defines the start of YAML frontmatter and ensures:
 
 This rule is not optional.
 
-## Header freeze rule (updated 4.2.0)
+## Header freeze rule (updated 4.2.11)
 **Note:** Agent replies that modify PRD files MUST return the updated `lupopedia.headers` block so header compliance can be audited without opening the full file. See PRD 50 section 1.2.3.
 
 **Normative**
 
-- The Lupopedia **header contract** for **new authored envelopes** is **`header_format_version: "4.2.0"`** (Option A -- Dense Expansion; Captain ALII approval 2026-07-28).
-- **`header_format_version: "4.1.9"`** remains **valid legacy** for existing corpus until batched migration completes. Validators MUST accept both during the migration window.
-- The prior freeze at 4.1.9 is **lifted** solely to authorize the 28-field dense grid defined in section 4.2 (v4.2.0).
-- During the 4.2.0 contract: **no further dense-field additions** without a new Captain-approved PRD 16_C revision. Hawaiian constitutional fields remain **out of** the dense grid (Hermes / sidecar / body only -- PRD 82_B).
-- Agents **MUST** implement new files against 4.2.0 when tooling supports it; until validator dual-accept ships, agents MAY emit 4.1.9 and MUST NOT mass-rewrite the corpus.
+- The Lupopedia **header contract** for **new authored envelopes** is **`header_format_version: "4.2.11"`** (KEY grammar `PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION`; sibling `lupopedia.map`).
+- **`header_format_version: "4.2.4"`** remains valid during dual-accept (hyphen LUP + X compression). Upgrade on next edit.
+- **`header_format_version: "4.2.3"`** remains valid during dual-accept (same six-token machine grammar; upgrade on next edit to declare 4.2.4 compression policy).
+- **`header_format_version: "4.2.2"`** remains valid during dual-accept: `LUP:FFFFFF-GG-LL-II-RRRRRR` is **WARN** (`HDR_LUP_LEGACY_6FIELD`). Reorder to RRRRRR-NN-II-LL-AA on next edit.
+- **`header_format_version: "4.2.1"`** remains valid during dual-accept: 2-digit FF is **WARN** (`HDR_LUP_FF_WIDTH`). Zero-pad and upgrade to 7 fields on next edit.
+- **`header_format_version: "4.2.0"`** remains valid during dual-accept: missing `lupopedia.identity` is **WARN**, not ERROR, on existing corpus.
+- **`header_format_version` older than 4.2.1** is **FAIL** for new validation (`HDR_LUP_PRE_421`).
+- The 28-field dense grid (section 4.2 v4.2.0) is **unchanged**. 4.2.1 through 4.2.11 do **not** add dense scalars. Identity lives in sibling `lupopedia.identity`. Routing index lives in sibling `lupopedia.map`.
+- Hawaiian constitutional fields remain **out of** the dense grid **and** out of `lupopedia.identity` (Hermes / sidecar / body only -- PRD 82_B).
+- Agents MUST emit `lupopedia.identity` on **new** artifacts. MUST NOT mass-rewrite the corpus in the opening bump (PRD 16_E).
 
 **Rationale:** Identity scalars (`actor_id`, `auth_user_id`, `department_id`, `department_key`, `division_key`, `faucet_actor_id`) close Actor Handbook / no-guessing gaps without densifying Hawaiian constitutional vocabulary.
 
-**Forward note:** Further redesign (envelope hybrids, hermes_toon dense pointer, etc.) requires a new proposal and Captain approval. Product semver is now **`GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.0"`** (TRANSITIONAL / UNSTABLE) aligned with this header contract by Captain ALII directive. Canonical companion: `docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md`. Instability inventory: `docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md`.
+**Forward note:** Further redesign (envelope hybrids, hermes_toon dense pointer, etc.) requires a new proposal and Captain approval. Product semver is now **`GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.11"`** (TRANSITIONAL / UNSTABLE), aligned with header contract 4.2.11. Opening 4.2.0 companion: `docs/prd_proposals/16_C_HEADER_FORMAT_4_2_0_FINAL.md`. Instability inventory still applies: `docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md`. Current changelog: `docs/versions/4.2.11/changelog.md`.
 
 ```text
 ######################################################################
 # SYSTEM STATUS: UNSTABLE -- MULTIPLE KNOWN BREAKAGES
-# Product GLOBAL_CURRENT_LUPOPEDIA_VERSION = 4.2.0 is TRANSITIONAL.
+# Product GLOBAL_CURRENT_LUPOPEDIA_VERSION = 4.2.11 is TRANSITIONAL.
 # Canonical narrative: docs/versions/4.2.0/SYSTEM_STATUS_UNSTABLE.md
 ######################################################################
 # 1. Authentication / Permission Errors
@@ -1018,6 +1060,293 @@ Fields 1-22 are identical to v4.1.9 (preserved discovery grid). Fields 23-28 are
 - External AI surfaces are for **context, analysis, and handoff only** — not OS execution
 
 **Reference:** See `agents/cursor/COPILOT_EXTERNAL_BOUNDARY.md` for full external boundary protocol.
+
+### 4.2.5 Universal Identity (header format 4.2.4)
+
+**Status:** Normative. Captain ALII / ERIC 2026-08-11. Federation Compression Rule (Option A) added in 4.2.4.
+**Companions:** PRD 99 (Rule 99 color bands unchanged; color is metadata), PRD 15 (AA maps to actor_id), PRD 16_E (migration), PRD 82_B (Hawaiian prohibition).
+
+**LUP** stands for **Linked Universal Protocol**. Identity is **universal**. Songs are **not** a special identity class. Artifact type is **metadata**. Color is **metadata**. Six-digit `actor_hex` is **metadata**. Two-hex **AA** is first-class. **RRRRRR is the artifact identity block, not color.** The 28-field dense grid is **not** the identity grammar.
+
+#### Canonical identity (authoritative -- 6 tokens, machine)
+
+```text
+LUP:FFFFFF-RRRRRR-NN-II-LL-AA
+```
+
+Human layout: federation, artifact, namespace, iteration, language, actor.
+
+All Lupopedia software MUST treat this 6-token string as the authoritative **machine** identity. Do **not** put RGB / `color_hex` in the LUP string. Machine `federation_id` is always six uppercase hex digits.
+
+#### Federation Compression Rule (Option A) -- header 4.2.4
+
+**Federation 000001 is the canonical root node. In short-form identities, it is compressed to the symbol `X`.**
+
+| Surface | Federation 000001 | Other federations |
+|---------|-------------------|-------------------|
+| Machine / disk `lupopedia_id` | `000001` (six hex) | six hex |
+| `federation_id` key | `000001` | six hex |
+| Short / medium / full / human-friendly display | `X` | six hex |
+
+```text
+machine:         LUP:000001-RRRRRR-NN-II-LL-AA
+human-friendly:  LUP:X-RRRRRR-NN-II-LL-AA
+short:           LUP:X-RRRRRR-NN
+```
+
+Rules:
+
+- `X` is a lossless compression of `000001` only.
+- Validators MUST accept `X` as a federation value on **input**.
+- Validators MUST expand `X` -> `000001` internally before range checks and reconstruction.
+- Validators MUST reject `X` for any meaning other than `000001` (automatic: `X` always expands to `000001`).
+- Machine export / disk persistence MUST emit six-hex `000001`, never `X`.
+- Compression applies only in human-friendly output modes (short / medium / full / diagrams / UI copy).
+- Migration tools MUST preserve this rule (do not invent other compressions; do not leave `X` on disk for 4.2.4+ machine IDs).
+- Namespace (NN), actor (AA), language (LL), artifact (RRRRRR), CC-BY metadata, and Hawaiian fields are **unchanged** by this rule.
+
+#### Identity block (sibling of `lupopedia.headers`, not in the dense 28)
+
+```yaml
+lupopedia.identity:
+  lupopedia_id: "LUP:FFFFFF-RRRRRR-NN-II-LL-AA"
+  federation_id: "FFFFFF"
+  artifact_hex: "RRRRRR"
+  namespace_id: "NN"
+  iteration: "II"
+  language: "LL"
+  actor_aa: "AA"
+```
+
+| Token | Key | Width | Range | Meaning |
+|-------|-----|-------|-------|---------|
+| FFFFFF | `federation_id` | 6 hex (machine); `X` human for `000001` only | `000001`..`FFFFFE` | Federation Node. Only field that changes on unmodified publish. Reserved: `000000`, `FFFFFF`. Root = `000001` (`X` in human forms). |
+| RRRRRR | `artifact_hex` | 6 hex, or `originFed:number` | Native: `000000`..`FFFFFF`. Lineage: `{origin_federation_id}:{artifact_number}` | Artifact identity block. **Not color.** Colon `:` encodes cross-federation origin. |
+| NN | `namespace_id` | 2 hex | `01`..`FF` | Catalog namespace (100-block space). Replaces GG. Reserved: `00`. |
+| II | `iteration` | 2 hex | `00`..`FF` | Remix / revision. |
+| LL | `language` | 2 letters | ISO 639-1, or reserved `ZZ` | Single-language: ISO 639-1. Multi-language / language-agnostic: `ZZ`. |
+| AA | `actor_aa` | 2 hex | `00`..`FF` | Creator / agent / human. Maps to dense `actor_id`. |
+
+Missing FF on lookup means Node **`000001`** (human `X`). Dense `federation_node_id: 0` maps to `federation_id: "000001"`.
+
+`group_id` (GG) is a **retired** 4.2.2 key. New files MUST use `namespace_id` (NN).
+
+#### Short-form identity (parse input)
+
+| Form | Typed (root) | Typed (other FF) | Defaults applied |
+|------|--------------|------------------|------------------|
+| Short (3) | `LUP:X-RRRRRR-NN` | `LUP:FFFFFF-RRRRRR-NN` | II=`00`, LL=`EN`, AA=`00` |
+| Medium (4) | `LUP:X-RRRRRR-NN-II` | `LUP:FFFFFF-RRRRRR-NN-II` | LL=`EN`, AA=`00` |
+| Full (5) | `LUP:X-RRRRRR-NN-II-LL` | `LUP:FFFFFF-RRRRRR-NN-II-LL` | AA=`00` |
+| Canonical (6) | machine `LUP:000001-...` | `LUP:FFFFFF-...` | none |
+
+Example (Wolfie first artifact on root federation):
+
+```text
+short:           LUP:X-000000-01
+medium:          LUP:X-000000-01-00
+full:            LUP:X-000000-01-00-EN
+human-friendly:  LUP:X-000000-01-00-EN-01
+machine:         LUP:000001-000000-01-00-EN-01
+```
+
+Multi-language / language-agnostic (LL=`ZZ`):
+
+```text
+short:      LUP:X-RRRRRR-NN-II-ZZ
+canonical:  LUP:000001-RRRRRR-NN-II-ZZ-AA
+example:    LUP:000001-000000-01-00-ZZ-01
+human:      LUP:X-000000-01-00-ZZ-01
+```
+
+Storage MUST write the canonical 6-token **machine** line (`000001`, not `X`). Color stays in `lupopedia.metadata.color_hex`.
+
+#### RRRRRR lineage delimiter (colon)
+
+The official lineage delimiter is **`:`** (colon). It is not hexadecimal, not a federation ID, and not an artifact number. It MUST NOT be used for any other identity purpose. `X` is federation compression of `000001` only; `X` is **not** a lineage delimiter.
+
+When an artifact is **modified** in a different federation, RRRRRR MUST encode the origin federation:
+
+```text
+RRRRRR = originFederation:artifactNumber
+```
+
+Parse: split RRRRRR on the **first** colon. Left = origin federation. Right = artifact number. If no colon is present, the artifact is native to the current federation.
+
+Pedagogical (short FF):
+
+```text
+original in Federation 2:   LUP:2-123456-NN-II-LL-AA
+iterated in Federation 3:   LUP:3-2:123456-NN-II-LL-AA
+remixed in Federation 5:    LUP:5-3:123456-NN-II-LL-AA
+```
+
+Machine (6-hex FF):
+
+```text
+original:  LUP:000002-123456-01-00-EN-01
+iterated:  LUP:000003-000002:123456-01-00-EN-01
+remixed:   LUP:000005-000003:123456-01-00-EN-01
+```
+
+Left side of the colon is the **immediate previous** federation (where this modification came from), not a stack of every ancestor. Right side keeps the artifact number.
+
+Rules:
+
+- Existing IDs without a colon remain valid (native).
+- Colon MUST appear only in RRRRRR (the `LUP:` prefix is the only other colon).
+- Validators MUST reject any other lineage delimiter (`X` as joiner, `/`, `_`, etc.) (`HDR_LUP_RR_LEGACY_DELIM`).
+- Unmodified federation publish still changes **only FFFFFF** (no colon added).
+- Human input MAY write `X:123456` when origin is root `000001`. Machine stores `000001:123456`.
+
+#### LL = ZZ (multi-language; not ISO 639-1)
+
+ISO 639-1 does not define a code for "multiple languages." Lupopedia reserves **`ZZ`** as the official LL value for artifacts that contain multiple languages or are language-agnostic.
+
+`ZZ` applies to: multi-lingual documents, multi-lingual songs, translation bundles, datasets, prompts, universal artifacts, and artifacts with no single dominant language.
+
+Validators MUST accept `ZZ`. Validators MUST NOT treat `ZZ` as a real ISO 639-1 language. Do not map `ZZ` to Zulu, Zazaki, or any ISO name. Single-language artifacts MUST keep a real ISO 639-1 code (`EN`, `FR`, `ES`, ...).
+
+#### AA is actor token, not actor_hex and not color (KAPU)
+
+- `actor_aa` is two uppercase hex digits (`00`..`FF`). It is **not** six-digit `actor_hex`.
+- Dense `actor_id` MUST map to `actor_aa`. Wolfie `1` => `01`. Lilith `2` => `02`. System `0` => `00`. AGAPE `705` => a registered AA in `00`..`FF` (not `2C1`).
+- Six-digit `actor_hex` remains **metadata**.
+- `color_hex` remains **metadata**. It MUST NOT appear as a LUP token.
+- Validators MUST NOT require `artifact_hex == actor_id`.
+- Validators MUST reject RGB-as-second-token forms (`HDR_LUP_LEGACY_RGB`).
+
+Initial namespace map (NN):
+
+| NN | Namespace |
+|----|-----------|
+| `01` | Wolfie catalog block |
+| `02` | Lilith catalog block |
+| `03` | AGAPE catalog block |
+| `04` | SYSTEM catalog block |
+
+#### Metadata (not identity)
+
+```yaml
+lupopedia.metadata:
+  media_kind: song
+  color_hex: "000064"
+  actor_hex: "000001"
+  cc_by_name: "Eric Robin Gerdes"
+  cc_license: "CC-BY-4.0"
+```
+
+CC-BY stays metadata. Rule 99 bands apply only to `color_hex`.
+
+#### Validator rules (normative codes)
+
+| Code | Severity | Rule |
+|------|----------|------|
+| `HDR_LUP_ID_REQUIRED` | ERROR on new 4.2.3+; WARN on 4.2.2 / 4.2.1 / 4.2.0 | `lupopedia.identity` present |
+| `HDR_LUP_ID_MISMATCH` | ERROR | Reconstruct `LUP:{federation_id}-{artifact_hex}-{namespace_id}-{iteration}-{language}-{actor_aa}` (machine FF) |
+| `HDR_LUP_SHORTFORM` | INFO | 3/4/5 token input expanded by defaults |
+| `HDR_LUP_FED_COMPRESS` | INFO/WARN | Input used `X`; expanded to `000001` |
+| `HDR_LUP_FED_X_ON_DISK` | ERROR on new 4.2.4+ machine IDs | Stored `lupopedia_id` / `federation_id` must use six-hex `000001`, not `X` |
+| `HDR_LUP_LEGACY_6FIELD` | ERROR on new 4.2.3+; WARN in migration mode | Reject `LUP:FFFFFF-GG-LL-II-RRRRRR` unless migrating |
+| `HDR_LUP_LEGACY_RGB` | ERROR on new 4.2.3+; WARN in migration mode | Reject RGB-in-identity forms (color is not identity) |
+| `HDR_LUP_PRE_421` | FAIL | `header_format_version` older than 4.2.1 when identity is claimed |
+| `HDR_LUP_FF_WIDTH` | ERROR | machine `federation_id` is exactly 6 uppercase hex digits (after `X` expand) |
+| `HDR_LUP_FF_ALIGN` | ERROR | maps to `federation_node_id` (0 => `000001`) |
+| `HDR_LUP_FF_RESERVED` | ERROR | `federation_id` must not be `000000` or `FFFFFF` |
+| `HDR_LUP_FF_ONLY_MUTABLE` | ERROR | Unmodified federation publish may change only FFFFFF |
+| `HDR_LUP_NN_RANGE` | ERROR | `namespace_id` in `01`..`FF`; `00` reserved |
+| `HDR_LUP_AA_RANGE` | ERROR | `actor_aa` in `00`..`FF` |
+| `HDR_LUP_AA_MAP` | ERROR | dense `actor_id` maps to `actor_aa` for that NN |
+| `HDR_LUP_LL_ISO` | ERROR | LL is ISO 639-1, or reserved `ZZ` (multi-language). `ZZ` is not ISO. |
+| `HDR_LUP_II_HEX` | ERROR | II is two uppercase hex digits |
+| `HDR_LUP_RR_RANGE` | ERROR | Native `artifact_hex` is six uppercase hex digits; lineage right side is six hex |
+| `HDR_LUP_RR_ORIGIN` | ERROR | Lineage left side is a valid federation ID, not equal to current FF |
+| `HDR_LUP_RR_LEGACY_DELIM` | ERROR | Lineage delimiter must be `:`. Reject `X`/`/`/`_` joiners |
+| `HDR_LUP_COLON_ELSEWHERE` | ERROR | Colon MUST NOT appear outside `LUP:` prefix and RRRRRR |
+| `HDR_LUP_COLOR_IN_ID` | ERROR | `color_hex` MUST NOT appear under `lupopedia.identity` |
+| `HDR_LUP_II_EVENT` | ERROR/WARN | II increments only on a declared iteration event |
+| `HDR_LUP_LL_TRANSLATION` | ERROR/WARN | LL changes only under translation policy |
+| `HDR_LUP_ACTOR_HEX_IN_ID` | ERROR | Six-digit `actor_hex` is not a LUP token |
+| `HDR_HAWAIIAN_IN_IDENTITY` | ERROR | Hawaiian fields MUST NOT appear under `lupopedia.identity` |
+
+Default Node mapping for `HDR_LUP_FF_ALIGN`:
+
+| `federation_node_id` (dense) | `federation_id` (6 hex) |
+|------------------------------|-------------------------|
+| 0 | `000001` |
+| 1 | `000001` if this sovereign install; extra installs start at `000002` |
+| 2+ | six-digit hex, not `FFFFFF` |
+
+#### Mutability
+
+- **FFFFFF:** only identity field that may change on unmodified federation publication.
+- **RRRRRR:** stable for native / same-federation work. On cross-federation **modification**, rewrite to `originFed:artifactNumber`.
+- **NN, AA:** stable for the same work (AA changes only on a declared actor-provenance event).
+- **II:** changes only on declared iteration events.
+- **LL:** changes only on declared translation (same II; `translation_of` edge), or on a declared language-class event to or from reserved `ZZ`.
+
+#### Lineage (do not invent a fourth ID)
+
+1. Object identity = `lupopedia_id` (canonical 6-token)
+2. Governance lineage = `prd_cluster`
+3. Graph lineage = `edges_toon` (remix_of, federated_from, translation_of, actor_of, namespace_of)
+4. Forbidden: song_uid, crest_guid, UUID identity columns
+
+### 4.2.6 Federation map identity (header format 4.2.11)
+
+**Status:** Normative. Captain ALII / ERIC 2026-08-14.
+**Template:** `docs/prd/federation/federation_map_template.md`
+
+Header contract 4.2.11 adds named KEY identity and sibling `lupopedia.map`. The 28-field dense grid is unchanged. Hawaiian fields stay out. Color stays metadata.
+
+**Why this workspace shows 4.2.2 -> 4.2.11:** Versions 4.2.3 through 4.2.10 were compiled outside Cursor IDE (Claude, Gemini, DeepSeek, Qwen, ChatGPT, dream-compiler, Patreon). Cursor indexes files it touches. 4.2.4 is the last identity grammar compiled in this workspace before 4.2.11. Product atom `GLOBAL_CURRENT_LUPOPEDIA_VERSION` is now **4.2.11**.
+
+#### ASCII KEY grammar
+
+No middle-dot. No pipe. No hyphen in KEY tokens. Field delimiter is `.` (ASCII 46).
+
+```text
+lupopedia.identity:
+  LUPOPEDIA     = PRT.LUP
+  LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+  LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.SHORT     = PRT.LUP
+  LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
+  LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
+  LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+```
+
+YAML storage uses `key: value`. Grammar notation may use `=`. Values MUST match.
+
+Validators MUST enforce KEY order. Apply DEFAULTS when fields are missing. Apply OMIT to compress. Expand SHORT -> ROOT when a full human form is required. Generate HEX for machine federation routing.
+
+#### Federation map
+
+```yaml
+lupopedia.map:
+  index: <LUP.HEX identity for this document>
+  web_path: <canonical public URL>
+  path_from_lupopedia_root: <relative path inside Lupopedia>
+  prd_cluster: <cluster identifier>
+  edges_toon: <toon file or null>
+  memory_toon: <toon file>
+  atoms_toon: <toon file>
+  transcript_jsonl: <jsonl transcript path>
+  questions_toon: <toon file or null>
+```
+
+`index` MUST be a valid LUP.HEX identity. `edges_toon` and `questions_toon` MAY be null. Map does not replace the dense header grid.
+
+#### Metadata
+
+`lupopedia.metadata` holds `media_kind` and `cc_by_name`. Discovery scalars stay in `lupopedia.headers`. Do not invent new metadata keys. Do not copy the 28-field grid into metadata.
+
+| Code | Rule |
+|------|------|
+| `HDR_LUP_KEY_ORDER` | LUP.KEY must equal PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION |
+| `HDR_LUP_HEX` | LUP.HEX and map.index must parse as dotted HEX identity |
+| `HDR_LUP_MAP_REQUIRED` | WARN on new 4.2.11 if lupopedia.map is missing |
+| `HDR_LUP_DELIM` | Reject middle-dot, pipe, or hyphen inside KEY grammar values |
 
 ### 4.3 Field 11 ??? `artifact_type` (closed enum)
 

@@ -59,11 +59,11 @@
       "max_files_per_content_daily_folder": 2000
     },
     "versioning": {
-      "LUPOPEDIA_VERSION": "4.1.9",
-      "current_lupopedia_version": "4.1.9",
-      "current_header_format_version": "4.1.9",
+      "LUPOPEDIA_VERSION": "4.2.11",
+      "current_lupopedia_version": "4.2.11",
+      "current_header_format_version": "4.2.11",
       "current_lupopedia_schema_version": "2.0",
-      "version_family": "4.1.x",
+      "version_family": "4.2.x",
       "single_source_of_truth": "memory/channels/atoms/lupopedia_global_constants.atom.toon"
     },
     "header_fields": {

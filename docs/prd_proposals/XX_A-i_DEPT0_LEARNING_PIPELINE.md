@@ -1,30 +1,32 @@
 ---
 lupopedia.headers:
   header_format_version: "4.1.8"
-  path_from_lupopedia_root: docs/prd/XX_A-i_DEPT0_LEARNING_PIPELINE.md
-  web_path: https://www.lupopedia.com/lupopedia/docs/prd/XX_A-i_DEPT0_LEARNING_PIPELINE.md
+  path_from_lupopedia_root: docs/prd_proposals/XX_A-i_DEPT0_LEARNING_PIPELINE.md
+  web_path: https://www.lupopedia.com/lupopedia/docs/prd_proposals/XX_A-i_DEPT0_LEARNING_PIPELINE.md
   status: draft
-  when_updated: '20260607025955'
-  trust_tier: canonical
+  when_updated: '20260801010640'
+  trust_tier: development
   questions_toon: null
   memory_toon: null
   atoms_toon: null
   transcript_jsonl: null
-  artifact_type: prd
+  artifact_type: proposal
   artifact_kind: specification
   channel_key: development
   federation_node_id: 0
   thread_key: dept0-learning-pipeline
-  lupopedia.schema: prd
+  lupopedia.schema: proposal
   prd_cluster: 41_A-i_39_A-i_54_A-i_86_A-i
-  title: 'PRD XX: Department 0 Learning Pipeline -- Constitutional Architecture'
-  summary: 'Defines the stages, constraints, audit requirements, and PONO gate for core actor learning from Department 0. No implementation details -- architecture only. Identifier XX is intentional; do not renumber without PRD 84 allocation.'
+  title: 'PRD proposal XX: Department 0 Learning Pipeline -- awaiting PRD 84 NN allocation'
+  summary: 'Defines the stages, constraints, audit requirements, and PONO gate for core actor learning from Department 0. Moved from docs/prd/ -- illegal group token XX. Do not renumber without PRD 84 allocation.'
 ---
-# PRD XX: Department 0 Learning Pipeline -- Constitutional Architecture
+# PRD proposal XX: Department 0 Learning Pipeline -- Constitutional Architecture
 
-**Identifier:** XX (letters allowed; do not renumber to a numeric PRD without **PRD 84** allocation)  
+**Supersession:** former path `docs/prd/XX_A-i_DEPT0_LEARNING_PIPELINE.md` --superseded_by--> `docs/prd_proposals/XX_A-i_DEPT0_LEARNING_PIPELINE.md`. Identifier XX is not an allocated PRD group.
+
+**Identifier:** XX (letters; do not renumber to a numeric PRD without **PRD 84** allocation)  
 **Normative date:** TBD  
-**Status:** Draft  
+**Status:** Draft (proposals folder)  
 **Authority:** PRD-first; does not override PRD 00, PRD 41, PRD 39, PRD 54, PRD 86  
 **Implementation note:** This PRD specifies **what** must happen, not **how**. Implementation details belong in separate technical specs or tooling PRDs.
 

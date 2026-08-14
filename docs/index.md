@@ -1,27 +1,54 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.9"
+  header_format_version: "4.2.11"
   path_from_lupopedia_root: docs/index.md
   web_path: https://www.lupopedia.com/lupopedia/docs/index.md
   status: active
-  when_updated: "20260728021358"
+  when_updated: "20260814140856"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/07/actors_collection_index.toon
   atoms_toon: memory/channels/atoms/lupopedia_global_constants.atom.toon
   transcript_jsonl: 0/root/actors_collection_index
-  artifact_type: doctrine
-  artifact_kind: reference
+  artifact_type: documentation
+  artifact_kind: index
   channel_key: root
   federation_node_id: 0
   thread_key: ""
-  lupopedia.schema: doctrine
+  lupopedia.schema: documentation
   prd_cluster: 00_A_00_B_07_A_16_B_16_C_25_A_39_A_41_A_82_B_98_B
-  title: "Lupopedia Actors Collection - Index"
-  summary: "Table of contents and guided reading order for Lupopedia actors. Directs actors through identity, constitutional boundaries, dimensional context, routing, departments, memory, semantic operations, and role-specific responsibilities."
+  title: "Lupopedia docs index -- Actors Collection"
+  summary: "Docs landing index. LUP.HEX PRT.HEX.000001.000010.000000.EN.04020A. Table of contents and guided reading order for Lupopedia actors."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
+  actor_id: 10000
+  auth_user_id: 10000
+  department_id: null
+  department_key: ""
+  division_key: root
+  faucet_actor_id: 102
+lupopedia.identity:
+  LUPOPEDIA: PRT.LUP
+  LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+  LUP.HEX: PRT.HEX.000001.000010.000000.EN.04020A
+  LUP.SHORT: PRT.LUP
+  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
+  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
+  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+lupopedia.map:
+  index: PRT.HEX.000001.000010.000000.EN.04020A
+  web_path: https://www.lupopedia.com/lupopedia/docs/index.md
+  path_from_lupopedia_root: docs/index.md
+  prd_cluster: 00_A_00_B_07_A_16_B_16_C_25_A_39_A_41_A_82_B_98_B
+  edges_toon: null
+  memory_toon: memory/root/canonical/1026/07/actors_collection_index.toon
+  atoms_toon: memory/channels/atoms/lupopedia_global_constants.atom.toon
+  transcript_jsonl: 0/root/actors_collection_index
+  questions_toon: null
+lupopedia.metadata:
+  media_kind: document
+  cc_by_name: "Eric Robin Gerdes"
 ---
 # LUPOPEDIA ACTORS COLLECTION
 

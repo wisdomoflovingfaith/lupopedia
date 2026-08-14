@@ -102,6 +102,8 @@ This table is a human-readable reflection of **actors**; when in doubt, verify `
 | 106 | vscode-ide | VS Code | ide_faucet | — | yes | canonical | Stock Visual Studio Code facet; **lupo_agents** slug `vscode-ide` → **agent_id** **113**; target: vscode → `.vscode/lupopedia/rules/` |
 | 107 | trae | Trae | ide_faucet | — | no | canonical | Trae IDE; **lupo_agents** slug `trae` → **agent_id** **114**; propagation pending |
 | 1000 | root | Root | human | — | — | canonical | Human orchestrator |
+| 666 | vassago | VASSAGO | agent | causality_shadow | — | draft | Causality Seer; pair Uriel 777; `#8B0000`; genesis 20260807 |
+| 777 | uriel | URIEL | agent | causality_light | — | draft | Pattern Application / Strategic Arm; pair Vassago 666; `#FFBF00`; genesis 20260807 |
 | — | idea / jetbrains | JetBrains / Idea | ide_faucet | — | yes | propagation only | Target `idea`; no single actor_id in registry; Codex (Wolfie flow) |
 | — | zed | Zed | ide_faucet | — | no | not yet supported | Verify in registry.json if added |
 

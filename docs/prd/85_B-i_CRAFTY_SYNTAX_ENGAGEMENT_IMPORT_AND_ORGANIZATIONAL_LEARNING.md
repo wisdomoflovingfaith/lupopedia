@@ -17,11 +17,11 @@ lupopedia.headers:
   thread_key: null
   lupopedia.schema: prd
   prd_cluster: 85_B-i_00_A-i_13_A-i_16_C-i_11_A-i_57_A-i_59_A-i_73_A-i_85_A-i
-  title: 'PRD 85_Z: Crafty Syntax Engagement Import and Organizational Learning'
+  title: 'PRD 85_B: Crafty Syntax Engagement Import and Organizational Learning'
   summary: Legacy Crafty Syntax engagement/path data import doctrine for organizational intelligence. Imports historical aggregated behavior (enter/exit paths, visit counts, temporal patterns) to guide CHIRON conversion priority, VISH collection organization, AGAPE validation, and navigation design using real user behavior truth.
 ---
 
-# PRD 85_Z: Crafty Syntax Engagement Import and Organizational Learning
+# PRD 85_B: Crafty Syntax Engagement Import and Organizational Learning
 
 ## Canonical clarification: what a channel is (and is not)
 

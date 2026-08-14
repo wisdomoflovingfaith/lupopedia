@@ -1,3 +1,5 @@
+<!-- SUPERSEDED: archive/docs/prd/06_B_CONTENT_FILESYSTEM_ARCHITECTURE.md --superseded_by--> docs/prd/06_B-i_CONTENT_FILESYSTEM_ARCHITECTURE.md (ALII-approved M02, 20260801010640) -->
+
 # PRD 06_B — Content Filesystem Architecture
 
 ## Canonical clarification: what a channel is (and is not)

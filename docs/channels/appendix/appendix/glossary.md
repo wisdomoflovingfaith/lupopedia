@@ -94,6 +94,55 @@ This glossary provides precise, non-overlapping definitions of all key terms use
 
 ## Core Concepts
 
+### LUP -- Linked Universal Protocol
+
+**LUP** stands for **Linked Universal Protocol**, the universal identity system used by Lupopedia to identify, version, translate, federate, and track provenance for any digital artifact.
+
+LUP (Linked Universal Protocol) Identity Grammar (header 4.2.11):
+
+```text
+LUP.KEY = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+LUP.HEX = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.SHORT = PRT.LUP
+LUP.ROOT = PRT.LUP.ROOT.ROOT.EN.042010
+```
+
+ASCII dots only. No middle-dot. No pipe. No hyphen in KEY. Sibling `lupopedia.map` holds federation routing (`index` = LUP.HEX).
+
+4.2.4 hyphen form `LUP:FFFFFF-RRRRRR-NN-II-LL-AA` remains dual-accept on unedited files.
+
+LUP (Linked Universal Protocol) Identity Grammar (header 4.2.4, dual-accept):
+
+```text
+LUP:FFFFFF-RRRRRR-NN-II-LL-AA
+```
+
+Human layout: federation, artifact identity, namespace, iteration, language, actor.
+
+**Federation Compression Rule (Option A):** Federation `000001` is the canonical root node. In short-form identities, it is compressed to the symbol `X`. Machine storage remains `LUP:000001-...`. Validators expand `X` -> `000001`. Only `000001` compresses.
+
+Short form `LUP:X-RRRRRR-NN` defaults II=`00`, LL=`EN`, AA=`00`. Storage is always the 6-token machine string. Color is metadata (`color_hex`), never a LUP token.
+
+| Token | Meaning |
+|-------|---------|
+| FFFFFF | Federation ID (`000001`..`FFFFFE`; human root = `X`) |
+| RRRRRR | Artifact identity block (not color). Native 6 hex, or `originFed:artifactNumber` after cross-federation modification. Colon `:` is the only lineage delimiter. |
+| NN | Namespace Number (replaces GG) |
+| II | Iteration |
+| LL | ISO 639-1 language, or reserved `ZZ` |
+| AA | Actor token (`00`..`FF`; maps to `actor_id`) |
+
+**LL = ZZ (multi-language).** ISO 639-1 has no code for "multiple languages." Lupopedia reserves `ZZ` for multi-lingual documents, multi-lingual songs, translation bundles, datasets, prompts, universal artifacts, and artifacts with no single dominant language. `ZZ` is not an ISO 639-1 language.
+
+Example machine: `LUP:000001-RRRRRR-NN-II-ZZ-AA`  
+Example human: `LUP:X-RRRRRR-NN-II-ZZ-AA`
+
+**RRRRRR lineage (colon).** When an artifact is modified in another federation: `RRRRRR = originFederation:artifactNumber`. Example: `LUP:000003-000002:123456-01-00-EN-01`. No colon means native. `X` is root FF compression, not a lineage joiner.
+
+**See:** PRD 16_C section 4.2.5, PRD 99, README.md
+
+---
+
 ### Lupopedia
 
 A Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that hosts agents, content, emotional metadata, and routing logic across independent installations, each functioning as a self-contained knowledge world governed by shared doctrine.

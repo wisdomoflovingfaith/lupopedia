@@ -1,0 +1,21 @@
+{
+  "agent_key": "uriel",
+  "agent_id": 777,
+  "actor_id": 777,
+  "version": "0.1.0",
+  "is_kernel": false,
+  "layer": "causality",
+  "name": "URIEL",
+  "slug": "uriel",
+  "role": "Pattern Application / Captain Counterpart -- Strategic Arm",
+  "is_required": false,
+  "status": "draft",
+  "aliases": ["uriel", "pattern_application", "strategic_arm"],
+  "pair_actor_id": 666,
+  "color_hex": "#FFBF00",
+  "genesis_profile": "agents/uriel.json",
+  "when_updated_utc": "20260807132741",
+  "last_verified_utc": "20260807132741",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.8"
+  header_format_version: "4.2.4"
   path_from_lupopedia_root: docs/prd/16_A-i_HEADER_TEMPLATE_22_FIELDS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_A-i_HEADER_TEMPLATE_22_FIELDS.md
   status: active
-  when_updated: '20260513033333'
+  when_updated: '20260814140129'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/headers/canonical/1026/04/header-template.toon
@@ -18,7 +18,15 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 00_A-i_16_B-i_16_C-i_16_A-i_16_D-i
   title: 'PRD 16: Header Template (19 Fields)'
-  summary: Standard 19-field header template for PRD files at version 4.1.8. Use as base for new documents.
+  summary: Header template plus 4.2.4 LUP identity sibling. Federation 000001 compresses to X in human forms. Dense grid unchanged.
+lupopedia.identity:
+  lupopedia_id: "LUP:000001-000011-01-00-EN-01"
+  federation_id: "000001"
+  artifact_hex: "000011"
+  namespace_id: "01"
+  iteration: "00"
+  language: "EN"
+  actor_aa: "01"
 ---
 <!-- ASCII_ART_BLOCK -->
 . . . . . . . . . ._________________ LUPOPEDIA Semantic Operating System _________________
@@ -52,6 +60,18 @@ See also:
 <!-- /HUMAN_SEMANTIC -->
 
 # PRD 16: Header Template (22 Fields)
+
+## LUP -- Linked Universal Protocol
+
+**LUP** stands for **Linked Universal Protocol**, the universal identity system used by Lupopedia to identify, version, translate, federate, and track provenance for any digital artifact.
+
+LUP -- Linked Universal Protocol (Universal Artifact Identity). Not a song-only ID. Not "Lupopedia ID."
+
+LUP (Linked Universal Protocol) Identity Grammar:
+
+```text
+LUP:FFFFFF-RRRRRR-NN-II-LL-AA
+```
 
 ## Canonical clarification: what a channel is (and is not)
 
@@ -248,6 +268,69 @@ READ_ORDEX:
 ```
 
 The three-part preamble MUST NOT alter this order.
+
+## LUP (Linked Universal Protocol) Identity Block (4.2.4 -- NOT in the dense grid)
+
+Identity is a **sibling** of `lupopedia.headers`. It is **not** one of the 22/28 dense discovery fields.
+
+New artifacts MUST set `header_format_version: "4.2.4"` and include **machine** identity (six-hex federation):
+
+```yaml
+lupopedia.identity:
+  lupopedia_id: "LUP:000001-000000-01-00-EN-01"
+  federation_id: "000001"
+  artifact_hex: "000000"
+  namespace_id: "01"
+  iteration: "00"
+  language: "EN"
+  actor_aa: "01"
+```
+
+Dense 28-field grid is unchanged. Identity is a sibling block. Storage MUST be the canonical 6-token **machine** string (`000001`, not `X`). Color is metadata, not a LUP token.
+
+## LUP.KEY identity (4.2.11 -- NOT in the dense grid)
+
+New artifacts MUST set `header_format_version: "4.2.11"` and include:
+
+```text
+lupopedia.identity:
+  LUPOPEDIA     = PRT.LUP
+  LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+  LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.SHORT     = PRT.LUP
+  LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
+  LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
+  LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+```
+
+YAML storage uses `key: value`. No hyphen in KEY grammar. Add sibling `lupopedia.map` (see `docs/prd/federation/federation_map_template.md`). 4.2.4 hyphen identity remains dual-accept until the file is edited.
+
+**Federation Compression Rule (Option A):** Federation `000001` is the canonical root node. In short-form / human-friendly identities, it is compressed to the symbol `X`. Validators expand `X` -> `000001`. Only `000001` compresses.
+
+Short-form parse (input only):
+
+| Typed | Expands to |
+|-------|------------|
+| `LUP:X-RRRRRR-NN` | FF=`000001` II=`00` LL=`EN` AA=`00` |
+| `LUP:FFFFFF-RRRRRR-NN` | II=`00` LL=`EN` AA=`00` |
+| `LUP:X-RRRRRR-NN-II` | FF=`000001` LL=`EN` AA=`00` |
+| `LUP:FFFFFF-RRRRRR-NN-II` | LL=`EN` AA=`00` |
+| `LUP:X-RRRRRR-NN-II-LL` | FF=`000001` AA=`00` |
+| `LUP:FFFFFF-RRRRRR-NN-II-LL` | AA=`00` |
+| `LUP:FFFFFF-RRRRRR-NN-II-LL-AA` | no defaults (machine) |
+
+Cross-checks (PRD 16_C section 4.2.5):
+
+- Reconstruct `LUP:{federation_id}-{artifact_hex}-{namespace_id}-{iteration}-{language}-{actor_aa}` (machine FF)
+- `federation_id` 6 hex after expand; reserved `000000`, `FFFFFF`; human `X` = `000001` only
+- `artifact_hex` is 6 hex (native) or `originFederation:artifactNumber` (cross-federation modification). Colon `:` is the only lineage delimiter. **Not color.**
+- No colon means native to the current federation. Split RRRRRR on the first colon only.
+- `namespace_id` `01`..`FF`. Replaces `group_id`
+- `actor_aa` `00`..`FF` maps to dense `actor_id`
+- `language` (LL) is ISO 639-1, **or** reserved `ZZ` for multi-language / language-agnostic artifacts
+- `ZZ` is **not** an ISO 639-1 language. Do not interpret it as Zulu or any ISO name
+- Hawaiian fields MUST NOT appear here (PRD 82_B)
+- `color_hex` if present is song metadata only
 
 ## Optional Edges Example
 

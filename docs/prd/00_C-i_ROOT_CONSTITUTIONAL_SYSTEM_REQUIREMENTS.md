@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/00_C-i_ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/00_C-i_ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS.md
   status: active
-  when_updated: '20260516002011'
+  when_updated: '20260810162610'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/00-root-constitutional-system-requirements.toon
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 00_A-i_00_B-i_00_C-i_57_A-i
   title: 'PRD 00: Root Constitutional System Requirements (Implementation Details)'
-  summary: Implementation details for constitutional system requirements, database rules, and architectural constraints. Complements 00_A and 00_B doctrine.
+  summary: Implementation details for constitutional system requirements. RULE 93 first-person display. Section 10.2 validators include RULE 99 Actor Color Range (144000 x 100 HEX per Node) and RULE 99.FEDERATION.
 ---
 <!-- ASCII_ART_BLOCK -->
 . . . . . . . . . ._________________ LUPOPEDIA Semantic Operating System _________________
@@ -1516,39 +1516,66 @@ Lupopedia is **multi-locale capable**: operator and login surfaces MUST NOT assu
 
 ### 16.7 RULE: FIRST_PERSON_DISPLAY_FORBIDDEN (RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN)
 
-**Status:** ENFORCED (no exceptions for agent-to-human channel display).
+**Also known as:** The Great Pronoun Rewrite of 2026 (operator disambiguation for multi-actor channel feeds).
+
+**Status:** ENFORCED (no exceptions for agent-to-human / multi-actor channel display).
 
 **Priority:** CRITICAL (operator disambiguation; multi-actor projection UI).
 
-**Scope:** Any message rendered in a **channel UI** (or equivalent operator-facing projection) where the **human operator** reads **interleaved lines** from **multiple** **`from_actor_id`** sources and could otherwise confuse **unlabeled first person** (**I**, **we**, and their inflections) with another actor or with themselves.
+**Scope:** Any message rendered in a **channel UI** (or equivalent operator-facing projection) where the **human operator** reads **interleaved lines** from **multiple** **`from_actor_id`** sources and could otherwise confuse **unlabeled first person** or **second person** (**I**, **you**, **we**, and their inflections) with another actor or with themselves.
 
-**Requirement:** Before any such message is **rendered** to the channel UI, the **display layer** MUST rewrite **English first-person** pronouns using the **sending actor's explicit display name** (registry-resolved; same string family as sender chrome), so the **body text** cannot be read as **anonymous first person**.
+**Requirement:** Before any such message becomes the **operator-visible channel body**, the **canonical ingest path** (and/or defensive display layer) MUST rewrite **English first- and second-person** pronouns using **explicit actor display names** (registry-resolved; same string family as sender chrome), so the **body text** cannot be read as **anonymous first/second person**.
 
-**Mapping table:**
+**Canonical implementation:** `DialogMvpService::rewriteFirstPersonEnglishForHumanIngest` / `rewriteHumanDialogMessageBodyForInsert` (see **[PRD 02](02_C-i_CHANNELS_DISCUSSIONS.md)** KAPU write-path).
 
-| Original | Replacement |
-|----------|-------------|
-| **I**, **me**, **my**, **mine**, **myself** | **`{actor.display_name}`** (grammatically adjusted: subject vs object vs possessive as needed) |
-| **we**, **us**, **our**, **ourselves** | **`{actor.display_name} and others`** when the roster is unknown; or an **explicit participant list** when the product can list co-subjects without guessing |
+**Mapping table (normative):**
 
-**Examples (normative intent):**
+| Original tokens | Replacement |
+|-----------------|-------------|
+| **I**, **me**, **my**, **mine**, **myself** | Speaker **`{actor.display_name}`** (grammatically adjusted: subject vs object vs possessive as needed) |
+| **we**, **us**, **our**, **ours**, **ourselves** | Speaker name **plus** `and others` (or an explicit participant list when the product can list co-subjects without guessing) |
+| **you**, **your**, **yours**, **yourself**, **yourselves** | Recipient **`{actor.display_name}`**; if multiple recipients / group target -> **`the group`** |
 
-| Wrong (ambiguous first person) | Right (actor-named) |
-|--------------------------------|---------------------|
-| `I think the header is broken.` | `Lilith thinks the header is broken.` |
-| `Send me the file.` | `Send Thoth the file.` |
-| `My idea is better than yours.` | `Captain Wolfie's idea is better than Lilith's idea.` (resolve **each** pronoun to the correct **`from_actor_id`** when multiple parties appear in one line; do **not** attribute the whole sentence to one sender when grammar requires splitting) |
+**Examples (normative intent -- song suite / acceptance):**
+
+| Wrong (ambiguous) | Right (actor-named) |
+|-------------------|---------------------|
+| `I think the header is broken.` | `Lilith thinks the header is broken.` (when Lilith is sender) |
+| `I think X` | `Thoth thinks X` (when Thoth is sender) |
+| `I need you` | `Captain Wolfie needs Lilith` (sender Wolfie, recipient Lilith) |
+| `I need you to help me` | `Captain Wolfie needs Lilith to help Captain Wolfie` |
+| `I think you should merge my branch` | `Captain Wolfie thinks Lilith should merge Captain Wolfie's branch` |
+| `Send me the file.` | `Send Thoth the file.` (when Thoth is recipient of "me") |
+| `We should discuss this` | `Chiron and others should discuss this` (when Chiron is speaker) |
+| `James lost his keys` | `James lost James's keys` (proper noun / third-person path preserved where rewrite applies possessives to named parties per implementation) |
+| `My idea is better than yours.` | `Captain Wolfie's idea is better than Lilith's idea.` (resolve **each** pronoun to the correct party; do **not** attribute the whole sentence to one sender when grammar requires splitting) |
+
+**Idempotency and forensics (mandatory):**
+
+| Mechanism | Behavior |
+|-----------|----------|
+| `metadata_json.first_person_rewrite_applied` | When true, ingest MUST NOT rewrite again (idempotent). |
+| `metadata_json.skip_first_person_rewrite` | Explicit skip when policy allows (audit carefully). |
+| `metadata_json.original_message_text_v1` | When rewrite changes the body, store the **verbatim original** for forensic / linguistic review. Operator-visible channel body remains the **rewritten** form. |
 
 **Why this is separate from any "agents speak in third person" authoring rule:**
 
 - **Authoring discipline** = agents **should** write in third person at the source (**unreliable** under real prompts and muscle memory).
-- **This rule** = the **display system** (or the **single canonical ingest path** agreed with **[PRD 02](02_C-i_CHANNELS_DISCUSSIONS.md)**) **rewrites** when they slip (**defensive**, **reliable**).
+- **This rule** = the **system** **rewrites** when humans and agents slip (**defensive**, **reliable**). Humans cannot be retrained off **"I"**; the ingest path compensates.
 
-**Rationale:** The human operator cannot be required to retrain **first-person** typing habits for **every** actor line; the **system** MUST compensate so **"I"** in the feed always resolves to a **named actor** in the **message body**, not only in the **sender column**.
+**Rationale:** Four threads, four colors, four identities -- unlabeled **"I"** / **"you"** in a multi-actor feed is the Pronoun Apocalypse. The operator cannot map speakers fast enough from chrome alone; the **message body** MUST name actors.
 
-**Normative pairing:** Channel persistence, APIs, and **`DialogMvpService` / `POST /api/chat/send`** wiring are specified in **[PRD 02](02_C-i_CHANNELS_DISCUSSIONS.md)** (same **RULE** id; **write-path** timing).
+**Normative pairing:** Channel persistence, APIs, and **`DialogMvpService` / `POST /api/chat/send`** wiring are specified in **[PRD 02](02_C-i_CHANNELS_DISCUSSIONS.md)** (same **RULE** id; **write-path** timing; legacy debt).
 
-**Verification (acceptance):** In operator-visible channel UI, a line whose raw source contained **I**, **me**, **my**, **mine**, **myself**, **we**, **us**, **our**, or **ourselves** MUST **not** present those tokens **unexpanded** as first-person **for the sending actor's intent**. Original verbatim text MAY be retained in **actor memory**, **logs**, or **non-channel** stores; it MUST NOT be the **only** form shown in the **channel** projection.
+**Legacy debt (non-blocking, tracked):** **DEBT-93-FIRST_PERSON_REWRITE_LEGACY_INSERTS** -- raw INSERT bypasses; see PRD 02 KAPU and version TODO. Files include at least `includes/modules/channels/channel-send-api.php` and `database/lupopedia/channels/channel_id/1/admin_chat_xmlhttp.php` (plus any other raw dialog inserts flagged in PRD 02).
+
+**Nice to have (future sprint -- not required for ENFORCED):** Visual indicator on rewritten messages (asterisk, shade, or badge) so the operator can see the system changed the text. File under Nice to Have; do not block Rule 93.
+
+**Verification (acceptance):**
+
+1. In operator-visible channel UI, a line whose raw source contained **I**, **me**, **my**, **mine**, **myself**, **we**, **us**, **our**, **ourselves**, **you**, **your**, **yours** MUST **not** present those tokens **unexpanded** for the sending/receiving intent.
+2. Unit / regression suite for `rewriteFirstPersonEnglishForHumanIngest` SHOULD cover the example suite above (target path: `tests/unit/first_person_ingest_rewrite_test.php` when present).
+3. Original verbatim text MAY remain in metadata / actor memory / logs; it MUST NOT be the **only** form shown in the **channel** projection.
 
 ---
 
@@ -1574,15 +1601,18 @@ All files in `rules/root/` are binding constitutional law and override all PRDs.
 | Section 15 multi-environment patterns | Code review + installer paths - `InstallWizardHtaccessWriter.php`, `install.php`, PRD 33 section 14 traceability |
 | Section 16 UI layer & animation | Code review - `includes/js/layers.js` for new motion/layer code; no eval/string timers; no npm on runtime path |
 | Section 16.6 UI strings / locale | Code review - new ship-facing HTML uses `lupo_t()` + keys in `includes/lang/`; new locales update `LupoLocale::allowedLocales()` |
-| Section 16.7 first-person channel display (RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN) | Code review - channel feed and dialog ingest apply pronoun rewrite per **PRD 02**; spot-check multi-actor thread |
+| Section 16.7 first-person / second-person channel display (RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN) | Code review + `DialogMvpService::rewriteFirstPersonEnglishForHumanIngest` / ingest helper; spot-check multi-actor thread; unit suite `tests/unit/first_person_ingest_rewrite_test.php` when present; DEBT-93 legacy INSERT audit per PRD 02 |
 | Section 17 security invariants (RULE 93.SECURITY; **section 17.7-section 17.9**) | Code review + **`docs/implementations/security_audit_cursor_ide/README.md`** - LILITH cognitive tax; THOTH schema/doc truth |
+| Causality Division actors (VASSAGO 666 / URIEL 777) | Registry check: `database/lupopedia/actors/registry.json` + `actor_id/registry.json` agents map; pack presence `agents/vassago/` / `agents/uriel/`; genesis profiles `agents/vassago.json` / `agents/uriel.json`; STATUS mirror `docs/status/actor_logs/AGENT_REGISTRY.md`; Lilith audit + Wolfie sample-event PONO gate before `status: active` |
+| RULE 99.ACTOR_COLOR_RANGE (catalog Actors x 100 HEX per Node) | PRD 99 section; Lilith rule `.lilith/rules/rule-99-actor-color-range.md`; guide `HOW_TO_LUPOPEDIA_A_SONG.md`; Catalog N = OS actor_id; formula `N*100 .. +0x63`; usable `0..143999`; System `000000`-`000063`; Wolfie `000064`-`0000C7`; Lilith `0000C8`-`00012B`; last `143999`=`DBB99C`-`DBB9FF`; reserved `DBBA00`-`FFFFFF`; reject 167772 / 256 / 0x100 / Wolfie-start-band / Lilith-144000 legacy |
+| RULE 99.FEDERATION / NODE_LOOKUP / SONG_ID_FORMAT | PRD 99 federation section; companions `docs/prd/federation/`; Node 0 = root directory; missing Federation ID => Node 0; present ID => Node 0 directory -> Node domain -> catalog; 144000 Actors x 100 HEX identical on every Node; Lilith codes `FEDERATION_ID`, `NODE_LOOKUP`, `FEDERATION_MATH` |
 | Schema DDL | `database/lupopedia/mysql/install/install_new_lupopedia.sql` |
 
 ---
 
 ## 12. Refinements
 
-*Sections 12-13 reserved for future expansion. **section 15** (WordPress multi-environment patterns), **section 16** (UI layer & animation, RULE 93.UI_LAYERS; **section 16.6** UI strings / locale, RULE 93.UI_STRINGS_LOCALE; **section 16.7** first-person channel display, RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN), and **section 17** (security invariants, RULE 93.SECURITY) are active.*
+*Sections 12-13 reserved for future expansion. **section 15** (WordPress multi-environment patterns), **section 16** (UI layer & animation, RULE 93.UI_LAYERS; **section 16.6** UI strings / locale, RULE 93.UI_STRINGS_LOCALE; **section 16.7** first-person / second-person channel display -- RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN / Great Pronoun Rewrite of 2026), and **section 17** (security invariants, RULE 93.SECURITY) are active.*
 
 - All doctrine and PRD files must reference this file as the constitutional anchor using an outbound edge.
 - All new PRDs must be reviewed for compliance with these requirements.
@@ -1590,6 +1620,7 @@ All files in `rules/root/` are binding constitutional law and override all PRDs.
 - These rules apply to all 4.0.x releases until explicitly revised.
 - Any agent, IDE, or human contributor must treat this file as the highest authority.
 - This file must be versioned and updated only by lead orchestration agents or with explicit review.
+- **Active (RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN):** Operator-visible channel bodies MUST use actor-named rewrite for English **I/me/my** and **you/your** families at ingest (PRD 02 KAPU). Muscle memory that types "I" is expected; the system compensates. Legacy raw INSERT debt is non-blocking but tracked as **DEBT-93-FIRST_PERSON_REWRITE_LEGACY_INSERTS**.
 
 ---
 

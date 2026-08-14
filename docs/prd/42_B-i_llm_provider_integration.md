@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
   header_format_version: "4.1.3"
-  file_path_from_root: "docs/prd/42_llm_provider_integration.md"
-  web_path: "https://www.lupopedia.com/lupopedia/docs/prd/42_llm_provider_integration.md"
+  file_path_from_root: "docs/prd/42_B-i_llm_provider_integration.md"
+  web_path: "https://www.lupopedia.com/lupopedia/docs/prd/42_B-i_llm_provider_integration.md"
   status: "active"
-  when_updated: "20260620162738"
+  when_updated: "20260801010640"
   trust_tier: "canonical"
   questions_toon: null
   memory_toon: null
@@ -21,10 +21,10 @@ lupopedia.headers:
   default_collection_id: null
   lupopedia.schema: "prd"
   prd_cluster: "12_C-i_MULTI_API_AGENT_INTEGRATION"
-  title: "PRD 42-B: LLM Provider Integration (Installer and Runtime)"
+  title: "PRD 42_B: LLM Provider Integration (Installer and Runtime)"
   summary: "Installer model config, agent_llm_configs seeding, src/LLM provider adapters, ApiProviderChainService model routing."
 ---
-# PRD 42-B: LLM Provider Integration
+# PRD 42_B: LLM Provider Integration
 
 Anchors: **PRD 12_C** (Multi-API Agent Integration), **PRD 27** (Installer), **PRD 07** (Agents and Faucets).
 

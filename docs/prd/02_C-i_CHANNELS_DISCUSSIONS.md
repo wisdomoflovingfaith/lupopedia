@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/02_C-i_CHANNELS_DISCUSSIONS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/02_C-i_CHANNELS_DISCUSSIONS.md
   status: active
-  when_updated: '20260516003424'
+  when_updated: '20260806214511'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/02_channels_discussions.toon
@@ -18,11 +18,12 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 00_A-i_02_C-i
   title: PRD 02 -- Channels, Threads, Discussions (Routing, Projection, Presence; Orchestration Layered)
-  summary: 'Canonical chat and channel PRD: **Cardinality** -- one channel holds many parallel threads (not Discord-style one implicit thread); normative **Channel vs thread** subsection. Crafty-derived projection (from_actor_id / to_actor_id; legacy saidfrom / saidto semantics), channel as routing context plus thread container, dialog_messages as shared storage, presence separate from visibility, one-column UI of the active projection. Release line: 4.1.3 REQUIRED non-AI live help baseline (orchestration chrome not a ship gate); 4.1.5-4.1.9 continuing development including orchestration and AI layering on fresh-install lines; 4.2.0 first public Lupopedia release where full layered system ships together; no supported Lupopedia-to-Lupopedia upgrade before 4.2.0 (Crafty 3.7.5 to Lupopedia remains the path). v4.1.3 projection correction: no default omniscient operator/feed; observer tabs visual only. Enforcement: staged workflow, template-first MUST, localization MUST NOT English-only runtime. HERMES / PRD 82, APIs, transport doctrine retained. + Thread Visualizer constitutional requirement with Crafty Syntax legacy precedent. **CCV (2026-05-12):** Channel Coherence Vector -- embedding centroid, cosine coherence magnitude, optional mood blend, Pono/Kapu/neutral channel-relative labels; interpreter JSON and EMA centroid; all channel_key-scoped artifacts participate; DB columns deferred to install cycle. **CCV future sketch:** DECIMAL(5,4) coherence_magnitude, state column (ENUM sketch / VARCHAR portable), centroid JSON or lupo_channel_centroids table.'
+  summary: 'Canonical chat and channel PRD. KAPU RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN write-path (Great Pronoun Rewrite): I/you families to actor names at ingest; DEBT-93 legacy inserts; pairs PRD 00 section 16.7.'
 ---
 # PRD: Channels, Threads, and Discussions Database Tables
 
 ## Change History
+- **2026-08-06 (RULE 93 song-suite sync)**: Expanded **KAPU FIRST_PERSON_DISPLAY_FORBIDDEN** to match PRD 00 section 16.7 Great Pronoun Rewrite: second-person (**you/your**) mapping, idempotency flags, `original_message_text_v1`, **DEBT-93** files including `admin_chat_xmlhttp.php`, nice-to-have visual rewrite marker deferred.
 - **2026-05-16 (FIRST_PERSON write-path enumeration)**: **KAPU FIRST_PERSON_DISPLAY_FORBIDDEN** -- listed **all** operator-visible **`lupo_dialog_messages`** ingest surfaces: **`DialogMvpService::createDialogMessage`**, shared **`DialogMvpService::rewriteHumanDialogMessageBodyForInsert`**, **`TranscriptAppendService::append`** (**POST api/transcript/append**), **`channels/index.php`** form POST, **`api/dialog/post-message.php`**. Flagged **`includes/modules/channels/channel-send-api.php`** (raw INSERT) and **`includes/classes/dialog-manager.php`** for audit or refactor to the shared helper. **`TranscriptAppendService`** is **not** exempt: same projection feed as **`fetch-messages.php`**.
 - **2026-05-16 (FIRST_PERSON_DISPLAY KAPU)**: Added **KAPU: FIRST_PERSON_DISPLAY_FORBIDDEN** under **Unified Chat UI/UX Principles**: operator-visible **`lupo_dialog_messages`** body MUST be first-person-rewritten in the **canonical ingest path** before durable storage / feed read (**`DialogMvpService::createDialogMessage`**, **`TranscriptAppendService`**, **`POST /api/chat/send`**, filesystem mirrors). Pairs with **[PRD 00](00_C-i_ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS.md) section 16.7** (RULE **93.FIRST_PERSON_DISPLAY_FORBIDDEN**). TOC updated.
 - **2026-05-13 (canonical channel clarification)**: Inserted normative **Canonical clarification: what a channel is (and is not)** block (semantic container vs Discord/Slack/chat-feed confusion; Domain -> Channel -> Thread hierarchy; required warning sentence; schema keys unchanged). Placed before **Projection and Presence Model**; TOC updated.
@@ -866,13 +867,17 @@ Colors are assigned **per thread** at creation time, pulled from a sequence of p
 
 ### KAPU: FIRST_PERSON_DISPLAY_FORBIDDEN (RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN)
 
-**Constitutional pairing:** **[PRD 00](00_C-i_ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS.md) section 16.7** defines the **mapping**, **examples**, and **display-layer** obligation. This subsection binds **dialog persistence and APIs** so operator-visible storage cannot ship ambiguous first person.
+**Also known as:** The Great Pronoun Rewrite of 2026.
+
+**Constitutional pairing:** **[PRD 00](00_C-i_ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS.md) section 16.7** defines the **mapping** (I/me/my + you/your families), **examples**, **idempotency**, and **display/ingest** obligation. This subsection binds **dialog persistence and APIs** so operator-visible storage cannot ship ambiguous first or second person.
 
 **Status:** ENFORCED. **Priority:** CRITICAL.
 
 **Scope:** **`lupo_dialog_messages`** rows (and filesystem artifacts that **mirror** channel dialog for operator reload) that participate in the **multi-actor** channel projection (**`channels/index.php`**, **`POST /api/chat/send`**, polling/JSON endpoints that hydrate the same feed).
 
-**Hard requirement (write path):** Apply the **first-person pronoun rewrite** from **PRD 00 section 16.7** in the **canonical ingest path** **before** the text becomes **durable operator-visible channel dialog** -- **no later than** immediately **before** **`INSERT`** into **`lupo_dialog_messages`** for the column(s) the feed reads (implementations that also retain verbatim text for memory or audit MUST store it **outside** the operator-visible channel body field, or in a **separate** column added in a future install cycle; the **default** is: the **stored channel body** is already rewritten).
+**Hard requirement (write path):** Apply the **first- and second-person pronoun rewrite** from **PRD 00 section 16.7** in the **canonical ingest path** **before** the text becomes **durable operator-visible channel dialog** -- **no later than** immediately **before** **`INSERT`** into **`lupo_dialog_messages`** for the column(s) the feed reads (implementations that also retain verbatim text for memory or audit MUST store it **outside** the operator-visible channel body field -- default: **`metadata_json.original_message_text_v1`** -- or in a **separate** column added in a future install cycle; the **default** is: the **stored channel body** is already rewritten).
+
+**Idempotency:** If **`metadata_json`** already carries **`first_person_rewrite_applied`**, do not rewrite again. Honor **`skip_first_person_rewrite`** only under explicit policy.
 
 **Normative ingest implementations (operator-visible body, human `is_agent = 0`):** Every path below MUST call **`DialogMvpService::rewriteHumanDialogMessageBodyForInsert`** (or **`createDialogMessage`**, which delegates to it) immediately before **`INSERT`** into **`lupo_dialog_messages`** for **`message_text`**, unless **`metadata_json`** carries **`skip_first_person_rewrite`** or **`first_person_rewrite_applied`** per policy.
 
@@ -884,11 +889,22 @@ Colors are assigned **per thread** at creation time, pulled from a sequence of p
 | Channel form POST | **`channels/index.php`** (and **`templates/channels/index.php`**) via **`createDialogMessage`** |
 | JSON dialog POST | **`api/dialog/post-message.php`** via **`createDialogMessage`** |
 
-**Audit / legacy (MUST NOT remain a silent bypass for operator-visible inserts):** **`includes/modules/channels/channel-send-api.php`** (string **`INSERT`** into **`dialog_messages`**), **`includes/classes/dialog-manager.php`**, and **`database/lupopedia/content/app/Services/TriggerReplacements/DialogMessagesInsertService.php`** -- refactor to **`createDialogMessage`** or apply **`rewriteHumanDialogMessageBodyForInsert`** before insert, or document operator-only exclusion in PRD if a path is truly non-channel. Also audit **PRD 82** batch writers and **`POST /api/chat/send`** stack when they insert operator-visible rows.
+**DEBT-93-FIRST_PERSON_REWRITE_LEGACY_INSERTS (MEDIUM, non-blocking):** Raw INSERT paths that **MUST NOT** remain a silent bypass for operator-visible inserts:
 
-**FORBIDDEN:** Shipping a path where the operator feed shows raw **I**, **me**, **my**, **mine**, **myself**, **we**, **us**, **our**, or **ourselves** **without** actor-name expansion while **`from_actor_id`** alone is the only disambiguator.
+| File | Action |
+|------|--------|
+| **`includes/modules/channels/channel-send-api.php`** | Replace raw INSERT with **`rewriteHumanDialogMessageBodyForInsert`** + **`createDialogMessage`** |
+| **`database/lupopedia/channels/channel_id/1/admin_chat_xmlhttp.php`** | Same (or retire path if non-operator) |
+| **`includes/classes/dialog-manager.php`** | Audit / refactor to shared helper |
+| **`database/lupopedia/content/app/Services/TriggerReplacements/DialogMessagesInsertService.php`** | Audit / refactor |
 
-**Verification:** Multi-tab / multi-thread channel UI review: **no** unexpanded first-person tokens remain in **rendered** message bodies for lines attributed to distinct **`from_actor_id`** values.
+Also audit **PRD 82** batch writers and **`POST /api/chat/send`** stack when they insert operator-visible rows. Tracked in version TODO as **DEBT-93-FIRST_PERSON_REWRITE_LEGACY_INSERTS**.
+
+**FORBIDDEN:** Shipping a path where the operator feed shows raw **I**, **me**, **my**, **mine**, **myself**, **we**, **us**, **our**, **ourselves**, **you**, **your**, **yours** **without** actor-name expansion while **`from_actor_id`** / chrome alone is the only disambiguator.
+
+**Nice to have (future):** Visual marker (asterisk / shade / badge) on rewritten rows so the operator can see the system changed the text. Not required for ENFORCED status.
+
+**Verification:** Multi-tab / multi-thread channel UI review: **no** unexpanded first/second-person tokens remain in **rendered** message bodies for lines attributed to distinct **`from_actor_id`** values. Unit suite target: **`tests/unit/first_person_ingest_rewrite_test.php`**.
 
 ---
 

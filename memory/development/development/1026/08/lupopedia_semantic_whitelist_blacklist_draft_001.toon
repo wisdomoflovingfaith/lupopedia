@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260801102812",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/semantic-whitelist-blacklist"
+  },
+  "memory_toon": "memory/development/development/1026/08/lupopedia_semantic_whitelist_blacklist_draft_001.toon",
+  "purpose": "Living DRAFT 001: semantic lists; external headers ;; locked; mirrored to WOLFIE_DIALECT 5a (pipe | living alternate guess).",
+  "source_file_path_from_root": "docs/status/actor_logs/drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md",
+  "tags": [
+    "status",
+    "development"
+  ],
+  "type": "header_metadata"
+}

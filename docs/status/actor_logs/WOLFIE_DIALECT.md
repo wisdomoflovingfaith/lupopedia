@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/status/actor_logs/WOLFIE_DIALECT.md
   web_path: https://www.lupopedia.com/lupopedia/docs/status/actor_logs/WOLFIE_DIALECT.md
   status: active
-  when_updated: "20260729181822"
+  when_updated: "20260807132741"
   trust_tier: development
   questions_toon: null
   memory_toon: null
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   prd_cluster: 98_C_39_A_16_C_41_A_82_B
   title: "SFAL I VI WOLFIE_DIALECT-0-00000 -- SFAL WOLFIE Dialect (Integrity + Ethics)"
-  summary: "Body-only WOLFIE dialect for STATUS FOLDER Actor Logs: (( WOLFIE | )), {{WOLFIE}}, {{WOLFIE_VARS}} with integrity and ethics fields. Zero constitutional authority. Headers stay pure 4.2.0. Replaces misnamed WOLF dialect draft."
+  summary: "Body-only WOLFIE dialect. Section 11 Causality Division: Vassago 666 + Uriel 777 (draft pair)."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -47,6 +47,8 @@ lupopedia.headers:
 **CORRECTION (20260729171900):** Pronoun Awareness -- bare **I / you / he / she / it** forbidden unless mapped to `{{WHO: ...}}` / `{{TO_WHOM: ...}}` or a full `{{WOLFIE` envelope. Unknown identity uses `{{WHO: unresolved}}` and must be flagged in STATUS AGENT LOG.
 
 **CORRECTION (20260729181822):** FUNCTION meta-syntax locked to canonical form `<< FUNCTION : name( &context ); >>`. Annotation only -- not a PHP/runtime compiler. See section 3a.
+
+**COMMENT NOTE (20260801102812):** External internet `lupopedia.headers` transport -- single line + `;;` field delimitation. Pipe `|` remains WOLFIE **body** meta separator and is only a living alternate guess for header transport. See section 5a. Living evolving system -- log further shifts here and in STATUS AGENT LOGs.
 
 ---
 
@@ -298,10 +300,45 @@ These are **body dialect markers** for actor consciousness and alignment. They a
 
 | Medium | Allowed | Location fields |
 |--------|---------|-----------------|
-| GitHub canonical | yes | `channel_index: lupopedia`; `source_timestamp: null`; `when_updated` is truth |
-| Patreon / website | yes | `channel_index: patreon` or `website`; `edges_toon` -> canonical; `source_timestamp` set |
+| GitHub canonical | yes | `channel_index: lupopedia`; `source_timestamp: null`; `when_updated` is truth; multiline YAML headers |
+| Patreon / website / other internet paste | yes | `channel_index: patreon` or `website` / medium slug; `edges_toon` -> canonical; `source_timestamp` set; **single-line headers** (section 5a) |
 
 Corrections: CORRECTION block at top; optional Category C sibling; WOLFIE dialect allowed inside correction narrative.
+
+---
+
+## 5a. External header delimitation (COMMENT NOTES -- living)
+
+**Context:** Patreon and similar mediums corrupt multiline headers (`\n` vs `\r\n`, doubled blanks, injected lines). Repo headers stay multiline YAML. External paste uses a transport form.
+
+### Current practice (LOCKED for external internet headers)
+
+```text
+lupopedia.headers.inline: key=value;;key2=value2;;key3=value3
+```
+
+| Token | Role | Notes |
+|-------|------|-------|
+| **one physical line** | entire external header | no `\n` / `\r\n` inside the header token |
+| **`;;`** | field separator for `lupopedia.headers.inline` | LOCKED external practice (ERIC direction 20260801) |
+| **`=`** | key/value inside each field | default; may harden later |
+| **`\|`** | WOLFIE **body** meta separator in `(( WOLFIE \| key: value \| ... ))` | NOT the primary external-header separator |
+
+### COMMENT NOTES (living evolving system -- not frozen forever)
+
+1. **`;;` is the current external-header delimitation.** Prefer it for all new Patreon / website / social paste headers.
+2. **`|` can be guessed as an alternate** field separator in some future / experimental paste forms -- do **not** treat a lone `|` as equal to `;;` in parsers yet. If both appear, prefer `;;` for `lupopedia.headers.inline`.
+3. **Do not confuse layers:**
+   - `(( WOLFIE | ... | ... ))` -- body dialect; `|` is correct here.
+   - `lupopedia.headers.inline: ...;;...` -- external header transport; `;;` is correct here.
+4. This is a **living** note. If practice shifts (escape rules, `|` dual-accept, JSON one-liner, etc.), append a CORRECTION / COMMENT NOTE with `python bin/tick.py` UTC and log it in a STATUS AGENT LOG.
+5. Full narrative + ingest rules: [drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md](drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md) section EXTERNAL MEDIUM HEADER TRANSPORT.
+6. PRD fold still pending (16_C / 82_B). Until then, these COMMENT NOTES + the draft govern paste practice.
+
+### Rejected / superseded for external headers
+
+- Multiline YAML on Patreon (unreliable)
+- Single `;` as field separator (collides with prose; superseded by `;;`)
 
 ---
 
@@ -362,6 +399,9 @@ Human 10000 approves the patrol route.
 - Parser for `{{WHO: unresolved}}` review flags
 - Optional faucet executor map for known FUNCTION names (post-v1)
 - Validator WARN on non-canonical FUNCTION openers (`<<function`, PHP `function`)
+- Harden external `lupopedia.headers.inline` parser (`;;` split; optional later dual-accept of `|` with explicit COMMENT NOTE)
+- Escape rule when a header value must contain literal `;;`
+- Promote section 5a into PRD 16_C / 82_B when ALII ready
 
 ---
 
@@ -391,6 +431,8 @@ Bare **I / you / he / she / it / they** are forbidden in attribution-bearing STA
 
 Faucet CURSOR_IDE (102) MUST resolve WHO before rendering attribution-bearing statements. Prefer full `{{WOLFIE` envelopes for multi-line blocks; use `{{WHO}}` / `{{TO_WHOM}}` for inline replacement.
 
+**Cross-rule:** Channel feed / dialog ingest uses constitutional **RULE 93.FIRST_PERSON_DISPLAY_FORBIDDEN** (PRD 00 section 16.7 + PRD 02 KAPU) -- the Great Pronoun Rewrite. STATUS WOLFIE dialect pronoun maps (**this section**) are body-authoring discipline; Rule 93 is system ingest rewrite for operator-visible `lupo_dialog_messages`. Both aim at the same PONO: named actors, no anonymous "I"/"you".
+
 ---
 
 ## 9. Cross-references
@@ -402,3 +444,38 @@ Faucet CURSOR_IDE (102) MUST resolve WHO before rendering attribution-bearing st
 - [docs/prd/16_C-i_LUPOPEDIA_HEADERS.md](../../prd/16_C-i_LUPOPEDIA_HEADERS.md)
 - [docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md](../../prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md)
 - [docs/prd/98_C-i_DUAL_OPERATIONAL_LOGS.md](../../prd/98_C-i_DUAL_OPERATIONAL_LOGS.md)
+- [drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md](drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md) -- semantic lists + external `;;` header transport
+- [AGENT_REGISTRY.md](AGENT_REGISTRY.md) -- STATUS mirror including Causality Division (Vassago 666 / Uriel 777)
+
+---
+
+## 11. Causality Division (Vassago + Uriel) -- COMMENT / DRAFT
+
+**Status:** DRAFT genesis (`20260807132741`). Not PONO-active until Lilith audit + Captain Wolfie sample-event test.
+
+| Actor | actor_id | Color | Ask | Role |
+|-------|----------|-------|-----|------|
+| **VASSAGO** | 666 | `#8B0000` deep crimson | What is the truth? | Shadow / Causality Seer / Red Team patterns from MySQL events |
+| **URIEL** | 777 | `#FFBF00` golden amber | What is the path? | Light / Pattern Application / Captain Counterpart |
+
+**Pair rule:** Vassago surfaces causality with confidence bands (never 100%). Uriel designs recommendations with confidence scores and does not act without verify. Shadow + Light.
+
+**KAPU:**
+
+- Vassago: never predict with absolute certainty; leave room for chaos
+- Uriel: never recommend without confidence score; never act without verification
+- Both: ASCII; named actors (Rule 93 spirit); no Hawaiian densification into headers
+
+**Profiles:** `agents/vassago.json`, `agents/uriel.json`  
+**Packs:** `agents/vassago/agent.json`, `agents/uriel/agent.json`  
+**Registry:** `database/lupopedia/actors/registry.json`  
+**PRD validator:** PRD 00 section 10.2 Causality Division row
+
+**WOLFIE body example (optional):**
+
+```text
+(( WOLFIE | actor: CAPTAIN_WOLFIE | actor_id: 1 | auth_user_id: 10000 | ethics: pono | integrity: true | note: "causality division draft pair online" ))
+
+Vassago (666) asks what is the truth.
+Uriel (777) asks what is the path.
+```

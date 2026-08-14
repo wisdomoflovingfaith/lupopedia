@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/06_B-i_CONTENT_FILESYSTEM_ARCHITECTURE.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/06_B-i_CONTENT_FILESYSTEM_ARCHITECTURE.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260801010640'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/content-filesystem-architecture.toon
@@ -17,7 +17,7 @@ lupopedia.headers:
   thread_key: null
   lupopedia.schema: prd
   prd_cluster: 00_A-i_06_B-i
-  title: 'PRD 06_Z: Content Filesystem Architecture'
+  title: 'PRD 06_B: Content Filesystem Architecture'
   summary: Canonical filesystem structure for content storage, federation isolation, timestamp anchoring, and validation rules.
 ---
 

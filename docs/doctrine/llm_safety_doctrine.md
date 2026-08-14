@@ -26,7 +26,7 @@ lupopedia.headers:
 ---
 # LLM Safety Doctrine
 
-Anchors: **PRD 42-B** (`docs/prd/42_llm_provider_integration.md`), **PRD 12_C** (Multi-API Agent Integration).
+Anchors: **PRD 42_B** (`docs/prd/42_B-i_llm_provider_integration.md`), **PRD 12_C** (Multi-API Agent Integration).
 
 ## 1. API keys
 

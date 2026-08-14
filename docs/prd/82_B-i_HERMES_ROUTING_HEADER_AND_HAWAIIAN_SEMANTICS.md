@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
   status: active
-  when_updated: '20260728021358'
+  when_updated: '20260811132142'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/82_hermes_routing_header.toon
@@ -17,10 +17,10 @@ lupopedia.headers:
   thread_key: null
   lupopedia.schema: prd
   prd_cluster: 00_A-i_16_B-i_16_C-i_41_A-i_82_A-i_82_B-i
-  title: 'PRD 82_Z: HERMES Routing Header and Hawaiian Semantics'
+  title: 'PRD 82_B: HERMES Routing Header and Hawaiian Semantics'
   summary: Canonical specification for lupopedia.hermes routing header, Hawaiian semantic fields, temporal operators, and pidgin language safety layer. Added section 7 External AI Routing (EXTERNAL_BOUNDARY_EDGE).
 ---
-# PRD 82_Z: HERMES Routing Header and Hawaiian Semantics
+# PRD 82_B: HERMES Routing Header and Hawaiian Semantics
 
 ## Canonical clarification: what a channel is (and is not)
 
@@ -211,6 +211,21 @@ message_body: |
 ```
 
 ---
+
+## 1.1 Identity vs Hawaiian constitutional fields (Header 4.2.1)
+
+Hawaiian fields are **routing / audit / ethics metadata**. They are **not** identity.
+
+**MUST NOT appear in:**
+
+- the dense 28-field `lupopedia.headers` grid (PRD 16_C)
+- `lupopedia.identity` (`lupopedia_id`, FF, GG, LL, II, `artifact_hex`)
+
+**MUST remain in:** `lupopedia.hermes` and/or sidecar / body only.
+
+Validator code: `HDR_HAWAIIAN_IN_DENSE` and `HDR_HAWAIIAN_IN_IDENTITY` are ERROR.
+
+OHANA, KAPU, KAPAKAI, PONO, KULEANA, ALII, KUMU, EH_BRAH_WHY, and PUKA answer how the ohana treats an object. `LUP:FF-GG-LL-II-RRRRRR` answers which object it is.
 
 ## 2. Hawaiian Semantic Fields
 

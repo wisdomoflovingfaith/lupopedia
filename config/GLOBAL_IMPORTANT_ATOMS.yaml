@@ -2,7 +2,7 @@
 # ======================================================================
 # GLOBAL IMPORTANT ATOMS - MANIFESTO OF 12
 # Purpose: Load-bearing pillars of Lupopedia Semantic OS
-# Version: 4.0.85
+# Version: 4.2.11
 # Status: HURRICANE KILLER - Antigravity Alignment
 # ======================================================================
 
@@ -11,9 +11,9 @@
 # All other atoms are secondary and may drift without system impact
 
 # IDENTITY ANCHORS (3)
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.85"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.2.11"
 GLOBAL_CURRENT_AUTHORS: "Captain Wolfie"
-GLOBAL_CURRENT_COPYRIGHT: "© 2025-2026 Eric Robin Gerdes. All rights reserved."
+GLOBAL_CURRENT_COPYRIGHT: "(c) 2025-2026 Eric Robin Gerdes. All rights reserved."
 
 # TEMPORAL ANCHORS (2)
 GLOBAL_CURRENT_YEAR: "2026"

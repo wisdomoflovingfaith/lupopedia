@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  header_format_version: "4.1.8"
+  header_format_version: "4.2.4"
   path_from_lupopedia_root: docs/prd/16_D-i_LUPOPEDIA_HEADERS_EXAMPLES.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_D-i_LUPOPEDIA_HEADERS_EXAMPLES.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260811171511'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/headers/canonical/1026/04/lupopedia-headers.toon
@@ -18,7 +18,15 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 00_A-i_16_B-i_16_C-i_16_D-i
   title: 'PRD 16: Lupopedia Headers (Examples and Reference)'
-  summary: Examples and reference implementations for Lupopedia header contract at version 4.1.5. Concrete examples, validation patterns, and usage samples.
+  summary: Header examples including 4.2.4 Federation Compression (000001 -> X) for short/medium/full/human forms.
+lupopedia.identity:
+  lupopedia_id: "LUP:000001-000012-01-00-EN-01"
+  federation_id: "000001"
+  artifact_hex: "000012"
+  namespace_id: "01"
+  iteration: "00"
+  language: "EN"
+  actor_aa: "01"
 ---
 <!-- ASCII_ART_BLOCK -->
 . . . . . . . . . ._________________ LUPOPEDIA Semantic Operating System _________________
@@ -53,6 +61,18 @@ Order of Operations: PRD Schema Examples Code
 
 # PRD 16: Lupopedia Headers (Examples and Reference)
 
+## LUP -- Linked Universal Protocol
+
+**LUP** stands for **Linked Universal Protocol**, the universal identity system used by Lupopedia to identify, version, translate, federate, and track provenance for any digital artifact.
+
+LUP -- Linked Universal Protocol (Universal Artifact Identity). Not a song-only ID. Not "Lupopedia ID."
+
+LUP (Linked Universal Protocol) Identity Grammar:
+
+```text
+LUP:FFFFFF-RRRRRR-NN-II-LL-AA
+```
+
 ## Canonical clarification: what a channel is (and is not)
 
 In Lupopedia, a channel is a semantic container inside a domain (node).
@@ -76,6 +96,158 @@ Domain (node)
 **Required warning (normative where channels are defined):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them.
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
+
+## 4.2.4 Universal identity examples (normative)
+
+Identity is **not** in the 22/28 dense grid. RRRRRR is artifact identity, not color. AA is first-class. NN replaces GG. Color is metadata.
+
+**Federation 000001 is the canonical root node. In short-form identities, it is compressed to the symbol `X`.**
+
+Shared reconstruction rule (canonical **machine** storage):
+
+```text
+lupopedia_id == "LUP:" + federation_id + "-" + artifact_hex + "-" + namespace_id + "-" + iteration + "-" + language + "-" + actor_aa
+```
+
+`federation_id` on disk is always six hex (`000001`), never `X`.
+
+### Short / medium / full / human / machine (same artifact)
+
+```text
+short:           LUP:X-000000-01
+medium:          LUP:X-000000-01-00
+full:            LUP:X-000000-01-00-EN
+human-friendly:  LUP:X-000000-01-00-EN-01
+machine:         LUP:000001-000000-01-00-EN-01
+```
+
+Defaults: II=`00`, LL=`EN`, AA=`00`. Storage MUST write the machine 6-token line.
+
+### Original artifact (song)
+
+```yaml
+lupopedia.headers:
+  header_format_version: "4.2.4"
+  actor_id: 1
+lupopedia.identity:
+  lupopedia_id: "LUP:000001-000000-01-00-EN-01"
+  federation_id: "000001"
+  artifact_hex: "000000"
+  namespace_id: "01"
+  iteration: "00"
+  language: "EN"
+  actor_aa: "01"
+lupopedia.metadata:
+  media_kind: song
+  color_hex: "000064"
+  actor_hex: "000001"
+  cc_by_name: "Eric Robin Gerdes"
+  cc_license: "CC-BY-4.0"
+```
+
+`color_hex` `000064` is Wolfie's first Rule 99 slot. It is **not** in the LUP string.
+
+### Document
+
+```yaml
+lupopedia.headers:
+  actor_id: 1
+lupopedia.identity:
+  lupopedia_id: "LUP:000001-000001-01-00-EN-01"
+  federation_id: "000001"
+  artifact_hex: "000001"
+  namespace_id: "01"
+  iteration: "00"
+  language: "EN"
+  actor_aa: "01"
+lupopedia.metadata:
+  media_kind: document
+  cc_by_name: "Eric Robin Gerdes"
+```
+
+Human display of the same document: `LUP:X-000001-01-00-EN-01`.
+
+### Remix (II increment)
+
+```text
+base machine:  LUP:000001-000000-01-00-EN-01
+base human:    LUP:X-000000-01-00-EN-01
+remix machine: LUP:000001-000000-01-01-EN-01
+remix human:   LUP:X-000000-01-01-EN-01
+```
+
+Same FFFFFF, RRRRRR, NN, LL, AA. Same `color_hex` for songs. Edge: `remix_of`.
+
+### Translation (LL change)
+
+```text
+en machine: LUP:000001-000000-01-00-EN-01
+en human:   LUP:X-000000-01-00-EN-01
+es machine: LUP:000001-000000-01-00-ES-01
+es human:   LUP:X-000000-01-00-ES-01
+```
+
+Same FFFFFF, RRRRRR, NN, II, AA. Required edge: `translation_of`.
+
+### Multi-language (LL = ZZ)
+
+ISO 639-1 has no code for "multiple languages." Reserved `ZZ` means multi-language or language-agnostic. `ZZ` is not an ISO language.
+
+```text
+short:      LUP:X-000000-01-00-ZZ
+machine:    LUP:000001-000000-01-00-ZZ-01
+human:      LUP:X-000000-01-00-ZZ-01
+```
+
+Use `ZZ` for multi-lingual documents, multi-lingual songs, translation bundles, datasets, prompts, universal artifacts, and artifacts with no single dominant language.
+
+### Federation migration (FFFFFF change)
+
+```text
+from machine: LUP:000001-000000-01-00-EN-01
+from human:   LUP:X-000000-01-00-EN-01
+to:           LUP:000003-000000-01-00-EN-01
+```
+
+Only FFFFFF changes. Destination `000003` has **no** `X` compression (`X` is only for `000001`). Edge: `federated_from`. No colon is added (unmodified publish).
+
+### Cross-federation modification (RRRRRR lineage colon)
+
+When the work is **modified** in another federation, RRRRRR becomes `originFed:artifactNumber`. Colon `:` is the only lineage delimiter.
+
+```text
+original (Fed 2):   LUP:000002-123456-01-00-EN-01
+iterated (Fed 3):   LUP:000003-000002:123456-01-00-EN-01
+remixed (Fed 5):    LUP:000005-000003:123456-01-00-EN-01
+```
+
+Pedagogical short FF: `LUP:2-123456-NN-II-LL-AA` -> `LUP:3-2:123456-NN-II-LL-AA` -> `LUP:5-3:123456-NN-II-LL-AA`.
+
+Split RRRRRR on the first colon. Left = origin federation. Right = artifact number. Same-federation remix still changes II only (no colon).
+
+### Actor change (AA change)
+
+```text
+before machine: LUP:000001-000000-01-00-EN-01
+before human:   LUP:X-000000-01-00-EN-01
+after machine:  LUP:000001-000000-01-00-EN-02
+after human:    LUP:X-000000-01-00-EN-02
+```
+
+Declared provenance event only. Dense `actor_id` MUST rematch AA.
+
+### Namespace change (NN change)
+
+```text
+before: LUP:000001-FFFFFF-01-00-EN-01
+after:  LUP:000001-000000-05-00-EN-01
+```
+
+Used when namespace `01` is exhausted. RRRRRR restarts at `000000`.
+
+## Historical 22-Field Header (v4.1.5)
+
+The following 4.1.5 samples are **historical**. New artifacts MUST use 4.2.3 canonical identity (`LUP:FFFFFF-RRRRRR-NN-II-LL-AA`). Do not copy song-only identity grammars from older song docs.
 
 ## Current Canonical 22-Field Header (v4.1.5)
 

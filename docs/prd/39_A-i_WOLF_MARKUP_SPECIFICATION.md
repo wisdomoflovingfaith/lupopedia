@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md
   status: active
-  when_updated: '20260728021358'
+  when_updated: '20260801102812'
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 00_A-i_16_B-i_39_A-i_41_A-i_82_B-i_98_A-i_98_B-i
   title: 'PRD 39: WOLF Markup Specification v0.5'
-  summary: 'W.O.L.F. v0.5: non-destructive overlay, concept node, nesting depth 4, single-tilde Draft layer, function annotation safety, artifact scope matrix. Zero constitutional authority. Added section 9.7 External AI Usage (EXTERNAL_BOUNDARY_EDGE).'
+  summary: 'W.O.L.F. v0.5: non-destructive overlay. COMMENT NOTE: external internet lupopedia.headers use single-line + ;; (see WOLFIE_DIALECT 5a). WOLF has zero constitutional authority.'
 ---
 # PRD 39: WOLF Markup Specification v0.5
 
@@ -261,6 +261,8 @@ PRD bodies MAY include full WOLF syntax inside fenced example blocks; those exam
 ### 9.6 LUPOPEDIA HEADERS (PRD 16_C)
 
 - WOLF markers MUST NOT appear inside the 25-line `lupopedia.headers` envelope.
+
+**COMMENT NOTE (20260801102812 -- living, not a WOLF v0.5 delimiter change):** External internet paste (Patreon and peers) cannot reliably keep multiline header YAML. Current practice: **one physical line** with field separator **`;;`**. Pipe `|` is already used inside SFAL **WOLFIE** body meta (`(( WOLFIE | ... ))`) and may be guessed later as an alternate header separator -- living system; do not dual-accept `|` in header parsers until explicitly logged. Canonical comment home: `docs/status/actor_logs/WOLFIE_DIALECT.md` section **5a**. Narrative draft: `docs/status/actor_logs/drafts/lupopedia_semantic_whitelist_blacklist_draft_001.md`. Repo headers remain multiline YAML after ingest.
 
 ### 9.7 External AI Usage (EXTERNAL_BOUNDARY_EDGE)
 

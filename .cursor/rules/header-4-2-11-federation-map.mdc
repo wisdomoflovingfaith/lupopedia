@@ -1,0 +1,60 @@
+---
+description: Header 4.2.11 LUP.KEY + lupopedia.map for new authored envelopes
+alwaysApply: true
+---
+
+# Header 4.2.11 -- federation map and KEY identity
+
+New hand-authored Markdown/Python/PHP files MUST declare `header_format_version: "4.2.11"` and include siblings `lupopedia.identity` and `lupopedia.map`.
+
+Canonical template: `docs/prd/federation/federation_map_template.md`
+Normative: PRD 16_C section 4.2.6
+
+## Identity (ASCII only)
+
+Field delimiter is `.` (dot). No middle-dot. No pipe. No hyphen in KEY / HEX / SHORT / ROOT.
+
+YAML storage uses `key: value`. Grammar notation may use `=`. Values MUST match:
+
+```text
+LUPOPEDIA     = PRT.LUP
+LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.SHORT     = PRT.LUP
+LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
+LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
+LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+```
+
+Enforce KEY order. Apply DEFAULTS when fields are missing. Apply OMIT to compress. Expand SHORT to ROOT when a full human form is required. `map.index` MUST be a valid LUP.HEX for that document.
+
+## Map block
+
+```yaml
+lupopedia.map:
+  index: <LUP.HEX identity for this document>
+  web_path: <canonical public URL>
+  path_from_lupopedia_root: <relative path inside Lupopedia>
+  prd_cluster: <cluster identifier>
+  edges_toon: <toon file or null>
+  memory_toon: <toon file>
+  atoms_toon: <toon file>
+  transcript_jsonl: <jsonl transcript path>
+  questions_toon: <toon file or null>
+```
+
+## Unchanged
+
+- 28-field dense `lupopedia.headers` grid (discovery scalars stay there)
+- Hawaiian constitutional fields
+- Rule 99 color bands
+- CC-BY name in `lupopedia.metadata`
+- Product atom `GLOBAL_CURRENT_LUPOPEDIA_VERSION` (not the header contract)
+
+Do not copy the dense grid into `lupopedia.metadata`. Do not mass-rewrite the corpus. Dual-accept 4.2.0-4.2.4 until a file is edited.
+
+## Version gap (4.2.4 -> 4.2.11)
+
+This Cursor workspace last indexed identity at 4.2.4. Versions 4.2.5-4.2.10 were compiled outside Cursor (other LLMs, Patreon, dream-compiler). Do not invent those versions here. 4.2.11 is the next in-repo header contract.
+
+Validate: `python scripts/validate_lup_identity.py PATH`
