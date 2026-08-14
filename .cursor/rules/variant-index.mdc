@@ -1,0 +1,68 @@
+---
+description: Append navigation-only VARIANTS INDEX on governed LUP.HEX artifact pages. Never modify headers, metadata, or map.
+alwaysApply: true
+---
+
+# Variant Index (navigation only -- header 4.2.11)
+
+Operator guide: `docs/actors/how_to_make_variant_indexes.md`
+
+## When
+
+When **creating** or **editing** a Markdown artifact that already has `lupopedia.identity` and `LUP.HEX`:
+
+- If the body has no `## VARIANTS INDEX` heading, **append** the stub at the **end of the body**.
+- If the heading already exists, do not duplicate it. You may add missing TYPE.LANG rows.
+
+## Do not
+
+- Modify `lupopedia.headers`, `lupopedia.identity`, `lupopedia.map`, or `lupopedia.metadata`.
+- Mass-scan or rewrite the corpus. Only the file you are already writing.
+- Insert into PRDs, doctrine, proposals, version changelogs, or Cursor rules:
+  - `docs/prd/**`
+  - `docs/doctrine/**`
+  - `docs/prd_proposals/**`
+  - `docs/versions/**`
+  - `.cursor/**`
+- Put variant tokens inside KEY / HEX / SHORT / ROOT.
+- Use pipes, middle-dot, or hyphens in variant IDs.
+
+## Variant ID grammar
+
+```text
+TYPE.NUM.LANG
+```
+
+Examples: `MUS.01.EN`, `VID.01.EN`, `WEB.01.EN`, `DOC.01.EN`.
+
+Delimiter is `.` (dot). This is **not** `LUP.KEY`. It does not create doctrine, override PRDs, or grant authority.
+
+## Stub to append
+
+```markdown
+## VARIANTS INDEX
+
+Navigation-only list of TYPE.LANG variants of this artifact. Not doctrine. Does not override PRDs. Does not change header authority.
+
+### MUSIC VARIANTS
+
+- (none yet)
+
+### VIDEO VARIANTS
+
+- (none yet)
+
+### WEB VARIANTS
+
+- (none yet)
+
+### DOCUMENT VARIANTS
+
+- (none yet)
+
+### NOTES
+
+- Variant indexes are navigation-only.
+- Do not modify lupopedia.headers, lupopedia.metadata, or lupopedia.map.
+- ASCII-safe dot grammar only. No pipes. No middle-dot. No hyphens in variant IDs.
+```

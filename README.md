@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: README.md
   web_path: https://www.lupopedia.com/lupopedia/README.md
   status: active
-  when_updated: "20260814141353"
+  when_updated: "20260814152028"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/04/readme-root.toon
@@ -282,6 +282,75 @@ lupopedia.metadata:
 - Remix increments **II only**. Translation changes **LL only**.
 
 Authoritative: [PRD 16_E](docs/prd/16_E-i_LUPOPEDIA_HEADERS_MIGRATION.md).
+
+## Protocol Color Registries (Color -> HEX Mapping)
+
+Each protocol in Lupopedia maintains its own color registry CSV:
+
+```text
+docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv
+```
+
+These CSV files map human-readable color names to HEX values for that protocol. Lookup is flat-file. A database is not required. The Lupopedia ID provides deterministic routing (protocol folder, optional Class C shard). They do not override PRDs and do not modify header authority. Color is not a LUP.KEY token.
+
+Spec: [HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md)
+Guide: [docs/protocols/hex/README.md](docs/protocols/hex/README.md)
+
+Example columns:
+
+```text
+word_registry_id,word,hex_color,field_type,iso_language,created_ymdhis,updated_ymdhis,source_table,usage_count,actor_hex
+```
+
+### LUP protocol seed
+
+The LUP protocol uses [PRT.LUP.colors.csv](docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv). Seed entries include:
+
+| word | hex_color |
+|------|-----------|
+| yellow | FFFF00 |
+| blue | 0000FF |
+| ocean | 1E90FF |
+| grass | 0c871b |
+
+### Lookup rule
+
+When resolving a color for a specific `field_type` (for example ACTOR, GROUP, NODE, ARTIFACT):
+
+1. First attempt: CSV row where `word` is the requested name AND `field_type` is the requested type.
+2. If missing, fallback: CSV row where `word` is the requested name AND `field_type` is `node`.
+3. If still missing, request creation of a new color entry. Do not guess.
+
+The NODE `field_type` is the canonical default for all other field types.
+
+### Registry Layer (LRL)
+
+Color registries are CSV files **today**. Deterministic ID routing makes that a good fit for read-heavy work. When writes become frequent, flat files are unsafe for multi-actor concurrency.
+
+Lupopedia will introduce a **Registry Layer (LRL)** that abstracts lookup and creation: CSV reads now, safe single-actor CSV writes now, SQL or key-value later, **same API and fallback rules**. **No `.lock` files** (unsafe and undesirable). Spec: [HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md).
+
+### Missing color rule
+
+If a color name does not exist in the protocol CSV, the system must request creation of a new entry. New entries must be ASCII-safe, lowercase word names, and valid 6-character hex values (no `#`). Do not guess a HEX value. Do not invent a KEY token for the color.
+
+### Purpose
+
+- Consistent translation of color names into HEX values
+- Identity mapping, UI rendering, semantic grouping, and deterministic file routing
+- Not doctrine. Not header authority. Not Rule 99 band assignment (that remains PRD 99)
+
+### 4.2.11 CSV contract
+
+- ASCII-safe only
+- No pipes
+- No middle-dot
+- No hyphens in KEY grammar
+- Comma-separated values
+- No `#` prefix in `hex_color` fields
+
+## Federation map (`lupopedia.map`)
+
+Sibling `lupopedia.map` is the federation routing index. `map.index` MUST be a valid LUP.HEX for that document. Dense discovery scalars stay in `lupopedia.headers`. Template: [federation_map_template.md](docs/prd/federation/federation_map_template.md). Normative: [PRD 16_C](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md) section 4.2.6.
 
 ## 1. What Is Lupopedia?
 
