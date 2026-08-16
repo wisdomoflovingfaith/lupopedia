@@ -3,7 +3,7 @@
     "outbound": []
   },
   "footer": {
-    "last_verified": "20260816115226",
+    "last_verified": "20260816175531",
     "last_verified_by": "generate_memory_from_header",
     "last_verified_by_actor_id": 102
   },
@@ -16,7 +16,7 @@
     "transcript_jsonl": "0/development/lupopedia-identity-routing-rule"
   },
   "memory_toon": "memory/development/canonical/1026/08/lupopedia_identity_routing_rule.toon",
-  "purpose": "Experimental actor-instruction doctrine. Ordinary spelling LUPOPEDIA means load PRD 00 first. Digit forms such as LUP16PEDIA point at PRD 16. Does not change the eight-token LUP KEY. Does not rename the brand.",
+  "purpose": "Experimental display-layer helper. Case A: one digit 0-9 maps to PRD 9X and local X. Two digits 10-99 map to PRD XX and local XX. Ordinary LUPOPEDIA is LUP0PEDIA: PRD 90, local 0. Does not change the KEY. Does not mint PRD 90.",
   "source_file_path_from_root": "docs/doctrine/lupopedia_identity_routing_rule.md",
   "tags": [
     "doctrine",

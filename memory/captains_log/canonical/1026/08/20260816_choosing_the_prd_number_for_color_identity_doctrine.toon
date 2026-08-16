@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816173345",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/captains_log/choosing-prd-number-color-identity"
+  },
+  "memory_toon": "memory/captains_log/canonical/1026/08/20260816_choosing_the_prd_number_for_color_identity_doctrine.toon",
+  "purpose": "Entertainment log: Color Identity belongs in the 90-series as high-order identity architecture. Recommended home PRD 90. Handshake: lupopedia poweredby [GroupColor] [ColorName]. Does not mint PRD 90. Does not change the KEY.",
+  "source_file_path_from_root": "content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_choosing_the_prd_number_for_color_identity_doctrine.md",
+  "tags": [
+    "captains_log",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

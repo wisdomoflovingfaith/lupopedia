@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816222312",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/prd-91-intent-encoding"
+  },
+  "memory_toon": "memory/development/development/1026/08/91_a_intent_encoding.toon",
+  "purpose": "Development draft v0.1.1. Persistent rules must carry explicit intent. Twelve-part Intent Contract. Does not absorb PRD 90. Does not formalize O-slot selectors. No install SQL. No actor ID assigned to AGAPE.",
+  "source_file_path_from_root": "docs/prd/91_A-i_INTENT_ENCODING.md",
+  "tags": [
+    "prd",
+    "development"
+  ],
+  "type": "header_metadata"
+}

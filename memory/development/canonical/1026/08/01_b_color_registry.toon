@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816172939",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/prd-01-b-color-registry"
+  },
+  "memory_toon": "memory/development/canonical/1026/08/01_b_color_registry.toon",
+  "purpose": "Planning PRD for GroupColor and ColorName registry tables. hex5 and GOLD# columns exist as VARCHAR TBD. No install SQL yet. Color is not a LUP KEY token. Do not overload lupo_agent_colors.",
+  "source_file_path_from_root": "docs/prd/01_B-i_COLOR_REGISTRY.md",
+  "tags": [
+    "prd",
+    "proposed"
+  ],
+  "type": "header_metadata"
+}

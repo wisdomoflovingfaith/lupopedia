@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816184059",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/captains_log/ti-82-revelation"
+  },
+  "memory_toon": "memory/captains_log/canonical/1026/08/20260816_the_ti_82_revelation.toon",
+  "purpose": "Entertainment log: LUPxPEDIA is the grown-up TI-82 paper sheet. One-letter variables. Associative mapping. WxLFIE is the programmable O-slot selector. Zero doctrinal authority. Does not change the KEY. Does not mint WxLFIE as KEY tokens.",
+  "source_file_path_from_root": "content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_the_ti_82_revelation.md",
+  "tags": [
+    "captains_log",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

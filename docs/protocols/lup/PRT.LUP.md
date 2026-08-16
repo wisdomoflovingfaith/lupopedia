@@ -1005,7 +1005,7 @@ Related:
 - `.cursor/rules/header-4-2-11-federation-map.mdc`
 - `scripts/validate_lup_identity.py`
 - `docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md` -- Pono Edition whitepaper (multi-parent provenance, domain color, hash-free federation)
-- `docs/doctrine/lupopedia_identity_routing_rule.md` -- experimental: LUPOPEDIA means load PRD 00 first
+- `docs/doctrine/lupopedia_identity_routing_rule.md` -- experimental Case A: LUPOPEDIA means PRD 90, local 0
 
 ---
 

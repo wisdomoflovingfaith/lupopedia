@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816190409",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/captains_log/the-intent-problem"
+  },
+  "memory_toon": "memory/captains_log/canonical/1026/08/20260816_the_intent_problem.toon",
+  "purpose": "Entertainment log: AI follows an instruction once because the instruction has no encoded why. Street-crossing example. Rules without intent are brittle. Intent encoding is the missing variable. Zero doctrinal authority. Does not mint PRD 90.3. Does not change the KEY.",
+  "source_file_path_from_root": "content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_the_intent_problem.md",
+  "tags": [
+    "captains_log",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

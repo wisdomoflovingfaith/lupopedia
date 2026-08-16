@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816222312",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/prd-91-intent-encoding-v0-1-0"
+  },
+  "memory_toon": "memory/development/development/1026/08/91_a_intent_encoding_draft_v0_1_0.toon",
+  "purpose": "Reviewed baseline Draft v0.1.0 preserved for review history. Do not implement from this file. Working draft is docs/prd/91_A-i_INTENT_ENCODING.md v0.1.1.",
+  "source_file_path_from_root": "docs/prd_proposals/91_A-i_INTENT_ENCODING_DRAFT_v0_1_0.md",
+  "tags": [
+    "prd",
+    "development"
+  ],
+  "type": "header_metadata"
+}

@@ -434,7 +434,7 @@ An edge does not automatically indicate:
 - docs/actors/actor_routing_rules.md
 
 **Experimental supporting (not constitutional; does not override PRDs):**
-- docs/doctrine/lupopedia_identity_routing_rule.md -- ordinary spelling LUPOPEDIA means load PRD 00 first (`LUPxPEDIA` -> PRD x). Display layer only. Not a LUP KEY.
+- docs/doctrine/lupopedia_identity_routing_rule.md -- ordinary spelling LUPOPEDIA means PRD 90, local 0 (Case A). One digit -> 9X. Two digits -> that family. Display layer only. Not a LUP KEY.
 
 **Purpose:**
 Defines how messages, requests, artifacts, and work move between actors and governed contexts.

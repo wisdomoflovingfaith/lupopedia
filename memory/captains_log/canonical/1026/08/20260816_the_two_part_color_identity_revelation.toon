@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816172030",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/captains_log/two-part-color-identity-revelation"
+  },
+  "memory_toon": "memory/captains_log/canonical/1026/08/20260816_the_two_part_color_identity_revelation.toon",
+  "purpose": "Entertainment log: color nicknames were always two-part identities. GroupColor was already in culture (White Album, Blue Album). ColorName is the second half. Identity string: lupopedia poweredby [GroupColor] [ColorName]. Zero doctrinal authority. Does not change the KEY.",
+  "source_file_path_from_root": "content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_the_two_part_color_identity_revelation.md",
+  "tags": [
+    "captains_log",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

@@ -128,7 +128,7 @@ This HARD GATE is constitutional. It ensures AGAPE (and all agents) never act wi
 - Root detailed spec (HEX `04020B`): [PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md](PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md)
 - Simple LUP protocol readme: [lupopedia.protocal.readme.txt](lupopedia.protocal.readme.txt)
 - External domains guide: [LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md](LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md)
-- Identity routing (experimental): [docs/doctrine/lupopedia_identity_routing_rule.md](docs/doctrine/lupopedia_identity_routing_rule.md) -- LUPOPEDIA means load PRD 00 first
+- Identity routing (experimental): [docs/doctrine/lupopedia_identity_routing_rule.md](docs/doctrine/lupopedia_identity_routing_rule.md) -- LUPOPEDIA means PRD 90, local 0 (Case A)
 - Whitepaper v1.9.2 (HEX `000023` / `010902`): [docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md](docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md)
 - Docs index (HEX `000010`): [docs/index.md](docs/index.md)
 - Normative: [PRD 16_C](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md) section 4.2.6
