@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816224539",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/root/readme-root"
+  },
+  "memory_toon": "memory/root/canonical/1026/04/readme-root.toon",
+  "purpose": "Root README: what Lupopedia is, its power (docs build software), and header format 4.2.11 LUP.KEY identity.",
+  "source_file_path_from_root": "README.md",
+  "tags": [
+    "documentation",
+    "canonical"
+  ],
+  "type": "header_metadata"
+}

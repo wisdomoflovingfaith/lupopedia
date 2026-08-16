@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/index.md
   web_path: https://www.lupopedia.com/lupopedia/docs/index.md
   status: active
-  when_updated: "20260816115226"
+  when_updated: "20260816224819"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/07/actors_collection_index.toon
@@ -433,8 +433,13 @@ An edge does not automatically indicate:
 **Read:**
 - docs/actors/actor_routing_rules.md
 
+**Canonical supporting:**
+- docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md -- Color Identity. Color is not a LUP KEY token.
+- docs/prd/91_A-i_INTENT_ENCODING.md -- Intent Encoding (development draft; not canonical until Captain promotion).
+- docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md -- HERMES routing header and Hawaiian semantics.
+
 **Experimental supporting (not constitutional; does not override PRDs):**
-- docs/doctrine/lupopedia_identity_routing_rule.md -- ordinary spelling LUPOPEDIA means PRD 90, local 0 (Case A). One digit -> 9X. Two digits -> that family. Display layer only. Not a LUP KEY.
+- docs/doctrine/lupopedia_identity_routing_rule.md -- display layer only. Does not override PRD 90 or PRD 91.
 
 **Purpose:**
 Defines how messages, requests, artifacts, and work move between actors and governed contexts.
@@ -893,6 +898,8 @@ This index does not promote another file's authority.
 - docs/prd/39_A-i_WOLF_MARKUP_SPECIFICATION.md
 - docs/prd/41_A-i_CAPTAIN_WOLFIE_IDENTITY.md
 - docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
+- docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md
+- docs/prd/91_A-i_INTENT_ENCODING.md
 - docs/prd/98_B-i_THE_CAPTAINS_LOG_HUMAN_ONLY_ENTERTAINMENT_LAYER.md
 
 ---

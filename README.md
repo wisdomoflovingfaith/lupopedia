@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: README.md
   web_path: https://www.lupopedia.com/lupopedia/README.md
   status: active
-  when_updated: "20260816115226"
+  when_updated: "20260816224819"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/04/readme-root.toon
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   prd_cluster: 00_A_16_C_99_A_15_A
   title: Lupopedia root README
-  summary: "Root README for header format 4.2.11: LUP.KEY dotted identity + lupopedia.map. ASCII dots only."
+  summary: "Root README: what Lupopedia is, its power (docs build software), and header format 4.2.11 LUP.KEY identity."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -128,7 +128,10 @@ This HARD GATE is constitutional. It ensures AGAPE (and all agents) never act wi
 - Root detailed spec (HEX `04020B`): [PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md](PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md)
 - Simple LUP protocol readme: [lupopedia.protocal.readme.txt](lupopedia.protocal.readme.txt)
 - External domains guide: [LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md](LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md)
-- Identity routing (experimental): [docs/doctrine/lupopedia_identity_routing_rule.md](docs/doctrine/lupopedia_identity_routing_rule.md) -- LUPOPEDIA means PRD 90, local 0 (Case A)
+- Canonical color identity: [PRD 90](docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md)
+- Intent encoding (development draft): [PRD 91](docs/prd/91_A-i_INTENT_ENCODING.md)
+- HERMES / Hawaiian semantics: [PRD 82_B](docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md)
+- Identity routing (experimental): [docs/doctrine/lupopedia_identity_routing_rule.md](docs/doctrine/lupopedia_identity_routing_rule.md) -- display layer only; does not override PRD 90 or PRD 91
 - Whitepaper v1.9.2 (HEX `000023` / `010902`): [docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md](docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md)
 - Docs index (HEX `000010`): [docs/index.md](docs/index.md)
 - Normative: [PRD 16_C](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md) section 4.2.6
@@ -298,6 +301,8 @@ docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv
 
 These CSV files map human-readable color names to HEX values for that protocol. Lookup is flat-file. A database is not required. The Lupopedia ID provides deterministic routing (protocol folder, optional Class C shard). They do not override PRDs and do not modify header authority. Color is not a LUP.KEY token.
 
+Canonical color identity: [PRD 90](docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md)
+Planning color registry tables: [PRD 01_B](docs/prd/01_B-i_COLOR_REGISTRY.md)
 Spec: [HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md)
 Guide: [docs/protocols/hex/README.md](docs/protocols/hex/README.md)
 
@@ -361,13 +366,26 @@ Sibling `lupopedia.map` is the federation routing index. `map.index` MUST be a v
 
 **Canonical agent explanation (load first):** [what_is_lupopedia.md](what_is_lupopedia.md)
 
-Lupopedia is a **doctrine-driven semantic operating system** and multi-agent platform that evolves the **Crafty Syntax 3.7.5** lineage into a constitutional architecture for modern orchestration, truth management, and channel-based collaboration.
+Lupopedia is a **doctrine-driven semantic operating system** (Semantic OS). It is **not** a website, **not** a conventional web app, **not** a CMS, and **not** a PHP framework.
+
+It is the constitutional successor to **Crafty Syntax Live Help** (programming lineage from 1999, first public release February 2002): shared-hosting live-help survival rebuilt into explicit multi-agent orchestration, identity layers, channels, memory, and PRD-first governance.
 
 **Channel meaning (normative):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them. Hierarchy: domain (node), then channel, then thread (artifacts such as messages, memory, atoms, and PRDs). Full model: [PRD 02_B](docs/prd/02_B-i_CHANNELS_DB_OVERVIEW.md) and [PRD 02_C](docs/prd/02_C-i_CHANNELS_DISCUSSIONS.md).
 
 It is built as a shared-hosting-compatible system with deterministic behavior, explicit identity boundaries, and file-backed operational continuity. PRDs and doctrine serve as the implementation authority.
 
-**See also:** [GAS_STATION_INTO.md](GAS_STATION_INTO.md)
+### Its power
+
+The power of Lupopedia is that **documentation can build software**.
+
+- **PRD clusters define the machine.** PRDs reference other PRDs. Clusters define behavior, truth, limits, and system identity through positional priority (array index = reading order), significance weight (A-F letter), grouping (numeric category), and chronology (Roman numeral = time created).
+- **Headers make lineage replayable.** Each file records `prd_cluster`, `transcript_jsonl`, and `atoms_toon` so agents can recover who, what, why, and when without guessing from chat.
+- **Identity never merges.** Human Captain (actor_id 10000), WOLFIE (actor_id 1), agent packs, and IDE faucets (Cursor 102 and others) stay distinct. Identity is permanent; state is mutable.
+- **LUP.KEY is universal artifact identity.** Eight tokens: `PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION`. Storage, comparison, federation, hashing, and APIs always use eight tokens. Color is a human signal (PRD 90); it is not a KEY token.
+- **The system survives shared hosting and context loss.** PHP + PDO, no Composer in runtime, database as dumb storage. Rules, IDs, and headers are the memory -- not improvisation.
+
+Human short path: [GAS_STATION_INTO.md](GAS_STATION_INTO.md)
+
 **See also:** [Captain's Log Entry 001](docs/captains_log/why_lupopedia.md)
 **See also:** [hawaiian semantics](docs/captains_log/the_accidental_penicillin.md)
 
@@ -484,6 +502,9 @@ Details in [PRD 27](docs/prd/27_installer_requirements.md) and [PRD 13](docs/prd
 - [ONBOARDING.md](ONBOARDING.md)
 - [ORGANIZATION.md](ORGANIZATION.md)
 - [PRD 16_C -- Lupopedia Headers](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md)
+- [PRD 82_B -- HERMES routing header and Hawaiian semantics](docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md)
+- [PRD 90 -- Color Identity Doctrine](docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md)
+- [PRD 91 -- Intent Encoding (development draft)](docs/prd/91_A-i_INTENT_ENCODING.md)
 - [PRD 99 -- Limits / Rule 99 song color](docs/prd/99_A-i_LIMITS_FOR_EVERYTHING_AND_WHY.md)
 - [PRD 15 -- Actors](docs/prd/15_A-i_ACTORS.md)
 - Version history folders under `docs/versions/`
