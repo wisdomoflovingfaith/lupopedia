@@ -19,14 +19,14 @@ YAML storage uses `key: value`. Grammar notation may use `=`. Values MUST match:
 ```text
 LUPOPEDIA     = PRT.LUP
 LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 LUP.SHORT     = PRT.LUP
-LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
-Enforce KEY order. Apply DEFAULTS when fields are missing. Apply OMIT to compress. Expand SHORT to ROOT when a full human form is required. `map.index` MUST be a valid LUP.HEX for that document.
+Enforce KEY order. Human display may use registered short productions only (PROTOCOL, PROTOCOL.MODE, PROTOCOL.ARTIFACT, PROTOCOL.MODE.NODE, PROTOCOL.MODE.NODE.ARTIFACT, or the full eight-token KEY). Arbitrary middle-field omission is forbidden. Storage, comparison, federation, hashing, and APIs always use eight tokens. `NAME` and `HEX` as token 2 are reserved MODE values, not artifact slugs. `map.index` MUST equal this document's eight-token LUP.HEX (GROUP is always `ROOT` in HEX fill). Packed VERSION is `0xMMmmPP` (`4.2.10` = `04020A`, never `042010`).
 
 ## Map block
 

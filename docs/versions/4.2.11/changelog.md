@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/versions/4.2.11/changelog.md
   web_path: https://www.lupopedia.com/lupopedia/docs/versions/4.2.11/changelog.md
   status: active
-  when_updated: "20260814141353"
+  when_updated: "20260815212117"
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -31,13 +31,13 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000015.000000.ROOT.EN.04020A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 lupopedia.map:
-  index: PRT.HEX.000001.000015.000000.EN.04020A
+  index: PRT.HEX.000001.000015.000000.ROOT.EN.04020A
   web_path: https://www.lupopedia.com/lupopedia/docs/versions/4.2.11/changelog.md
   path_from_lupopedia_root: docs/versions/4.2.11/changelog.md
   prd_cluster: 16_C_16_E_99_A
@@ -65,11 +65,11 @@ Versions 4.2.3 through 4.2.10 were created outside this Cursor workspace (Claude
 ```text
 LUPOPEDIA     = PRT.LUP
 LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 LUP.SHORT     = PRT.LUP
-LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 - Field delimiter: `.` (ASCII 46)

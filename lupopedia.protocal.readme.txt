@@ -1,0 +1,210 @@
+---
+lupopedia.headers:
+  header_format_version: "4.2.11"
+  path_from_lupopedia_root: lupopedia.protocal.readme.txt
+  web_path: https://www.lupopedia.com/lupopedia/lupopedia.protocal.readme.txt
+  status: active
+  when_updated: "20260815210351"
+  trust_tier: canonical
+  questions_toon: null
+  memory_toon: null
+  atoms_toon: memory/channels/atoms/lupopedia_global_constants.atom.toon
+  transcript_jsonl: 0/development/lupopedia-protocal-readme
+  artifact_type: documentation
+  artifact_kind: guide
+  channel_key: development
+  federation_node_id: 0
+  thread_key: ""
+  lupopedia.schema: documentation
+  prd_cluster: 16_C
+  title: "LUP protocol -- simple readme (4.2.26 grammar on 4.2.11 contract)"
+  summary: "External-facing LUP KEY readme. Eight dotted tokens always. Registered shorts only. Artifact packed VERSION 04021A is 4.2.26. Header contract remains 4.2.11."
+  edges_toon: null
+  channel_index: lupopedia
+  source_timestamp: null
+  actor_id: 10000
+  auth_user_id: 10000
+  department_id: null
+  department_key: ""
+  division_key: federation
+  faucet_actor_id: 102
+lupopedia.identity:
+  LUPOPEDIA: PRT.LUP
+  LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+  LUP.HEX: PRT.HEX.000001.000021.000000.ROOT.EN.04021A
+  LUP.SHORT: PRT.LUP
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
+  key_specification_version: "4.2.26"
+lupopedia.map:
+  index: PRT.HEX.000001.000021.000000.ROOT.EN.04021A
+  web_path: https://www.lupopedia.com/lupopedia/lupopedia.protocal.readme.txt
+  path_from_lupopedia_root: lupopedia.protocal.readme.txt
+  prd_cluster: 16_C
+  edges_toon: null
+  memory_toon: null
+  atoms_toon: memory/channels/atoms/lupopedia_global_constants.atom.toon
+  transcript_jsonl: 0/development/lupopedia-protocal-readme
+  questions_toon: null
+lupopedia.metadata:
+  media_kind: document
+  cc_by_name: "Eric Robin Gerdes"
+---
+LUPOPEDIA PROTOCOL README
+=========================
+
+This is the simple, external-facing explanation of the LUP identity system.
+
+Filename spelling "protocal" is this file's name. The protocol name is LUP.
+
+Header contract: 4.2.11 (packed example 04020B).
+KEY specification: 4.2.26.
+This file's artifact KEY VERSION: 04021A (packed 4.2.26).
+Product atom GLOBAL_CURRENT_LUPOPEDIA_VERSION remains 4.2.11.
+
+More detail:
+  LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md
+  docs/protocols/lup/PRT.LUP.md
+  PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md
+  docs/prd/16_C-i_LUPOPEDIA_HEADERS.md  (section 4.2.6)
+
+
+1. WHAT LUP IS
+--------------
+
+LUP is the Lupopedia Universal Protocol.
+
+It is also called:
+  Linked Universal Protocol
+  Logical Universal Pointer
+  Lupopedia Universal Protocol
+
+LUP gives every artifact one machine-readable identity. If you can read the KEY,
+you know the protocol, the node, the artifact, the actor, the group, the language,
+and the version -- without guessing.
+
+The protocol short name is:
+
+  PRT.LUP
+
+
+2. THE KEY (EIGHT TOKENS)
+-------------------------
+
+A LUP KEY is exactly eight tokens, in this order, joined by dots:
+
+  PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
+
+Position is meaning. Do not reorder the eight tokens.
+
+  1 PROTOCOL   registered protocol (PRT, CCB, ...)
+  2 MODE       NAME (words) or HEX (machine hex)
+  3 NODE       6-hex federation node.
+               Live federation nodes begin at 000001.
+               000000 is reserved for examples and unspecified artifacts.
+               Range: 000000 through FFFFFE.
+  4 ARTIFACT   slug or 6-hex. Optional lineage: originFed:artifactNumber
+  5 ACTOR      slug or 6-hex. Default ROOT
+  6 GROUP      slug. Default ROOT
+  7 LANGUAGE   ISO 639-1 (EN) or ZZ. Default EN
+  8 VERSION    0 (unversioned) or 6-hex packed version
+
+Slug = uppercase A-Z, 0-9, underscore, length 1-22.
+Examples: LUP, LUPDOC, WOLFIE, MY_ARTIFACT_01
+6-hex = exactly six characters from 0-9 A-F.
+
+
+3. SHORT FORMS (REGISTERED ONLY)
+--------------------------------
+
+Storage, APIs, hashing, and federation always use eight tokens.
+Display may use only these productions. Anything else is invalid.
+
+  1 token   PROTOCOL                         PRT
+            -> PRT.NAME.000000.000000.ROOT.ROOT.EN.0
+
+  2 tokens  PROTOCOL.MODE   if token2 is NAME or HEX
+            PRT.HEX
+            -> PRT.HEX.000000.000000.000000.ROOT.EN.0
+
+  2 tokens  PROTOCOL.ARTIFACT  if token2 is not NAME or HEX
+            PRT.LUP
+            -> PRT.NAME.000000.LUP.ROOT.ROOT.EN.0
+
+  3 tokens  PROTOCOL.MODE.NODE
+            PRT.HEX.000001
+            -> PRT.HEX.000001.000000.000000.ROOT.EN.0
+
+  4 tokens  PROTOCOL.MODE.NODE.ARTIFACT
+            PRT.NAME.000001.00ABCD
+            -> PRT.NAME.000001.00ABCD.ROOT.ROOT.EN.0
+
+  8 tokens  FULL KEY  (as written)
+
+Do not omit GROUP. Do not write seven-token HEX.
+Do not write PRT.LUP.WHEEL (ACTOR vs GROUP is ambiguous).
+
+LUP.ROOT (already eight tokens, packed 4.2.10):
+  PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+
+Zeros spec / header-contract HEX example (eight tokens, packed 4.2.11):
+  PRT.HEX.000000.000000.000000.ROOT.EN.04020B
+
+This readme's HEX (eight tokens, packed 4.2.26):
+  PRT.HEX.000001.000021.000000.ROOT.EN.04021A
+
+
+4. VERSION
+----------
+
+Keep these separate:
+
+  header_format_version          4.2.11
+  key_specification_version      4.2.26
+  this file KEY VERSION (E8)     04021A   (packed 4.2.26)
+  product atom                   4.2.11
+  packed 4.2.11 example          04020B
+  packed 4.2.10 (LUP.ROOT)       04020A
+
+Packed = 0xMMmmPP. 042010 is not a packed version.
+
+0 = unversioned. Increment E8 when this artifact's content changes.
+Do not increment E8 for metadata-only edits.
+
+
+5. RULES
+--------
+
+  - The KEY delimiter is the ASCII dot (.)
+  - No pipes, no hyphens, no middle-dots in the KEY
+  - A colon is allowed only inside ARTIFACT, as HEX6:HEX6
+  - Color is never in the KEY (see docs/protocols/hex/)
+  - Hawaiian constitutional terms are never in the KEY (see PRD 82_B)
+  - Titles, media kinds, and timestamps are never in the KEY
+  - After expansion, a KEY must have exactly eight legal tokens
+  - Unregistered short shapes are invalid -- do not guess
+
+Colon-bag grammar (PROTOCOL.VALUE joined by colons, order-agnostic bags)
+is not part of LUP. Do not use it. Do not mix it with the KEY.
+
+
+6. WHAT THE KEY IS NOT
+----------------------
+
+  - Not a color code
+  - Not a UUID
+  - Not an ISO-8601 timestamp
+  - Not a Hawaiian / constitutional field list
+  - Not a colon-separated bag of named protocols
+
+
+7. WHERE TO READ MORE
+---------------------
+
+  This simple readme:     lupopedia.protocal.readme.txt
+  External domains guide: LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md
+  Protocol article:       docs/protocols/lup/PRT.LUP.md
+  Detailed KEY spec:      PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md
+  Header PRD:             docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
+  Color CSV for LUP:      docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv

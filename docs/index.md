@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/index.md
   web_path: https://www.lupopedia.com/lupopedia/docs/index.md
   status: active
-  when_updated: "20260814140856"
+  when_updated: "20260816115226"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/07/actors_collection_index.toon
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   prd_cluster: 00_A_00_B_07_A_16_B_16_C_25_A_39_A_41_A_82_B_98_B
   title: "Lupopedia docs index -- Actors Collection"
-  summary: "Docs landing index. LUP.HEX PRT.HEX.000001.000010.000000.EN.04020A. Table of contents and guided reading order for Lupopedia actors."
+  summary: "Docs landing index. LUP.HEX PRT.HEX.000001.000010.000000.ROOT.EN.04020A. Table of contents and guided reading order for Lupopedia actors."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -31,13 +31,13 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000001.000010.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000010.000000.ROOT.EN.04020A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 lupopedia.map:
-  index: PRT.HEX.000001.000010.000000.EN.04020A
+  index: PRT.HEX.000001.000010.000000.ROOT.EN.04020A
   web_path: https://www.lupopedia.com/lupopedia/docs/index.md
   path_from_lupopedia_root: docs/index.md
   prd_cluster: 00_A_00_B_07_A_16_B_16_C_25_A_39_A_41_A_82_B_98_B
@@ -432,6 +432,9 @@ An edge does not automatically indicate:
 
 **Read:**
 - docs/actors/actor_routing_rules.md
+
+**Experimental supporting (not constitutional; does not override PRDs):**
+- docs/doctrine/lupopedia_identity_routing_rule.md -- ordinary spelling LUPOPEDIA means load PRD 00 first (`LUPxPEDIA` -> PRD x). Display layer only. Not a LUP KEY.
 
 **Purpose:**
 Defines how messages, requests, artifacts, and work move between actors and governed contexts.

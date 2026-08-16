@@ -1,0 +1,26 @@
+{
+  "edges": {
+    "outbound": []
+  },
+  "footer": {
+    "last_verified": "20260816104950",
+    "last_verified_by": "generate_memory_from_header",
+    "last_verified_by_actor_id": 102
+  },
+  "header_bridge": {
+    "content_id": null,
+    "content_parent_id": null,
+    "content_slug": "",
+    "default_collection_id": null,
+    "note": "DB lupo_memory_edges / lupo_contents are not written here; use import_content.py or DBMemoryWriter.",
+    "transcript_jsonl": "0/development/prd-34-b-parent-edges"
+  },
+  "memory_toon": "memory/development/canonical/1026/08/34_b_lup_key_artifact_parent_edges.toon",
+  "purpose": "Planning PRD for KEY-to-KEY provenance tables. Does not change install SQL yet. Distinct from lupo_edges and lupo_memory_edges. Aligns with whitepaper v1.9.2 and KEY spec 4.2.26.",
+  "source_file_path_from_root": "docs/prd/34_B-i_LUP_KEY_ARTIFACT_PARENT_EDGES.md",
+  "tags": [
+    "prd",
+    "proposed"
+  ],
+  "type": "header_metadata"
+}

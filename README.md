@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: README.md
   web_path: https://www.lupopedia.com/lupopedia/README.md
   status: active
-  when_updated: "20260814152028"
+  when_updated: "20260816115226"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/04/readme-root.toon
@@ -31,13 +31,13 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000000.000000.ROOT.EN.04020A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 lupopedia.map:
-  index: PRT.HEX.000001.000000.000000.EN.04020A
+  index: PRT.HEX.000001.000000.000000.ROOT.EN.04020A
   web_path: https://www.lupopedia.com/lupopedia/README.md
   path_from_lupopedia_root: README.md
   prd_cluster: 00_A_16_C_99_A_15_A
@@ -125,6 +125,11 @@ This HARD GATE is constitutional. It ensures AGAPE (and all agents) never act wi
 - Dense discovery grid stays the 4.2.0 28-field protocol.
 - 4.2.3-4.2.10 were compiled outside this Cursor workspace. Dual-accept 4.2.4 hyphen LUP until next edit.
 - Template: [federation_map_template.md](docs/prd/federation/federation_map_template.md)
+- Root detailed spec (HEX `04020B`): [PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md](PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md)
+- Simple LUP protocol readme: [lupopedia.protocal.readme.txt](lupopedia.protocal.readme.txt)
+- External domains guide: [LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md](LUPOPEDIA.FOR.EXTERNAL.DOMAINS.md)
+- Identity routing (experimental): [docs/doctrine/lupopedia_identity_routing_rule.md](docs/doctrine/lupopedia_identity_routing_rule.md) -- LUPOPEDIA means load PRD 00 first
+- Whitepaper v1.9.2 (HEX `000023` / `010902`): [docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md](docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md)
 - Docs index (HEX `000010`): [docs/index.md](docs/index.md)
 - Normative: [PRD 16_C](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md) section 4.2.6
 
@@ -132,23 +137,23 @@ This HARD GATE is constitutional. It ensures AGAPE (and all agents) never act wi
 
 ```text
 LUP.KEY = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-LUP.HEX = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.HEX = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 LUP.SHORT = PRT.LUP
-LUP.ROOT = PRT.LUP.ROOT.ROOT.EN.042010
+LUP.ROOT = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
 | Token | Meaning |
 |-------|---------|
 | PROTOCOL | `PRT` |
 | MODE | `NAME` (human) or `HEX` (machine) |
-| NODE | Federation node. Default `PRT`. HEX = 6-hex node. |
-| ARTIFACT | Artifact identity. Default `LUP`. |
+| NODE | Federation node. Always 6-hex. Default `000000` (unspecified). |
+| ARTIFACT | Artifact identity. Slug or 6-hex. `PRT.LUP` sets ARTIFACT to `LUP`. |
 | ACTOR | Actor. Default `ROOT`. |
 | GROUP | Namespace / group. Default `ROOT`. |
 | LANGUAGE | ISO 639-1 or reserved `ZZ`. Default `EN`. |
-| VERSION | Packed version. HEX example `04020A`. ROOT example `042010`. |
+| VERSION | Packed `0xMMmmPP`. Example `04020B` = 4.2.11. `LUP.ROOT` uses `04020A` (4.2.10). `0` = unversioned. `042010` is invalid. |
 
-OMIT = MODE_WHEN_NAME + ANY_DEFAULT_FIELD. DEFAULTS = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0.
+OMIT = REGISTERED_SHORT_FORMS_ONLY. Arbitrary middle-field omission is forbidden. DEFAULTS = PRT.NAME.000000.000000.ROOT.ROOT.EN.0. `PRT.LUP` expands to `PRT.NAME.000000.LUP.ROOT.ROOT.EN.0`. Storage always uses eight tokens. Colon-bag grammar is not LUP.
 
 ### Dual-accept 4.2.4 hyphen LUP (legacy until next edit)
 

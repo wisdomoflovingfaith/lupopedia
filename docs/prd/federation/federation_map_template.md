@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/federation/federation_map_template.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/federation/federation_map_template.md
   status: active
-  when_updated: "20260814141353"
+  when_updated: "20260815212117"
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -31,13 +31,13 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000014.000000.ROOT.EN.04020A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 lupopedia.map:
-  index: PRT.HEX.000001.000014.000000.EN.04020A
+  index: PRT.HEX.000001.000014.000000.ROOT.EN.04020A
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/federation/federation_map_template.md
   path_from_lupopedia_root: docs/prd/federation/federation_map_template.md
   prd_cluster: 16_C_99_A_34_A
@@ -80,11 +80,11 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA     = PRT.LUP
   LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
   LUP.SHORT     = PRT.LUP
-  LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 
 lupopedia.map:
   index: <LUP.HEX identity for this document>
@@ -110,11 +110,11 @@ Fill `lupopedia.headers` with the existing 28-field dense envelope (`title`, `su
 lupopedia.identity:
   LUPOPEDIA     = PRT.LUP
   LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
   LUP.SHORT     = PRT.LUP
-  LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 YAML file storage of the same block uses `key: value` (required for parsers). Values and field order MUST match. No hyphens in this grammar.
@@ -122,11 +122,11 @@ YAML file storage of the same block uses `key: value` (required for parsers). Va
 | Key | Rule |
 |-----|------|
 | LUP.KEY | Field order is mandatory. Do not reorder. |
-| LUP.DEFAULTS | Fill missing fields from this 8-token string. |
-| LUP.OMIT | Omit MODE when MODE is NAME. Omit any field that equals its default. |
-| LUP.SHORT | Compress using OMIT. Expand SHORT -> ROOT when a full human form is required. |
-| LUP.HEX | Machine federation routing. MODE=HEX. GROUP omitted when default ROOT. Protocol example VERSION `04020A`. |
-| LUP.ROOT | Human expanded form. MODE omitted (NAME). Protocol example VERSION `042010`. |
+| LUP.DEFAULTS | Fill missing fields from this 8-token string. NODE/ARTIFACT default `000000`, not slug `PRT` or `LUP`. |
+| LUP.OMIT | REGISTERED_SHORT_FORMS_ONLY. Arbitrary middle-field omission is forbidden. |
+| LUP.SHORT | Registered production `PROTOCOL.ARTIFACT` (`PRT.LUP`). Display only. |
+| LUP.HEX | Machine federation routing. MODE=HEX. Eight tokens always. GROUP=`ROOT`. Zeros example VERSION `04020B` (4.2.11). |
+| LUP.ROOT | Full eight-token NAME form `PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A` (packed 4.2.10). |
 
 KEY tokens:
 
@@ -134,12 +134,12 @@ KEY tokens:
 |-------|---------|
 | PROTOCOL | `PRT` |
 | MODE | `NAME` (human) or `HEX` (machine) |
-| NODE | Federation node. Default `PRT` (omitted). HEX uses 6-hex node id. |
-| ARTIFACT | Artifact identity. Default `LUP`. HEX uses 6-hex artifact number (colon lineage allowed inside this token only). |
-| ACTOR | Actor. Default `ROOT`. HEX uses 6-hex actor padding. |
-| GROUP | Namespace / group. Default `ROOT`. |
+| NODE | Federation node. Always 6-hex. Default `000000` (unspecified). Live nodes begin at `000001`. |
+| ARTIFACT | Artifact identity. NAME default `000000`; `PRT.LUP` sets ARTIFACT to `LUP`. HEX uses 6-hex (colon lineage allowed inside this token only). |
+| ACTOR | Actor. NAME default `ROOT`. HEX default `000000`. |
+| GROUP | Namespace / group. Default `ROOT`. Always present in the stored eight-token KEY. |
 | LANGUAGE | ISO 639-1 or reserved `ZZ`. Default `EN`. |
-| VERSION | Packed version token. HEX example `04020A`. ROOT example `042010`. |
+| VERSION | Packed `0xMMmmPP`. `4.2.10` = `04020A`. `4.2.11` = `04020B`. Never `042010`. |
 
 ## 3. Federation map block
 

@@ -381,10 +381,15 @@ def parse_lup_hex(value):
     if value_has_forbidden_delim(value):
         return (False, "HDR_LUP_DELIM: HEX must use dots only")
     parts = value.split(".")
-    if len(parts) < 6:
-        return (False, "HDR_LUP_HEX: expected PROTOCOL.MODE.NODE...VERSION")
+    if len(parts) != 8:
+        return (
+            False,
+            "HDR_LUP_HEX: expected eight tokens PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION",
+        )
     if parts[0] != "PRT" or parts[1] != "HEX":
         return (False, "HDR_LUP_HEX: MODE must be HEX")
+    if parts[6] != "ZZ" and (len(parts[6]) != 2 or parts[6] != parts[6].upper()):
+        return (False, "HDR_LUP_HEX: LANGUAGE must be ISO 639-1 or ZZ")
     return (True, "")
 
 

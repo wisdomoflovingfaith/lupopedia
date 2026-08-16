@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/16_E-i_LUPOPEDIA_HEADERS_MIGRATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_E-i_LUPOPEDIA_HEADERS_MIGRATION.md
   status: active
-  when_updated: '20260814140129'
+  when_updated: "20260815212117"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/headers/canonical/1026/04/lupopedia-headers.toon
@@ -383,7 +383,9 @@ Versions 4.2.3-4.2.10 were compiled outside this Cursor workspace. In-repo ident
 
 ```text
 LUP.KEY = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-LUP.HEX = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.HEX = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 LUP.SHORT = PRT.LUP
-LUP.ROOT = PRT.LUP.ROOT.ROOT.EN.042010
+LUP.ROOT = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+LUP.OMIT = REGISTERED_SHORT_FORMS_ONLY
+LUP.DEFAULTS = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```

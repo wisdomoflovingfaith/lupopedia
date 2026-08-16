@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/16_A-i_HEADER_TEMPLATE_22_FIELDS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_A-i_HEADER_TEMPLATE_22_FIELDS.md
   status: active
-  when_updated: '20260814140129'
+  when_updated: "20260815212117"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/headers/canonical/1026/04/header-template.toon
@@ -296,11 +296,11 @@ New artifacts MUST set `header_format_version: "4.2.11"` and include:
 lupopedia.identity:
   LUPOPEDIA     = PRT.LUP
   LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
   LUP.SHORT     = PRT.LUP
-  LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 YAML storage uses `key: value`. No hyphen in KEY grammar. Add sibling `lupopedia.map` (see `docs/prd/federation/federation_map_template.md`). 4.2.4 hyphen identity remains dual-accept until the file is edited.

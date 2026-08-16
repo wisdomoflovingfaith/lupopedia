@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/protocols/lup/PRT.LUP.md
   web_path: https://www.lupopedia.com/lupopedia/docs/protocols/lup/PRT.LUP.md
   status: active
-  when_updated: "20260814143343"
+  when_updated: "20260816115226"
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -17,8 +17,8 @@ lupopedia.headers:
   thread_key: ""
   lupopedia.schema: documentation
   prd_cluster: 16_C_34_A_99_A
-  title: "PRT.LUP -- Lupopedia Universal Protocol (v4.2.11)"
-  summary: "Canonical LUP protocol article for 4.2.11. ASCII dotted KEY. No pipe, no hyphen, no middle-dot in KEY. Supersedes mixed 4.2.9 / 4.2.10 pipe-colon drafts."
+  title: "PRT.LUP -- Lupopedia Universal Protocol (KEY 4.2.26 on contract 4.2.11)"
+  summary: "Canonical LUP protocol article. Eight dotted tokens always. Registered shorts only. Artifact packed VERSION 04021A is 4.2.26. Header contract remains 4.2.11."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -31,13 +31,14 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000001.000017.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000017.000000.ROOT.EN.04021A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
+  key_specification_version: "4.2.26"
 lupopedia.map:
-  index: PRT.HEX.000001.000017.000000.EN.04020A
+  index: PRT.HEX.000001.000017.000000.ROOT.EN.04021A
   web_path: https://www.lupopedia.com/lupopedia/docs/protocols/lup/PRT.LUP.md
   path_from_lupopedia_root: docs/protocols/lup/PRT.LUP.md
   prd_cluster: 16_C_34_A_99_A
@@ -52,23 +53,24 @@ lupopedia.metadata:
 ---
 # Protocol: LUP (Lupopedia Universal Protocol)
 
-**Protocol version:** 4.2.11
-**Product atom:** `GLOBAL_CURRENT_LUPOPEDIA_VERSION` = 4.2.11
 **Header contract:** `header_format_version: "4.2.11"` (PRD 16_C section 4.2.6)
-**Last updated UTC:** 20260814143343
+**KEY specification:** `key_specification_version: "4.2.26"`
+**This article KEY VERSION:** `04021A` (packed 4.2.26)
+**Product atom:** `GLOBAL_CURRENT_LUPOPEDIA_VERSION` = 4.2.11
+**Last updated UTC:** 20260815212117
 **Supersedes:** mixed 4.2.9 / 4.2.10 pipe-colon drafts (compiled outside this Cursor workspace)
-**Status:** Canonical protocol article for version 4.2.11
+**Status:** Canonical protocol article (4.2.11 contract, 4.2.26 KEY expansion)
 **Project:** Lupopedia
 **Normative header template:** `docs/prd/federation/federation_map_template.md`
 
 ```text
 LUPOPEDIA     = PRT.LUP
 LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 LUP.SHORT     = PRT.LUP
-LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 YAML storage uses `key: value`. Grammar notation may use `=`. Values MUST match.
@@ -88,7 +90,7 @@ Header YAML, metadata, and map blocks are not extra KEY fields. Do not copy the 
 
 LUP is a universal identity system that gives every artifact, node, actor, and group in the Lupopedia federation a single, unambiguous, machine-readable identity.
 
-It uses a strict eight-token KEY, ASCII dot delimiters, OMIT/DEFAULTS compression, and encoded versioning so agents can parse, classify, and retrieve artifacts without guessing.
+It uses a strict eight-token KEY, ASCII dot delimiters, registered short forms, and packed versioning so agents can parse, classify, and retrieve artifacts without guessing.
 
 The protocol enforces:
 
@@ -98,8 +100,9 @@ The protocol enforces:
 - Field delimiter `.` (ASCII 46) in KEY / HEX / SHORT / ROOT
 - YAML `key: value` for file storage (colon is YAML, not a KEY delimiter)
 - HEX or NAME profiles depending on MODE
-- Encoded version tokens (`04020A` HEX example, `042010` ROOT example)
-- Deterministic parse, expand, omit, and fail-closed rules
+- Packed VERSION `0xMMmmPP` (`04020A` = 4.2.10, `04020B` = 4.2.11, `04021A` = 4.2.26). Never `042010`
+- Registered short-form productions only; arbitrary default omission is forbidden
+- Deterministic parse, expand, and fail-closed rules
 - Zero ambiguity, zero guessing, zero hallucination
 
 It is designed so every AI can find anything from the ID, even across thousands of nodes, artifacts, and versions.
@@ -198,7 +201,7 @@ No pipe. No hyphen. No middle-dot in KEY / HEX / SHORT / ROOT.
 Protocol example (zeros):
 
 ```text
-PRT.HEX.000000.000000.000000.EN.04020A
+PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 ```
 
 Human compressed form:
@@ -210,7 +213,7 @@ PRT.LUP
 Human expanded ROOT:
 
 ```text
-PRT.LUP.ROOT.ROOT.EN.042010
+PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
 Header YAML is metadata plus identity plus map. It is not a ninth KEY token.
@@ -242,7 +245,7 @@ Version 4.2.11 therefore:
 - Uses `.` as the only KEY field delimiter.
 - Splits PROTOCOL and MODE into adjacent KEY tokens.
 - Stores identity in YAML as `key: value`.
-- Compresses with LUP.OMIT / LUP.DEFAULTS instead of packing `PARENT.CHILD` extra dots inside a token (extra dots would break split-on-dot).
+- Uses registered short productions plus LUP.DEFAULTS instead of packing `PARENT.CHILD` extra dots inside a token (extra dots would break split-on-dot). Arbitrary middle-field omission is forbidden.
 - Keeps HEX artifact lineage, when present, as a colon **inside** the ARTIFACT token only.
 
 Implementations must migrate deliberately. They must never reinterpret a stored 4.2.9 / 4.2.10 pipe-colon identifier as 4.2.11 without version-aware conversion.
@@ -260,26 +263,26 @@ PRT.LUP
 Expand SHORT to ROOT when a full human form is required:
 
 ```text
-PRT.LUP.ROOT.ROOT.EN.042010
+PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
 | Token | Value | Meaning |
 |-------|-------|---------|
 | PROTOCOL | PRT | Protocol documentation |
-| MODE | NAME | Omitted by LUP.OMIT |
-| NODE | PRT | Default; omitted |
+| MODE | NAME | Present in the stored KEY; omitted only in registered SHORT_ARTIFACT display |
+| NODE | 000000 | Unspecified / example |
 | ARTIFACT | LUP | This protocol object |
 | ACTOR | ROOT | Default |
-| GROUP | ROOT | Default |
+| GROUP | ROOT | Default; always stored |
 | LANGUAGE | EN | Default |
-| VERSION | 042010 | ROOT example token in the KEY block |
+| VERSION | 04020A | Packed 4.2.10 (`0xMMmmPP`). Never `042010` |
 
 ### 3.2 Complete machine identity (this file)
 
 Canonical exchanged and database identities use HEX MODE. This document's `lupopedia.map.index` is:
 
 ```text
-PRT.HEX.000001.000017.000000.EN.04020A
+PRT.HEX.000001.000017.000000.ROOT.EN.04021A
 ```
 
 | Token | Value | Meaning |
@@ -289,16 +292,16 @@ PRT.HEX.000001.000017.000000.EN.04020A
 | NODE | 000001 | Federation node |
 | ARTIFACT | 000017 | This article |
 | ACTOR | 000000 | Padding / default actor slot |
-| GROUP | ROOT | Omitted (default) |
+| GROUP | ROOT | Always stored. HEX fill default |
 | LANGUAGE | EN | English |
-| VERSION | 04020A | HEX version token from the 4.2.11 KEY example |
+| VERSION | 04021A | Packed 4.2.26 -- this article's content version |
 
 The YAML header is metadata. It is not an extra KEY token.
 
 Protocol zeros example (grammar constant, not this file's map.index):
 
 ```text
-PRT.HEX.000000.000000.000000.EN.04020A
+PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 ```
 
 ---
@@ -320,19 +323,21 @@ A full identity contains eight tokens. OMIT may hide MODE when MODE is NAME, and
 ### 4.3 DEFAULTS
 
 ```text
-PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 | Position | Default |
 |----------|---------|
 | PROTOCOL | PRT |
 | MODE | NAME |
-| NODE | PRT |
-| ARTIFACT | LUP |
+| NODE | 000000 |
+| ARTIFACT | 000000 |
 | ACTOR | ROOT |
 | GROUP | ROOT |
 | LANGUAGE | EN |
 | VERSION | 0 |
+
+`PRT.LUP` expands to `PRT.NAME.000000.LUP.ROOT.ROOT.EN.0`. Colon-bag grammar (named protocols joined by colons) is not LUP.
 
 ### 4.4 Position controls meaning
 
@@ -353,15 +358,15 @@ Interpretation profile:
 - `NAME` -- human names
 - `HEX` -- machine six-hex fields
 
-MODE is omitted when it is NAME (LUP.OMIT).
+MODE is `NAME` or `HEX`. Those strings are reserved as token 2. They are not artifact slugs. Display may omit MODE only via registered SHORT_ARTIFACT (`PRT.LUP`). Storage always includes MODE.
 
 ### 5.3 NODE
 
-Current federation node. NAME default `PRT`. HEX uses a 6-hex node id.
+Current federation node. Always HEX6. Default `000000` (unspecified). Live federation nodes begin at `000001`.
 
 ### 5.4 ARTIFACT
 
-Artifact / object identity. NAME default `LUP`. HEX uses a 6-hex artifact number.
+Artifact / object identity. NAME default `000000`. `PRT.LUP` sets ARTIFACT to `LUP`. HEX uses a 6-hex artifact number.
 
 Colon lineage is allowed **inside this token only**:
 
@@ -377,7 +382,7 @@ Creator, responsible actor, originator, or authority. NAME default `ROOT`. HEX u
 
 ### 5.6 GROUP
 
-Registered group, type, or namespace. NAME default `ROOT`. HEX omits GROUP when it is default ROOT.
+Registered group, type, or namespace. Default `ROOT`. Always present in the stored eight-token KEY. HEX fill does not omit GROUP.
 
 Registry meaning overrides guesses based on token length. `RED` is not automatically a file-format code because it contains three characters. Color is `lupopedia.metadata` / Rule 99, not a KEY token.
 
@@ -387,7 +392,7 @@ Registered uppercase language code. Baseline ISO 639-1 (`EN`, `FR`, `JA`). Reser
 
 ### 5.8 VERSION
 
-Packed version token. HEX example `04020A`. ROOT example `042010`. Default `0`.
+Packed `0xMMmmPP`. `4.2.10` = `04020A`. `4.2.11` = `04020B`. `4.2.26` = `04021A`. Never `042010`. Default `0`.
 
 ---
 
@@ -474,32 +479,57 @@ PRT.NAME
 
 ## 8. OMIT, DEFAULTS, SHORT, and ROOT
 
-### 8.1 OMIT
+### 8.1 OMIT -- registered productions only
 
 ```text
-LUP.OMIT = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
+LUP.OMIT = REGISTERED_SHORT_FORMS_ONLY
 ```
 
-- Omit MODE when MODE is NAME.
-- Omit any field that equals its DEFAULTS value.
+A positional grammar cannot omit arbitrary middle fields. `PRT.LUP.WHEEL` cannot choose ACTOR vs GROUP. `PRT.HEX.000022` cannot choose NODE vs ARTIFACT unless the production is registered.
 
-### 8.2 SHORT
+**Display** may use only the productions below. **Storage, comparison, federation, hashing, and APIs always use the complete eight-token KEY.**
+
+### 8.2 Algorithm (Option A)
+
+1. Split on `.`. Empty tokens are invalid.
+2. Match **exactly one** production below (token count plus MODE precedence).
+3. Fill missing slots from the NAME or HEX fill table.
+4. Require eight tokens. Then validate.
+
+MODE precedence: if token 2 exists and is exactly `NAME` or `HEX`, token 2 is MODE. Those two strings are reserved. They are not artifact slugs.
+
+| Production | Tokens | Example in | Example out |
+|------------|--------|------------|-------------|
+| SHORT_PROTOCOL | 1 | `PRT` | `PRT.NAME.000000.000000.ROOT.ROOT.EN.0` |
+| SHORT_MODE | 2, token2 is NAME or HEX | `PRT.HEX` | `PRT.HEX.000000.000000.000000.ROOT.EN.0` |
+| SHORT_ARTIFACT | 2, token2 is not NAME or HEX | `PRT.LUP` | `PRT.NAME.000000.LUP.ROOT.ROOT.EN.0` |
+| SHORT_MODE_NODE | 3 | `PRT.HEX.000001` | `PRT.HEX.000001.000000.000000.ROOT.EN.0` |
+| SHORT_MODE_NODE_ARTIFACT | 4 | `PRT.NAME.000001.00ABCD` | `PRT.NAME.000001.00ABCD.ROOT.ROOT.EN.0` |
+| FULL_KEY | 8 | any complete KEY | as written |
+
+HEX fill: NODE / ARTIFACT / ACTOR default `000000`. GROUP default `ROOT`.
+NAME fill: NODE / ARTIFACT default `000000`. ACTOR / GROUP default `ROOT`.
+LANGUAGE default `EN`. VERSION default `0`.
+
+Any other token count or shape is invalid. Do not guess.
+
+### 8.3 SHORT
 
 ```text
 LUP.SHORT = PRT.LUP
 ```
 
-SHORT is OMIT applied to the protocol object. Expand SHORT to ROOT when a full human form is required.
+SHORT is the registered production SHORT_ARTIFACT. It is display-only.
 
-### 8.3 ROOT
+### 8.4 ROOT
 
 ```text
-LUP.ROOT = PRT.LUP.ROOT.ROOT.EN.042010
+LUP.ROOT = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
-MODE is omitted (NAME). NODE is omitted (default PRT). Remaining visible tokens are ARTIFACT, ACTOR, GROUP, LANGUAGE, VERSION.
+ROOT is FULL_KEY (eight tokens). Packed VERSION `04020A` is 4.2.10. Do not write `PRT.LUP.ROOT.ROOT.EN.042010`.
 
-### 8.4 Do not pack PARENT.CHILD extra dots
+### 8.5 Do not pack PARENT.CHILD extra dots
 
 4.2.9 used `ALT.WOLFIE` inside a colon-separated field because `.` meant inheritance then.
 
@@ -571,16 +601,16 @@ Every complete NAME token contains 1-22 characters. HEX positional fields are ex
 
 ### 10.1 NAME profile
 
-Human profile. MODE is NAME and is omitted when compressed:
+Human profile. MODE is NAME. Display may use registered SHORT_ARTIFACT (`PRT.LUP`). Stored KEY:
 
 ```text
-PRT.LUP.ROOT.ROOT.EN.042010
+PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
 Full eight-token expansion of DEFAULTS:
 
 ```text
-PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 ### 10.2 HEX profile
@@ -592,10 +622,10 @@ PRT.HEX
 CCB.HEX
 ```
 
-GROUP is omitted when it is default ROOT. Protocol zeros example:
+GROUP is always stored (`ROOT` in HEX fill). Protocol zeros example:
 
 ```text
-PRT.HEX.000000.000000.000000.EN.04020A
+PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 ```
 
 ### 10.3 Semantic translations
@@ -610,13 +640,13 @@ Actor, object, node, and group names may resolve through registries. Resolution 
 
 ```text
 PRT.LUP
-PRT.LUP.ROOT.ROOT.EN.042010
+PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
 ### 11.2 This article (machine)
 
 ```text
-PRT.HEX.000001.000017.000000.EN.04020A
+PRT.HEX.000001.000017.000000.ROOT.EN.04021A
 ```
 
 ### 11.3 Local CC-BY object (NAME)
@@ -630,7 +660,7 @@ OMIT may drop MODE and default NODE/ACTOR when they match DEFAULTS and the remai
 ### 11.4 CC-BY HEX profile
 
 ```text
-CCB.HEX.000000.000001.000000.EN.000001
+CCB.HEX.000000.000001.000000.ROOT.EN.000001
 ```
 
 ### 11.5 Derived HEX artifact (colon lineage inside ARTIFACT)
@@ -714,12 +744,13 @@ Compact HEX identity encoding pads each part and may use hex for the patch when 
 4.2.11 -> 04020B
 ```
 
-The 4.2.11 KEY **example** tokens remain:
+Packed VERSION is `0xMMmmPP`. Locked examples:
 
-- HEX VERSION `04020A` (zeros example in LUP.HEX)
-- ROOT VERSION `042010` (LUP.ROOT)
+- Zeros HEX VERSION `04020B` (4.2.11 header-contract packing)
+- `LUP.ROOT` VERSION `04020A` (4.2.10)
+- This article VERSION `04021A` (4.2.26 content)
 
-Those example tokens are part of the locked KEY block. This article's protocol version is still **4.2.11**. Do not treat the zeros example as a claim that the live product atom is 4.2.10.
+`042010` is not a packed version. Do not conflate header contract `4.2.11`, product atom `4.2.11`, KEY-grammar clarification `4.2.26`, and packed tokens.
 
 ### 13.3 Increment discipline
 
@@ -739,7 +770,7 @@ Version 4.2.11 is the designated Cursor-indexed KEY grammar after 4.2.4. Parser 
 2. Read YAML `lupopedia.identity` as `key: value` when parsing a file.
 3. Require `LUP.KEY` equal to `PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION`.
 4. Split HEX / SHORT / ROOT values on `.`.
-5. Expand omitted tokens from LUP.DEFAULTS using LUP.OMIT rules.
+5. If the token count is not 8, expand only a registered short-form production (section 8.2). Any other shape is invalid.
 6. Validate PROTOCOL and MODE as registered NAME tokens.
 7. Validate NODE, ARTIFACT, ACTOR, GROUP per NAME or HEX rules declared by MODE.
 8. Allow `:` only inside ARTIFACT, and only as lineage `originFed:artifactNumber`.
@@ -801,10 +832,10 @@ The same symbols have different meanings across protocol drafts. Migration requi
 ### 15.2 Required conversion into 4.2.11
 
 ```text
-LUP|NAME:PRT:LUP:ROOT:ROOT:EN:040209  ->  PRT.LUP.ROOT.ROOT.EN.042010
-LUP|HEX:000000:000000:000000:EN:04020A  ->  PRT.HEX.000000.000000.000000.EN.04020A
-CCB|NAME:PRT:BLACKONE:ROOT:MUSIC:EN:01  ->  CCB.NAME.PRT.BLACKONE.ROOT.MUSIC.EN.01
-CCB|HEX:000000:000001:000000:000000:EN:000001  ->  CCB.HEX.000000.000001.000000.EN.000001
+LUP|NAME:PRT:LUP:ROOT:ROOT:EN:040209  ->  PRT.NAME.000000.LUP.ROOT.ROOT.EN.040209
+LUP|HEX:000000:000000:000000:EN:04020A  ->  PRT.HEX.000000.000000.000000.ROOT.EN.04020A
+CCB|NAME:PRT:BLACKONE:ROOT:MUSIC:EN:01  ->  CCB.NAME.000000.BLACKONE.ROOT.MUSIC.EN.01
+CCB|HEX:000000:000001:000000:000000:EN:000001  ->  CCB.HEX.000000.000001.000000.ROOT.EN.000001
 CCB.HEX  (4.2.8 E1)  ->  CCB.HEX as PROTOCOL.MODE (not a seven-colon string)
 ALT|WOLFIE  ->  do not put in KEY; store as an edge
 ALT.WOLFIE as a colon-field value  ->  do not put in KEY; store as an edge
@@ -814,7 +845,8 @@ Conversion is positional:
 
 - Map old E1 `PROTOCOL|MODE` to PROTOCOL and MODE tokens.
 - Map old colon-separated E2-E7 onto NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION.
-- Omit GROUP in HEX when it is default ROOT if that matches LUP.HEX shape.
+- After conversion, NODE must be HEX6 (`000000` if the old NODE was a default slug).
+- Always emit eight tokens. HEX GROUP is `ROOT` when the old string omitted it.
 - Do not perform a global character swap over prose, metadata, URLs, or unrelated data.
 
 ### 15.3 Legacy separator conversion
@@ -871,19 +903,19 @@ PRT.LUP
 Human expanded ROOT:
 
 ```text
-PRT.LUP.ROOT.ROOT.EN.042010
+PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
 ```
 
 Protocol zeros HEX example:
 
 ```text
-PRT.HEX.000000.000000.000000.EN.04020A
+PRT.HEX.000000.000000.000000.ROOT.EN.04020B
 ```
 
 This file's map.index:
 
 ```text
-PRT.HEX.000001.000017.000000.EN.04020A
+PRT.HEX.000001.000017.000000.ROOT.EN.04021A
 ```
 
 Canonical KEY:
@@ -895,7 +927,7 @@ PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
 DEFAULTS:
 
 ```text
-PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 ---
@@ -972,6 +1004,8 @@ Related:
 - `docs/prd/federation/federation_map_template.md`
 - `.cursor/rules/header-4-2-11-federation-map.mdc`
 - `scripts/validate_lup_identity.py`
+- `docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md` -- Pono Edition whitepaper (multi-parent provenance, domain color, hash-free federation)
+- `docs/doctrine/lupopedia_identity_routing_rule.md` -- experimental: LUPOPEDIA means load PRD 00 first
 
 ---
 

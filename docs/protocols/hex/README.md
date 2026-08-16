@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/protocols/hex/README.md
   web_path: https://www.lupopedia.com/lupopedia/docs/protocols/hex/README.md
   status: active
-  when_updated: "20260814151801"
+  when_updated: "20260815212117"
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -31,13 +31,13 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000001.000018.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000018.000000.ROOT.EN.04020A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 lupopedia.map:
-  index: PRT.HEX.000001.000018.000000.EN.04020A
+  index: PRT.HEX.000001.000018.000000.ROOT.EN.04020A
   web_path: https://www.lupopedia.com/lupopedia/docs/protocols/hex/README.md
   path_from_lupopedia_root: docs/protocols/hex/README.md
   prd_cluster: 16_C_34_A_99_A

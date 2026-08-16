@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   status: active
-  when_updated: "20260814141353"
+  when_updated: "20260815212117"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/canonical/headers/memory_cluster/2026/05/lupopedia-headers.toon
@@ -31,13 +31,13 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX: PRT.HEX.000001.000001.000000.ROOT.EN.04020A
   LUP.SHORT: PRT.LUP
-  LUP.ROOT: PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT: MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS: PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 lupopedia.map:
-  index: PRT.HEX.000001.000001.000000.EN.04020A
+  index: PRT.HEX.000001.000001.000000.ROOT.EN.04020A
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   path_from_lupopedia_root: docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   prd_cluster: 00_A-i_16_B-i_16_C-i_05_A-i_15_A-i_41_A-i_57_A-i_82_B-i_99_A-i
@@ -1309,16 +1309,20 @@ No middle-dot. No pipe. No hyphen in KEY tokens. Field delimiter is `.` (ASCII 4
 lupopedia.identity:
   LUPOPEDIA     = PRT.LUP
   LUP.KEY       = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX       = PRT.HEX.000000.000000.000000.EN.04020A
+  LUP.HEX       = PRT.HEX.000000.000000.000000.ROOT.EN.04020B
   LUP.SHORT     = PRT.LUP
-  LUP.ROOT      = PRT.LUP.ROOT.ROOT.EN.042010
-  LUP.OMIT      = MODE_WHEN_NAME + ANY_DEFAULT_FIELD
-  LUP.DEFAULTS  = PRT.NAME.PRT.LUP.ROOT.ROOT.EN.0
+  LUP.ROOT      = PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
+  LUP.OMIT      = REGISTERED_SHORT_FORMS_ONLY
+  LUP.DEFAULTS  = PRT.NAME.000000.000000.ROOT.ROOT.EN.0
 ```
 
 YAML storage uses `key: value`. Grammar notation may use `=`. Values MUST match.
 
-Validators MUST enforce KEY order. Apply DEFAULTS when fields are missing. Apply OMIT to compress. Expand SHORT -> ROOT when a full human form is required. Generate HEX for machine federation routing.
+**4.2.26 expansion (same 4.2.11 contract):** NODE default is `000000` (unspecified), not the word `PRT`. `PRT.LUP` expands to `PRT.NAME.000000.LUP.ROOT.ROOT.EN.0`. Packed VERSION is `0xMMmmPP`: `4.2.10` = `04020A` (never `042010`); `4.2.11` = `04020B`. Header contract remains `4.2.11`. KEY-grammar clarification is `key_specification_version: "4.2.26"` (identity sibling, not a 29th dense-grid field).
+
+`LUP.OMIT` is **REGISTERED_SHORT_FORMS_ONLY**. A positional grammar cannot omit arbitrary middle fields (`PRT.LUP.WHEEL` cannot choose ACTOR vs GROUP; `PRT.HEX.000022` cannot choose NODE vs ARTIFACT). Accepted display shapes: `PROTOCOL`, `PROTOCOL.MODE`, `PROTOCOL.ARTIFACT`, `PROTOCOL.MODE.NODE`, `PROTOCOL.MODE.NODE.ARTIFACT`, `FULL_KEY` (eight tokens). Token 2 `NAME` or `HEX` is MODE (reserved, not an artifact slug). Storage, comparison, federation, hashing, and APIs always use the complete eight-token KEY. HEX fill always includes GROUP=`ROOT`.
+
+Validators MUST enforce KEY order. Expand only registered short productions using LUP.DEFAULTS. Generate HEX for machine federation routing. `map.index` MUST equal this document's LUP.HEX.
 
 #### Federation map
 
