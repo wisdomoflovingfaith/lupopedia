@@ -2026,6 +2026,50 @@ CREATE TABLE {{prefix}}agent_colors (
   PRIMARY KEY (actor_id)
 );
 
+-- PRD 01_B Color Registry (GroupColor + ColorName). PRD 90 Color Identity doctrine.
+-- Not {{prefix}}agent_colors. No hex5 column. No FOREIGN KEY. No AUTO_INCREMENT.
+-- Lookup uniqueness is application-enforced: protocol_short + color_name + field_type + iso_language.
+CREATE TABLE {{prefix}}color_groups (
+  `color_group_id` bigint NOT NULL,
+  `group_color` varchar(32) NOT NULL DEFAULT '',
+  `protocol_short` varchar(32) NOT NULL DEFAULT '',
+  `sort_order` int NOT NULL DEFAULT 0,
+  `created_ymdhis` bigint NOT NULL DEFAULT 0,
+  `updated_ymdhis` bigint NOT NULL DEFAULT 0,
+  `is_deleted` tinyint NOT NULL DEFAULT 0,
+  `deleted_ymdhis` bigint NOT NULL DEFAULT 0,
+  `federation_node_id` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`color_group_id`)
+);
+
+CREATE INDEX {{prefix}}color_groups_idx_protocol_group ON {{prefix}}color_groups (`protocol_short`, `group_color`);
+CREATE INDEX {{prefix}}color_groups_idx_is_deleted ON {{prefix}}color_groups (`is_deleted`);
+
+CREATE TABLE {{prefix}}color_names (
+  `color_name_id` bigint NOT NULL,
+  `protocol_short` varchar(32) NOT NULL DEFAULT '',
+  `group_color` varchar(32) NOT NULL DEFAULT '',
+  `color_name` varchar(64) NOT NULL DEFAULT '',
+  `hex6` varchar(6) NOT NULL DEFAULT '',
+  `gold_mark` varchar(32) NOT NULL DEFAULT '',
+  `field_type` varchar(16) NOT NULL DEFAULT 'node',
+  `iso_language` varchar(8) NOT NULL DEFAULT 'EN',
+  `source_table` varchar(32) NOT NULL DEFAULT 'seed',
+  `usage_count` int NOT NULL DEFAULT 0,
+  `actor_hex` varchar(6) NOT NULL DEFAULT '808080',
+  `created_ymdhis` bigint NOT NULL DEFAULT 0,
+  `updated_ymdhis` bigint NOT NULL DEFAULT 0,
+  `is_deleted` tinyint NOT NULL DEFAULT 0,
+  `deleted_ymdhis` bigint NOT NULL DEFAULT 0,
+  `federation_node_id` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`color_name_id`)
+);
+
+CREATE INDEX {{prefix}}color_names_idx_lookup ON {{prefix}}color_names (`protocol_short`, `color_name`, `field_type`, `iso_language`);
+CREATE INDEX {{prefix}}color_names_idx_group_color ON {{prefix}}color_names (`group_color`);
+CREATE INDEX {{prefix}}color_names_idx_hex6 ON {{prefix}}color_names (`hex6`);
+CREATE INDEX {{prefix}}color_names_idx_is_deleted ON {{prefix}}color_names (`is_deleted`);
+
 CREATE TABLE {{prefix}}dialog_channels (
   channel_id bigint NOT NULL,
   channel_name varchar(255) NOT NULL,

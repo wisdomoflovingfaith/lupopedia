@@ -3,8 +3,8 @@ lupopedia.headers:
   header_format_version: "4.2.11"
   path_from_lupopedia_root: docs/prd/01_B-i_COLOR_REGISTRY.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/01_B-i_COLOR_REGISTRY.md
-  status: planning
-  when_updated: "20260816175729"
+  status: development
+  when_updated: "20260817025714"
   trust_tier: proposed
   questions_toon: null
   memory_toon: memory/development/canonical/1026/08/01_b_color_registry.toon
@@ -17,8 +17,8 @@ lupopedia.headers:
   thread_key: ""
   lupopedia.schema: prd
   prd_cluster: 01_A_01_B_80_A
-  title: "PRD 01_B: Color registry tables (planning)"
-  summary: "Planning PRD for GroupColor and ColorName registry tables. HEX5 is not a color column (PRD 90: multi-agent conflict). hex6 for CSV import. GOLD# TBD. No install SQL yet. Color is not a LUP KEY token."
+  title: "PRD 01_B: Color registry tables"
+  summary: "GroupColor and ColorName registry tables. HEX5 is not a color column (PRD 90). hex6 from CSV. CREATE TABLE in install SQL. Seed in seed_lupopedia_4_1_0.sql. Color is not a LUP KEY token."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -53,7 +53,7 @@ lupopedia.metadata:
 ---
 # PRD 01_B: Color registry tables
 
-**Status:** planning. Not active. No install SQL. No PHP implementation. No ALTER TABLE.
+**Status:** development. CREATE TABLE is in `install_new_lupopedia.sql`. Seed is in `install/seed_lupopedia_4_1_0.sql`. Wizard verifies `color_groups` and `color_names`. No PHP registry reader yet. No ALTER TABLE.
 
 **Does not override:** PRD 01_A core identity tables, PRD 16_C KEY grammar, PRD 80 database doctrine, PRD 99 color bands.
 
@@ -76,7 +76,7 @@ Color nicknames are two-part identities:
 - **GroupColor** -- the cultural first half (White, Blue, Grey, ...)
 - **ColorName** -- the registered nickname (aliceblue, GOLDENWOLF, ocean, ...)
 
-Today that mapping lives in a flat CSV. HEX.COLORS already says SQL comes later. This PRD plans the tables. CSV remains the live read path until this PRD moves to development.
+Today that mapping lives in a flat CSV and in SQL seed. HEX.COLORS lookup can still read CSV. CSV remains the file backup until a PHP reader is switched to SQL.
 
 Color is **not** a LUP.KEY token. Do not store GroupColor or ColorName inside KEY grammar.
 
@@ -86,12 +86,13 @@ Color is **not** a LUP.KEY token. Do not store GroupColor or ColorName inside KE
 
 | Surface | Job | Do not |
 |---------|-----|--------|
-| `docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv` | Live name-to-HEX6 seed (`word`, `hex_color`, `field_type`, `word_registry_id`) | Treat as SQL |
+| `docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv` | File backup and seed source (`word`, `hex_color`, `field_type`, `word_registry_id`) | Treat CSV as the only store after SQL seed |
 | `docs/protocols/hex/HEX.COLORS.md` | Protocol lookup rules. CSV now. SQL later. Same API. | Put color in KEY |
+| `{{prefix}}color_groups` / `{{prefix}}color_names` | Install + seed registry | Overload `{{prefix}}agent_colors` |
 | `{{prefix}}agent_colors` | Per-actor chat UI colors with `#` prefix | Overload as the color registry |
 | Captain's Log 20260816 two-part color identity | Narrative handshake | Treat as doctrine that overrides PRDs |
 
-CSV `word_registry_id` maps to `color_name_id` on a later import. CSV `hex_color` maps to `hex6` (six characters, no `#`).
+CSV `word_registry_id` maps to `color_name_id`. CSV `hex_color` maps to `hex6` (six characters, no `#`).
 
 ---
 
@@ -160,28 +161,30 @@ NODE is the fallback `field_type`, same as HEX.COLORS. Do not guess a HEX value.
 
 ## 4. Explicit non-goals (this pass)
 
-- No install SQL
-- No seed SQL
-- No PHP
+- No PHP registry reader yet
 - No LRL rewrite
 - No repo-wide HEX6 replacement
 - No GOLD# grammar invention
 - Do not merge into `lupo_agent_colors`
 - Do not put GroupColor or ColorName into KEY tokens
-- CSV remains the live read path until `status` moves to development
+- Do not invent GroupColor for CSS compound names (aliceblue, ocean, grass, ...)
 
 ---
 
 ## 5. After Captain confirmation
 
-When this PRD is set to development:
+Done this pass:
 
-1. Follow PRD 90. Do not add a color `hex5` column.
-2. Lock GOLD# / `gold_mark` grammar if still required.
-3. Add CREATE TABLE to `install_new_lupopedia.sql` (fresh install only; no ALTER until 4.1.0) only after PRD 90 conceptual fields are reconciled.
-4. Seed from `PRT.LUP.colors.csv` into `color_names` (`hex6` from `hex_color`). GroupColor assignment for seed CSS words is a separate Captain decision.
+1. Follow PRD 90. No color `hex5` column.
+2. CREATE TABLE in `install_new_lupopedia.sql` (fresh install only; no ALTER until 4.1.0).
+3. Seed `color_groups` from PRD 90 section 5.2 base register (13 families).
+4. Seed `color_names` from `PRT.LUP.colors.csv` (`hex6` from `hex_color`). `group_color` is set only when `color_name` matches a base GroupColor token (yellow, blue, black, ...). Other CSS words keep `group_color` empty until Captain assignment.
+5. Wizard verifies `color_groups` and `color_names` after install/seed.
 
-Until then, this file is column planning only.
+Still open:
+
+- Lock GOLD# / `gold_mark` grammar if still required.
+- PHP reader. CSV remains the file backup.
 
 ---
 

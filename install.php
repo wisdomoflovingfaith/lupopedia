@@ -793,6 +793,19 @@ if ($step === 'run') {
             }
             $log[] = InstallWizardLogger::logEntry('ok', 'SCOTTY AI systems monitoring tables verified (8 tables).');
 
+            // PRD 01_B Color Registry (GroupColor + ColorName). Not agent_colors.
+            $required_color_registry_tables = array(
+                'color_groups',
+                'color_names',
+            );
+            foreach ($required_color_registry_tables as $table) {
+                $full_table = $table_prefix . $table;
+                if (!InstallWizardDb::tableExists($pdo, $full_table)) {
+                    throw new RuntimeException("Color registry table $full_table missing - cannot proceed");
+                }
+            }
+            $log[] = InstallWizardLogger::logEntry('ok', 'Color registry tables verified (color_groups, color_names).');
+
             $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
             $_SESSION['lupo_run_log'] = $log;
             $_SESSION['lupo_run_done'] = true;
@@ -1833,8 +1846,8 @@ if ($baseUrl === '') {
                 <?php endif; ?>
                 <p>You selected New install. The wizard will:</p>
                 <ol>
-                    <li>Run <code>database/lupopedia/mysql/install/install_new_lupopedia.sql</code></li>
-                    <li>Run consolidated seed (<code>install/seed_lupopedia_4_1_0.sql</code> if present, else <code>mysql/seed/seed_4.1.0.sql</code>)</li>
+                    <li>Run <code>database/lupopedia/mysql/install/install_new_lupopedia.sql</code> (includes <code>color_groups</code> and <code>color_names</code>)</li>
+                    <li>Run consolidated seed (<code>install/seed_lupopedia_4_1_0.sql</code> if present, else <code>mysql/seed/seed_4.1.0.sql</code>), including PRD 01_B color registry rows</li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login.php</li>
