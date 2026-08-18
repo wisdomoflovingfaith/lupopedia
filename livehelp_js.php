@@ -13,8 +13,9 @@
 if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
 }
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
 if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
-    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
+    define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 }
 
 // PHP 5.3-safe random bytes (reuse installer pattern when not loaded)

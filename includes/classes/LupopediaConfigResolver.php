@@ -71,6 +71,53 @@ class LupopediaConfigResolver
     }
 
     /**
+     * Web path of this install (no trailing slash), from SCRIPT_NAME.
+     *
+     * basename(install dir) is not enough. Nested hosts such as
+     * https://localhost/colorlex.com/lupopedia/login.php must resolve to
+     * /colorlex.com/lupopedia, not /lupopedia.
+     *
+     * @param string $lupopediaPath Absolute path to Lupopedia root.
+     * @return string e.g. /lupopedia or /colorlex.com/lupopedia
+     */
+    public static function publicPathFromRequest($lupopediaPath)
+    {
+        $root = rtrim(str_replace(array('\\', '/'), '/', (string) $lupopediaPath), '/');
+        $installName = basename($root);
+        if ($installName === '' || $installName === '.' || $installName === '..') {
+            $installName = 'lupopedia';
+        }
+
+        $script = '';
+        if (isset($_SERVER['SCRIPT_NAME']) && is_string($_SERVER['SCRIPT_NAME']) && $_SERVER['SCRIPT_NAME'] !== '') {
+            $script = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+        }
+        if ($script !== '') {
+            $dir = rtrim(dirname($script), '/');
+            $parts = explode('/', $dir);
+            $idx = -1;
+            foreach ($parts as $i => $part) {
+                if ($part === $installName) {
+                    $idx = $i;
+                }
+            }
+            if ($idx >= 0) {
+                $slice = array_slice($parts, 0, $idx + 1);
+                $pub = implode('/', $slice);
+                if ($pub === '' || $pub[0] !== '/') {
+                    $pub = '/' . ltrim($pub, '/');
+                }
+                return rtrim($pub, '/');
+            }
+            if ($dir !== '' && $dir !== '/' && $dir !== '.') {
+                return $dir;
+            }
+        }
+
+        return '/' . $installName;
+    }
+
+    /**
      * @param string $lupopediaPath Absolute path to Lupopedia root (directory containing index.php).
      * @param string $publicPath    URL path segment e.g. /lupopedia (leading slash optional).
      * @return string|null Absolute path to existing lupopedia-config.php, or null.
@@ -79,6 +126,10 @@ class LupopediaConfigResolver
     {
         $root = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, $lupopediaPath), DIRECTORY_SEPARATOR);
         $candidates = array();
+
+        // Subdirectory OS: the install's own config wins over a leftover file
+        // at DOCUMENT_ROOT (e.g. after moving into colorlex.com/lupopedia/).
+        $candidates[] = $root . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
 
         $docRoot = '';
         if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '') {
@@ -99,8 +150,6 @@ class LupopediaConfigResolver
                 }
             }
         }
-
-        $candidates[] = $root . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
 
         $parent = dirname($root);
         if ($parent !== $root && $parent !== '' && $parent !== '.') {
@@ -144,25 +193,6 @@ class LupopediaConfigResolver
         if ($normalizedPreferred !== '' && @is_dir($normalizedPreferred)) {
             $configPath = $normalizedPreferred . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
             return array($normalizedPreferred, $configPath);
-        }
-        if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] !== '') {
-            $docRoot = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, $_SERVER['DOCUMENT_ROOT']), DIRECTORY_SEPARATOR);
-            if ($docRoot !== '' && @is_dir($docRoot)) {
-                $configPath = $docRoot . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
-                return array($docRoot, $configPath);
-            }
-        }
-        $sampleInRoot = $root . DIRECTORY_SEPARATOR . 'lupopedia-config-sample.php';
-        if (@is_file($sampleInRoot)) {
-            $configPath = $root . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
-            return array($root, $configPath);
-        }
-        $parent = dirname($root);
-        $sampleInParent = $parent . DIRECTORY_SEPARATOR . 'lupopedia-config-sample.php';
-        $parentBootstrap = $parent . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'bootstrap.php';
-        if ($parent !== $root && $parent !== '' && $parent !== '.' && @is_file($sampleInParent) && !@is_file($parentBootstrap)) {
-            $configPath = $parent . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
-            return array($parent, $configPath);
         }
         $configPath = $root . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
         return array($root, $configPath);

@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md
   status: active
-  when_updated: '20260811132142'
+  when_updated: '20260817093700'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/82_hermes_routing_header.toon
@@ -236,6 +236,17 @@ OHANA, KAPU, KAPAKAI, PONO, KULEANA, ALII, KUMU, EH_BRAH_WHY, and PUKA answer ho
 - **Required**: Optional
 - **Type**: Array of actor IDs or actor names
 - **NOT**: A single string, boolean, or null
+
+OHANA is family. The product names below are one code family (same author, same underlying system, branding forks for distribution). They are not separate products and not competing lineages. They converge into Lupopedia OS.
+
+**Product Lineage Note (Crafty Syntax to Lupopedia)**
+
+- **Crafty Syntax** -- original open-source lineage
+- **Sales Syntax** -- commercial branding fork
+- **White Label Syntax** -- reseller branding fork
+- **Black Label Syntax** -- enterprise branding fork
+
+Agents MUST treat those four names as one ohana of code. Installers and embed scripts from any of those brands belong to the same Lupopedia OS lineage.
 
 **kapu** (hard DO NOT rules)
 - **Meaning**: Explicit prohibitions or constraints that must not be violated

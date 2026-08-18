@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/33_A-i_SOFTACULOUS_CERTIFICATION_4_1_0_GATE.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/33_A-i_SOFTACULOUS_CERTIFICATION_4_1_0_GATE.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817093700'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/33_softaculous_certification_4_1_0_gate.toon
@@ -56,7 +56,20 @@ Define **hosting-distribution readiness** (including **Softaculous-style** one-c
 
 **Why that matters for Lupopedia:** the product owner????????s bias is **not** to ???????modernize for modernizing????????s sake??????? with **heavy frameworks**, **Composer ecosystems**, or **clever database logic** that hides behavior in triggers and procedures. **Lupopedia** stays **plain PHP + PDO_DB**, **application-layer** rules, **dumb storage**, and **in-tree** dependencies????????because that alignment is how the original system **survived** real installs. IDE agents and implementers should treat Crafty parity and **????3.0** / **????5** constraints as **intentional continuity** with that history, not as obstacles to replace with whatever stack is trending.
 
-## Department 1 ???????? Domain Root Installation Context
+### 1.2 Product Lineage Note (Crafty Syntax to Lupopedia)
+
+The following systems were developed by the same author and share a single unified code lineage:
+
+- **Crafty Syntax** -- original open-source lineage
+- **Sales Syntax** -- commercial branding fork
+- **White Label Syntax** -- reseller branding fork
+- **Black Label Syntax** -- enterprise branding fork
+
+These names are branding forks of the same underlying system, created for different distribution channels. They are one family, not separate or competing products. All four forks converge into the unified Lupopedia OS architecture.
+
+Softaculous / auto-installer packages, Crafty-compatible embed scripts (`livehelp_js.php`, `image.php`), and imports from Sales Syntax / White Label Syntax / Black Label Syntax MUST be treated as this same family, not as independent products.
+
+## Department 1 -- Domain Root Installation Context
 
 - Department 1 represents the root of the domain where Lupopedia is installed.
 - Lupopedia is ALWAYS installed in a subdirectory (e.g., example.com/lupopedia).
@@ -111,8 +124,11 @@ Define **hosting-distribution readiness** (including **Softaculous-style** one-c
   - comments
   - likes
   - shares
-- The widget can launch a ???????collections??????? top floating nav bar.
-- Collections group related pages into dropdown menus.
+  - color identity badge (GroupColor, ColorName, collection_name, HEX6 when known; never guessed)
+  - lineage indicators (parent URL, child URLs, Declare Child Page, View Lineage)
+- The widget can launch a "collections" top floating nav bar.
+- The **blue Collection Selector** lists Collection Names. Selecting one updates all green semantic tabs from `lupo_collection_tabs` for that Collection.
+- Collections group related pages into dropdown menus. A Color Group includes `collection_name` and represents that Collection (PRD 21, PRD 28, PRD 73).
 
 ## Actor Learning Boundaries
 
@@ -470,7 +486,7 @@ These **must exist at project web root** (same level as `index.php` / public ent
 | File | Role |
 |------|------|
 | **`livehelp_js.php`** | Serves **online/offline** (or equivalent) **image/state** behavior compatible with Crafty Syntax expectations; on click, opens a **department-aware** templated **live help chat** window. Behavior must remain recognizable to existing Crafty integrators. |
-| **`lupopedia_js.php`** | **Semantic monitoring / advanced widget** entry (see **PRD 28** and **`04_lupopedia_js_foundation.md`**); coexists with `livehelp_js.php` without breaking legacy embeds. |
+| **`lupopedia_js.php`** | **Semantic monitoring / advanced widget** entry (see **PRD 28** and **PRD 04**). Fetches color identity + lineage metadata and passes it to The Eye. Coexists with `livehelp_js.php` without breaking legacy embeds. Color + lineage indicators are part of this embed contract. No DDL from this note; empty/pending identity is valid until registry storage exists. |
 
 Implementation may delegate internally to `includes` services; **public names and URLs** above are the compatibility surface.
 

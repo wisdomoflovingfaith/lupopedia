@@ -48,7 +48,6 @@ lupopedia.footer:
 */
 
 define('LUPOPEDIA_PATH', __DIR__);
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 $UNTRUSTED = array(
     'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),
     'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
@@ -58,6 +57,7 @@ $lupo_doc_root = isset($UNTRUSTED['server']['DOCUMENT_ROOT']) ? $UNTRUSTED['serv
 $lupo_script_name = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 $lupoResolvedCfg = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 if ($lupoResolvedCfg !== null) {
     define('LUPOPEDIA_CONFIG_PATH', $lupoResolvedCfg);

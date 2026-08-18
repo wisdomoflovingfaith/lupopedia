@@ -17,9 +17,8 @@
  */
 
 $lupoRoot = __DIR__;
-$lupoPubGuess = '/' . basename($lupoRoot);
-
 require_once $lupoRoot . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$lupoPubGuess = LupopediaConfigResolver::publicPathFromRequest($lupoRoot);
 
 $lupopediaConfigPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPubGuess);
 

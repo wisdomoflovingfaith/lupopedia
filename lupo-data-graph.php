@@ -5,9 +5,8 @@
  */
 
 define('LUPOPEDIA_PATH', __DIR__);
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
-
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 $lupoResolvedCfg = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 if ($lupoResolvedCfg !== null) {
     define('LUPOPEDIA_CONFIG_PATH', $lupoResolvedCfg);

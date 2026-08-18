@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: what_is_lupopedia.md
   web_path: https://www.lupopedia.com/lupopedia/what_is_lupopedia.md
   status: active
-  when_updated: "20260728021358"
+  when_updated: "20260817093700"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/root/canonical/1026/07/what-is-lupopedia.toon
@@ -67,6 +67,8 @@ Normative field semantics live in **PRD 82_B** (and related Hermes docs) and **P
 | **EH_BRAH_WHY** | Deeper reasoning behind a decision -- the causal WHY, not slogans. |
 
 ASCII note: field token is **ALII** (ASCII). Do not use non-ASCII apostrophe forms in normative files.
+
+OHANA also names the **product code family**. Crafty Syntax, Sales Syntax, White Label Syntax, and Black Label Syntax were developed by the same author and share one unified code lineage. They are branding forks for different distribution channels (open-source, commercial, reseller, enterprise), not independent or competing products. All four converge into the Lupopedia OS. Installers and legacy embeds from any of those names belong to this family.
 
 ---
 

@@ -93,7 +93,11 @@ if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/'));
 }
 if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
-    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(__FILE__)));
+    if (class_exists('LupopediaConfigResolver', false)) {
+        define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : __DIR__));
+    } else {
+        define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(__FILE__)));
+    }
 }
 if (!defined('LUPOPEDIA_URL')) {
     define('LUPOPEDIA_URL', LUPOPEDIA_PUBLIC_PATH);

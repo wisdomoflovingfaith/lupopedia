@@ -25,8 +25,9 @@
 #   summary: "Cross-channel routed copy with optional lupo_routing_events audit row."
 # ---------------------------------------------------------------------
 define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
+require_once LUPOPEDIA_PATH . '/includes/classes/LupopediaConfigResolver.php';
 if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
-    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(LUPOPEDIA_PATH));
+    define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 }
 
 if (!isset($_SERVER['REQUEST_METHOD']) || strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST') {

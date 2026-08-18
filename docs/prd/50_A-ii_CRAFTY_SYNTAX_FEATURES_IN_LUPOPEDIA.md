@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/50_A-ii_CRAFTY_SYNTAX_FEATURES_IN_LUPOPEDIA.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/50_A-ii_CRAFTY_SYNTAX_FEATURES_IN_LUPOPEDIA.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817092400'
   trust_tier: canonical
   questions_toon: null
   memory_toon: null
@@ -46,6 +46,19 @@ Domain (node)
 **Required warning (normative where channels are defined):** Channels are semantic containers, not conversational rooms. They define scope, governance, and meaning for all threads within them.
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
+
+## Product Lineage Note (Crafty Syntax to Lupopedia)
+
+The following systems were developed by the same author and share a single unified code lineage:
+
+- **Crafty Syntax** -- original open-source lineage
+- **Sales Syntax** -- commercial branding fork
+- **White Label Syntax** -- reseller branding fork
+- **Black Label Syntax** -- enterprise branding fork
+
+These names are branding forks of the same underlying system, created for different distribution channels. They are one family, not separate or competing products. All four forks converge into the unified Lupopedia OS architecture.
+
+Installers and legacy embed scripts (`livehelp_js.php`, `image.php`, Crafty-compatible snippets) belong to this family. Treat Sales Syntax, White Label Syntax, and Black Label Syntax installs as the same lineage as Crafty Syntax when importing data or preserving embeds.
 
 ## Purpose
 This document captures the functional and technical architecture of the legacy Crafty Syntax Live Help (CSLH) system (v3.x - v4.1.x). It serves as the canonical reference for porting and modernizing behaviors into Lupopedia, ensuring the "Survival Over Fashion" mandate is met by preserving the resilient patterns of its ancestor.
@@ -132,6 +145,35 @@ The system uses a sophisticated negotiation chain defined by `$CSLH_Config['chat
 *   **Transport Promotion:** Lupopedia's `xmlhttp-flush-refresh` chain is a direct implementation of the CSLH probe model.
 *   **ASCII-Only Doctrine:** Aligns with CSLH's use of basic character sets to avoid terminal/db corruption.
 *   **No FK Policy:** Lupopedia continues the CSLH tradition of application-layer relationship management.
+
+## Coexistence: livehelp_js.php and The Eye (color + lineage)
+
+Crafty Syntax injection through **`livehelp_js.php`** remains the live-help embed: chat icon, invite layers, path tracking, SESSIONID. That contract MUST stay intact.
+
+**The Eye** is a separate embed through **`lupopedia_js.php`** (PRD 28, PRD 04). It MAY load on the same page as `livehelp_js.php`. The two scripts MUST NOT replace each other.
+
+| Script | Owns |
+|--------|------|
+| `livehelp_js.php` | Live help chat, invites, Crafty path/visit beacons, operator availability |
+| `lupopedia_js.php` | The Eye bottom-right bar, color identity badge, lineage indicators, semantic monitoring |
+
+**Local coloring** of this domain's pages stays in live help **Content** (operator Content section). **`livehelp_js.php` does not become the Color Registry.**
+
+**Cross-domain lineage** (parent URL, child URL, change type, change intent, explanation) is declared on the Color Registry homepage and **shown** in The Eye. Declare Child Page opens `{LUPOPEDIA_PUBLIC_PATH}/?parent=` with a path relative to the **domain root**, not `/lupopedia/`.
+
+Color + lineage metadata is fetched by `lupopedia_js.php` and passed to The Eye. HEX6 is never guessed. Empty/pending is valid until registry storage exists. This section adds no DDL.
+
+## Color Groups and Collections (unified)
+
+A Color Group is not only a color identity. It also represents a **Collection**: a named set of webpages, artifacts, or semantic nodes.
+
+A Color Group stores: `color_group`, `color_nickname`, `collection_name` (new), lineage metadata, and semantic identity metadata.
+
+The **blue dropdown** is the Collection Selector. Each entry is a Collection Name from **`lupo_collections`**. Selecting a Collection updates all semantic drop menus. Green tabs become multi-level menus from **`lupo_collection_tabs`** for that Collection.
+
+Live help (`livehelp_js.php`) does not own the Collection Selector. The Eye / semantic navbar (`lupopedia_js.php`, PRD 21 / PRD 28) does. Crafty path tracking MAY continue while the Collection context changes; collection change MUST NOT break `livehelp_js.php` injection.
+
+Both widgets MAY share visit/session context already established by Crafty tracking. Eye color/lineage/collection events are listed in PRD 11 and MUST NOT break Crafty visit_track / path rollup.
 
 ## Open Questions
 *   **DHTML Layer Performance:** How does the legacy "sliding" logic perform on modern high-DPI screens without CSS transitions?

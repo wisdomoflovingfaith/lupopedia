@@ -78,7 +78,7 @@ authors:
 # Path resolution (for docs and tooling)
 # Paths in file_path_from_root, see_also_from_root, and outbound_edges are relative to project root.
 # Resolve with LUPOPEDIA_PROJECT_ROOT when opening files from atoms or tooling.
-LUPOPEDIA_PROJECT_ROOT: "C:/ServBay/www/servbay/lupopedia"
+LUPOPEDIA_PROJECT_ROOT: "C:/ServBay/www/servbay/colorlex.com/lupopedia"
 
 # Project Information
 project:

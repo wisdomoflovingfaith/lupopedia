@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md
   status: active
-  when_updated: "20260816175729"
+  when_updated: "20260817161600"
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/08/90_a_color_identity_doctrine.toon
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 90_A_16_C_82_B_80_A_01_B
   title: "PRD 90: Color Identity Doctrine"
-  summary: "Canonical high-order Color Identity. HEX5 is multi-agent conflict slang. HEX6 is six-digit perceptual color. GroupColor plus ColorNickname. Domain-scoped NAME-to-HEX6. POWERED_BY is display only. Color is not a LUP KEY token. No install SQL from this PRD."
+  summary: "Canonical high-order Color Identity. HEX5 is multi-agent conflict slang. HEX6 is six-digit perceptual color. GroupColor plus ColorNickname. Domain-scoped NAME-to-HEX6. POWERED_BY is display only. ColorLex node 3 may emit a display-only CLRLEX skin. Color is not a LUP KEY token. No install SQL from this PRD."
   edges_toon: null
   channel_index: lupopedia
   source_timestamp: null
@@ -31,14 +31,14 @@ lupopedia.headers:
 lupopedia.identity:
   LUPOPEDIA: PRT.LUP
   LUP.KEY: PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
-  LUP.HEX: PRT.HEX.000001.000030.000000.ROOT.EN.010003
+  LUP.HEX: PRT.HEX.000001.000030.000000.ROOT.EN.010005
   LUP.SHORT: PRT.LUP
   LUP.ROOT: PRT.NAME.000000.LUP.ROOT.ROOT.EN.04020A
   LUP.OMIT: REGISTERED_SHORT_FORMS_ONLY
   LUP.DEFAULTS: PRT.NAME.000000.000000.ROOT.ROOT.EN.0
   key_specification_version: "4.2.26"
 lupopedia.map:
-  index: PRT.HEX.000001.000030.000000.ROOT.EN.010003
+  index: PRT.HEX.000001.000030.000000.ROOT.EN.010005
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md
   path_from_lupopedia_root: docs/prd/90_A-i_COLOR_IDENTITY_DOCTRINE.md
   prd_cluster: 90_A_16_C_82_B_80_A_01_B
@@ -58,8 +58,8 @@ Lupopedia Constitutional Series -- High-Order Identity Architecture
 | Field | Value |
 |-------|-------|
 | PRD | 90 |
-| Version | 1.0.3 |
-| Packed PRD version | 010003 |
+| Version | 1.0.5 |
+| Packed PRD version | 010005 |
 | LUP KEY specification | 4.2.26 |
 | Status | Canonical doctrine |
 | Classification | Constitutional -- High-Order Identity Architecture |
@@ -90,6 +90,7 @@ This PRD does not write install SQL. Examples do not create registry rows.
 17. [Migration from Draft v0.2](#17-migration-from-draft-v02)
 18. [Status and Acceptance Criteria](#18-status-and-acceptance-criteria)
 19. [Reference Addendum](#19-reference-addendum)
+20. [Appendix: ColorLex Display Variant (Node 3)](#20-appendix-colorlex-display-variant-node-3)
 
 ---
 
@@ -550,6 +551,7 @@ HEX6:             COLOR.HEX6.D4AF37
 - ARTIST does not have to equal the canonical ACTOR token.
 - Every displayed ColorNickname must resolve within the displayed domain.
 - If the signature cannot resolve, it is invalid as a Lupopedia identity display.
+- ColorLex federation node 3 MAY emit the Appendix 20 CLRLEX skin. That skin is display-only. It is not a second grammar and MUST NEVER appear inside LUP KEY tokens.
 
 ### 8.5 Intended uses
 
@@ -1013,7 +1015,7 @@ Changes to canonical rules require a PRD 90 version increment. Registry-row addi
 
 ## 17. Migration from Draft v0.2
 
-PRD 90 v1.0.3 supersedes draft v0.2.
+PRD 90 v1.0.5 supersedes draft v0.2. v1.0.4 added Appendix 20 (ColorLex display variant) without changing the canonical POWERED_BY grammar. v1.0.5 sets the preferred live decimal CLRLEX emit form to C212L175R55LEX (no brackets).
 
 Binding corrections:
 
@@ -1042,8 +1044,8 @@ Binding corrections:
 | Field | Value |
 |-------|-------|
 | PRD | 90 |
-| Version | 1.0.3 |
-| Packed version | 010003 |
+| Version | 1.0.5 |
+| Packed version | 010005 |
 | Status | Canonical doctrine |
 | Classification | Constitutional -- High-Order Identity Architecture |
 | LUP KEY specification | 4.2.26 |
@@ -1064,6 +1066,8 @@ An implementation conforms to PRD 90 when it:
 - preserves immutable artifact-iteration assignments
 - records corrections relationally
 - treats POWERED_BY as display syntax
+- treats the ColorLex CLRLEX string as a node-3 display skin only (Appendix 20)
+- never inserts RGB, HEX6, GroupColor, or ColorNickname into the artifact KEY
 - preserves legal and licensing boundaries
 - follows database doctrine
 - does not infer schema from this PRD alone
@@ -1080,6 +1084,8 @@ ARTIFACT KEY = PROTOCOL.MODE.NODE.ARTIFACT.ACTOR.GROUP.LANGUAGE.VERSION
 COLOR LOOKUP = DOMAIN + COLOR.NAME.<NICKNAME> -> COLOR.HEX6.<HEX6>
 
 FULL DISPLAY = [PROTOCOL_DISPLAY] [ARTIST] [OBJECT] POWERED_BY [DOMAIN_DISPLAY] [GROUPCOLOR] [COLORNICKNAME]
+
+COLORLEX DISPLAY SKIN (node 3 only, Appendix 20) = [FEDERATION=colorlex] POWEREDBY WHITE C212L175R55LEX
 
 HEX5 = MULTI_AGENT_CONFLICT
 
@@ -1113,9 +1119,172 @@ AUTHORITY: REQUEST_RESOLUTION
 Human language at the surface. Registered meaning underneath. Explicit conflict when agents disagree. Six-digit color at the perceptual boundary.
 
 PRD 90 -- Color Identity Doctrine
-Version 1.0.3
+Version 1.0.5
 HEX5: multi-agent conflict
 HEX6: six-digit perceptual color identity
+
+---
+
+## 20. Appendix: ColorLex Display Variant (Node 3)
+
+This appendix is not a new grammar. It is a display-only variant used by the ColorLex federation node (node 3). It MUST NEVER appear inside LUP KEY tokens.
+
+### 20.1 Purpose
+
+ColorLex may publish a display-only variant of the PRD 90 POWERED_BY line. This variant encodes the artifact's registered HEX6 using the CLRLEX acrostic.
+
+CLR is COLOR without the O letters. LEX is the ColorLex suffix. The letters C, L, R are spelling slots. Payload order is red, green, blue. The letter R is not the color red.
+
+### 20.2 Canonical handshake (unchanged)
+
+```text
+[PROTOCOL_DISPLAY] [ARTIST] [OBJECT] POWERED_BY [DOMAIN_DISPLAY] [GROUPCOLOR] [COLORNICKNAME]
+```
+
+Example:
+
+```text
+CC-BY ALTERNATE_FATE FOOBARREMIX POWERED_BY LUPOPEDIA GOLD GOLDENWOLF
+```
+
+### 20.3 ColorLex display variant (optional, display-only)
+
+Slot template (holes only; not the live string):
+
+```text
+POWERED_BY COLORLEX [GROUPCOLOR] [COLORNICKNAME]
+[FEDERATION=colorlex] POWEREDBY [GROUPCOLOR] C[RR]L[GG]R[BB]LEX
+```
+
+Preferred live decimal emit (no brackets). Compact ColorLex POWERED_BY names the domain, GroupColor, and ColorNickname. Expanded form keeps GroupColor and replaces ColorNickname with the CLRLEX token:
+
+```text
+POWERED_BY COLORLEX WHITE GOLD
+POWEREDBY WHITE C212L175R55LEX
+[FEDERATION=colorlex] POWEREDBY WHITE C212L175R55LEX
+```
+
+WHITE is GroupColor. GOLD is ColorNickname (the named color of the artifact). GOLD is not the LUP KEY ARTIFACT token and is not GroupColor. `C212L175R55LEX` is the exact decimal encoding of the registered HEX6 for that nickname (illustrative `D4AF37`).
+
+### 20.3.1 Pattern, not sequence
+
+Humans mix compact color-word order constantly:
+
+```text
+WHITE GOLD
+GOLD WHITE
+GOLDENWOLF WHITE
+WHITE GOLDENWOLF
+GOLD C212L175R55LEX
+C212L175R55LEX GOLD
+```
+
+Two color words look interchangeable. Expanding ColorNickname into CLRLEX makes the roles visually distinct:
+
+| Role | What it looks like | What it is |
+|------|--------------------|------------|
+| CLRLEX | `C212L175R55LEX` | Numeric display identity (registered HEX6 channels) |
+| GroupColor | `WHITE` | Cultural family from the PRD 90 base register |
+| ColorNickname | `GOLD` (compact form only) | Semantic name; expanded form encodes it as CLRLEX |
+
+In the expanded ColorLex skin, GroupColor and CLRLEX may appear in either adjacent order. Same meaning:
+
+```text
+POWEREDBY WHITE C212L175R55LEX
+POWEREDBY C212L175R55LEX WHITE
+```
+
+Preferred emit is GroupColor then CLRLEX. Parsers MUST identify tokens by shape, not by slot position: CLRLEX matches `C` + decimal channels + `L` + decimal + `R` + decimal + `LEX` (or the hex-pair form). GroupColor matches the GroupColor register. Do not treat compact `WHITE GOLD` and `GOLD WHITE` as the same string. Compact POWERED_BY order remains DOMAIN, GROUPCOLOR, COLORNICKNAME. Expansion is what turns a flip-prone sequence into a self-describing pattern.
+
+`C212L175R55LEX` is a ColorLex **display identity token**. It is not a LUP KEY token. Do not "simplify" it to `RGB(212,175,55)`, `212,175,55`, or bare `D4AF37` in a ColorLex skin. Those forms look like mutable color data. The branded form is structured so systems treat it as registered Node 3 identity, not free-floating color.
+
+This is a skin of the POWERED_BY tail. It may stand alone as a ColorLex node banner, or it may follow the PRD 90 left-hand identity tokens:
+
+```text
+[PROTOCOL_DISPLAY] [ARTIST] [OBJECT] [FEDERATION=colorlex] POWEREDBY WHITE C212L175R55LEX
+```
+
+`POWEREDBY` is the ColorLex display delimiter. It is equivalent in role to `POWERED_BY`. It is not a KEY token.
+
+### 20.4 Rules
+
+- This is a skin, not a grammar.
+- It may only be used when the artifact's HEX6 is already registered on this domain.
+- Channel values MUST match the artifact's HEX6 exactly.
+- No invented, averaged, or borrowed colors.
+- If HEX6 is pending or unresolved, do not emit CLRLEX numbers. Fall back to the canonical PRD 90 POWERED_BY line, or omit the ColorLex skin.
+- GroupColor and ColorNickname remain two tokens in the compact POWERED_BY line (example: WHITE + GOLD). Do not hyphenate them into one blob. In the expanded ColorLex skin, ColorNickname GOLD is represented by `C212L175R55LEX`; GroupColor WHITE stays visible. Expanded GroupColor and CLRLEX may appear in either order (section 20.3.1).
+- `FEDERATION=colorlex` is only used on node 3. Other nodes use their own domain tag or omit the federation tag.
+- HEX6 storage remains canonical (`^[0-9A-F]{6}$`, no `#`). CLRLEX decimal and hex-pairs are display-only.
+- Color remains outside the eight-token LUP KEY.
+
+### 20.5 Decimal form (preferred human display)
+
+Preferred live pattern:
+
+```text
+C[0-255]L[0-255]R[0-255]LEX
+```
+
+Emitted example (no brackets):
+
+```text
+C212L175R55LEX
+```
+
+The three numbers are decimal integers 0-255. They are the red, green, and blue channels of the registered HEX6.
+
+Illustrative mapping only (WHITE + GOLD on ColorLex is an example until the responsible domain registers it):
+
+```text
+HEX6 D4AF37 -> C212L175R55LEX
+POWERED_BY COLORLEX WHITE GOLD
+POWEREDBY WHITE C212L175R55LEX
+```
+
+Example:
+
+```text
+[FEDERATION=colorlex] POWEREDBY WHITE C212L175R55LEX
+```
+
+### 20.6 Hex-pair variant (also valid)
+
+```text
+[FEDERATION=colorlex] POWEREDBY WHITE C[D4]L[AF]R[37]LEX
+```
+
+Each pair is exactly two uppercase hex digits. The three pairs MUST equal the registered HEX6 in order.
+
+```text
+HEX6 D4AF37 -> C[D4]L[AF]R[37]LEX
+```
+
+A publishing surface MUST pick one encoding per string. Decimal CLRLEX and hex-pairs MUST NOT be mixed in the same display line. Prefer decimal `C212L175R55LEX` for human display.
+
+### 20.7 Forbidden ColorLex skins
+
+Do not emit in a ColorLex display-skin context:
+
+- `RGB(212,175,55)`
+- bare `212,175,55`
+- unbranded HEX6 (`D4AF37`) as the skin token
+- invented or approximated channels
+
+| Display string | Reason |
+|----------------|--------|
+| `POWERED_BY COLORLEX WHITE` | Compact form missing ColorNickname GOLD |
+| `POWERED_BY COLORLEX GOLD` | Compact form missing GroupColor WHITE |
+| `[FEDERATION=colorlex] POWEREDBY C212L175R55LEX` | Expanded form missing GroupColor WHITE |
+| `[FEDERATION=colorlex] POWEREDBY WHITE C[]L[]R[]LEX` | Empty channels; HEX6 not registered or not copied |
+| `[FEDERATION=colorlex] POWEREDBY WHITE C[D4]L175R55LEX` | Mixed hex-pair and decimal |
+| `[FEDERATION=othernode] POWEREDBY WHITE C212L175R55LEX` | `FEDERATION=colorlex` is node 3 only; other nodes must not borrow it |
+| `RGB(212,175,55)` or `212,175,55` as the ColorLex skin | Unbranded color data; use `C212L175R55LEX` |
+| Same CLRLEX string inside a LUP KEY | Color is not a KEY token |
+
+### 20.8 Authority
+
+This appendix does not modify the LUP KEY grammar. PRD 16_C remains KEY authority. PRD 90 remains Color Identity authority. ColorLex.com remains federation node 3. Other Lupopedia installs are not ColorLex.
 
 ---
 
@@ -1128,3 +1297,5 @@ HEX6: six-digit perceptual color identity
 - Protocol CSV: `docs/protocols/hex/HEX.COLORS.md`
 - LUPxPEDIA Case A: `docs/doctrine/lupopedia_identity_routing_rule.md`
 - Placement log: `content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_choosing_the_prd_number_for_color_identity_doctrine.md`
+- Consolidation protocol: `docs/prd/93_A-i_CONSOLIDATION_PROTOCOL.md`
+- ColorLex node 3 (host operator docs, from lupopedia root): `../docs/federation-node-3.md`

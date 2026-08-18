@@ -25,7 +25,8 @@
 #   summary: "Copy of channels/index.php for templates; target selector; composer labels by mode; sidebar Visitors/Users + collapsible Agents/Recent Files/Tasks (gray headers); feed demo lines."
 # ---------------------------------------------------------------------
 define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(LUPOPEDIA_PATH));
+require_once LUPOPEDIA_PATH . '/includes/classes/LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 // Default channel constants — no magic numbers in channel-resolution fallback logic.
 define('LUPO_DEFAULT_CHANNEL_KEY', 'lupopedia-development');
 define('LUPO_DEFAULT_CHANNEL_ID', 42);

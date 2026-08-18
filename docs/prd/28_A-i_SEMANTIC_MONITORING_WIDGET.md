@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/28_A-i_SEMANTIC_MONITORING_WIDGET.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/28_A-i_SEMANTIC_MONITORING_WIDGET.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817092400'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/28_semantic_monitoring_widget.toon
@@ -103,16 +103,24 @@ Provides comprehensive semantic monitoring, page tracking, and user interaction 
 ## Semantic Monitoring Widget
 
 - Department 1 users embed a cut-and-paste JavaScript snippet into their website.
+
+**Product Lineage Note:** Crafty Syntax, Sales Syntax, White Label Syntax, and Black Label Syntax are branding forks of the same author and the same underlying system. They are one family, not separate products. All four converge into Lupopedia OS. Legacy Eye / live-help embeds that still use those brand names are this same family.
+
 - The widget monitors:
   - page enter/exit events
   - visitor navigation paths
   - next/previous page predictions
+  - color identity for the current page (when known)
+  - parent/child lineage for the current page (when known)
+  - active Collection (`collection_name`) and Collection Selector state
 - The widget provides a floating navigation bar with:
   - comments
   - likes
   - shares
-- The widget can launch a "collections" top floating nav bar.
-- Collections group related pages into dropdown menus.
+  - color identity badge
+  - lineage indicators and actions
+- The widget can launch a "collections" top floating nav bar (blue Collection Selector plus green content tabs).
+- Collections group related pages into dropdown menus. A Color Group includes `collection_name` and represents that Collection.
 
 ## Actor Learning Boundaries
 
@@ -205,6 +213,8 @@ Fixed bar at bottom-right. Each icon shows a count badge and opens a dropdown.
 | 11 | [Edges] | All Edges | `lupo_edges` | `left_object_id` OR `right_object_id` |
 | 12 | [Live] | Live Help | chat system | online status |
 | 13 | [Memory] | Memory Edges | `lupo_memory_edges` | `from_memory_node_id`, `to_memory_node_id`, `edge_type`, `edge_status`, `edge_context`, `edge_direction`, `weight_hundredths` |
+| 14 | [Color] | Color Identity | Lupopedia OS color registry (PRD 90 / PRD 01_B) | GroupColor, ColorName, HEX6 when known |
+| 15 | [Lineage] | Lineage | Lupopedia OS lineage records | parent URL, child URLs, change type, change intent |
 
 ### Verified Query Patterns
 
@@ -537,6 +547,31 @@ $rows = $db->fetchAll(
 
 **Note:** `lupo_collections` has no `is_public` column. Shared/public collections are identified by `published_ymdhis IS NOT NULL AND published_ymdhis > 0`.
 
+### Color Groups and Collections (unified)
+
+A Color Group is not only a color identity. It also represents a **Collection**: a named set of webpages, artifacts, or semantic nodes. Color Groups and Collections are unified concepts in the Lupopedia OS.
+
+A Color Group stores:
+
+- `color_group` (GroupColor family)
+- `color_nickname` (ColorName)
+- `collection_name` (new field; binds the Color Group to a Collection)
+- lineage metadata (parent/child URLs, change type, change intent, explanation)
+- semantic identity metadata (handshake, HEX6 when known, node/slug context)
+
+**How Collections work in the UI**
+
+- The **blue dropdown** is the **Collection Selector**.
+- Each entry is a **Collection Name**.
+- Selecting a Collection sets the active Collection and **changes all semantic menus**.
+- The **green top-level tabs** (for example `[Content A]`, `[Content B]`) become **multi-level drop menus** populated with items from that Collection.
+- Those menus are sourced from **`lupo_collection_tabs`** filtered by the selected Collection.
+- Collection rows live in **`lupo_collections`**. Tab rows live in **`lupo_collection_tabs`**. Item membership uses **`lupo_collection_tab_map`**. Full table doctrine is **PRD 73**.
+
+`collection_name` on the Color Group MUST match the Collection identity in `lupo_collections` (`collection_name` / `name` / `slug` as that table is documented). Do not invent a second collection namespace.
+
+This subsection is **PRD-level**. It does **not** add install SQL. Until color-registry storage exists, empty/pending `collection_name` is valid. HEX6 MUST NOT be guessed.
+
 ### Tier 2: Emergent Collections (Light Green)
 
 Discovered from session co-occurrence analysis via `lupo_visits` (`session_id`, `entercontentid`, `exitcontentid`). See `docs/prd/73_collections_navigation.md` for full emergent collection doctrine.
@@ -626,8 +661,93 @@ All PHP handlers use `DatabaseFactory::getConnection()` and `LUPO_TABLE_PREFIX`.
 
 **Violation:** Any code that uses `$_SERVER['REMOTE_ADDR']` without checking forwarded headers is constitutionally non-compliant.
 
+## Color Identity and Lineage in The Eye
+
+This section is **PRD-level only**. It does **not** add install SQL, new tables, or guessed HEX6 values. Color doctrine is **PRD 90**. Color registry tables are **PRD 01_B** (planning). Local domain content coloring is **not** the Color Registry homepage; that homepage declares **cross-domain lineage**. The Eye shows both: the current page's color identity (when known) and its lineage (when known).
+
+**Artifact lineage widgets exist separately from The Eye.** Licensed-artifact embeds (music first, CC-BY first license) are **PRD 92**. The Eye MUST NOT load inside an artifact embed. Webpage lineage stays here; artifact remix/attribution lineage stays in PRD 92.
+
+**Data source:** All color and lineage metadata comes from the Lupopedia OS. The Eye **MUST** request it through **`lupopedia_js.php`** (see **PRD 04**). The widget MUST NOT query the database from the browser. Until registry/lineage storage is implemented, the widget MUST render an empty or pending state rather than inventing values.
+
+**HEX6 rules (normative):** HEX6 is six digits with **no** `#` in storage. HEX5 is not a color. Color is **not** a LUP KEY token. The widget MUST NOT guess HEX6. If HEX6 is unknown, display `pending` (or equivalent) and still show GroupColor / ColorName when those are known.
+
+Handshake display (when identity exists): `lupopedia poweredby [GroupColor] [ColorName]`.
+
+### Color Identity Display
+
+The Eye MUST be able to show, for the current page:
+
+- Color Group (GroupColor family: BLACK, GOLD, WHITE, and the rest of the PRD 90 base register)
+- Color Nickname (ColorName)
+- Collection Name (`collection_name`; the Collection this Color Group represents)
+- Color Hex / symbolic color: HEX6 when known; otherwise pending. Symbolic color is the GroupColor family, not a guessed hex.
+- A small color badge in the widget (use HEX6 only when known; otherwise a neutral badge plus GroupColor label)
+
+### Lineage Display
+
+The Eye MUST be able to show, for the current page:
+
+- Parent URL (if one exists)
+- Child URLs (if any)
+- A **View Lineage Tree** link
+- A **Declare Child Page** action
+- A **Find References** action
+
+Lineage is a parent-to-child relationship between URLs (including across domains). Change type, change intent, and optional change explanation belong to the lineage record (Color Registry form). The Eye MAY surface those fields when present.
+
+**Declare Child Page** MUST open the Color Registry homepage (`index.php`) with `?parent=` set to the current page path **relative to the domain root**, not relative to `/lupopedia/`. Example: page `https://example.com/meaningoflife.htm` on an install at `https://example.com/lupopedia/` opens `https://example.com/lupopedia/?parent=meaningoflife.htm`, which prefills Parent URL as `https://example.com/meaningoflife.htm`.
+
+**Color this Page** is local content coloring (live help Content / OS content tools). It MUST NOT treat the Color Registry homepage as the place to color the installed domain.
+
+### Actions
+
+The Eye MUST expose these actions (enabled when the operator/session is allowed; otherwise hide or disable):
+
+| Action | Meaning |
+|--------|---------|
+| Color this Page | Open local content coloring (live help Content). Does not color via the lineage homepage. |
+| Declare Child Page | Open Color Registry with `?parent=` for the current page path. |
+| View Lineage | Open lineage tree / lineage panel for the current page. |
+| Copy Page | Copy the current page URL (and, when known, handshake text). |
+| Edit Page | Open the local content editor for this page when it is an OS content artifact. |
+| Share Page | Existing share action (`lupo_actor_actions` / [Shares] icon). |
+| Find References | Existing referencing-pages lookup ([Ref] icon). |
+
+### Payload shape (from `lupopedia_js.php`)
+
+The Eye MUST accept a metadata object (names may be nested under `color` / `lineage`). Unknown fields MUST be ignored. Missing identity MUST be represented as empty/pending, not invented.
+
+```text
+color.group_color
+color.color_name
+color.collection_name
+color.hex6          (six digits or empty; never guessed)
+color.handshake
+lineage.parent_url
+lineage.child_urls[]
+lineage.change_type
+lineage.change_intent
+lineage.change_explanation
+actions.color_this_page_url
+actions.declare_child_page_url
+actions.view_lineage_url
+actions.edit_page_url
+```
+
+### Tracking
+
+Viewing color identity, viewing lineage, declaring a child page, and referencing a parent page are analytics events. See **PRD 11**.
+
 ## Cross-References
 
+- **PRD 73: Collections Navigation** -- `lupo_collections`, `lupo_collection_tabs`; Color Group `collection_name` binds to a Collection.
+- **PRD 92: Artifact Lineage Widget** -- generalized artifact lineage embed (CC-BY music first surface); not The Eye.
+- **PRD 90: Color Identity Doctrine** -- GroupColor, ColorName, HEX6, handshake, color is not a KEY token.
+- **PRD 01_B: Color registry tables** -- planning for stored identity (no DDL from this Eye section).
+- **PRD 04: Lupopedia JS Foundation** -- `lupopedia_js.php` fetches color + lineage metadata and passes it to The Eye.
+- **PRD 21: Semantic Navbar** -- navbar MAY show color identity when relevant.
+- **PRD 11: Analytics Tracking** -- color identity viewed, lineage viewed, child page created, parent page referenced.
+- **PRD 33: Softaculous / embed contract** -- Eye color + lineage indicators are part of the `lupopedia_js.php` embed.
 - **PRD 38: Memory Unification** -- memory nodes and edges schema (`lupo_memory_nodes`, `lupo_memory_edges`).
 - **PRD 50: Agent Coordination Protocol** -- chat interface, collections bridge, recently created panel.
 - **PRD 51: Memory Graph as Source of Truth** -- header inference from memory, path/referrer aggregation.
@@ -650,6 +770,10 @@ Before writing any PHP for this widget:
 - [ ] Edge status visual indicators (`supported` / provisional including `staging` or `unsupported` / `needs_review`)
 - [ ] Bidirectional vs unidirectional arrow display for **`edge_direction`**
 - [ ] Integration with **`lupo_memory_edges`** (distinct from **`lupo_edges`** per **section 13** note)
+- [ ] Color identity badge (GroupColor, ColorName, collection_name, HEX6 when known; never guess HEX6)
+- [ ] Collection Selector (blue dropdown) repopulates green semantic tabs from lupo_collection_tabs
+- [ ] Lineage panel (parent URL, child URLs, View Lineage Tree, Declare Child Page)
+- [ ] `lupopedia_js.php` color + lineage metadata payload (PRD 04); empty/pending until storage exists
 
 
 ---

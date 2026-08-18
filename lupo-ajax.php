@@ -23,7 +23,8 @@ lupopedia.headers:
 */
 
 define('LUPOPEDIA_PATH', __DIR__);
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 
 $UNTRUSTED = array(
     'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),

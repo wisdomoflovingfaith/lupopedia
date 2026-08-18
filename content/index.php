@@ -37,9 +37,8 @@ ini_set('display_errors', '0');
 ini_set('display_startup_errors', '0');
 
 define('LUPOPEDIA_PATH', dirname(__DIR__));
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(__DIR__)));
-
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 $lupoCfg = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 
 if ($lupoCfg === null || !LupopediaConfigResolver::isSafeLocalConfigPath($lupoCfg)) {

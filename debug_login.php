@@ -9,9 +9,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 define('LUPOPEDIA_PATH', __DIR__);
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
-
 require_once LUPOPEDIA_PATH . '/includes/classes/LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 $lupopediaConfigPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 if (!$lupopediaConfigPath) {
     die("Lupopedia config not found.");

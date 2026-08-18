@@ -5,8 +5,8 @@
 
 // Load config using proper resolver
 define('LUPOPEDIA_PATH', __DIR__);
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 $lupopediaConfigPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 if (!$lupopediaConfigPath) {
     die('Configuration file not found. Please ensure lupopedia-config.php exists.');

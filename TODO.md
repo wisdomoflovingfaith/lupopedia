@@ -40,3 +40,18 @@ This root file now serves as a redirect pointer only. All active tasks, session 
 ## Current Active TODO
 
 See: **`lupo-docs/versions/4.1.4/TODO.md`**
+
+## Crafty Syntax Import Verification & Repair
+- Issue: After upgrade, all `livehelp_*` tables were dropped from the `lupopedia` database.
+- Result: `import_from_crafty_syntax.sql` had no source tables to read.
+- Evidence: 
+  - `lupopedia` target tables (lupo_crafty_syntax_*) are empty.
+  - Sibling DBs `craftysyntax` and `old_craftysyntax` still contain 34–35 `livehelp_*` tables with real data.
+  - JSON fallback files are schema-only and contain no rows.
+- Required future work:
+  - Re-run import against a database that still contains `livehelp_*` tables.
+  - Verify mapping from each `livehelp_*` table to its `lupo_*` target.
+  - Test import using a few random domains with real Crafty data.
+  - Confirm row counts and cross-table relationships after import.
+  - Add safety check to installer: warn if `livehelp_*` tables are missing.
+- Status: Paused. Will revisit after current tasks.

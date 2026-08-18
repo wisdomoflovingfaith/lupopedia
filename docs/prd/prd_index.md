@@ -148,10 +148,15 @@ lupopedia.headers:
 | 89 | A | i | `89_A-i_TASK_SYSTEM_INTEGRATION.md` | specification | PRD 89: Task System Integration |
 | 90 | A | i | `90_A-i_COLOR_IDENTITY_DOCTRINE.md` | specification | PRD 90: Color Identity Doctrine |
 | 91 | A | i | `91_A-i_INTENT_ENCODING.md` | specification | PRD 91 - Intent Encoding - Constitutional PRD |
+| 92 | A | i | `92_A-i_ARTIFACT_LINEAGE_WIDGET.md` | specification | PRD 92: Artifact Lineage Widget (generalized artifact lineage) |
+| 93 | A | i | `93_A-i_CONSOLIDATION_PROTOCOL.md` | specification | PRD 93: Consolidation Protocol |
+| 94 | A | i | `94_A-i_LUP4PEDIA_PULL_SLOT.md` | specification | PRD 94: LUP4PEDIA Pull Slot (placeholder) |
+| 95 | A | i | `95_A-i_LUP5PEDIA_PULL_SLOT.md` | specification | PRD 95: LUP5PEDIA Pull Slot (placeholder) |
+| 96 | A | i | `96_A-i_LUP6PEDIA_PULL_SLOT.md` | specification | PRD 96: LUP6PEDIA Pull Slot (placeholder) |
 | 97 | A | i | `97_A-i_THE_WHY_FILES_THE_TRUTH_IS_OUT_THERE.md` | specification | PRD 97 ??? The WHY Files (The Truth Is Out There) |
 | 98 | A | i | `98_A-i_WHY_FILES_DOCTRINE.md` | specification | PRD 98_A: WHY Files Doctrine - Self-Healing Constitution |
 | 98 | B | i | `98_B-i_THE_CAPTAINS_LOG_HUMAN_ONLY_ENTERTAINMENT_LAYER.md` | specification | PRD 98: The Captain's Log (Human-Only Entertainment Layer - Core Rules) |
 | 98 | C | i | `98_C-i_DUAL_OPERATIONAL_LOGS.md` | requirements | PRD 98_C: Dual Operational Logs (Captain + WOLFIE) |
 | 99 | A | i | `99_A-i_LIMITS_FOR_EVERYTHING_AND_WHY.md` | specification | Constitutional Limits: Everything Has a Maximum |
 
-*123 PRDs indexed*
+*127 PRDs indexed*

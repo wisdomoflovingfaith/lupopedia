@@ -15,8 +15,9 @@
 if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', dirname(dirname(dirname(__DIR__))));
 }
+require_once LUPOPEDIA_PATH . '/includes/classes/LupopediaConfigResolver.php';
 if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
-    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(dirname(dirname(__DIR__)))));
+    define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 }
 
 require_once __DIR__ . '/../../../lupopedia-config.php';

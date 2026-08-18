@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/73_A-i_COLLECTIONS_NAVIGATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/73_A-i_COLLECTIONS_NAVIGATION.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817105400'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/73_collections_navigation.toon
@@ -18,7 +18,7 @@ lupopedia.headers:
   lupopedia.schema: prd
   prd_cluster: 00_A-i_73_A-i
   title: 'PRD 73: Collections, Tabs, Navigation, and Organization Database Tables'
-  summary: null
+  summary: 'Collections, tabs, navigation tables, and Portable Semantic Collections (PSC) for cross-node JSON export/import.'
 ---
 # PRD: Collections, Tabs, Navigation, and Organization Database Tables
 
@@ -49,6 +49,10 @@ Domain (node)
 ## Overview
 
 **Namespace Purpose:** Provides collection management, tabbed interfaces, navigation structures, and organizational hierarchies. This namespace enables users to organize, browse, and navigate content efficiently.
+
+Collections MAY represent albums or creative projects. Webpage Collections drive the semantic navbar (PRD 21). Artifact Collections (album / project / set) bind to Color Group `collection_name` for the Artifact Lineage Widget (**PRD 92**). Same `lupo_collections` / `lupo_collection_tabs` tables. Navbar chrome MUST NOT appear inside artifact embeds.
+
+**Portable Semantic Collections (PSC)** are a first-class collection feature (see **section 10**). A collection MAY be exported as JSON and imported on another Lupopedia node. PSC carries collection structure, color identity, artifact lineage, remix chains, attribution, artifact kinds, and originating node metadata. Local-only collections remain valid when PSC is off.
 
 **Primary Actors:** 
 - Collection creators (via lupo_collections)
@@ -262,6 +266,8 @@ Folder paths are validated for security
 
 Soft delete preserves organizational structure for audit
 
+PSC import MUST sanitize URLs, validate JSON against the PSC schema, reject remote code injection, and MUST NOT auto-execute scripts inside artifacts (section 10).
+
 ## Testing Requirements
 
 Unit tests for collection creation and tab management
@@ -445,4 +451,160 @@ When a higher authority source becomes available, it replaces the lower one.
 - VISH reads provisional collections in fallback mode but does not treat them as canonical. VISH must not override authoritative DB collections with guesses.
 
 > **CHIRON may scaffold. VISH may read. Database decides.**
+
+## 10. Portable Semantic Collections (PSC)
+
+**RULE 73.COLLECTIONS -- Portable Semantic Collections (PSC):** Cross-node semantic portability of collections is required for federation compliance when the installer enables PSC.
+
+PSC is a first-class collection feature. It is not a separate product. It sits on `lupo_collections` / `lupo_collection_tabs` / tab maps. Webpage Collections (PRD 21) and artifact Collections (PRD 92) MAY both be exported as PSC JSON.
+
+This section is **PRD-level**. It does **not** add install SQL. HEX6 MUST NOT be guessed. Color is not a LUP KEY token. HEX6 is six digits with no `#`. HEX5 is not a color.
+
+### 10.1 Summary
+
+Portable Semantic Collections (PSC) allow any Lupopedia collection to be exported as a JSON artifact and imported into any other Lupopedia node. PSC enables cross-node semantic portability of:
+
+- collection structure
+- color identity
+- artifact lineage
+- remix chains
+- attribution
+- artifact kinds
+- federated node metadata
+
+PSC transforms collections from local-only constructs into cross-domain semantic playlists.
+
+### 10.2 JSON schema (required)
+
+```json
+{
+  "collection_name": "string",
+  "color_group": "string",
+  "color_hex": "string",
+  "node_id": "integer",
+  "collection_id": "integer",
+  "links": [
+    {
+      "title": "string",
+      "url": "string",
+      "artifact_kind": "string",
+      "lineage_parent": "string or null",
+      "lineage_children": ["string"],
+      "license": "string",
+      "color_group": "string"
+    }
+  ]
+}
+```
+
+**Required fields**
+
+| Field | Meaning |
+|-------|---------|
+| `collection_name` | Semantic grouping name (binds to Color Group `collection_name` / `lupo_collections`) |
+| `color_group` | Identity group (GroupColor family, PRD 90) |
+| `color_hex` | Visual identity. This is **HEX6**: six digits, no `#`. Empty means pending. MUST NOT be guessed on import. |
+| `node_id` | Originating federation node (`federation_node_id`) |
+| `collection_id` | Originating collection id on that node (not reused as the local PK) |
+| `links[]` | Artifacts, pages, or external resources |
+
+**Lineage fields (per link)**
+
+- `lineage_parent` -- parent URL or artifact id string, or null
+- `lineage_children[]` -- child URLs or artifact id strings
+
+These fields allow PSC to preserve remix chains, derivative relationships, and semantic ancestry across nodes.
+
+**`artifact_kind`:** `track | video | audio | document | image | code | other` (PRD 92), or a page kind such as `page` for webpage collection items.
+
+**`license`:** first supported license is CC-BY; other licenses MAY appear as strings. Do not invent license terms.
+
+### 10.3 Import behavior (cross-node federation)
+
+**1. Color identity sync**
+
+- If the color group exists locally, use it.
+- If not, create it (GroupColor + ColorName / collection binding per PRD 90 / Color Group unification). Do **not** invent HEX6.
+- If `color_hex` differs from local HEX6, apply Color Identity Sync Mode (installer option):
+  - **strict** -- reject the import (or reject that color field)
+  - **permissive** -- keep the local HEX6
+  - **merge** -- installer-defined merge; still MUST NOT guess a new HEX6
+
+**2. Collection creation**
+
+- Allocate a **new** local `collection_id` via `IdGenerator::generate()`.
+- Keep the same `collection_name`.
+- Keep the same `color_group`.
+- Do not reuse the originating `collection_id` as the local primary key.
+
+**3. Artifact resolution**
+
+- If the artifact exists locally, link it into the collection.
+- If remote, create an external stub (URL + metadata; no fetch-and-execute).
+- If unknown, create a placeholder artifact.
+
+**4. Lineage sync**
+
+- Import parent/child relationships from `lineage_parent` / `lineage_children`.
+- Preserve remix chains.
+- Preserve attribution (`license` and related fields).
+- Webpage lineage stays webpage lineage. Artifact lineage stays PRD 92. PSC MAY carry both in `links[]`.
+
+**5. Federation metadata**
+
+- Store originating `node_id`.
+- Mark the collection as PSC-imported (application metadata; no DDL from this section).
+- PSC-imported collections count as **Imported collections** in section 9 (authoritative when present).
+
+### 10.4 Installer options
+
+Add to the installer / node config (PRD 27 / PRD 33 consume these flags; this PRD defines the meaning):
+
+| Option | Values | Meaning |
+|--------|--------|---------|
+| Enable Portable Semantic Collections | ON / OFF | ON: export/import JSON. OFF: local collections only. |
+| Allow Cross-Node Imports | ON / OFF | ON: federation imports. OFF: isolated node (export MAY still work). |
+| Color Identity Sync Mode | strict / permissive / merge | HEX6 conflict handling. Never guess HEX6. |
+
+Default for a fresh isolated node MAY be PSC OFF until the operator enables it. Federation-compliant nodes MUST be able to turn PSC ON.
+
+### 10.5 UI requirements
+
+**Export:** button label `Download Collection (PSC)`. Generates a JSON file. Includes color identity and lineage metadata.
+
+**Import:** button label `Import Collection (PSC)`. Validates JSON against this schema. Shows a preview of:
+
+- color group
+- number of artifacts
+- lineage relationships
+- external links
+
+Import MUST fail closed on invalid JSON, failed URL sanitization, or disallowed schemes.
+
+### 10.6 Security requirements
+
+- PSC import MUST sanitize URLs (allow `http` and `https` only; reject `javascript:`, `data:`, and file schemes).
+- PSC import MUST validate JSON against the schema above (required fields, types).
+- PSC import MUST prevent remote code injection.
+- PSC import MUST NOT auto-execute scripts inside artifacts.
+- PSC import MUST NOT fetch remote HTML/JS and eval it.
+- HEX6 in `color_hex` MUST be six hex digits or empty. Reject other shapes. Do not invent a value.
+
+### 10.7 Coexistence
+
+- MUST NOT break local collections when PSC is OFF.
+- MUST NOT break The Eye webpage lineage (PRD 28) or the Color Registry homepage.
+- MUST NOT break artifact lineage embeds (PRD 92).
+- MUST NOT break Crafty tracking (PRD 33 / PRD 50).
+- Navbar still MUST NOT appear inside artifact embeds.
+
+### 10.8 Cross-references
+
+- PRD 90 -- Color identity. HEX6 never guessed.
+- PRD 92 -- Artifact Lineage Widget; `artifact_kind` and remix chains.
+- PRD 21 / PRD 28 -- Color Group `collection_name` unification; Collection Selector.
+- PRD 34 -- federation nodes and trust.
+- PRD 27 / PRD 33 -- installer flags for PSC.
+- PRD 11 -- collection_selected and artifact lineage events MAY fire on PSC import/export; do not invent counts.
+
 

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/classes/LupopediaConfigResolver.php';
-$lupoCfgPath = LupopediaConfigResolver::resolve(__DIR__, '/' . basename(__DIR__));
+$lupoCfgPath = LupopediaConfigResolver::resolve(__DIR__, LupopediaConfigResolver::publicPathFromRequest(__DIR__));
 require_once $lupoCfgPath;
 require_once __DIR__ . '/includes/classes/DatabaseFactory.php';
 

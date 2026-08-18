@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/04_A-i_LUPOPEDIA_JS_FOUNDATION.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/04_A-i_LUPOPEDIA_JS_FOUNDATION.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817092400'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/04_lupopedia_js_foundation.toon
@@ -51,7 +51,60 @@ Domain (node)
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
 
-## Context????????Typed, Status????????Aware, Directional Edged Memory Doctrine (4.0.96)
+## Product Lineage Note (Crafty Syntax to Lupopedia)
+
+The following systems were developed by the same author and share a single unified code lineage:
+
+- **Crafty Syntax** -- original open-source lineage
+- **Sales Syntax** -- commercial branding fork
+- **White Label Syntax** -- reseller branding fork
+- **Black Label Syntax** -- enterprise branding fork
+
+These names are branding forks of the same underlying system, created for different distribution channels. They are one family, not separate or competing products. All four forks converge into the unified Lupopedia OS architecture.
+
+`livehelp_js.php` (Crafty-family live help embed) and `lupopedia_js.php` (The Eye) are Lupopedia OS scripts. Legacy embeds that still name Crafty Syntax, Sales Syntax, White Label Syntax, or Black Label Syntax are the same family. Do not treat those names as independent products.
+
+## lupopedia_js.php -- color identity and lineage payload (The Eye)
+
+**`lupopedia_js.php`** is the public JS entry for The Eye (PRD 28). It MUST fetch color identity and lineage metadata from the Lupopedia OS and pass that payload to the widget. The browser MUST NOT query the database.
+
+This is a **PRD requirement**. It does **not** add install SQL. Until color registry / lineage storage exists (PRD 90 / PRD 01_B), the script MUST pass empty or pending fields. HEX6 MUST NOT be guessed. HEX6 is six digits with no `#`. HEX5 is not a color. Color is not a LUP KEY token.
+
+A Color Group is not only a color identity. It also represents a **Collection** (named set of webpages, artifacts, or semantic nodes). Color Groups and Collections are unified. The payload MUST include `collection_name`.
+
+Required payload fields (empty string or omitted when unknown):
+
+```text
+color.group_color
+color.color_name
+color.collection_name
+color.hex6
+color.handshake
+lineage.parent_url
+lineage.child_urls[]
+lineage.change_type
+lineage.change_intent
+lineage.change_explanation
+collection.collection_id
+collection.collection_name
+collection.tabs[]
+actions.color_this_page_url
+actions.declare_child_page_url
+actions.view_lineage_url
+actions.edit_page_url
+```
+
+**Collection Selector:** `lupopedia_js.php` MUST pass Collection list and the active Collection to The Eye / semantic navbar. The **blue dropdown** is the Collection Selector. Selecting a Collection MUST reload semantic menus from **`lupo_collection_tabs`** filtered by that Collection (`lupo_collections` + `lupo_collection_tabs`, PRD 73 / PRD 21). Green tabs become multi-level drop menus for that Collection's pages.
+
+**Declare Child Page URL:** `lupopedia_js.php` MUST be able to construct `{LUPOPEDIA_PUBLIC_PATH}/?parent=` using the current page path **relative to the domain root** (parent of `/lupopedia/`), not relative to the OS directory.
+
+**Coexistence:** `livehelp_js.php` remains the Crafty live-help embed (chat icon / invites). `lupopedia_js.php` remains The Eye. Both MAY appear on the same page. Live help handles local domain content coloring (Content). The Eye displays color identity + lineage indicators and routes Declare Child Page to the Color Registry homepage.
+
+**Artifact lineage payloads:** JS foundation MUST support artifact lineage payloads for **PRD 92** (Artifact Lineage Widget; CC-BY music is the first surface). Allowed as `lupopedia_js.php?mode=artifact` and/or `artifact_lineage_js.php`. That mode MUST return artifact metadata (parent, remix chain, attribution, kind) without loading The Eye or the semantic navbar.
+
+**Tracking:** When the widget surfaces color identity, lineage, or a Collection change, emit the PRD 11 events: `color_identity_viewed`, `lineage_viewed`, `child_page_created`, `parent_page_referenced`, `collection_selected`.
+
+## Context-Typed, Status-Aware, Directional Edged Memory Doctrine (4.0.96)
 
 1. Memory in Lupopedia is represented as a directed graph of nodes and edges. 
   Each memory node is a first-class entity in the semantic network and may be 

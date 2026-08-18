@@ -28,8 +28,8 @@ $UNTRUSTED = array(
 );
 
 $lupoRoot = __DIR__;
-$lupoPub = '/' . basename($lupoRoot);
 require_once $lupoRoot . '/includes/classes/LupopediaConfigResolver.php';
+$lupoPub = LupopediaConfigResolver::publicPathFromRequest($lupoRoot);
 $lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
 if ($lupoCfgPath === null) {
     $lupoScript = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';

@@ -25,7 +25,8 @@
 #   summary: "Main channel and chat UI; PRD 82 transcript path under lupo-memory/transcripts; Hermes helpers; api_dashboard=1 serves admin partial."
 # ---------------------------------------------------------------------
 define('LUPOPEDIA_PATH', dirname(__DIR__));
-define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(LUPOPEDIA_PATH));
+require_once LUPOPEDIA_PATH . '/includes/classes/LupopediaConfigResolver.php';
+define('LUPOPEDIA_PUBLIC_PATH', LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH));
 // Default channel constants — no magic numbers in channel-resolution fallback logic.
 define('LUPO_DEFAULT_CHANNEL_KEY', 'lupopedia-development');
 define('LUPO_DEFAULT_CHANNEL_ID', 42);
@@ -34,7 +35,6 @@ $UNTRUSTED = array(
     'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
 );
 
-require_once LUPOPEDIA_PATH . '/includes/classes/LupopediaConfigResolver.php';
 $lupoResolvedCfg = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 define('LUPOPEDIA_CONFIG_PATH', $lupoResolvedCfg ?: LUPOPEDIA_PATH . '/lupopedia-config.php');
 require_once LUPOPEDIA_CONFIG_PATH;

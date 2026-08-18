@@ -53,7 +53,7 @@
  * E. Upgrade run step: import → personal channels and captain roles → drop → config (install/seed/reserved already done at credentials).
  * F. New install run step: install → seed → reserved channels → config.
  * G. Upgrade SQL order: create_reserved_system_channels (at credentials) → normalize → import → personal channels/roles → drop.
- * H. Write lupopedia-config.php. Redirect to login.php.
+ * H. Write lupopedia-config.php. Redirect to index.php (Color Registry). Live help login is livehelp/login.php.
  *
  * @package Lupopedia
  * @see docs/doctrine/migrations/ Installation SQL Rule
@@ -311,7 +311,7 @@ session_start();
 
 // Only treat as installed if lupopedia-config.php exists (WordPress-style multi-path resolve) and defines LUPOPEDIA_CONFIG_LOADED.
 // Do NOT treat config.php or other files as installed; do not redirect during install.
-$lupoWizardPublicPath = '/' . basename(LUPOPEDIA_PATH);
+$lupoWizardPublicPath = LupopediaConfigResolver::publicPathFromRequest(LUPOPEDIA_PATH);
 $configPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, $lupoWizardPublicPath);
 $forceReinstall = isset($_GET['force_reinstall']) && $_GET['force_reinstall'] === '1';
 if ($configPath !== null && is_file($configPath) && !$forceReinstall) {
@@ -320,7 +320,7 @@ if ($configPath !== null && is_file($configPath) && !$forceReinstall) {
         $scriptName = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
         $dir = str_replace('\\', '/', dirname($scriptName));
         $base = rtrim($dir, '/');
-        header('Location: ' . ($base === '' ? '/login.php' : $base . '/login.php'));
+        header('Location: ' . ($base === '' ? '/index.php' : $base . '/index.php'));
         exit;
     }
 }
@@ -1211,7 +1211,8 @@ if ($step === 'complete') {
     }
     $complete_config_log = isset($_SESSION['lupo_config_log']) ? $_SESSION['lupo_config_log'] : array();
     // Relative to install folder (same as $baseUrl . …); avoids duplicating SCRIPT_NAME in the href.
-    $loginUrl = 'login.php';
+    $loginUrl = 'livehelp/login.php';
+    $registryUrl = 'index.php';
 }
 
 // ----- Output HTML
@@ -1832,7 +1833,7 @@ if ($baseUrl === '') {
                         <li>Skip dropping legacy <code>livehelp_*</code> tables (option unchecked at credentials)</li>
                     <?php endif; ?>
                     <li>Write <code>lupopedia-config.php</code></li>
-                    <li>Redirect to login.php</li>
+                    <li>Redirect to index.php (Color Registry). Live help login remains at livehelp/login.php</li>
                 </ol>
                 <p style="font-size:0.9rem; color:#666;"><strong>Doctrine:</strong> Crafty Syntax users are migrated into the
                     Lupopedia actor system. Actor IDs 0–9999 are reserved for system and AI agents. Human actors begin at ID
@@ -1850,7 +1851,7 @@ if ($baseUrl === '') {
                     <li>Run consolidated seed (<code>install/seed_lupopedia_4_1_0.sql</code> if present, else <code>mysql/seed/seed_4.1.0.sql</code>), including PRD 01_B color registry rows</li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
-                    <li>Redirect to login.php</li>
+                    <li>Redirect to index.php (Color Registry). Live help login remains at livehelp/login.php</li>
                 </ol>
             <?php endif; ?>
             <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>"
@@ -2291,7 +2292,8 @@ if ($baseUrl === '') {
                     or later.</p>
             </div>
             <p>
-                <a href="<?php echo htmlspecialchars($baseUrl . $loginUrl); ?>" class="btn">Go to Login</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . $registryUrl); ?>" class="btn">Open Color Registry</a>
+                <a href="<?php echo htmlspecialchars($baseUrl . $loginUrl); ?>" class="btn btn-secondary">Live help login</a>
                 <a href="<?php echo htmlspecialchars($baseUrl . 'admin.php'); ?>" class="btn btn-secondary">Open Admin</a>
                 <a href="<?php echo htmlspecialchars($baseUrl . 'install.php?step=download_log&which=bootstrap'); ?>"
                     class="btn btn-secondary" download>Download bootstrap log</a>

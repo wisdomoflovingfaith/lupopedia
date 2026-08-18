@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/11_A-i_ANALYTICS_TRACKING.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/11_A-i_ANALYTICS_TRACKING.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817092400'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/11_analytics_tracking.toon
@@ -84,6 +84,8 @@ In-repo reference PHP (repository root **`craftysyntax-reference/`**) defines th
 - **`image.php`** (and related **`what=`** commands) writes **per-page** rows to **`livehelp_visit_track`** (`sessionid`, `location`, `page`/`pageid`, `title`, `whendone`, `referrer`), keyed by **`identity['SESSIONID']`** from **`functions.php` `identity()`**.
 - Embeds (**`livehelp_js.php`**) drive polling/requests that keep **`SESSIONID`** stable per browser.
 
+**Product Lineage Note:** Crafty Syntax, Sales Syntax, White Label Syntax, and Black Label Syntax are branding forks of the same author and the same underlying system (open-source, commercial, reseller, enterprise). They are one family, not separate products. They converge into Lupopedia OS. `livehelp_js.php` / `image.php` embeds from any of those names belong to this lineage.
+
 ### Identity and IP (maps to Lupopedia session/visit rows)
 
 - **`get_ipaddress()`** ???????? Proxy/CDN header chain, public-IP preference, comma-separated **X-Forwarded-For** handling.
@@ -112,7 +114,7 @@ In-repo reference PHP (repository root **`craftysyntax-reference/`**) defines th
 - **VPN / mobile:** IP class changes session-to-session; ???????same visitor??????? becomes probabilistic.
 - **Ethics / consent:** Fingerprinting for analytics touches **SILENT_HARVEST** and operator-facing disclosure; align with **PRD 11** / **PRD 34** narrative before enabling on arbitrary external sites.
 
-**Related:** **PRD 33** ????3.2????????3.3 (Crafty **`image.php`** / **`SESSIONID`**), **PRD 28** (monitoring widget), **PRD 21** (semantic navbar API + embed).
+**Related:** **PRD 33** (Crafty **`image.php`** / **`SESSIONID`**), **PRD 28** (monitoring widget, color identity + lineage indicators), **PRD 21** (semantic navbar API + embed).
 
 ### KAIROS, mobile surfaces, and semantic monitoring (cross-links)
 
@@ -335,6 +337,40 @@ $dailyStats = $analyticsService->getDailyStats($startDate, $endDate);
 $campaignService = new AnalyticsCampaignService();
 $varId = $campaignService->trackVariable($campaignName, $variableName, $value);
 ``` 
+
+## Color Identity and Lineage Events (The Eye)
+
+The Eye (PRD 28) and `lupopedia_js.php` (PRD 04) MUST be able to record these events. This PRD update does **not** add tables. Until a dedicated event store exists, implementations MAY log to **`lupo_audit_log`** / **`lupo_unified_log`** / existing visit metadata JSON. Do **not** invent HEX6 in event payloads.
+
+| Event key | When |
+|-----------|------|
+| `color_identity_viewed` | Visitor or operator opens or is shown the page's color identity (GroupColor, ColorName, HEX6 if known) in The Eye or navbar. |
+| `lineage_viewed` | Visitor or operator opens lineage display (parent URL, child URLs, lineage tree). |
+| `child_page_created` | A child page is declared (Color Registry submit / Declare Child Page completed). |
+| `parent_page_referenced` | A parent URL is attached or opened as the source of a lineage pair. |
+| `collection_selected` | Operator or visitor selects a Collection in the Collection Selector (blue dropdown). Payload SHOULD include `collection_name`. |
+
+Event payload SHOULD include (when known, never guessed): current URL, parent URL, child URL, GroupColor, ColorName, collection_name, HEX6 or empty, change type, change intent. Packed timestamps are BIGINT UTC (`gmdate('YmdHis')`).
+
+## Color Groups and Collections (unified)
+
+A Color Group is not only a color identity. It also represents a Collection (named set of webpages, artifacts, or semantic nodes). Color Groups store `color_group`, `color_nickname`, `collection_name`, lineage metadata, and semantic identity metadata.
+
+Collections determine the structure of semantic drop menus. The Collection Selector (blue dropdown) sets the active Collection. Green tabs and sub-menus are populated from **`lupo_collection_tabs`** filtered by that Collection. Collection rows are **`lupo_collections`** (PRD 73).
+
+Selecting a Collection is a first-class analytics event (`collection_selected`). Do not invent collection names.
+
+### Artifact lineage events (PRD 92)
+
+These events belong to the **artifact lineage widget**, not The Eye. Do not invent remix or like counts.
+
+| Event key | When |
+|-----------|------|
+| `remix_created` | A remix / child artifact is declared. |
+| `remix_viewed` | Remix chain or a child remix is shown. |
+| `attribution_viewed` | Attribution panel is shown (CC-BY first license). |
+| `artifact_engagement` | Like, share, or similar engagement (include type in payload). |
+| `artifact_lineage_viewed` | Artifact lineage tree is opened. |
 
 ---
 

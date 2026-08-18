@@ -46,6 +46,19 @@ Domain (node)
 
 **Schema keys:** `channel_key`, `channel_id`, and related channel metadata keep their existing names; this section clarifies semantics only (no field renames).
 
+## Product Lineage Note (Crafty Syntax to Lupopedia)
+
+The following systems were developed by the same author and share a single unified code lineage:
+
+- **Crafty Syntax** -- original open-source lineage
+- **Sales Syntax** -- commercial branding fork
+- **White Label Syntax** -- reseller branding fork
+- **Black Label Syntax** -- enterprise branding fork
+
+These names are branding forks of the same underlying system, created for different distribution channels. They are one family, not separate or competing products. All four forks converge into the unified Lupopedia OS architecture.
+
+The installer MUST treat Crafty Syntax, Sales Syntax, White Label Syntax, and Black Label Syntax packages and data as this same family when detecting legacy tables, preserving embed scripts, or importing live-help installs.
+
 ## Purpose
 This PRD defines the installer requirements for Lupopedia, ensuring compliance with the root constitutional system requirements and maximum compatibility with shared hosting environments.
 

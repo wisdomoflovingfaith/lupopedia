@@ -34,13 +34,11 @@ $UNTRUSTED = array(
 
 // Load config (WordPress-style paths: install dir, parent, legacy DOCUMENT_ROOT — see LupopediaConfigResolver)
 $lupoRoot = __DIR__;
-$lupoPub = '/' . basename($lupoRoot);
 require_once $lupoRoot . '/includes/classes/LupopediaConfigResolver.php';
+$lupoPub = LupopediaConfigResolver::publicPathFromRequest($lupoRoot);
 $lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
 if ($lupoCfgPath === null) {
-    $scriptName = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';
-    $dir = str_replace('\\', '/', dirname($scriptName));
-    $lupoBase = rtrim($dir, '/');
+    $lupoBase = rtrim((string) $lupoPub, '/');
     header('Location: ' . ($lupoBase === '' ? '/install.php' : $lupoBase . '/install.php'));
     exit;
 }

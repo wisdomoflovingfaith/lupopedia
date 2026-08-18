@@ -779,7 +779,7 @@ class InstallWizardConfigWriter
         $configPath = $writeTargets[1];
         $installRoot = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, LUPOPEDIA_PATH), DIRECTORY_SEPARATOR);
         $abspath = $installRoot . DIRECTORY_SEPARATOR;
-        $publicPathForDefine = '/' . basename($installRoot);
+        $publicPathForDefine = LupopediaConfigResolver::publicPathFromRequest($installRoot);
         $publicPathForDefineEsc = addslashes($publicPathForDefine);
 
         $apiProviderConfig = self::buildApiProviderConfigFromOptions($options);

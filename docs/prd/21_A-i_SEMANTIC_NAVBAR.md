@@ -4,7 +4,7 @@ lupopedia.headers:
   path_from_lupopedia_root: docs/prd/21_A-i_SEMANTIC_NAVBAR.md
   web_path: https://www.lupopedia.com/lupopedia/docs/prd/21_A-i_SEMANTIC_NAVBAR.md
   status: active
-  when_updated: '20260513033046'
+  when_updated: '20260817092400'
   trust_tier: canonical
   questions_toon: null
   memory_toon: memory/development/canonical/1026/04/21_semantic_navbar.toon
@@ -56,7 +56,7 @@ Domain (node)
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `{LUPOPEDIA_PUBLIC_PATH}/api/semantic_navbar` | GET | Single response containing previous, references, contexts, edges, hashtags, folders, qa, next. |
+| `{LUPOPEDIA_PUBLIC_PATH}/api/semantic_navbar` | GET | Single response containing previous, references, contexts, edges, hashtags, folders, qa, next, and optional color identity. |
 | Query params | `content_id` (bigint) or `slug` (string) or `entity_type` + `entity_id` | Identifies the current page. |
 
 **Response shape (example):**
@@ -69,9 +69,32 @@ Domain (node)
   "hashtags": [ { "hashtag_id", "tag_slug", "label" } ],
   "folders": [ { "folder_id", "name", "slug" } ],
   "qa": [ { "truth_id", "slug", "title", "answer_preview" } ],
-  "next": [ { "content_id", "title", "slug", "url" } ]
+  "next": [ { "content_id", "title", "slug", "url" } ],
+  "color_identity": {
+    "group_color": "GOLD",
+    "color_name": "goldenwolf",
+    "collection_name": "",
+    "hex6": "",
+    "handshake": "lupopedia poweredby [GOLD] [goldenwolf]"
+  }
 }
 ```
+
+**Color identity (optional):** The navbar MAY show the page's GroupColor, ColorName, Collection Name, and a small color badge when identity is known. HEX6 MUST NOT be guessed. HEX6 is six digits with no `#`. Color is not a LUP KEY token. Full color + lineage UI lives in **The Eye (PRD 28)**. Navbar display is a compact indicator, not the Color Registry form. Payload MAY arrive via the navbar API or via **`lupopedia_js.php`** (PRD 04). Empty/pending is valid until registry storage exists (PRD 90 / PRD 01_B). This PRD update adds no DDL.
+
+## Color Groups and Collections (unified)
+
+A Color Group is not only a color identity. It also represents a **Collection**: a named set of webpages, artifacts, or semantic nodes.
+
+A Color Group stores: `color_group`, `color_nickname`, `collection_name` (new), lineage metadata, and semantic identity metadata.
+
+**Collection Selector (blue dropdown):** Each entry is a Collection Name from **`lupo_collections`**. Selecting a Collection sets the active Collection and updates **all** semantic drop menus.
+
+**Green content tabs:** Top-level tabs (for example `[Content A]`, `[Content B]`) become **multi-level drop menus** whose items come from **`lupo_collection_tabs`** filtered by the selected Collection. Item membership is **`lupo_collection_tab_map`**. Table doctrine is **PRD 73**.
+
+Color Groups and Collections are unified: choosing a Collection is choosing which Color Group's webpage set the semantic navbar is showing.
+
+**Navbar does not appear in artifact embeds.** Artifact lineage (documents, video, music, images, code) is **PRD 92**. Do not inject this navbar into an artifact player or iframe.
 
 ---
 
@@ -234,6 +257,9 @@ The browser knows the embedder page URL (e.g. `https://shop.example/products/red
 
 ## 7. Related Documentation
 
+- **Color identity compact display:** this PRD (section 1). Full Eye color + lineage: `docs/prd/28_A-i_SEMANTIC_MONITORING_WIDGET.md`
+- **Color Groups and Collections (unified):** this PRD; tables `lupo_collections` / `lupo_collection_tabs` in `docs/prd/73_A-i_COLLECTIONS_NAVIGATION.md`
+- **lupopedia_js.php payload:** `docs/prd/04_A-i_LUPOPEDIA_JS_FOUNDATION.md`
 - **Admin embedder setup (forms, snippet):** `includes/classes/AdminSemanticWidgetHandler.php`
 - **Federation / semantic network (peers, navigation compiler direction):** `docs/prd/34_federation_node_semantic_network.md`
 - **Cross-origin visitor identity and embed fingerprint:** `docs/prd/11_analytics_tracking.md`

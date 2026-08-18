@@ -4,8 +4,8 @@
  */
 
 $lupoRoot = __DIR__;
-$lupoPub = '/' . basename($lupoRoot);
 require_once $lupoRoot . '/includes/classes/LupopediaConfigResolver.php';
+$lupoPub = LupopediaConfigResolver::publicPathFromRequest($lupoRoot);
 $lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
 if ($lupoCfgPath === null) {
     $lupoBase = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
