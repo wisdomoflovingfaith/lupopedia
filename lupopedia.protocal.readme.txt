@@ -180,6 +180,7 @@ Do not increment E8 for metadata-only edits.
   - No pipes, no hyphens, no middle-dots in the KEY
   - A colon is allowed only inside ARTIFACT, as HEX6:HEX6
   - Color is never in the KEY (see docs/protocols/hex/)
+  # NOTE: HEX Protocol is deprecated. Use ColorLex.
   - Hawaiian constitutional terms are never in the KEY (see PRD 82_B)
   - Titles, media kinds, and timestamps are never in the KEY
   - After expansion, a KEY must have exactly eight legal tokens
@@ -208,3 +209,4 @@ is not part of LUP. Do not use it. Do not mix it with the KEY.
   Detailed KEY spec:      PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md
   Header PRD:             docs/prd/16_C-i_LUPOPEDIA_HEADERS.md
   Color CSV for LUP:      docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv
+  # NOTE: HEX Protocol is deprecated. Use ColorLex.

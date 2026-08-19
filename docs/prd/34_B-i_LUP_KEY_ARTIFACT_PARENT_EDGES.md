@@ -102,6 +102,7 @@ Until then, the whitepaper remains architecture only.
 - One-time migrations / ALTER TABLE
 - PHP classes
 - Color registry SQL (HEX.COLORS.csv remains the color seed; a color-SQL PRD is separate)
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 - Changing `lupo_edges` or `lupo_memory_edges` DDL
 - Content-addressed IDs, Merkle DAGs, CIDs, RFC 8785
 

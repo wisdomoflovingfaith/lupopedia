@@ -50,6 +50,11 @@ lupopedia.metadata:
   media_kind: document
   cc_by_name: "Eric Robin Gerdes"
 ---
+# DEPRECATED -- HEX Protocol
+The HEX identity system was simplified and replaced by ColorLex on 2026-08-18.
+This file remains for historical context. Do not use HEX Protocol in new work.
+See: docs/colorlex/whitepaper_20260818.md
+
 # HEX.COLORS -- Protocol Color Registry Specification (4.2.11 Contract)
 
 This file explains the Lupopedia Protocol Color Registry System.
@@ -60,12 +65,16 @@ When write frequency increases, flat files become unsafe (concurrency, lost upda
 
 ASCII-safe. Dot grammar. Header contract 4.2.11. Color HEX is a CSV field, not a LUP.KEY token.
 
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
+
 Folder guide: [README.md](README.md)
 LUP seed CSV: [PRT.LUP/PRT.LUP.colors.csv](PRT.LUP/PRT.LUP.colors.csv)
 
 ## Purpose
 
 Each protocol maintains its own color registry CSV. Each CSV maps human-readable color names to HEX values for identity mapping, routing, UI rendering, and semantic grouping.
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 This system is flat-file **today**. It does not override PRDs. It does not modify header authority.
 
@@ -78,6 +87,7 @@ Evolution path:
 1. **Flat-file now.** Read CSV. Write CSV only for single-actor operations.
 2. **Database later.** SQL or key-value storage for multi-actor concurrency.
 3. **Same naming rules.** Lowercase ASCII `word`, 6-character `hex_color`, no `#`.
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 4. **Same fallback rules.** Requested `field_type`, then `node`, then request creation. Do not guess.
 5. **Same protocol-scoped structure.** `docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv` remains the protocol identity of the registry even if rows later live in SQL.
 
@@ -99,6 +109,8 @@ Color registries live in:
 ```text
 docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv
 ```
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 `<PROTOCOL>` is the protocol SHORT identity (example `PRT.LUP`).
 
@@ -151,6 +163,7 @@ word_registry_id,word,hex_color,field_type,iso_language,created_ymdhis,updated_y
 
 - `word` is lowercase ASCII-safe.
 - `hex_color` is a 6-character hex value without a `#` prefix.
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. HEX6 storage remains; ColorLex is the identity surface. -->
 - `field_type` may be: `node`, `actor`, `group`, `artifact`, `mode`, `protocol`.
 - `node` is the canonical default for all other field_types.
 - `iso_language` is `EN` for now.
@@ -172,6 +185,8 @@ When resolving a color for a specific `field_type`:
 
 NODE is the universal fallback for all other field_types. Do not guess a HEX value.
 
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
+
 ## Missing Color Rule
 
 If a color name does not exist in the protocol CSV:
@@ -184,6 +199,8 @@ If a color name does not exist in the protocol CSV:
 ## Example (LUP Protocol)
 
 `docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv` includes seed entries such as:
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ```text
 yellow -> FFFF00
@@ -222,6 +239,8 @@ This file is a protocol-level specification.
 - No hyphens in KEY grammar
 - Comma-separated values
 - No `#` prefix in `hex_color` fields
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ## VARIANTS INDEX
 

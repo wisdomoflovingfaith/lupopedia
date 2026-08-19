@@ -22,6 +22,7 @@
 #   summary: "Writes INSERT statements for color_groups (PRD 90 base register) and color_names (CSV)."
 # -----
 """Generate color registry seed SQL from docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv."""
+# NOTE: HEX Protocol is deprecated. Use ColorLex.
 
 from __future__ import print_function
 
@@ -70,6 +71,7 @@ def main():
     lines.append("-- ColorName: docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv")
     lines.append("-- group_color on names is set only when color_name matches a base GroupColor.")
     lines.append("-- Other CSS seed words keep group_color empty until Captain assignment.")
+    # NOTE: HEX Protocol is deprecated. Use ColorLex.
     lines.append("-- hex6 from CSV hex_color, uppercased, no hash. No hex5. Not agent_colors.")
     lines.append("-- =============================================================================")
     lines.append("")
@@ -102,6 +104,7 @@ def main():
             color_name_id = int(row["word_registry_id"])
             word = row["word"].strip()
             hex6 = row["hex_color"].strip().lstrip("#").upper()
+            # NOTE: HEX Protocol is deprecated. Use ColorLex.
             if len(hex6) != 6:
                 raise SystemExit("bad hex for %s: %s" % (word, hex6))
             field_type = row["field_type"].strip() or "node"

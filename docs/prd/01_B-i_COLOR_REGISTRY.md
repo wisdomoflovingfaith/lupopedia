@@ -78,6 +78,8 @@ Color nicknames are two-part identities:
 
 Today that mapping lives in a flat CSV and in SQL seed. HEX.COLORS lookup can still read CSV. CSV remains the file backup until a PHP reader is switched to SQL.
 
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
+
 Color is **not** a LUP.KEY token. Do not store GroupColor or ColorName inside KEY grammar.
 
 ---
@@ -87,12 +89,14 @@ Color is **not** a LUP.KEY token. Do not store GroupColor or ColorName inside KE
 | Surface | Job | Do not |
 |---------|-----|--------|
 | `docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv` | File backup and seed source (`word`, `hex_color`, `field_type`, `word_registry_id`) | Treat CSV as the only store after SQL seed |
-| `docs/protocols/hex/HEX.COLORS.md` | Protocol lookup rules. CSV now. SQL later. Same API. | Put color in KEY |
+| `docs/protocols/hex/HEX.COLORS.md` | Protocol lookup rules. CSV now. SQL later. Same API. Historical HEX Protocol. | Put color in KEY |
 | `{{prefix}}color_groups` / `{{prefix}}color_names` | Install + seed registry | Overload `{{prefix}}agent_colors` |
 | `{{prefix}}agent_colors` | Per-actor chat UI colors with `#` prefix | Overload as the color registry |
 | Captain's Log 20260816 two-part color identity | Narrative handshake | Treat as doctrine that overrides PRDs |
 
 CSV `word_registry_id` maps to `color_name_id`. CSV `hex_color` maps to `hex6` (six characters, no `#`).
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ---
 
@@ -194,5 +198,6 @@ Still open:
 - PRD 01_A: `docs/prd/01_A-i_CORE_IDENTITY.md`
 - PRD 80: `docs/prd/80_A-i_DATABASE_DESIGN_DOCTRINE.md`
 - Protocol: `docs/protocols/hex/HEX.COLORS.md`
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 - Seed CSV: `docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv`
 - Handshake log: `content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_the_two_part_color_identity_revelation.md`

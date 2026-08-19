@@ -50,15 +50,24 @@ lupopedia.metadata:
   media_kind: document
   cc_by_name: "Eric Robin Gerdes"
 ---
+# DEPRECATED -- HEX Protocol
+The HEX identity system was simplified and replaced by ColorLex on 2026-08-18.
+This file remains for historical context. Do not use HEX Protocol in new work.
+See: docs/colorlex/whitepaper_20260818.md
+
 # Protocol color registry (CSV seeds)
 
 Color words are registered **per protocol**. Spec: [HEX.COLORS.md](HEX.COLORS.md).
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 Lookup is **flat-file**. A database is not required. The Lupopedia ID routes to the protocol folder (and optional Class C shard).
 
 These files are navigation and configuration aids. They are **not** doctrine. They do not override PRDs. They do not modify `lupopedia.headers`, `lupopedia.identity`, `lupopedia.map`, or `lupopedia.metadata`.
 
 Header contract remains **4.2.11** (PRD 16_C). ASCII-safe only. No pipes, no middle-dot, no hyphens in KEY. Color HEX is a CSV field, not a LUP.KEY token.
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ## Files
 
@@ -88,6 +97,7 @@ Lookup matches CSV rows. SQL is not required.
 2. Append one row. Do not reuse an existing `word_registry_id`.
 3. `word` is lowercase English for now (example: `grass`).
 4. `hex_color` is exactly 6 hex characters (`0-9`, `A-F` or `a-f`). No `#`. No spaces.
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 5. `field_type` for these LUP seed rows is `node`.
 6. `iso_language` is `EN` until a non-English registry is authorized.
 7. `created_ymdhis` and `updated_ymdhis` are `0` for seed rows.

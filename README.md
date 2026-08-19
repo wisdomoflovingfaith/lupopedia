@@ -293,6 +293,10 @@ Authoritative: [PRD 16_E](docs/prd/16_E-i_LUPOPEDIA_HEADERS_MIGRATION.md).
 
 ## Protocol Color Registries (Color -> HEX Mapping)
 
+**DEPRECATED -- HEX Protocol.** The HEX identity system was simplified and replaced by ColorLex on 2026-08-18. This section remains for historical context. Do not use HEX Protocol in new work. See: [docs/colorlex/whitepaper_20260818.md](../docs/colorlex/whitepaper_20260818.md)
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
+
 Each protocol in Lupopedia maintains its own color registry CSV:
 
 ```text
@@ -311,6 +315,8 @@ Example columns:
 ```text
 word_registry_id,word,hex_color,field_type,iso_language,created_ymdhis,updated_ymdhis,source_table,usage_count,actor_hex
 ```
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ### LUP protocol seed
 
@@ -338,6 +344,8 @@ The NODE `field_type` is the canonical default for all other field types.
 Color registries are CSV files **today**. Deterministic ID routing makes that a good fit for read-heavy work. When writes become frequent, flat files are unsafe for multi-actor concurrency.
 
 Lupopedia will introduce a **Registry Layer (LRL)** that abstracts lookup and creation: CSV reads now, safe single-actor CSV writes now, SQL or key-value later, **same API and fallback rules**. **No `.lock` files** (unsafe and undesirable). Spec: [HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md).
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ### Missing color rule
 

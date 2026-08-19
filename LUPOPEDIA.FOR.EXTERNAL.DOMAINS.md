@@ -283,7 +283,7 @@ A string that fails these checks is not a LUP KEY. Return an error. Do not inven
 
 | Not this | Why |
 |----------|-----|
-| Color / RGB / gold names | Color lives in `docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv` |
+| Color / RGB / gold names | Color lives in ColorLex (HEX6 storage; historical CSV under `docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv`) |
 | Hawaiian constitutional terms (KAPU, PONO, ALII, ...) | Routing / ethics in PRD 82_B, not identity |
 | Media kind (song, image, video) | `lupopedia.metadata.media_kind` and variant IDs such as `MUS.01.EN` |
 | Human title | `lupopedia.headers.title` |
@@ -378,7 +378,7 @@ Those blocks are file metadata. They are not extra KEY tokens.
 | Protocol narrative | [docs/protocols/lup/PRT.LUP.md](docs/protocols/lup/PRT.LUP.md) |
 | Whitepaper v1.9.2 | [docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md](docs/protocols/lup/lupopedia_whitepaper_v1_9_2.md) |
 | Full KEY spec | [PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md](PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md) |
-| Color (not KEY) | [docs/protocols/hex/HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md) |
+| Color (not KEY) | [docs/protocols/hex/HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md) (historical HEX Protocol; use ColorLex) |
 | Hawaiian fields (not KEY) | [docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md](docs/prd/82_B-i_HERMES_ROUTING_HEADER_AND_HAWAIIAN_SEMANTICS.md) |
 
 This article does not override PRDs. If a PRD and this guide disagree on headers or map shape, the PRD wins. If a short readme and this guide disagree on KEY expansion, **4.2.26 expansion in this file and in `lupopedia.protocal.readme.txt` wins** over older `PRT.NAME.PRT.LUP...` examples.

@@ -67,6 +67,8 @@ Header contract: `header_format_version: "4.2.11"`.
 
 This file does **not** override PRDs. Normative PRD remains [PRD 16_C](docs/prd/16_C-i_LUPOPEDIA_HEADERS.md). Template: [federation_map_template.md](docs/prd/federation/federation_map_template.md). Protocol article: [PRT.LUP.md](docs/protocols/lup/PRT.LUP.md). Color spec: [HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md).
 
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. LUP.HEX in this file is KEY MODE, not HEX Protocol color identity. -->
+
 ASCII-safe. Dot grammar. No pipes, no middle-dot, no hyphens in KEY.
 
 ---
@@ -92,6 +94,7 @@ ASCII-safe. Dot grammar. No pipes, no middle-dot, no hyphens in KEY.
 | KEY grammar + map | PRD 16_C section 4.2.6 and federation map template |
 | Protocol narrative | `docs/protocols/lup/PRT.LUP.md` |
 | Color CSV / LRL | `docs/protocols/hex/HEX.COLORS.md` |
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 | Product semver | `config/global_atoms.yaml` `GLOBAL_CURRENT_LUPOPEDIA_VERSION` |
 | This file | Detailed operator spec. Routes to PRDs. Does not replace them. |
 
@@ -362,7 +365,7 @@ The Class C portion is the third pair (`01`). It MAY be used as a folder shard. 
 
 | Not this | Why |
 |----------|-----|
-| Color / RGB / gold names | Color lives in CSV registries under `docs/protocols/hex/` |
+| Color / RGB / gold names | Color lives in ColorLex; historical CSV under `docs/protocols/hex/` |
 | Hawaiian constitutional terms (KAPU, PONO, ALII, ...) | Routing / ethics in PRD 82_B, not identity |
 | Media kind (song, image, video) | `lupopedia.metadata.media_kind` and variant IDs such as `MUS.01.EN` |
 | Human title | `lupopedia.headers.title` |
@@ -381,10 +384,12 @@ Protocols live under `docs/protocols/`.
 
 ```text
 docs/protocols/lup/PRT.LUP.md          LUP protocol article
-docs/protocols/hex/HEX.COLORS.md       Color registry spec
-docs/protocols/hex/README.md           Color folder guide
+docs/protocols/hex/HEX.COLORS.md       Color registry spec (historical HEX Protocol; use ColorLex)
+docs/protocols/hex/README.md           Color folder guide (historical HEX Protocol; use ColorLex)
 docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv
 ```
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 `<PROTOCOL>` is the protocol SHORT identity (example `PRT.LUP`).
 
@@ -440,6 +445,8 @@ grass  -> 0c871b
 **No `.lock` files.** They are unsafe and undesirable.
 
 Full spec: [docs/protocols/hex/HEX.COLORS.md](docs/protocols/hex/HEX.COLORS.md)
+
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ---
 

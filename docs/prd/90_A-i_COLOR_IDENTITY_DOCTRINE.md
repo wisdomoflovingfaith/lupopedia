@@ -1295,6 +1295,7 @@ This appendix does not modify the LUP KEY grammar. PRD 16_C remains KEY authorit
 - Database doctrine: `docs/prd/80_A-i_DATABASE_DESIGN_DOCTRINE.md`
 - Table planning (thinking, not doctrine): `docs/prd/01_B-i_COLOR_REGISTRY.md`
 - Protocol CSV: `docs/protocols/hex/HEX.COLORS.md`
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. HEX6 storage in this PRD is not HEX Protocol. -->
 - LUPxPEDIA Case A: `docs/doctrine/lupopedia_identity_routing_rule.md`
 - Placement log: `content/federation_node/0/captains_log/origin_stories_architure/2026/08/20260816_choosing_the_prd_number_for_color_identity_doctrine.md`
 - Consolidation protocol: `docs/prd/93_A-i_CONSOLIDATION_PROTOCOL.md`

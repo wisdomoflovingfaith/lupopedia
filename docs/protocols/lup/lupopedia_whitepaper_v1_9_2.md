@@ -389,6 +389,8 @@ Illustrative mappings (not all are present in today's CSV seed):
 
 Today's on-disk seed is `docs/protocols/hex/PRT.LUP/PRT.LUP.colors.csv`. That file currently stores lowercase CSS `word` values (`gold` -> `FFD700`, `skyblue` -> `87CEEB`). Crest nicknames such as GOLDENWOLF must be **registered** before they are canonical. Do not invent a CSV row from this whitepaper without an explicit registry write.
 
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
+
 Canonical HEX6 storage is six uppercase hexadecimal characters with no `#`. Display may render `#D4AF37`.
 
 ### 5.2 Canonical color object
@@ -414,6 +416,7 @@ The domain is required because COLOR.NAME.GOLDENWOLF is resolved within a domain
 - HEX6 contains exactly six uppercase hexadecimal characters and never includes `#` in canonical storage.
 - A display layer may render `#D4AF37`.
 - Current CSV lookup also uses `field_type` fallback: requested type, then `node`, then request creation. Do not guess. See HEX.COLORS.md.
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ### 5.4 Color registry fields
 
@@ -856,6 +859,7 @@ DOMAIN + COLOR.NAME.<NICKNAME> -> COLOR.HEX6.<HEX>
 Multiple names may reference the same domain-scoped HEX6.
 
 Current seed surface: `docs/protocols/hex/<PROTOCOL>/<PROTOCOL>.colors.csv`.
+<!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. -->
 
 ### 16.2 Parent edge
 
@@ -1107,7 +1111,7 @@ The pasted draft was accepted as architecture. These corrections are binding in 
 | KEY grammar | [PRT.LUP.md](PRT.LUP.md) |
 | Zeros / operator KEY spec | [PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md](../../../PRT.HEX.000000.000000.000000.ROOT.EN.04020B.md) |
 | Header contract | [16_C-i_LUPOPEDIA_HEADERS.md](../../prd/16_C-i_LUPOPEDIA_HEADERS.md) section 4.2.6 |
-| Color CSV spec | [HEX.COLORS.md](../hex/HEX.COLORS.md) |
+| Color CSV spec | [HEX.COLORS.md](../hex/HEX.COLORS.md) <!-- # NOTE: HEX Protocol is deprecated. Use ColorLex. --> |
 | Color seed | [PRT.LUP.colors.csv](../hex/PRT.LUP/PRT.LUP.colors.csv) |
 | Database PK / IdGenerator | [80_A-i_DATABASE_DESIGN_DOCTRINE.md](../../prd/80_A-i_DATABASE_DESIGN_DOCTRINE.md) |
 | Parent-edge tables (planning) | [34_B-i_LUP_KEY_ARTIFACT_PARENT_EDGES.md](../../prd/34_B-i_LUP_KEY_ARTIFACT_PARENT_EDGES.md) |
